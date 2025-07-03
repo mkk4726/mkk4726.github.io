@@ -1,0 +1,28 @@
+{
+  "name": "mkk4726-blog",
+  "version": "1.0.0",
+  "description": "Jekyll blog with Google Analytics page views",
+  "main": "api/pageviews.js",
+  "scripts": {
+    "start": "node api/pageviews.js",
+    "dev": "nodemon api/pageviews.js",
+    "build": "bundle exec jekyll build",
+    "serve": "bundle exec jekyll serve"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "googleapis": "^118.0.0",
+    "cors": "^2.8.5"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  },
+  "keywords": [
+    "jekyll",
+    "blog",
+    "pageviews",
+    "google-analytics"
+  ],
+  "author": "mkk4726",
+  "license": "MIT"
+} 
