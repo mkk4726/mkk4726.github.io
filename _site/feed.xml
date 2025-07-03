@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-07-03T10:01:46+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">My GitHub Blog</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><entry><title type="html">깃허브 블로그 시작하기</title><link href="http://localhost:4000/jekyll/update/2024/01/01/welcome.html" rel="alternate" type="text/html" title="깃허브 블로그 시작하기" /><published>2024-01-01T12:00:00+09:00</published><updated>2024-01-01T12:00:00+09:00</updated><id>http://localhost:4000/jekyll/update/2024/01/01/welcome</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2024/01/01/welcome.html"><![CDATA[<p>안녕하세요! 제 깃허브 블로그의 첫 번째 포스트입니다.</p>
+
+<h2 id="jekyll-블로그란">Jekyll 블로그란?</h2>
+
+<p>Jekyll은 정적 사이트 생성기로, 마크다운 파일을 HTML로 변환해주는 도구입니다. 
+깃허브 Pages와 함께 사용하면 무료로 블로그를 호스팅할 수 있습니다.</p>
+
+<h2 id="주요-특징">주요 특징</h2>
+
+<ul>
+  <li><strong>마크다운 지원</strong>: 간단한 문법으로 글 작성</li>
+  <li><strong>무료 호스팅</strong>: 깃허브 Pages 사용</li>
+  <li><strong>커스터마이징</strong>: 테마와 레이아웃 자유롭게 수정</li>
+  <li><strong>버전 관리</strong>: Git을 통한 변경 이력 관리</li>
+</ul>
+
+<h2 id="앞으로의-계획">앞으로의 계획</h2>
+
+<p>이 블로그에서는 다음과 같은 내용들을 공유할 예정입니다:</p>
+
+<ul>
+  <li>개발 관련 팁과 노하우</li>
+  <li>프로젝트 후기</li>
+  <li>학습한 내용 정리</li>
+  <li>기타 관심 있는 주제들</li>
+</ul>
+
+<p>많은 관심 부탁드립니다! 😊</p>]]></content><author><name></name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[안녕하세요! 제 깃허브 블로그의 첫 번째 포스트입니다.]]></summary></entry></feed>

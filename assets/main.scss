@@ -1,0 +1,33 @@
+@import "minima";
+
+// 커스텀 스타일 추가
+.site-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.site-title {
+  font-weight: bold;
+  color: #333;
+}
+
+.post-list-heading {
+  color: #333;
+  border-bottom: 2px solid #007bff;
+  padding-bottom: 10px;
+}
+
+.post-link {
+  color: #007bff;
+  text-decoration: none;
+  
+  &:hover {
+    color: #0056b3;
+    text-decoration: underline;
+  }
+}
+
+.post-meta {
+  color: #6c757d;
+  font-size: 0.9em;
+} 
