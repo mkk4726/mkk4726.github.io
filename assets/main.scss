@@ -30,4 +30,27 @@
 .post-meta {
   color: #6c757d;
   font-size: 0.9em;
+}
+
+// 조회수 스타일
+.views-counter {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: #6c757d;
+  font-size: 0.85em;
+  
+  .views-icon {
+    width: 14px;
+    height: 14px;
+  }
+  
+  .views-count {
+    font-weight: 500;
+  }
+}
+
+// 포스트 메타 정보에서 조회수 스타일
+.post-meta .views-counter {
+  margin-left: 8px;
 } 

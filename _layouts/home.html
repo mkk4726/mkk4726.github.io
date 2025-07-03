@@ -21,6 +21,9 @@ layout: default
             {{ post.title | escape }}
           </a>
         </h3>
+        <div class="post-meta">
+          {% include views-counter.html post=post %}
+        </div>
         {%- if site.show_excerpts -%}
           {{ post.excerpt }}
         {%- endif -%}
