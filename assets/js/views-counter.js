@@ -86,4 +86,35 @@ document.addEventListener('DOMContentLoaded', function() {
   const currentUrl = window.location.href;
   const currentTitle = document.title;
   trackPageView(currentUrl, currentTitle);
+});
+
+// 홈 전체/오늘 뷰 표시
+function updateHomeViews() {
+  // 전체 포스트의 .views-counter를 모두 찾음
+  const postCounters = document.querySelectorAll('.main-content .views-counter');
+  let total = 0;
+  let today = 0;
+  const todayStr = new Date().toISOString().slice(0, 10); // YYYY-MM-DD
+
+  postCounters.forEach(function(counter) {
+    // 각 포스트별 조회수(로컬스토리지 기반)
+    const url = counter.dataset.url;
+    const storageKey = `views_${url}`;
+    const views = parseInt(localStorage.getItem(storageKey) || '0');
+    total += views;
+
+    // 오늘 날짜별 조회수(로컬스토리지에 별도 저장 필요)
+    const todayKey = `views_${url}_${todayStr}`;
+    const todayViews = parseInt(localStorage.getItem(todayKey) || '0');
+    today += todayViews;
+  });
+
+  const totalElem = document.getElementById('total-views');
+  const todayElem = document.getElementById('today-views');
+  if (totalElem) totalElem.textContent = total.toLocaleString();
+  if (todayElem) todayElem.textContent = today.toLocaleString();
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  setTimeout(updateHomeViews, 800); // 조회수 렌더 후 집계
 }); 
