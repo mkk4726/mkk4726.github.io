@@ -6,7 +6,7 @@ export default function AboutPage() {
         
         <div className="prose prose-lg max-w-none">
           <p className="text-gray-600 mb-6">
-            Hello! I'm a passionate developer who loves to share knowledge and experiences through writing.
+            Hello! I&apos;m a passionate developer who loves to share knowledge and experiences through writing.
             This blog is my personal space where I document my journey in technology, share insights,
             and connect with fellow developers.
           </p>
@@ -22,7 +22,7 @@ export default function AboutPage() {
           
           <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">Get in Touch</h2>
           <p className="text-gray-600 mb-4">
-            I'm always open to discussions, collaborations, and feedback. Feel free to reach out to me:
+            I&apos;m always open to discussions, collaborations, and feedback. Feel free to reach out to me:
           </p>
           <ul className="list-disc list-inside text-gray-600 space-y-2">
             <li>Email: your.email@example.com</li>

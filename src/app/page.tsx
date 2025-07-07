@@ -1,5 +1,6 @@
 import { getSortedPostsData } from '@/lib/posts';
 import PostCard from '@/components/PostCard';
+import Link from 'next/link';
 
 export default function Home() {
   const posts = getSortedPostsData().slice(0, 6); // Show only the latest 6 posts
@@ -39,12 +40,12 @@ export default function Home() {
       {/* Call to Action */}
       {posts.length > 0 && (
         <div className="text-center">
-          <a
+          <Link
             href="/posts"
             className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 transition-colors"
           >
             View All Posts
-          </a>
+          </Link>
         </div>
       )}
     </div>
