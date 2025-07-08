@@ -25,9 +25,9 @@ export default function AboutPage() {
             I&apos;m always open to discussions, collaborations, and feedback. Feel free to reach out to me:
           </p>
           <ul className="list-disc list-inside text-gray-600 space-y-2">
-            <li>Email: your.email@example.com</li>
-            <li>GitHub: <a href="https://github.com" className="text-blue-600 hover:text-blue-800">github.com/yourusername</a></li>
-            <li>LinkedIn: <a href="https://linkedin.com" className="text-blue-600 hover:text-blue-800">linkedin.com/in/yourusername</a></li>
+            <li>Email: mkk4726@naver.com</li>
+            <li>GitHub: <a href="https://github.com/mkk4726" className="text-blue-600 hover:text-blue-800">github.com/mkk4726</a></li>
+            <li>LinkedIn: <a href="https://www.linkedin.com/in/minku-kim-01aaa5216/m" className="text-blue-600 hover:text-blue-800">linkedin.com/in/minku-kim</a></li>
           </ul>
         </div>
       </div>
