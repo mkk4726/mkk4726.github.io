@@ -1,16 +1,18 @@
 import { getAllPostIds, getPostData } from '@/lib/posts';
 import { format } from 'date-fns';
 import Link from 'next/link';
+import MarkdownContent from '@/components/MarkdownContent';
 
 export async function generateStaticParams() {
   const posts = getAllPostIds();
   return posts.map((post) => ({
-    id: post.id,
+    slug: post.id.split('/'),
   }));
 }
 
-export default async function Post({ params }: { params: Promise<{ id: string }> }) {
-  const { id } = await params;
+export default async function Post({ params }: { params: Promise<{ slug: string[] }> }) {
+  const { slug } = await params;
+  const id = slug.join('/');
   const post = await getPostData(id);
 
   return (
@@ -53,12 +55,9 @@ export default async function Post({ params }: { params: Promise<{ id: string }>
         </header>
 
         {/* Post content */}
-        <div 
+        <MarkdownContent 
+          content={post.content}
           className="prose prose-xl max-w-none text-gray-900 leading-loose font-sans"
-          style={{ 
-            fontFamily: "'Noto Sans KR', Arial, Helvetica, sans-serif",
-          }}
-          dangerouslySetInnerHTML={{ __html: post.content }}
         />
       </article>
     </div>

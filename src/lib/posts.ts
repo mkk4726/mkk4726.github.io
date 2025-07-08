@@ -1,10 +1,6 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
-import { remark } from 'remark';
-import html from 'remark-html';
-import breaks from 'remark-breaks';
-import gfm from 'remark-gfm';
 
 const postsDirectory = path.join(process.cwd(), 'src/content/posts');
 
@@ -120,18 +116,10 @@ export async function getPostData(id: string): Promise<PostData> {
   // Use gray-matter to parse the post metadata section
   const matterResult = matter(fileContents);
 
-  // Use remark to convert markdown into HTML string
-  const processedContent = await remark()
-    .use(breaks)
-    .use(gfm)
-    .use(html)
-    .process(matterResult.content);
-  const contentHtml = processedContent.toString();
-
-  // Combine the data with the id and contentHtml
+  // Return raw markdown content for MarkdownContent component to parse
   return {
     id,
-    content: contentHtml,
+    content: matterResult.content,
     ...(matterResult.data as { title: string; date: string; excerpt?: string; category?: string; tags?: string[] }),
   };
 } 

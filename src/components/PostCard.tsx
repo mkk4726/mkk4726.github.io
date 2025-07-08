@@ -21,7 +21,7 @@ export default function PostCard({ post }: PostCardProps) {
           )}
         </div>
         
-        <Link href={`/posts/${post.id}`} className="block">
+        <Link href={`/posts/${post.id.split('/').map(segment => encodeURIComponent(segment)).join('/')}`} className="block">
           <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-3 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
             {post.title}
           </h2>

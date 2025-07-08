@@ -54,8 +54,49 @@ FWL 정리의 이론적 배경은 다중회귀의 강력함에 있습니다.
 
 이는 다중회귀모형에서 특정 관심 변수의 OLS 추정계수는, (1) 모든 설명변수를 한꺼번에 포함하여 회귀분석한 결과와, (2) 통제 변수들에 대해 종속변수와 관심 변수 각각의 잔차를 구한 뒤 이 잔차들 간에 회귀분석한 결과가 동일하다는 의미입니다.
 
+## 수학적 표현
+
+다중회귀 모델을 다음과 같이 표현할 수 있습니다:
+
+$$Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \cdots + \beta_k X_k + \epsilon$$
+
+여기서 $Y$는 종속변수, $X_1$은 관심 변수, $X_2, \ldots, X_k$는 통제 변수들입니다.
+
+FWL 정리에 따르면, $\beta_1$의 OLS 추정치는 다음 두 방법으로 동일하게 구할 수 있습니다:
+
+### 방법 1: 전체 모델에서 직접 추정
+$$\hat{\beta}_1 = \frac{\text{Cov}(X_1, Y)}{\text{Var}(X_1)}$$
+
+### 방법 2: 잔차화를 통한 추정
+1. $Y$를 $X_2, \ldots, X_k$에 대해 회귀하여 잔차 $e_Y$ 계산
+2. $X_1$을 $X_2, \ldots, X_k$에 대해 회귀하여 잔차 $e_{X_1}$ 계산
+3. $e_Y$를 $e_{X_1}$에 대해 회귀하여 $\hat{\beta}_1$ 추정
+
+$$e_Y = Y - \hat{Y}_{X_2,\ldots,X_k}$$
+$$e_{X_1} = X_1 - \hat{X_1}_{X_2,\ldots,X_k}$$
+$$\hat{\beta}_1 = \frac{\text{Cov}(e_{X_1}, e_Y)}{\text{Var}(e_{X_1})}$$
+
 실제로 수식적으로도 같고 (참고자료 2 참고) 테스트를 해봐도 같습니다.
 
 인과추론에서 다중회귀는 예측 모델이 아닌 인과관계를 찾는 모델로 사용됩니다.
 
-# R-learner, 인과추론 모델로 확장
+# R-learner, 인과추론 모델로 구현하기
+---
+
+정리하면 FWL이란 잔차화를 통해 교란변수를 직교화 시키는 방법입니다.
+
+FWL을 meta learner 형태로 구현한게 R-learner입니다.
+따라서 잔차화를 위한 2개의 nuisance function이 필요하고, CATE를 추정하는 모델이 필요합니다.
+
+R-learner의 목적 함수는 다음과 같습니다:
+
+$$\mathcal{L}(\tau) = \mathbb{E}\left[\left(Y - m(X) - \tau(X)(T - e(X))\right)^2\right]$$
+
+여기서:
+- $m(X) = \mathbb{E}[Y|X]$: 결과 모델 (outcome model)
+- $e(X) = \mathbb{E}[T|X]$: 처리 모델 (treatment model)
+- $\tau(X)$: 조건부 평균 처리 효과 (CATE)
+
+다중회귀와 비교해서 FWL은 meta leaner로 구현할 때의 장점은 '비선형적인 패턴'을 학습할 수 있다는 점입니다.
+
+이렇게 구현된 R-learner를 통해 CATE(Conditional Average Treatment Effect)를 추정할 수 있습니다.
