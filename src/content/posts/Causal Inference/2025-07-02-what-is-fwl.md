@@ -1,6 +1,6 @@
 ---
 title: "FWL(Frisch-Waugh-Lovell) 정리란?"
-date: "2024-07-02"
+date: "2025-07-02"
 excerpt: "통계적 편향을 제거하기 위한 방법론"
 category: "Causal Inference"
 tags: ["Causal Inference"]
