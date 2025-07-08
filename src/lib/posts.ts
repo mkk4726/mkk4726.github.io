@@ -94,15 +94,18 @@ export function getAllPostIds() {
 }
 
 export async function getPostData(id: string): Promise<PostData> {
+  // Decode URL-encoded characters in the id
+  const decodedId = decodeURIComponent(id);
+  
   // Check if the file exists directly in posts directory first
-  let fullPath = path.join(postsDirectory, `${id}.md`);
+  let fullPath = path.join(postsDirectory, `${decodedId}.md`);
   
   // If not found, search in subdirectories
   if (!fs.existsSync(fullPath)) {
     const markdownFiles = getAllMarkdownFiles(postsDirectory);
     const targetFile = markdownFiles.find(filePath => {
       const relativePath = path.relative(postsDirectory, filePath);
-      return relativePath.replace(/\.md$/, '') === id;
+      return relativePath.replace(/\.md$/, '') === decodedId;
     });
     
     if (!targetFile) {
