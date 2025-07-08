@@ -13,6 +13,7 @@ A modern, fast, and SEO-friendly personal blog built with Next.js, TypeScript, a
 - 📄 **Resume Section**: Professional resume in Markdown format
 - 🎯 **Portfolio Showcase**: Project showcase in Markdown format
 - 📧 **Contact Information**: Easy access to social media and contact details
+- 📊 **Analytics**: Google Analytics integration with view count display
 
 ## Tech Stack
 
@@ -28,6 +29,31 @@ A modern, fast, and SEO-friendly personal blog built with Next.js, TypeScript, a
 
 - Node.js 18+ 
 - npm or yarn
+
+### Google Analytics Setup
+
+To enable analytics and view count features:
+
+1. **Create Google Analytics 4 Property**:
+   - Go to [Google Analytics](https://analytics.google.com/)
+   - Create a new GA4 property for your website
+   - Note down your Measurement ID (G-XXXXXXXXXX)
+
+2. **Set up Google Cloud Console**:
+   - Go to [Google Cloud Console](https://console.cloud.google.com/)
+   - Create a new project or select existing one
+   - Enable Google Analytics Data API
+   - Create a service account and download the JSON key file
+
+3. **Configure Environment Variables**:
+   - Copy `env.example` to `.env.local`
+   - Fill in your actual values:
+     ```
+     NEXT_PUBLIC_GA_MEASUREMENT_ID=G-XXXXXXXXXX
+     GA_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----\n"
+     GA_CLIENT_EMAIL=your-service-account@your-project.iam.gserviceaccount.com
+     GA_VIEW_ID=properties/123456789
+     ```
 
 ### Installation
 
@@ -150,15 +176,20 @@ src/
 ├── app/                 # Next.js app directory
 │   ├── page.tsx        # Home page
 │   ├── posts/          # Blog posts routes
-│   └── about/          # About page (with Resume & Portfolio)
+│   ├── about/          # About page (with Resume & Portfolio)
+│   └── api/            # API routes
+│       └── analytics/  # Analytics data endpoint
 ├── components/         # Reusable components
 │   ├── Header.tsx      # Navigation header
 │   ├── Footer.tsx      # Site footer
 │   ├── PostCard.tsx    # Blog post card
-│   └── MarkdownContent.tsx # Markdown rendering component
+│   ├── MarkdownContent.tsx # Markdown rendering component
+│   ├── GoogleAnalytics.tsx # Google Analytics tracking
+│   └── AnalyticsDisplay.tsx # Analytics data display
 ├── lib/               # Utility functions
 │   ├── posts.ts       # Blog post utilities
-│   └── content.ts     # Content management utilities
+│   ├── content.ts     # Content management utilities
+│   └── analytics.ts   # Google Analytics utilities
 └── content/           # Markdown files
     ├── posts/         # Blog post markdown files
     ├── resume.md      # Resume content
