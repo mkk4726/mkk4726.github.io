@@ -1,7 +1,7 @@
 import { getSortedPostsData } from '@/lib/posts';
 import PostCard from '@/components/PostCard';
 import Link from 'next/link';
-import AnalyticsDisplay from '@/components/AnalyticsDisplay';
+// import AnalyticsDisplay from '@/components/AnalyticsDisplay';
 
 export default function Home() {
   const posts = getSortedPostsData().slice(0, 6); // Show only the latest 6 posts
@@ -18,9 +18,6 @@ export default function Home() {
           development, and life.
         </p>
       </div>
-
-      {/* Analytics Display */}
-      <AnalyticsDisplay />
 
       {/* Latest Posts Section */}
       <div className="mb-12">
