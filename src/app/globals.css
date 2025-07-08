@@ -22,5 +22,47 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Noto Sans KR', Arial, Helvetica, sans-serif;
+}
+
+/* Prose styling for markdown content */
+.prose h1 {
+  font-size: 2.25rem !important;
+  font-weight: 800 !important;
+  color: #111827 !important;
+  margin-top: 2rem !important;
+  margin-bottom: 1rem !important;
+}
+
+.prose h2 {
+  font-size: 1.875rem !important;
+  font-weight: 700 !important;
+  color: #111827 !important;
+  margin-top: 1.5rem !important;
+  margin-bottom: 0.75rem !important;
+}
+
+.prose h3 {
+  font-size: 1.5rem !important;
+  font-weight: 600 !important;
+  color: #111827 !important;
+  margin-top: 1.25rem !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.prose blockquote {
+  border-left: 4px solid #3b82f6 !important;
+  background-color: #eff6ff !important;
+  padding-left: 1.5rem !important;
+  padding-top: 0.5rem !important;
+  padding-bottom: 0.5rem !important;
+  font-style: normal !important;
+  margin: 1.5rem 0 !important;
+  border-radius: 0.25rem;
+}
+
+.prose hr {
+  border-color: #d1d5db !important;
+  margin: 2rem 0 !important;
+  border-width: 1px;
 }

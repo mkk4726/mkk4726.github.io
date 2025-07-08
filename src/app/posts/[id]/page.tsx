@@ -54,7 +54,10 @@ export default async function Post({ params }: { params: Promise<{ id: string }>
 
         {/* Post content */}
         <div 
-          className="prose prose-lg max-w-none"
+          className="prose prose-xl max-w-none text-gray-900 leading-loose font-sans"
+          style={{ 
+            fontFamily: "'Noto Sans KR', Arial, Helvetica, sans-serif",
+          }}
           dangerouslySetInnerHTML={{ __html: post.content }}
         />
       </article>
