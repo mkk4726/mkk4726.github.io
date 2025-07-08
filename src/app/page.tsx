@@ -9,10 +9,10 @@ export default function Home() {
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       {/* Hero Section */}
       <div className="text-center mb-16">
-        <h1 className="text-4xl font-bold text-gray-900 mb-4">
+        <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">
           Welcome to My GitBlog
         </h1>
-        <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+        <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
           A personal blog where I share my thoughts, experiences, and insights about technology, 
           development, and life.
         </p>
@@ -20,7 +20,7 @@ export default function Home() {
 
       {/* Latest Posts Section */}
       <div className="mb-12">
-        <h2 className="text-2xl font-bold text-gray-900 mb-8">Latest Posts</h2>
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-8">Latest Posts</h2>
         {posts.length > 0 ? (
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {posts.map((post) => (
@@ -29,9 +29,9 @@ export default function Home() {
           </div>
         ) : (
           <div className="text-center py-12">
-            <p className="text-gray-600 mb-4">No posts yet.</p>
-            <p className="text-sm text-gray-500">
-              Create your first post by adding a markdown file to the <code className="bg-gray-100 px-2 py-1 rounded">src/content/posts</code> directory.
+            <p className="text-gray-600 dark:text-gray-300 mb-4">No posts yet.</p>
+            <p className="text-sm text-gray-500 dark:text-gray-400">
+              Create your first post by adding a markdown file to the <code className="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded">src/content/posts</code> directory.
             </p>
           </div>
         )}
