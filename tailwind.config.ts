@@ -17,8 +17,20 @@ const config: Config = {
         DEFAULT: {
           css: {
             p: { marginTop: '1.2em', marginBottom: '1.2em' },
-            ul: { marginTop: '1.2em', marginBottom: '1.2em' },
-            ol: { marginTop: '1.2em', marginBottom: '1.2em' },
+            ul: { 
+              marginTop: '1.2em', 
+              marginBottom: '1.2em',
+              listStyleType: 'disc',
+              paddingLeft: '1.5rem',
+              color: '#374151',
+            },
+            ol: { 
+              marginTop: '1.2em', 
+              marginBottom: '1.2em',
+              listStyleType: 'decimal',
+              paddingLeft: '1.5rem',
+              color: '#374151',
+            },
             h1: {
               fontSize: '2.25rem',
               fontWeight: '800',
@@ -120,6 +132,21 @@ const config: Config = {
               backgroundColor: 'transparent',
               color: 'inherit',
               padding: '0',
+            },
+            'li': {
+              marginTop: '0.25rem',
+              marginBottom: '0.25rem',
+              color: '#374151',
+            },
+            'li::marker': {
+              color: '#374151',
+              fontWeight: '500',
+            },
+            'ul > li::marker': {
+              color: '#374151',
+            },
+            'ol > li::marker': {
+              color: '#374151',
             },
           },
         },

@@ -27,7 +27,11 @@ export default function MarkdownContent({ content, className = '' }: MarkdownCon
 
   return (
     <div 
-      className={`prose prose-lg max-w-none ${className}`}
+      className={`prose prose-lg max-w-none prose-headings:text-gray-900 prose-p:text-gray-700 prose-strong:text-gray-900 prose-em:text-gray-600 prose-ul:text-gray-700 prose-ol:text-gray-700 prose-li:text-gray-700 prose-li:marker:text-gray-700 ${className}`}
+      style={{
+        '--tw-prose-bullets': '#374151',
+        '--tw-prose-counters': '#374151',
+      } as React.CSSProperties}
       dangerouslySetInnerHTML={{ __html: parsedContent }}
     />
   );
