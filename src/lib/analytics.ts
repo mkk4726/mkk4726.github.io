@@ -1,3 +1,4 @@
+import jwt from 'jsonwebtoken';
 // Google Analytics API를 사용하여 조회수를 가져오는 유틸리티
 
 export interface PageViews {
@@ -63,9 +64,14 @@ export async function getAnalyticsData(): Promise<AnalyticsData> {
       throw new Error(`GA API error: ${response.status}`);
     }
 
-    const data = await response.json();
+    const data: {
+      rows?: {
+        dimensionValues: { value: string }[];
+        metricValues: { value: string }[];
+      }[];
+    } = await response.json();
     
-    const pageViews: PageViews[] = data.rows?.map((row: any) => ({
+    const pageViews: PageViews[] = data.rows?.map((row) => ({
       pagePath: row.dimensionValues[0].value,
       pageViews: parseInt(row.metricValues[0].value),
     })) || [];
@@ -115,7 +121,7 @@ async function getAccessToken(): Promise<string> {
       throw new Error(`OAuth error: ${response.status}`);
     }
 
-    const data = await response.json();
+    const data: { access_token: string } = await response.json();
     return data.access_token;
   } catch (error) {
     console.error('Error getting access token:', error);
@@ -129,8 +135,6 @@ async function createJWT(): Promise<string> {
     throw new Error('GA credentials not configured');
   }
 
-  const jwt = require('jsonwebtoken');
-  
   const now = Math.floor(Date.now() / 1000);
   const payload = {
     iss: GA_CLIENT_EMAIL,
@@ -159,7 +163,7 @@ export function trackPageView(pagePath: string) {
 }
 
 // 클라이언트 사이드에서 커스텀 이벤트 전송
-export function trackEvent(eventName: string, parameters?: Record<string, any>) {
+export function trackEvent(eventName: string, parameters?: Record<string, unknown>) {
   if (typeof window !== 'undefined' && window.gtag) {
     window.gtag('event', eventName, parameters);
   }
@@ -171,7 +175,7 @@ declare global {
     gtag: (
       command: 'config' | 'event',
       targetId: string,
-      config?: Record<string, any>
+      config?: Record<string, unknown>
     ) => void;
   }
 } 
