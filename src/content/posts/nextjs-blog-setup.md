@@ -2,6 +2,7 @@
 title: "Building a Blog with Next.js: A Complete Guide"
 date: "2024-01-20"
 excerpt: "Learn how to build a modern, fast, and SEO-friendly blog using Next.js, TypeScript, and Tailwind CSS."
+category: "Tutorial"
 tags: ["nextjs", "typescript", "tailwind", "tutorial", "blog"]
 ---
 

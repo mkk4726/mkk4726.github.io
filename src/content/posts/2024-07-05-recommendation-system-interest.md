@@ -1,7 +1,7 @@
 ---
 title: 추천시스템에 관심있는 이유
 date: 2024-07-04 23:30:00 +0900
-categories: [Recommendation]
+category: "Recommendation"
 tags: [Recommendation]
 description: 내가 추천시스템에 흥미를 느끼고 관심이 생기는 이유 
 render_with_liquid: false

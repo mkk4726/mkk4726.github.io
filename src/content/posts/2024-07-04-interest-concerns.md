@@ -1,7 +1,7 @@
 ---
 title: 관심사에 대한 고민
 date: 2024-07-04 19:49:00 +0900
-categories: [Reflections]
+category: "Reflections"
 tags: [Interest]
 description: 난 어떤 주제에 관심을 가지고, 어떤 가치를 만들고 싶은지에 대한 고민
 render_with_liquid: false

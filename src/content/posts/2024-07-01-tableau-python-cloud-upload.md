@@ -1,7 +1,7 @@
 ---
 title: 태블러 python으로 데이터 cloud 업로드
 date: 2024-07-01 12:00:00 +0900
-categories: [Tableau]
+category: "Tableau"
 tags: [Tableau, Python]
 description: python으로 데이터를 tableau cloud에 올리는 코드 공유 
 render_with_liquid: false

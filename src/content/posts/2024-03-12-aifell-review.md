@@ -2,6 +2,7 @@
 title: "아이펠 후기"
 date: "2024-03-12"
 excerpt: "6개월 동안의 아이펠 후기"
+category: "Reflections"
 tags: ["아이펠", "이런저런 생각들"]
 ---
 

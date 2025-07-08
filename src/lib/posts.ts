@@ -14,6 +14,7 @@ export interface PostData {
   date: string;
   content: string;
   excerpt?: string;
+  category?: string;
   tags?: string[];
 }
 
@@ -34,7 +35,7 @@ export function getSortedPostsData(): Omit<PostData, 'content'>[] {
     // Combine the data with the id
     return {
       id,
-      ...(matterResult.data as { title: string; date: string; excerpt?: string; tags?: string[] }),
+      ...(matterResult.data as { title: string; date: string; excerpt?: string; category?: string; tags?: string[] }),
     };
   });
 
@@ -46,6 +47,21 @@ export function getSortedPostsData(): Omit<PostData, 'content'>[] {
       return -1;
     }
   });
+}
+
+export function getPostsByCategory(category: string): Omit<PostData, 'content'>[] {
+  const allPosts = getSortedPostsData();
+  return allPosts.filter(post => post.category === category);
+}
+
+export function getAllCategories(): string[] {
+  const allPosts = getSortedPostsData();
+  const categories = allPosts
+    .map(post => post.category)
+    .filter((category): category is string => category !== undefined);
+  
+  // Remove duplicates and sort
+  return [...new Set(categories)].sort();
 }
 
 export function getAllPostIds() {
@@ -76,6 +92,6 @@ export async function getPostData(id: string): Promise<PostData> {
   return {
     id,
     content: contentHtml,
-    ...(matterResult.data as { title: string; date: string; excerpt?: string; tags?: string[] }),
+    ...(matterResult.data as { title: string; date: string; excerpt?: string; category?: string; tags?: string[] }),
   };
 } 
