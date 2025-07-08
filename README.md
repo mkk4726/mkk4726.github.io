@@ -10,6 +10,9 @@ A modern, fast, and SEO-friendly personal blog built with Next.js, TypeScript, a
 - 🔍 **SEO Optimized**: Built-in SEO features and meta tags
 - 📱 **Mobile Friendly**: Responsive design that works on all devices
 - 🚀 **Easy Deployment**: Deploy to GitHub Pages with GitHub Actions
+- 📄 **Resume Section**: Professional resume in Markdown format
+- 🎯 **Portfolio Showcase**: Project showcase in Markdown format
+- 📧 **Contact Information**: Easy access to social media and contact details
 
 ## Tech Stack
 
@@ -112,6 +115,34 @@ Wrap up your thoughts.
 
 The post will automatically appear on your blog!
 
+## Managing Resume & Portfolio
+
+### Resume Management
+To update your resume on the About page:
+
+1. **Edit the markdown file**: Modify `src/content/resume.md`
+2. **Update frontmatter**: Change title and lastUpdated date if needed
+3. **Format content**: Use standard markdown syntax for formatting
+
+The resume section includes:
+- Professional formatting with markdown
+- Last updated timestamp
+- Skills and experience sections
+- Contact information
+
+### Portfolio Management
+To showcase your projects:
+
+1. **Edit the markdown file**: Modify `src/content/portfolio.md`
+2. **Add new projects**: Use markdown formatting for project descriptions
+3. **Update links**: Include GitHub and live demo links
+
+Portfolio features:
+- Project descriptions in markdown
+- Technology stack listings
+- GitHub and live demo links
+- Professional formatting
+
 ## Project Structure
 
 ```
@@ -119,11 +150,22 @@ src/
 ├── app/                 # Next.js app directory
 │   ├── page.tsx        # Home page
 │   ├── posts/          # Blog posts routes
-│   └── about/          # About page
+│   └── about/          # About page (with Resume & Portfolio)
 ├── components/         # Reusable components
+│   ├── Header.tsx      # Navigation header
+│   ├── Footer.tsx      # Site footer
+│   ├── PostCard.tsx    # Blog post card
+│   └── MarkdownContent.tsx # Markdown rendering component
 ├── lib/               # Utility functions
+│   ├── posts.ts       # Blog post utilities
+│   └── content.ts     # Content management utilities
 └── content/           # Markdown files
-    └── posts/         # Blog post markdown files
+    ├── posts/         # Blog post markdown files
+    ├── resume.md      # Resume content
+    └── portfolio.md   # Portfolio content
+
+public/
+└── post/             # Blog post images
 ```
 
 ## Deployment
@@ -140,6 +182,8 @@ This blog is configured to deploy automatically to GitHub Pages:
 - **Layout**: Edit `src/app/layout.tsx` for global layout changes
 - **Components**: Add new components in `src/components/`
 - **Content**: Update About page and sample posts
+- **Resume**: Edit `src/content/resume.md` to update your resume
+- **Portfolio**: Edit `src/content/portfolio.md` to update your projects
 
 ## License
 
