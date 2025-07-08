@@ -1,5 +1,11 @@
 name: Deploy to GitHub Pages
 
+env:
+  NEXT_PUBLIC_GA_MEASUREMENT_ID: ${{ secrets.NEXT_PUBLIC_GA_MEASUREMENT_ID }}
+  GA_PRIVATE_KEY: ${{ secrets.GA_PRIVATE_KEY }}
+  GA_CLIENT_EMAIL: ${{ secrets.GA_CLIENT_EMAIL }}
+  GA_VIEW_ID: ${{ secrets.GA_VIEW_ID }}
+
 on:
   push:
     branches: [ main ]
