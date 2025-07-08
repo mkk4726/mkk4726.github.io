@@ -50,23 +50,67 @@ npm run dev
 
 To add a new blog post:
 
-1. Create a new `.md` file in the `src/content/posts/` directory
-2. Add frontmatter with title, date, excerpt, and tags:
+1. **Use the template**: Copy `src/content/posts/template.md` as a starting point
+2. **Name your file**: Use format `YYYY-MM-DD-title.md` (e.g., `2024-01-15-my-first-post.md`)
+3. **Update frontmatter**: Fill in the title, date, excerpt, and tags
+
+### Frontmatter Format
 
 ```markdown
 ---
 title: "Your Post Title"
 date: "2024-01-01"
-excerpt: "A brief description of your post"
-tags: ["tag1", "tag2"]
+excerpt: "A brief description of your post (optional)"
+tags: ["tag1", "tag2", "category"]
 ---
-
-# Your Post Content
-
-Write your post content here in Markdown...
 ```
 
-3. The post will automatically appear on your blog!
+### Supported Markdown Features
+
+- **Headers**: `# H1`, `## H2`, `### H3`
+- **Bold/Italic**: `**bold**`, `*italic*`
+- **Lists**: `-` for bullets, `1.` for numbers
+- **Blockquotes**: `> quoted text`
+- **Code blocks**: \`\`\`language ... \`\`\`
+- **Images**: `![alt text](/image.png)`
+- **Links**: `[text](url)`
+- **Horizontal rules**: `---`
+
+### Adding Images
+
+1. Place images in the `public/` directory
+2. Reference them in markdown: `![description](/image-name.png)`
+
+### Example Post Structure
+
+```markdown
+---
+title: "My Awesome Post"
+date: "2024-01-15"
+excerpt: "This is what my post is about"
+tags: ["tutorial", "nextjs", "coding"]
+---
+
+# My Awesome Post
+
+Introduction paragraph here.
+
+## Main Section
+
+Content with **bold** and *italic* text.
+
+> This is a quote or important note.
+
+### Subsection
+
+More content here.
+
+## Conclusion
+
+Wrap up your thoughts.
+```
+
+The post will automatically appear on your blog!
 
 ## Project Structure
 
