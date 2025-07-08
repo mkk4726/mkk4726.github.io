@@ -66,3 +66,99 @@ body {
   margin: 2rem 0 !important;
   border-width: 1px;
 }
+
+/* Table styling for markdown tables */
+.prose table {
+  width: 100% !important;
+  border-collapse: collapse !important;
+  margin: 1.5rem 0 !important;
+  overflow-x: auto !important;
+  display: table !important;
+}
+
+.prose table thead {
+  background-color: #f8fafc !important;
+}
+
+.prose table th {
+  padding: 0.75rem 1rem !important;
+  text-align: left !important;
+  font-weight: 600 !important;
+  color: #374151 !important;
+  border: 1px solid #e5e7eb !important;
+  background-color: #f9fafb !important;
+}
+
+.prose table td {
+  padding: 0.75rem 1rem !important;
+  border: 1px solid #e5e7eb !important;
+  color: #374151 !important;
+}
+
+.prose table tr:nth-child(even) {
+  background-color: #f8fafc !important;
+}
+
+.prose table tr:hover {
+  background-color: #f1f5f9 !important;
+}
+
+/* Line break styling */
+.prose br {
+  display: block !important;
+  margin: 0.5rem 0 !important;
+  content: "" !important;
+}
+
+/* Paragraph spacing */
+.prose p {
+  margin-top: 1.25rem !important;
+  margin-bottom: 1.25rem !important;
+  line-height: 1.75 !important;
+}
+
+/* Strong and emphasis */
+.prose strong {
+  font-weight: 700 !important;
+  color: #111827 !important;
+}
+
+.prose em {
+  font-style: italic !important;
+  color: #374151 !important;
+}
+
+/* List styling */
+.prose ul, .prose ol {
+  margin: 1.25rem 0 !important;
+  padding-left: 1.5rem !important;
+}
+
+.prose li {
+  margin: 0.5rem 0 !important;
+}
+
+/* Code block styling */
+.prose pre {
+  background-color: #1f2937 !important;
+  color: #f9fafb !important;
+  padding: 1rem !important;
+  border-radius: 0.5rem !important;
+  overflow-x: auto !important;
+  margin: 1.5rem 0 !important;
+}
+
+.prose code {
+  background-color: #f3f4f6 !important;
+  color: #1f2937 !important;
+  padding: 0.125rem 0.25rem !important;
+  border-radius: 0.25rem !important;
+  font-family: 'Courier New', monospace !important;
+  font-size: 0.875rem !important;
+}
+
+.prose pre code {
+  background-color: transparent !important;
+  color: inherit !important;
+  padding: 0 !important;
+}
