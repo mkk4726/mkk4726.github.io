@@ -465,4 +465,148 @@ html {
   }
 }
 
+/* PDF 출력을 위한 스타일 최적화 */
+@media print {
+  body {
+    background: white !important;
+  }
+  
+  .prose {
+    max-width: none !important;
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+  }
+  
+  .prose h1 {
+    font-size: 24px !important;
+    margin-top: 0 !important;
+    margin-bottom: 16px !important;
+    page-break-after: avoid !important;
+  }
+  
+  .prose h2 {
+    font-size: 20px !important;
+    margin-top: 24px !important;
+    margin-bottom: 12px !important;
+    page-break-after: avoid !important;
+  }
+  
+  .prose h3 {
+    font-size: 18px !important;
+    margin-top: 20px !important;
+    margin-bottom: 10px !important;
+    page-break-after: avoid !important;
+  }
+  
+  .prose p {
+    margin-top: 8px !important;
+    margin-bottom: 8px !important;
+    orphans: 3 !important;
+    widows: 3 !important;
+  }
+  
+  .prose pre {
+    background-color: #f8f9fa !important;
+    border: 1px solid #e9ecef !important;
+    padding: 12px !important;
+    font-size: 12px !important;
+    page-break-inside: avoid !important;
+    overflow: visible !important;
+    word-wrap: break-word !important;
+  }
+  
+  .prose code {
+    background-color: #f8f9fa !important;
+    color: #495057 !important;
+    padding: 2px 4px !important;
+    font-size: 12px !important;
+  }
+  
+  .prose blockquote {
+    border-left: 4px solid #dee2e6 !important;
+    background-color: #f8f9fa !important;
+    padding: 12px 16px !important;
+    margin: 16px 0 !important;
+    page-break-inside: avoid !important;
+  }
+  
+  .prose table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    margin: 16px 0 !important;
+    font-size: 12px !important;
+    page-break-inside: avoid !important;
+  }
+  
+  .prose table th,
+  .prose table td {
+    border: 1px solid #dee2e6 !important;
+    padding: 8px !important;
+    text-align: left !important;
+  }
+  
+  .prose table th {
+    background-color: #f8f9fa !important;
+    font-weight: bold !important;
+  }
+  
+  .prose ul,
+  .prose ol {
+    margin: 12px 0 !important;
+    padding-left: 20px !important;
+  }
+  
+  .prose li {
+    margin: 4px 0 !important;
+  }
+  
+  /* PDF용 숨김 요소들 */
+  .no-print {
+    display: none !important;
+  }
+  
+  /* 페이지 브레이크 제어 */
+  .page-break-before {
+    page-break-before: always !important;
+  }
+  
+  .page-break-after {
+    page-break-after: always !important;
+  }
+  
+  .page-break-inside-avoid {
+    page-break-inside: avoid !important;
+  }
+}
+
+/* PDF 전용 유틸리티 클래스 */
+.pdf-optimized {
+  color-adjust: exact !important;
+  -webkit-print-color-adjust: exact !important;
+}
+
+.pdf-font-size-sm {
+  font-size: 12px !important;
+}
+
+.pdf-font-size-base {
+  font-size: 14px !important;
+}
+
+.pdf-font-size-lg {
+  font-size: 16px !important;
+}
+
+.pdf-margin-sm {
+  margin: 8px 0 !important;
+}
+
+.pdf-margin-base {
+  margin: 16px 0 !important;
+}
+
+.pdf-margin-lg {
+  margin: 24px 0 !important;
+}
+
 

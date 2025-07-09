@@ -5,6 +5,7 @@ import MarkdownContent from '@/components/MarkdownContent';
 import TableOfContents from '@/components/TableOfContents';
 import CodeHighlight from '@/components/CodeHighlight';
 import JupyterNotebook from '@/components/JupyterNotebook';
+import PdfDownloadButton from '@/components/PdfDownloadButton';
 
 export async function generateStaticParams() {
   const posts = getAllPostIds();
@@ -23,9 +24,9 @@ export default async function Post({ params }: { params: Promise<{ slug: string[
       <div className="flex gap-8">
         {/* Main content */}
         <div className="flex-1 min-w-0">
-          <article className="bg-white rounded-lg shadow-md p-8">
+          <article className="bg-white rounded-lg shadow-md p-8" id="post-content">
             {/* Back to posts link */}
-            <div className="mb-6">
+            <div className="mb-6 no-print">
               <Link 
                 href="/posts" 
                 className="text-blue-600 hover:text-blue-800 transition-colors flex items-center"
@@ -39,7 +40,15 @@ export default async function Post({ params }: { params: Promise<{ slug: string[
 
             {/* Post header */}
             <header className="mb-8">
-              <h1 className="text-3xl font-bold text-gray-900 mb-4">{post.title}</h1>
+              <div className="flex items-start justify-between mb-4">
+                <h1 className="text-3xl font-bold text-gray-900 flex-1">{post.title}</h1>
+                <div className="ml-4">
+                  <PdfDownloadButton 
+                    postTitle={post.title}
+                    contentElementId="post-content"
+                  />
+                </div>
+              </div>
               <div className="flex items-center text-gray-600 mb-4">
                 <time dateTime={post.date}>
                   {format(new Date(post.date), 'MMMM dd, yyyy')}
@@ -75,7 +84,7 @@ export default async function Post({ params }: { params: Promise<{ slug: string[
         </div>
 
         {/* Table of Contents - 데스크톱에서만 표시 */}
-        <div className="hidden lg:block w-64 flex-shrink-0">
+        <div className="hidden lg:block w-64 flex-shrink-0 no-print">
           <TableOfContents />
         </div>
       </div>
