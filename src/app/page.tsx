@@ -11,11 +11,11 @@ export default async function Home() {
       {/* Hero Section */}
       <div className="text-center mb-16">
         <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">
-          Welcome to My GitBlog
+          Welcome to my little victories
         </h1>
         <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-          A personal blog where I share my thoughts, experiences, and insights about technology, 
-          development, and life.
+          A space where I document the small but precious moments 
+          I encounter in my journey through technology, development, and life.
         </p>
       </div>
 
