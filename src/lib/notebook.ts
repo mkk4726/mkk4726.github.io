@@ -38,10 +38,10 @@ export async function convertNotebookToHtml(notebookPath: string): Promise<strin
     for (let i = 0; i < notebook.cells.length; i++) {
       const cell = notebook.cells[i];
       if (cell.cell_type === 'code') {
-        html += convertCellToHtml(cell, cellIndex, 'code');
+        html += convertCellToHtml(cell, cellIndex);
         cellIndex++;
       } else if (cell.cell_type === 'markdown' || cell.cell_type === 'raw') {
-        html += convertCellToHtml(cell, i, 'markdown');
+        html += convertCellToHtml(cell, i);
       }
     }
     
@@ -56,7 +56,7 @@ export async function convertNotebookToHtml(notebookPath: string): Promise<strin
 /**
  * 개별 셀을 HTML로 변환합니다
  */
-function convertCellToHtml(cell: NotebookCell, index: number, cellType?: string): string {
+function convertCellToHtml(cell: NotebookCell, index: number): string {
   const source = Array.isArray(cell.source) ? cell.source.join('') : (cell.source || '');
   
   if (cell.cell_type === 'markdown' || cell.cell_type === 'raw') {
