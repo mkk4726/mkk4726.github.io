@@ -10,20 +10,63 @@ interface MarkdownContentProps {
 
 export default function MarkdownContent({ content, className = '' }: MarkdownContentProps) {
   const [parsedContent, setParsedContent] = useState<string>('');
+  const [isContentReady, setIsContentReady] = useState<boolean>(false);
 
   useEffect(() => {
     const processContent = async () => {
       try {
-        const html = await parseMarkdown(content);
+        let html = await parseMarkdown(content);
+        
+        // 헤딩에 ID 추가 (한글과 영문 모두 지원)
+        html = html.replace(
+          /<h([1-6])([^>]*)>(.*?)<\/h[1-6]>/g,
+          (match, level, attributes, text) => {
+            // 이미 ID가 있는지 확인
+            if (attributes.includes('id=')) {
+              return match;
+            }
+            
+            // HTML 태그 제거하고 순수 텍스트만 추출
+            const cleanText = text.replace(/<[^>]*>/g, '');
+            // ID 생성: 특수문자 제거하고 공백을 하이픈으로 변경
+            const id = cleanText
+              .toLowerCase()
+              .replace(/[^a-z0-9가-힣\s]/g, '')
+              .replace(/\s+/g, '-')
+              .replace(/-+/g, '-')
+              .replace(/^-|-$/g, '');
+            
+            console.log(`Generated ID for "${cleanText}": ${id}`);
+            
+            return `<h${level}${attributes} id="${id}">${text}</h${level}>`;
+          }
+        );
+        
         setParsedContent(html);
+        setIsContentReady(true);
       } catch (error) {
         console.error('Error parsing markdown:', error);
         setParsedContent(content);
+        setIsContentReady(true);
       }
     };
 
     processContent();
   }, [content]);
+
+  // 콘텐츠가 렌더링된 후 목차 업데이트를 위한 이벤트 발생
+  useEffect(() => {
+    if (isContentReady && parsedContent) {
+      // DOM 업데이트 후 목차가 헤딩을 다시 감지할 수 있도록 이벤트 발생
+      const timer = setTimeout(() => {
+        const event = new CustomEvent('contentReady');
+        window.dispatchEvent(event);
+        console.log('Content ready event dispatched');
+      }, 50);
+
+      return () => clearTimeout(timer);
+    }
+  }, [isContentReady, parsedContent]);
 
   return (
     <div 

@@ -25,6 +25,101 @@ body {
   font-family: 'Noto Sans KR', Arial, Helvetica, sans-serif;
 }
 
+/* 스크롤 동작 개선 */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 2rem;
+}
+
+/* 목차 컨테이너 스타일링 */
+.toc-container {
+  position: sticky;
+  top: 2rem;
+  height: fit-content;
+  max-height: calc(100vh - 4rem);
+}
+
+.toc-content {
+  background-color: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  max-height: calc(100vh - 6rem);
+  overflow-y: auto;
+}
+
+/* 목차 스크롤바 스타일링 */
+.toc-content::-webkit-scrollbar {
+  width: 4px;
+}
+
+.toc-content::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 2px;
+}
+
+.toc-content::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 2px;
+}
+
+.toc-content::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* 목차 리스트 스타일링 */
+.toc-content ul {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.toc-content li {
+  margin: 0 !important;
+  display: block !important;
+}
+
+.toc-content button {
+  width: 100%;
+  text-align: left;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.toc-content button:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* 활성 목차 항목에 애니메이션 추가 */
+.toc-content button.active {
+  transform: translateX(2px);
+}
+
+/* 헤딩 앵커 스타일링 */
+.prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
+  scroll-margin-top: 4rem;
+  position: relative;
+}
+
+/* 헤딩 호버 시 앵커 링크 표시 */
+.prose h1:hover::before,
+.prose h2:hover::before,
+.prose h3:hover::before,
+.prose h4:hover::before,
+.prose h5:hover::before,
+.prose h6:hover::before {
+  content: '#';
+  position: absolute;
+  left: -1.5rem;
+  color: #94a3b8;
+  font-weight: normal;
+  opacity: 0.7;
+}
+
 /* Prose styling for markdown content */
 .prose h1 {
   font-size: 2.0rem !important;
