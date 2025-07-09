@@ -9,7 +9,7 @@ interface CategoryPageProps {
 }
 
 export async function generateStaticParams() {
-  const categories = getAllCategories();
+  const categories = await getAllCategories();
   return categories.map((category) => ({
     category: category,
   }));
@@ -18,7 +18,7 @@ export async function generateStaticParams() {
 export default async function CategoryPage({ params }: CategoryPageProps) {
   const { category } = await params;
   const decodedCategory = decodeURIComponent(category);
-  const posts = getPostsByCategory(decodedCategory);
+  const posts = await getPostsByCategory(decodedCategory);
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">

@@ -3,6 +3,7 @@ import { format } from 'date-fns';
 import Link from 'next/link';
 import MarkdownContent from '@/components/MarkdownContent';
 import TableOfContents from '@/components/TableOfContents';
+import CodeHighlight from '@/components/CodeHighlight';
 
 export async function generateStaticParams() {
   const posts = getAllPostIds();
@@ -59,10 +60,12 @@ export default async function Post({ params }: { params: Promise<{ slug: string[
             </header>
 
             {/* Post content */}
-            <MarkdownContent 
-              content={post.content}
-              className="prose prose-xl max-w-none text-gray-900 leading-loose font-sans"
-            />
+            <CodeHighlight>
+              <MarkdownContent 
+                content={post.content}
+                className="prose prose-xl max-w-none text-gray-900 leading-loose font-sans"
+              />
+            </CodeHighlight>
           </article>
         </div>
 

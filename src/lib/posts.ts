@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
+import { convertNotebookToHtml, extractNotebookMetadata } from './notebook';
 
 const postsDirectory = path.join(process.cwd(), 'src/content/posts');
 
@@ -14,8 +15,8 @@ export interface PostData {
   tags?: string[];
 }
 
-// 재귀적으로 모든 .md 파일을 찾는 함수
-function getAllMarkdownFiles(dir: string): string[] {
+// 재귀적으로 모든 .md 및 .ipynb 파일을 찾는 함수
+function getAllPostFiles(dir: string): string[] {
   const files: string[] = [];
   const items = fs.readdirSync(dir);
   
@@ -24,8 +25,8 @@ function getAllMarkdownFiles(dir: string): string[] {
     const stat = fs.statSync(fullPath);
     
     if (stat.isDirectory()) {
-      files.push(...getAllMarkdownFiles(fullPath));
-    } else if (item.endsWith('.md')) {
+      files.push(...getAllPostFiles(fullPath));
+    } else if (item.endsWith('.md') || item.endsWith('.ipynb')) {
       files.push(fullPath);
     }
   }
@@ -33,26 +34,37 @@ function getAllMarkdownFiles(dir: string): string[] {
   return files;
 }
 
-export function getSortedPostsData(): Omit<PostData, 'content'>[] {
-  // Get all markdown files recursively
-  const markdownFiles = getAllMarkdownFiles(postsDirectory);
-  const allPostsData = markdownFiles.map((filePath) => {
-    // Get relative path from posts directory and remove ".md" to get id
+export async function getSortedPostsData(): Promise<Omit<PostData, 'content'>[]> {
+  // Get all post files (markdown and notebook) recursively
+  const postFiles = getAllPostFiles(postsDirectory);
+  const allPostsData = await Promise.all(postFiles.map(async (filePath: string) => {
+    // Get relative path from posts directory and remove extension to get id
     const relativePath = path.relative(postsDirectory, filePath);
-    const id = relativePath.replace(/\.md$/, '');
+    const id = relativePath.replace(/\.(md|ipynb)$/, '');
 
-    // Read markdown file as string
-    const fileContents = fs.readFileSync(filePath, 'utf8');
-
-    // Use gray-matter to parse the post metadata section
-    const matterResult = matter(fileContents);
-
-    // Combine the data with the id
-    return {
-      id,
-      ...(matterResult.data as { title: string; date: string; excerpt?: string; category?: string; tags?: string[] }),
-    };
-  });
+    // Handle different file types
+    if (filePath.endsWith('.ipynb')) {
+      // For Jupyter notebooks, extract metadata directly
+      const metadata = extractNotebookMetadata(filePath);
+      return {
+        id,
+        title: metadata.title || id,
+        date: metadata.date || new Date().toISOString().split('T')[0],
+        excerpt: metadata.excerpt,
+        category: metadata.category,
+        tags: metadata.tags,
+      };
+    } else {
+      // For markdown files, use gray-matter
+      const fileContents = fs.readFileSync(filePath, 'utf8');
+      const matterResult = matter(fileContents);
+      
+      return {
+        id,
+        ...(matterResult.data as { title: string; date: string; excerpt?: string; category?: string; tags?: string[] }),
+      };
+    }
+  }));
 
   // Sort posts by date
   return allPostsData.sort((a, b) => {
@@ -64,15 +76,15 @@ export function getSortedPostsData(): Omit<PostData, 'content'>[] {
   });
 }
 
-export function getPostsByCategory(category: string): Omit<PostData, 'content'>[] {
-  const allPosts = getSortedPostsData();
-  return allPosts.filter(post => post.category === category);
+export async function getPostsByCategory(category: string): Promise<Omit<PostData, 'content'>[]> {
+  const allPosts = await getSortedPostsData();
+  return allPosts.filter((post) => post.category === category);
 }
 
-export function getAllCategories(): string[] {
-  const allPosts = getSortedPostsData();
+export async function getAllCategories(): Promise<string[]> {
+  const allPosts = await getSortedPostsData();
   const categories = allPosts
-    .map(post => post.category)
+    .map((post) => post.category)
     .filter((category): category is string => category !== undefined);
   
   // Remove duplicates and sort
@@ -80,11 +92,11 @@ export function getAllCategories(): string[] {
 }
 
 export function getAllPostIds() {
-  const markdownFiles = getAllMarkdownFiles(postsDirectory);
-  return markdownFiles.map((filePath) => {
+  const postFiles = getAllPostFiles(postsDirectory);
+  return postFiles.map((filePath: string) => {
     const relativePath = path.relative(postsDirectory, filePath);
     return {
-      id: relativePath.replace(/\.md$/, ''),
+      id: relativePath.replace(/\.(md|ipynb)$/, ''),
     };
   });
 }
@@ -93,15 +105,24 @@ export async function getPostData(id: string): Promise<PostData> {
   // Decode URL-encoded characters in the id
   const decodedId = decodeURIComponent(id);
   
-  // Check if the file exists directly in posts directory first
+  // Check if markdown file exists directly in posts directory first
   let fullPath = path.join(postsDirectory, `${decodedId}.md`);
+  let isNotebook = false;
   
-  // If not found, search in subdirectories
+  // If markdown not found, check for notebook file
   if (!fs.existsSync(fullPath)) {
-    const markdownFiles = getAllMarkdownFiles(postsDirectory);
-    const targetFile = markdownFiles.find(filePath => {
+    fullPath = path.join(postsDirectory, `${decodedId}.ipynb`);
+    if (fs.existsSync(fullPath)) {
+      isNotebook = true;
+    }
+  }
+  
+  // If still not found, search in subdirectories
+  if (!fs.existsSync(fullPath)) {
+    const postFiles = getAllPostFiles(postsDirectory);
+    const targetFile = postFiles.find((filePath: string) => {
       const relativePath = path.relative(postsDirectory, filePath);
-      return relativePath.replace(/\.md$/, '') === decodedId;
+      return relativePath.replace(/\.(md|ipynb)$/, '') === decodedId;
     });
     
     if (!targetFile) {
@@ -109,17 +130,32 @@ export async function getPostData(id: string): Promise<PostData> {
     }
     
     fullPath = targetFile;
+    isNotebook = targetFile.endsWith('.ipynb');
   }
   
-  const fileContents = fs.readFileSync(fullPath, 'utf8');
+  // Handle notebook files
+  if (isNotebook) {
+    const metadata = extractNotebookMetadata(fullPath);
+    const htmlContent = await convertNotebookToHtml(fullPath);
+    
+    return {
+      id,
+      content: htmlContent,
+      title: metadata.title || id,
+      date: metadata.date || new Date().toISOString().split('T')[0],
+      excerpt: metadata.excerpt,
+      category: metadata.category,
+      tags: metadata.tags,
+    };
+  } else {
+    // Handle markdown files
+    const fileContents = fs.readFileSync(fullPath, 'utf8');
+    const matterResult = matter(fileContents);
 
-  // Use gray-matter to parse the post metadata section
-  const matterResult = matter(fileContents);
-
-  // Return raw markdown content for MarkdownContent component to parse
-  return {
-    id,
-    content: matterResult.content,
-    ...(matterResult.data as { title: string; date: string; excerpt?: string; category?: string; tags?: string[] }),
-  };
+    return {
+      id,
+      content: matterResult.content,
+      ...(matterResult.data as { title: string; date: string; excerpt?: string; category?: string; tags?: string[] }),
+    };
+  }
 } 

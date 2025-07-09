@@ -2,9 +2,9 @@ import { getSortedPostsData, getAllCategories } from '@/lib/posts';
 import PostCard from '@/components/PostCard';
 import Link from 'next/link';
 
-export default function PostsPage() {
-  const posts = getSortedPostsData();
-  const categories = getAllCategories();
+export default async function PostsPage() {
+  const posts = await getSortedPostsData();
+  const categories = await getAllCategories();
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">

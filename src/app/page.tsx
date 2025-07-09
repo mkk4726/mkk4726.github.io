@@ -3,8 +3,8 @@ import PostCard from '@/components/PostCard';
 import Link from 'next/link';
 // import AnalyticsDisplay from '@/components/AnalyticsDisplay';
 
-export default function Home() {
-  const posts = getSortedPostsData().slice(0, 6); // Show only the latest 6 posts
+export default async function Home() {
+  const posts = (await getSortedPostsData()).slice(0, 6); // Show only the latest 6 posts
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
