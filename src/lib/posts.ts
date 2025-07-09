@@ -13,6 +13,7 @@ export interface PostData {
   excerpt?: string;
   category?: string;
   tags?: string[];
+  isNotebook?: boolean;
 }
 
 // 재귀적으로 모든 .md 및 .ipynb 파일을 찾는 함수
@@ -146,6 +147,7 @@ export async function getPostData(id: string): Promise<PostData> {
       excerpt: metadata.excerpt,
       category: metadata.category,
       tags: metadata.tags,
+      isNotebook: true,
     };
   } else {
     // Handle markdown files
@@ -156,6 +158,7 @@ export async function getPostData(id: string): Promise<PostData> {
       id,
       content: matterResult.content,
       ...(matterResult.data as { title: string; date: string; excerpt?: string; category?: string; tags?: string[] }),
+      isNotebook: false,
     };
   }
 } 

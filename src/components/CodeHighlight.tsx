@@ -1,12 +1,14 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
 interface CodeHighlightProps {
   children: React.ReactNode;
 }
 
 export default function CodeHighlight({ children }: CodeHighlightProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     // Prism.js를 동적으로 로드
     const loadPrism = async () => {
@@ -28,16 +30,28 @@ export default function CodeHighlight({ children }: CodeHighlightProps) {
           // @ts-expect-error - prismjs component types not available
           await import('prismjs/components/prism-yaml');
           
-          // 모든 코드 블록을 하이라이트
-          Prism.highlightAll();
+          // 컨테이너 내의 코드 블록만 하이라이트
+          if (containerRef.current) {
+            const codeBlocks = containerRef.current.querySelectorAll('pre code');
+            codeBlocks.forEach((block) => {
+              // 언어 클래스가 없으면 추가
+              if (!block.className.includes('language-')) {
+                block.className += ' language-python';
+              }
+              Prism.highlightElement(block);
+            });
+          }
         } catch (error) {
           console.warn('Prism.js loading failed:', error);
         }
       }
     };
 
-    loadPrism();
+    // 약간 지연 후 로드 (DOM이 완전히 준비된 후)
+    const timer = setTimeout(loadPrism, 100);
+    
+    return () => clearTimeout(timer);
   }, [children]);
 
-  return <div>{children}</div>;
+  return <div ref={containerRef}>{children}</div>;
 } 

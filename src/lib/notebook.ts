@@ -32,11 +32,17 @@ export async function convertNotebookToHtml(notebookPath: string): Promise<strin
     const notebookContent = fs.readFileSync(notebookPath, 'utf8');
     const notebook = JSON.parse(notebookContent);
     
-    let html = '<div class="nb-notebook">\n';
+    let html = '<div class="jupyter-notebook">\n';
     
+    let cellIndex = 1; // 실제 실행된 셀만 카운트
     for (let i = 0; i < notebook.cells.length; i++) {
       const cell = notebook.cells[i];
-      html += convertCellToHtml(cell, i);
+      if (cell.cell_type === 'code') {
+        html += convertCellToHtml(cell, cellIndex, 'code');
+        cellIndex++;
+      } else if (cell.cell_type === 'markdown' || cell.cell_type === 'raw') {
+        html += convertCellToHtml(cell, i, 'markdown');
+      }
     }
     
     html += '</div>';
@@ -50,7 +56,7 @@ export async function convertNotebookToHtml(notebookPath: string): Promise<strin
 /**
  * 개별 셀을 HTML로 변환합니다
  */
-function convertCellToHtml(cell: NotebookCell, index: number): string {
+function convertCellToHtml(cell: NotebookCell, index: number, cellType?: string): string {
   const source = Array.isArray(cell.source) ? cell.source.join('') : (cell.source || '');
   
   if (cell.cell_type === 'markdown' || cell.cell_type === 'raw') {
@@ -60,51 +66,68 @@ function convertCellToHtml(cell: NotebookCell, index: number): string {
       content = content.replace(/^---\s*\n[\s\S]*?\n---\s*\n?/, '');
     }
     
+    // 빈 내용이면 스킵
+    if (!content.trim()) {
+      return '';
+    }
+    
     // 마크다운 셀
     const markdownHtml = convertMarkdownToHtml(content);
-    return `<div class="nb-cell nb-cell-markdown">\n${markdownHtml}\n</div>\n\n`;
+    return `<div class="jupyter-cell jupyter-markdown-cell">\n${markdownHtml}\n</div>\n\n`;
   } else if (cell.cell_type === 'code') {
+    // 빈 코드 셀은 스킵
+    if (!source.trim()) {
+      return '';
+    }
+    
     // 코드 셀
-    let html = '<div class="nb-cell nb-cell-code">\n';
+    let html = '<div class="jupyter-cell jupyter-code-cell">\n';
     
-    // Input
-    html += `<div class="nb-cell-input">\n`;
-    html += `<div class="nb-cell-input-prompt">In [${index}]:</div>\n`;
-    html += `<div class="nb-cell-input-area">\n`;
-    html += `<pre class="language-python"><code class="language-python">${escapeHtml(source)}</code></pre>\n`;
-    html += `</div>\n`;
-    html += `</div>\n`;
+    // Input 영역
+    html += `  <div class="jupyter-input">\n`;
+    html += `    <div class="jupyter-input-prompt"></div>\n`;
+    html += `    <div class="jupyter-input-area">\n`;
+    html += `      <pre><code class="language-python">${escapeHtml(source)}</code></pre>\n`;
+    html += `    </div>\n`;
+    html += `  </div>\n`;
     
-    // Output (if any)
+    // Output 영역 (있는 경우)
     if (cell.outputs && cell.outputs.length > 0) {
-      html += `<div class="nb-cell-output">\n`;
-      html += `<div class="nb-cell-output-prompt">Out [${index}]:</div>\n`;
-      html += `<div class="nb-cell-output-area">\n`;
+      html += `  <div class="jupyter-output">\n`;
+      html += `    <div class="jupyter-output-prompt"></div>\n`;
+      html += `    <div class="jupyter-output-area">\n`;
       
       for (const output of cell.outputs) {
         if (output.output_type === 'stream') {
-          html += `<pre class="nb-output-stream">${escapeHtml(output.text?.join('') || '')}</pre>\n`;
+          const text = output.text?.join('') || '';
+          html += `      <div class="jupyter-output-stream">${escapeHtml(text)}</div>\n`;
         } else if (output.output_type === 'execute_result' || output.output_type === 'display_data') {
           if (output.data) {
             if (output.data['text/html']) {
-              html += Array.isArray(output.data['text/html']) 
+              const htmlData = Array.isArray(output.data['text/html']) 
                 ? output.data['text/html'].join('') 
                 : output.data['text/html'];
+              html += `      <div class="jupyter-output-html">${htmlData}</div>\n`;
             } else if (output.data['text/plain']) {
-              html += `<pre class="nb-output-text">${escapeHtml(
-                Array.isArray(output.data['text/plain']) 
-                  ? output.data['text/plain'].join('') 
-                  : output.data['text/plain']
-              )}</pre>\n`;
+              const text = Array.isArray(output.data['text/plain']) 
+                ? output.data['text/plain'].join('') 
+                : output.data['text/plain'];
+              html += `      <div class="jupyter-output-text">${escapeHtml(text)}</div>\n`;
+            } else if (output.data['image/png']) {
+              const imageData = Array.isArray(output.data['image/png']) 
+                ? output.data['image/png'].join('') 
+                : output.data['image/png'];
+              html += `      <img src="data:image/png;base64,${imageData}" alt="Output image" />\n`;
             }
           }
         } else if (output.output_type === 'error') {
-          html += `<pre class="nb-output-error">${escapeHtml(output.traceback?.join('\n') || '')}</pre>\n`;
+          const errorText = output.traceback?.join('\n') || '';
+          html += `      <div class="jupyter-output-error">${escapeHtml(errorText)}</div>\n`;
         }
       }
       
-      html += `</div>\n`;
-      html += `</div>\n`;
+      html += `    </div>\n`;
+      html += `  </div>\n`;
     }
     
     html += `</div>\n\n`;

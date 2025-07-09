@@ -4,6 +4,7 @@ import Link from 'next/link';
 import MarkdownContent from '@/components/MarkdownContent';
 import TableOfContents from '@/components/TableOfContents';
 import CodeHighlight from '@/components/CodeHighlight';
+import JupyterNotebook from '@/components/JupyterNotebook';
 
 export async function generateStaticParams() {
   const posts = getAllPostIds();
@@ -60,12 +61,16 @@ export default async function Post({ params }: { params: Promise<{ slug: string[
             </header>
 
             {/* Post content */}
-            <CodeHighlight>
-              <MarkdownContent 
-                content={post.content}
-                className="prose prose-xl max-w-none text-gray-900 leading-loose font-sans"
-              />
-            </CodeHighlight>
+            {post.isNotebook ? (
+              <JupyterNotebook content={post.content} />
+            ) : (
+              <CodeHighlight>
+                <MarkdownContent 
+                  content={post.content}
+                  className="prose prose-xl max-w-none text-gray-900 leading-loose font-sans"
+                />
+              </CodeHighlight>
+            )}
           </article>
         </div>
 
