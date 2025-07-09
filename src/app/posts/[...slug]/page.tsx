@@ -6,6 +6,8 @@ import TableOfContents from '@/components/TableOfContents';
 import CodeHighlight from '@/components/CodeHighlight';
 import JupyterNotebook from '@/components/JupyterNotebook';
 import PdfDownloadButton from '@/components/PdfDownloadButton';
+import Comments from '@/components/Comments';
+import LikeButton from '@/components/LikeButton';
 
 export async function generateStaticParams() {
   const posts = getAllPostIds();
@@ -80,6 +82,12 @@ export default async function Post({ params }: { params: Promise<{ slug: string[
                 />
               </CodeHighlight>
             )}
+
+            {/* Like button */}
+            <LikeButton postSlug={id} />
+
+            {/* Comments section */}
+            <Comments postSlug={id} />
           </article>
         </div>
 
