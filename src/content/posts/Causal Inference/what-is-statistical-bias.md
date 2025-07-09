@@ -108,6 +108,7 @@ tags: ["편향", "통계적", "bias"]
 
 
 # 내가 다루고 있는 데이터에서의 통계적 편향
+---
 
 저는 시력교정병원의 의료 데이터를 분석하고 있습니다.
 
@@ -178,8 +179,8 @@ ata와 clr의 경우 분포의 차이가 명확히 보이고 있습니다.
 
 
 <figure>
-  <img src="/post/what-is-statistical-bias/treatment별outcome분포.png" alt="Treatment별 Outcome 분포">
-  <figcaption>그림 3: 처치별 Outcome 분포</figcaption>
+  <img src="/post/what-is-statistical-bias/처치별결과비교.png" alt="처치별 결과 비교">
+  <figcaption>그림 3: 처치별 결과 분포 비교</figcaption>
 </figure>
 
 > 따라서 단순히 처치별 분포의 차이를 통해 처치가 결과에 미치는 영향을 판단할 수 없습니다.
