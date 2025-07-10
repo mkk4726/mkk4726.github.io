@@ -149,6 +149,55 @@ body {
   font-family: 'Noto Sans KR', Arial, Helvetica, sans-serif;
 }
 
+/* 검색창 텍스트 색상 강제 설정 */
+input.search-input,
+input.search-input:focus,
+input.search-input:active,
+input.search-input:hover,
+input[type="text"].search-input {
+  color: #000000 !important;
+  background-color: #ffffff !important;
+  opacity: 1 !important;
+  font-size: 14px !important;
+  text-indent: 0 !important;
+  text-shadow: none !important;
+  -webkit-text-fill-color: #000000 !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+  font-family: inherit !important;
+  line-height: normal !important;
+}
+
+/* 브라우저 자동완성 스타일 덮어쓰기 */
+input.search-input:-webkit-autofill,
+input.search-input:-webkit-autofill:hover,
+input.search-input:-webkit-autofill:focus {
+  -webkit-text-fill-color: #000000 !important;
+  -webkit-box-shadow: 0 0 0px 1000px #ffffff inset !important;
+  box-shadow: 0 0 0px 1000px #ffffff inset !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  input.search-input,
+  input.search-input:focus,
+  input.search-input:active,
+  input.search-input:hover,
+  input[type="text"].search-input {
+    color: #ffffff !important;
+    background-color: #1f2937 !important;
+    -webkit-text-fill-color: #ffffff !important;
+  }
+  
+  input.search-input:-webkit-autofill,
+  input.search-input:-webkit-autofill:hover,
+  input.search-input:-webkit-autofill:focus {
+    -webkit-text-fill-color: #ffffff !important;
+    -webkit-box-shadow: 0 0 0px 1000px #1f2937 inset !important;
+    box-shadow: 0 0 0px 1000px #1f2937 inset !important;
+  }
+}
+
 /* 스크롤 동작 개선 */
 html {
   scroll-behavior: smooth;
