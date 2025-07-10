@@ -13,37 +13,37 @@ tags: ["루닛 채용공고"]
 
 [링크](https://www.linkedin.com/jobs/search/?currentJobId=4261590818&keywords=Lunit%20Cancer%20Screening&origin=JOB_COLLECTION_PAGE_KEYWORD_AUTOCOMPLETE&refresh=true)
 
-Lunit, a portmanteau of ‘Learning unit,' is a medical AI software company devoted to providing AI-powered total cancer care. Our AI solutions help discover cancer and predict cancer treatment outcomes, achieving timely and individually tailored cancer treatment.
+- Lunit, a portmanteau of ‘Learning unit,' is a medical AI software company devoted to providing AI-powered total cancer care. Our AI solutions help discover cancer and predict cancer treatment outcomes, achieving timely and individually tailored cancer treatment.
 
 🗨️ About The Team
 
-AutoML team at Lunit automates AI product development processes to streamline time-consuming tasks and advance cutting-edge AutoML research. By combining engineering expertise with state-of-the-art deep learning techniques, our team plays an important role in accelerating product development for cancer detection and treatment. Join us in our mission to Conquer Cancer Through AI where your contributions will directly influence AI innovations that improve patient outcomes worldwide
-In short, we're a team that maximizes AI tech to *create AI models* with extreme efficiency
+- AutoML team at Lunit automates AI product development processes to streamline time-consuming tasks and advance cutting-edge AutoML research. By combining engineering expertise with state-of-the-art deep learning techniques, our team plays an important role in accelerating product development for cancer detection and treatment. Join us in our mission to Conquer Cancer Through AI where your contributions will directly influence AI innovations that improve patient outcomes worldwide
+- In short, we're a team that maximizes AI tech to *create AI models* with extreme efficiency
 
 
 🗨️ About The Position
 
-As a research engineer, you will work closely with the team to develop and optimize platforms for automating medical AI model research workflows
-Your responsibilities will involve implementing an automated product development framework for the medical domain, covering data ingestion, model training, packaging and inference
-You will collaborate with both research and engineering teams to bring cutting-edge AI research into real-world applications
-This position is ideal for someone with a strong research engineering background and deep understanding of the AI model development process
+- As a research engineer, you will work closely with the team to develop and optimize platforms for automating medical AI model research workflows
+- Your responsibilities will involve implementing an automated product development framework for the medical domain, covering data ingestion, model training, packaging and inference
+- You will collaborate with both research and engineering teams to bring cutting-edge AI research into real-world applications
+- This position is ideal for someone with a strong research engineering background and deep understanding of the AI model development process
 
 
 🚩 Roles & Responsibilities
 
-Develop and implement tailored AutoML platforms to automate medical AI model research workflows
-Integrate AutoML pipelines into AI agent which includes data ingestion, model training, hyperparameter optimization and inference
-Enhance the maintainability, reliability, and efficiency of both new and existing frameworks
-Build robust AI infrastructure using Kubernetes, Docker, and cloud computing services (GCP, AWS, Azure)
+- Develop and implement tailored AutoML platforms to automate medical AI model research workflows
+- Integrate AutoML pipelines into AI agent which includes data ingestion, model training, hyperparameter optimization and inference
+- Enhance the maintainability, reliability, and efficiency of both new and existing frameworks
+- Build robust AI infrastructure using Kubernetes, Docker, and cloud computing services (GCP, AWS, Azure)
 Keep up with the latest advancements in AI agents, LLMs, and AutoML research to drive innovation
 
 
 🚩 Tools Used
 
-Development Related: Django, Django REST Framework, React, Next.js, MySQL, PostgreSQL, Redis, Celery, Nginx, Go
-ML framework: PyTorch, Optuna
-Infrastructure: Google Cloud Platform, Kubernetes, Git, Docker, Helm, ArgoCD, Terraform
-General: Slack, Confluence, Jira
+- Development Related: Django, Django REST Framework, React, Next.js, MySQL, PostgreSQL, Redis, Celery, Nginx, Go
+- ML framework: PyTorch, Optuna
+- Infrastructure: Google Cloud Platform, Kubernetes, Git, Docker, Helm, ArgoCD, Terraform
+- General: Slack, Confluence, Jira
 
 
 Requirements
@@ -51,70 +51,70 @@ Requirements
 
 🎯Qualifications
 
-3+ years of experience in research engineering in the AI industry
-Master's, or Ph.D. in Computer Science or a related field
-Proficiency in Python, unit/integration testing, documentation, Git, collaborative code development, and Docker
-Solid knowledge of software design and system architecture, with a strong understanding of RESTful API design
-Hands-on experience with developing and operating scalable AI platforms and infrastructure, including DevOps
-Effective communication skills: Ability to clearly and efficiently convey information, thoughts, and ideas to other developers
-Proven ability to take ownership and drive projects from concept to deployment
-Highly responsible and detail-oriented, with a strong motivation to build high-quality, reliable solutions in line with current best practices
+- 3+ years of experience in research engineering in the AI industry
+- Master's, or Ph.D. in Computer Science or a related field
+- Proficiency in Python, unit/integration testing, documentation, Git, collaborative code development, and Docker
+- Solid knowledge of software design and system architecture, with a strong understanding of RESTful API design
+- Hands-on experience with developing and operating scalable AI platforms and infrastructure, including DevOps
+- Effective communication skills: Ability to clearly and efficiently convey information, thoughts, and ideas to other developers
+- Proven ability to take ownership and drive projects from concept to deployment
+- Highly responsible and detail-oriented, with a strong motivation to build high-quality, reliable solutions in line with current best practices
 
 
 🏅 Preferred Experiences
 
-Familiarity with web development, including both backend and frontend
-Deep insight into automating and orchestrating ML workflows
-Experience in designing or developing automated AI platforms
-Experience in designing or developing AI agents or LLM-based automation (e.g., fine-tuning, prompt engineering)
-Knowledge of cloud computing services (GCP, AWS, or Azure)
-Publications in AI or computer vision conferences, or active participation in the research community
-Ability to collaborate effectively as a team player in a cross-functional research-engineering environment
-Proactive in sharing knowledge, initiating collaborations, and promoting a positive research environment
-Passion for high-quality programming and software engineering to produce and maintain reliable code for the training and evaluation of models
+- Familiarity with web development, including both backend and frontend
+- Deep insight into automating and orchestrating ML workflows
+- Experience in designing or developing automated AI platforms
+- Experience in designing or developing AI agents or LLM-based automation (e.g., fine-tuning, prompt engineering)
+- Knowledge of cloud computing services (GCP, AWS, or Azure)
+- Publications in AI or computer vision conferences, or active participation in the research community
+- Ability to collaborate effectively as a team player in a cross-functional research-engineering environment
+- Proactive in sharing knowledge, initiating collaborations, and promoting a positive research environment
+- Passion for high-quality programming and software engineering to produce and maintain reliable code for the training and evaluation of models
 
 
 📝 How To Apply
 
-CV (resume, free format)
+- CV (resume, free format)
 
 
 🏃‍♀️ Hiring Process
 
-Document Screening → Technical Interview(Teams) → Assignment → PT Interview → Culture-fit Interview → Onboarding
-After the final interview, we may proceed with reference checks if needed. 
+- Document Screening → Technical Interview(Teams) → Assignment → PT Interview → Culture-fit Interview → Onboarding
+- After the final interview, we may proceed with reference checks if needed. 
 
 🤝 Work Conditions and Environment
 
-Work type: Full Time
-Work location : Lunit HQ (5F, 374, Gangnam-daero, Gangnam-gu, Seoul)
-Salary: After Negotiation
+- Work type: Full Time
+- Work location : Lunit HQ (5F, 374, Gangnam-daero, Gangnam-gu, Seoul)
+- Salary: After Negotiation
 
 
 🎸 ETC
 
-If you misrepresent your experience or education or provide false or fraudulent information in or with your application, it may be grounds for cancellation of the employment
-Lunit is committed in providing the preferential processing to those eligible for employment protection (national merits and people with disabilities) relevant to related laws and regulations
+- If you misrepresent your experience or education or provide false or fraudulent information in or with your application, it may be grounds for cancellation of the employment
+- Lunit is committed in providing the preferential processing to those eligible for employment protection (national merits and people with disabilities) relevant to related laws and regulations
 
 
 Benefits
 
 🌻 Benefits & Perks
 
-The office is at a very convenient location, just a minute away from Gangnam Station Exit 3
-Meal Allowance is provided (up to 12,000 KRW per meal) when working at the office
-Up to 300,000 KRW is covered upon joining to decorate your personal workspace
-Latest computer models, such as Macs and 4K monitors are provided and can be renewed every three years
-Seminar registration fees and book purchases are covered
-Regular in-house AI and medical seminars are held
-Korean lessons are provided for Lunitians who do not speak Korean as their first language
-In-house English lessons (aka Luniversal) is provided for English development
-Access to high-quality AI learning resources & deep learning DevOps system
-Up to 1.2 million KRW worth of benefits points can be claimed annually
-Holiday Allowances are provided in the form of gifts or vouchers for Korean National holidays, Seollal and Chuseok
-Congratulatory and Condolence allowances, along with paid time off are provided
-Annual medical checkups and employee accident insurance are provided
-Expenses for monthly employees gatherings are partially covered
+- The office is at a very convenient location, just a minute away from Gangnam Station Exit 3
+- Meal Allowance is provided (up to 12,000 KRW per meal) when working at the office
+- Up to 300,000 KRW is covered upon joining to decorate your personal workspace
+- Latest computer models, such as Macs and 4K monitors are provided and can be renewed every three years
+- Seminar registration fees and book purchases are covered
+- Regular in-house AI and medical seminars are held
+- Korean lessons are provided for Lunitians who do not speak Korean as their first language
+- In-house English lessons (aka Luniversal) is provided for English development
+- Access to high-quality AI learning resources & deep learning DevOps system
+- Up to 1.2 million KRW worth of benefits points can be claimed annually
+- Holiday Allowances are provided in the form of gifts or vouchers for Korean National holidays, Seollal and Chuseok
+- Congratulatory and Condolence allowances, along with paid time off are provided
+- Annual medical checkups and employee accident insurance are provided
+- Expenses for monthly employees gatherings are partially covered
 
 </details>
 
@@ -186,3 +186,7 @@ Expenses for monthly employees gatherings are partially covered
 - **2주차**: 의료 AI 논문 리뷰 + Docker/K8s 실습  
 - **3주차**: 포트폴리오 프로젝트 구현
 - **4주차**: 이력서 완성 + 면접 준비
+
+
+# 나의 관련 직무경험과 필살기 준비하기
+
