@@ -68,17 +68,23 @@ export default function MarkdownContent({ content, className = '' }: MarkdownCon
     }
   }, [isContentReady, parsedContent]);
 
-  // 외부 링크가 새 탭에서 열리도록 설정
+  // 외부 링크와 내부 문서 링크가 새 탭에서 열리도록 설정
   useEffect(() => {
     if (isContentReady && parsedContent) {
       const timer = setTimeout(() => {
         const contentDiv = document.querySelector('.prose');
         if (contentDiv) {
-          const externalLinks = contentDiv.querySelectorAll('a[href^="http"]:not([href*="localhost"]):not([href*="127.0.0.1"])');
-          externalLinks.forEach((link) => {
+          // 모든 링크 선택 (앵커 링크 제외)
+          const allLinks = contentDiv.querySelectorAll('a[href]');
+          allLinks.forEach((link) => {
             const anchorElement = link as HTMLAnchorElement;
-            anchorElement.setAttribute('target', '_blank');
-            anchorElement.setAttribute('rel', 'noopener noreferrer');
+            const href = anchorElement.getAttribute('href') || '';
+            
+            // 앵커 링크(#으로 시작)가 아닌 모든 링크를 새 탭에서 열기
+            if (!href.startsWith('#') && href.trim() !== '') {
+              anchorElement.setAttribute('target', '_blank');
+              anchorElement.setAttribute('rel', 'noopener noreferrer');
+            }
           });
         }
       }, 100);
