@@ -363,15 +363,15 @@ html {
 
 /* Line break styling */
 .prose br {
-  display: block !important;
-  margin: 0.5rem 0 !important;
-  content: "" !important;
+  display: inline !important;
+  margin: 0 !important;
+  line-height: 1.6 !important;
 }
 
 /* Paragraph spacing */
 .prose p {
-  margin-top: 0.75rem !important;
-  margin-bottom: 0.75rem !important;
+  margin-top: 1rem !important;
+  margin-bottom: 1rem !important;
   line-height: 1.6 !important;
 }
 
