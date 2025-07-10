@@ -7,7 +7,7 @@ interface CommentsProps {
 }
 
 // 댓글 시스템 활성화 여부를 제어하는 상수
-const COMMENTS_ENABLED = false // 내일 활성화할 때 true로 변경
+const COMMENTS_ENABLED = true // 댓글 시스템 활성화
 
 export default function Comments({ postSlug }: CommentsProps) {
   const ref = useRef<HTMLDivElement>(null)
@@ -20,18 +20,17 @@ export default function Comments({ postSlug }: CommentsProps) {
     script.async = true
     script.crossOrigin = 'anonymous'
     
-    // Giscus 설정 - 나중에 실제 repository 정보로 업데이트 필요
+    // Giscus 설정 - 실제 repository 정보로 업데이트 완료
     script.setAttribute('data-repo', 'mkk4726/mkk4726.github.io')
-    script.setAttribute('data-repo-id', 'R_kgDONAOH0w') // 실제 repo ID로 변경 필요
+    script.setAttribute('data-repo-id', 'R_kgDOPIekoQ')
     script.setAttribute('data-category', 'General')
-    script.setAttribute('data-category-id', 'DIC_kwDONAOH084ClFb8') // 실제 category ID로 변경 필요
-    script.setAttribute('data-mapping', 'specific')
-    script.setAttribute('data-term', postSlug)
+    script.setAttribute('data-category-id', 'DIC_kwDOPIekoC4CsV6u')
+    script.setAttribute('data-mapping', 'pathname')
     script.setAttribute('data-strict', '0')
     script.setAttribute('data-reactions-enabled', '1')
     script.setAttribute('data-emit-metadata', '0')
     script.setAttribute('data-input-position', 'bottom')
-    script.setAttribute('data-theme', 'light')
+    script.setAttribute('data-theme', 'preferred_color_scheme')
     script.setAttribute('data-lang', 'ko')
     script.setAttribute('data-loading', 'lazy')
 
