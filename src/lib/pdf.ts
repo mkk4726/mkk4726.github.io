@@ -173,12 +173,12 @@ export async function generatePdfFromElement(
                element.tagName === 'NAV' ||
                element.hasAttribute('data-nextjs-scroll-focus-boundary');
       },
-      onclone: (clonedDoc, element) => {
+      onclone: (clonedDoc, _element) => { // eslint-disable-line @typescript-eslint/no-unused-vars
         console.log('문서 클론 생성 완료');
         
         try {
           // PDF 호환 스타일 추가
-          const pdfStyle = addPdfCompatibleStyles(clonedDoc);
+          addPdfCompatibleStyles(clonedDoc);
           console.log('PDF 호환 스타일 추가 완료');
           
           // 기존 스타일시트에서 oklch 제거 시도

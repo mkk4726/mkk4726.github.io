@@ -12,13 +12,8 @@ const COMMENTS_ENABLED = false // 내일 활성화할 때 true로 변경
 export default function Comments({ postSlug }: CommentsProps) {
   const ref = useRef<HTMLDivElement>(null)
 
-  // 댓글이 비활성화되어 있으면 컴포넌트를 렌더링하지 않음
-  if (!COMMENTS_ENABLED) {
-    return null
-  }
-
   useEffect(() => {
-    if (!ref.current || ref.current.hasChildNodes()) return
+    if (!COMMENTS_ENABLED || !ref.current || ref.current.hasChildNodes()) return
 
     const script = document.createElement('script')
     script.src = 'https://giscus.app/client.js'
@@ -42,6 +37,11 @@ export default function Comments({ postSlug }: CommentsProps) {
 
     ref.current.appendChild(script)
   }, [postSlug])
+
+  // 댓글이 비활성화되어 있으면 컴포넌트를 렌더링하지 않음
+  if (!COMMENTS_ENABLED) {
+    return null
+  }
 
   // 테마는 라이트 모드로 고정 (필요시 나중에 다크모드 지원 추가 가능)
 
