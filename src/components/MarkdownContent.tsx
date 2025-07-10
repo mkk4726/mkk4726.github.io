@@ -68,6 +68,25 @@ export default function MarkdownContent({ content, className = '' }: MarkdownCon
     }
   }, [isContentReady, parsedContent]);
 
+  // 외부 링크가 새 탭에서 열리도록 설정
+  useEffect(() => {
+    if (isContentReady && parsedContent) {
+      const timer = setTimeout(() => {
+        const contentDiv = document.querySelector('.prose');
+        if (contentDiv) {
+          const externalLinks = contentDiv.querySelectorAll('a[href^="http"]:not([href*="localhost"]):not([href*="127.0.0.1"])');
+          externalLinks.forEach((link) => {
+            const anchorElement = link as HTMLAnchorElement;
+            anchorElement.setAttribute('target', '_blank');
+            anchorElement.setAttribute('rel', 'noopener noreferrer');
+          });
+        }
+      }, 100);
+
+      return () => clearTimeout(timer);
+    }
+  }, [isContentReady, parsedContent]);
+
   return (
     <div 
       className={`prose prose-lg max-w-none prose-headings:text-gray-900 prose-p:text-gray-700 prose-strong:text-gray-900 prose-em:text-gray-600 prose-ul:text-gray-700 prose-ol:text-gray-700 prose-li:text-gray-700 prose-li:marker:text-gray-700 ${className}`}
