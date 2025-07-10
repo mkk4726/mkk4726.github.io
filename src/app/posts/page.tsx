@@ -12,6 +12,7 @@ interface PostData {
   excerpt?: string;
   category?: string;
   tags?: string[];
+  content?: string;
 }
 
 export default function PostsPage() {
@@ -22,12 +23,34 @@ export default function PostsPage() {
   const searchParams = useSearchParams();
   const searchQuery = searchParams.get('search');
 
+  // 클라이언트 사이드 검색
+  const performSearch = (searchQuery: string, allPosts: PostData[]) => {
+    if (!searchQuery.trim()) {
+      return allPosts;
+    }
+
+    const searchTerm = searchQuery.toLowerCase();
+    return allPosts.filter(post => {
+      const title = post.title.toLowerCase();
+      const content = (post.content || '').toLowerCase();
+      const category = (post.category || '').toLowerCase();
+      const tags = (post.tags || []).join(' ').toLowerCase();
+      const excerpt = (post.excerpt || '').toLowerCase();
+
+      return title.includes(searchTerm) ||
+             content.includes(searchTerm) ||
+             category.includes(searchTerm) ||
+             tags.includes(searchTerm) ||
+             excerpt.includes(searchTerm);
+    });
+  };
+
   // Fetch posts and categories
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Fetch all posts
-        const response = await fetch('/api/posts');
+        // 정적 JSON 파일에서 포스트 데이터 로드
+        const response = await fetch('/search-index.json');
         if (response.ok) {
           const postsData = await response.json();
           setPosts(postsData);
@@ -51,22 +74,9 @@ export default function PostsPage() {
 
   // Filter posts based on search query
   useEffect(() => {
-    if (searchQuery && posts.length > 0) {
-      const searchResults = async () => {
-        try {
-          const response = await fetch(`/api/search?q=${encodeURIComponent(searchQuery)}`);
-          if (response.ok) {
-            const data = await response.json();
-            setFilteredPosts(data.results);
-          }
-        } catch (error) {
-          console.error('Search error:', error);
-          setFilteredPosts([]);
-        }
-      };
-      searchResults();
-    } else {
-      setFilteredPosts(posts);
+    if (posts.length > 0) {
+      const results = performSearch(searchQuery || '', posts);
+      setFilteredPosts(results);
     }
   }, [searchQuery, posts]);
 

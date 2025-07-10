@@ -11,12 +11,7 @@ interface SearchResult {
   excerpt?: string;
   category?: string;
   tags?: string[];
-}
-
-interface SearchResponse {
-  query: string;
-  results: SearchResult[];
-  total: number;
+  content?: string;
 }
 
 export default function SearchBox() {
@@ -24,9 +19,49 @@ export default function SearchBox() {
   const [results, setResults] = useState<SearchResult[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [searchIndex, setSearchIndex] = useState<SearchResult[]>([]);
   const searchRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
+
+  // 검색 인덱스 로드
+  useEffect(() => {
+    const loadSearchIndex = async () => {
+      try {
+        const response = await fetch('/search-index.json');
+        if (response.ok) {
+          const data = await response.json();
+          setSearchIndex(data);
+        }
+      } catch (error) {
+        console.error('Failed to load search index:', error);
+      }
+    };
+
+    loadSearchIndex();
+  }, []);
+
+  // 클라이언트 사이드 검색
+  const performSearch = (searchQuery: string) => {
+    if (!searchQuery.trim() || searchIndex.length === 0) {
+      return [];
+    }
+
+    const searchTerm = searchQuery.toLowerCase();
+    return searchIndex.filter(post => {
+      const title = post.title.toLowerCase();
+      const content = (post.content || '').toLowerCase();
+      const category = (post.category || '').toLowerCase();
+      const tags = (post.tags || []).join(' ').toLowerCase();
+      const excerpt = (post.excerpt || '').toLowerCase();
+
+      return title.includes(searchTerm) ||
+             content.includes(searchTerm) ||
+             category.includes(searchTerm) ||
+             tags.includes(searchTerm) ||
+             excerpt.includes(searchTerm);
+    }).slice(0, 10); // 최대 10개 결과만
+  };
 
   // Debounced search
   useEffect(() => {
@@ -36,23 +71,16 @@ export default function SearchBox() {
       return;
     }
 
-    const timeoutId = setTimeout(async () => {
+    const timeoutId = setTimeout(() => {
       setIsLoading(true);
-      try {
-        const response = await fetch(`/api/search?q=${encodeURIComponent(query)}`);
-        if (response.ok) {
-          const data: SearchResponse = await response.json();
-          setResults(data.results);
-          setIsOpen(true);
-        }
-      } catch (error) {
-        console.error('Search error:', error);
-      }
+      const searchResults = performSearch(query);
+      setResults(searchResults);
+      setIsOpen(true);
       setIsLoading(false);
     }, 300);
 
     return () => clearTimeout(timeoutId);
-  }, [query]);
+  }, [query, searchIndex]);
 
   // Close search results when clicking outside
   useEffect(() => {
