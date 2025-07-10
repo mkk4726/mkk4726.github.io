@@ -24,7 +24,7 @@ export default function Comments({ postSlug }: CommentsProps) {
     script.setAttribute('data-repo', 'mkk4726/mkk4726.github.io')
     script.setAttribute('data-repo-id', 'R_kgDOPIekoQ')
     script.setAttribute('data-category', 'General')
-    script.setAttribute('data-category-id', 'DIC_kwDOPIekoC4CsV6u')
+    script.setAttribute('data-category-id', 'DIC_kwDOPIekoc4CsV6u')
     script.setAttribute('data-mapping', 'pathname')
     script.setAttribute('data-strict', '0')
     script.setAttribute('data-reactions-enabled', '1')
