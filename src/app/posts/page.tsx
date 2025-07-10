@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import { useRouter } from 'next/navigation';
 import PostCard from '@/components/PostCard';
 import Link from 'next/link';
 
@@ -21,7 +20,6 @@ export default function PostsPage() {
   const [filteredPosts, setFilteredPosts] = useState<PostData[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState<string>('');
-  const router = useRouter();
 
   // URL에서 검색 쿼리 추출 (클라이언트 사이드에서만)
   useEffect(() => {
