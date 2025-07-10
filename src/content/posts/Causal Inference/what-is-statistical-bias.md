@@ -259,7 +259,7 @@ $Y$와 $T$ 간의 인과관계를 모델링해야 합니다.
 > 직관적으로 너무나도 당연한 말이지만, 앞서 설명드린 것처럼 이러한 통계적인 편향들을 제거하지 않고 결과를 분석하게 되면 잘못된 결과를 도출할 수 있습니다.
 
 
-잔차화하는 코드는 [잔차화 코드](/posts/Causal Inference/residualization-fwl-theorem-test.ipynb) 확인해볼 수 있습니다.
+잔차화하는 코드는 [잔차화 코드](/posts/Causal%20Inference/residualization-fwl-theorem-test) 확인해볼 수 있습니다.
 
 
 # 정리
