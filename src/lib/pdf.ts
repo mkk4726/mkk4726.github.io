@@ -1,3 +1,7 @@
+// 정적 임포트로 변경 (청크 로딩 문제 해결)
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
+
 export interface PdfOptions {
   filename?: string;
   format?: 'a4' | 'letter';
@@ -130,13 +134,7 @@ export async function generatePdfFromElement(
   } = options;
 
   try {
-    // 동적으로 라이브러리 import
-    const [{ default: jsPDF }, { default: html2canvas }] = await Promise.all([
-      import('jspdf'),
-      import('html2canvas')
-    ]);
-
-    console.log('PDF 라이브러리 로드 완료');
+    console.log('PDF 라이브러리 로드 완료 (정적 임포트)');
 
     // PDF 생성을 위한 임시 스타일 적용
     const originalDisplay = element.style.display;
@@ -192,7 +190,7 @@ export async function generatePdfFromElement(
                   linkElement.disabled = true;
                 }
               }
-                         } catch (e) {
+            } catch (e) {
                console.log(`스타일시트 ${index} 처리 건너뛰기:`, e instanceof Error ? e.message : '알 수 없는 오류');
              }
           });
@@ -200,32 +198,26 @@ export async function generatePdfFromElement(
           // 클론된 문서에서 불필요한 요소들 제거
           const elementsToRemove = clonedDoc.querySelectorAll('.no-print, button, nav, script, [data-nextjs-scroll-focus-boundary]');
           elementsToRemove.forEach(el => {
-            try {
-              el.remove();
-            } catch (e) {
-              console.log('요소 제거 실패:', e);
-            }
+            el.remove();
           });
           
-          // 인라인 스타일에서 oklch 제거
-          const elementsWithStyle = clonedDoc.querySelectorAll('[style*="oklch"]');
-          elementsWithStyle.forEach(el => {
-            try {
-              const htmlEl = el as HTMLElement;
-              htmlEl.style.cssText = htmlEl.style.cssText.replace(/oklch\([^)]*\)/g, '#6b7280');
-            } catch (e) {
-              console.log('인라인 스타일 처리 실패:', e);
-            }
+          // 코드 블록 스타일 개선
+          const codeBlocks = clonedDoc.querySelectorAll('pre code');
+          codeBlocks.forEach(block => {
+            (block as HTMLElement).style.whiteSpace = 'pre-wrap';
+            (block as HTMLElement).style.wordBreak = 'break-word';
           });
           
-          console.log('문서 정리 완료');
-        } catch (error) {
-          console.warn('클론 문서 처리 중 오류:', error);
+        } catch (e) {
+          console.log('클론 문서 처리 중 오류:', e instanceof Error ? e.message : '알 수 없는 오류');
         }
       }
     });
 
-    console.log('캔버스 생성 완료, 크기:', canvas.width, 'x', canvas.height);
+    console.log('캔버스 생성 완료', {
+      width: canvas.width,
+      height: canvas.height
+    });
 
     // 원래 스타일 복원
     element.style.display = originalDisplay;
@@ -233,54 +225,83 @@ export async function generatePdfFromElement(
     element.style.left = originalLeft;
     element.style.top = originalTop;
 
-    const imgData = canvas.toDataURL('image/png', quality);
-    console.log('이미지 데이터 생성 완료');
-    
     // PDF 생성
     const pdf = new jsPDF({
-      orientation,
-      unit: 'mm',
-      format,
+      orientation: orientation,
+      unit: 'px',
+      format: format === 'a4' ? [595, 842] : [612, 792],
+      compress: true
     });
 
-    console.log('PDF 객체 생성 완료');
-
-    // PDF 페이지 크기 계산
+    // 페이지 크기 계산
     const pageWidth = pdf.internal.pageSize.getWidth();
     const pageHeight = pdf.internal.pageSize.getHeight();
-    
-    // 캔버스 크기에 맞춰 이미지 크기 조정
-    const imgWidth = pageWidth - 20; // 10mm 마진
-    const imgHeight = (canvas.height * imgWidth) / canvas.width;
-    
-    let heightLeft = imgHeight;
-    let position = 10; // 상단 마진
-    
-    // 첫 페이지에 이미지 추가
-    pdf.addImage(imgData, 'PNG', 10, position, imgWidth, imgHeight);
-    heightLeft -= pageHeight - 20; // 상하 마진 제외
-    
-    // 여러 페이지가 필요한 경우 페이지 추가
-    while (heightLeft >= 0) {
-      position = heightLeft - imgHeight + 10; // 다음 페이지 시작 위치
-      pdf.addPage();
-      pdf.addImage(imgData, 'PNG', 10, position, imgWidth, imgHeight);
-      heightLeft -= pageHeight - 20;
+    const margin = 40;
+    const contentWidth = pageWidth - (margin * 2);
+    const contentHeight = pageHeight - (margin * 2);
+
+    // 이미지 크기 계산
+    const imgWidth = contentWidth;
+
+    // 이미지를 페이지에 맞게 나누기
+    let yPosition = 0;
+    let pageNumber = 1;
+
+    console.log('PDF 페이지 생성 시작...');
+
+    while (yPosition < canvas.height) {
+      // 새 페이지 추가 (첫 페이지 제외)
+      if (pageNumber > 1) {
+        pdf.addPage();
+      }
+
+      // 현재 페이지에 들어갈 이미지 높이 계산
+      const sourceY = yPosition;
+      const sourceHeight = Math.min(
+        (contentHeight * canvas.width) / imgWidth,
+        canvas.height - yPosition
+      );
+
+      // 캔버스에서 해당 부분 추출
+      const pageCanvas = document.createElement('canvas');
+      const pageContext = pageCanvas.getContext('2d');
+      
+      if (pageContext) {
+        pageCanvas.width = canvas.width;
+        pageCanvas.height = sourceHeight;
+        
+        pageContext.drawImage(
+          canvas,
+          0, sourceY, canvas.width, sourceHeight,
+          0, 0, canvas.width, sourceHeight
+        );
+
+        // PDF에 이미지 추가
+        const pageImageData = pageCanvas.toDataURL('image/jpeg', quality);
+        const pageImgHeight = (sourceHeight * imgWidth) / canvas.width;
+        
+        pdf.addImage(
+          pageImageData,
+          'JPEG',
+          margin,
+          margin,
+          imgWidth,
+          pageImgHeight
+        );
+      }
+
+      yPosition += sourceHeight;
+      pageNumber++;
     }
-    
-    console.log('PDF 페이지 구성 완료');
-    
+
+    console.log(`PDF 생성 완료: ${pageNumber - 1} 페이지`);
+
     // PDF 다운로드
     pdf.save(filename);
-    console.log('PDF 다운로드 시작:', filename);
     
   } catch (error) {
     console.error('PDF 생성 중 상세 오류:', error);
-    if (error instanceof Error) {
-      throw new Error(`PDF 생성에 실패했습니다: ${error.message}`);
-    } else {
-      throw new Error('PDF 생성에 실패했습니다: 알 수 없는 오류');
-    }
+    throw new Error(`PDF 생성에 실패했습니다: ${error instanceof Error ? error.message : '알 수 없는 오류'}`);
   }
 }
 
@@ -288,16 +309,13 @@ export async function generatePostPdf(
   postTitle: string,
   postElement: HTMLElement
 ): Promise<void> {
-  const sanitizedTitle = postTitle
-    .replace(/[^a-zA-Z0-9가-힣\s]/g, '')
-    .replace(/\s+/g, '-')
-    .toLowerCase();
-    
+  const sanitizedTitle = postTitle.replace(/[^\w\s-]/g, '').replace(/\s+/g, '-');
   const filename = `${sanitizedTitle}.pdf`;
   
-  await generatePdfFromElement(postElement, {
+  return generatePdfFromElement(postElement, {
     filename,
     format: 'a4',
     orientation: 'portrait',
+    quality: 0.95
   });
 } 
