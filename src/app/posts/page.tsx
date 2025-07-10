@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { useState, useEffect, useCallback } from 'react';
+import { useRouter } from 'next/navigation';
 import PostCard from '@/components/PostCard';
 import Link from 'next/link';
 
@@ -20,11 +20,20 @@ export default function PostsPage() {
   const [categories, setCategories] = useState<string[]>([]);
   const [filteredPosts, setFilteredPosts] = useState<PostData[]>([]);
   const [loading, setLoading] = useState(true);
-  const searchParams = useSearchParams();
-  const searchQuery = searchParams.get('search');
+  const [searchQuery, setSearchQuery] = useState<string>('');
+  const router = useRouter();
 
-  // 클라이언트 사이드 검색
-  const performSearch = (searchQuery: string, allPosts: PostData[]) => {
+  // URL에서 검색 쿼리 추출 (클라이언트 사이드에서만)
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const urlParams = new URLSearchParams(window.location.search);
+      const search = urlParams.get('search');
+      setSearchQuery(search || '');
+    }
+  }, []);
+
+  // 클라이언트 사이드 검색 (useCallback으로 감싸서 dependency 문제 해결)
+  const performSearch = useCallback((searchQuery: string, allPosts: PostData[]) => {
     if (!searchQuery.trim()) {
       return allPosts;
     }
@@ -43,7 +52,7 @@ export default function PostsPage() {
              tags.includes(searchTerm) ||
              excerpt.includes(searchTerm);
     });
-  };
+  }, []);
 
   // Fetch posts and categories
   useEffect(() => {
@@ -75,10 +84,10 @@ export default function PostsPage() {
   // Filter posts based on search query
   useEffect(() => {
     if (posts.length > 0) {
-      const results = performSearch(searchQuery || '', posts);
+      const results = performSearch(searchQuery, posts);
       setFilteredPosts(results);
     }
-  }, [searchQuery, posts]);
+  }, [searchQuery, posts, performSearch]);
 
   if (loading) {
     return (

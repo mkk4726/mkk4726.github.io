@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
@@ -41,8 +41,8 @@ export default function SearchBox() {
     loadSearchIndex();
   }, []);
 
-  // 클라이언트 사이드 검색
-  const performSearch = (searchQuery: string) => {
+  // 클라이언트 사이드 검색 (useCallback으로 감싸서 dependency 문제 해결)
+  const performSearch = useCallback((searchQuery: string) => {
     if (!searchQuery.trim() || searchIndex.length === 0) {
       return [];
     }
@@ -61,7 +61,7 @@ export default function SearchBox() {
              tags.includes(searchTerm) ||
              excerpt.includes(searchTerm);
     }).slice(0, 10); // 최대 10개 결과만
-  };
+  }, [searchIndex]);
 
   // Debounced search
   useEffect(() => {
@@ -80,7 +80,7 @@ export default function SearchBox() {
     }, 300);
 
     return () => clearTimeout(timeoutId);
-  }, [query, searchIndex]);
+  }, [query, performSearch]);
 
   // Close search results when clicking outside
   useEffect(() => {
