@@ -34,6 +34,10 @@ export default function Comments({ postSlug }: CommentsProps) {
     script.setAttribute('data-lang', 'ko')
     script.setAttribute('data-loading', 'lazy')
 
+    // 에러 디버깅을 위한 로그 추가
+    script.onload = () => console.log('giscus script loaded successfully')
+    script.onerror = (error) => console.error('giscus script failed to load:', error)
+
     ref.current.appendChild(script)
   }, [postSlug])
 
