@@ -9,6 +9,15 @@ interface PostsChartProps {
   height?: number;
 }
 
+interface TooltipProps {
+  active?: boolean;
+  payload?: Array<{
+    value: number;
+    [key: string]: unknown;
+  }>;
+  label?: string;
+}
+
 export default function PostsChart({ data, title, height = 300 }: PostsChartProps) {
   // 데이터가 없는 경우 처리
   if (!data || data.length === 0) {
@@ -23,7 +32,7 @@ export default function PostsChart({ data, title, height = 300 }: PostsChartProp
   }
 
   // 커스텀 툴팁
-  const CustomTooltip = ({ active, payload, label }: any) => {
+  const CustomTooltip = ({ active, payload, label }: TooltipProps) => {
     if (active && payload && payload.length) {
       return (
         <div className="bg-white dark:bg-gray-800 p-3 border border-gray-200 dark:border-gray-600 rounded-lg shadow-lg">

@@ -1,4 +1,4 @@
-import { getSortedPostsData, getPostsByMonth, getPostsByYear, getPostsContributionDataByYear, getActiveYears, getPostsByDayOfWeek } from '@/lib/posts';
+import { getSortedPostsData, getPostsByMonth, getPostsContributionDataByYear, getActiveYears, getPostsByDayOfWeek, ContributionDay } from '@/lib/posts';
 import PostCard from '@/components/PostCard';
 import ContributionGraph from '@/components/ContributionGraph';
 import Link from 'next/link';
@@ -6,15 +6,19 @@ import Link from 'next/link';
 export default async function Home() {
   const posts = (await getSortedPostsData()).slice(0, 6); // Show only the latest 6 posts
   const monthlyData = await getPostsByMonth();
-  const yearlyData = await getPostsByYear();
   const dayOfWeekData = await getPostsByDayOfWeek();
   
   // 활동한 연도 목록 가져오기
   const availableYears = await getActiveYears();
-  const currentYear = availableYears[0] || new Date().getFullYear();
   
-  // 현재(최신) 연도의 contribution 데이터 가져오기
-  const contributionData = await getPostsContributionDataByYear(currentYear);
+  // 모든 연도의 contribution 데이터 미리 로드
+  const allYearData: { [year: number]: ContributionDay[] } = {};
+  for (const year of availableYears) {
+    allYearData[year] = await getPostsContributionDataByYear(year);
+  }
+  
+  const currentYear = availableYears[0] || new Date().getFullYear();
+  const contributionData = allYearData[currentYear] || [];
 
   // 통계 계산
   const totalPosts = monthlyData.reduce((sum, item) => sum + item.count, 0);
@@ -76,7 +80,7 @@ export default async function Home() {
         <div className="lg:col-span-1 space-y-8">
           {/* GitHub 스타일 잔디밭 */}
           <ContributionGraph 
-            initialData={contributionData}
+            allYearData={allYearData}
             availableYears={availableYears}
             title="포스트 활동 잔디밭" 
           />
@@ -124,7 +128,7 @@ export default async function Home() {
 }
 
 // 연속 포스팅 기록을 계산하는 함수
-function calculateStreak(data: any[]): number {
+function calculateStreak(data: ContributionDay[]): number {
   let maxStreak = 0;
   let currentStreak = 0;
   

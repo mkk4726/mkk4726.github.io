@@ -1,40 +1,24 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { ContributionDay } from '@/lib/posts';
 
 interface ContributionGraphProps {
-  initialData: ContributionDay[];
+  allYearData: { [year: number]: ContributionDay[] };
   availableYears: number[];
   title?: string;
 }
 
-export default function ContributionGraph({ initialData, availableYears, title = "포스트 활동" }: ContributionGraphProps) {
+export default function ContributionGraph({ allYearData, availableYears, title = "포스트 활동" }: ContributionGraphProps) {
   const [tooltip, setTooltip] = useState<{ day: ContributionDay; x: number; y: number } | null>(null);
-  const [data, setData] = useState<ContributionDay[]>(initialData);
   const [selectedYear, setSelectedYear] = useState<number>(availableYears[0] || new Date().getFullYear());
-  const [isLoading, setIsLoading] = useState(false);
 
-  // 연도 변경시 데이터 다시 로드
-  const handleYearChange = async (year: number) => {
-    if (year === selectedYear) return;
-    
-    setIsLoading(true);
+  // 선택된 연도의 데이터 가져오기
+  const data = allYearData[selectedYear] || [];
+
+  // 연도 변경시 처리
+  const handleYearChange = (year: number) => {
     setSelectedYear(year);
-    
-    try {
-      const response = await fetch(`/api/contribution/${year}`);
-      if (!response.ok) {
-        throw new Error('Failed to fetch contribution data');
-      }
-      
-      const result = await response.json();
-      setData(result.data);
-    } catch (error) {
-      console.error('Failed to load contribution data:', error);
-    } finally {
-      setIsLoading(false);
-    }
   };
 
   // 데이터가 없는 경우 처리
@@ -123,8 +107,8 @@ export default function ContributionGraph({ initialData, availableYears, title =
           monthLabels.push({ month: monthName, startWeek: weekIndex });
           currentMonth = monthName;
         }
-      } catch (error) {
-        console.warn('Invalid date:', firstValidDay.date);
+      } catch {
+        // 잘못된 날짜 형식은 무시
       }
     }
   });
@@ -158,106 +142,89 @@ export default function ContributionGraph({ initialData, availableYears, title =
         
         {/* 연도 선택 드롭다운 */}
         {availableYears.length > 0 && (
-          <div className="flex items-center gap-2">
-            {isLoading && (
-              <div className="w-4 h-4 border-2 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
-            )}
-            <select
-              value={selectedYear}
-              onChange={(e) => handleYearChange(parseInt(e.target.value))}
-              disabled={isLoading}
-              className="px-3 py-1 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-sm text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50"
-            >
-              {availableYears.map((year) => (
-                <option key={year} value={year}>
-                  {year}
-                </option>
-              ))}
-            </select>
-          </div>
+          <select
+            value={selectedYear}
+            onChange={(e) => handleYearChange(parseInt(e.target.value))}
+            className="px-3 py-1 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-sm text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
+            {availableYears.map((year) => (
+              <option key={year} value={year}>
+                {year}
+              </option>
+            ))}
+          </select>
         )}
       </div>
 
       <div className="relative overflow-x-auto">
-        {isLoading ? (
-          <div className="flex items-center justify-center h-64">
-            <div className="flex items-center gap-2 text-gray-500 dark:text-gray-400">
-              <div className="w-6 h-6 border-2 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
-              <span>데이터를 불러오는 중...</span>
+        {/* 월 라벨 */}
+        <div className="flex mb-2" style={{ marginLeft: '20px' }}>
+          {monthLabels.map((label, index) => (
+            <div
+              key={index}
+              className="text-xs text-gray-600 dark:text-gray-400 pr-2"
+              style={{ 
+                marginLeft: index === 0 ? 0 : `${(label.startWeek - (monthLabels[index - 1]?.startWeek || 0)) * 12 - 12}px`,
+                minWidth: '20px'
+              }}
+            >
+              {label.month}
             </div>
+          ))}
+        </div>
+
+        <div className="flex">
+          {/* 요일 라벨 */}
+          <div className="flex flex-col mr-2">
+            {weekdays.map((day, index) => (
+              <div
+                key={day}
+                className={`h-3 flex items-center text-xs text-gray-600 dark:text-gray-400 ${
+                  index % 2 === 1 ? '' : 'opacity-0'
+                }`}
+                style={{ marginBottom: '2px' }}
+              >
+                {day}
+              </div>
+            ))}
           </div>
-        ) : (
-          <>
-            {/* 월 라벨 */}
-            <div className="flex mb-2" style={{ marginLeft: '20px' }}>
-              {monthLabels.map((label, index) => (
-                <div
-                  key={index}
-                  className="text-xs text-gray-600 dark:text-gray-400 pr-2"
-                  style={{ 
-                    marginLeft: index === 0 ? 0 : `${(label.startWeek - (monthLabels[index - 1]?.startWeek || 0)) * 12 - 12}px`,
-                    minWidth: '20px'
-                  }}
-                >
-                  {label.month}
-                </div>
-              ))}
-            </div>
 
-            <div className="flex">
-              {/* 요일 라벨 */}
-              <div className="flex flex-col mr-2">
-                {weekdays.map((day, index) => (
+          {/* contribution 격자 */}
+          <div className="flex gap-[2px]">
+            {weeks.map((week, weekIndex) => (
+              <div key={weekIndex} className="flex flex-col gap-[2px]">
+                {week.map((day, dayIndex) => (
                   <div
-                    key={day}
-                    className={`h-3 flex items-center text-xs text-gray-600 dark:text-gray-400 ${
-                      index % 2 === 1 ? '' : 'opacity-0'
+                    key={`${weekIndex}-${dayIndex}`}
+                    className={`w-3 h-3 rounded-sm cursor-pointer transition-all duration-200 hover:ring-2 hover:ring-gray-400 dark:hover:ring-gray-500 ${
+                      day.date ? getLevelClass(day.level) : 'bg-transparent'
                     }`}
-                    style={{ marginBottom: '2px' }}
-                  >
-                    {day}
-                  </div>
-                ))}
-              </div>
-
-              {/* contribution 격자 */}
-              <div className="flex gap-[2px]">
-                {weeks.map((week, weekIndex) => (
-                  <div key={weekIndex} className="flex flex-col gap-[2px]">
-                    {week.map((day, dayIndex) => (
-                      <div
-                        key={`${weekIndex}-${dayIndex}`}
-                        className={`w-3 h-3 rounded-sm cursor-pointer transition-all duration-200 hover:ring-2 hover:ring-gray-400 dark:hover:ring-gray-500 ${
-                          day.date ? getLevelClass(day.level) : 'bg-transparent'
-                        }`}
-                        onMouseEnter={(e) => handleMouseEnter(day, e)}
-                        onMouseLeave={handleMouseLeave}
-                      />
-                    ))}
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* 범례 */}
-            <div className="flex items-center justify-between mt-4">
-              <div className="text-xs text-gray-600 dark:text-gray-400">
-                Less
-              </div>
-              <div className="flex items-center gap-1">
-                {[0, 1, 2, 3, 4].map((level) => (
-                  <div
-                    key={level}
-                    className={`w-3 h-3 rounded-sm ${getLevelClass(level)}`}
+                    onMouseEnter={(e) => handleMouseEnter(day, e)}
+                    onMouseLeave={handleMouseLeave}
                   />
                 ))}
               </div>
-              <div className="text-xs text-gray-600 dark:text-gray-400">
-                More
-              </div>
-            </div>
-          </>
-        )}
+            ))}
+          </div>
+        </div>
+
+        {/* 범례 */}
+        <div className="flex items-center justify-between mt-4">
+          <div className="text-xs text-gray-600 dark:text-gray-400">
+            Less
+          </div>
+          <div className="flex items-center gap-1">
+            {[0, 1, 2, 3, 4].map((level) => (
+              <div
+                key={level}
+                className={`w-3 h-3 rounded-sm ${getLevelClass(level)}`}
+              />
+            ))}
+          </div>
+          <div className="text-xs text-gray-600 dark:text-gray-400">
+            More
+          </div>
+        </div>
       </div>
 
       {/* 툴팁 */}
@@ -279,7 +246,7 @@ export default function ContributionGraph({ initialData, availableYears, title =
                   day: 'numeric',
                   weekday: 'long'
                 });
-              } catch (error) {
+              } catch {
                 return tooltip.day.date;
               }
             })()}

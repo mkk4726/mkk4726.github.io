@@ -452,8 +452,8 @@ export async function getActiveYears(): Promise<number[]> {
       if (!isNaN(year)) {
         years.add(year);
       }
-    } catch (error) {
-      console.warn('Invalid date format:', post.date);
+    } catch {
+      // 잘못된 날짜 형식은 무시
     }
   }
   
@@ -479,8 +479,8 @@ export async function getPostsByDayOfWeek(): Promise<PostsByDate[]> {
       const dayOfWeek = date.getDay(); // 0 (일요일) ~ 6 (토요일)
       const dayName = dayNames[dayOfWeek];
       dayOfWeekData[dayName]++;
-    } catch (error) {
-      console.warn('Invalid date format:', post.date);
+    } catch {
+      // 잘못된 날짜 형식은 무시
     }
   }
   
