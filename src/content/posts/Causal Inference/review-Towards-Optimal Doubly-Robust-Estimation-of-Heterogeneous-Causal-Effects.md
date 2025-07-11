@@ -1,5 +1,5 @@
 ---
-title: "Towards Optimal Doubly-Robust Estimation of Heterogeneous Causal Effects"
+title: "[Paper Review] Towards Optimal Doubly-Robust Estimation of Heterogeneous Causal Effects"
 date: "2024-01-01"
 excerpt: "Doubly-Robust Estimation of Heterogeneous Causal Effects"
 category: "Causal Inference"

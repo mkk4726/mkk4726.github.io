@@ -1,5 +1,5 @@
 ---
-title: "Multi-Study R-Learner for Estimating Heterogeneous Treatment Effects Across Studies Using Statistical Machine Learning"
+title: "[Paper Review] Multi-Study R-Learner for Estimating Heterogeneous Treatment Effects Across Studies Using Statistical Machine Learning"
 date: "2025-01-16"
 excerpt: "Multi-Study R-Learner 논문에 대한 리뷰 및 분석"
 category: "Causal Inference"
