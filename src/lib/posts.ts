@@ -272,3 +272,221 @@ export function getAllFolderPaths(): string[] {
   collectPaths(structure);
   return paths;
 } 
+
+// 날짜별 포스트 개수를 집계하는 인터페이스
+export interface PostsByDate {
+  date: string;
+  count: number;
+}
+
+// 월별 포스트 개수를 집계하는 함수
+export async function getPostsByMonth(): Promise<PostsByDate[]> {
+  const allPosts = await getSortedPostsData();
+  const monthlyData: { [key: string]: number } = {};
+  
+  for (const post of allPosts) {
+    // YYYY-MM 형태로 월별 그룹화
+    const month = post.date.substring(0, 7);
+    monthlyData[month] = (monthlyData[month] || 0) + 1;
+  }
+  
+  // 배열로 변환하고 날짜순 정렬
+  return Object.entries(monthlyData)
+    .map(([date, count]) => ({ date, count }))
+    .sort((a, b) => a.date.localeCompare(b.date));
+}
+
+// 연도별 포스트 개수를 집계하는 함수
+export async function getPostsByYear(): Promise<PostsByDate[]> {
+  const allPosts = await getSortedPostsData();
+  const yearlyData: { [key: string]: number } = {};
+  
+  for (const post of allPosts) {
+    // YYYY 형태로 연도별 그룹화
+    const year = post.date.substring(0, 4);
+    yearlyData[year] = (yearlyData[year] || 0) + 1;
+  }
+  
+  // 배열로 변환하고 날짜순 정렬
+  return Object.entries(yearlyData)
+    .map(([date, count]) => ({ date, count }))
+    .sort((a, b) => a.date.localeCompare(b.date));
+}
+
+// 주별 포스트 개수를 집계하는 함수
+export async function getPostsByWeek(): Promise<PostsByDate[]> {
+  const allPosts = await getSortedPostsData();
+  const weeklyData: { [key: string]: number } = {};
+  
+  for (const post of allPosts) {
+    const postDate = new Date(post.date);
+    
+    // 해당 주의 월요일을 구하기
+    const monday = new Date(postDate);
+    const day = monday.getDay();
+    const diff = monday.getDate() - day + (day === 0 ? -6 : 1); // 일요일인 경우 조정
+    monday.setDate(diff);
+    
+    // YYYY-MM-DD 형태로 주의 시작일 표시
+    const weekStart = monday.toISOString().split('T')[0];
+    weeklyData[weekStart] = (weeklyData[weekStart] || 0) + 1;
+  }
+  
+  // 배열로 변환하고 날짜순 정렬
+  return Object.entries(weeklyData)
+    .map(([date, count]) => ({ 
+      date: `${date} 주`, // 더 읽기 쉽게 표시
+      count 
+    }))
+    .sort((a, b) => a.date.localeCompare(b.date))
+    .slice(-12); // 최근 12주만 표시 (너무 많으면 차트가 복잡해짐)
+}
+
+// GitHub 잔디밭을 위한 날짜별 포스트 데이터 인터페이스
+export interface ContributionDay {
+  date: string;
+  count: number;
+  level: number; // 0-4 (강도 레벨)
+}
+
+// 날짜별 포스트 개수를 집계하는 함수 (GitHub 잔디밭용)
+export async function getPostsContributionData(): Promise<ContributionDay[]> {
+  const allPosts = await getSortedPostsData();
+  const dailyData: { [key: string]: number } = {};
+  
+  // 모든 포스트의 날짜별 개수 계산
+  for (const post of allPosts) {
+    const date = post.date;
+    dailyData[date] = (dailyData[date] || 0) + 1;
+  }
+  
+  // 최대값 계산 (레벨 계산용) - 데이터가 없으면 0
+  const counts = Object.values(dailyData);
+  const maxCount = counts.length > 0 ? Math.max(...counts) : 0;
+  
+  // 지난 1년간의 모든 날짜 생성
+  const result: ContributionDay[] = [];
+  const endDate = new Date();
+  const startDate = new Date();
+  startDate.setFullYear(endDate.getFullYear() - 1);
+  
+  for (let d = new Date(startDate); d <= endDate; d.setDate(d.getDate() + 1)) {
+    const dateStr = d.toISOString().split('T')[0];
+    const count = dailyData[dateStr] || 0;
+    
+    // GitHub 스타일 레벨 계산 (0-4)
+    let level = 0;
+    if (count > 0 && maxCount > 0) {
+      if (maxCount <= 1) {
+        level = count > 0 ? 4 : 0;
+      } else {
+        level = Math.min(Math.ceil((count / maxCount) * 4), 4);
+      }
+    }
+    
+    result.push({
+      date: dateStr,
+      count,
+      level
+    });
+  }
+  
+  return result;
+}
+
+// 특정 연도의 contribution 데이터를 가져오는 함수
+export async function getPostsContributionDataByYear(year: number): Promise<ContributionDay[]> {
+  const allPosts = await getSortedPostsData();
+  const dailyData: { [key: string]: number } = {};
+  
+  // 해당 연도의 포스트만 필터링하여 날짜별 개수 계산
+  for (const post of allPosts) {
+    const postYear = parseInt(post.date.substring(0, 4));
+    if (postYear === year) {
+      const date = post.date;
+      dailyData[date] = (dailyData[date] || 0) + 1;
+    }
+  }
+  
+  // 최대값 계산 (레벨 계산용) - 데이터가 없으면 0
+  const counts = Object.values(dailyData);
+  const maxCount = counts.length > 0 ? Math.max(...counts) : 0;
+  
+  // 해당 연도의 모든 날짜 생성
+  const result: ContributionDay[] = [];
+  const startDate = new Date(year, 0, 1); // 1월 1일
+  const endDate = new Date(year, 11, 31); // 12월 31일
+  
+  for (let d = new Date(startDate); d <= endDate; d.setDate(d.getDate() + 1)) {
+    const dateStr = d.toISOString().split('T')[0];
+    const count = dailyData[dateStr] || 0;
+    
+    // GitHub 스타일 레벨 계산 (0-4)
+    let level = 0;
+    if (count > 0 && maxCount > 0) {
+      if (maxCount <= 1) {
+        level = count > 0 ? 4 : 0;
+      } else {
+        level = Math.min(Math.ceil((count / maxCount) * 4), 4);
+      }
+    }
+    
+    result.push({
+      date: dateStr,
+      count,
+      level
+    });
+  }
+  
+  return result;
+}
+
+// 포스트가 있는 연도 목록을 가져오는 함수
+export async function getActiveYears(): Promise<number[]> {
+  const allPosts = await getSortedPostsData();
+  const years = new Set<number>();
+  
+  for (const post of allPosts) {
+    try {
+      const year = parseInt(post.date.substring(0, 4));
+      if (!isNaN(year)) {
+        years.add(year);
+      }
+    } catch (error) {
+      console.warn('Invalid date format:', post.date);
+    }
+  }
+  
+  // 연도를 내림차순으로 정렬 (최신 연도부터)
+  return Array.from(years).sort((a, b) => b - a);
+}
+
+// 요일별 포스트 개수를 집계하는 함수
+export async function getPostsByDayOfWeek(): Promise<PostsByDate[]> {
+  const allPosts = await getSortedPostsData();
+  const dayOfWeekData: { [key: string]: number } = {};
+  const dayNames = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'];
+  
+  // 요일별 초기화
+  dayNames.forEach(day => {
+    dayOfWeekData[day] = 0;
+  });
+  
+  // 모든 포스트의 요일별 개수 계산
+  for (const post of allPosts) {
+    try {
+      const date = new Date(post.date);
+      const dayOfWeek = date.getDay(); // 0 (일요일) ~ 6 (토요일)
+      const dayName = dayNames[dayOfWeek];
+      dayOfWeekData[dayName]++;
+    } catch (error) {
+      console.warn('Invalid date format:', post.date);
+    }
+  }
+  
+  // 배열로 변환 (일요일부터 토요일 순서)
+  return dayNames.map(dayName => ({
+    date: dayName,
+    count: dayOfWeekData[dayName]
+  }));
+} 
