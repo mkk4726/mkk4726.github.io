@@ -568,7 +568,9 @@ export async function getPostsContributionDataByFolderAndYear(folderPath: string
   // 해당 폴더와 연도의 포스트만 필터링하여 날짜별 개수 계산
   for (const post of allPosts) {
     const postYear = parseInt(post.date.substring(0, 4));
-    if (postYear === year && post.id.startsWith(folderPath)) {
+    const postFolder = post.id.includes('/') ? post.id.substring(0, post.id.lastIndexOf('/')) : '';
+    
+    if (postYear === year && (postFolder === folderPath || postFolder.startsWith(folderPath + '/'))) {
       const date = post.date;
       dailyData[date] = (dailyData[date] || 0) + 1;
     }
@@ -613,7 +615,9 @@ export async function getActiveYearsByFolder(folderPath: string): Promise<number
   const years = new Set<number>();
   
   for (const post of allPosts) {
-    if (post.id.startsWith(folderPath)) {
+    const postFolder = post.id.includes('/') ? post.id.substring(0, post.id.lastIndexOf('/')) : '';
+    
+    if (postFolder === folderPath || postFolder.startsWith(folderPath + '/')) {
       try {
         const year = parseInt(post.date.substring(0, 4));
         if (!isNaN(year)) {
