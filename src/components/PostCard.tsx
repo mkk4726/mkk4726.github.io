@@ -16,9 +16,12 @@ export default function PostCard({ post }: PostCardProps) {
             {format(new Date(post.date), 'MMMM dd, yyyy')}
           </time>
           {post.category && (
-            <span className="px-2 py-1 text-xs bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full">
+            <Link 
+              href={`/posts/category/${encodeURIComponent(post.category)}`}
+              className="px-2 py-1 text-xs bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors cursor-pointer"
+            >
               {post.category}
-            </span>
+            </Link>
           )}
         </div>
         

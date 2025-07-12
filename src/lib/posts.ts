@@ -489,4 +489,142 @@ export async function getPostsByDayOfWeek(): Promise<PostsByDate[]> {
     date: dayName,
     count: dayOfWeekData[dayName]
   }));
+}
+
+// 카테고리별 특정 연도의 contribution 데이터를 가져오는 함수
+export async function getPostsContributionDataByCategoryAndYear(category: string, year: number): Promise<ContributionDay[]> {
+  const allPosts = await getSortedPostsData();
+  const dailyData: { [key: string]: number } = {};
+  
+  // 해당 카테고리와 연도의 포스트만 필터링하여 날짜별 개수 계산
+  for (const post of allPosts) {
+    const postYear = parseInt(post.date.substring(0, 4));
+    if (postYear === year && post.category === category) {
+      const date = post.date;
+      dailyData[date] = (dailyData[date] || 0) + 1;
+    }
+  }
+  
+  // 최대값 계산 (레벨 계산용) - 데이터가 없으면 0
+  const counts = Object.values(dailyData);
+  const maxCount = counts.length > 0 ? Math.max(...counts) : 0;
+  
+  // 해당 연도의 모든 날짜 생성
+  const result: ContributionDay[] = [];
+  const startDate = new Date(year, 0, 1); // 1월 1일
+  const endDate = new Date(year, 11, 31); // 12월 31일
+  
+  for (let d = new Date(startDate); d <= endDate; d.setDate(d.getDate() + 1)) {
+    const dateStr = d.toISOString().split('T')[0];
+    const count = dailyData[dateStr] || 0;
+    
+    // GitHub 스타일 레벨 계산 (0-4)
+    let level = 0;
+    if (count > 0 && maxCount > 0) {
+      if (maxCount <= 1) {
+        level = count > 0 ? 4 : 0;
+      } else {
+        level = Math.min(Math.ceil((count / maxCount) * 4), 4);
+      }
+    }
+    
+    result.push({
+      date: dateStr,
+      count,
+      level
+    });
+  }
+  
+  return result;
+}
+
+// 카테고리별 포스트가 있는 연도 목록을 가져오는 함수
+export async function getActiveYearsByCategory(category: string): Promise<number[]> {
+  const allPosts = await getSortedPostsData();
+  const years = new Set<number>();
+  
+  for (const post of allPosts) {
+    if (post.category === category) {
+      try {
+        const year = parseInt(post.date.substring(0, 4));
+        if (!isNaN(year)) {
+          years.add(year);
+        }
+      } catch {
+        // 잘못된 날짜 형식은 무시
+      }
+    }
+  }
+  
+  // 연도를 내림차순으로 정렬 (최신 연도부터)
+  return Array.from(years).sort((a, b) => b - a);
+}
+
+// 폴더별 특정 연도의 contribution 데이터를 가져오는 함수
+export async function getPostsContributionDataByFolderAndYear(folderPath: string, year: number): Promise<ContributionDay[]> {
+  const allPosts = await getSortedPostsData();
+  const dailyData: { [key: string]: number } = {};
+  
+  // 해당 폴더와 연도의 포스트만 필터링하여 날짜별 개수 계산
+  for (const post of allPosts) {
+    const postYear = parseInt(post.date.substring(0, 4));
+    if (postYear === year && post.id.startsWith(folderPath)) {
+      const date = post.date;
+      dailyData[date] = (dailyData[date] || 0) + 1;
+    }
+  }
+  
+  // 최대값 계산 (레벨 계산용) - 데이터가 없으면 0
+  const counts = Object.values(dailyData);
+  const maxCount = counts.length > 0 ? Math.max(...counts) : 0;
+  
+  // 해당 연도의 모든 날짜 생성
+  const result: ContributionDay[] = [];
+  const startDate = new Date(year, 0, 1); // 1월 1일
+  const endDate = new Date(year, 11, 31); // 12월 31일
+  
+  for (let d = new Date(startDate); d <= endDate; d.setDate(d.getDate() + 1)) {
+    const dateStr = d.toISOString().split('T')[0];
+    const count = dailyData[dateStr] || 0;
+    
+    // GitHub 스타일 레벨 계산 (0-4)
+    let level = 0;
+    if (count > 0 && maxCount > 0) {
+      if (maxCount <= 1) {
+        level = count > 0 ? 4 : 0;
+      } else {
+        level = Math.min(Math.ceil((count / maxCount) * 4), 4);
+      }
+    }
+    
+    result.push({
+      date: dateStr,
+      count,
+      level
+    });
+  }
+  
+  return result;
+}
+
+// 폴더별 포스트가 있는 연도 목록을 가져오는 함수
+export async function getActiveYearsByFolder(folderPath: string): Promise<number[]> {
+  const allPosts = await getSortedPostsData();
+  const years = new Set<number>();
+  
+  for (const post of allPosts) {
+    if (post.id.startsWith(folderPath)) {
+      try {
+        const year = parseInt(post.date.substring(0, 4));
+        if (!isNaN(year)) {
+          years.add(year);
+        }
+      } catch {
+        // 잘못된 날짜 형식은 무시
+      }
+    }
+  }
+  
+  // 연도를 내림차순으로 정렬 (최신 연도부터)
+  return Array.from(years).sort((a, b) => b - a);
 } 
