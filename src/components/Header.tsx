@@ -72,6 +72,9 @@ export default function Header() {
               <Link href="/posts" className="text-gray-600 hover:text-blue-600 transition-colors">
                 Posts
               </Link>
+              <Link href="/habits" className="text-gray-600 hover:text-blue-600 transition-colors">
+                Habits
+              </Link>
             </nav>
             <SearchBox />
           </div>
@@ -119,6 +122,13 @@ export default function Header() {
                 onClick={closeMenu}
               >
                 Posts
+              </Link>
+              <Link 
+                href="/habits" 
+                className="block text-gray-600 hover:text-blue-600 transition-colors py-3 px-2 rounded-md hover:bg-gray-50"
+                onClick={closeMenu}
+              >
+                Habits
               </Link>
               {/* Mobile Search */}
               <div className="py-3 px-2">
