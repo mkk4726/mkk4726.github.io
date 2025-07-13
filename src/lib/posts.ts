@@ -632,3 +632,9 @@ export async function getActiveYearsByFolder(folderPath: string): Promise<number
   // 연도를 내림차순으로 정렬 (최신 연도부터)
   return Array.from(years).sort((a, b) => b - a);
 } 
+
+// 특정 날짜의 포스트들을 가져오는 함수
+export async function getPostsByDate(date: string): Promise<Omit<PostData, 'content'>[]> {
+  const allPosts = await getSortedPostsData();
+  return allPosts.filter((post) => post.date === date);
+} 

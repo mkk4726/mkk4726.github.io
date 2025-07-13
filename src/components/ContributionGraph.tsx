@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef, useMemo } from 'react';
 import { ContributionDay } from '@/lib/posts';
+import { useRouter } from 'next/navigation';
 
 interface ContributionGraphProps {
   allYearData: { [year: number]: ContributionDay[] };
@@ -14,6 +15,7 @@ export default function ContributionGraph({ allYearData, availableYears, title =
   const [selectedYear, setSelectedYear] = useState<number>(availableYears[0] || new Date().getFullYear());
   const containerRef = useRef<HTMLDivElement>(null);
   const todayRef = useRef<HTMLDivElement>(null);
+  const router = useRouter();
 
   // 선택된 연도의 데이터 가져오기
   const data = useMemo(() => allYearData[selectedYear] || [], [allYearData, selectedYear]);
@@ -162,6 +164,13 @@ export default function ContributionGraph({ allYearData, availableYears, title =
     setTooltip(null);
   };
 
+  // 날짜 클릭 핸들러
+  const handleDayClick = (day: ContributionDay) => {
+    if (day.date && day.count > 0) {
+      router.push(`/posts/date/${day.date}`);
+    }
+  };
+
   // 오늘 날짜 확인 함수
   const isToday = (date: string) => {
     if (!date) return false;
@@ -251,13 +260,16 @@ export default function ContributionGraph({ allYearData, availableYears, title =
                   <div
                     key={`${weekIndex}-${dayIndex}`}
                     ref={isToday(day.date) ? todayRef : null}
-                    className={`w-3 h-3 rounded-sm cursor-pointer transition-all duration-200 hover:ring-2 hover:ring-gray-400 dark:hover:ring-gray-500 ${
+                    className={`w-3 h-3 rounded-sm transition-all duration-200 hover:ring-2 hover:ring-gray-400 dark:hover:ring-gray-500 ${
                       day.date ? getLevelClass(day.level) : 'bg-transparent'
                     } ${
                       isToday(day.date) ? 'ring-2 ring-blue-500 dark:ring-blue-400 ring-offset-1 ring-offset-white dark:ring-offset-gray-800' : ''
+                    } ${
+                      day.date && day.count > 0 ? 'cursor-pointer' : 'cursor-default'
                     }`}
                     onMouseEnter={(e) => handleMouseEnter(day, e)}
                     onMouseLeave={handleMouseLeave}
+                    onClick={() => handleDayClick(day)}
                   />
                 ))}
               </div>
@@ -315,6 +327,11 @@ export default function ContributionGraph({ allYearData, availableYears, title =
               : '포스트 없음'
             }
           </div>
+          {tooltip.day.count > 0 && (
+            <div className="text-xs text-blue-300 mt-1">
+              클릭하여 포스트 보기
+            </div>
+          )}
         </div>
       )}
     </div>
