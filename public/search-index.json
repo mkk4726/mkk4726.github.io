@@ -25,18 +25,9 @@
     "content": "\n[paper link](https://arxiv.org/pdf/1712.04912)"
   },
   {
-    "id": "Guitar/Practice Log/250712",
-    "title": "어떻게",
-    "date": "2025-07-12",
-    "excerpt": "기타연습일지",
-    "category": "Practice Log",
-    "tags": [],
-    "content": "\n\n# 연습 체크\n\n7월 12. 토\n- [ ] 크로메틱\n\n\n\n\n"
-  },
-  {
     "id": "Data Science/2025-01-10-jupyter-notebook-test",
     "title": "주피터 노트북 완전 테스트 - 셀에서 메타데이터 설정",
-    "date": "2025-07-12",
+    "date": "2025-07-13",
     "excerpt": "첫 번째 셀에서 메타데이터를 설정하는 방법을 보여주는 예제입니다.",
     "category": "Data Science",
     "tags": [
@@ -52,7 +43,7 @@
   {
     "id": "Causal Inference/residualization-fwl-theorem-test",
     "title": "FWL에 기반한 잔차화 방법론 구현 노트북",
-    "date": "2025-07-12",
+    "date": "2025-07-13",
     "excerpt": "잔차화를 하기 위해 nusiance function을 만들고 결과를 분석하는 노트북",
     "category": "Causal Inference",
     "tags": [
@@ -60,6 +51,27 @@
       "FWL"
     ],
     "content": "---\ntitle: \"FWL에 기반한 잔차화 방법론 구현 노트북\"\ncategory: \"Causal Inference\"\ntags: [\"residualization\", \"FWL\"]\nexcerpt: \"잔차화를 하기 위해 nusiance function을 만들고 결과를 분석하는 노트북\"\n--- # Load Data # from src.dataloader.vault.main import VaultDatasetLoader\n# from src.dataloader.vault.utils import split_df_od_os\n# from src.utils.db import SOFTCRM_DBINFO, get_conn\n\n# import warnings\n# import pandas as pd\n# import numpy as np\n\n# warnings.filterwarnings(\"ignore\")\n\n# # pandas display 옵션 설정 - 모든 열 보이기\n# pd.set_option('display.max_columns', None)\n# pd.set_option('display.width', None)\n# pd.set_option('display.max_colwidth', None)\n\n# loader = VaultDatasetLoader()\n# feature_df, y_df = loader.run(start_date=\"2022-01-01\", end_date=\"2024-12-31\", piol_data_path=\"./data/PIOL렌즈주문서.xlsx\", refresh=False, db=\"crm_emr\")\n\n\n# # y_df의 oper_date와 feature_df의 date를 기준으로 병합\n# merged_df = pd.merge(y_df, feature_df,\n#                     left_on=['cust_num', 'oper_date'],\n#                     right_on=['cust_num', 'date'],\n#           "
+  },
+  {
+    "id": "Book/아주 작은 습관의 힘/골디락스의 법칙",
+    "title": "골디락스의 법칙",
+    "date": "2025-07-13",
+    "excerpt": "지금보다 조금 더 어려운 일에 도전하자",
+    "category": "Book",
+    "tags": [
+      "atomic habits",
+      "아주 작은 습관의 힘"
+    ],
+    "content": "\n'아주 작은 습관의 힘'에서는 꾸준함을 어떻게 이어갈 것인지, 그리고 이에 도움을 주는 도구들을 소개하고 있습니다.\n이 중에서 '골디 락스의 법칙'에 대해 이야기한 부분을 정리해봅니다.\n\n<figure>\n  <img src=\"/post/골디락스의법칙/골디락스의법칙_그래프_이미지.jpg\" alt=\"골디락스의 법칙 그래프\" />\n  <figcaption>그림1.골디락스의 법칙: 너무 쉬우면 지루하고, 너무 어려우면 포기하게 된다. 적당히 도전적인 수준이 가장 효과적이다.</figcaption>\n</figure>\n\n골디락스의 법칙(Goldilocks Rule)의 법칙이란 일의 난이도가 너무 쉬우면 지루하고, 너무 어려우면 포기하게 되기 때문에, 조금 어려운 정도의 난이도가 일에 몰입하는데 효과적이라는 이야기입니다.\n\n\n> 골디락스의 법칙이란 인간은 자신이 할 수 있는 적합한 일을 할 때 동기가 극대화되는 경험을 한다는 것이다.  \n> 지나치게 어려워서도 안되며 지나치게 쉬워서도 안된다. 딱 들어맞아야 한다.\n> \n> — *아주 작은 습관의 힘*\n\n어떤 일을 꾸준히 하기 위해서는 이 법칙을 이해하고 활용할 수 있습니다.\n\n특히 어떤 일을 처음 시작하는거라면, 그 자체로 심리적 부담감이 크고 난이도가 어렵다고 느껴지기 때문에 정말 쉬운 일로 작게 쪼개는게 효과적일 것입니다.\n\n그 후에 어느정도 반복하면서 습관이 되었다면 조금씩 난이도를 올려가야 지루함을 느끼지 않고 꾸준히 할 수 있을 것입니다.\n\n이 골디락스의 법칙은 뇌의 긴장도를 어떻게 유지할 것인지와도 연결됩니다.\n\n## 예르크스-도드슨 법칙과의 연결\n\n골디락스의 법칙은 심리학의 **\"예르크스-도드슨 법칙(Yerkes-Dodson Law)\"**과 밀접한 관련이 있습니다.\n\n<figure>\n  <img src=\"/post/골디락스의법칙/여키스도슨법칙_그래프.png\" alt=\"예르크스-도드슨 법칙 그래프\" />\n  <figcaption>그림2. 예르크스-도드슨 법칙: 긴장도(각성 수준)와 성과의 관계. 적절한 긴장도"
+  },
+  {
+    "id": "Guitar/Practice Log/250712",
+    "title": "어떻게",
+    "date": "2025-07-12",
+    "excerpt": "기타연습일지",
+    "category": "Practice Log",
+    "tags": [],
+    "content": "\n\n# 연습 체크\n\n7월 12. 토\n- [ ] 크로메틱\n\n\n\n\n"
   },
   {
     "id": "Book/아주 작은 습관의 힘/습관추적",
@@ -71,7 +83,7 @@
       "atomic habits",
       "아주 작은 습관의 힘"
     ],
-    "content": "\n"
+    "content": "\n'아주 작은 습관의 힘'에서 이야기하는 컨셉은 아주 명확합니다.\n어떤 일을 꾸준히 하기 위해서는 '명확해야 하며', '하기 쉬워야 하고', '만족감을 줘야 한다'.\n\n그리고 이렇게 만들기 위한 좋은 방법 중 하나로 습관 추적을 설명하고 있습니다.\n\n습관을 추적한다는 건 내가 어떤 일을 꾸준히 하고 있는지와 어떤 일을 해야하는지를 적고 확인해나가는 것입니다.\n내가 어떤 일을 해야하는지 적어서 해야할 일을 명확히 만들고, 했을 때는 이를 기록하면서 성취감을 느낄 수 있습니다.\n\n> 꾸준히 하기 위해서는 성취감을 받아야 한다. 이를 위해 습관추적은 좋은 도구다.\n\n특히 저에게는 매일 해나가면서 꾸준히 쌓이는 느낌이 강력한 동기부여로 작용합니다.\n\n개발을 하는 입장에서 가장 대표적인게 깃헙의 잔디밭이라고 생각합니다.\n\n<figure>\n  <img src=\"/post/습관추적/깃헙잔디밭.png\" alt=\"깃헙 잔디밭\">\n  <figcaption>깃헙 잔디밭</figcaption>\n</figure>\n\n내가 꾸준히 커밋(코드 작업)을 하고 있는게 한눈에 보이고, 이게 이 일을 더 꾸준히 하는데 동기부여를 해줍니다.\n\n> 꾸준히 쌓여가는 느낌은 굉장한 동기부여를 제공한다.\n\n또한 이렇게 쌓여가는 느낌을 받기 위해 블로그도 작성하기도 합니다.\n\n공부한 것들을 글로 작성하는 연습을 하기도 하고, 또 이렇게 공부한 것들이 하나씩 쌓여가는게 눈에 보이기 때문에 성취감을 줍니다.\n그래서 그냥 공부하는 것보다 저는 블로그에 글로 남기면서 하나씩 쌓여가는 걸 눈으로 볼 때 더 큰 성취감과 동기부여를 받습니다."
   },
   {
     "id": "English Study/SPEAK/07-11-긍정적인피드백주기",
