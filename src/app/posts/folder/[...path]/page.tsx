@@ -125,31 +125,11 @@ async function FolderPageContent({ folderPath }: { folderPath: string }) {
 
       {/* 모바일: 세로 레이아웃, 데스크톱: 가로 레이아웃 */}
       <div className="flex flex-col xl:flex-row gap-6 xl:gap-8">
-        {/* 메인 콘텐츠 - 포스트 리스트 */}
-        <div className="flex-1">
-          {posts.length > 0 ? (
-            <div className="grid gap-5 lg:gap-6 grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">
-              {posts.map((post) => (
-                <PostCard key={post.id} post={post} />
-              ))}
-            </div>
-          ) : (
-            <div className="text-center py-8 lg:py-12">
-              <p className="text-gray-600 dark:text-gray-300 mb-4">
-                이 폴더에는 아직 포스트가 없습니다.
-              </p>
-              <Link 
-                href="/posts" 
-                className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-200"
-              >
-                모든 포스트 보기
-              </Link>
-            </div>
-          )}
-        </div>
-
         {/* 사이드바 - 모바일에서 상단에, 데스크톱에서 우측에 */}
         <div className="xl:w-80 xl:flex-shrink-0 space-y-3 xl:space-y-4">
+          {/* 폴더 구조 - 모바일에서 맨 위에 */}
+          <FolderTree nodes={folderStructure} selectedPath={folderPath} />
+
           {/* 폴더별 잔디밭 */}
           {activeYears.length > 0 && (
             <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-3 lg:p-4">
@@ -193,9 +173,29 @@ async function FolderPageContent({ folderPath }: { folderPath: string }) {
               </div>
             </div>
           )}
+        </div>
 
-          {/* 폴더 구조 */}
-          <FolderTree nodes={folderStructure} selectedPath={folderPath} />
+        {/* 메인 콘텐츠 - 포스트 리스트 */}
+        <div className="flex-1">
+          {posts.length > 0 ? (
+            <div className="grid gap-5 lg:gap-6 grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">
+              {posts.map((post) => (
+                <PostCard key={post.id} post={post} />
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-8 lg:py-12">
+              <p className="text-gray-600 dark:text-gray-300 mb-4">
+                이 폴더에는 아직 포스트가 없습니다.
+              </p>
+              <Link 
+                href="/posts" 
+                className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-200"
+              >
+                모든 포스트 보기
+              </Link>
+            </div>
+          )}
         </div>
       </div>
     </div>
