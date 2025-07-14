@@ -84,8 +84,8 @@ function FolderNodeItem({ node, selectedPath, level = 0 }: FolderNodeItemProps) 
 
 export default function FolderTree({ nodes, selectedPath }: FolderTreeProps) {
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4">
-      <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">
+    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-3 lg:p-4">
+      <h3 className="text-base lg:text-lg font-semibold text-gray-900 dark:text-gray-100 mb-3 lg:mb-4">
         📁 폴더 구조
       </h3>
       

@@ -189,11 +189,11 @@ export default function ContributionGraph({ allYearData, availableYears, title =
   const totalPosts = data.reduce((sum, day) => sum + day.count, 0);
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6">
-      <div className="flex justify-between items-center mb-4">
+    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-3 lg:p-4">
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 mb-3">
         <div>
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">{title}</h3>
-          <p className="text-sm text-gray-600 dark:text-gray-400">
+          <h3 className="text-base lg:text-lg font-semibold text-gray-900 dark:text-gray-100">{title}</h3>
+          <p className="text-xs lg:text-sm text-gray-600 dark:text-gray-400">
             {selectedYear}년 총 <span className="font-semibold text-green-600 dark:text-green-400">{totalPosts}개</span>의 포스트
           </p>
         </div>
@@ -204,7 +204,7 @@ export default function ContributionGraph({ allYearData, availableYears, title =
           {selectedYear === new Date().getFullYear() && (
             <button
               onClick={scrollToToday}
-              className="px-3 py-1 text-xs bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700 text-white rounded-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="px-2 lg:px-3 py-1 text-xs bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700 text-white rounded-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
               title="오늘로 이동"
             >
               📅 오늘
@@ -215,7 +215,7 @@ export default function ContributionGraph({ allYearData, availableYears, title =
             <select
               value={selectedYear}
               onChange={(e) => handleYearChange(parseInt(e.target.value))}
-              className="px-3 py-1 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-sm text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="px-2 lg:px-3 py-1 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-xs lg:text-sm text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               {availableYears.map((year) => (
                 <option key={year} value={year}>
@@ -250,10 +250,10 @@ export default function ContributionGraph({ allYearData, availableYears, title =
             {weekdays.map((day, index) => (
               <div
                 key={day}
-                className={`h-3 flex items-center text-xs text-gray-600 dark:text-gray-400 ${
+                className={`h-3 lg:h-2.5 flex items-center text-xs text-gray-600 dark:text-gray-400 ${
                   index % 2 === 1 ? '' : 'opacity-0'
                 }`}
-                style={{ marginBottom: '2px' }}
+                style={{ marginBottom: '1px' }}
               >
                 {day}
               </div>
@@ -261,14 +261,14 @@ export default function ContributionGraph({ allYearData, availableYears, title =
           </div>
 
           {/* contribution 격자 */}
-          <div className="flex gap-[2px]">
+          <div className="flex gap-[1px] lg:gap-[2px]">
             {weeks.map((week, weekIndex) => (
-              <div key={weekIndex} className="flex flex-col gap-[2px]">
+              <div key={weekIndex} className="flex flex-col gap-[1px] lg:gap-[2px]">
                 {week.map((day, dayIndex) => (
                   <div
                     key={`${weekIndex}-${dayIndex}`}
                     ref={isToday(day.date) ? todayRef : null}
-                    className={`w-3 h-3 rounded-sm transition-all duration-200 hover:ring-2 hover:ring-gray-400 dark:hover:ring-gray-500 ${
+                    className={`w-3 h-3 lg:w-2.5 lg:h-2.5 rounded-sm transition-all duration-200 hover:ring-2 hover:ring-gray-400 dark:hover:ring-gray-500 ${
                       day.date ? getLevelClass(day.level) : 'bg-transparent'
                     } ${
                       isToday(day.date) ? 'ring-2 ring-blue-500 dark:ring-blue-400 ring-offset-1 ring-offset-white dark:ring-offset-gray-800' : ''
@@ -286,7 +286,7 @@ export default function ContributionGraph({ allYearData, availableYears, title =
         </div>
 
         {/* 범례 */}
-        <div className="flex items-center justify-between mt-4">
+        <div className="flex items-center justify-between mt-3">
           <div className="text-xs text-gray-600 dark:text-gray-400">
             Less
           </div>
@@ -294,7 +294,7 @@ export default function ContributionGraph({ allYearData, availableYears, title =
             {[0, 1, 2, 3, 4].map((level) => (
               <div
                 key={level}
-                className={`w-3 h-3 rounded-sm ${getLevelClass(level)}`}
+                className={`w-3 h-3 lg:w-2.5 lg:h-2.5 rounded-sm ${getLevelClass(level)}`}
               />
             ))}
           </div>
