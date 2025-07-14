@@ -637,4 +637,13 @@ export async function getActiveYearsByFolder(folderPath: string): Promise<number
 export async function getPostsByDate(date: string): Promise<Omit<PostData, 'content'>[]> {
   const allPosts = await getSortedPostsData();
   return allPosts.filter((post) => post.date === date);
+}
+
+// 특정 폴더의 특정 날짜 포스트들을 가져오는 함수
+export async function getPostsByFolderAndDate(folderPath: string, date: string): Promise<Omit<PostData, 'content'>[]> {
+  const allPosts = await getSortedPostsData();
+  return allPosts.filter((post) => {
+    const postFolder = post.id.includes('/') ? post.id.substring(0, post.id.lastIndexOf('/')) : '';
+    return post.date === date && (postFolder === folderPath || postFolder.startsWith(folderPath + '/'));
+  });
 } 

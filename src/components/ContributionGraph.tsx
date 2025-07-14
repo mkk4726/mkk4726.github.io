@@ -8,9 +8,10 @@ interface ContributionGraphProps {
   allYearData: { [year: number]: ContributionDay[] };
   availableYears: number[];
   title?: string;
+  folderPath?: string; // 폴더 경로 추가
 }
 
-export default function ContributionGraph({ allYearData, availableYears, title = "포스트 활동" }: ContributionGraphProps) {
+export default function ContributionGraph({ allYearData, availableYears, title = "포스트 활동", folderPath }: ContributionGraphProps) {
   const [tooltip, setTooltip] = useState<{ day: ContributionDay; x: number; y: number } | null>(null);
   const [selectedYear, setSelectedYear] = useState<number>(availableYears[0] || new Date().getFullYear());
   const containerRef = useRef<HTMLDivElement>(null);
@@ -167,7 +168,14 @@ export default function ContributionGraph({ allYearData, availableYears, title =
   // 날짜 클릭 핸들러
   const handleDayClick = (day: ContributionDay) => {
     if (day.date && day.count > 0) {
-      router.push(`/posts/date/${day.date}`);
+      if (folderPath) {
+        // 폴더별 날짜 페이지로 이동 - 각 세그먼트를 개별적으로 인코딩
+        const encodedPath = folderPath.split('/').map(segment => encodeURIComponent(segment)).join('/');
+        router.push(`/posts/folder/${encodedPath}/date/${day.date}`);
+      } else {
+        // 기존 날짜 페이지로 이동
+        router.push(`/posts/date/${day.date}`);
+      }
     }
   };
 
