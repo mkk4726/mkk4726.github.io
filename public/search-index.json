@@ -83,6 +83,17 @@
     "content": "---\ntitle: \"FWL에 기반한 잔차화 방법론 구현 노트북\"\ncategory: \"Causal Inference\"\ntags: [\"residualization\", \"FWL\"]\nexcerpt: \"잔차화를 하기 위해 nusiance function을 만들고 결과를 분석하는 노트북\"\n--- # Load Data # from src.dataloader.vault.main import VaultDatasetLoader\n# from src.dataloader.vault.utils import split_df_od_os\n# from src.utils.db import SOFTCRM_DBINFO, get_conn\n\n# import warnings\n# import pandas as pd\n# import numpy as np\n\n# warnings.filterwarnings(\"ignore\")\n\n# # pandas display 옵션 설정 - 모든 열 보이기\n# pd.set_option('display.max_columns', None)\n# pd.set_option('display.width', None)\n# pd.set_option('display.max_colwidth', None)\n\n# loader = VaultDatasetLoader()\n# feature_df, y_df = loader.run(start_date=\"2022-01-01\", end_date=\"2024-12-31\", piol_data_path=\"./data/PIOL렌즈주문서.xlsx\", refresh=False, db=\"crm_emr\")\n\n\n# # y_df의 oper_date와 feature_df의 date를 기준으로 병합\n# merged_df = pd.merge(y_df, feature_df,\n#                     left_on=['cust_num', 'oper_date'],\n#                     right_on=['cust_num', 'date'],\n#           "
   },
   {
+    "id": "Causal Inference/Industry Application/why-we-need-causal-inference",
+    "title": "인과 추론 도입배경",
+    "date": "2025-07-14",
+    "excerpt": "인과추론을 왜 사용해야하는지 설명하고 이를 도입하기 위해 설득하는 글",
+    "category": "Causal Inference",
+    "tags": [
+      "ICL-Lenze-sizing"
+    ],
+    "content": "\n# 0. Abstract - 배경, 요약\n---\n\n환자에게 렌즈 삽입술을 위한 최적의 렌즈 사이즈를 추천하는, 렌즈 사이징 문제는 예측 모델을 고도화하는 방향으로 연구가 진행되어왔다. \n환자의 눈의 조건과 삽입한 렌즈 사이즈를 입력 받아 수술결과(vaulting, 렌즈 후면과 수정체 전면까지의 거리)를 예측하는 모델을 개발하고, 이 모델의 예측값을 통해 최적의 렌즈 사이즈를 제안하는 방식이다. 하지만 기존 예측 모델은 한계점이 존재한다.\n이번 보고서를 통해 기존 예측 모델의 한계점을 분석하고 이를 해결하기 위한 방법을 제안한다.\n\n기존 예측 모델의 한계점을 요약하면 렌즈 사이즈가 결과에 영향을 주는 인과적인 영향도를 추정하지 못하며, 단순히 예측 평가지표만을 고려하고 있어 추천의 신뢰도를 보장하지 못한다는 것이다.\n이러한 한계점을 극복하기 위해 인과추론 방법론을 도입할 것을 제안한다.\n이때 기대되는 효과는 다음과 같다. 개인화된 처치 효과를 추정할 수 있고 이를 통해 개인화된 최적의 렌즈 사이즈를 제안할 수 있다. 그리고 측정되지 않은 데이터에 대한 평가를 고려하여 추천의 신뢰도를 보장할 수 있다.\n\n\n# 1. Introduction - 기존 연구의 한계점 분석\n---\n\n렌즈 삽입술을 위한 최적의 렌즈 사이즈를 찾는 일은 의사의 높은 수준의 경험과 노하우에 의존하는 일이다. 이를 도와주기 위해 최적의 렌즈 사이즈를 추천하는 모델이 개발되어왔다.\n기존의 최적의 사이즈를 찾기 위한 렌즈 사이징 문제는 예측 모델을 고도화하는 방향으로 연구가 진행되어왔다.\n환자의 눈의 조건과 삽입한 렌즈 사이즈를 입력 받아 수술결과(vaulting, 렌즈 후면과 수정체 전면까지의 거리)를 예측하는 모델의 성능을 향상시키는 방향을 진행되었다.\n대표적으로 MAE와 같이 실제 값과 예측값의 차이를 평가하는 예측평가지표를 통해 모델의 성능을 평가하고 이를 개선하는 방향으로 연구가 진행되었다.\n*MAE: Mean Absolute Error, 실제 값과 예측값의 차이의 절대값의 평균*\n\n하지"
+  },
+  {
     "id": "Fitness/Workout Log/250713",
     "title": "간단한 달리기 + 산책",
     "date": "2025-07-13",
@@ -183,17 +194,6 @@
       "Paper Review"
     ],
     "content": "\n[paper link](https://arxiv.org/pdf/2208.00872)\n\n# 논문의 배경\n---\n\n[Quasi-Oracle Estimation of Heterogeneous Treatment Effects](https://arxiv.org/pdf/1712.04912) 에서 개인화 처치 효과를 추정하는 방법을 제안했습니다.\n\n<small> * 개인화 처치효과 : 어떤 처치를 했을 때 개인별로 어떤 효과가 있을지 추정한 것</small>\n\n개인화 처치효과를 추정하는 건 인과추론의 가장 핵심적인 문제이며, 이는 다양한 분야에서 통찰을 제공합니다.\n예를 들어 정밀의학에서는 환자별 처치 효과를 추정하여 처치 선택을 결정하고, 교육에서는 학생별 처치 효과를 추정하여 교육 방법을 결정하고, 온라인 마케팅에서는 사용자별 처치 효과를 추정하여 맞춤형 광고를 제공하고, 오프라인 정책 평가에서는 지역별 처치 효과를 추정하여 정책을 결정할 수 있습니다.\n\n> 즉, 개인화 처치효과를 알게 되면 어떤 선택에 대한 근거를 제공할 수 있습니다.\n\n기존 논문에서는 이진 처치의 개인화 처치효과를 추정하는 방법을 이야기했고, 이 논문에서는 이를 확장해서 연속형 처치에 대해서도 이를 적용하기 위한 방법론을 이 논문에서 이야기하고 있습니다.\n\n[[Paper Review] Quasi-Oracle Estimation of Heterogeneous Treatment Effects](/posts/Causal%20Inference/review-Quasi-Oracle-Estimation-of-Heterogeneous-Treatment-Effects) <- 이 논문에 대한 리뷰는 여기서 확인할 수 있습니다.\n\n> 기존의 방법을 확장할 때 발생하는 문제와 이를 해결한 방법론에 대한 이야기에 집중해서 이 논문을 이해했습니다.\n\n# 논문 내용 정리\n---\n\n## Abstract\n---\n\n> However, extending the R-learner framework from binary to cont"
-  },
-  {
-    "id": "Causal Inference/Industry Application/why-we-need-causal-inference",
-    "title": "인과 추론 도입배경",
-    "date": "2025-07-11",
-    "excerpt": "인과추론을 왜 사용해야하는지 설명하고 이를 도입하기 위해 설득하는 글",
-    "category": "Causal Inference",
-    "tags": [
-      "ICL-Lenze-sizing"
-    ],
-    "content": "\n# 배경 (Abstract)\n---\n이 보고서를 통해 인과추론이 무엇인지, 왜 필요한지, 이를 통해 어떤 결과를 얻을 수 있을지에 대해 이야기한다.\n\n인과추론이란 의학, 마케팅, 교육 등에서 자주 사용되는 방법론으로 정책 및 비즈니스에 수반된 수많은 의사결정들의 원인과 결과를 분석하는 방법이다.\n인과추론을 통해 인과관계를 분석하고 처치 효과를 추정하여 의사결정을 돕는다.\n\n예를 들어 정밀의학에서는 환자별 처치 효과를 추정하여 처치 선택을 결정하고, 교육에서는 학생별 처치 효과를 추정하여 교육 방법을 결정하고, 온라인 마케팅에서는 사용자별 처치 효과를 추정하여 맞춤형 광고를 제공하고, 오프라인 정책 평가에서는 지역별 처치 효과를 추정하여 정책을 결정할 수 있다.\n\n여기서 처치란 인과추론에서 의사결정의 대상(예: 수술 방법, 약물 투여)을 의미한다.\n\n렌즈 사이징 문제에서는 렌즈 사이즈가 처치에 해당한다.\n인과추론을 통해 렌즈의 크기와 결과와의 인과관계를 분석하고 처치효과를 추정할 수 있다.\n그리고 이를 통해 최적의 렌즈 크기를 결정할 수 있다.\n\n기존의 렌즈 사이징 모델 연구는 \"예측 모델\"을 고도화하는 방향으로 진행되었다.\n하지만 예측 모델로는 다음과 같은 한계점을 가지고 있고, 따라서 이를 통해 인과관계 및 처치효과를 추정할 수 없다.\n1. 상관관계에 기반하여 패턴을 찾는 예측 모델의 한계\n2. 데이터 안에 존재하는 통계적 편향성을 고려하고 있지 않음\n3. 측정되지 않은 데이터 (반사실, Counterfactual)에 대한 평가를 고려하고 있지 않음\n\n이러한 한계점을 극복하기 위해 인과추론을 도입하고자 하고 다음과 같은 효과를 기대한다.\n1. 통계적 편향을 제거하고 인과관계를 직접적으로 추론할 수 있음\n2. 측정되지 않은 데이터에 대한 평가를 고려하여 모델의 신뢰도를 확보할 수 있음\n3. \"개인화\"된 처치 효과 (Heterogeneous Treatment Effects)를 추정하여 개인화된 처치 선택이 가능함\n\n\n# 기존 연구의 한계점 분석 (Introdu"
   },
   {
     "id": "Book/아주 작은 습관의 힘/만족스럽게만들어라",
