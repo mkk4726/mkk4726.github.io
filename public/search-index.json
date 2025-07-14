@@ -39,6 +39,20 @@
     "content": "\n\n"
   },
   {
+    "id": "English Study/TOEFL/BirdDialects",
+    "title": "Bird Dialects",
+    "date": "2025-07-14",
+    "excerpt": "Diagnostic Test 문제 공부",
+    "category": "English Study",
+    "tags": [
+      "TOEFL",
+      "영어",
+      "대학원",
+      "OMSCS"
+    ],
+    "content": "\n# Bird Dialects\n새 다이러렉츠?\n새의 방언\n\n## Paragraph 1\n\n<button class=\"toggle-button translations\" data-type=\"paragraph1\">🔍 AI 해석 가리기/보이기</button>\n\n<div class=\"paragraph1-content\">\n\n> Birds learn acoustic information from their parents and environment from an early age. \n\n새들은 어린나이부터 어쿠스틱 정보를 그들의 부모와 환경으로부터 배운다\n<span class=\"translation\">새들은 어린 나이부터 부모와 환경으로부터 음향 정보를 배운다.</span>\n\n> The most complex form of avian vocalization is the birdsong, an often melodic series of communicative sounds produced primarily during breeding. \n\n가장 복잡한 아비안 보컬화는 버드 송이다, 이건 가끔 멜로딕한 의사소통을 위한 소리다 먹이를 줄 때 주로 발생하는\n<span class=\"translation\">조류의 발성 중 가장 복잡한 형태는 새의 노래로, 번식기에 주로 발생하는 종종 선율적인 의사소통 소리의 연속이다.</span>\n\n> In cases where populations have geographical boundaries, differences in song may appear, and if these geographical limits are distinct, the shared song types within a population are referred to as dialects. \n\n인구 분포가 지역적인 바운더리를 가지는 경우라면, 노래에서 차이가 보인다. 그리고 지역적인 한계가 분명하면 지역적인 분포에서 공유되는 노래가 다이어렉츠 라고 불린다.\n<span clas"
+  },
+  {
     "id": "English Study/SPEAK/07-14-걱정하는표현",
     "title": "조언하는 표현",
     "date": "2025-07-14",

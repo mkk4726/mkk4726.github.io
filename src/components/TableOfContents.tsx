@@ -27,6 +27,7 @@ export default function TableOfContents({ className = '' }: TableOfContentsProps
     console.log('Found headings:', headingElements.length);
     
     const tocItems: TOCItem[] = [];
+    const usedIds = new Set<string>();
 
     headingElements.forEach((heading, index) => {
       let id = heading.id;
@@ -38,6 +39,17 @@ export default function TableOfContents({ className = '' }: TableOfContentsProps
           .replace(/\s+/g, '-') || `heading-${index}`;
         heading.id = id;
       }
+      
+      // 중복된 ID가 있으면 숫자를 추가하여 고유하게 만들기
+      const originalId = id;
+      let counter = 1;
+      while (usedIds.has(id)) {
+        id = `${originalId}-${counter}`;
+        counter++;
+      }
+      
+      usedIds.add(id);
+      heading.id = id; // DOM 요소의 ID도 업데이트
       
       const text = heading.textContent || '';
       console.log(`Heading ${index}: ${text} (id: ${id})`);

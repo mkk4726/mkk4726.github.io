@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { parseMarkdown } from '../lib/markdown';
+import '../styles/vocabulary.css';
 
 interface MarkdownContentProps {
   content: string;
@@ -18,6 +19,7 @@ export default function MarkdownContent({ content, className = '' }: MarkdownCon
         let html = await parseMarkdown(content);
         
         // 헤딩에 ID 추가 (한글과 영문 모두 지원)
+        const usedIds = new Set<string>();
         html = html.replace(
           /<h([1-6])([^>]*)>(.*?)<\/h[1-6]>/g,
           (match, level, attributes, text) => {
@@ -29,13 +31,22 @@ export default function MarkdownContent({ content, className = '' }: MarkdownCon
             // HTML 태그 제거하고 순수 텍스트만 추출
             const cleanText = text.replace(/<[^>]*>/g, '');
             // ID 생성: 특수문자 제거하고 공백을 하이픈으로 변경
-            const id = cleanText
+            let id = cleanText
               .toLowerCase()
               .replace(/[^a-z0-9가-힣\s]/g, '')
               .replace(/\s+/g, '-')
               .replace(/-+/g, '-')
               .replace(/^-|-$/g, '');
             
+            // 중복된 ID가 있으면 숫자를 추가하여 고유하게 만들기
+            let counter = 1;
+            const originalId = id;
+            while (usedIds.has(id)) {
+              id = `${originalId}-${counter}`;
+              counter++;
+            }
+            
+            usedIds.add(id);
             console.log(`Generated ID for "${cleanText}": ${id}`);
             
             return `<h${level}${attributes} id="${id}">${text}</h${level}>`;
@@ -88,6 +99,65 @@ export default function MarkdownContent({ content, className = '' }: MarkdownCon
           });
         }
       }, 100);
+
+      return () => clearTimeout(timer);
+    }
+  }, [isContentReady, parsedContent]);
+
+  // 토글 기능 추가
+  useEffect(() => {
+    if (isContentReady && parsedContent) {
+      const timer = setTimeout(() => {
+        // 토글 버튼에 이벤트 리스너 추가
+        const toggleButtons = document.querySelectorAll('.toggle-button');
+        toggleButtons.forEach((button) => {
+          button.addEventListener('click', function(this: HTMLElement) {
+            const type = this.getAttribute('data-type');
+            const container = document.querySelector(`.${type}-content`);
+            
+            if (container) {
+              const meanings = container.querySelectorAll('.meaning');
+              const translations = container.querySelectorAll('.translation');
+              
+              // 현재 상태 확인
+              const isVisible = meanings.length > 0 ? 
+                (meanings[0] as HTMLElement).style.display !== 'none' :
+                (translations[0] as HTMLElement).style.display !== 'none';
+              
+              const displayValue = !isVisible ? 'inline' : 'none';
+              const translationDisplayValue = !isVisible ? 'block' : 'none';
+              
+              meanings.forEach((meaning) => {
+                (meaning as HTMLElement).style.display = displayValue;
+              });
+              
+              translations.forEach((translation) => {
+                (translation as HTMLElement).style.display = translationDisplayValue;
+              });
+              
+              // 버튼 텍스트 업데이트
+              const buttonText = this.textContent || '';
+              if (buttonText.includes('보이기')) {
+                this.textContent = buttonText.replace('보이기', '가리기');
+              } else {
+                this.textContent = buttonText.replace('가리기', '보이기');
+              }
+            }
+          });
+        });
+        
+        // 초기 상태에서 모든 meaning과 translation 요소를 숨김
+        const meanings = document.querySelectorAll('.meaning');
+        const translations = document.querySelectorAll('.translation');
+        
+        meanings.forEach((meaning) => {
+          (meaning as HTMLElement).style.display = 'none';
+        });
+        
+        translations.forEach((translation) => {
+          (translation as HTMLElement).style.display = 'none';
+        });
+      }, 200);
 
       return () => clearTimeout(timer);
     }
