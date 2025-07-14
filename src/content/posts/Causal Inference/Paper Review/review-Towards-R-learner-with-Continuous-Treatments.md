@@ -30,6 +30,7 @@ tags: ["Paper Review"]
 ---
 
 ## Abstract
+---
 
 > However, extending the R-learner framework from binary to continuous treatments introduces a non-identifiability issue, as the functional zero constraint inherent to the conditional average treatment effect cannot be directly imposed in the R-loss under continuous treatments
 
@@ -42,12 +43,26 @@ tags: ["Paper Review"]
 2. zero-constraining operator
 
 왜 이슈가 발생하고 어떻게 해결했는지를 이해하는게 이 논문의 핵심이라고 이해됩니다.
+그리고 이 논문에서 generalized R-loss를 정의했는데, 이 수식이 어떻게 유도되는지를 이해하는 부분도 큰 도움이 됩니다.
 
-## Introduction
+## 1. Introduction
+---
+
+연속형 처치 효과 함수(CATE)는 다음과 같이 정의됩니다:
 
 $$
 \begin{equation}
 \tau(x, t) = E[Y^{(t)} - Y^{(0)} | X = x]
 \end{equation}
 $$
+
+여기서:
+- $x$: 개인의 특성 (covariates)
+- $t$: 연속형 처치 수준
+- $Y^{(t)}$: 처치 수준 $t$에서의 결과
+- $Y^{(0)}$: 처치가 없을 때의 결과 (baseline)
+
+### 핵심 제약조건
+
+연속형 처치 효과 함수는 다음 제약조건을 만족해야 합니다:
 

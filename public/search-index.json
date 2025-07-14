@@ -25,6 +25,20 @@
     "content": ""
   },
   {
+    "id": "English Study/TOEFL/Fact and Negative Fact",
+    "title": "Fact와 Negative Fact 차이",
+    "date": "2025-07-14",
+    "excerpt": "Fact와 Negative Fact 유형 풀이법",
+    "category": "English Study",
+    "tags": [
+      "TOEFL",
+      "영어",
+      "대학원",
+      "OMSCS"
+    ],
+    "content": "\n\n"
+  },
+  {
     "id": "Data Science/dependency-injection-pattern",
     "title": "의존성 주입 패턴으로 코드 품질 향상하기",
     "date": "2025-07-14",
@@ -168,7 +182,7 @@
     "tags": [
       "Paper Review"
     ],
-    "content": "\n[paper link](https://arxiv.org/pdf/2208.00872)\n\n# 논문의 배경\n---\n\n[Quasi-Oracle Estimation of Heterogeneous Treatment Effects](https://arxiv.org/pdf/1712.04912) 에서 개인화 처치 효과를 추정하는 방법을 제안했습니다.\n\n<small> * 개인화 처치효과 : 어떤 처치를 했을 때 개인별로 어떤 효과가 있을지 추정한 것</small>\n\n개인화 처치효과를 추정하는 건 인과추론의 가장 핵심적인 문제이며, 이는 다양한 분야에서 통찰을 제공합니다.\n예를 들어 정밀의학에서는 환자별 처치 효과를 추정하여 처치 선택을 결정하고, 교육에서는 학생별 처치 효과를 추정하여 교육 방법을 결정하고, 온라인 마케팅에서는 사용자별 처치 효과를 추정하여 맞춤형 광고를 제공하고, 오프라인 정책 평가에서는 지역별 처치 효과를 추정하여 정책을 결정할 수 있습니다.\n\n> 즉, 개인화 처치효과를 알게 되면 어떤 선택에 대한 근거를 제공할 수 있습니다.\n\n기존 논문에서는 이진 처치의 개인화 처치효과를 추정하는 방법을 이야기했고, 이 논문에서는 이를 확장해서 연속형 처치에 대해서도 이를 적용하기 위한 방법론을 이 논문에서 이야기하고 있습니다.\n\n[[Paper Review] Quasi-Oracle Estimation of Heterogeneous Treatment Effects](/posts/Causal%20Inference/review-Quasi-Oracle-Estimation-of-Heterogeneous-Treatment-Effects) <- 이 논문에 대한 리뷰는 여기서 확인할 수 있습니다.\n\n> 기존의 방법을 확장할 때 발생하는 문제와 이를 해결한 방법론에 대한 이야기에 집중해서 이 논문을 이해했습니다.\n\n# 논문 내용 정리\n---\n\n## Abstract\n\n> However, extending the R-learner framework from binary to continuo"
+    "content": "\n[paper link](https://arxiv.org/pdf/2208.00872)\n\n# 논문의 배경\n---\n\n[Quasi-Oracle Estimation of Heterogeneous Treatment Effects](https://arxiv.org/pdf/1712.04912) 에서 개인화 처치 효과를 추정하는 방법을 제안했습니다.\n\n<small> * 개인화 처치효과 : 어떤 처치를 했을 때 개인별로 어떤 효과가 있을지 추정한 것</small>\n\n개인화 처치효과를 추정하는 건 인과추론의 가장 핵심적인 문제이며, 이는 다양한 분야에서 통찰을 제공합니다.\n예를 들어 정밀의학에서는 환자별 처치 효과를 추정하여 처치 선택을 결정하고, 교육에서는 학생별 처치 효과를 추정하여 교육 방법을 결정하고, 온라인 마케팅에서는 사용자별 처치 효과를 추정하여 맞춤형 광고를 제공하고, 오프라인 정책 평가에서는 지역별 처치 효과를 추정하여 정책을 결정할 수 있습니다.\n\n> 즉, 개인화 처치효과를 알게 되면 어떤 선택에 대한 근거를 제공할 수 있습니다.\n\n기존 논문에서는 이진 처치의 개인화 처치효과를 추정하는 방법을 이야기했고, 이 논문에서는 이를 확장해서 연속형 처치에 대해서도 이를 적용하기 위한 방법론을 이 논문에서 이야기하고 있습니다.\n\n[[Paper Review] Quasi-Oracle Estimation of Heterogeneous Treatment Effects](/posts/Causal%20Inference/review-Quasi-Oracle-Estimation-of-Heterogeneous-Treatment-Effects) <- 이 논문에 대한 리뷰는 여기서 확인할 수 있습니다.\n\n> 기존의 방법을 확장할 때 발생하는 문제와 이를 해결한 방법론에 대한 이야기에 집중해서 이 논문을 이해했습니다.\n\n# 논문 내용 정리\n---\n\n## Abstract\n---\n\n> However, extending the R-learner framework from binary to cont"
   },
   {
     "id": "Causal Inference/Industry Application/why-we-need-causal-inference",
@@ -479,7 +493,7 @@
       "Georgia Tech",
       "컴퓨터사이언스"
     ],
-    "content": "\n# 배경\n\n데이터 사이언스 분야에서 더 깊이 있는 커리어를 쌓기 위해 석사 과정을 고려하던 중, OMSCS(Georgia Tech Online Master of Science in Computer Science)라는 혁신적인 프로그램을 발견했다. 세계 톱급 CS 프로그램을 온라인으로, 그것도 극도로 저렴한 비용으로 이수할 수 있다는 점이 매력적이다.\n\n# OMSCS란?\n\n## 📊 기본 정보\n- **정식명칭**: Georgia Institute of Technology Online Master of Science in Computer Science\n- **개설연도**: 2014년 (Udacity, AT&T와 협력)\n- **총 비용**: 약 $7,000-$8,500 (한화 900만-1,100만원)\n- **학위**: 캠퍼스와 동일한 Georgia Tech MS in Computer Science (온라인 표기 없음)\n- **기간**: 평균 2-3년 (파트타임으로 진행 가능)\n- **과정 구성**: 10개 과정 (30학점)\n- **합격률**: 약 70%\n\n## ✅ 주요 장점\n\n### 1. **압도적인 가성비**\n- 전체 프로그램 비용이 $7,000-$8,500\n- 타 명문대 온캠퍼스 프로그램 대비 1/5~1/10 수준\n- 회사 학비 지원으로 완전 커버 가능\n\n### 2. **명문대 브랜드 + 동등한 학위**\n- Georgia Tech는 CS 분야 세계 8위 (US News 2024)\n- 졸업장에 \"온라인\" 표기 없음\n- 실리콘밸리에서 인정받는 브랜드\n\n### 3. **유연성**\n- 풀타임 직장과 병행 가능\n- 자신의 페이스로 진도 조절\n- 전 세계 어디서나 수강 가능\n\n### 4. **실무 중심 커리큘럼**\n- Machine Learning, AI, Computer Vision 등\n- 현업 엔지니어들이 직접 활용할 수 있는 스킬\n- 프로젝트 기반 학습\n\n## ⚠️ 단점 및 고려사항\n\n### 1. **높은 자기관리 요구**\n- 온라인 특성상 강한 자기 동기부여 필요"
+    "content": "\n# 배경\n\n데이터 사이언스 분야에서 더 깊이 있는 커리어를 쌓기 위해 석사 과정을 고려하던 중, OMSCS(Georgia Tech Online Master of Science in Computer Science)라는 혁신적인 프로그램을 발견했다. 세계 톱급 CS 프로그램을 온라인으로, 그것도 극도로 저렴한 비용으로 이수할 수 있다는 점이 매력적이다.\n\n# OMSCS란?\n\n## 📊 기본 정보\n- **정식명칭**: Georgia Institute of Technology Online Master of Science in Computer Science\n- **개설연도**: 2014년 (Udacity, AT&T와 협력)\n- **총 비용**: 약 $7,000-$8,500 (한화 900만-1,100만원)\n- **학위**: 캠퍼스와 동일한 Georgia Tech MS in Computer Science (온라인 표기 없음)\n- **기간**: 평균 2-3년 (파트타임으로 진행 가능)\n- **과정 구성**: 10개 과정 (30학점)\n- **합격률**: 약 70%\n\n## ✅ 주요 장점\n\n### 1. **압도적인 가성비**\n- 전체 프로그램 비용이 $7,000-$8,500 (한화 900만-1,100만원)\n- 타 명문대 온캠퍼스 프로그램 대비 1/5~1/10 수준\n\n### 2. **명문대 브랜드 + 동등한 학위**\n- Georgia Tech는 CS 분야 세계 8위 (US News 2024)\n- 졸업장에 \"온라인\" 표기 없음\n- 실리콘밸리에서 인정받는 브랜드\n\n다른 블로그 글들이나 링크드인 봤을 때 job interview 기회도 확실히 더 얻을 수 있다.\n해외 이직도 고려하고 있으니까 지금 상황에서 할 수 있는 가장 좋은 선택이 아닐까.\n\n### 3. **유연성**\n- 풀타임 직장과 병행 가능\n- 자신의 페이스로 진도 조절\n- 전 세계 어디서나 수강 가능\n\n보통 1과목당 주당 20~40시간정도 필요하다고 함.\n\n\n### 4. **실무 중심 커리큘럼**\n- Machine Lear"
   },
   {
     "id": "Recommendation/2024-07-05-recommendation-system-interest",
