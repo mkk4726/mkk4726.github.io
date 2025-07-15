@@ -17,22 +17,18 @@ tags: ["TOEFL", "영어", "대학원", "OMSCS"]
 
 > How art is defined has varied throughout history, leading to a wide range of sometimes-contradictory meanings. 
 
-예술이 어떻게 정의되었는지는 역사를 통틀어 변화해왔고, 때때로 모순적인 의미들의 넓은 범위로 이어졌다.
 <span class="translation">예술이 어떻게 정의되는지는 역사를 통틀어 변화해왔으며, 때로는 상반되는 의미들의 광범위한 스펙트럼을 만들어냈다.</span>
 
 > In the ancient world, the term was used in a broad sense that was not strictly related to visual arts. 
 
-고대 세계에서, 그 용어는 시각 예술과 엄격하게 관련되지 않은 넓은 의미로 사용되었다.
 <span class="translation">고대 세계에서 이 용어는 시각 예술에 엄격하게 국한되지 않는 광범위한 의미로 사용되었다.</span>
 
 > The application of the word "art" exclusively to works in the form of paintings, sculptures, and prints came about only in the Renaissance, and later, in the eighteenth century, the use of the term expanded to include music and poetry. 
 
-"예술"이라는 단어를 회화, 조각, 판화 형태의 작품들에만 독점적으로 적용하는 것은 르네상스 시대에만 생겨났고, 나중에 18세기에는 그 용어의 사용이 음악과 시를 포함하도록 확장되었다.
 <span class="translation">"예술"이라는 단어를 회화, 조각, 판화 형태의 작품들에만 독점적으로 적용하는 것은 르네상스 시대에 비로소 나타났으며, 이후 18세기에는 이 용어의 사용이 음악과 시를 포함하도록 확장되었다.</span>
 
 > Subsequently, in modern times, a new meaning came into fashion, obscuring the distinction between what is art and what is not.
 
-그 후 현대에는 새로운 의미가 유행하게 되었고, 무엇이 예술이고 무엇이 예술이 아닌지의 구별을 모호하게 만들었다.
 <span class="translation">그 후 현대에 들어서는 새로운 의미가 유행하게 되었고, 무엇이 예술이고 무엇이 예술이 아닌지의 구별을 모호하게 만들었다.</span>
 
 </div>
@@ -45,37 +41,30 @@ tags: ["TOEFL", "영어", "대학원", "OMSCS"]
 
 > In the ancient world, there was no clear difference between art and crafts. 
 
-고대 세계에서는 예술과 공예 사이에 명확한 차이가 없었다.
 <span class="translation">고대 세계에서는 예술과 공예 사이에 명확한 차이가 없었다.</span>
 
 > In Greek and Latin, the terms techne and ars both translated as "art," and they stood for any activity that had rules and required expertise. 
 
-그리스어와 라틴어에서 테크네와 아르스라는 용어들은 둘 다 "예술"로 번역되었고, 그것들은 규칙을 가지고 전문성을 요구하는 모든 활동을 의미했다.
 <span class="translation">그리스어와 라틴어에서 테크네(techne)와 아르스(ars)라는 용어들은 둘 다 "예술"로 번역되었으며, 규칙을 가지고 전문성을 요구하는 모든 활동을 의미했다.</span>
 
 > They were thus used in reference to a wide range of fields, from medicine and law to blacksmithing. 
 
-따라서 그것들은 의학과 법률에서부터 대장장이 일까지 넓은 범위의 분야들을 언급하는 데 사용되었다.
 <span class="translation">따라서 이 용어들은 의학과 법률에서부터 대장장이 일까지 광범위한 분야들을 지칭하는 데 사용되었다.</span>
 
 > Those engaged in the production of art were viewed as craftsmen, more similar to manual laborers than artists. 
 
-예술 제작에 종사하는 사람들은 장인으로 여겨졌고, 예술가보다는 육체 노동자에 더 가까웠다.
 <span class="translation">예술 제작에 종사하는 사람들은 장인으로 여겨졌으며, 예술가보다는 육체 노동자에 더 가까웠다.</span>
 
 > To the ancients, art was a pursuit necessitating skills that were learned according to rules, but that were believed to require no unique inspiration. 
 
-고대인들에게 예술은 규칙에 따라 배운 기술을 필요로 하는 추구였지만, 독특한 영감을 요구하지는 않는다고 여겨졌다.
 <span class="translation">고대인들에게 예술은 규칙에 따라 습득하는 기술을 필요로 하는 추구였지만, 독특한 영감을 요구하지는 않는다고 여겨졌다.</span>
 
 > Painting and sculpture had no special place in higher learning, as only music and poetry were taught as academic subjects. 
 
-회화와 조각은 고등 학문에서 특별한 자리를 차지하지 못했는데, 음악과 시만이 학문 과목으로 가르쳐졌기 때문이다.
 <span class="translation">회화와 조각은 고등 학문에서 특별한 자리를 차지하지 못했는데, 음악과 시만이 학문 과목으로 가르쳐졌기 때문이다.</span>
 
 > The visual arts were viewed simply as manual crafts, and because the ancients looked down on manual labor, artisans occupied the bottom of the social hierarchy.
 
-시각 예술은 단순히 수공 기술로 여겨졌고, 고대인들이 육체 노동을 업신여겼기 때문에, 장인들은 사회 계층의 맨 아래를 차지했다.
 <span class="translation">시각 예술은 단순히 수공 기술로 여겨졌으며, 고대인들이 육체 노동을 업신여겼기 때문에 장인들은 사회 계층의 맨 아래를 차지했다.</span>
 
 </div>
@@ -88,42 +77,34 @@ tags: ["TOEFL", "영어", "대학원", "OMSCS"]
 
 > The medieval world inherited this view of art, but things began to change during the Renaissance. 
 
-중세 세계는 이러한 예술관을 물려받았지만, 르네상스 동안 상황이 변화하기 시작했다.
 <span class="translation">중세 세계는 이러한 예술관을 물려받았지만, 르네상스 시대에 상황이 변화하기 시작했다.</span>
 
 > At the forefront of this transformation was the elevated position of painters, sculptors, and architects. 
 
-이 변혁의 최전선에는 화가, 조각가, 건축가들의 지위 향상이 있었다.
 <span class="translation">이 변혁의 최전선에는 화가, 조각가, 건축가들의 지위 향상이 있었다.</span>
 
 > Renaissance artists increasingly employed scientific methods, and mathematics became central to their trade. 
 
-르네상스 예술가들은 점점 더 과학적 방법을 사용했고, 수학이 그들 기예의 중심이 되었다.
 <span class="translation">르네상스 예술가들은 점점 더 과학적 방법을 사용했으며, 수학이 그들 기예의 중심이 되었다.</span>
 
 > Because their work was not simply mechanical but also intellectual, artists argued that they were superior to mere craftsmen, and their call for respect began to sway public opinion. 
 
-그들의 작업이 단순히 기계적인 것이 아니라 지적이기도 했기 때문에, 예술가들은 자신들이 단순한 장인들보다 우월하다고 주장했고, 존경을 요구하는 그들의 외침이 여론을 움직이기 시작했다.
 <span class="translation">그들의 작업이 단순히 기계적인 것이 아니라 지적이기도 했기 때문에, 예술가들은 자신들이 단순한 장인들보다 우월하다고 주장했으며, 존경을 요구하는 그들의 외침이 여론을 움직이기 시작했다.</span>
 
 > Artists gradually gained acceptance as creative geniuses, and their reputation rose to be on par with that of poets. 
 
-예술가들은 점차 창조적 천재로 인정받게 되었고, 그들의 명성은 시인들과 동등한 수준으로 올라갔다.
 <span class="translation">예술가들은 점차 창조적 천재로 인정받게 되었으며, 그들의 명성은 시인들과 동등한 수준으로 올라갔다.</span>
 
 > Painting, sculpture, and architecture were given their own place in academies, and art became synonymous with the label "classical art." 
 
-회화, 조각, 건축은 학원에서 자신들만의 자리를 부여받았고, 예술은 "고전 예술"이라는 라벨과 동의어가 되었다.
 <span class="translation">회화, 조각, 건축은 학원에서 자신들만의 자리를 부여받았으며, 예술은 "고전 예술"이라는 라벨과 동의어가 되었다.</span>
 
 > During the 1700s, the definition was slightly expanded as the concept of fine art emerged. 
 
-1700년대 동안, 순수 예술의 개념이 등장하면서 정의가 약간 확장되었다.
 <span class="translation">1700년대에는 순수 예술의 개념이 등장하면서 정의가 약간 확장되었다.</span>
 
 > Collectively, the classical arts, along with music and poetry, came to represent the fine arts.
 
-종합적으로, 고전 예술들은 음악과 시와 함께 순수 예술을 대표하게 되었다.
 <span class="translation">종합적으로, 고전 예술들은 음악과 시와 함께 순수 예술을 대표하게 되었다.</span>
 
 </div>
@@ -136,37 +117,30 @@ tags: ["TOEFL", "영어", "대학원", "OMSCS"]
 
 > It was also in the Renaissance that the term "artisan" first appeared. 
 
-"장인"이라는 용어가 처음 등장한 것도 르네상스 시대였다.
 <span class="translation">"장인"이라는 용어가 처음 등장한 것도 르네상스 시대였다.</span>
 
 > The word was used to clearly distinguish between arts and crafts. 
 
-이 단어는 예술과 공예를 명확히 구별하기 위해 사용되었다.
 <span class="translation">이 단어는 예술과 공예를 명확히 구별하기 위해 사용되었다.</span>
 
 > Art required academic training, and its goal was to create perfect and idealized representations of reality that followed established principles of beauty. 
 
-예술은 학문적 훈련을 요구했고, 그 목표는 확립된 아름다움의 원칙을 따르는 현실의 완벽하고 이상화된 표현을 창조하는 것이었다.
 <span class="translation">예술은 학문적 훈련을 요구했으며, 그 목표는 확립된 아름다움의 원칙을 따르는 현실의 완벽하고 이상화된 표현을 창조하는 것이었다.</span>
 
 > This is in contrast to crafts, like beadwork or basket making, which were fashioned largely for everyday purposes. 
 
-이는 구슬 세공이나 바구니 만들기와 같은 공예와 대조되는데, 이들은 주로 일상적인 목적을 위해 만들어졌다.
 <span class="translation">이는 구슬 세공이나 바구니 만들기와 같은 공예와 대조되는데, 이들은 주로 일상적인 목적을 위해 제작되었다.</span>
 
 > Craftsmen whose production consisted of such practical, or merely decorative, items were called artisans.
 
-그러한 실용적이거나 단순히 장식적인 물품들로 구성된 생산품을 만드는 장인들은 아티잔이라고 불렸다.
 <span class="translation">그러한 실용적이거나 단순히 장식적인 물품들을 생산하는 장인들은 아티잔이라고 불렸다.</span>
 
 > They often learned their trade from master craftsmen, but they did not study art in the academies. 
 
-그들은 종종 숙련된 장인들로부터 기술을 배웠지만, 학원에서 예술을 공부하지는 않았다.
 <span class="translation">그들은 종종 숙련된 장인들로부터 기술을 배웠지만, 학원에서 예술을 공부하지는 않았다.</span>
 
 > The clear division between arts and crafts saw its peak in the eighteenth century.
 
-예술과 공예 사이의 명확한 구분은 18세기에 절정에 달했다.
 <span class="translation">예술과 공예 사이의 명확한 구분은 18세기에 절정에 달했다.</span>
 
 </div>
@@ -179,37 +153,30 @@ tags: ["TOEFL", "영어", "대학원", "OMSCS"]
 
 > In the nineteenth century, modernists sought to promote the idea of "art for art's sake" and rejected classical definitions. 
 
-19세기에 모더니스트들은 "예술을 위한 예술"이라는 사상을 촉진하려 했고 고전적 정의들을 거부했다.
 <span class="translation">19세기에 모더니스트들은 "예술을 위한 예술"이라는 사상을 촉진하려 했으며 고전적 정의들을 거부했다.</span>
 
 > Artists felt hindered by the conventions of classicism and began to ignore form in favor of stylistic expression. 
 
-예술가들은 고전주의의 관습에 의해 방해받는다고 느꼈고 형태를 무시하고 양식적 표현을 선호하기 시작했다.
 <span class="translation">예술가들은 고전주의의 관습에 의해 방해받는다고 느꼈으며 형태를 무시하고 양식적 표현을 선호하기 시작했다.</span>
 
 > At the same time, they rejected the convictions of some of their contemporaries, who claimed that art should be fundamentally utilitarian and beneficial to society. 
 
-동시에, 그들은 예술이 근본적으로 실용적이고 사회에 유익해야 한다고 주장하는 일부 동시대인들의 신념을 거부했다.
 <span class="translation">동시에, 그들은 예술이 근본적으로 실용적이고 사회에 유익해야 한다고 주장하는 일부 동시대인들의 신념을 거부했다.</span>
 
 > Modernists denied that purpose, whether moral or political, was an important criterion for art to have merit. 
 
-모더니스트들은 도덕적이든 정치적이든 목적이 예술이 가치를 갖기 위한 중요한 기준이라는 것을 부인했다.
 <span class="translation">모더니스트들은 도덕적이든 정치적이든 목적이 예술이 가치를 갖기 위한 중요한 기준이라는 것을 부인했다.</span>
 
 > Accordingly, they believed all art had an intrinsic value of its own. 
 
-따라서, 그들은 모든 예술이 그 자체로 내재적 가치를 가진다고 믿었다.
 <span class="translation">따라서, 그들은 모든 예술이 그 자체로 내재적 가치를 가진다고 믿었다.</span>
 
 > In addition, artists experimented with new techniques and subject matter. 
 
-또한, 예술가들은 새로운 기법과 주제를 실험했다.
 <span class="translation">또한, 예술가들은 새로운 기법과 주제를 실험했다.</span>
 
 > They began to include more impressionistic and abstract designs, emphasizing experimental over learned techniques.
 
-그들은 더 인상주의적이고 추상적인 디자인을 포함하기 시작했고, 배운 기법보다 실험적인 것을 강조했다.
 <span class="translation">그들은 더 인상주의적이고 추상적인 디자인을 포함하기 시작했으며, 배운 기법보다 실험적인 것을 강조했다.</span>
 
 </div>
@@ -222,37 +189,30 @@ tags: ["TOEFL", "영어", "대학원", "OMSCS"]
 
 > This new perception of art as an end in itself eventually erased the fragmentation between artist and artisan. 
 
-그 자체가 목적인 예술에 대한 이 새로운 인식은 결국 예술가와 장인 사이의 분열을 지워버렸다.
 <span class="translation">그 자체가 목적인 예술에 대한 이 새로운 인식은 결국 예술가와 장인 사이의 분열을 지워버렸다.</span>
 
 > In a clear mockery of the classical tradition, the notion of art was extended to include anything a person creates. 
 
-고전적 전통에 대한 명백한 조롱으로, 예술의 개념은 사람이 창조하는 모든 것을 포함하도록 확장되었다.
 <span class="translation">고전적 전통에 대한 명백한 조롱으로, 예술의 개념은 사람이 창조하는 모든 것을 포함하도록 확장되었다.</span>
 
 > Therefore, it effectively eliminated the distinction between crafts and the so-called fine arts. 
 
-따라서, 그것은 공예와 소위 순수 예술 사이의 구별을 효과적으로 제거했다.
 <span class="translation">따라서, 그것은 공예와 소위 순수 예술 사이의 구별을 효과적으로 제거했다.</span>
 
 > A person who produced a basket and a person who painted a canvas in classical style were no different; they were both using their skills to create something. 
 
-바구니를 만든 사람과 고전적 양식으로 캔버스에 그림을 그린 사람은 다르지 않았다; 그들은 둘 다 무언가를 창조하기 위해 자신의 기술을 사용하고 있었다.
 <span class="translation">바구니를 만든 사람과 고전적 양식으로 캔버스에 그림을 그린 사람은 다르지 않았다; 그들은 둘 다 무언가를 창조하기 위해 자신의 기술을 사용하고 있었다.</span>
 
 > This meant that any creative work could be viewed as genuine and prestigious. 
 
-이것은 모든 창조적 작업이 진정하고 권위 있는 것으로 여겨질 수 있음을 의미했다.
 <span class="translation">이것은 모든 창조적 작업이 진정하고 권위 있는 것으로 여겨질 수 있음을 의미했다.</span>
 
 > Further, art moved beyond the realm of productive creativity. 
 
-더 나아가, 예술은 생산적 창조성의 영역을 넘어섰다.
 <span class="translation">더 나아가, 예술은 생산적 창조성의 영역을 넘어섰다.</span>
 
 > Some artists randomly collected everyday objects and displayed them, completely unmodified, as "creative sculpture."
 
-일부 예술가들은 일상적인 물건들을 무작위로 수집하여 완전히 수정하지 않은 채로 "창조적 조각"으로 전시했다.
 <span class="translation">일부 예술가들은 일상적인 물건들을 무작위로 수집하여 완전히 수정하지 않은 채로 "창조적 조각"으로 전시했다.</span>
 
 </div>
@@ -265,22 +225,18 @@ tags: ["TOEFL", "영어", "대학원", "OMSCS"]
 
 > Conceptions of art have changed remarkably and created much confusion. 
 
-예술에 대한 개념들은 현저히 변화했고 많은 혼란을 만들어냈다.
 <span class="translation">예술에 대한 개념들은 현저히 변화했으며 많은 혼란을 만들어냈다.</span>
 
 > Today there is no consensus on the meaning of the term, and it is applied very subjectively. 
 
-오늘날 그 용어의 의미에 대한 합의가 없고, 그것은 매우 주관적으로 적용된다.
 <span class="translation">오늘날 그 용어의 의미에 대한 합의가 없으며, 그것은 매우 주관적으로 적용된다.</span>
 
 > Evidence can be seen in art museums and galleries devoted to everything from primitive artifacts to video productions to commercial graphics. 
 
-증거는 원시 유물에서부터 비디오 제작물, 상업적 그래픽에 이르기까지 모든 것에 전념하는 미술관과 갤러리에서 볼 수 있다.
 <span class="translation">증거는 원시 유물에서부터 비디오 제작물, 상업적 그래픽에 이르기까지 모든 것을 다루는 미술관과 갤러리에서 볼 수 있다.</span>
 
 > Certainly, the question of what constitutes art has become largely subjective.
 
-확실히, 무엇이 예술을 구성하는가라는 질문은 대체로 주관적인 것이 되었다.
 <span class="translation">확실히, 무엇이 예술을 구성하는가라는 질문은 대체로 주관적인 것이 되었다.</span>
 
 </div>
