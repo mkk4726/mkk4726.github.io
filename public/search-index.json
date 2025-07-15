@@ -1,5 +1,16 @@
 [
   {
+    "id": "Recommendation/user-based-collaborative-filtering",
+    "title": "User-Based Collaborative Filtering",
+    "date": "2025-07-15",
+    "excerpt": "User-Based Collaborative Filtering 알고리즘에 대한 설명",
+    "category": "Recommendation",
+    "tags": [
+      "추천시스템"
+    ],
+    "content": "\n\n# User-Based Collaborative Filtering (사용자 기반 협업 필터링)\n\n## 개요\n\nUser-Based Collaborative Filtering은 추천 시스템에서 가장 오래되고 직관적인 이웃(neighborhood) 기반 방법입니다. 핵심 아이디어는 **\"비슷한 취향을 가진 사용자들이 비슷한 아이템을 좋아할 것이다\"** 라는 가정에 기반합니다.\n\n## 기본 개념\n\n- **사용자-아이템 평점 행렬 $R$**: 행은 사용자, 열은 아이템\n- **원소 $r_{u,i}$**: 사용자 $u$가 아이템 $i$에 매긴 평점 (또는 암시적 행동)\n- **목표**: 사용자 $u$에게 아이템 $i$를 추천할지 결정\n\n## 알고리즘 절차\n\n### 1. 유사도(Similarity) 계산\n\n사용자 간 유사도를 계산하는 방법들:\n\n#### Cosine Similarity\n$$\\text{sim}(u,v) = \\frac{\\mathbf{r}_u \\cdot \\mathbf{r}_v}{\\|\\mathbf{r}_u\\| \\times \\|\\mathbf{r}_v\\|}$$\n\n#### Pearson Correlation\n$$\\text{sim}(u,v) = \\frac{\\sum_{i \\in I_{uv}} (r_{u,i} - \\bar{r}_u)(r_{v,i} - \\bar{r}_v)}{\\sqrt{\\sum_{i \\in I_{uv}} (r_{u,i} - \\bar{r}_u)^2} \\times \\sqrt{\\sum_{i \\in I_{uv}} (r_{v,i} - \\bar{r}_v)^2}}$$\n\n여기서 $I_{uv}$는 두 사용자가 모두 평가한 아이템 집합\n\n#### Adjusted Cosine Similarity\n$$\\text{sim}(u,v) = \\frac{\\sum_{i \\in I_{uv}} (r_{u,i} - \\bar{r}_i)(r_{v,i} - \\bar{r}_i)}{\\sqrt{\\sum_{i \\in I_{uv}} (r_{u,i} - \\bar{r}_i)^2} \\times \\sqrt{\\sum_{"
+  },
+  {
     "id": "Data Science/2025-01-10-jupyter-notebook-test",
     "title": "주피터 노트북 완전 테스트 - 셀에서 메타데이터 설정",
     "date": "2025-07-15",
