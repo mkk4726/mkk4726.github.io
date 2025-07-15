@@ -11,6 +11,19 @@
     "content": "\n\n# User-Based Collaborative Filtering (사용자 기반 협업 필터링)\n\n## 개요\n\nUser-Based Collaborative Filtering은 추천 시스템에서 가장 오래되고 직관적인 이웃(neighborhood) 기반 방법입니다. 핵심 아이디어는 **\"비슷한 취향을 가진 사용자들이 비슷한 아이템을 좋아할 것이다\"** 라는 가정에 기반합니다.\n\n## 기본 개념\n\n- **사용자-아이템 평점 행렬 $R$**: 행은 사용자, 열은 아이템\n- **원소 $r_{u,i}$**: 사용자 $u$가 아이템 $i$에 매긴 평점 (또는 암시적 행동)\n- **목표**: 사용자 $u$에게 아이템 $i$를 추천할지 결정\n\n## 알고리즘 절차\n\n### 1. 유사도(Similarity) 계산\n\n사용자 간 유사도를 계산하는 방법들:\n\n#### Cosine Similarity\n$$\\text{sim}(u,v) = \\frac{\\mathbf{r}_u \\cdot \\mathbf{r}_v}{\\|\\mathbf{r}_u\\| \\times \\|\\mathbf{r}_v\\|}$$\n\n#### Pearson Correlation\n$$\\text{sim}(u,v) = \\frac{\\sum_{i \\in I_{uv}} (r_{u,i} - \\bar{r}_u)(r_{v,i} - \\bar{r}_v)}{\\sqrt{\\sum_{i \\in I_{uv}} (r_{u,i} - \\bar{r}_u)^2} \\times \\sqrt{\\sum_{i \\in I_{uv}} (r_{v,i} - \\bar{r}_v)^2}}$$\n\n여기서 $I_{uv}$는 두 사용자가 모두 평가한 아이템 집합\n\n#### Adjusted Cosine Similarity\n$$\\text{sim}(u,v) = \\frac{\\sum_{i \\in I_{uv}} (r_{u,i} - \\bar{r}_i)(r_{v,i} - \\bar{r}_i)}{\\sqrt{\\sum_{i \\in I_{uv}} (r_{u,i} - \\bar{r}_i)^2} \\times \\sqrt{\\sum_{"
   },
   {
+    "id": "English Study/SPEAK/07-15-정신똑바로차리고있어",
+    "title": "정신 똑바로 차리고 있어",
+    "date": "2025-07-15",
+    "excerpt": "",
+    "category": "English Study",
+    "tags": [
+      "영어공부꾸준히!",
+      "SPEAK",
+      "고민 및 조언하는 표햔"
+    ],
+    "content": "\n\n# 배운 것들\n\nBe on the lookout : 정신 똑바로 차려\n\n- Be on the lookout for pickpockets\n- Be on the lookout for voicefishing\n\nBe careful with \n\n- Be careful with your bag on the subway.\n\nin + 자동차 (타서 앉으면 끝)\non + 비행기, 배, 지하철\n\npassport\n\ncatch a cold\n\n- Be careful not to catch a cold\n- Be careful not to burn yourself\n- Be careful not to hurt yourself\n\nDuring this outbreak?\n\noutbreak: 질병 발생기간\n\nscammers : 사기꾼\n\nMake sure not to go\n\n# 간단한 작문\n\nAs usaul, I talk to myself.\nHey MK, be on the lookout for 나태함.\nBe careful with your habit that do work later (미루는 습관)\n\nNice work today, just keep this pace.\nBut don`t forget happy is around you. Feel happy with 사소한 thing around you, and victories you made in today.\n\n# 수정된 작문 (Improved Version)\n\nAs usual, time for my daily self-talk.\nHey MK, don't get lazy on me!\nStop putting things off - let's break this procrastination habit once and for all.\n\n*procrastination: 꾸물거리다\n예문:\n\"Stop procrastinating and start studying!\" (미루지 말고 공부 시작해!)\n\"Procrastination is the thief of "
+  },
+  {
     "id": "Data Science/2025-01-10-jupyter-notebook-test",
     "title": "주피터 노트북 완전 테스트 - 셀에서 메타데이터 설정",
     "date": "2025-07-15",
