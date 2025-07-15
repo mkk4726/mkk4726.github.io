@@ -413,6 +413,7 @@ $$
 > - **원인**: Zero condition (7)이 해집합을 좁혀줌
 
 **Proposition 1** - Suppose Assumptions 1–2 hold. Then, the following statements hold:
+이 부분은 generalized loss function (6) 을 최소화하면 h는 다양한 해를 가지지만, zero-condition을 녹여내 정리한 binary loss function (8) 을 최소화하면 h는 유일한 해를 가진다는 것을 보여줍니다.
 
 > **Part (i)**: 처치 T가 연속형인 경우, S는 다음 최적화 문제의 해답해다.
 > - **최적화 문제**: $\arg\min_{h \in L_2^P(X,T)} L_c(h)$
@@ -444,11 +445,19 @@ $$
 논문에서 계속해서 이야기하고 있는 것은 zero-condition을 통해 이진 처치의 경우 유일해를 얻었지만, 연속 처치의 경우 유일해를 얻지 못한다는 것입니다.
 
 
+
+
+
+
+
+
+---
+
 # 논문에서 의문이 들었던 부분들 정리
+
 ---
 
 ## 왜 이진 처치에서는 Zero Condition이 적용되고, 연속 처치에서는 적용되지 않을까?
----
 
 ### 이진 처치에서의 Zero Condition
 
