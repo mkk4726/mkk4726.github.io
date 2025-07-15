@@ -151,15 +151,15 @@ export async function generatePdfFromElement(
     console.log('요소 스타일 설정 완료');
 
     // 잠시 대기하여 레이아웃이 안정화되도록 함
-    await new Promise(resolve => setTimeout(resolve, 200));
+    await new Promise(resolve => setTimeout(resolve, 500));
 
     console.log('캔버스 생성 시작...');
 
     // HTML 요소를 캔버스로 변환
     const canvas = await html2canvas(element, {
-      scale: 1.5, // 스케일을 줄여서 안정성 향상
+      scale: 1.2, // 스케일을 줄여서 안정성 향상
       useCORS: true,
-      allowTaint: false,
+      allowTaint: true, // 외부 이미지 허용
       backgroundColor: '#ffffff',
       scrollX: 0,
       scrollY: 0,

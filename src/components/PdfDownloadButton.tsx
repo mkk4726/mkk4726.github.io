@@ -35,6 +35,9 @@ export default function PdfDownloadButton({
         scrollHeight: contentElement.scrollHeight
       });
 
+      // 페이지가 완전히 로드될 때까지 대기
+      await new Promise(resolve => setTimeout(resolve, 1000));
+
       await generatePostPdf(postTitle, contentElement);
       console.log('PDF 생성 완료');
       
