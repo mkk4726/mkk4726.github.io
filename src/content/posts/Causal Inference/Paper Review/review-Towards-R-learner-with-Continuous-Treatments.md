@@ -26,6 +26,13 @@ tags: ["Paper Review"]
 
 > 기존의 방법을 확장할 때 발생하는 문제와 이를 해결한 방법론에 대한 이야기에 집중해서 이 논문을 이해했습니다.
 
+간단히 요약하면 다음과 같습니다
+1. 이진 처치에서는 처치효과를 추정하는 방법이 있었는데, 이를 연속형 처치로 확장하면 문제가 발생한다. (유일해를 가지지 않는 문제)
+2. 이를 해결하기 위해서 2가지 방법을 제안한다.
+   1. Tikhonov regularization
+   2. zero-constraining operator를 통해서 해결한다.
+
+
 # 논문 내용 정리
 ---
 
@@ -47,22 +54,520 @@ tags: ["Paper Review"]
 
 ## 1. Introduction
 ---
+> Estimating heterogeneous treatment effects is fundamental in causal inference and provides insights into various fields, including precision medicine, education, online marketing, and offline policy evaluation
 
-연속형 처치 효과 함수(CATE)는 다음과 같이 정의됩니다:
+개인별 처치효과를 추정하는 건 다양한 분야에서 중요한 정보를 제공해줄 수 있기에 중요한 문제입니다.
 
+The treatment effect heterogeneity can be quantified by: 
+$$
+\begin{equation}
+\tau(x, t) = E[Y^{(t)} - Y^{(0)} | X = x]
+\end{equation}
+$$
+- $t = 0$ : reference treatment level
+
+heterogeneous treatment effects는 conditional average treatment effect (CATE)로 정의됩니다.
+이는 조건부로 처치효과를 계산한 값을 의미합니다. (환자의 조건이 x일 때의 ATE)
+
+
+>  On the contrary, the R-learner and its variants (Kennedy, 2023) target the treatment effect estimatio
+
+[Towards Optimal Doubly Robust Estimation of Heterogeneous Causal Effects](https://arxiv.org/pdf/2004.14497)
+
+기존의 다른 연구들은 이 CATE를 직접적으로 추정하지 않았지만 R-learner 모델은 이를 직접적으로 추정하고 있습니다.
+
+> The R-learner capitalizes on the decomposition of the outcome model initially proposed by Robinson (1988) in partially linear models and extends for machine learning-based treatment effect estimation (Nie and Wager, 2021)
+
+
+R-learner는 partially linear model에서 제안한 수학적 분해 방법을 기반으로 삼아서 이를 머신러닝 기반 처치효과 추정으로 확장된 개념입니다.
+이에 대한 간단한 정리는 [What is FWL?](/posts/Causal%20Inference/2025-07-02-what-is-fwl)에서 확인할 수 있습니다.
+
+**참고 논문**: 
+- Robinson, P. M. (1988). Root-N-consistent semiparametric regression. Econometrica, 56(4), 931-954. [[논문 링크](https://www.jstor.org/stable/1912705)]
+- Nie, X., & Wager, S. (2021). Quasi-oracle estimation of heterogeneous treatment effects. Biometrika, 108(2), 299-319. [[논문 링크](https://arxiv.org/abs/1712.04912)]
+
+> Notably, when using the two nuisance functions estimated under flexible models, the R-learner preserves the oracle property of treatment effect estimation as though the nuisance functions were known. Despite these advantages, the current R-learner framework applies only to binary or categorical treatments.
+
+R-learner의 중요한 특징은 유연한 모델을 통해 두 개의 nuisance function을 추정하더라도, 마치 이 함수들이 정확히 알려진 것처럼 처치효과 추정의 oracle 성질을 유지한다는 점입니다. 하지만 이러한 장점에도 불구하고, 현재 R-learner 프레임워크는 이진형 또는 범주형 처치에만 적용할 수 있다는 한계가 있습니다.
+
+
+> In this article, we extend the R-learner framework to estimate the conditional average treatment effect flexibly with continuous treatments. This extension is nontrivial in both identification and estimation. Echoing the approach of Nie and Wager (2021), we focus on adapting the generalized R-learner loss function with continuous treatments.
+
+이 논문에서는 R-learner 프레임워크를 연속형 처치에 대해서 확장해서 CATE를 추정하는 방법을 제안합니다.
+이 확장은 식별과 추정 모두에서 어려운 문제입니다. Nie와 Wager (2021)의 접근 방식을 따라서 연속형 처치에 대한 일반화된 R-learner 손실 함수를 적용하는 방법을 중점적으로 다룹니다.
+
+이진처치 ($T = 1$ or $T = 0$ 이 존재하는 경우)와 다르게 연속형일 경우에 발생하는 어려움들에 대해 이야기하며 이를 해결하기 위한 방법을 제안합니다.
+
+> Unlike the binary-treatment case, we demonstrate that directly minimizing the generalized R-loss does not uniquely identify $\tau (x, t)$ but instead identifies a broad class of functions.
+
+이진처치와 달리, 연속형 처치에서는 R-loss를 최소화하는 것만으로는 유일한 CATE 함수를 식별할 수 없고, 대신 함수들의 넓은 집합만을 식별할 수 있다고 설명합니다. 
+이것이 바로 non-identifiability issue의 핵심입니다.
+
+이진처치의 경우 zero condition ($\tau (x, t): \tau (x, 0) \equiv 0$)을 만족하는 것이 쉽지만, 연속형 처치의 경우에는 이를 만족하는 것이 쉽지 않기 때문입니다.
+
+간단하게 설명해보면, 이진처치의 경우 zero condition을 만족하고 이게 cate function을 유일하게 추정하도록 해주지만, 연속형 처치의 경우에는 zero condition을 만족하는 것이 쉽지 않기 때문에 이를 만족하는 함수들의 넓은 집합만을 추정하게 된다고 이해할 수 있습니다.
+
+논문에서는 이 non-identifiability 문제를 해결하기 위해 **ℓ2-정규화된 R-learner**를 제안합니다. 이 방법은 Tikhonov 정규화 원리를 기반으로 합니다.
+
+#### 1. Tikhonov 정규화란?
+
+Tikhonov 정규화는 **ill-posed problem**(잘 정의되지 않은 문제)을 해결하기 위한 방법입니다. 연속형 처치에서 발생하는 non-identifiability 문제가 바로 이런 ill-posed problem의 대표적인 예입니다.
+
+**핵심 아이디어**: 
+- 문제가 너무 유연해서 해가 무수히 많을 때
+- 추가적인 제약조건(정규화)을 도입하여 해를 유일하게 만듦
+- 수학적으로는 `||f||²` 같은 정규화 항을 손실 함수에 추가
+
+#### 2. 2단계 추정 과정
+
+논문의 핵심은 **2단계 추정 과정**을 통해 문제를 해결하는 것입니다:
+
+**1단계**: 중간 함수 추정
+```
+τ̃(x, t) = τ(x, t) - E{τ(X, T) | X = x}
+```
+
+**2단계**: Zero-constraining operator를 통한 변환
+```
+τ(x, t) = 변환(τ̃(x, t))
+```
+
+#### 3. Zero-constraining operator의 역할
+
+이 operator는 추정된 함수가 항상 zero condition을 만족하도록 보장합니다:
+- τ(x, 0) = 0 (기준 처치 수준에서의 효과는 0)
+- 이를 통해 유일한 해를 찾을 수 있음
+
+#### 4. Sieve 방법론
+
+**Sieve 방법**은 무한차원 함수 공간을 유한차원으로 근사하는 방법입니다:
+
+**기본 아이디어**:
+- 무한차원 함수를 유한개의 기저 함수들의 선형결합으로 근사
+- 예: 다항식, 스플라인, 푸리에 급수 등
+
+**수학적 표현**:
+```
+τ(x, t) ≈ Σᵢ βᵢ φᵢ(x, t)
+```
+여기서 φᵢ(x, t)는 기저 함수들입니다.
+
+#### 5. 저차원 행렬과 Non-identification
+
+일반적인 sieve 회귀와 달리, 이 논문에서는 **저차원 행렬**이 등장합니다. 이는 연속형 처치에서 발생하는 non-identification 문제의 수학적 표현입니다.
+
+**핵심 개념**: 
+- Generalized R-loss의 non-identification 특성 때문에 행렬이 ill-conditioned가 됨
+- 행렬의 고유값들이 0에 가까워져서 수치적 불안정성 발생
+- 이는 행렬 교란 이론(matrix perturbation theory)과 스펙트럴 분석이 필요한 이유
+
+**자세한 이론적 배경**: [Ill-conditioned 행렬과 고유값: 연속형 처치 R-learner의 이론적 배경](/posts/Causal%20Inference/ill-conditioned-matrix-theory)
+
+#### 6. 수렴 속도의 특징
+
+**핵심 결과**: 
+> "nuisance 함수들이 oP(n^(-1/4)) 수렴 속도로 근사될 수 있다면, 추정량의 수렴 속도는 결과 모델의 매끄러움에 의존하지 않고, 오직 CATE와 propensity score 함수의 매끄러움에만 의존한다"
+
+**의미**:
+- 결과 모델의 복잡성에 관계없이 좋은 성능 보장
+- CATE와 propensity score만 잘 추정되면 됨
+- 이는 **double robustness**의 연속형 버전
+
+#### 7. 점근적 정규성과 추론
+
+**점근적 정규성**: 
+- 추정량이 정규분포로 수렴
+- 이를 통해 신뢰구간과 가설검정 가능
+
+**닫힌 형태 분산 추정량**:
+- 복잡한 부트스트랩 없이도 분산 계산 가능
+- 계산 효율성 향상
+
+**참고 논문**:
+- Tikhonov, A. N. (1963). On the solution of ill-posed problems and the method of regularization. Doklady Akademii Nauk SSSR, 151(3), 501-504. [[논문 링크](https://www.mathnet.ru/php/archive.phtml?wshow=paper&jrnid=dan&paperid=26736&option_lang=eng)]
+- Bhatia, R. (2013). Matrix analysis. Springer Science & Business Media. [[책 링크](https://link.springer.com/book/10.1007/978-1-4612-0653-8)]
+- Chen, X. (2007). Large sample sieve estimation of semi-nonparametric models. Handbook of econometrics, 6, 5549-5632. [[논문 링크](https://www.sciencedirect.com/science/article/abs/pii/S1573441207060066)]
+
+**핵심 개념들**:
+- **Ill-posed problem**: 해가 유일하지 않거나 불안정한 문제
+- **Tikhonov regularization**: 정규화를 통한 ill-posed problem 해결
+- **Sieve method**: 무한차원을 유한차원으로 근사하는 방법
+- **Matrix perturbation theory**: 행렬의 작은 변화가 고유값에 미치는 영향 연구
+- **Spectral analysis**: 행렬의 고유값과 고유벡터 분석
+
+
+### 1.1 Setup and notation
+
+이론적 배경과 관련한 수식을 정리합니다.
+
+- $\{Z_i = (X_i, T_i, Y_i)\}_{i=1}^n$ : independent and identically distributed samples from the distribution of $(X, T, Y)$
+- $X = (X^{(1)}, \ldots, X^{(d)})$ : $d$-dimensional vector of covariates. 
+- $Y^{(t)}$ : potential outcome had the unit received treatment level $T = t \in \mathbb{R}$
+- $\tau(x, t)$ : causal estimand defined in (1)
+
+Under Rubin's causal model framework (Rubin, 1974), 
 $$
 \begin{equation}
 \tau(x, t) = E[Y^{(t)} - Y^{(0)} | X = x]
 \end{equation}
 $$
 
-여기서:
-- $x$: 개인의 특성 (covariates)
-- $t$: 연속형 처치 수준
-- $Y^{(t)}$: 처치 수준 $t$에서의 결과
-- $Y^{(0)}$: 처치가 없을 때의 결과 (baseline)
+> Due to the fundamental problem in causal inference that not all potential outcomes can be observed for a particular unit, $\tau(x, t)$ is not identifiable without further assumptions. We employ common assumptions for continuous treatments (Kennedy et al., 2017).
 
-### 핵심 제약조건
+인과추론에서는 모든 관측값을 확인할 수 없는 상태에서 처치효과를 추정하기 위해서 3가지의 가정이 존재합니다.
 
-연속형 처치 효과 함수는 다음 제약조건을 만족해야 합니다:
+**Assumption 1 (No unmeasured confounding).** We have $\{Y^{(t)}\}_{t \in \mathcal{T}} \perp\!\!\!\perp T \mid X$
+
+**Assumption 2 (Stable unit and treatment value).** When $T = t \in \mathcal{T}$, we have $Y = Y^{(t)}$
+
+**Assumption 3 (Positivity).** There exists an $\epsilon > 0$ such that the generalized propensity score $f(T = t \mid X = x) \in (\epsilon, 1/\epsilon)$ for any $(x, t) \in \mathcal{X} \times \mathcal{T}$.
+
+**Notation**:
+
+- For any vector $v$, $\|v\|$ denotes its $\ell_2$ norm
+- For any random variable $W \in \mathcal{W}$, $f(w)$ and $P(w)$ denote its probability density function and probability measure
+- For any function $g(w)$:
+  - $P_n\{g(W)\} = \frac{1}{n}\sum_{i=1}^n g(W_i)$ denotes its empirical expectation
+  - $\|g\|_{L_2} = \left\{\int_{w \in \mathcal{W}} g^2(w) dw\right\}^{1/2}$ denotes its $L_2$ norm
+  - $\|g\|_{L_2^P} = \left\{\int_{w \in \mathcal{W}} g^2(w) dP(w)\right\}^{1/2}$ denotes its $L_2^P$ norm  
+  - $\|g\|_{\mathcal{W}} = \sup_{w \in \mathcal{W}} |g(w)|$ denotes its $L_\infty$ norm
+- $L_2^P(\mathcal{W})$ represents the function space of all $g(w)$ with a bounded $L_2^P$ norm
+- When $g(w)$ is a multivariate function, denote $\|g\|_{\mathcal{W}} = \sup_{w \in \mathcal{W}} \|g(w)\|$
+
+**Nuisance Functions**:
+
+- **Conditional outcome mean**: $m(x) = E(Y \mid X = x)$
+- **Generalized propensity score**: $\varpi(t \mid x) = f(T = t \mid X = x)$
+
+**Full conditional outcome mean model**:
+$$\mu(x, t) = E(Y \mid X = x, T = t)$$
+
+**Observation noises**:
+$$\varepsilon_i = Y_i - \mu(X_i, T_i), \quad i = 1, \ldots, n$$
+
+where $E(\varepsilon_i \mid X_i, T_i) = 0$, following the definition of $\mu(x, t)$.
+
+## 2. Generalized R-learner
+---
+
+### 2.1 The generalized R-loss
+---
+
+> We first generalize the idea of the Robinson's residual (Robinson, 1988; Nie and Wager, 2021) to the continuous-treatment scenario. 
+
+이번 절에서는 일반화된 R-loss를 어떻게 유도하는지에 대해 설명합니다.
+
+The unconfoundedness and stable unit and treatment value imply:
+
+$$
+\begin{equation}
+Y_i^{(T_i)} = \mu(X_i, T_i) + \varepsilon_i = \mu(X_i, 0) + \tau(X_i, T_i) + \varepsilon_i \tag{3}
+\end{equation}
+$$
+
+> **해석**: 
+> - **첫 번째 등식**: Assumption 2와 equation (2)에서 유도
+> - **두 번째 등식**: Assumption 1과 $\tau(x, t)$의 정의에서 유도
+> - **특징**: 비모수적 모델이며 추가적인 구조적 가정이 없음
+
+**Step 2: 조건부 기댓값 계산**:
+
+Given $X_i$, taking the conditional expectation on (3) leads to:
+
+$$
+\begin{equation}
+m(X_i) = E\left[Y_i^{(T_i)} \mid X = X_i\right] = \mu(X_i, 0) + E_{\varpi}\{\tau(X, T) \mid X = X_i\} \tag{4}
+\end{equation}
+$$
+
+> **전체 기댓값 법칙 적용**:
+> $$E(\varepsilon_i \mid X_i) = E\left[E(\varepsilon_i \mid X_i, T_i) \mid X_i\right] = E[0 \mid X_i] = 0$$
+
+**일반화된 Propensity Score 기댓값**:
+
+The notation $E_{\varpi}\{\tau(X, T) \mid X = X_i\}$ in (4) highlights the dependency of the conditional expectation on the generalized propensity score as:
+
+$$E_{\varpi}\{\tau(X, T) \mid X = X_i\} = \int_{t \in \mathcal{T}} \tau(X_i, t) \varpi(t \mid X_i) dt$$
+
+> **핵심**: 연속형 처치에서는 적분을 통해 모든 처치 수준에 대한 가중 평균을 계산
+
+**Step 3: 잔차 도출**:
+
+By subtracting (4) from (3) on both left- and right-hand sides, we have:
+
+$$
+\begin{equation}
+Y_i^{(T_i)} - m(X_i) = \tau(X_i, T_i) - E_{\varpi}\{\tau(X, T) \mid X = X_i\} + \varepsilon_i \tag{5}
+\end{equation}
+$$
+
+> **해석**: 
+> - **좌변**: 관찰된 결과에서 조건부 평균을 뺀 값 (Robinson's residual)
+> - **우변**: 처치효과에서 평균 처치효과를 뺀 값 + 노이즈
+
+**Step 4: 손실 함수 도출**:
+
+By treating the left-hand side of (5) as the response and the right-hand side except $\varepsilon_i$ as the mean function, we derive the following population loss function:
+
+$$
+\begin{equation}
+L_c(h) = E\left[\left\{Y - m(X) - h(X, T) + E_{\varpi}\{h(X, T) \mid X\}\right\}^2\right] \tag{6}
+\end{equation}
+$$
+
+> **핵심 특징**:
+> - **최적해**: $h = \tau$에서 최소화됨
+> - **일반화**: 이진 처치 R-learner의 자연스러운 확장
+> - **참고**: Nie and Wager (2021, §7)의 다중 처치 설정에서 유사한 손실함수 등장
+
+**이진 처치와의 연결**:
+
+> In particular, under the binary-treatment case, $\tau(x, t)$ reduces to $\{\tau(x, 0), \tau(x, 1)\}$, where $\tau(x, 0) = E(Y^{(0)} - Y^{(0)} \mid X = x) = 0$ for any $x \in \mathcal{X}$, and $\tau(x, 1)$ is the conditional average treatment effect of interest. It suffices to estimate $\tau(x, 1)$ by solving the $h(\cdot, 1)$ that minimizes (6), after imposing a zero condition of $h(\cdot, 0)$:
+
+$$
+\begin{equation}
+h(x, 0) = 0, \quad \text{for any } x \in \mathcal{X} \tag{7}
+\end{equation}
+$$
+
+> **Zero condition**: 기준 처치 수준에서의 효과는 0으로 설정
+
+**이진 처치 R-loss로의 환원**:
+
+유도된 일반화된 R-loss가 기존의 이진 처치에서의 loss function으로 유도될 수 있음을 설명합니다.
+
+> More specifically, observing that under (7) one has $h(X, T) - E_e\{h(X, T) \mid X\} = \{T - e(X)\}h(X, 1)$ a.s., where $e(x) = \text{pr}(T = 1 \mid X = x)$ is the propensity score, the R-loss function (6) reduces to:
+
+$$
+\begin{equation}
+L_b(h) = E\left[\left\{Y - m(X) - \{T - e(X)\}h(X, 1)\right\}^2\right] \tag{8}
+\end{equation}
+$$
+
+> **핵심**: 
+> - **조건**: $h(x, 0) = 0$ (zero condition)
+> - **결과**: $h(X, T) - E_e\{h(X, T) \mid X\} = \{T - e(X)\}h(X, 1)$
+> - **의미**: 일반화된 R-loss가 이진 처치의 고전적 R-loss로 환원됨
+
+> **핵심**: T가 1 or 0인 상황에서 zero condition을 고려해 (6)번 수식을 전개하면 기존의 이진 처치에서의 손실함수 수식과 같은 (8)번 수식을 얻을 수 있습니다.
+
+
+### 2.2 Non-identification of the generalized R-loss
+---
+
+> The R-learner for continuous treatment will have poor estimation performance, due to the non-unique identifiability of the generalized R-loss
+
+**핵심 문제**:
+
+이 절에서는 **non-identification 문제**에 대해 설명합니다. 연속형 처치에서 일반화된 R-loss를 직접 최소화하면 유일한 해를 찾을 수 없다는 것이 핵심 문제입니다.
+
+**이론적 설명**:
+
+> We provide a theoretical explanation for the success and failure of the identifiabilities of the R-learner for binary treatment and generalized R-learner for continuous treatment, respectively.
+
+**해집합 정의**:
+
+> Denote the solution set:
+$$
+\begin{equation}
+S = \{h \mid h(X, T) = \tau(X, T) + s(X) \text{ a.s., for any } s \in L_2^P(X)\} \tag{9}
+\end{equation}
+$$
+
+> **해석**: $S$는 목표 함수 $\tau(X, T)$에 공변량 $X$의 함수 $s(X)$를 더한 모든 함수들의 집합
+
+**검증 과정**:
+
+> It is easy to check that for any $h \in S$:
+
+$$
+Y - m(X) - [h(X, T) - E_{\varpi}\{h(X, T) \mid X\}] = Y - m(X) - [\tau(X, T) - E_{\varpi}\{\tau(X, T) \mid X\}] \text{ a.s.}
+$$
+
+> **의미**: $S$에 속한 모든 함수 $h$가 동일한 손실값을 가짐
+
+**Non-identification 문제**:
+
+> From (6), any function $h \in S$ minimizes the generalized R-loss $L_c(\cdot)$. Therefore, when $T$ is continuous, directly minimizing the generalized R-loss fails to uniquely identify the target estimand $\tau(x, t)$, as there are **infinitely many solutions** in $S$.
+
+> **핵심 문제**: 
+> - 연속형 처치에서는 무한히 많은 해가 존재
+> - 유일한 CATE 함수를 식별할 수 없음
+> - 이는 **ill-posed problem**의 전형적인 예
+
+**이론적 근거**:
+
+> This result theoretically substantiates the ill-posedness of estimating $\tau(x, t)$ by minimizing the empirical counterpart of $L_c(\cdot)$ using nonparametric estimators, and also explains the failure-to-estimate issue illustrated in Fig. 1.
+
+> Part (i) of Proposition 1 below rigorously proves that $S$ in fact contains **all minima** of $L_c(\cdot)$ in $L_2^P(X, T)$.
+
+**이진 처치와의 대비**:
+
+> In contrast, minimizing the binary-treatment R-loss (8) which incorporates the zero condition (7), can successfully identify $\tau$, because (7) narrows the general solution set $S$ into:
+
+$$
+\begin{equation}
+S^\natural = \{h \mid h(X, T) = \tau(X, T) \text{ a.s.}\} \tag{10}
+\end{equation}
+$$
+
+> **핵심 차이**:
+> - **연속형**: $S$ (무한히 많은 해)
+> - **이진형**: $S^\natural$ (유일한 해)
+> - **원인**: Zero condition (7)이 해집합을 좁혀줌
+
+
+>**Proposition 1**: 식별 결과의 엄밀한 증명
+
+> Despite the popular use of R-loss (8) in literature (Zhao et al., 2022; Nie and Wager, 2021), the corresponding identification problem has not been rigorously discussed. Part (ii) of Proposition 1 fulfills this gap.
+
+**가정**: Assumptions 1–2가 성립한다고 가정
+
+**결과**: 다음과 같은 식별 결과를 얻는다.
+
+**Part (i)**: 연속형 처치의 경우
+
+**조건**: $T$가 연속형 처치이고 $\tau \in L_2^P(X, T)$
+
+**결과**: $S$는 다음 최적화 문제의 해집합이다:
+
+$$
+\begin{equation}
+\arg\min_{h \in L_2^P(X,T)} L_c(h) \tag{11}
+\end{equation}
+$$
+
+**의미**: 연속형 처치에서는 일반화된 R-loss $L_c(h)$의 최소화가 해집합 $S$를 제공
+
+**Part (ii)**: 이진 처치의 경우
+
+**조건**: 
+- $T$가 이진형 처치이고 $\tau(\cdot, 1) \in L_2^P(X)$
+- 추가로 positivity 가정: $e(x) \in (\epsilon', 1-\epsilon')$ for some fixed $\epsilon' > 0$ and for all $x \in \mathcal{X}$
+
+**결과**: 관심 함수들의 집합 $\mathcal{L}_b = \{h \mid h(\cdot, 1) \in L_2^P(X) \text{ and } h(X, 0) = 0 \text{ a.s.}\}$ 중에서, (10)의 $S^\natural$가 다음 최적화 문제의 해집합이다:
+
+$$\arg\min_{h \in \mathcal{L}_b} L_b(h)$$
+
+> **의미**: 이진형 처치에서는 zero condition이 적용된 R-loss $L_b(h)$의 최소화가 유일한 해 $S^\natural$를 제공
+
+**핵심 차이점**:
+
+| 구분 | 연속형 처치 | 이진형 처치 |
+|------|-------------|-------------|
+| **최적화 문제** | $\arg\min_{h \in L_2^P(X,T)} L_c(h)$ | $\arg\min_{h \in \mathcal{L}_b} L_b(h)$ |
+| **해집합** | $S$ (무한히 많은 해) | $S^\natural$ (유일한 해) |
+| **제약조건** | 없음 | $h(X, 0) = 0$ (zero condition) |
+| **식별 가능성** | ❌ 불가능 | ✅ 가능 |
+
+
+# 논문에서 의문이 들었던 부분들 정리
+---
+
+## 왜 이진 처치에서는 Zero Condition이 적용되고, 연속 처치에서는 적용되지 않을까?
+---
+
+### 이진 처치에서의 Zero Condition
+
+**이진 처치의 특성**:
+- 처치 수준: $T \in \{0, 1\}$ (이산적)
+- 목표: $\tau(x, 1)$ (처치 효과)만 추정
+- 기준점: $T = 0$ (통제 그룹)
+
+**Zero Condition의 자연스러운 적용**:
+$$\tau(x, 0) = E[Y^{(0)} - Y^{(0)} \mid X = x] = 0$$
+
+> **이유**: 
+> - $T = 0$은 "처치를 받지 않은 상태"를 의미
+> - 같은 상태에서의 차이는 당연히 0
+> - 이는 **자연스러운 제약조건**이 됨
+
+**수학적 효과**:
+- 해집합 $S$에서 $h(x, 0) = 0$ 조건을 추가
+- $S^\natural = \{h \mid h(X, T) = \tau(X, T) \text{ a.s.}\}$로 축소
+- **유일한 해** 보장
+
+### 연속 처치에서의 문제
+
+**연속 처치의 특성**:
+- 처치 수준: $T \in \mathbb{R}$ (연속적)
+- 목표: $\tau(x, t)$ for all $t \in \mathcal{T}$ (모든 처치 수준에서의 효과)
+- 기준점: $T = 0$이 **임의적**일 수 있음
+
+**Zero Condition 적용의 어려움**:
+$$\tau(x, 0) = E[Y^{(0)} - Y^{(0)} \mid X = x] = 0$$
+
+> **문제점**:
+> - $T = 0$이 실제로 "처치를 받지 않은 상태"가 아닐 수 있음
+> - 예: 약물 투여량에서 $T = 0$은 "약물을 투여하지 않음"이 아닐 수 있음
+> - 다른 기준점 $T = t_0$에서 $\tau(x, t_0) = 0$이 더 자연스러울 수 있음
+
+**수학적 문제**:
+- 어떤 기준점을 선택할지 **명확하지 않음**
+- Zero condition을 적용해도 **여전히 무한히 많은 해** 존재
+- 해집합 $S$가 **충분히 축소되지 않음**
+
+### 핵심 차이점 요약
+
+| 구분 | 이진 처치 | 연속 처치 |
+|------|-----------|-----------|
+| **처치 특성** | 이산적 $\{0, 1\}$ | 연속적 $\mathbb{R}$ |
+| **기준점** | $T = 0$ (자연스러움) | $T = 0$ (임의적) |
+| **Zero Condition** | 자연스럽게 적용 가능 | 적용이 어려움 |
+| **해집합** | $S^\natural$ (유일한 해) | $S$ (무한히 많은 해) |
+| **식별 가능성** | ✅ 가능 | ❌ 불가능 |
+
+## "h(x, 0) = 0을 강제하면 되지 않나?" - 왜 안 될까?
+---
+
+### 문제의 핵심: 여전히 무한히 많은 해가 존재
+
+**강제로 $h(x, 0) = 0$을 적용해도**:
+
+$$S_{constrained} = \{h \mid h(X, T) = \tau(X, T) + s(X), \text{ where } s(X) \text{ satisfies } s(X) = -\tau(X, 0)\}$$
+
+> **핵심**: $s(X) = -\tau(X, 0)$ 조건을 만족하는 함수 $s(X)$가 **여전히 무한히 많음**
+
+### 왜 여전히 무한히 많은 해가 존재할까?
+
+**이진 처치의 경우**:
+- $T \in \{0, 1\}$ (2개 값만 존재)
+- $h(x, 0) = 0$ 조건이 **모든 가능한 해를 제한**
+- 결과: 유일한 해 $\tau(x, 1)$만 남음
+
+**연속 처치의 경우**:
+- $T \in \mathbb{R}$ (무한히 많은 값)
+- $h(x, 0) = 0$ 조건이 **단 하나의 점만 제한**
+- 결과: $T \neq 0$인 모든 점에서 여전히 자유도 존재
+
+### 수학적 예시
+
+**연속 처치에서 $h(x, 0) = 0$을 강제한 후**:
+
+$$h(x, t) = \tau(x, t) + s(x)$$
+
+여기서 $s(x)$는 $h(x, 0) = 0$을 만족해야 하므로:
+$$s(x) = -\tau(x, 0)$$
+
+하지만 **문제는 여기서 끝나지 않음**:
+
+1. **$s(x)$의 형태가 무한히 많음**: $s(x) = -\tau(x, 0) + \text{any function of } x$
+2. **$T \neq 0$에서의 자유도**: $h(x, t)$ for $t \neq 0$에서 여전히 무한히 많은 선택 가능
+3. **정규화 부족**: 단순히 한 점에서 0이 되는 것만으로는 충분하지 않음
+
+### 실제 문제
+
+**예시**: 약물 투여량 연구
+- $T = 0$: 최소 투여량 (실제로는 약물 효과가 있을 수 있음)
+- $T = 1, 2, 3, ...$: 다양한 투여량
+- $h(x, 0) = 0$을 강제해도 $h(x, 1), h(x, 2), ...$에서 여전히 무한히 많은 가능성
+
+### 해결책의 방향
+
+이것이 바로 논문에서 제안하는 **Tikhonov 정규화**와 **2단계 추정 과정**이 필요한 이유입니다:
+
+1. **정규화**: $\|h\|^2$ 같은 추가 제약조건 필요
+2. **2단계 과정**: 중간 함수 추정 후 변환
+3. **Zero-constraining operator**: 적절한 변환을 통한 유일성 보장
+
 
