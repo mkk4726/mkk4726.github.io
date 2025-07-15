@@ -12,7 +12,7 @@ tags: ["TOEFL", "영어", "대학원", "OMSCS"]
 
 ## Paragraph 1
 
-<button class="toggle-button translations" data-type="paragraph1">🔍 AI 해석 가리기/보이기</button>
+<button class="toggle-button translations" data-type="paragraph1">🔍 AI 해석 가리기</button>
 
 <div class="paragraph1-content">
 
@@ -40,7 +40,7 @@ tags: ["TOEFL", "영어", "대학원", "OMSCS"]
 
 ## Paragraph 2
 
-<button class="toggle-button translations" data-type="paragraph2">🔍 AI 해석 가리기/보이기</button>
+<button class="toggle-button translations" data-type="paragraph2">🔍 AI 해석 가리기</button>
 
 <div class="paragraph2-content">
 
@@ -65,7 +65,7 @@ tags: ["TOEFL", "영어", "대학원", "OMSCS"]
 
 ## Paragraph 3
 
-<button class="toggle-button translations" data-type="paragraph3">🔍 AI 해석 가리기/보이기</button>
+<button class="toggle-button translations" data-type="paragraph3">🔍 AI 해석 가리기</button>
 
 <div class="paragraph3-content">
 
@@ -89,7 +89,7 @@ tags: ["TOEFL", "영어", "대학원", "OMSCS"]
 
 ## Paragraph 4
 
-<button class="toggle-button translations" data-type="paragraph4">🔍 AI 해석 가리기/보이기</button>
+<button class="toggle-button translations" data-type="paragraph4">🔍 AI 해석 가리기</button>
 
 <div class="paragraph4-content">
 
@@ -121,7 +121,7 @@ tags: ["TOEFL", "영어", "대학원", "OMSCS"]
 
 ## Paragraph 5
 
-<button class="toggle-button translations" data-type="paragraph5">🔍 AI 해석 가리기/보이기</button>
+<button class="toggle-button translations" data-type="paragraph5">🔍 AI 해석 가리기</button>
 
 <div class="paragraph5-content">
 
@@ -149,7 +149,7 @@ tags: ["TOEFL", "영어", "대학원", "OMSCS"]
 
 ## Paragraph 6
 
-<button class="toggle-button translations" data-type="paragraph6">🔍 AI 해석 가리기/보이기</button>
+<button class="toggle-button translations" data-type="paragraph6">🔍 AI 해석 가리기</button>
 
 <div class="paragraph6-content">
 
@@ -173,7 +173,7 @@ tags: ["TOEFL", "영어", "대학원", "OMSCS"]
 
 ## Paragraph 7
 
-<button class="toggle-button translations" data-type="paragraph7">🔍 AI 해석 가리기/보이기</button>
+<button class="toggle-button translations" data-type="paragraph7">🔍 AI 해석 가리기</button>
 
 <div class="paragraph7-content">
 
@@ -292,7 +292,7 @@ tags: ["TOEFL", "영어", "대학원", "OMSCS"]
 - (C) loudly
 - (D) commonly
 
-<button class="toggle-button answer" data-type="answer1">🔍 정답 및 해설 가리기/보이기</button>
+<button class="toggle-button answer" data-type="answer1">🔍 정답 및 해설 가리기</button>
 
 <div class="answer1-content">
 
@@ -319,7 +319,7 @@ tags: ["TOEFL", "영어", "대학원", "OMSCS"]
 - (C) Geographical boundaries may result in differences in song between distinct populations.
 - (D) Populations having clear dialects result from the shared song types within the group.
 
-<button class="toggle-button answer" data-type="answer2">🔍 정답 및 해설 가리기/보이기</button>
+<button class="toggle-button answer" data-type="answer2">🔍 정답 및 해설 가리기</button>
 
 <div class="answer2-content">
 
@@ -344,7 +344,7 @@ tags: ["TOEFL", "영어", "대학원", "OMSCS"]
 - (C) listening to phrases in reverse order
 - (D) labeling them as male or female
 
-<button class="toggle-button answer" data-type="answer3">🔍 정답 및 해설 가리기/보이기</button>
+<button class="toggle-button answer" data-type="answer3">🔍 정답 및 해설 가리기</button>
 
 <div class="answer3-content">
 
@@ -368,7 +368,7 @@ tags: ["TOEFL", "영어", "대학원", "OMSCS"]
 - (C) They learn songs of their own subspecies faster than those of other subspecies.
 - (D) They learn more easily from laboratory recordings than in the wild.
 
-<button class="toggle-button answer" data-type="answer4">🔍 정답 및 해설 가리기/보이기</button>
+<button class="toggle-button answer" data-type="answer4">🔍 정답 및 해설 가리기</button>
 
 <div class="answer4-content">
 
@@ -392,7 +392,7 @@ tags: ["TOEFL", "영어", "대학원", "OMSCS"]
 - (C) They only have contact with Gambell's sparrows during the breeding season.
 - (D) They do not have the same inherent vocalization abilities that Gambell's sparrows do.
 
-<button class="toggle-button answer" data-type="answer5">🔍 정답 및 해설 가리기/보이기</button>
+<button class="toggle-button answer" data-type="answer5">🔍 정답 및 해설 가리기</button>
 
 <div class="answer5-content">
 
@@ -419,7 +419,7 @@ tags: ["TOEFL", "영어", "대학원", "OMSCS"]
 - (C) intelligent
 - (D) capable
 
-<button class="toggle-button answer" data-type="answer6">🔍 정답 및 해설 가리기/보이기</button>
+<button class="toggle-button answer" data-type="answer6">🔍 정답 및 해설 가리기</button>
 
 <div class="answer6-content">
 
@@ -446,7 +446,7 @@ tags: ["TOEFL", "영어", "대학원", "OMSCS"]
 - (C) Hatching early or late in the season
 - (D) Mating between March and October ✓
 
-<button class="toggle-button answer" data-type="answer7">🔍 정답 및 해설 가리기/보이기</button>
+<button class="toggle-button answer" data-type="answer7">🔍 정답 및 해설 가리기</button>
 
 <div class="answer7-content">
 
@@ -472,7 +472,7 @@ tags: ["TOEFL", "영어", "대학원", "OMSCS"]
 - (C) To introduce a new issue that has emerged in research on bird dialects
 - (D) To suggest that language acquisition in birds is still poorly understood
 
-<button class="toggle-button answer" data-type="answer8">🔍 정답 및 해설 가리기/보이기</button>
+<button class="toggle-button answer" data-type="answer8">🔍 정답 및 해설 가리기</button>
 
 <div class="answer8-content">
 
@@ -502,7 +502,7 @@ tags: ["TOEFL", "영어", "대학원", "OMSCS"]
 
 **Where would the sentence best fit?**
 
-<button class="toggle-button answer" data-type="answer9">🔍 정답 및 해설 가리기/보이기</button>
+<button class="toggle-button answer" data-type="answer9">🔍 정답 및 해설 가리기</button>
 
 <div class="answer9-content">
 
@@ -538,7 +538,7 @@ tags: ["TOEFL", "영어", "대학원", "OMSCS"]
 - (E) Field studies of two Zonotrichia leucophrys subspecies revealed that multilingualism is dependent upon the timing and nature of interactions between dialectical group members.
 - (F) One thing that is clear about the various subspecies of Zonotrichia leucophrys is that they all seem to begin learning songs for the first time after two months of age.
 
-<button class="toggle-button answer" data-type="answer10">🔍 정답 및 해설 가리기/보이기</button>
+<button class="toggle-button answer" data-type="answer10">🔍 정답 및 해설 가리기</button>
 
 <div class="answer10-content">
 

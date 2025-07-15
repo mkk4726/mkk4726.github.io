@@ -11,6 +11,20 @@
     "content": "\n\n# User-Based Collaborative Filtering (사용자 기반 협업 필터링)\n\n## 개요\n\nUser-Based Collaborative Filtering은 추천 시스템에서 가장 오래되고 직관적인 이웃(neighborhood) 기반 방법입니다. 핵심 아이디어는 **\"비슷한 취향을 가진 사용자들이 비슷한 아이템을 좋아할 것이다\"** 라는 가정에 기반합니다.\n\n## 기본 개념\n\n- **사용자-아이템 평점 행렬 $R$**: 행은 사용자, 열은 아이템\n- **원소 $r_{u,i}$**: 사용자 $u$가 아이템 $i$에 매긴 평점 (또는 암시적 행동)\n- **목표**: 사용자 $u$에게 아이템 $i$를 추천할지 결정\n\n## 알고리즘 절차\n\n### 1. 유사도(Similarity) 계산\n\n사용자 간 유사도를 계산하는 방법들:\n\n#### Cosine Similarity\n$$\\text{sim}(u,v) = \\frac{\\mathbf{r}_u \\cdot \\mathbf{r}_v}{\\|\\mathbf{r}_u\\| \\times \\|\\mathbf{r}_v\\|}$$\n\n#### Pearson Correlation\n$$\\text{sim}(u,v) = \\frac{\\sum_{i \\in I_{uv}} (r_{u,i} - \\bar{r}_u)(r_{v,i} - \\bar{r}_v)}{\\sqrt{\\sum_{i \\in I_{uv}} (r_{u,i} - \\bar{r}_u)^2} \\times \\sqrt{\\sum_{i \\in I_{uv}} (r_{v,i} - \\bar{r}_v)^2}}$$\n\n여기서 $I_{uv}$는 두 사용자가 모두 평가한 아이템 집합\n\n#### Adjusted Cosine Similarity\n$$\\text{sim}(u,v) = \\frac{\\sum_{i \\in I_{uv}} (r_{u,i} - \\bar{r}_i)(r_{v,i} - \\bar{r}_i)}{\\sqrt{\\sum_{i \\in I_{uv}} (r_{u,i} - \\bar{r}_i)^2} \\times \\sqrt{\\sum_{"
   },
   {
+    "id": "English Study/TOEFL/DefinitionOfArt",
+    "title": "Definition of Art",
+    "date": "2025-07-15",
+    "excerpt": "TOEFL Reading 문제 공부 - 예술의 정의",
+    "category": "English Study",
+    "tags": [
+      "TOEFL",
+      "영어",
+      "대학원",
+      "OMSCS"
+    ],
+    "content": "\n# Definition of Art\n예술의 정의\n\n## Paragraph 1\n\n<button class=\"toggle-button translations\" data-type=\"paragraph1\">🔍 AI 해석 가리기</button>\n\n<div class=\"paragraph1-content\">\n\n> How art is defined has varied throughout history, leading to a wide range of sometimes-contradictory meanings. \n\n<span class=\"translation\">예술이 어떻게 정의되는지는 역사를 통틀어 변화해왔으며, 때로는 상반되는 의미들의 광범위한 스펙트럼을 만들어냈다.</span>\n\n> In the ancient world, the term was used in a broad sense that was not strictly related to visual arts. \n\n<span class=\"translation\">고대 세계에서 이 용어는 시각 예술에 엄격하게 국한되지 않는 광범위한 의미로 사용되었다.</span>\n\n> The application of the word \"art\" exclusively to works in the form of paintings, sculptures, and prints came about only in the Renaissance, and later, in the eighteenth century, the use of the term expanded to include music and poetry. \n\n<span class=\"translation\">\"예술\"이라는 단어를 회화, 조각, 판화 형태의 작품들에만 독점적으로 적용하는 것은 르네상스 시대에 비로소 나타났으며, 이후 18세기에는 이 용어의 사용이 음악과 시를 포함하도록 확장되었다.</span>\n\n> Subsequently, in modern times, a new meaning c"
+  },
+  {
     "id": "English Study/SPEAK/07-15-정신똑바로차리고있어",
     "title": "정신 똑바로 차리고 있어",
     "date": "2025-07-15",
@@ -91,20 +105,6 @@
     "content": "\n\n"
   },
   {
-    "id": "English Study/TOEFL/DefinitionOfArt",
-    "title": "Definition of Art",
-    "date": "2025-07-14",
-    "excerpt": "TOEFL Reading 문제 공부 - 예술의 정의",
-    "category": "English Study",
-    "tags": [
-      "TOEFL",
-      "영어",
-      "대학원",
-      "OMSCS"
-    ],
-    "content": "\n# Definition of Art\n예술의 정의\n\n## Paragraph 1\n\n<button class=\"toggle-button translations\" data-type=\"paragraph1\">🔍 AI 해석 가리기/보이기</button>\n\n<div class=\"paragraph1-content\">\n\n> How art is defined has varied throughout history, leading to a wide range of sometimes-contradictory meanings. \n\n예술이 어떻게 정의되었는지는 역사를 통틀어 변화해왔고, 때때로 모순적인 의미들의 넓은 범위로 이어졌다.\n<span class=\"translation\">예술이 어떻게 정의되는지는 역사를 통틀어 변화해왔으며, 때로는 상반되는 의미들의 광범위한 스펙트럼을 만들어냈다.</span>\n\n> In the ancient world, the term was used in a broad sense that was not strictly related to visual arts. \n\n고대 세계에서, 그 용어는 시각 예술과 엄격하게 관련되지 않은 넓은 의미로 사용되었다.\n<span class=\"translation\">고대 세계에서 이 용어는 시각 예술에 엄격하게 국한되지 않는 광범위한 의미로 사용되었다.</span>\n\n> The application of the word \"art\" exclusively to works in the form of paintings, sculptures, and prints came about only in the Renaissance, and later, in the eighteenth century, the use of the term expanded to include music and poetry. \n\n\"예술\"이라는 단어를 회화, 조각, 판화 형태의 작품들에만 독점적으로 적용하는 것은 르네상스 시대에만 생겨났고, 나중에 18세기에는 그 용어"
-  },
-  {
     "id": "English Study/TOEFL/BirdDialects",
     "title": "Bird Dialects",
     "date": "2025-07-14",
@@ -116,7 +116,7 @@
       "대학원",
       "OMSCS"
     ],
-    "content": "\n# Bird Dialects\n새 다이러렉츠?\n새의 방언\n\n## Paragraph 1\n\n<button class=\"toggle-button translations\" data-type=\"paragraph1\">🔍 AI 해석 가리기/보이기</button>\n\n<div class=\"paragraph1-content\">\n\n> Birds learn acoustic information from their parents and environment from an early age. \n\n새들은 어린나이부터 어쿠스틱 정보를 그들의 부모와 환경으로부터 배운다\n<span class=\"translation\">새들은 어린 나이부터 부모와 환경으로부터 음향 정보를 배운다.</span>\n\n> The most complex form of avian vocalization is the birdsong, an often melodic series of communicative sounds produced primarily during breeding. \n\n가장 복잡한 아비안 보컬화는 버드 송이다, 이건 가끔 멜로딕한 의사소통을 위한 소리다 먹이를 줄 때 주로 발생하는\n<span class=\"translation\">조류의 발성 중 가장 복잡한 형태는 새의 노래로, 번식기에 주로 발생하는 종종 선율적인 의사소통 소리의 연속이다.</span>\n\n> In cases where populations have geographical boundaries, differences in song may appear, and if these geographical limits are distinct, the shared song types within a population are referred to as dialects. \n\n인구 분포가 지역적인 바운더리를 가지는 경우라면, 노래에서 차이가 보인다. 그리고 지역적인 한계가 분명하면 지역적인 분포에서 공유되는 노래가 다이어렉츠 라고 불린다.\n<span clas"
+    "content": "\n# Bird Dialects\n새 다이러렉츠?\n새의 방언\n\n## Paragraph 1\n\n<button class=\"toggle-button translations\" data-type=\"paragraph1\">🔍 AI 해석 가리기</button>\n\n<div class=\"paragraph1-content\">\n\n> Birds learn acoustic information from their parents and environment from an early age. \n\n<span class=\"translation\">새들은 어린 나이부터 부모와 환경으로부터 음향 정보를 배운다.</span>\n\n> The most complex form of avian vocalization is the birdsong, an often melodic series of communicative sounds produced primarily during breeding. \n\n<span class=\"translation\">조류의 발성 중 가장 복잡한 형태는 새의 노래로, 번식기에 주로 발생하는 종종 선율적인 의사소통 소리의 연속이다.</span>\n\n> In cases where populations have geographical boundaries, differences in song may appear, and if these geographical limits are distinct, the shared song types within a population are referred to as dialects. \n\n<span class=\"translation\">개체군이 지리적 경계를 가진 경우, 노래에서 차이가 나타날 수 있으며, 이러한 지리적 한계가 뚜렷하면, 한 개체군 내에서 공유되는 노래 유형을 방언이라고 부른다.</span>\n\n> Ornithologists are keenly interested in how these dialects form and to what extent "
   },
   {
     "id": "English Study/SPEAK/07-14-걱정하는표현",

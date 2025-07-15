@@ -11,7 +11,7 @@ tags: ["TOEFL", "영어", "대학원", "OMSCS"]
 
 ## Paragraph 1
 
-<button class="toggle-button translations" data-type="paragraph1">🔍 AI 해석 가리기/보이기</button>
+<button class="toggle-button translations" data-type="paragraph1">🔍 AI 해석 가리기</button>
 
 <div class="paragraph1-content">
 
@@ -35,7 +35,7 @@ tags: ["TOEFL", "영어", "대학원", "OMSCS"]
 
 ## Paragraph 2
 
-<button class="toggle-button translations" data-type="paragraph2">🔍 AI 해석 가리기/보이기</button>
+<button class="toggle-button translations" data-type="paragraph2">🔍 AI 해석 가리기</button>
 
 <div class="paragraph2-content">
 
@@ -71,7 +71,7 @@ tags: ["TOEFL", "영어", "대학원", "OMSCS"]
 
 ## Paragraph 3
 
-<button class="toggle-button translations" data-type="paragraph3">🔍 AI 해석 가리기/보이기</button>
+<button class="toggle-button translations" data-type="paragraph3">🔍 AI 해석 가리기</button>
 
 <div class="paragraph3-content">
 
@@ -111,7 +111,7 @@ tags: ["TOEFL", "영어", "대학원", "OMSCS"]
 
 ## Paragraph 4
 
-<button class="toggle-button translations" data-type="paragraph4">🔍 AI 해석 가리기/보이기</button>
+<button class="toggle-button translations" data-type="paragraph4">🔍 AI 해석 가리기</button>
 
 <div class="paragraph4-content">
 
@@ -147,7 +147,7 @@ tags: ["TOEFL", "영어", "대학원", "OMSCS"]
 
 ## Paragraph 5
 
-<button class="toggle-button translations" data-type="paragraph5">🔍 AI 해석 가리기/보이기</button>
+<button class="toggle-button translations" data-type="paragraph5">🔍 AI 해석 가리기</button>
 
 <div class="paragraph5-content">
 
@@ -183,7 +183,7 @@ tags: ["TOEFL", "영어", "대학원", "OMSCS"]
 
 ## Paragraph 6
 
-<button class="toggle-button translations" data-type="paragraph6">🔍 AI 해석 가리기/보이기</button>
+<button class="toggle-button translations" data-type="paragraph6">🔍 AI 해석 가리기</button>
 
 <div class="paragraph6-content">
 
@@ -219,7 +219,7 @@ tags: ["TOEFL", "영어", "대학원", "OMSCS"]
 
 ## Paragraph 7
 
-<button class="toggle-button translations" data-type="paragraph7">🔍 AI 해석 가리기/보이기</button>
+<button class="toggle-button translations" data-type="paragraph7">🔍 AI 해석 가리기</button>
 
 <div class="paragraph7-content">
 
@@ -374,7 +374,7 @@ tags: ["TOEFL", "영어", "대학원", "OMSCS"]
 - (C) Visual art occupied a special place in higher learning.
 - (D) Art applied to any pursuit involving formal education.
 
-<button class="toggle-button answer" data-type="answer12">🔍 정답 및 해설 가리기/보이기</button>
+<button class="toggle-button answer" data-type="answer12">🔍 정답 및 해설 가리기</button>
 
 <div class="answer12-content">
 
@@ -404,7 +404,7 @@ tags: ["TOEFL", "영어", "대학원", "OMSCS"]
 - (C) Mathematics
 - (D) Music
 
-<button class="toggle-button answer" data-type="answer13">🔍 정답 및 해설 가리기/보이기</button>
+<button class="toggle-button answer" data-type="answer13">🔍 정답 및 해설 가리기</button>
 
 <div class="answer13-content">
 
@@ -434,7 +434,7 @@ tags: ["TOEFL", "영어", "대학원", "OMSCS"]
 - (C) They were produced by artisans in the academies.
 - (D) They were made to closely follow aesthetic principles.
 
-<button class="toggle-button answer" data-type="answer14">🔍 정답 및 해설 가리기/보이기</button>
+<button class="toggle-button answer" data-type="answer14">🔍 정답 및 해설 가리기</button>
 
 <div class="answer14-content">
 
@@ -467,7 +467,7 @@ tags: ["TOEFL", "영어", "대학원", "OMSCS"]
 - (C) wrong assumptions  
 - (D) feeble suggestions
 
-<button class="toggle-button answer" data-type="answer15">🔍 정답 및 해설 가리기/보이기</button>
+<button class="toggle-button answer" data-type="answer15">🔍 정답 및 해설 가리기</button>
 
 <div class="answer15-content">
 
@@ -497,7 +497,7 @@ tags: ["TOEFL", "영어", "대학원", "OMSCS"]
 - (C) They placed a greater emphasis on aesthetics than did classical artists.
 - (D) They viewed moral and political art as having no intrinsic value.
 
-<button class="toggle-button answer" data-type="answer16">🔍 정답 및 해설 가리기/보이기</button>
+<button class="toggle-button answer" data-type="answer16">🔍 정답 및 해설 가리기</button>
 
 <div class="answer16-content">
 
@@ -530,7 +530,7 @@ tags: ["TOEFL", "영어", "대학원", "OMSCS"]
 - (C) To offer supporting evidence for the ideas introduced in the previous paragraph
 - (D) To provide a transition between the preceding paragraphs and the final paragraph
 
-<button class="toggle-button answer" data-type="answer17">🔍 정답 및 해설 가리기/보이기</button>
+<button class="toggle-button answer" data-type="answer17">🔍 정답 및 해설 가리기</button>
 
 <div class="answer17-content">
 
@@ -568,7 +568,7 @@ tags: ["TOEFL", "영어", "대학원", "OMSCS"]
 - (C) reputable
 - (D) credulous
 
-<button class="toggle-button answer" data-type="answer18">🔍 정답 및 해설 가리기/보이기</button>
+<button class="toggle-button answer" data-type="answer18">🔍 정답 및 해설 가리기</button>
 
 <div class="answer18-content">
 
@@ -600,7 +600,7 @@ prestigious ≈ reputable ≈ respected ≈ esteemed
 
 **Where would the sentence best fit?**
 
-<button class="toggle-button answer" data-type="answer19">🔍 정답 및 해설 가리기/보이기</button>
+<button class="toggle-button answer" data-type="answer19">🔍 정답 및 해설 가리기</button>
 
 <div class="answer19-content">
 
@@ -646,7 +646,7 @@ prestigious ≈ reputable ≈ respected ≈ esteemed
 - (E) Modernists, hoping to revolutionize the way art was conceived, completely redefined the term.
 - (F) As artists began to gain status, the distinction between arts and crafts became more apparent.
 
-<button class="toggle-button answer" data-type="answer20">🔍 정답 및 해설 가리기/보이기</button>
+<button class="toggle-button answer" data-type="answer20">🔍 정답 및 해설 가리기</button>
 
 <div class="answer20-content">
 
