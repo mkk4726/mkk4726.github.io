@@ -361,13 +361,8 @@ $$
 
 이 절에서는 **non-identification 문제**에 대해 설명합니다. 연속형 처치에서 일반화된 R-loss를 직접 최소화하면 유일한 해를 찾을 수 없다는 것이 핵심 문제입니다.
 
-**이론적 설명**:
-
-> We provide a theoretical explanation for the success and failure of the identifiabilities of the R-learner for binary treatment and generalized R-learner for continuous treatment, respectively.
-
 **해집합 정의**:
 
-> Denote the solution set:
 $$
 \begin{equation}
 S = \{h \mid h(X, T) = \tau(X, T) + s(X) \text{ a.s., for any } s \in L_2^P(X)\} \tag{9}
@@ -385,6 +380,7 @@ Y - m(X) - [h(X, T) - E_{\varpi}\{h(X, T) \mid X\}] = Y - m(X) - [\tau(X, T) - E
 $$
 
 > **의미**: $S$에 속한 모든 함수 $h$가 동일한 손실값을 가짐
+
 
 **Non-identification 문제**:
 
@@ -416,38 +412,19 @@ $$
 > - **이진형**: $S^\natural$ (유일한 해)
 > - **원인**: Zero condition (7)이 해집합을 좁혀줌
 
+**Proposition 1** - Suppose Assumptions 1–2 hold. Then, the following statements hold:
 
->**Proposition 1**: 식별 결과의 엄밀한 증명
+> **Part (i)**: 처치 T가 연속형인 경우, S는 다음 최적화 문제의 해답해다.
+> - **최적화 문제**: $\arg\min_{h \in L_2^P(X,T)} L_c(h)$
+> - **해집합**: $S$
 
-> Despite the popular use of R-loss (8) in literature (Zhao et al., 2022; Nie and Wager, 2021), the corresponding identification problem has not been rigorously discussed. Part (ii) of Proposition 1 fulfills this gap.
+> **Part (ii)**: 처치 T가 이진형인 경우, S는 다음 최적화 문제의 해답해다.
+> - **최적화 문제**: $\arg\min_{h \in \mathcal{L}_b} L_b(h)$
+> - **해집합**: $S^\natural$
 
-**가정**: Assumptions 1–2가 성립한다고 가정
-
-**결과**: 다음과 같은 식별 결과를 얻는다.
-
-**Part (i)**: 연속형 처치의 경우
-
-**조건**: $T$가 연속형 처치이고 $\tau \in L_2^P(X, T)$
-
-**결과**: $S$는 다음 최적화 문제의 해집합이다:
-
-$$
-\begin{equation}
-\arg\min_{h \in L_2^P(X,T)} L_c(h) \tag{11}
-\end{equation}
-$$
-
-**의미**: 연속형 처치에서는 일반화된 R-loss $L_c(h)$의 최소화가 해집합 $S$를 제공
-
-**Part (ii)**: 이진 처치의 경우
-
-**조건**: 
-- $T$가 이진형 처치이고 $\tau(\cdot, 1) \in L_2^P(X)$
-- 추가로 positivity 가정: $e(x) \in (\epsilon', 1-\epsilon')$ for some fixed $\epsilon' > 0$ and for all $x \in \mathcal{X}$
-
-**결과**: 관심 함수들의 집합 $\mathcal{L}_b = \{h \mid h(\cdot, 1) \in L_2^P(X) \text{ and } h(X, 0) = 0 \text{ a.s.}\}$ 중에서, (10)의 $S^\natural$가 다음 최적화 문제의 해집합이다:
-
-$$\arg\min_{h \in \mathcal{L}_b} L_b(h)$$
+> **결과**: 관심 함수들의 집합 $\mathcal{L}_b = \{h \mid h(\cdot, 1) \in L_2^P(X) \text{ and } h(X, 0) = 0 \text{ a.s.}\}$ 중에서, (10)의 $S^\natural$가 다음 최적화 문제의 해집합이다:
+> - **최적화 문제**: $\arg\min_{h \in \mathcal{L}_b} L_b(h)$
+> - **해집합**: $S^\natural$
 
 > **의미**: 이진형 처치에서는 zero condition이 적용된 R-loss $L_b(h)$의 최소화가 유일한 해 $S^\natural$를 제공
 
@@ -459,6 +436,12 @@ $$\arg\min_{h \in \mathcal{L}_b} L_b(h)$$
 | **해집합** | $S$ (무한히 많은 해) | $S^\natural$ (유일한 해) |
 | **제약조건** | 없음 | $h(X, 0) = 0$ (zero condition) |
 | **식별 가능성** | ❌ 불가능 | ✅ 가능 |
+
+
+
+### 2.3 One-step nonparametric identification with a functional zero constraint
+
+논문에서 계속해서 이야기하고 있는 것은 zero-condition을 통해 이진 처치의 경우 유일해를 얻었지만, 연속 처치의 경우 유일해를 얻지 못한다는 것입니다.
 
 
 # 논문에서 의문이 들었던 부분들 정리
@@ -494,18 +477,12 @@ $$\tau(x, 0) = E[Y^{(0)} - Y^{(0)} \mid X = x] = 0$$
 - 목표: $\tau(x, t)$ for all $t \in \mathcal{T}$ (모든 처치 수준에서의 효과)
 - 기준점: $T = 0$이 **임의적**일 수 있음
 
-**Zero Condition 적용의 어려움**:
-$$\tau(x, 0) = E[Y^{(0)} - Y^{(0)} \mid X = x] = 0$$
+**Zero Condition 적용의 한계**:
+> $L_b$를 통해 이진처치에서는 zero-condtion을 loss 함수에 녹여낼 수 있었는데, 연속형에서는 이를 loss function에 녹여낼 수 없다.
 
-> **문제점**:
-> - $T = 0$이 실제로 "처치를 받지 않은 상태"가 아닐 수 있음
-> - 예: 약물 투여량에서 $T = 0$은 "약물을 투여하지 않음"이 아닐 수 있음
-> - 다른 기준점 $T = t_0$에서 $\tau(x, t_0) = 0$이 더 자연스러울 수 있음
+문제는 “zero condition을 R-loss 안에서 직접 구현하기 어렵다”는 점입니다.
+Binary T에서는 T∈{0, 1}이라 (T-e(X))h(X,1) 형태로 식을 재정리하면 h(x,0)=0이 자동으로 내재됩니다.
 
-**수학적 문제**:
-- 어떤 기준점을 선택할지 **명확하지 않음**
-- Zero condition을 적용해도 **여전히 무한히 많은 해** 존재
-- 해집합 $S$가 **충분히 축소되지 않음**
 
 ### 핵심 차이점 요약
 
@@ -513,61 +490,35 @@ $$\tau(x, 0) = E[Y^{(0)} - Y^{(0)} \mid X = x] = 0$$
 |------|-----------|-----------|
 | **처치 특성** | 이산적 $\{0, 1\}$ | 연속적 $\mathbb{R}$ |
 | **기준점** | $T = 0$ (자연스러움) | $T = 0$ (임의적) |
-| **Zero Condition** | 자연스럽게 적용 가능 | 적용이 어려움 |
-| **해집합** | $S^\natural$ (유일한 해) | $S$ (무한히 많은 해) |
-| **식별 가능성** | ✅ 가능 | ❌ 불가능 |
+| **Zero Condition** | 수식에서 쉽게 강제 가능 | 무한차원 제약 → 구현 난이도 높음 |
+| **해집합(이론)** | $S^\natural$ (유일) | $S$ (무한) |
+| **식별 가능성(실전)** | ✅ 가능 | ❌ 추가 장치 필요 |
 
-## "h(x, 0) = 0을 강제하면 되지 않나?" - 왜 안 될까?
+## "h(x, 0)=0만 강제하면 되지 않나?" – 왜 실전에서는 안 통할까?
 ---
 
-### 문제의 핵심: 여전히 무한히 많은 해가 존재
+수학적으로는 $h(x,0)=0$을 정확히 부과하면 $s(x)=−\tau(x,0)=0$이 되어 해가 유일합니다.  문제는 **모델 학습 단계에서 이 무한차원 제약을 그대로 구현하기 어렵다**는 점에 있습니다.
 
-**강제로 $h(x, 0) = 0$을 적용해도**:
+1. 실무에서는 $h$를 신경망·트리·커널 등 **유연한 함수 근사기**로 파라미터화하고, 손실을 확률적 경사하강법으로 최소화합니다.
+   - 이때 “$t=0$에서 반드시 0”이라는 제약을 네트워크 출력 전체에 강제하기가 쉽지 않습니다.
+2. 그래서 학습 과정에서는 $\hat{h}(x,t) = \tau(x,t) + s(x)$ 꼴의 함수도 손실을 동일하게 만들 수 있습니다.
+   - 이유: R-loss 안의 $E[h(X,T)\mid X]$ 항에서 $s(x)$가 상쇄되기 때문입니다.
+3. 즉, **zero condition을 코드에 명시하지 않으면** 여전히 식별 실패(ill-posed)가 발생합니다.
 
-$$S_{constrained} = \{h \mid h(X, T) = \tau(X, T) + s(X), \text{ where } s(X) \text{ satisfies } s(X) = -\tau(X, 0)\}$$
+따라서 저자들은 다음과 같은 두 단계 절차를 제안합니다.
+- **1단계**: 제약 없이 $\tilde{h}$를 학습
+- **2단계**: 특수한 사상("zero-constraining operator")으로 $\tilde{h}$를 $t=0$에서 0이 되도록 변환
+- 추가로 **Tikhonov 정규화**를 넣어 수치적 안정성을 확보합니다.
 
-> **핵심**: $s(X) = -\tau(X, 0)$ 조건을 만족하는 함수 $s(X)$가 **여전히 무한히 많음**
 
-### 왜 여전히 무한히 많은 해가 존재할까?
 
-**이진 처치의 경우**:
-- $T \in \{0, 1\}$ (2개 값만 존재)
-- $h(x, 0) = 0$ 조건이 **모든 가능한 해를 제한**
-- 결과: 유일한 해 $\tau(x, 1)$만 남음
 
-**연속 처치의 경우**:
-- $T \in \mathbb{R}$ (무한히 많은 값)
-- $h(x, 0) = 0$ 조건이 **단 하나의 점만 제한**
-- 결과: $T \neq 0$인 모든 점에서 여전히 자유도 존재
 
-### 수학적 예시
 
-**연속 처치에서 $h(x, 0) = 0$을 강제한 후**:
 
-$$h(x, t) = \tau(x, t) + s(x)$$
 
-여기서 $s(x)$는 $h(x, 0) = 0$을 만족해야 하므로:
-$$s(x) = -\tau(x, 0)$$
 
-하지만 **문제는 여기서 끝나지 않음**:
 
-1. **$s(x)$의 형태가 무한히 많음**: $s(x) = -\tau(x, 0) + \text{any function of } x$
-2. **$T \neq 0$에서의 자유도**: $h(x, t)$ for $t \neq 0$에서 여전히 무한히 많은 선택 가능
-3. **정규화 부족**: 단순히 한 점에서 0이 되는 것만으로는 충분하지 않음
 
-### 실제 문제
-
-**예시**: 약물 투여량 연구
-- $T = 0$: 최소 투여량 (실제로는 약물 효과가 있을 수 있음)
-- $T = 1, 2, 3, ...$: 다양한 투여량
-- $h(x, 0) = 0$을 강제해도 $h(x, 1), h(x, 2), ...$에서 여전히 무한히 많은 가능성
-
-### 해결책의 방향
-
-이것이 바로 논문에서 제안하는 **Tikhonov 정규화**와 **2단계 추정 과정**이 필요한 이유입니다:
-
-1. **정규화**: $\|h\|^2$ 같은 추가 제약조건 필요
-2. **2단계 과정**: 중간 함수 추정 후 변환
-3. **Zero-constraining operator**: 적절한 변환을 통한 유일성 보장
 
 
