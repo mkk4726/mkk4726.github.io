@@ -29,7 +29,7 @@ tags: ["TOEFL", "영어", "대학원", "OMSCS"]
 > In cases where populations have geographical boundaries, differences in song may appear, and if these geographical limits are distinct, the shared song types within a population are referred to as dialects. 
 
 인구 분포가 지역적인 바운더리를 가지는 경우라면, 노래에서 차이가 보인다. 그리고 지역적인 한계가 분명하면 지역적인 분포에서 공유되는 노래가 다이어렉츠 라고 불린다.
-<span class="translation">개체군이 지리적 경계를 가진 경우, 노래에서 차이가 나타날 수 있으며, 이러한 지리적 한계가 뚜렷하다면, 한 개체군 내에서 공유되는 노래 유형을 방언이라고 부른다.</span>
+<span class="translation">개체군이 지리적 경계를 가진 경우, 노래에서 차이가 나타날 수 있으며, 이러한 지리적 한계가 뚜렷하면, 한 개체군 내에서 공유되는 노래 유형을 방언이라고 부른다.</span>
 
 > Ornithologists are keenly interested in how these dialects form and to what extent genetic factors contribute to dialectical variation. 
 
@@ -135,6 +135,39 @@ tags: ["TOEFL", "영어", "대학원", "OMSCS"]
 
 예를 들어 개개인의 유전적 변화 방언 그룹간의는 더 컸다, 더 큰 그룹 사이의 변화보다. 
 <span class="translation">어떤 경우에는, 방언 집단 내 개체들 간의 유전적 변이가 아종과 같은 더 큰 집단들 간의 유전적 변이보다 더 큰 것으로 밝혀졌다.</span>
+
+</div>
+
+## Paragraph 5
+
+<button class="toggle-button translations" data-type="paragraph5">🔍 AI 해석 가리기/보이기</button>
+
+<div class="paragraph5-content">
+
+> If genetic differences are insignificant in comparison to cultural influences, why do sparrows with overlapping territories sing only one song in the field? 
+
+만약 유전적 차이가 문화적 영향에 비해 중요하지 않다면, 왜 겹치는 영역을 가진 참새들은 야생에서 단 하나의 노래만 부르는가?
+<span class="translation">만약 유전적 차이가 문화적 영향에 비해 중요하지 않다면, 왜 겹치는 영역을 가진 참새들은 야생에서 단 하나의 노래만 부르는가?</span>
+
+> Some, such as those of the sedentary subspecies known as Nuttall's sparrow, do encounter other dialect groups. 
+
+일부는, 너탈 참새로 알려진 정주성 아종 같은 경우, 다른 방언 그룹과 마주친다.
+<span class="translation">일부는, 너탈 참새로 알려진 정주성 아종 같은 경우, 다른 방언 그룹과 마주친다.</span>
+
+> Gambell's sparrow, a migratory subspecies, overwinters in the coastal California area that Nuttall's sparrow inhabits. 
+
+감벨 참새는, 이동성 아종으로, 너탈 참새가 서식하는 캘리포니아 연안 지역에서 월동한다.
+<span class="translation">감벨 참새는, 이동성 아종으로, 너탈 참새가 서식하는 캘리포니아 연안 지역에서 월동한다.</span>
+
+> Interestingly, despite contacts between October and March with Gambell's sparrow, male Nuttall's sparrows typically sing their own distinct songs. 
+
+흥미롭게도, 10월과 3월 사이에 감벨 참새와 접촉함에도 불구하고, 수컷 너탈 참새들은 일반적으로 자신들만의 독특한 노래를 부른다.
+<span class="translation">흥미롭게도, 10월과 3월 사이에 감벨 참새와 접촉함에도 불구하고, 수컷 너탈 참새들은 일반적으로 자신들만의 독특한 노래를 부른다.</span>
+
+> This is because the encounters between the two subspecies occur outside the primary song crystallization period, which occurs during the first two months of a bird's life.
+
+이것은 두 아종 간의 만남이 주요 노래 결정화 기간 밖에서 일어나기 때문인데, 이 기간은 새의 생후 첫 두 달 동안 발생한다.
+<span class="translation">이것은 두 아종 간의 만남이 주요 노래 결정화 기간 밖에서 일어나기 때문인데, 이 기간은 새의 생후 첫 두 달 동안 발생한다.</span>
 
 </div>
 
@@ -275,3 +308,294 @@ tags: ["TOEFL", "영어", "대학원", "OMSCS"]
 
 </div>
 
+
+
+
+# 문제풀이
+
+# TOEFL Reading Comprehension Questions
+
+## Question 1
+**The word "primarily" in the passage is closest in meaning to**
+- (A) abundantly
+- (B) mainly 
+- (C) loudly
+- (D) commonly
+
+<button class="toggle-button answer" data-type="answer1">🔍 정답 및 해설 가리기/보이기</button>
+
+<div class="answer1-content">
+
+**정답: (B) mainly**
+
+**해설:**
+"primarily"는 "주로, 주된"이라는 뜻으로 사용됩니다. 지문에서 "produced primarily during breeding"은 "번식기에 주로 발생하는"이라는 의미입니다.
+
+- (A) abundantly: 풍부하게 - 양적 의미
+- (B) mainly: 주로 - 주된 목적이나 시기를 나타냄 
+- (C) loudly: 크게 - 소리의 크기
+- (D) commonly: 흔히 - 빈도의 의미
+
+</div>
+
+## Question 2
+**Which of the sentences below best expresses the essential information in the highlighted sentence in the passage?**
+*Incorrect choices change the meaning in important ways or leave out essential information.*
+
+원문: "In cases where populations have geographical boundaries, differences in song may appear, and if these geographical limits are distinct, the shared song types within a population are referred to as dialects."
+
+- (A) Dialects are those song types within a population that are shared by the group.
+- (B) Shared song types within a population with clear geographical boundaries are called dialects. 
+- (C) Geographical boundaries may result in differences in song between distinct populations.
+- (D) Populations having clear dialects result from the shared song types within the group.
+
+<button class="toggle-button answer" data-type="answer2">🔍 정답 및 해설 가리기/보이기</button>
+
+<div class="answer2-content">
+
+**정답: (B) Shared song types within a population with clear geographical boundaries are called dialects.**
+
+**해설:**
+원문의 핵심 정보는 다음과 같습니다:
+1. 지리적 경계가 있는 개체군에서는 노래의 차이가 나타날 수 있다
+2. 이러한 지리적 한계가 뚜렷하면, 개체군 내에서 공유되는 노래 유형을 방언이라고 부른다
+
+- (A) 방언의 정의만 포함, 지리적 경계 조건 누락
+- (B) 지리적 경계와 공유된 노래 유형이 방언이라는 핵심 정보 모두 포함 
+- (C) 지리적 경계가 차이를 만든다는 부분만, 방언의 정의 누락
+- (D) 인과관계가 잘못됨 (방언이 개체군을 만드는 것이 아님)
+
+</div>
+
+## Question 3
+**According to paragraph 2, scientists attempt to understand birdsongs by**
+- (A) dividing them into smaller categories 
+- (B) analyzing them as a single unit
+- (C) listening to phrases in reverse order
+- (D) labeling them as male or female
+
+<button class="toggle-button answer" data-type="answer3">🔍 정답 및 해설 가리기/보이기</button>
+
+<div class="answer3-content">
+
+**정답: (A) dividing them into smaller categories**
+
+**해설:**
+2단락에서 "In order to make sense of birdsongs, scientists break them into smaller units"라고 명시되어 있습니다. 과학자들은 새의 노래를 이해하기 위해 더 작은 단위로 나눈다고 설명하고 있습니다.
+
+구체적으로:
+- 노래(song) → 구문(phrase) → 음절(syllables)로 세분화
+- 휘파람, 펄스, 윙윙거리는 소리 등 특정 소리 유형으로 분류
+
+이는 "더 작은 범주로 나누는 것"과 정확히 일치합니다.
+
+</div>
+
+## Question 4
+**What can be inferred from paragraph 4 about white-crowned sparrow chicks?**
+- (A) The simplest dialects are the ones they learn first.
+- (B) The number of songs they can be trained to learn is limited. 
+- (C) They learn songs of their own subspecies faster than those of other subspecies.
+- (D) They learn more easily from laboratory recordings than in the wild.
+
+<button class="toggle-button answer" data-type="answer4">🔍 정답 및 해설 가리기/보이기</button>
+
+<div class="answer4-content">
+
+**정답: (B) The number of songs they can be trained to learn is limited.**
+
+**해설:**
+4단락에서 "Using recordings of adults, scientists have been able to train fledglings to reproduce multiple dialects, although the maximum number is approximately seven"라고 명시되어 있습니다.
+
+과학자들이 어린 새들을 훈련시켜 여러 방언을 재현하게 할 수 있었지만, **최대 개수는 약 7개**라고 한정되어 있습니다. 이는 학습할 수 있는 노래의 수가 제한적임을 보여줍니다.
+
+- (A) 가장 간단한 방언을 먼저 배운다는 언급 없음
+- (C) 자신의 아종 노래를 더 빨리 배운다는 언급 없음  
+- (D) 실험실 녹음으로 더 쉽게 배운다는 비교 없음
+
+</div>
+
+## Question 5
+**According to paragraph 5, which of the following is true of Nuttall's sparrows?**
+- (A) They migrate to the same overwintering locations that Gambell's sparrows do.
+- (B) They do not often encounter Gambell's sparrows during the initial period of song formation. 
+- (C) They only have contact with Gambell's sparrows during the breeding season.
+- (D) They do not have the same inherent vocalization abilities that Gambell's sparrows do.
+
+<button class="toggle-button answer" data-type="answer5">🔍 정답 및 해설 가리기/보이기</button>
+
+<div class="answer5-content">
+
+**정답: (B) They do not often encounter Gambell's sparrows during the initial period of song formation.**
+
+**해설:**
+5단락에서 핵심 정보:
+1. Nuttall's sparrow는 정주성(sedentary) 아종
+2. Gambell's sparrow는 이동성(migratory) 아종으로 10월~3월에 Nuttall's 서식지에서 월동
+3. "This is because the encounters between the two subspecies occur outside the primary song crystallization period, which occurs during the first two months of a bird's life"
+
+즉, 두 아종의 만남은 **주요 노래 결정화 기간(생후 첫 2개월) 밖에서 일어나기 때문에**, Nuttall's sparrow는 노래 형성 초기에 Gambell's sparrow와 자주 마주치지 않습니다.
+
+- (A) Nuttall's는 이동하지 않음 (sedentary)
+- (C) 10월~3월에 접촉 (번식기가 아님)
+- (D) 발성 능력의 차이에 대한 언급 없음
+
+</div>
+
+## Question 6
+**The word "exceptional" in the passage is closest in meaning to**
+- (A) extraordinary 
+- (B) perceptual
+- (C) intelligent
+- (D) capable
+
+<button class="toggle-button answer" data-type="answer6">🔍 정답 및 해설 가리기/보이기</button>
+
+<div class="answer6-content">
+
+**정답: (A) extraordinary**
+
+**해설:**
+6단락에서 "some exceptional members of the species do master multiple songs"라고 사용되었습니다. 
+
+문맥상 대부분의 개체들은 하나의 노래만 부르는데, **일부 예외적인 구성원들**은 여러 노래를 숙달한다는 의미입니다.
+
+- (A) extraordinary: 특별한, 예외적인 
+- (B) perceptual: 지각의, 인식의
+- (C) intelligent: 지능적인
+- (D) capable: 능력있는
+
+"exceptional"은 "일반적이지 않은, 특별한"이라는 뜻으로 "extraordinary"와 가장 의미가 가깝습니다.
+
+</div>
+
+## Question 7
+**According to paragraph 6, which of the following does NOT contribute to multilingualism in Nuttall's sparrows?**
+- (A) Living on the edges of dialectical boundaries
+- (B) Interacting with other subspecies
+- (C) Hatching early or late in the season
+- (D) Mating between March and October ✓
+
+<button class="toggle-button answer" data-type="answer7">🔍 정답 및 해설 가리기/보이기</button>
+
+<div class="answer7-content">
+
+**정답: (D) Mating between March and October**
+
+**해설:**
+6단락에서 다언어 능력에 기여하는 요인들:
+
+**기여하는 것들:**
+- (A) 방언 경계의 가장자리에 거주: "individuals living near the peripheries of their dialectic range may regularly hear the songs of an adjacent group"
+- (B) 다른 아종과의 상호작용: "young birds come in contact with migratory subspecies during the formative period"
+- (C) 계절 초기나 말기에 부화: "Nuttall's sparrows hatching early or late in the season are more likely to be exposed to Gambell's sparrows"
+
+**기여하지 않는 것:**
+- (D) 3월~10월 사이의 짝짓기: 지문에서 언급되지 않았으며, 오히려 "broods hatching after March or before October will mostly only interact with other members of their own kind"라고 하여 이 시기에 부화하는 새끼들은 자신의 종류와만 상호작용한다고 명시
+
+</div>
+
+## Question 8
+**Why does the author include paragraph 7 in the passage?**
+- (A) To argue that genetic factors have nothing to do with linguistic ability in birds
+- (B) To offer a concluding argument for why birds have a variety of dialects 
+- (C) To introduce a new issue that has emerged in research on bird dialects
+- (D) To suggest that language acquisition in birds is still poorly understood
+
+<button class="toggle-button answer" data-type="answer8">🔍 정답 및 해설 가리기/보이기</button>
+
+<div class="answer8-content">
+
+**정답: (B) To offer a concluding argument for why birds have a variety of dialects**
+
+**해설:**
+7단락은 전체 지문의 결론 단락입니다:
+
+"In light of these findings, most scientists have concluded that geographic differences may mildly restrict gene flow, but that genetic isolation has not been strong enough to create a rigid linguistic barrier. Dialectical variety in birds can thus be viewed as primarily a cultural phenomenon."
+
+이 단락에서 저자는:
+1. 앞서 제시된 연구 결과들을 종합
+2. 유전적 격리보다는 문화적 요인이 더 중요하다고 결론
+3. **새들의 방언적 다양성이 주로 문화적 현상**이라는 최종 답을 제시
+
+이는 새들이 왜 다양한 방언을 가지게 되는지에 대한 결론적 주장을 제공하는 것입니다.
+
+- (A) 유전적 요인이 전혀 관련없다고 주장하지 않음 (mildly restrict라고 인정)
+- (C) 새로운 이슈를 소개하는 것이 아님
+- (D) 언어 습득이 잘 이해되지 않는다고 제시하지 않음
+
+</div>
+
+## Question 9
+**Look at the four squares [■] that indicate where the following sentence could be added to the passage.**
+*Single adult males of this species have been recorded singing eleven different songs.*
+
+**Where would the sentence best fit?**
+
+<button class="toggle-button answer" data-type="answer9">🔍 정답 및 해설 가리기/보이기</button>
+
+<div class="answer9-content">
+
+**적절한 위치: Paragraph 6의 첫 번째 문장 뒤**
+
+**해설:**
+삽입할 문장: "Single adult males of this species have been recorded singing eleven different songs."
+(이 종의 성체 수컷 개체들이 11개의 서로 다른 노래를 부르는 것이 기록되었다.)
+
+**가장 적절한 위치는 6단락 첫 문장 뒤입니다:**
+
+"Detailed field research led to the discovery that some exceptional members of the species do master multiple songs, but their knowledge acquisition is contingent on contact with other groups in one of two ways. **[■ 여기]** Either young birds come in contact with migratory subspecies..."
+
+**이유:**
+1. **논리적 연결**: 앞 문장에서 "일부 예외적인 구성원들이 여러 노래를 숙달한다"고 하고, 삽입 문장은 그 구체적인 예시(11개 노래)를 제공
+2. **구체적 증거**: "some exceptional members"의 구체적인 사례
+3. **문맥의 일관성**: 다언어 능력에 대한 논의가 이어지는 자연스러운 위치
+
+다른 위치들은 문맥상 맞지 않습니다.
+
+</div>
+
+## Question 10
+**Directions:** An introductory sentence for a brief summary of the passage is provided below. Complete the summary by selecting the THREE answer choices that express the most important ideas in the passage. Some sentences do not belong in the summary because they express ideas that are not presented in the passage or are minor ideas in the passage. This question is worth 2 points.
+
+**In some bird populations, there are regional dialects in the birds' songs.**
+
+**Answer Choices:**
+- (A) White-crowned sparrows are useful subjects for studying bird dialects because they usually only learn a single song and have many dialects. 
+- (B) Using recordings in a laboratory setting, scientists have demonstrated that white-crowned sparrow chicks are capable of learning multiple dialects. 
+- (C) Research conducted on Nuttall's sparrows and Gambell's sparrows suggests that the two subspecies have developed different dialects because one is sedentary while the other is migratory.
+- (D) Scientists thought that genetic factors may have contributed to dialectical diversity, but research has shown that genetic factors are limited. 
+- (E) Field studies of two Zonotrichia leucophrys subspecies revealed that multilingualism is dependent upon the timing and nature of interactions between dialectical group members.
+- (F) One thing that is clear about the various subspecies of Zonotrichia leucophrys is that they all seem to begin learning songs for the first time after two months of age.
+
+<button class="toggle-button answer" data-type="answer10">🔍 정답 및 해설 가리기/보이기</button>
+
+<div class="answer10-content">
+
+**정답: (A), (B), (D)**
+
+**해설:**
+
+**선택된 답안들:**
+
+**(A) White-crowned sparrows are useful subjects for studying bird dialects because they usually only learn a single song and have many dialects. ✓**
+- 1단락: "One of the best-studied songbirds... is the white-crowned sparrow"
+- 3단락: "individual adults generally sing a single song"
+- 연구 대상으로서의 유용성이 주요 주제
+
+**(B) Using recordings in a laboratory setting, scientists have demonstrated that white-crowned sparrow chicks are capable of learning multiple dialects. ✓**
+- 4단락: "Using recordings of adults, scientists have been able to train fledglings to reproduce multiple dialects"
+- 실험실 연구의 중요한 발견
+
+**(D) Scientists thought that genetic factors may have contributed to dialectical diversity, but research has shown that genetic factors are limited. ✓**
+- 4단락: 유전적 설명이 그럴듯해 보였지만
+- 7단락: "genetic isolation has not been strong enough... primarily a cultural phenomenon"
+- 지문의 핵심 결론
+
+**제외된 답안들:**
+
+**(C)** 정주성/이동성의 차이가 방언 발달의 원인이라고 제시하지 않음
+**(E)** 다언어 능력은 부차적 주제
+**(F)** 2개월 후에 학습을 시작한다는 내용 없음 (오히려 첫 2개월이 중요한 시기)
+
+</div>
