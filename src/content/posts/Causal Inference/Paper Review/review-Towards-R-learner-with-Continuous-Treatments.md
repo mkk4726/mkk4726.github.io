@@ -123,14 +123,10 @@ Tikhonov 정규화는 **ill-posed problem**(잘 정의되지 않은 문제)을 �
 논문의 핵심은 **2단계 추정 과정**을 통해 문제를 해결하는 것입니다:
 
 **1단계**: 중간 함수 추정
-```
-τ̃(x, t) = τ(x, t) - E{τ(X, T) | X = x}
-```
+$$\tilde{\tau}(x, t) = \tau(x, t) - \mathbb{E}\{\tau(X, T) \mid X = x\}$$
 
 **2단계**: Zero-constraining operator를 통한 변환
-```
-τ(x, t) = 변환(τ̃(x, t))
-```
+$$\tau(x, t) = \text{변환}(\tilde{\tau}(x, t))$$
 
 #### 3. Zero-constraining operator의 역할
 
@@ -147,10 +143,8 @@ Tikhonov 정규화는 **ill-posed problem**(잘 정의되지 않은 문제)을 �
 - 예: 다항식, 스플라인, 푸리에 급수 등
 
 **수학적 표현**:
-```
-τ(x, t) ≈ Σᵢ βᵢ φᵢ(x, t)
-```
-여기서 φᵢ(x, t)는 기저 함수들입니다.
+$$\tau(x, t) \approx \sum_i \beta_i \phi_i(x, t)$$
+여기서 $\phi_i(x, t)$는 기저 함수들입니다.
 
 #### 5. 저차원 행렬과 Non-identification
 
