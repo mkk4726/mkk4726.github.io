@@ -116,24 +116,39 @@ export default function MarkdownContent({ content, className = '' }: MarkdownCon
             const container = document.querySelector(`.${type}-content`);
             
             if (container) {
-              const meanings = container.querySelectorAll('.meaning');
-              const translations = container.querySelectorAll('.translation');
-              
-              // 현재 상태 확인
-              const isVisible = meanings.length > 0 ? 
-                (meanings[0] as HTMLElement).style.display !== 'none' :
-                (translations[0] as HTMLElement).style.display !== 'none';
-              
-              const displayValue = !isVisible ? 'inline' : 'none';
-              const translationDisplayValue = !isVisible ? 'block' : 'none';
-              
-              meanings.forEach((meaning) => {
-                (meaning as HTMLElement).style.display = displayValue;
-              });
-              
-              translations.forEach((translation) => {
-                (translation as HTMLElement).style.display = translationDisplayValue;
-              });
+              // answer 타입인지 확인 (정답 및 해설)
+              if (type?.startsWith('answer')) {
+                // 정답 content의 경우 전체 container를 토글
+                const containerElement = container as HTMLElement;
+                const isVisible = containerElement.style.display !== 'none' && containerElement.style.display !== '';
+                
+                containerElement.style.display = !isVisible ? 'block' : 'none';
+              } else {
+                // 기존 로직 (meaning, translation)
+                const meanings = container.querySelectorAll('.meaning');
+                const translations = container.querySelectorAll('.translation');
+                
+                // 현재 상태 확인 (안전하게)
+                let isVisible = false;
+                if (meanings.length > 0) {
+                  const firstMeaning = meanings[0] as HTMLElement;
+                  isVisible = firstMeaning.style.display !== 'none' && firstMeaning.style.display !== '';
+                } else if (translations.length > 0) {
+                  const firstTranslation = translations[0] as HTMLElement;
+                  isVisible = firstTranslation.style.display !== 'none' && firstTranslation.style.display !== '';
+                }
+                
+                const displayValue = !isVisible ? 'inline' : 'none';
+                const translationDisplayValue = !isVisible ? 'block' : 'none';
+                
+                meanings.forEach((meaning) => {
+                  (meaning as HTMLElement).style.display = displayValue;
+                });
+                
+                translations.forEach((translation) => {
+                  (translation as HTMLElement).style.display = translationDisplayValue;
+                });
+              }
               
               // 버튼 텍스트 업데이트
               const buttonText = this.textContent || '';
@@ -146,9 +161,10 @@ export default function MarkdownContent({ content, className = '' }: MarkdownCon
           });
         });
         
-        // 초기 상태에서 모든 meaning과 translation 요소를 숨김
+        // 초기 상태에서 모든 meaning, translation, answer content 요소를 숨김
         const meanings = document.querySelectorAll('.meaning');
         const translations = document.querySelectorAll('.translation');
+        const answerContents = document.querySelectorAll('[class*="answer"][class*="-content"]');
         
         meanings.forEach((meaning) => {
           (meaning as HTMLElement).style.display = 'none';
@@ -156,6 +172,10 @@ export default function MarkdownContent({ content, className = '' }: MarkdownCon
         
         translations.forEach((translation) => {
           (translation as HTMLElement).style.display = 'none';
+        });
+        
+        answerContents.forEach((answerContent) => {
+          (answerContent as HTMLElement).style.display = 'none';
         });
       }, 200);
 
