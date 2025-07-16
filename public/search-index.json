@@ -100,7 +100,7 @@
     "tags": [
       "Paper Review"
     ],
-    "content": "\n[paper link](https://arxiv.org/pdf/1712.04912)"
+    "content": "\n[paper link](https://arxiv.org/pdf/1712.04912)\n\n\n# 논문 리뷰\n\n# Abstract\n\n> Flexible estimation of heterogeneous treatment effects lies at the heart of many statistical challenges, such as personalized medicine and optimal resource allocation.\n\n개인화된 처치효과를 유연하게 추정하는 것은 많은 분야에서 통계적 문제의 핵심입니다.\n\n개인화된 처치효과를 알고 있으면 개인화된 약처방이나 교육정책 결정, 자원 분배 등 많은 문제에서 좋은 결정을 내릴 수 있습니다.\n하지만 이를 추정하는 일은 꽤나 복잡한 일이라서 논문에서는 이를 유연하게 추정할 수 있는 방법을 제시하고 있습니다.\n\n이 논문에서는 marginal effects와 treatment propensity라는 두 가지 nuisance component를 추정하여 개인화된 처치효과를 추정하는 방법을 제시합니다.\n\n> we show that our method has a quasi-oracle property: Even if the pilot estimates for marginal effects and treatment propensities are not particularly accurate, we achieve the same error bounds as an oracle who has a priori knowledge of these two nuisance components. \n\n이러한 방법은 quasi-oracle property를 가지고 있다고 합니다.\n\n<small> *quasi-oracle property : marginal effects와 treatment propensity의 추정이 정확하지 않더라도, 마치 이 두 nuisance component를 미리 알고 있는 것과 같은 오차 경계를 달성할 수 있는 성질<"
   },
   {
     "id": "English Study/TOEFL/준비전략서치",
