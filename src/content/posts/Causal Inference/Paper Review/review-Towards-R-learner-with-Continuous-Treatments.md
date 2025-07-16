@@ -410,7 +410,12 @@ $$
 이 부분은 generalized loss function (6) 을 최소화하면 h는 다양한 해를 가지지만, zero-condition을 녹여내 정리한 binary loss function (8) 을 최소화하면 h는 유일한 해를 가진다는 것을 보여줍니다.
 
 > **Part (i)**: 처치 T가 연속형인 경우, S는 다음 최적화 문제의 해답해다.
-> - **최적화 문제**: $\arg\min_{h \in L_2^P(X,T)} L_c(h)$
+> - **최적화 문제**: 
+$$
+\begin{equation}
+\arg\min_{h \in L_2^P(X,T)} L_c(h) \tag{11}
+\end{equation}
+$$
 > - **해집합**: $S$
 
 > **Part (ii)**: 처치 T가 이진형인 경우, S는 다음 최적화 문제의 해답해다.
@@ -436,16 +441,135 @@ $$
 
 ### 2.3 One-step nonparametric identification with a functional zero constraint
 
-논문에서 계속해서 이야기하고 있는 것은 zero-condition을 통해 이진 처치의 경우 유일해를 얻었지만, 연속 처치의 경우 유일해를 얻지 못한다는 것입니다.
+> 이진 처치의 경우 zero-condition를 loss function에 녹여낼 수 있어 유일해를 얻을 수 있었지만, 연속 처치의 경우 유일해를 얻지 못한다.
+
+그럼 optimization problem을 풀 때 zero condition을 적용하면 되지 않을까? 라고 생각해볼 수 있습니다.
 
 
+$$
+\begin{equation}
+\arg \min_{h \in L_2^P(X,T) \cap \{h \mid h(x,0) = 0 \text{ for any } x \in \mathcal{X}\}} L_c(h) \tag{12}
+\end{equation}
+$$
+그러나 Proposition 2는 이 전략도 $\tau(x, t)$의 비모수적 식별을 달성하는 데 계속 실패한다는 것을 보여줍니다.
 
+**Proposition 2.** Assumptions 1–2가 성립하고, $(X, T)$가 유계 밀도함수를 가진다고 가정하자. 즉, 
+$$\sup_{(x,t) \in \mathcal{X} \times \mathcal{T}} |f(x, t)| < \infty$$
 
+$\tau^{\vee}(x, t \mid s)$를 다음과 같은 형태를 취하는 함수라고 하자:
+$$
+\begin{equation}
+\tau^{\vee}(x, t \mid s) = \begin{cases}
+\tau(x, t) + s(x) & \text{when } t \neq 0 \\
+0 & \text{when } t = 0
+\end{cases} \tag{13}
+\end{equation}
+$$
+여기서 $s$는 $L_2^P(X)$의 임의의 함수이다. 그러면 임의의 $s \in L_2^P(X)$에 대해 $\tau^{\vee}(x, t \mid s)$는 (12)를 해결한다.
 
+> **핵심**: 임의의 $\tau^{\vee}(x, t \mid s)$는 zero condition (7)을 만족하면서도 여전히 집합 $S$에 속할 수 있다.
 
+즉, zero condition을 최적화문제에 강제로 적용해도 $t \neq 0$인 부분에서는 여전히 같은 non-identification 문제를 보이고 있습니다.
 
-
+### 2.4 Two-step Tikhonov identification and ℓ₂ regularization R-learner
 ---
+
+2.3에서 강제로 zero condition을 적용해서 문제를 해결하는데 실패했고, 이제 **정규화항을 도입**해 문제를 해결하는 방법을 제안합니다.
+
+**Step I**: 모집단 수준에서 주어진 $\rho > 0$에 대해 (11)의 $\ell_2$-정규화 변형을 해결합니다:
+
+$$
+\begin{equation}
+\tau_\rho = \arg \min_{h \in L_2^P(X,T)} L_{c,\ell_2}(h \mid \rho) = \arg \min_{h \in L_2^P(X,T)} \left[ L_c(h) + \rho \|h\|_{L_2^P}^2 \right] \tag{14}
+\end{equation}
+$$
+
+> The new loss $L_{c,\ell_2}(h \mid \rho)$ is strictly convex over $L_2^P(X, T)$ due to the addition of a strictly convex functional $\rho \|h\|_{L_2^P}^2 = \rho E\{h^2(X, T)\}$. 
+> Thus minimizing $L_{c,\ell_2}(h \mid \rho)$ becomes well-posed and yields a unique functional minimum $\tau_\rho$. Theorem 1 explicitly characterizes this unique minimum.
+
+강한 (엄격한) convex function을 loss function에 추가하여, loss function을 convex하게 만들어 문제를 해결할 수 있다는 이야기입니다.
+
+**이론적 배경**: Tikhonov regularization과 convex optimization의 자세한 원리는 [Tikhonov Regularization과 Convex Optimization](/posts/Causal%20Inference/tikhonov-regularization-and-convex-optimization)에서 확인할 수 있습니다.
+
+
+**Theorem 1.** 집합 $S$ 내에서 다음과 같은 중간 함수를 정의하자:
+
+$$
+\begin{equation}
+\tilde{\tau}(x, t) = \tau(x, t) - E\{\tau(X, T) \mid X = x\} \tag{15}
+\end{equation}
+$$
+
+Assumptions 1–2가 성립하고 $\tau \in L_2^P(X, T)$일 때, 주어진 $\rho > 0$에 대해 (14)의 해집합은 다음과 같다:
+
+$$S_\rho = \{h \mid h(X, T) = \tau_\rho(X, T) \text{ a.s.}\}$$
+
+여기서 
+$$\tau_\rho(x, t) = (1 + \rho)^{-1} \tilde{\tau}(x, t)$$
+
+**Theorem 1의 의미**:
+
+Theorem 1은 $\tau_\rho$에 $(1 + \rho)$ 인수를 곱하여 집합 $S$ 내의 중간 함수 $\tilde{\tau}$를 식별할 수 있음을 의미합니다:
+
+$$\tilde{\tau} = (1 + \rho)\tau_\rho$$
+
+이 $\tilde{\tau}$는 원래 R-loss $L_c(h)$의 해가 됩니다.
+
+**Step II: Zero-constraining Operator**
+
+**Step II**에서는 $\tilde{\tau}$를 zero-constraining operator $\mathcal{C}(\cdot): L_2^P(X, T) \to L_2^P(X, T)$를 통해 변환합니다:
+
+$$
+\begin{equation}
+\mathcal{C}(h)(x, t) = h(x, t) - h(x, 0) \quad \text{for any } h \in L_2^P(X, T)
+\end{equation}
+$$
+
+따라서:
+$$\mathcal{C}(\tilde{\tau})(x, t) = \mathcal{C}((1 + \rho)\tau_\rho)(x, t) = (1 + \rho)\{\tau_\rho(x, t) - \tau_\rho(x, 0)\}$$
+
+**Zero-constraining Operator의 역할**:
+
+**Zero-constraining Operator의 핵심 원리**:
+- 연산자 $\mathcal{C}(\cdot)$는 변환을 거치는 모든 함수가 zero condition (7)을 만족하도록 보장
+- $\tau$는 집합 $S$에서 zero condition (7)을 만족하는 **유일한 함수**
+- 따라서 해집합 $S$의 임의 함수를 변환하면 $\tau$를 식별할 수 있음
+- $\tilde{\tau} \in S$이므로, Step II의 $\mathcal{C}(\tilde{\tau})$는 궁극적으로 $\tau$를 식별함
+
+> **핵심**: 2단계 과정을 통해 non-identification 문제를 해결하고 유일한 CATE 함수 $\tau(x, t)$를 추정할 수 있습니다.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Supplementary material for "Towards R-learner with Continuous Treatments"
+
+
+## S1 : $l_2$ regularization R-learner : Formal algorithm and more discussions
+
+
+
+
+
+
+
+
+
+
 
 # 논문에서 의문이 들었던 부분들 정리
 
@@ -516,12 +640,117 @@ Binary T에서는 T∈{0, 1}이라 (T-e(X))h(X,1) 형태로 식을 재정리하�
 
 
 
+## 왜 theorem 1에서 중간함수를 정의하는거지?
+
+왜 굳이 ‘중간 함수(tilde tau)’를 한 번 더 정의하느냐를 한마디로 요약하면 다음과 같아요.
+
+1. **비식별(non-identification)의 원인**  
+   - R-loss를 그대로 최소화하면  
+     $$h(x,t) = τ(x,t) + s(x)$$
+     처럼 “x 에만 의존하는 함수”가 얼마든지 덧붙어도 손실값이 똑같습니다.  
+   - 이 s(x) 때문에 최소값이 무한히 많아져서 해가 유일하지 않아요.
+
+2. **아이디어: ‘x 평균을 0으로 만드는’ 함수로 중심화(center)하기**  
+   - s(x)는 t 와 무관합니다.  
+   - 그렇다면 τ 에서 “x 에 따른 평균치”만 쏙 빼버리면 s(x)가 더 이상 붙을 수 없겠죠?  
+     그게 바로  
+     $$\tilde{\tau}(x,t) = \tau(x,t) − E[ \tau(X,T) | X=x ]$$
+     입니다.  
+   - 이렇게 하면 tilde tau 는 어떤 x 에 대해서도 t 값 전체를 평균 내면 0 이 됩니다.  
+     즉 “덧붙일 수 있는 s(x)” 여지가 사라집니다.
+
+[Why Do We Introduce the Centered Function tilde_tau(x,t)?](/posts/Causal%20Inference/tilde-tau-explained)
+
+3. **정규화와의 연결**  
+   - L2 정규화(Tikhonov)로 
+     $$argmin_h { R-loss(h) + \rho‖h‖_2^2 }$$
+     를 풀면 유일한 해 $\tau_\rho$ 가 나옵니다.  
+   - Theorem 1 은 “그 유일한 해가 바로 tilde tau 를 (1+ρ) 로 나눈 것”임을 보여줍니다.  
+     즉 $\tilde{\tau} = (1+\rho)\tau_\rho$.  
+   - 결국 **1단계**에서 정규화로 유일하게 찾은 τ_ρ 로부터 **2단계**에서 다시 (1+ρ)을 곱해 tilde tau 를 복원하고,  
+     마지막으로 zero-constraining operator 로 원래 τ 를 얻습니다.
+
+4. **한 줄 결론**  
+   중간 함수 tilde tau 를 쓰는 이유는 “x 에만 의존하는 불필요한 s(x)를 제거해 식별 문제를 깨끗하게 만들어 주기”입니다.  
+   그렇게 중심화한 뒤 정규화를 걸어야 유일한 해를 안전하게 찾을 수 있어요.
 
 
 
 
+## 추정값이 작아지는 걸 보완하기 위해 (1+ρ)을 곱하는 이유
 
+아래 순서대로 ‘왜 (1 + ρ)를 곱해야 하나?’를 처음부터 다시 풀어볼게요.  
+(여기서 ρ는 정규화 세기, p라고 쓰였던 기호입니다.)
 
+──────────────────  
+1. 아주 단순한 1-차원 예로 시작  
+──────────────────  
+• 목표 : 어떤 “진짜 값” θ 를 알아내고 싶다.  
+• 하지만 문제(데이터)가 불안정해서 **정규화**를 넣어 풀기로 했다.
+
+정규화된 최소화 문제  
+  (평균제곱오차 + ρ × 값^2) ↓  
+   F(h) = (h − θ)² / 2  +  ρ h²
+
+→ 여기서 h가 우리가 구할 추정치.
+
+──────────────────  
+2. 이 문제를 직접 풀어보자  
+──────────────────  
+F(h)를 h에 대해 미분해서 0으로 두면
+
+ (h − θ) + 2ρh = 0  
+ ⇒ h (1 + 2ρ) = θ  
+ ⇒ h = θ / (1 + 2ρ)
+
+※ 논문·포스트에서는 2 대신 1이 붙도록 (1/2)계수 등으로 맞춰 놓았기 때문에  
+ 최종계수는 “1 + ρ”가 됩니다. 이름만 다르고 본질은 같아요.
+
+결국 **정규화를 넣고 최소화**하면  
+ h = θ / (1 + ρ)  
+즉, **진짜 값이 (1 + ρ)배만큼 작아져 버린** 결과를 얻는다.
+
+──────────────────  
+3. 왜 작아지나? 직관  
+──────────────────  
+• 정규화 항 ρ h² 는 “h 값을 0에 가깝게 끌어당기는 스프링” 같은 역할.  
+• 손실식은  
+  ① (h−θ)² → “진짜 값 θ와 가까워져라”  
+  ② ρ h² → “값이 클수록 페널티, 0이 좋다”  
+ 두 힘의 타협점이 **θ의 축소판** h = θ/(1+ρ) 로 나타난 것.
+
+──────────────────  
+4. 축소(shrinkage) 편향을 어떻게 없앨까?  
+──────────────────  
+방법은 간단하다.  
+정규화를 넣어서 얻은 결과 h를 **다시 (1 + ρ)배 키워 주면** 된다.
+
+ θ (원래 값) = (1 + ρ) × h (정규화 해)
+
+그래서 **정규화 뒤 보정 단계**에서 (1 + ρ)를 곱한다.
+
+──────────────────  
+5. 함수(tilde τ, τρ) 로 돌아와서  
+──────────────────  
+• 함수 전체가 스칼라 θ 대신 “tilde_tau(x,t)” 라고 생각하면  
+ 위 계산이 **점마다 동시에** 일어난다.  
+• 정규화가 끝나고 얻은 함수 τρ(x,t)는  
+ tilde_tau(x,t) / (1 + ρ).  
+• 그러므로 원하는 tilde_tau를 되찾으려면  
+ tilde_tau = (1 + ρ) · τρ. ← 바로 이 식이었죠.
+
+──────────────────  
+6. ‘꼭 곱해야 하나?’에 대한 결론  
+──────────────────  
+• **절대 크기**가 중요한 문제(예: 의약 용량, 가격 책정)라면  
+ 축소된 값을 그대로 쓰면 효과를 과소평가 → 잘못된 의사결정.  
+• ρ가 아주 작아서 (1+ρ) ≈ 1 라면 생략해도 큰 영향은 없음.  
+• 그러나 일반적으로는 **정규화 → 축소 → (1+ρ) 배 되돌리기**  
+ 순서를 지켜 주는 것이 편향 없는 추정을 보장한다.
+
+즉, (1 + ρ)를 곱해 주는 이유는  
+“정규화가 만든 ‘축소 편향’을 정확히 반대로 상쇄해  
+원래 스케일(tilde_tau), 더 나아가 최종 τ(x,t)을 되찾기 위해서”입니다.
 
 
 

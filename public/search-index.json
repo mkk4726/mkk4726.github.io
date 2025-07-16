@@ -16,6 +16,19 @@
     "content": "---\ntitle: \"주피터 노트북 완전 테스트 - 셀에서 메타데이터 설정\"\ncategory: \"Data Science\"\ntags: [\"jupyter\", \"python\", \"데이터분석\", \"pandas\", \"numpy\", \"matplotlib\"]\nexcerpt: \"첫 번째 셀에서 메타데이터를 설정하는 방법을 보여주는 예제입니다.\"\n--- # 주피터 노트북 완전 테스트\n\n이것은 블로그에서 주피터 노트북이 완전히 어떻게 표시되는지 테스트하는 예제입니다.\n\n## 메타데이터 설정 방법\n\n**첫 번째 셀에 YAML 형식으로 메타데이터를 설정할 수 있습니다:**\n\n```yaml\n---    \ntitle: \"포스트 제목\"  \ncategory: \"카테고리명\"   \ntags: [\"태그1\", \"태그2\", \"태그3\"]   \nexcerpt: \"포스트 요약\"   \n---  \n```    \n\n## 데이터 분석 예제\n\nPython을 사용한 완전한 데이터 분석을 해보겠습니다.\n\n**주요 내용:**\n- 데이터 생성 및 로드\n- 기본 통계 분석\n- 데이터 시각화 import pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nprint(\"패키지를 성공적으로 import했습니다!\")\n # 샘플 데이터 생성\nnp.random.seed(42)\ndata = {\n    \"x\": np.random.randn(100),\n    \"y\": np.random.randn(100) * 2 + 5\n}\ndf = pd.DataFrame(data)\nprint(\"샘플 데이터를 생성했습니다.\")\ndf.head()\n # 기본 통계량 확인\nprint(\"기본 통계량:\")\ndf.describe()\n # 결론\n\n이 예제에서는 다음을 확인했습니다:\n\n1. **데이터 생성**: NumPy를 사용하여 랜덤 데이터를 생성했습니다\n2. **기본 분석**: Pandas를 사용하여 기본 통계량을 확인했습니다\n3. **코드 실행**: 주피터 노트북의 코드 셀과 출력이 잘 표시되는지 "
   },
   {
+    "id": "Causal Inference/tikhonov-regularization-and-convex-optimization",
+    "title": "Tikhonov Regularization과 Convex Optimization: 연속형 처치 R-learner의 이론적 배경",
+    "date": "2025-07-16",
+    "excerpt": "Ill-posed problem을 해결하는 Tikhonov regularization과 convex optimization의 원리",
+    "category": "Causal Inference",
+    "tags": [
+      "Theory",
+      "Optimization",
+      "Regularization"
+    ],
+    "content": "\n# 개요\n---\n\n연속형 처치에서 R-learner를 적용할 때 발생하는 **non-identification 문제**를 해결하기 위해 **Tikhonov regularization**과 **convex optimization** 이론이 핵심적인 역할을 합니다. 이 글에서는 이러한 수학적 도구들의 원리와 응용을 자세히 설명합니다.\n\n# 1. Ill-posed Problem과 Non-identification\n---\n\n## 1.1 Well-posed vs Ill-posed Problem\n\n**Well-posed problem (잘 정의된 문제)** 의 3가지 조건:\n1. **존재성 (Existence)**: 해가 존재한다\n2. **유일성 (Uniqueness)**: 해가 유일하다  \n3. **안정성 (Stability)**: 입력의 작은 변화가 해의 작은 변화를 가져온다\n\n**Ill-posed problem**은 이 중 하나 이상의 조건을 만족하지 않는 문제입니다.\n\n## 1.2 연속형 처치에서의 Non-identification\n\n연속형 처치 R-learner에서는 **유일성 조건**이 위반됩니다:\n\n$$L_c(h) = E\\left[\\left\\{Y - m(X) - h(X, T) + E_{\\varpi}\\{h(X, T) \\mid X\\}\\right\\}^2\\right]$$\n\n이 손실함수를 최소화하는 해집합은:\n$$S = \\{h \\mid h(X, T) = \\tau(X, T) + s(X) \\text{ a.s., for any } s \\in L_2^P(X)\\}$$\n\n> **문제**: 무한히 많은 해가 존재하여 유일한 CATE 함수 $\\tau(x, t)$를 식별할 수 없음\n\n# 2. Tikhonov Regularization\n---\n\n## 2.1 기본 원리\n\n**Tikhonov regularization**은 ill-posed problem을 well-posed problem으로 변환하는 방법입니다.\n\n**원래 문제**:\n$$\\min_{h} L(h)$$\n\n**정규화된 문제"
+  },
+  {
     "id": "Causal Inference/residualization-fwl-theorem-test",
     "title": "FWL에 기반한 잔차화 방법론 구현 노트북",
     "date": "2025-07-16",
@@ -64,6 +77,19 @@
       "고민 및 조언하는 표햔"
     ],
     "content": "\n\n# 배운 것들\n\nBe on the lookout : 정신 똑바로 차려\n\n- Be on the lookout for pickpockets\n- Be on the lookout for voicefishing\n\nBe careful with \n\n- Be careful with your bag on the subway.\n\nin + 자동차 (타서 앉으면 끝)\non + 비행기, 배, 지하철\n\npassport\n\ncatch a cold\n\n- Be careful not to catch a cold\n- Be careful not to burn yourself\n- Be careful not to hurt yourself\n\nDuring this outbreak?\n\noutbreak: 질병 발생기간\n\nscammers : 사기꾼\n\nMake sure not to go\n\n# 간단한 작문\n\nAs usaul, I talk to myself.\nHey MK, be on the lookout for 나태함.\nBe careful with your habit that do work later (미루는 습관)\n\nNice work today, just keep this pace.\nBut don`t forget happy is around you. Feel happy with 사소한 thing around you, and victories you made in today.\n\n# 수정된 작문 (Improved Version)\n\nAs usual, time for my daily self-talk.\nHey MK, don't get lazy on me!\nStop putting things off - let's break this procrastination habit once and for all.\n\n*procrastination: 꾸물거리다\n예문:\n\"Stop procrastinating and start studying!\" (미루지 말고 공부 시작해!)\n\"Procrastination is the thief of "
+  },
+  {
+    "id": "Causal Inference/tilde-tau-explained",
+    "title": "Why Do We Introduce the Centered Function tilde_tau(x,t)?",
+    "date": "2025-07-15",
+    "excerpt": "The role of the intermediate, mean-zero CATE in the continuous-treatment R-learner.",
+    "category": "Causal Inference",
+    "tags": [
+      "Concept",
+      "R-learner",
+      "Continuous Treatment"
+    ],
+    "content": "\n# 1. The problem in one sentence\n\nR-loss를 그대로 최소화하면\n\n$$\nh(x,t) = \\tau(x,t) + s(x)\n$$\n\n형태로 **x 에만 의존하는 덧붙임 함수** $s(x)$ 가 있어도 손실값이 변하지 않는다. 그래서 최소값이 **무한히 많아져** 해가 유일하지 않다.\n\n---\n\n# 2. Where does s(x) come from?\n\n* R-loss에 $\\mathbb{E}[ h(X,T) \\mid X ]$ 항이 들어가므로 $h(x,t) + s(x)$ 를 넣어도 $s(x)$ 가 자연스럽게 상쇄된다.\n* 그 결과 손실값이 동일하니 $s(x)$ 를 얼마든지 붙일 수 있다.\n* 이것이 **non-identification(식별 불능)** 문제의 근원이다.\n\n---\n\n# 3. Idea: “center” the function\n\n중간 함수 $\\tilde{\\tau}(x,t)$ 를 다음처럼 정의한다.\n\n$$\n\\tilde{\\tau}(x,t) = \\tau(x,t) - \\mathbb{E}[ \\tau(X,T) \\mid X = x ]\n$$\n\n즉, **각 x 마다 t 전역 평균이 0** 이 되도록 중심화한다.\n\n* mean-zero 성질 때문에 $h(x,t)$ 와 $h(x,t)+s(x)$ 의 **차이점이 R-loss 안에서는 지워지지 않는다**. 실제로 $h(X,T)+s(X) - \\mathbb{E}[h(X,T)+s(X)\\mid X] = h(X,T)-\\mathbb{E}[h(X,T)\\mid X]$ 이므로, **R-loss 값은 그대로**다.\n* 따라서 중심화만으로는 식별 문제가 완전히 사라지지 않는다. **결정적인 열쇠는 다음 단계의 L2 정규화**다.\n  - L2 패널티 $\\rho\\,\\|h\\|_2^2$ 가 추가되면, $s(x)$ 를 붙이는 순간 노름이 커져서 목적함수가 증가한다.\n  - 최적화는 $s(x)=0$ 을 선택해 유일해를 만든다.\n* 즉 $\\tilde{\\tau}$ 는 \"mean-zero\" 조건을 만족하는 후보 중 하나이며, **식별을 완성"
   },
   {
     "id": "Causal Inference/Paper Review/review-Quasi-Oracle-Estimation-of-Heterogeneous-Treatment-Effects",
@@ -260,7 +286,7 @@
       "Linear Algebra",
       "Matrix Analysis"
     ],
-    "content": "\n# Ill-conditioned 행렬과 고유값: 연속형 처치 R-learner의 이론적 배경\n\n## 개요\n\n연속형 처치 R-learner에서 발생하는 **non-identification 문제**는 수학적으로 **ill-conditioned 행렬** 문제로 나타납니다. 이 글에서는 이 개념들을 단계별로 자세히 설명합니다.\n\n## 1. 고유값(Eigenvalue)이란?\n\n### 1.1 기본 개념\n\n**고유값**은 행렬의 중요한 특성을 나타내는 스칼라 값입니다.\n\n**수학적 정의**:\n행렬 A에 대해, 0이 아닌 벡터 v와 스칼라 λ가 다음을 만족할 때:\n\n$$Av = \\lambda v$$\n\nλ를 A의 **고유값**, v를 **고유벡터**라고 합니다.\n\n### 1.2 직관적 이해\n\n고유값은 행렬이 벡터를 **어떤 방향으로 얼마나 늘리거나 줄이는지**를 나타냅니다.\n\n**예시**:\n\n$$A = \\begin{bmatrix} 2 & 0 \\\\ 0 & 3 \\end{bmatrix}$$\n\n고유값: $\\lambda_1 = 2$, $\\lambda_2 = 3$  \n고유벡터: $v_1 = [1, 0]$, $v_2 = [0, 1]$\n\n- λ₁ = 2: x축 방향으로 2배 늘림\n- λ₂ = 3: y축 방향으로 3배 늘림\n\n### 1.3 고유값의 의미\n\n1. **λ > 1**: 해당 방향으로 확대\n2. **0 < λ < 1**: 해당 방향으로 축소\n3. **λ = 0**: 해당 방향으로 완전히 압축 (정보 손실)\n4. **λ < 0**: 해당 방향으로 반전\n\n## 2. Ill-conditioned 행렬이란?\n\n### 2.1 조건수(Condition Number)\n\n**조건수**는 행렬이 얼마나 \"불안정한지\"를 측정하는 지표입니다.\n\n**정의**:\n\n$$\\kappa(A) = \\|A\\| \\times \\|A^{-1}\\|$$\n\n여기서 ||A||는 행렬 A의 노름(norm)입니다.\n\n### 2.2 Ill-conditioned의 의미\n\n**Well-conditioned**: 조건수가 작음 (≈ 1"
+    "content": "\n# Ill-conditioned 행렬과 고유값: 연속형 처치 R-learner의 이론적 배경\n\n## 개요\n\n연속형 처치 R-learner에서 발생하는 **non-identification 문제**는 수학적으로 **ill-conditioned 행렬** 문제로 나타납니다. 이 글에서는 이 개념들을 단계별로 자세히 설명합니다.\n\n## 1. 고유값(Eigenvalue)이란?\n\n### 1.1 기본 개념\n\n**고유값**은 행렬의 중요한 특성을 나타내는 스칼라 값입니다.\n\n**수학적 정의**:\n행렬 A에 대해, 0이 아닌 벡터 v와 스칼라 λ가 다음을 만족할 때:\n\n$$Av = \\lambda v$$\n\nλ를 A의 **고유값**, v를 **고유벡터**라고 합니다.\n\n### 1.2 직관적 이해\n\n고유값은 행렬이 벡터를 **어떤 방향으로 얼마나 늘리거나 줄이는지**를 나타냅니다.\n\n**예시**:\n\n$$\nA = \\begin{bmatrix} 2 & 0 \\\\ 0 & 3 \\end{bmatrix}\n$$\n\n고유값: $\\lambda_1 = 2$, $\\lambda_2 = 3$  \n고유벡터: $v_1 = [1, 0]$, $v_2 = [0, 1]$\n\n- λ₁ = 2: x축 방향으로 2배 늘림\n- λ₂ = 3: y축 방향으로 3배 늘림\n\n### 1.3 고유값의 의미\n\n1. **λ > 1**: 해당 방향으로 확대\n2. **0 < λ < 1**: 해당 방향으로 축소\n3. **λ = 0**: 해당 방향으로 완전히 압축 (정보 손실)\n4. **λ < 0**: 해당 방향으로 반전\n\n## 2. Ill-conditioned 행렬이란?\n\n### 2.1 조건수(Condition Number)\n\n**조건수**는 행렬이 얼마나 \"불안정한지\"를 측정하는 지표입니다.\n\n**정의**:\n\n$$\n\\kappa(A) = \\|A\\| \\times \\|A^{-1}\\|\n$$\n\n여기서 $\\|A\\|$는 행렬 A의 노름(norm)입니다.\n\n### 2.2 Ill-conditioned의 의미\n\n**Well-conditioned**: 조건수가 작"
   },
   {
     "id": "Causal Inference/Paper Review/review-Towards-R-learner-with-Continuous-Treatments",
