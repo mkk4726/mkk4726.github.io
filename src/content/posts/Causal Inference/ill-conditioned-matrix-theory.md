@@ -54,7 +54,7 @@ $$A = \begin{bmatrix} 2 & 0 \\ 0 & 3 \end{bmatrix}$$
 
 **정의**:
 
-$$\kappa(A) = \|A\| \times \|A^{-1}\|$$
+$$\kappa(A) = \\|A\\| \\times \\|A^{-1}\\|$$
 
 여기서 ||A||는 행렬 A의 노름(norm)입니다.
 
@@ -152,7 +152,7 @@ $$\tau(x, 0.1) \approx \tau(x, 0.11) \approx \tau(x, 0.12) \cdots$$
 원래 문제: $Ax = b$  
 노이즈가 있는 문제: $(A + \epsilon)\tilde{x} = b + \delta$
 
-결과: $\|x - \tilde{x}\|$가 매우 클 수 있음
+결과: $\\|x - \\tilde{x}\\|$가 매우 클 수 있음
 
 ### 5.2 해의 유일성 부족
 
@@ -172,7 +172,7 @@ $$\tau(x,t) = \tau_0(x,t) + \epsilon(x,t)$$
 
 **정규화 항 추가**:
 
-$$L(\tau) = \mathbb{E}[(Y - \mu_0(X) - \tau(X,T)(T - \pi(X)))^2] + \lambda\|\tau\|^2$$
+$$L(\tau) = \mathbb{E}[(Y - \mu_0(X) - \tau(X,T)(T - \pi(X)))^2] + \lambda\\|\\tau\\|^2$$
 
 ### 6.2 수학적 효과
 
@@ -233,6 +233,4 @@ $$\tau(x,t) = 2t + 0.1\sin(10t)$$
 
 **온라인 자료**:
 - [MIT OpenCourseWare: Linear Algebra](https://ocw.mit.edu/courses/mathematics/18-06-linear-algebra-spring-2010/)
-- [Khan Academy: Eigenvalues and Eigenvectors](https://www.khanacademy.org/math/linear-algebra/alternate-bases/eigen-everything) 
-
-
+- [Khan Academy: Eigenvalues and Eigenvectors](https://www.khanacademy.org/math/linear-algebra/alternate-bases/eigen-everything)
