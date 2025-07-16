@@ -54,6 +54,18 @@
     "content": "---\ntitle: \"FWL에 기반한 잔차화 방법론 구현 노트북\"\ncategory: \"Causal Inference\"\ntags: [\"residualization\", \"FWL\"]\nexcerpt: \"잔차화를 하기 위해 nusiance function을 만들고 결과를 분석하는 노트북\"\n--- # Load Data # from src.dataloader.vault.main import VaultDatasetLoader\n# from src.dataloader.vault.utils import split_df_od_os\n# from src.utils.db import SOFTCRM_DBINFO, get_conn\n\n# import warnings\n# import pandas as pd\n# import numpy as np\n\n# warnings.filterwarnings(\"ignore\")\n\n# # pandas display 옵션 설정 - 모든 열 보이기\n# pd.set_option('display.max_columns', None)\n# pd.set_option('display.width', None)\n# pd.set_option('display.max_colwidth', None)\n\n# loader = VaultDatasetLoader()\n# feature_df, y_df = loader.run(start_date=\"2022-01-01\", end_date=\"2024-12-31\", piol_data_path=\"./data/PIOL렌즈주문서.xlsx\", refresh=False, db=\"crm_emr\")\n\n\n# # y_df의 oper_date와 feature_df의 date를 기준으로 병합\n# merged_df = pd.merge(y_df, feature_df,\n#                     left_on=['cust_num', 'oper_date'],\n#                     right_on=['cust_num', 'date'],\n#           "
   },
   {
+    "id": "Book/만들어진 신 (The God Delusion)/책을읽기시작하면서",
+    "title": "책을 읽기 시작하면서",
+    "date": "2025-07-16",
+    "excerpt": "책을 읽기 전에 어떤 생각을 가지고 있는지 정리",
+    "category": "Book",
+    "tags": [
+      "The God Delusion",
+      "만들어진 신"
+    ],
+    "content": "\n나는 확실한 무신론자다.\n부모님의 영향도 있겠지만, 친구따라 교회에 다녔던 경험, 다양한 매체에서 접한 현상들 등등이 지금 나의 생각을 만들었다.\n신이 있는게 많이 되나?\n\n나의 사고방식은 직업적인 영향 (개발자 or 데이터과학자) 때문인지 몰라도 근거에 지배적이다.\n근거가 명확하다면 지금도 당장 바뀔 수 있고, 근거가 없다면 백날 설득을 하려해도 전혀 소용이 없을 것이다.\n\n내가 이 책을 읽게 된 이유는 신이 없는 이유를 알고 싶다기 보다는, 사람들이 왜 신을 믿는지가 더 궁금한게 크다. \n어쨌든 책에서는 사람들이 신을 믿는 이유를 언급하고 이를 반박할테니까.\n\n이 책의 영어 제목은 되게 파격적이다. 헛웃음이 나올정도로.\nDelusion, 망상이라는 단어를 쓰다니...\n\n> 누군가 망상에 시달리면 정신 이상이라고 한다.\n> 다수가 망상에 시달리면 종교라고 한다.\n> -> 로버트 퍼시그\n\n사실 나도 비슷한 생각이긴 하다. 내가 생각하는 신은 공통적으로 그리고 있는 허상이라고 생각한다.\n예전에 모시던 호랑이 신과 예수는 사실 같다고 보여진다. 사람들의 편의를 위해 어떤 허상의 개념을 만들고, 이를 함께 믿는 것. \n\n주위에 종교를 가진 친구들이 많은데 그들을 무시하는 생각은 진짜 전혀없다.\n그냥 나의 생각이 이럴 뿐.\n또 허상이면 어떻나 삶에 도움이 되면 그게 좋은거지 라는 생각도 한다.\n\n어쨌든 책을 읽어나가면서 나의 생각은 어떻게 바뀌고, 또 어떤 관점이 열릴지 기대가 된다. \n쭉 읽어봐야겠다."
+  },
+  {
     "id": "Recommendation/user-based-collaborative-filtering",
     "title": "User-Based Collaborative Filtering",
     "date": "2025-07-15",
@@ -234,7 +246,7 @@
     "content": "\n\n# 배운 것들\n\n- Try to drink more water\n- Drink more water (X, 명령하는 느낌이 남)\n\n발음 팁! t -> d\n\n- Try to get more sleep\n- Try to cut down on smoking\n\ncut down on : ~을 줄이다\n\n- Try not to skip breakfast.\n\n\n- Make sure to + \n- Make sure to take probiotics every day.\n- Make sure to take Vitamin C.\n- Make sure not to eat too much junk food.\n\nwipe down : 말끔히 닦다\ncome to work\nstock up : 대량으로 사놓다.\n\n\n\n# 간단한 작문\n\nI read a book , atomic habits that tell me how to make habit.\n\nThe book says that try to split the things to very small things.\nBecause it make me to do more.\n\nSo the lesson in the book is that make sure to make things, clear, attractive, easy.\n\n# 피드백. AI 작문\n\n# 피드백:\n1. \"I read a book , atomic habits\" → 쉼표 앞 공백 제거, 책 제목은 따옴표 사용\n2. \"that tell me\" → 단수 주어이므로 \"tells me\"\n3. \"how to make habit\" → \"how to build habits\" (복수형, 더 자연스러운 표현)\n4. \"says that try to\" → \"says to try to\" 또는 \"says that I should try to\"\n5. \"split the things to very small things\" → \"break things down into smaller pieces\"\n6. \"Because it"
   },
   {
-    "id": "Book/아주 작은 습관의 힘/골디락스의 법칙",
+    "id": "Book/아주 작은 습관의 힘 (Atomic Habits)/골디락스의 법칙",
     "title": "골디락스의 법칙",
     "date": "2025-07-13",
     "excerpt": "지금보다 조금 더 어려운 일에 도전하자",
@@ -264,7 +276,7 @@
     "content": "\n\n# 연습 체크\n\n7월 12. 토\n- [ ] 크로메틱\n\n\n\n\n"
   },
   {
-    "id": "Book/아주 작은 습관의 힘/습관추적",
+    "id": "Book/아주 작은 습관의 힘 (Atomic Habits)/습관추적",
     "title": "습관추적에 대하여",
     "date": "2025-07-12",
     "excerpt": "습관추적은 어떤 습관을 만들기 위한 훌륭한 도구다",
@@ -313,7 +325,7 @@
     "content": "\n[paper link](https://arxiv.org/pdf/2208.00872)\n\n# 논문의 배경\n---\n\n[Quasi-Oracle Estimation of Heterogeneous Treatment Effects](https://arxiv.org/pdf/1712.04912) 에서 개인화 처치 효과를 추정하는 방법을 제안했습니다.\n\n<small> * 개인화 처치효과 : 어떤 처치를 했을 때 개인별로 어떤 효과가 있을지 추정한 것</small>\n\n개인화 처치효과를 추정하는 건 인과추론의 가장 핵심적인 문제이며, 이는 다양한 분야에서 통찰을 제공합니다.\n예를 들어 정밀의학에서는 환자별 처치 효과를 추정하여 처치 선택을 결정하고, 교육에서는 학생별 처치 효과를 추정하여 교육 방법을 결정하고, 온라인 마케팅에서는 사용자별 처치 효과를 추정하여 맞춤형 광고를 제공하고, 오프라인 정책 평가에서는 지역별 처치 효과를 추정하여 정책을 결정할 수 있습니다.\n\n> 즉, 개인화 처치효과를 알게 되면 어떤 선택에 대한 근거를 제공할 수 있습니다.\n\n기존 논문에서는 이진 처치의 개인화 처치효과를 추정하는 방법을 이야기했고, 이 논문에서는 이를 확장해서 연속형 처치에 대해서도 이를 적용하기 위한 방법론을 이 논문에서 이야기하고 있습니다.\n\n[[Paper Review] Quasi-Oracle Estimation of Heterogeneous Treatment Effects](/posts/Causal%20Inference/review-Quasi-Oracle-Estimation-of-Heterogeneous-Treatment-Effects) <- 이 논문에 대한 리뷰는 여기서 확인할 수 있습니다.\n\n> 기존의 방법을 확장할 때 발생하는 문제와 이를 해결한 방법론에 대한 이야기에 집중해서 이 논문을 이해했습니다.\n\n간단히 요약하면 다음과 같습니다\n1. 이진 처치에서는 처치효과를 추정하는 방법이 있었는데, 이를 연속형 처치로 확장하면 문제가 발생한다. (유일해를 가지지 않는 문제)\n2. "
   },
   {
-    "id": "Book/아주 작은 습관의 힘/만족스럽게만들어라",
+    "id": "Book/아주 작은 습관의 힘 (Atomic Habits)/만족스럽게만들어라",
     "title": "만족스럽게 만들어라",
     "date": "2025-07-11",
     "excerpt": "지속하기 위해서는 즉각적인 보상이, 그만두기 위해서는 즉각적인 페널티가 필요하다",
@@ -415,7 +427,7 @@
     "content": "\n# 현재 나의 상황\n\n요즘 정말 커리어에 대한 걱정과 고민이 많습니다... ㅎㅎ\n지금 다니고 있는 회사의 도메인에 묶여있진 않을지. 여기서 이룬 성과들이 나의 커리어에 도움이 될지.\n\n사실 생각만하면 정리가 안되는 부분들이 많기 때문에 글로 적어보면서 고민들에 대한 나름의 대답들을 적어보려고 합니다.\n\n저는 산업공학을 전공하고, 6개월정도 부트캠프에서 컴퓨터 비전 부분을 공부하고, 의료 도메인에서 일하고 있습니다.\n지금 다니고 있는 회사(visuworks)는 시력교정병원 (비앤빛 안과)를 주된 고객사로 삼고 있고 이 병원에서 만들어졌다고도 볼 수 있습니다.\n\n여기서 지금까지 한 프로젝트는\n- OCR pipeline 개발\n- 고객 상담용 챗봇 개발\n- 렌즈 사이징 추천 서비스 개발\n\n정도가 있습니다.\n\n# 문제 상황들\n\n제가 생각하는 문제들을 정리해보고 어떻게 해결해볼 수 있을지에 대한 생각들을 정리해보려고 합니다.\n\n## 연봉이 이렇게 적나?\n\n되게 단순하게 일을 일단 시작하는 마음으로 이 회사에 고민없이 입사했는데, 연봉이 생각보다 현저히 적어서 조금 놀랐습니다.\n더 정확히는 연봉이 낮지만 일단 경력을 쌓자는 마음으로 입사했습니다.\n\n8개월정도 일하고 나름 2개의 프로젝트를 성공적으로 끝낸 시점에서, 연봉협상을 했지만 큰 폭으로 오르지는 못했습니다.\n\n> 연봉 테이블이 좋은 회사로 빠르게 옮겨야겠다.\n\n하지만 쉽지 않네요... ㅠ\n지금 4~5개월정도 이직을 준비하고 있는데 대부분의 기업에서 떨어지고 있습니다.\n그냥 이정도 가치를 가진 능력인가?라는 의구심이 들지만 보완해야할 점들을 보완하면서 이직을 준비 중입니다."
   },
   {
-    "id": "Book/아주 작은 습관의 힘/쉬워야달라진다",
+    "id": "Book/아주 작은 습관의 힘 (Atomic Habits)/쉬워야달라진다",
     "title": "쉬워야 달라진다",
     "date": "2025-07-10",
     "excerpt": "어떻게 좋은 습관을 만들고, 나쁜 습관은 버릴 것인가",
