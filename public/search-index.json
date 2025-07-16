@@ -1,5 +1,33 @@
 [
   {
+    "id": "Data Science/2025-01-10-jupyter-notebook-test",
+    "title": "주피터 노트북 완전 테스트 - 셀에서 메타데이터 설정",
+    "date": "2025-07-16",
+    "excerpt": "첫 번째 셀에서 메타데이터를 설정하는 방법을 보여주는 예제입니다.",
+    "category": "Data Science",
+    "tags": [
+      "jupyter",
+      "python",
+      "데이터분석",
+      "pandas",
+      "numpy",
+      "matplotlib"
+    ],
+    "content": "---\ntitle: \"주피터 노트북 완전 테스트 - 셀에서 메타데이터 설정\"\ncategory: \"Data Science\"\ntags: [\"jupyter\", \"python\", \"데이터분석\", \"pandas\", \"numpy\", \"matplotlib\"]\nexcerpt: \"첫 번째 셀에서 메타데이터를 설정하는 방법을 보여주는 예제입니다.\"\n--- # 주피터 노트북 완전 테스트\n\n이것은 블로그에서 주피터 노트북이 완전히 어떻게 표시되는지 테스트하는 예제입니다.\n\n## 메타데이터 설정 방법\n\n**첫 번째 셀에 YAML 형식으로 메타데이터를 설정할 수 있습니다:**\n\n```yaml\n---    \ntitle: \"포스트 제목\"  \ncategory: \"카테고리명\"   \ntags: [\"태그1\", \"태그2\", \"태그3\"]   \nexcerpt: \"포스트 요약\"   \n---  \n```    \n\n## 데이터 분석 예제\n\nPython을 사용한 완전한 데이터 분석을 해보겠습니다.\n\n**주요 내용:**\n- 데이터 생성 및 로드\n- 기본 통계 분석\n- 데이터 시각화 import pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nprint(\"패키지를 성공적으로 import했습니다!\")\n # 샘플 데이터 생성\nnp.random.seed(42)\ndata = {\n    \"x\": np.random.randn(100),\n    \"y\": np.random.randn(100) * 2 + 5\n}\ndf = pd.DataFrame(data)\nprint(\"샘플 데이터를 생성했습니다.\")\ndf.head()\n # 기본 통계량 확인\nprint(\"기본 통계량:\")\ndf.describe()\n # 결론\n\n이 예제에서는 다음을 확인했습니다:\n\n1. **데이터 생성**: NumPy를 사용하여 랜덤 데이터를 생성했습니다\n2. **기본 분석**: Pandas를 사용하여 기본 통계량을 확인했습니다\n3. **코드 실행**: 주피터 노트북의 코드 셀과 출력이 잘 표시되는지 "
+  },
+  {
+    "id": "Causal Inference/residualization-fwl-theorem-test",
+    "title": "FWL에 기반한 잔차화 방법론 구현 노트북",
+    "date": "2025-07-16",
+    "excerpt": "잔차화를 하기 위해 nusiance function을 만들고 결과를 분석하는 노트북",
+    "category": "Causal Inference",
+    "tags": [
+      "residualization",
+      "FWL"
+    ],
+    "content": "---\ntitle: \"FWL에 기반한 잔차화 방법론 구현 노트북\"\ncategory: \"Causal Inference\"\ntags: [\"residualization\", \"FWL\"]\nexcerpt: \"잔차화를 하기 위해 nusiance function을 만들고 결과를 분석하는 노트북\"\n--- # Load Data # from src.dataloader.vault.main import VaultDatasetLoader\n# from src.dataloader.vault.utils import split_df_od_os\n# from src.utils.db import SOFTCRM_DBINFO, get_conn\n\n# import warnings\n# import pandas as pd\n# import numpy as np\n\n# warnings.filterwarnings(\"ignore\")\n\n# # pandas display 옵션 설정 - 모든 열 보이기\n# pd.set_option('display.max_columns', None)\n# pd.set_option('display.width', None)\n# pd.set_option('display.max_colwidth', None)\n\n# loader = VaultDatasetLoader()\n# feature_df, y_df = loader.run(start_date=\"2022-01-01\", end_date=\"2024-12-31\", piol_data_path=\"./data/PIOL렌즈주문서.xlsx\", refresh=False, db=\"crm_emr\")\n\n\n# # y_df의 oper_date와 feature_df의 date를 기준으로 병합\n# merged_df = pd.merge(y_df, feature_df,\n#                     left_on=['cust_num', 'oper_date'],\n#                     right_on=['cust_num', 'date'],\n#           "
+  },
+  {
     "id": "Recommendation/user-based-collaborative-filtering",
     "title": "User-Based Collaborative Filtering",
     "date": "2025-07-15",
@@ -36,34 +64,6 @@
       "고민 및 조언하는 표햔"
     ],
     "content": "\n\n# 배운 것들\n\nBe on the lookout : 정신 똑바로 차려\n\n- Be on the lookout for pickpockets\n- Be on the lookout for voicefishing\n\nBe careful with \n\n- Be careful with your bag on the subway.\n\nin + 자동차 (타서 앉으면 끝)\non + 비행기, 배, 지하철\n\npassport\n\ncatch a cold\n\n- Be careful not to catch a cold\n- Be careful not to burn yourself\n- Be careful not to hurt yourself\n\nDuring this outbreak?\n\noutbreak: 질병 발생기간\n\nscammers : 사기꾼\n\nMake sure not to go\n\n# 간단한 작문\n\nAs usaul, I talk to myself.\nHey MK, be on the lookout for 나태함.\nBe careful with your habit that do work later (미루는 습관)\n\nNice work today, just keep this pace.\nBut don`t forget happy is around you. Feel happy with 사소한 thing around you, and victories you made in today.\n\n# 수정된 작문 (Improved Version)\n\nAs usual, time for my daily self-talk.\nHey MK, don't get lazy on me!\nStop putting things off - let's break this procrastination habit once and for all.\n\n*procrastination: 꾸물거리다\n예문:\n\"Stop procrastinating and start studying!\" (미루지 말고 공부 시작해!)\n\"Procrastination is the thief of "
-  },
-  {
-    "id": "Data Science/2025-01-10-jupyter-notebook-test",
-    "title": "주피터 노트북 완전 테스트 - 셀에서 메타데이터 설정",
-    "date": "2025-07-15",
-    "excerpt": "첫 번째 셀에서 메타데이터를 설정하는 방법을 보여주는 예제입니다.",
-    "category": "Data Science",
-    "tags": [
-      "jupyter",
-      "python",
-      "데이터분석",
-      "pandas",
-      "numpy",
-      "matplotlib"
-    ],
-    "content": "---\ntitle: \"주피터 노트북 완전 테스트 - 셀에서 메타데이터 설정\"\ncategory: \"Data Science\"\ntags: [\"jupyter\", \"python\", \"데이터분석\", \"pandas\", \"numpy\", \"matplotlib\"]\nexcerpt: \"첫 번째 셀에서 메타데이터를 설정하는 방법을 보여주는 예제입니다.\"\n--- # 주피터 노트북 완전 테스트\n\n이것은 블로그에서 주피터 노트북이 완전히 어떻게 표시되는지 테스트하는 예제입니다.\n\n## 메타데이터 설정 방법\n\n**첫 번째 셀에 YAML 형식으로 메타데이터를 설정할 수 있습니다:**\n\n```yaml\n---    \ntitle: \"포스트 제목\"  \ncategory: \"카테고리명\"   \ntags: [\"태그1\", \"태그2\", \"태그3\"]   \nexcerpt: \"포스트 요약\"   \n---  \n```    \n\n## 데이터 분석 예제\n\nPython을 사용한 완전한 데이터 분석을 해보겠습니다.\n\n**주요 내용:**\n- 데이터 생성 및 로드\n- 기본 통계 분석\n- 데이터 시각화 import pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nprint(\"패키지를 성공적으로 import했습니다!\")\n # 샘플 데이터 생성\nnp.random.seed(42)\ndata = {\n    \"x\": np.random.randn(100),\n    \"y\": np.random.randn(100) * 2 + 5\n}\ndf = pd.DataFrame(data)\nprint(\"샘플 데이터를 생성했습니다.\")\ndf.head()\n # 기본 통계량 확인\nprint(\"기본 통계량:\")\ndf.describe()\n # 결론\n\n이 예제에서는 다음을 확인했습니다:\n\n1. **데이터 생성**: NumPy를 사용하여 랜덤 데이터를 생성했습니다\n2. **기본 분석**: Pandas를 사용하여 기본 통계량을 확인했습니다\n3. **코드 실행**: 주피터 노트북의 코드 셀과 출력이 잘 표시되는지 "
-  },
-  {
-    "id": "Causal Inference/residualization-fwl-theorem-test",
-    "title": "FWL에 기반한 잔차화 방법론 구현 노트북",
-    "date": "2025-07-15",
-    "excerpt": "잔차화를 하기 위해 nusiance function을 만들고 결과를 분석하는 노트북",
-    "category": "Causal Inference",
-    "tags": [
-      "residualization",
-      "FWL"
-    ],
-    "content": "---\ntitle: \"FWL에 기반한 잔차화 방법론 구현 노트북\"\ncategory: \"Causal Inference\"\ntags: [\"residualization\", \"FWL\"]\nexcerpt: \"잔차화를 하기 위해 nusiance function을 만들고 결과를 분석하는 노트북\"\n--- # Load Data # from src.dataloader.vault.main import VaultDatasetLoader\n# from src.dataloader.vault.utils import split_df_od_os\n# from src.utils.db import SOFTCRM_DBINFO, get_conn\n\n# import warnings\n# import pandas as pd\n# import numpy as np\n\n# warnings.filterwarnings(\"ignore\")\n\n# # pandas display 옵션 설정 - 모든 열 보이기\n# pd.set_option('display.max_columns', None)\n# pd.set_option('display.width', None)\n# pd.set_option('display.max_colwidth', None)\n\n# loader = VaultDatasetLoader()\n# feature_df, y_df = loader.run(start_date=\"2022-01-01\", end_date=\"2024-12-31\", piol_data_path=\"./data/PIOL렌즈주문서.xlsx\", refresh=False, db=\"crm_emr\")\n\n\n# # y_df의 oper_date와 feature_df의 date를 기준으로 병합\n# merged_df = pd.merge(y_df, feature_df,\n#                     left_on=['cust_num', 'oper_date'],\n#                     right_on=['cust_num', 'date'],\n#           "
   },
   {
     "id": "Causal Inference/Paper Review/review-Quasi-Oracle-Estimation-of-Heterogeneous-Treatment-Effects",
@@ -260,7 +260,7 @@
       "Linear Algebra",
       "Matrix Analysis"
     ],
-    "content": "\n# Ill-conditioned 행렬과 고유값: 연속형 처치 R-learner의 이론적 배경\n\n## 개요\n\n연속형 처치 R-learner에서 발생하는 **non-identification 문제**는 수학적으로 **ill-conditioned 행렬** 문제로 나타납니다. 이 글에서는 이 개념들을 단계별로 자세히 설명합니다.\n\n## 1. 고유값(Eigenvalue)이란?\n\n### 1.1 기본 개념\n\n**고유값**은 행렬의 중요한 특성을 나타내는 스칼라 값입니다.\n\n**수학적 정의**:\n행렬 A에 대해, 0이 아닌 벡터 v와 스칼라 λ가 다음을 만족할 때:\n```\nAv = λv\n```\nλ를 A의 **고유값**, v를 **고유벡터**라고 합니다.\n\n### 1.2 직관적 이해\n\n고유값은 행렬이 벡터를 **어떤 방향으로 얼마나 늘리거나 줄이는지**를 나타냅니다.\n\n**예시**:\n```\n행렬 A = [2 0]\n         [0 3]\n\n고유값: λ₁ = 2, λ₂ = 3\n고유벡터: v₁ = [1, 0], v₂ = [0, 1]\n```\n\n- λ₁ = 2: x축 방향으로 2배 늘림\n- λ₂ = 3: y축 방향으로 3배 늘림\n\n### 1.3 고유값의 의미\n\n1. **λ > 1**: 해당 방향으로 확대\n2. **0 < λ < 1**: 해당 방향으로 축소\n3. **λ = 0**: 해당 방향으로 완전히 압축 (정보 손실)\n4. **λ < 0**: 해당 방향으로 반전\n\n## 2. Ill-conditioned 행렬이란?\n\n### 2.1 조건수(Condition Number)\n\n**조건수**는 행렬이 얼마나 \"불안정한지\"를 측정하는 지표입니다.\n\n**정의**:\n```\nκ(A) = ||A|| × ||A⁻¹||\n```\n\n여기서 ||A||는 행렬 A의 노름(norm)입니다.\n\n### 2.2 Ill-conditioned의 의미\n\n**Well-conditioned**: 조건수가 작음 (≈ 1)\n**Ill-conditioned**: 조건수가 큼 (≫ 1)\n\n### 2.3 왜 문제가 되는가?\n\nIl"
+    "content": "\n# Ill-conditioned 행렬과 고유값: 연속형 처치 R-learner의 이론적 배경\n\n## 개요\n\n연속형 처치 R-learner에서 발생하는 **non-identification 문제**는 수학적으로 **ill-conditioned 행렬** 문제로 나타납니다. 이 글에서는 이 개념들을 단계별로 자세히 설명합니다.\n\n## 1. 고유값(Eigenvalue)이란?\n\n### 1.1 기본 개념\n\n**고유값**은 행렬의 중요한 특성을 나타내는 스칼라 값입니다.\n\n**수학적 정의**:\n행렬 A에 대해, 0이 아닌 벡터 v와 스칼라 λ가 다음을 만족할 때:\n\n$$Av = \\lambda v$$\n\nλ를 A의 **고유값**, v를 **고유벡터**라고 합니다.\n\n### 1.2 직관적 이해\n\n고유값은 행렬이 벡터를 **어떤 방향으로 얼마나 늘리거나 줄이는지**를 나타냅니다.\n\n**예시**:\n\n$$A = \\begin{bmatrix} 2 & 0 \\\\ 0 & 3 \\end{bmatrix}$$\n\n고유값: $\\lambda_1 = 2$, $\\lambda_2 = 3$  \n고유벡터: $v_1 = [1, 0]$, $v_2 = [0, 1]$\n\n- λ₁ = 2: x축 방향으로 2배 늘림\n- λ₂ = 3: y축 방향으로 3배 늘림\n\n### 1.3 고유값의 의미\n\n1. **λ > 1**: 해당 방향으로 확대\n2. **0 < λ < 1**: 해당 방향으로 축소\n3. **λ = 0**: 해당 방향으로 완전히 압축 (정보 손실)\n4. **λ < 0**: 해당 방향으로 반전\n\n## 2. Ill-conditioned 행렬이란?\n\n### 2.1 조건수(Condition Number)\n\n**조건수**는 행렬이 얼마나 \"불안정한지\"를 측정하는 지표입니다.\n\n**정의**:\n\n$$\\kappa(A) = \\|A\\| \\times \\|A^{-1}\\|$$\n\n여기서 ||A||는 행렬 A의 노름(norm)입니다.\n\n### 2.2 Ill-conditioned의 의미\n\n**Well-conditioned**: 조건수가 작음 (≈ 1"
   },
   {
     "id": "Causal Inference/Paper Review/review-Towards-R-learner-with-Continuous-Treatments",

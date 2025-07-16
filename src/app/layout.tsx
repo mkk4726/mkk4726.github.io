@@ -31,6 +31,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link 
+          rel="stylesheet" 
+          href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css" 
+          integrity="sha384-6oSOzVb16R9vDJALgJ6ReAHbz6T3+vf9nxTwyN0eTblof2vEa0XAnwdHj9+Apz" 
+          crossOrigin="anonymous" 
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-50 min-h-screen`}
       >

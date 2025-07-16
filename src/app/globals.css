@@ -1,5 +1,29 @@
 @import "tailwindcss";
 
+/* KaTeX 추가 스타일링 */
+.katex-display {
+  margin: 1em 0;
+  text-align: center;
+}
+
+.katex {
+  font-size: 1.1em;
+}
+
+/* 행렬 환경 스타일링 */
+.katex .base {
+  display: inline-block;
+}
+
+.katex .array {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.katex .array > .array {
+  text-align: center;
+}
+
 /* 기본 텍스트 색상 */
 body {
   color: #1a202c;

@@ -12,7 +12,11 @@ export async function parseMarkdown(content: string): Promise<string> {
     .use(remarkGfm)
     .use(remarkBreaks)
     .use(remarkRehype, { allowDangerousHtml: true })
-    .use(rehypeKatex)
+    .use(rehypeKatex, {
+      strict: false,
+      throwOnError: false,
+      errorColor: '#cc0000'
+    })
     .use(rehypeStringify, { allowDangerousHtml: true })
     .process(content);
 
