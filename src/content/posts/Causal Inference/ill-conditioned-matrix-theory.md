@@ -31,7 +31,9 @@ $$Av = \lambda v$$
 
 **예시**:
 
-$$A = \begin{bmatrix} 2 & 0 \\ 0 & 3 \end{bmatrix}$$
+$$
+A = \begin{bmatrix} 2 & 0 \\ 0 & 3 \end{bmatrix}
+$$
 
 고유값: $\lambda_1 = 2$, $\lambda_2 = 3$  
 고유벡터: $v_1 = [1, 0]$, $v_2 = [0, 1]$
@@ -54,9 +56,11 @@ $$A = \begin{bmatrix} 2 & 0 \\ 0 & 3 \end{bmatrix}$$
 
 **정의**:
 
-$$\kappa(A) = \\|A\\| \\times \\|A^{-1}\\|$$
+$$
+\kappa(A) = \|A\| \times \|A^{-1}\|
+$$
 
-여기서 ||A||는 행렬 A의 노름(norm)입니다.
+여기서 $\|A\|$는 행렬 A의 노름(norm)입니다.
 
 ### 2.2 Ill-conditioned의 의미
 
@@ -69,9 +73,13 @@ Ill-conditioned 행렬에서는 **작은 입력 변화가 큰 출력 변화**를
 
 **예시**:
 
-$$A = \begin{bmatrix} 1 & 1 \\ 1 & 1.001 \end{bmatrix}$$
+$$
+A = \begin{bmatrix} 1 & 1 \\ 1 & 1.001 \end{bmatrix}
+$$
 
-$$A^{-1} \approx \begin{bmatrix} 1001 & -1000 \\ -1000 & 1000 \end{bmatrix}$$
+$$
+A^{-1} \approx \begin{bmatrix} 1001 & -1000 \\ -1000 & 1000 \end{bmatrix}
+$$
 
 조건수 $\approx 4000$ (매우 큼!)
 
@@ -105,12 +113,14 @@ $$L(\tau) = \mathbb{E}[(Y - \mu_0(X) - \tau(X,T)(T - \pi(X)))^2]$$
 
 연속형 처치를 행렬로 표현하면:
 
-$$\begin{bmatrix}
+$$
+\begin{bmatrix}
 \tau(x_1,t_1) & \tau(x_1,t_2) & \cdots & \tau(x_1,t_n) \\
 \tau(x_2,t_1) & \tau(x_2,t_2) & \cdots & \tau(x_2,t_n) \\
 \vdots & \vdots & \ddots & \vdots \\
 \tau(x_m,t_1) & \tau(x_m,t_2) & \cdots & \tau(x_m,t_n)
-\end{bmatrix}$$
+\end{bmatrix}
+$$
 
 이 행렬은 **매우 큰 크기**를 가지며, 많은 행들이 **거의 선형 종속**입니다.
 
@@ -152,7 +162,7 @@ $$\tau(x, 0.1) \approx \tau(x, 0.11) \approx \tau(x, 0.12) \cdots$$
 원래 문제: $Ax = b$  
 노이즈가 있는 문제: $(A + \epsilon)\tilde{x} = b + \delta$
 
-결과: $\\|x - \\tilde{x}\\|$가 매우 클 수 있음
+결과: $\|x - \tilde{x}\|$가 매우 클 수 있음
 
 ### 5.2 해의 유일성 부족
 
@@ -172,7 +182,7 @@ $$\tau(x,t) = \tau_0(x,t) + \epsilon(x,t)$$
 
 **정규화 항 추가**:
 
-$$L(\tau) = \mathbb{E}[(Y - \mu_0(X) - \tau(X,T)(T - \pi(X)))^2] + \lambda\\|\\tau\\|^2$$
+$$L(\tau) = \mathbb{E}[(Y - \mu_0(X) - \tau(X,T)(T - \pi(X)))^2] + \lambda\|\tau\|^2$$
 
 ### 6.2 수학적 효과
 
