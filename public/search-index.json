@@ -41,6 +41,20 @@
     "content": "---\ntitle: \"FWL에 기반한 잔차화 방법론 구현 노트북\"\ncategory: \"Causal Inference\"\ntags: [\"residualization\", \"FWL\"]\nexcerpt: \"잔차화를 하기 위해 nusiance function을 만들고 결과를 분석하는 노트북\"\n--- # Load Data # from src.dataloader.vault.main import VaultDatasetLoader\n# from src.dataloader.vault.utils import split_df_od_os\n# from src.utils.db import SOFTCRM_DBINFO, get_conn\n\n# import warnings\n# import pandas as pd\n# import numpy as np\n\n# warnings.filterwarnings(\"ignore\")\n\n# # pandas display 옵션 설정 - 모든 열 보이기\n# pd.set_option('display.max_columns', None)\n# pd.set_option('display.width', None)\n# pd.set_option('display.max_colwidth', None)\n\n# loader = VaultDatasetLoader()\n# feature_df, y_df = loader.run(start_date=\"2022-01-01\", end_date=\"2024-12-31\", piol_data_path=\"./data/PIOL렌즈주문서.xlsx\", refresh=False, db=\"crm_emr\")\n\n\n# # y_df의 oper_date와 feature_df의 date를 기준으로 병합\n# merged_df = pd.merge(y_df, feature_df,\n#                     left_on=['cust_num', 'oper_date'],\n#                     right_on=['cust_num', 'date'],\n#           "
   },
   {
+    "id": "Causal Inference/double-robustness-explained",
+    "title": "Double Robustness: 인과추론의 핵심 개념 완전 정복",
+    "date": "2025-07-17",
+    "excerpt": "Double Robustness의 이론적 기반부터 실용적 응용까지 완전 해부",
+    "category": "Causal Inference",
+    "tags": [
+      "Double Robustness",
+      "Causal Inference",
+      "Theory",
+      "R-learner"
+    ],
+    "content": "\n# Double Robustness: 인과추론의 핵심 개념 완전 정복\n\n**Double Robustness**(이중 강건성)는 현대 인과추론의 핵심 개념 중 하나로, R-learner와 같은 최신 방법론의 이론적 기반이 됩니다. 이 포스트에서는 Double Robustness의 모든 측면을 자세히 살펴보겠습니다.\n\n# 1. Double Robustness란 무엇인가?\n\n## 1.1 직관적 이해\n\n**Double Robustness**는 **\"두 가지 모델 중 하나만 정확해도 편향 없는 추정이 가능한 성질\"**입니다.\n\n### **간단한 비유**\n- **자물쇠 두 개**: 문을 열려면 둘 중 하나만 열면 됨\n- **백업 시스템**: 주 시스템이 실패해도 보조 시스템이 작동\n- **이중 보험**: 하나가 실패해도 다른 하나가 보장\n\n## 1.2 인과추론에서의 의미\n\n인과추론에서 우리가 추정해야 하는 두 가지 핵심 요소:\n\n1. **Outcome Model** (결과 모델): $\\mu(x, w) = \\mathbb{E}[Y | X = x, W = w]$\n2. **Propensity Score Model** (처치 확률 모델): $e(x) = \\text{Pr}(W = 1 | X = x)$\n\n**Double Robustness**: 이 둘 중 **하나만 정확해도** 처치효과를 편향 없이 추정할 수 있음!\n\n# 2. 수학적 이론: 핵심 메커니즘\n\n## 2.1 Potential Outcomes Framework\n\n**기본 설정**:\n- **잠재결과**: $Y_i(0), Y_i(1)$ (처치를 받지 않았을 때/받았을 때의 결과)\n- **관찰결과**: $Y_i = Y_i(W_i)$ \n- **개별 처치효과**: $\\tau_i = Y_i(1) - Y_i(0)$\n- **평균 처치효과**: $\\tau = \\mathbb{E}[Y(1) - Y(0)]$\n\n**근본적 문제**: 같은 개인에 대해 $Y_i(0)$과 $Y_i(1)$을 동시에 관찰할 수 없음!\n\n## 2.2 Unconfounde"
+  },
+  {
     "id": "English Study/SPEAK/07-16-그나저나소개팅어땠어",
     "title": "그나저나 소개팅 어땠어?",
     "date": "2025-07-16",
