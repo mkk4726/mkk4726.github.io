@@ -1,7 +1,7 @@
 ---
 title: "[Paper Review] Quasi-Oracle Estimation of Heterogeneous Treatment Effects"
-date: "2025-07-15"
-excerpt: "논문 리뷰"
+date: "2025-07-17"
+excerpt: "R-leaner 방법 소개와 이게 가지는 quasi-oracle property에 대해 설명"
 category: "Causal Inference"
 tags: ["Paper Review"]
 ---
@@ -62,7 +62,7 @@ potential outcomes framework를 사용해 문제를 정의합니다.
 - **관찰된 결과와의 관계**: $Y_i = Y_i(W_i)$
 
 **조건부 평균 처치효과 (CATE)**:
-- **목표 함수**: $\tau^*(x) = \mathbb{E}\{Y(1) - Y(0) | X = x\}$
+- **목표 함수**: $\tau^*(x) = \mathbb{E}[Y(1) - Y(0) \mid X = x]$
   - 특성 $X = x$인 개인들의 평균 처치효과
 
 **식별 조건**:
@@ -77,11 +77,11 @@ CATE를 추정하기 위해서는 무작위 할당처럼 unconfoundedness 가정
 
 **Assumption 1** : The treatment assignment $W_i$ is unconfounded, $\{Y_i(0), Y_i(1)\} \perp \!\!\! \perp W_i \mid X_i$
 
-- **Treatment Propensity** : $e^*(x) = \text{Pr}(W = 1 | X = x)$
-- **Conditional Response Surfaces** : $\mu^{*(w)}(x) = \mathbb{E}\{Y(w) | X = x\} \quad \text{for } w \in \{0, 1\}$
+- **Treatment Propensity** : $e^*(x) = \Pr(W = 1 \mid X = x)$
+- **Conditional Response Surfaces** : $\mu^{*(w)}(x) = \mathbb{E}[Y(w) \mid X = x]$ for $w \in \{0, 1\}$
 - **Error Term** : $\varepsilon_i(w) := Y_i(w) - \{\mu^{*(0)}(X_i) + w\tau^*(X_i)\}$
-- **성질** : unconfoundedness 하에서 $\mathbb{E}\{\varepsilon_i(W_i) | X_i, W_i\} = 0$
-- **Conditional Mean Outcome** : $m^*(x) = \mathbb{E}\{Y | X = x\} = \mu^{*(0)}(X_i) + e^*(X_i)\tau^*(X_i)$
+- **성질** : unconfoundedness 하에서 $\mathbb{E}[\varepsilon_i(W_i) \mid X_i, W_i] = 0$
+- **Conditional Mean Outcome** : $m^*(x) = \mathbb{E}[Y \mid X = x] = \mu^{*(0)}(x) + e^*(x)\tau^*(x)$
 
 
 $$Y_i - m^*(X_i) = \{W_i - e^*(X_i)\} \tau^*(X_i) + \varepsilon_i \tag{1}$$
@@ -102,14 +102,14 @@ $$Y_i - m^*(X_i) = \{W_i - e^*(X_i)\} \tau^*(X_i) + \varepsilon_i \tag{1}$$
 
 이 논문의 주요 결과는 이 표현을 사용하여 개인화된 처치효과를 포착하는 손실 함수를 구성할 수 있으며, 이 손실 함수의 정규화된 최소화 해를 찾아 처치효과를 정확하게 추정할 수 있다는 것입니다.
 
-$$\tau^*(\cdot) = \arg\min_{\tau} \mathbb{E}\left[\left\{Y_i - m^*(X_i)\right\} - \left\{W_i - e^*(X_i)\right\} \tau(X_i)\right]^2 \tag{2}$$
+$$\tau^*(\cdot) = \arg\min_{\tau} \mathbb{E}\left[\{Y_i - m^*(X_i)\} - \{W_i - e^*(X_i)\} \tau(X_i)\right]^2 \tag{2}$$
 
 
 $$
-\tilde{\tau}(\cdot) = \arg\min_{\tau} \left\{ \frac{1}{n} \sum_{i=1}^n \left( \left\{ Y_i - m^*(X_i) \right\} - \left\{ W_i - e^*(X_i) \right\} \tau(X_i) \right)^2 + \Lambda_n\{\tau(\cdot)\} \right\} \tag{3}
+\tilde{\tau}(\cdot) = \arg\min_{\tau} \left\{ \frac{1}{n} \sum_{i=1}^n \left( \{ Y_i - m^*(X_i) \} - \{ W_i - e^*(X_i) \} \tau(X_i) \right)^2 + \Lambda_n[\tau(\cdot)] \right\} \tag{3}
 $$
 
-where the term $\Lambda_n\{\tau(\cdot)\}$ is interpreted as a regularizer on the complexity of the $\tau(\cdot)$ function
+where the term $\Lambda_n[\tau(\cdot)]$ is interpreted as a regularizer on the complexity of the $\tau(\cdot)$ function
 
 > This regularization could be explicit as in penalized regression, or implicit, e.g., as provided by a carefully designed deep neural network.
 
@@ -132,13 +132,13 @@ where the term $\Lambda_n\{\tau(\cdot)\}$ is interpreted as a regularizer on the
 - (3)의 plug-in 버전을 통해 처치효과 추정
 - $\hat{e}^{(-q(i))}(X_i)$ 등은 i번째 훈련 예제가 속한 fold를 사용하지 않고 만든 예측값
 
-$$\hat{\tau}(\cdot) = \arg\min_{\tau} \left\{ \hat{L}_n\{\tau(\cdot)\} + \Lambda_n\{\tau(\cdot)\} \right\} \tag{4}$$
+$$\hat{\tau}(\cdot) = \arg\min_{\tau} \left\{ \hat{L}_n[\tau(\cdot)] + \Lambda_n[\tau(\cdot)] \right\} \tag{4}$$
 
 
-$$\hat{L}_n\{\tau(\cdot)\} = \frac{1}{n} \sum_{i=1}^n \left[ \left\{Y_i - \hat{m}^{(-q(i))}(X_i)\right\} - \left\{W_i - \hat{e}^{(-q(i))}(X_i)\right\} \tau(X_i) \right]^2 \tag{4a}$$
+$$\hat{L}_n[\tau(\cdot)] = \frac{1}{n} \sum_{i=1}^n \left[ \{Y_i - \hat{m}^{(-q(i))}(X_i)\} - \{W_i - \hat{e}^{(-q(i))}(X_i)\} \tau(X_i) \right]^2 \tag{4a}$$
 
 
-> In other words, the first step learns an approximation for the oracle objective, and the second step optimizes it. We refer to this approach as the R-learner in recognition of the work of Robinson (1988) and to emphasize the role of residualization. We will also refer to the squared loss $L_b^n\{\tau(\cdot)\}$ as the R-loss.
+> In other words, the first step learns an approximation for the oracle objective, and the second step optimizes it. We refer to this approach as the R-learner in recognition of the work of Robinson (1988) and to emphasize the role of residualization. We will also refer to the squared loss $L_b^n[\tau(\cdot)]$ as the R-loss.
 
 1. 1단계: 오라클 목적함수(이론적으로 최적임을 보장하는 함수)의 근사값을 학습
 2. 2단계: 그 근사 목적함수를 실제로 최적화
@@ -217,7 +217,7 @@ $$
 $$\hat{\tau}(x) = \{1 - \hat{e}(x)\} \hat{\tau}^{(1)}(x) + \hat{e}(x) \hat{\tau}^{(0)}(x) \tag{7}$$
 
 **U-learner (Künzel et al., 2019)**:
-- $U_i = \frac{Y_i - m^(X_i)}{W_i - e^(X_i)}$에 대해 $\mathbb{E}[U_i | X_i = x] = \tau(x)$임을 이용
+- $U_i = \frac{Y_i - m^(X_i)}{W_i - e^(X_i)}$에 대해 $\mathbb{E}[U_i \mid X_i = x] = \tau(x)$임을 이용
 - $U_i$를 $X_i$에 대해 범용 기계학습 방법으로 회귀
 
 **Propensity Score 가중 방법들**:
@@ -372,7 +372,7 @@ $$(\hat{b}, \hat{c}, \hat{\alpha}) = \arg\min_{b, c, \alpha} \left\{ \sum_{i=1}^
 
 다음과 같은 데이터 생성 분포에서 실험을 수행했습니다:
 
-$$X_i \sim N(0, I_{d \times d}), \quad W_i \sim \text{Bernoulli}(0.5) \tag{9a}$$
+$$X_i \sim N(0, I_{d \times d}), \quad W_i \sim \mathrm{Bernoulli}(0.5) \tag{9a}$$
 
 $$Y_i \mid X_i, W_i \sim N\left(\frac{3}{1 + e^{X_{i3} - X_{i2}}} + (W_i - 0.5) \tau^*(X_i), \sigma^2\right) \tag{9b}$$
 
@@ -436,17 +436,17 @@ $$Y_i \mid X_i, W_i \sim N\left(\frac{3}{1 + e^{X_{i3} - X_{i2}}} + (W_i - 0.5) 
 
 ### **Oracle Estimator**
 이상적인 oracle은 다음을 미리 알고 있다고 가정합니다:
-- **True marginal effect**: $m^*(x) = \mathbb{E}[Y | X = x]$
-- **True propensity score**: $e^*(x) = \text{Pr}(W = 1 | X = x)$
+- **True marginal effect**: $m^*(x) = \mathbb{E}[Y \mid X = x]$
+- **True propensity score**: $e^*(x) = \Pr(W = 1 \mid X = x)$
 
 Oracle이 이 정보를 알고 있다면, 다음 손실함수를 직접 최소화할 수 있습니다:
 
-$$\mathcal{L}_n^{\text{oracle}}\{\tau(\cdot)\} = \frac{1}{n} \sum_{i=1}^n \left[ \left\{Y_i - m^*(X_i)\right\} - \left\{W_i - e^*(X_i)\right\} \tau(X_i) \right]^2$$
+$$\mathcal{L}_n^{\text{oracle}}[\tau(\cdot)] = \frac{1}{n} \sum_{i=1}^n \left[ \{Y_i - m^*(X_i)\} - \{W_i - e^*(X_i)\} \tau(X_i) \right]^2$$
 
 ### **R-learner (Quasi-Oracle)**
 실제로는 $m^*(x)$와 $e^*(x)$를 모르므로, 추정값 $\hat{m}(\cdot)$과 $\hat{e}(\cdot)$을 사용:
 
-$$\hat{\mathcal{L}}_n\{\tau(\cdot)\} = \frac{1}{n} \sum_{i=1}^n \left[ \left\{Y_i - \hat{m}^{(-q(i))}(X_i)\right\} - \left\{W_i - \hat{e}^{(-q(i))}(X_i)\right\} \tau(X_i) \right]^2$$
+$$\hat{\mathcal{L}}_n[\tau(\cdot)] = \frac{1}{n} \sum_{i=1}^n \left[ \{Y_i - \hat{m}^{(-q(i))}(X_i)\} - \{W_i - \hat{e}^{(-q(i))}(X_i)\} \tau(X_i) \right]^2$$
 
 ## 5.2 Main Theoretical Result
 
@@ -518,7 +518,7 @@ Robinson's transformation (1988)이 핵심입니다:
 $$Y_i - m^*(X_i) = \{W_i - e^*(X_i)\} \tau^*(X_i) + \varepsilon_i$$
 
 이 변환의 특별한 성질:
-- **Orthogonality**: $\mathbb{E}[\varepsilon_i | X_i, W_i] = 0$
+- **Orthogonality**: $\mathbb{E}[\varepsilon_i \mid X_i, W_i] = 0$
 - **Causal Isolation**: 처치효과만 분리됨
 
 #### **2. Cross-fitting의 핵심 역할**
@@ -531,7 +531,7 @@ Step 4: 모든 fold에 대해 반복
 
 **왜 이게 중요한가?**
 - **Independence**: 추정에 사용된 데이터와 예측 데이터가 독립
-- **Bias Reduction**: $\mathbb{E}[\hat{m}^{(-i)}(X_i) | X_i] \approx m^*(X_i)$
+- **Bias Reduction**: $\mathbb{E}[\hat{m}^{(-i)}(X_i) \mid X_i] \approx m^*(X_i)$
 
 #### **3. Doubly Robust의 수학적 구조**
 
