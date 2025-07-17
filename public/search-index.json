@@ -1,21 +1,8 @@
 [
   {
-    "id": "English Study/SPEAK/07-16-그나저나소개팅어땠어",
-    "title": "그나저나 소개팅 어땠어?",
-    "date": "2025-07-16",
-    "excerpt": "",
-    "category": "English Study",
-    "tags": [
-      "영어공부꾸준히!",
-      "SPEAK",
-      "고민 및 조언하는 표햔"
-    ],
-    "content": "\n\n# 배운 것\n\nHow was it?\n\n그나저나, 그런데\nBy the way, how was the blind date?\n\nBTW (By The Way)\n친구 사이에서 가볍게 쓰는 말\n\nBy the way, how was the dinner yesterday?\n\nBlind date 소개팅 \n\nWell, the thing is he is a vegeterian.\n글쎄, 문제는\n\nout of budget\n\nto make it somewhere : 어디든 가다\n\n\n\n# 간단한 작문. Simple writing or essay\n\nDaily talk to myself as usual.\n\nBy the way, How was your day?\nDid you do your best?\n\nWell, the thing is condition.\nToday, I was so tired. So I can fully concentrate.\nSo I think I should have a sleep early.\n\n## 수정된 버전 (Improved Version)\n\nJust having my usual daily conversation with myself.\n\nBy the way, how was your day?\nDid you do your best?\n\nWell, the thing is my condition wasn't great.\nToday, I was so tired that I couldn't fully concentrate.\nSo I think I should go to sleep early tonight.\n\n## 피드백 (Feedback)\n\n**주요 수정 사항:**\n\n1. **\"Daily talk to myself\"** → **\"Having my usual daily conversation with myself\"**\n   - 더 완전한 문장 구조로 수정\n\n2. **\"Well, the thing is condition\"** → **\"Well, the thing is my con"
-  },
-  {
     "id": "Data Science/2025-01-10-jupyter-notebook-test",
     "title": "주피터 노트북 완전 테스트 - 셀에서 메타데이터 설정",
-    "date": "2025-07-16",
+    "date": "2025-07-17",
     "excerpt": "첫 번째 셀에서 메타데이터를 설정하는 방법을 보여주는 예제입니다.",
     "category": "Data Science",
     "tags": [
@@ -29,6 +16,44 @@
     "content": "---\ntitle: \"주피터 노트북 완전 테스트 - 셀에서 메타데이터 설정\"\ncategory: \"Data Science\"\ntags: [\"jupyter\", \"python\", \"데이터분석\", \"pandas\", \"numpy\", \"matplotlib\"]\nexcerpt: \"첫 번째 셀에서 메타데이터를 설정하는 방법을 보여주는 예제입니다.\"\n--- # 주피터 노트북 완전 테스트\n\n이것은 블로그에서 주피터 노트북이 완전히 어떻게 표시되는지 테스트하는 예제입니다.\n\n## 메타데이터 설정 방법\n\n**첫 번째 셀에 YAML 형식으로 메타데이터를 설정할 수 있습니다:**\n\n```yaml\n---    \ntitle: \"포스트 제목\"  \ncategory: \"카테고리명\"   \ntags: [\"태그1\", \"태그2\", \"태그3\"]   \nexcerpt: \"포스트 요약\"   \n---  \n```    \n\n## 데이터 분석 예제\n\nPython을 사용한 완전한 데이터 분석을 해보겠습니다.\n\n**주요 내용:**\n- 데이터 생성 및 로드\n- 기본 통계 분석\n- 데이터 시각화 import pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nprint(\"패키지를 성공적으로 import했습니다!\")\n # 샘플 데이터 생성\nnp.random.seed(42)\ndata = {\n    \"x\": np.random.randn(100),\n    \"y\": np.random.randn(100) * 2 + 5\n}\ndf = pd.DataFrame(data)\nprint(\"샘플 데이터를 생성했습니다.\")\ndf.head()\n # 기본 통계량 확인\nprint(\"기본 통계량:\")\ndf.describe()\n # 결론\n\n이 예제에서는 다음을 확인했습니다:\n\n1. **데이터 생성**: NumPy를 사용하여 랜덤 데이터를 생성했습니다\n2. **기본 분석**: Pandas를 사용하여 기본 통계량을 확인했습니다\n3. **코드 실행**: 주피터 노트북의 코드 셀과 출력이 잘 표시되는지 "
   },
   {
+    "id": "Current Affairs/중국문화대혁명과홍위병",
+    "title": "중국 문화대혁명과 홍위병",
+    "date": "2025-07-17",
+    "excerpt": "문화대혁명과 홍위병에 대한 내용들",
+    "category": "Current Affairs",
+    "tags": [
+      "중국",
+      "문화대혁명",
+      "홍위병"
+    ],
+    "content": "\n# 참고 자료\n\n- [리뷰엉이 - 삼체에서 가장 중요한 사건 문화대혁명](https://www.youtube.com/watch?v=4MwDN41Lja0&t=1349s)\n\n# 문화대혁명이란?\n\n**문화대혁명**(文化大革命, Cultural Revolution)은 정식 명칭이 **\"무산계급 문화대혁명\"**(無產階級文化大革命, Great Proletarian Cultural Revolution)으로, 1966년부터 1976년까지 10년간 중국에서 일어난 사회정치적 운동이다.\n\n## 발생 배경\n\n### 대약진운동의 실패 (1958-1962)\n- 마오쩌둥이 주도한 경제개발 정책인 대약진운동이 참혹하게 실패\n- 2천만 명 이상이 기근으로 사망\n- 마오쩌둥의 권력과 영향력이 크게 약화됨\n\n### 실용주의 노선의 등장\n- 류샤오치(劉少奇), 저우언라이(周恩來), 덩샤오핑(鄧小平) 등이 실용적 경제 정책 도입\n- 개인 농지 허용 등 시장경제 요소 도입으로 경제 회복 (1962-1965)\n- 마오쩌둥은 이러한 정책이 공산주의 원칙에 위배된다고 판단\n\n## 문화대혁명의 목표\n\n마오쩌둥이 문화대혁명을 일으킨 주요 목적:\n\n1. **권력 회복**: 대약진운동 실패로 잃은 정치적 영향력 되찾기\n2. **정적 제거**: 류샤오치, 덩샤오핑 등 실용주의 노선 지도자들 축출\n3. **혁명 정신 부활**: 관료화되고 있는 중국 공산당과 사회에 혁명 정신 주입\n4. **\"4구\"(四舊) 타파**: \n   - 구사상(舊思想) - 옛 사상\n   - 구문화(舊文化) - 옛 문화\n   - 구풍속(舊風俗) - 옛 풍습\n   - 구습관(舊習慣) - 옛 습관\n\n## 문화대혁명의 전개 과정\n\n### 1단계: 발발과 혼란 (1966-1968)\n\n#### 1966년 5월: 시작\n- **5.16 통지**: 중국 공산당 중앙위원회가 문화대혁명 시작을 공식 선언\n- 부르주아 분자들이 당, 정부, 군대, 문화계에 침투했다고 주장\n\n#### 홍위병(紅衛兵) 조직\n- 주로 학생들로 구성된 준군사조직\n- **마오쩌둥어록**"
+  },
+  {
+    "id": "Causal Inference/residualization-fwl-theorem-test",
+    "title": "FWL에 기반한 잔차화 방법론 구현 노트북",
+    "date": "2025-07-17",
+    "excerpt": "잔차화를 하기 위해 nusiance function을 만들고 결과를 분석하는 노트북",
+    "category": "Causal Inference",
+    "tags": [
+      "residualization",
+      "FWL"
+    ],
+    "content": "---\ntitle: \"FWL에 기반한 잔차화 방법론 구현 노트북\"\ncategory: \"Causal Inference\"\ntags: [\"residualization\", \"FWL\"]\nexcerpt: \"잔차화를 하기 위해 nusiance function을 만들고 결과를 분석하는 노트북\"\n--- # Load Data # from src.dataloader.vault.main import VaultDatasetLoader\n# from src.dataloader.vault.utils import split_df_od_os\n# from src.utils.db import SOFTCRM_DBINFO, get_conn\n\n# import warnings\n# import pandas as pd\n# import numpy as np\n\n# warnings.filterwarnings(\"ignore\")\n\n# # pandas display 옵션 설정 - 모든 열 보이기\n# pd.set_option('display.max_columns', None)\n# pd.set_option('display.width', None)\n# pd.set_option('display.max_colwidth', None)\n\n# loader = VaultDatasetLoader()\n# feature_df, y_df = loader.run(start_date=\"2022-01-01\", end_date=\"2024-12-31\", piol_data_path=\"./data/PIOL렌즈주문서.xlsx\", refresh=False, db=\"crm_emr\")\n\n\n# # y_df의 oper_date와 feature_df의 date를 기준으로 병합\n# merged_df = pd.merge(y_df, feature_df,\n#                     left_on=['cust_num', 'oper_date'],\n#                     right_on=['cust_num', 'date'],\n#           "
+  },
+  {
+    "id": "English Study/SPEAK/07-16-그나저나소개팅어땠어",
+    "title": "그나저나 소개팅 어땠어?",
+    "date": "2025-07-16",
+    "excerpt": "",
+    "category": "English Study",
+    "tags": [
+      "영어공부꾸준히!",
+      "SPEAK",
+      "고민 및 조언하는 표햔"
+    ],
+    "content": "\n\n# 배운 것\n\nHow was it?\n\n그나저나, 그런데\nBy the way, how was the blind date?\n\nBTW (By The Way)\n친구 사이에서 가볍게 쓰는 말\n\nBy the way, how was the dinner yesterday?\n\nBlind date 소개팅 \n\nWell, the thing is he is a vegeterian.\n글쎄, 문제는\n\nout of budget\n\nto make it somewhere : 어디든 가다\n\n\n\n# 간단한 작문. Simple writing or essay\n\nDaily talk to myself as usual.\n\nBy the way, How was your day?\nDid you do your best?\n\nWell, the thing is condition.\nToday, I was so tired. So I can fully concentrate.\nSo I think I should have a sleep early.\n\n## 수정된 버전 (Improved Version)\n\nJust having my usual daily conversation with myself.\n\nBy the way, how was your day?\nDid you do your best?\n\nWell, the thing is my condition wasn't great.\nToday, I was so tired that I couldn't fully concentrate.\nSo I think I should go to sleep early tonight.\n\n## 피드백 (Feedback)\n\n**주요 수정 사항:**\n\n1. **\"Daily talk to myself\"** → **\"Having my usual daily conversation with myself\"**\n   - 더 완전한 문장 구조로 수정\n\n2. **\"Well, the thing is condition\"** → **\"Well, the thing is my con"
+  },
+  {
     "id": "Causal Inference/tikhonov-regularization-and-convex-optimization",
     "title": "Tikhonov Regularization과 Convex Optimization: 연속형 처치 R-learner의 이론적 배경",
     "date": "2025-07-16",
@@ -40,18 +65,6 @@
       "Regularization"
     ],
     "content": "\n# 개요\n---\n\n연속형 처치에서 R-learner를 적용할 때 발생하는 **non-identification 문제**를 해결하기 위해 **Tikhonov regularization**과 **convex optimization** 이론이 핵심적인 역할을 합니다. 이 글에서는 이러한 수학적 도구들의 원리와 응용을 자세히 설명합니다.\n\n# 1. Ill-posed Problem과 Non-identification\n---\n\n## 1.1 Well-posed vs Ill-posed Problem\n\n**Well-posed problem (잘 정의된 문제)** 의 3가지 조건:\n1. **존재성 (Existence)**: 해가 존재한다\n2. **유일성 (Uniqueness)**: 해가 유일하다  \n3. **안정성 (Stability)**: 입력의 작은 변화가 해의 작은 변화를 가져온다\n\n**Ill-posed problem**은 이 중 하나 이상의 조건을 만족하지 않는 문제입니다.\n\n## 1.2 연속형 처치에서의 Non-identification\n\n연속형 처치 R-learner에서는 **유일성 조건**이 위반됩니다:\n\n$$L_c(h) = E\\left[\\left\\{Y - m(X) - h(X, T) + E_{\\varpi}\\{h(X, T) \\mid X\\}\\right\\}^2\\right]$$\n\n이 손실함수를 최소화하는 해집합은:\n$$S = \\{h \\mid h(X, T) = \\tau(X, T) + s(X) \\text{ a.s., for any } s \\in L_2^P(X)\\}$$\n\n> **문제**: 무한히 많은 해가 존재하여 유일한 CATE 함수 $\\tau(x, t)$를 식별할 수 없음\n\n# 2. Tikhonov Regularization\n---\n\n## 2.1 기본 원리\n\n**Tikhonov regularization**은 ill-posed problem을 well-posed problem으로 변환하는 방법입니다.\n\n**원래 문제**:\n$$\\min_{h} L(h)$$\n\n**정규화된 문제"
-  },
-  {
-    "id": "Causal Inference/residualization-fwl-theorem-test",
-    "title": "FWL에 기반한 잔차화 방법론 구현 노트북",
-    "date": "2025-07-16",
-    "excerpt": "잔차화를 하기 위해 nusiance function을 만들고 결과를 분석하는 노트북",
-    "category": "Causal Inference",
-    "tags": [
-      "residualization",
-      "FWL"
-    ],
-    "content": "---\ntitle: \"FWL에 기반한 잔차화 방법론 구현 노트북\"\ncategory: \"Causal Inference\"\ntags: [\"residualization\", \"FWL\"]\nexcerpt: \"잔차화를 하기 위해 nusiance function을 만들고 결과를 분석하는 노트북\"\n--- # Load Data # from src.dataloader.vault.main import VaultDatasetLoader\n# from src.dataloader.vault.utils import split_df_od_os\n# from src.utils.db import SOFTCRM_DBINFO, get_conn\n\n# import warnings\n# import pandas as pd\n# import numpy as np\n\n# warnings.filterwarnings(\"ignore\")\n\n# # pandas display 옵션 설정 - 모든 열 보이기\n# pd.set_option('display.max_columns', None)\n# pd.set_option('display.width', None)\n# pd.set_option('display.max_colwidth', None)\n\n# loader = VaultDatasetLoader()\n# feature_df, y_df = loader.run(start_date=\"2022-01-01\", end_date=\"2024-12-31\", piol_data_path=\"./data/PIOL렌즈주문서.xlsx\", refresh=False, db=\"crm_emr\")\n\n\n# # y_df의 oper_date와 feature_df의 date를 기준으로 병합\n# merged_df = pd.merge(y_df, feature_df,\n#                     left_on=['cust_num', 'oper_date'],\n#                     right_on=['cust_num', 'date'],\n#           "
   },
   {
     "id": "Book/만들어진 신 (The God Delusion)/책을읽기시작하면서",
