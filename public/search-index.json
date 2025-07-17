@@ -1,5 +1,16 @@
 [
   {
+    "id": "Causal Inference/Paper Review/review-Towards-Optimal Doubly-Robust-Estimation-of-Heterogeneous-Causal-Effects",
+    "title": "[Paper Review] Towards Optimal Doubly-Robust Estimation of Heterogeneous Causal Effects",
+    "date": "2025-07-20",
+    "excerpt": "Doubly-Robust Estimation of Heterogeneous Causal Effects 논문 리뷰",
+    "category": "Causal Inference",
+    "tags": [
+      "paper review"
+    ],
+    "content": "\n[paper link](https://arxiv.org/pdf/2004.14497)\n\n# Abstact\n\n\n\n\n\n"
+  },
+  {
     "id": "Data Science/2025-01-10-jupyter-notebook-test",
     "title": "주피터 노트북 완전 테스트 - 셀에서 메타데이터 설정",
     "date": "2025-07-17",
@@ -29,6 +40,17 @@
     "content": "\n# 참고 자료\n\n- [리뷰엉이 - 삼체에서 가장 중요한 사건 문화대혁명](https://www.youtube.com/watch?v=4MwDN41Lja0&t=1349s)\n\n# 문화대혁명이란?\n\n**문화대혁명**(文化大革命, Cultural Revolution)은 정식 명칭이 **\"무산계급 문화대혁명\"**(無產階級文化大革命, Great Proletarian Cultural Revolution)으로, 1966년부터 1976년까지 10년간 중국에서 일어난 사회정치적 운동이다.\n\n## 발생 배경\n\n### 대약진운동의 실패 (1958-1962)\n- 마오쩌둥이 주도한 경제개발 정책인 대약진운동이 참혹하게 실패\n- 2천만 명 이상이 기근으로 사망\n- 마오쩌둥의 권력과 영향력이 크게 약화됨\n\n### 실용주의 노선의 등장\n- 류샤오치(劉少奇), 저우언라이(周恩來), 덩샤오핑(鄧小平) 등이 실용적 경제 정책 도입\n- 개인 농지 허용 등 시장경제 요소 도입으로 경제 회복 (1962-1965)\n- 마오쩌둥은 이러한 정책이 공산주의 원칙에 위배된다고 판단\n\n## 문화대혁명의 목표\n\n마오쩌둥이 문화대혁명을 일으킨 주요 목적:\n\n1. **권력 회복**: 대약진운동 실패로 잃은 정치적 영향력 되찾기\n2. **정적 제거**: 류샤오치, 덩샤오핑 등 실용주의 노선 지도자들 축출\n3. **혁명 정신 부활**: 관료화되고 있는 중국 공산당과 사회에 혁명 정신 주입\n4. **\"4구\"(四舊) 타파**: \n   - 구사상(舊思想) - 옛 사상\n   - 구문화(舊文化) - 옛 문화\n   - 구풍속(舊風俗) - 옛 풍습\n   - 구습관(舊習慣) - 옛 습관\n\n## 문화대혁명의 전개 과정\n\n### 1단계: 발발과 혼란 (1966-1968)\n\n#### 1966년 5월: 시작\n- **5.16 통지**: 중국 공산당 중앙위원회가 문화대혁명 시작을 공식 선언\n- 부르주아 분자들이 당, 정부, 군대, 문화계에 침투했다고 주장\n\n#### 홍위병(紅衛兵) 조직\n- 주로 학생들로 구성된 준군사조직\n- **마오쩌둥어록**"
   },
   {
+    "id": "Causal Inference/what-is-ate",
+    "title": "What is ATE?",
+    "date": "2025-07-17",
+    "excerpt": "What is ATE?",
+    "category": "Causal Inference",
+    "tags": [
+      "ATE"
+    ],
+    "content": "\n# ATE란?\n---\n\nAverage Treatment Effect (ATE)는 모든 사람들이 받은 처치의 평균 효과를 말한다.\n\n즉, 처치받은 결과와 받지 않은 결과의 차이의 평균이라고 이해할 수 있다.\n\n# ATE 추정\n---\n\n$$\n\\hat{ATE} = \\frac{1}{N} \\sum_{i=1}^{N} (Y_i(1) - Y_i(0)) \\tag{1}\n$$\n\n\n정의에 따라 ATE는 (1)처럼 정의된다.\n하지만 실제로는 모든 사람들이 처치를 받지 않기 때문에 (1)을 직접 계산할 수 없다.\n\n"
+  },
+  {
     "id": "Causal Inference/residualization-fwl-theorem-test",
     "title": "FWL에 기반한 잔차화 방법론 구현 노트북",
     "date": "2025-07-17",
@@ -53,6 +75,61 @@
       "R-learner"
     ],
     "content": "\n# Double Robustness: 인과추론의 핵심 개념 완전 정복\n\n**Double Robustness**(이중 강건성)는 현대 인과추론의 핵심 개념 중 하나로, R-learner와 같은 최신 방법론의 이론적 기반이 됩니다. 이 포스트에서는 Double Robustness의 모든 측면을 자세히 살펴보겠습니다.\n\n# 1. Double Robustness란 무엇인가?\n\n## 1.1 직관적 이해\n\n**Double Robustness**는 **\"두 가지 모델 중 하나만 정확해도 편향 없는 추정이 가능한 성질\"**입니다.\n\n### **간단한 비유**\n- **자물쇠 두 개**: 문을 열려면 둘 중 하나만 열면 됨\n- **백업 시스템**: 주 시스템이 실패해도 보조 시스템이 작동\n- **이중 보험**: 하나가 실패해도 다른 하나가 보장\n\n## 1.2 인과추론에서의 의미\n\n인과추론에서 우리가 추정해야 하는 두 가지 핵심 요소:\n\n1. **Outcome Model** (결과 모델): $\\mu(x, w) = \\mathbb{E}[Y | X = x, W = w]$\n2. **Propensity Score Model** (처치 확률 모델): $e(x) = \\text{Pr}(W = 1 | X = x)$\n\n**Double Robustness**: 이 둘 중 **하나만 정확해도** 처치효과를 편향 없이 추정할 수 있음!\n\n# 2. 수학적 이론: 핵심 메커니즘\n\n## 2.1 Potential Outcomes Framework\n\n**기본 설정**:\n- **잠재결과**: $Y_i(0), Y_i(1)$ (처치를 받지 않았을 때/받았을 때의 결과)\n- **관찰결과**: $Y_i = Y_i(W_i)$ \n- **개별 처치효과**: $\\tau_i = Y_i(1) - Y_i(0)$\n- **평균 처치효과**: $\\tau = \\mathbb{E}[Y(1) - Y(0)]$\n\n**근본적 문제**: 같은 개인에 대해 $Y_i(0)$과 $Y_i(1)$을 동시에 관찰할 수 없음!\n\n## 2.2 Unconfounde"
+  },
+  {
+    "id": "Causal Inference/Paper Review/review-Quasi-Oracle-Estimation-of-Heterogeneous-Treatment-Effects",
+    "title": "[Paper Review] Quasi-Oracle Estimation of Heterogeneous Treatment Effects",
+    "date": "2025-07-17",
+    "excerpt": "R-leaner 방법 소개와 이게 가지는 quasi-oracle property에 대해 설명",
+    "category": "Causal Inference",
+    "tags": [
+      "Paper Review"
+    ],
+    "content": "\n[paper link](https://arxiv.org/pdf/1712.04912)\n\n\n# 논문 리뷰\n\n# Abstract\n\n> Flexible estimation of heterogeneous treatment effects lies at the heart of many statistical challenges, such as personalized medicine and optimal resource allocation.\n\n개인화된 처치효과를 유연하게 추정하는 것은 많은 분야에서 통계적 문제의 핵심입니다.\n\n개인화된 처치효과를 알고 있으면 개인화된 약처방이나 교육정책 결정, 자원 분배 등 많은 문제에서 좋은 결정을 내릴 수 있습니다.\n하지만 이를 추정하는 일은 꽤나 복잡한 일이라서 논문에서는 이를 유연하게 추정할 수 있는 방법을 제시하고 있습니다.\n\n이 논문에서는 marginal effects와 treatment propensity라는 두 가지 nuisance component를 추정하여 개인화된 처치효과를 추정하는 방법을 제시합니다.\n\n> we show that our method has a quasi-oracle property: Even if the pilot estimates for marginal effects and treatment propensities are not particularly accurate, we achieve the same error bounds as an oracle who has a priori knowledge of these two nuisance components. \n\n이러한 방법은 quasi-oracle property를 가지고 있다고 합니다.\n\n<small> *quasi-oracle property : marginal effects와 treatment propensity의 추정이 정확하지 않더라도, 마치 이 두 nuisance component를 미리 알고 있는 것과 같은 오차 경계를 달성할 수 있는 성질<"
+  },
+  {
+    "id": "Causal Inference/Causal Inference for The Brave and True/PropensityScoreNotebook",
+    "title": "Propensity Score Notebook",
+    "date": "2025-07-17",
+    "excerpt": "Propensity Score Notebook",
+    "category": "Causal Inference",
+    "tags": [
+      "Causal Inference"
+    ],
+    "content": "---\ntitle: \"Propensity Score Notebook\"\ndate: \"2025-07-17\"\nexcerpt: \"Propensity Score Notebook\"\ncategory: \"Causal Inference\"\ntags: [\"Causal Inference\"]\n--- [Propensity Score](https://matheusfacure.github.io/python-causality-handbook/11-Propensity-Score.html) # The Psychology of Growth 치료(treatment)와 결과(outcome) 변수 외에도, 이 연구에서는 다음과 같은 다른 특성들도 기록했습니다:\n\n- **schoolid**: 학생의 학교 식별자;\n- **success_expect**: 미래 성공에 대한 자가 보고 기대치, 사전 성취도의 대용 지표로, 무작위 배정 전에 측정됨;\n\n- **gender**: 학생이 식별한 성별의 범주형 변수;\n- **frst_in_family**: 학생의 1세대 대학생 지위에 대한 범주형 변수, 즉 가족 중 대학에 진학한 첫 번째 사람;\n- **school_urbanicity**: 학교의 도시화 정도에 대한 학교 수준의 범주형 변수, 즉 농촌, 교외 등;\n\n- **school_mindset**: 학생들의 고정된 사고방식의 학교 수준 평균, 무작위 배정 전에 보고됨, 표준화됨;\n\n- **school_achievement**: 학교 성취 수준, 이전 4개 학년 학생들의 시험 점수와 대학 준비도를 측정한 것으로, 표준화됨;\n\n- **school_ethnic_minority**: 학교 인종/민족 소수자 구성, 즉 흑인, 라티노, 또는 아메리카 원주민인 학생 비율, 표준화됨;\n\n- **school_poverty**: 학교 빈곤 집중도, 즉 연방 빈곤선 이하 소득을 가진 가정 출신 학생들의 비율, 표준화됨;\n\n- **school_size**: 학교의 모든 4개 학년 학생들의 총 수, 표준화됨. import pandas"
+  },
+  {
+    "id": "Causal Inference/Causal Inference for The Brave and True/PropensityScore",
+    "title": "Propensity Score",
+    "date": "2025-07-17",
+    "excerpt": "Propensity Score",
+    "category": "Causal Inference",
+    "tags": [
+      "Causal Inference"
+    ],
+    "content": "\n[Propensity Score](https://matheusfacure.github.io/python-causality-handbook/11-Propensity-Score.html)\n\n\n이 책의 저자가 참 글을 잘쓴다.\n되게 매력적인 주제로 이 내용을 풀어간다.\n\nGrowth Mindset vs Fixed Mindset\n\n심리학자들은 마인드셋이 인생에 큰 영향을 미친다. 내 능력이 고정되어있지 않고 충분히 변화할 수 있다고 믿는 사람들은, 내 능력이 고정되어있다고 믿는 사람보다 더 성공한다.\n나는 이 부분에 크게 공감하고, 성장형 마인드셋을 가지려고 한다.\n다만 인과추론을 다루는 입장에서는 이에 다음과 같은 의문을 던져볼 수 있다.\n\n> Is it that a growth mindset causes people to achieve more? Or is simply the case that people who achieve more are prone to develop a growth mindset as a result of their success? \n\n진짜 성장형 사고방식이 사람들을 더 성공하게 했나? 아니면 성공한 사람들이 그런 마인드셋을 가지고 있을 확률이 높은건가?\n되게 재밌는 질문이다.\n\n이 부분을 위한 실험이 진행된게 있구나.\n\n> To settle things, researchers designed the [The National Study of Learning Mindsets](https://studentexperiencenetwork.org/national-mindset-study/). It is a randomised study conducted in U.S. public high schools which aims at finding the impact of a growth mindset.\n\n> The real data on this study is not publicly available in order to preserve studen"
+  },
+  {
+    "id": "Causal Inference/Causal Inference for The Brave and True/DoublyRobustEstimationNotebook",
+    "title": "Doubly Robust Estimation Notebook",
+    "date": "2025-07-17",
+    "excerpt": "Doubly Robust Estimation Notebook",
+    "category": "Causal Inference",
+    "tags": [
+      "Causal Inference"
+    ],
+    "content": "---\ntitle: \"Doubly Robust Estimation Notebook\"\ndate: \"2025-07-17\"\nexcerpt: \"Doubly Robust Estimation Notebook\"\ncategory: \"Causal Inference\"\ntags: [\"Causal Inference\"]\n--- [Doubly Robust Estimation](https://matheusfacure.github.io/python-causality-handbook/12-Doubly-Robust-Estimation.html) import warnings\nwarnings.filterwarnings('ignore')\n\nimport pandas as pd\nimport numpy as np\nfrom matplotlib import style\nfrom matplotlib import pyplot as plt\nimport seaborn as sns\n\nfrom sklearn.linear_model import LogisticRegression, LinearRegression\n\n%matplotlib inline\n\nstyle.use(\"fivethirtyeight\")\npd.set_option(\"display.max_columns\", None) # 학생들의 마인드셋을 향상시키기 위한 세미나를 진행했는데, 이게 어느정도 영향이 있었는지\n# 가상의 데이터\n\n# 세미나 참석 여부 -> intervention\n# 얼마나 성공했는지 혹은 성공할 확률 -> success_expect\n\ndata = pd.read_csv(\"./data/learning_mindset.csv\")\ndata.sample(5, random_state=5) # 성공한 정도 (success expect)가 높을수록 세미나 참석 여부(intervention)가 높은지\n\ndata.groupby(\"success_expect\")[\"intervention\"].agg([\"mean\", \"count\"]) 학생의 요인에 따라 참석 여부가 결정되고, "
+  },
+  {
+    "id": "Causal Inference/Causal Inference for The Brave and True/DoublyRobustEstimation",
+    "title": "Doubly Robust Estimation",
+    "date": "2025-07-17",
+    "excerpt": "Doubly Robust Estimation",
+    "category": "Causal Inference",
+    "tags": [
+      "Causal Inference"
+    ],
+    "content": "\n[Doubly Robust Estimation](https://matheusfacure.github.io/python-causality-handbook/12-Doubly-Robust-Estimation.html)\n\n"
   },
   {
     "id": "English Study/SPEAK/07-16-그나저나소개팅어땠어",
@@ -142,17 +219,6 @@
       "Continuous Treatment"
     ],
     "content": "\n# 1. The problem in one sentence\n\nR-loss를 그대로 최소화하면\n\n$$\nh(x,t) = \\tau(x,t) + s(x)\n$$\n\n형태로 **x 에만 의존하는 덧붙임 함수** $s(x)$ 가 있어도 손실값이 변하지 않는다. 그래서 최소값이 **무한히 많아져** 해가 유일하지 않다.\n\n---\n\n# 2. Where does s(x) come from?\n\n* R-loss에 $\\mathbb{E}[ h(X,T) \\mid X ]$ 항이 들어가므로 $h(x,t) + s(x)$ 를 넣어도 $s(x)$ 가 자연스럽게 상쇄된다.\n* 그 결과 손실값이 동일하니 $s(x)$ 를 얼마든지 붙일 수 있다.\n* 이것이 **non-identification(식별 불능)** 문제의 근원이다.\n\n---\n\n# 3. Idea: “center” the function\n\n중간 함수 $\\tilde{\\tau}(x,t)$ 를 다음처럼 정의한다.\n\n$$\n\\tilde{\\tau}(x,t) = \\tau(x,t) - \\mathbb{E}[ \\tau(X,T) \\mid X = x ]\n$$\n\n즉, **각 x 마다 t 전역 평균이 0** 이 되도록 중심화한다.\n\n* mean-zero 성질 때문에 $h(x,t)$ 와 $h(x,t)+s(x)$ 의 **차이점이 R-loss 안에서는 지워지지 않는다**. 실제로 $h(X,T)+s(X) - \\mathbb{E}[h(X,T)+s(X)\\mid X] = h(X,T)-\\mathbb{E}[h(X,T)\\mid X]$ 이므로, **R-loss 값은 그대로**다.\n* 따라서 중심화만으로는 식별 문제가 완전히 사라지지 않는다. **결정적인 열쇠는 다음 단계의 L2 정규화**다.\n  - L2 패널티 $\\rho\\,\\|h\\|_2^2$ 가 추가되면, $s(x)$ 를 붙이는 순간 노름이 커져서 목적함수가 증가한다.\n  - 최적화는 $s(x)=0$ 을 선택해 유일해를 만든다.\n* 즉 $\\tilde{\\tau}$ 는 \"mean-zero\" 조건을 만족하는 후보 중 하나이며, **식별을 완성"
-  },
-  {
-    "id": "Causal Inference/Paper Review/review-Quasi-Oracle-Estimation-of-Heterogeneous-Treatment-Effects",
-    "title": "[Paper Review] Quasi-Oracle Estimation of Heterogeneous Treatment Effects",
-    "date": "2025-07-15",
-    "excerpt": "논문 리뷰",
-    "category": "Causal Inference",
-    "tags": [
-      "Paper Review"
-    ],
-    "content": "\n[paper link](https://arxiv.org/pdf/1712.04912)\n\n\n# 논문 리뷰\n\n# Abstract\n\n> Flexible estimation of heterogeneous treatment effects lies at the heart of many statistical challenges, such as personalized medicine and optimal resource allocation.\n\n개인화된 처치효과를 유연하게 추정하는 것은 많은 분야에서 통계적 문제의 핵심입니다.\n\n개인화된 처치효과를 알고 있으면 개인화된 약처방이나 교육정책 결정, 자원 분배 등 많은 문제에서 좋은 결정을 내릴 수 있습니다.\n하지만 이를 추정하는 일은 꽤나 복잡한 일이라서 논문에서는 이를 유연하게 추정할 수 있는 방법을 제시하고 있습니다.\n\n이 논문에서는 marginal effects와 treatment propensity라는 두 가지 nuisance component를 추정하여 개인화된 처치효과를 추정하는 방법을 제시합니다.\n\n> we show that our method has a quasi-oracle property: Even if the pilot estimates for marginal effects and treatment propensities are not particularly accurate, we achieve the same error bounds as an oracle who has a priori knowledge of these two nuisance components. \n\n이러한 방법은 quasi-oracle property를 가지고 있다고 합니다.\n\n<small> *quasi-oracle property : marginal effects와 treatment propensity의 추정이 정확하지 않더라도, 마치 이 두 nuisance component를 미리 알고 있는 것과 같은 오차 경계를 달성할 수 있는 성질<"
   },
   {
     "id": "English Study/TOEFL/준비전략서치",
@@ -720,16 +786,5 @@
       "태그3"
     ],
     "content": "\n# 포스트 제목\n\n포스트의 내용을 여기에 작성하세요.\n\n## 소제목\n\n### 더 작은 소제목\n\n일반 텍스트 내용입니다.\n\n> 인용구는 이렇게 작성할 수 있습니다.\n\n**굵은 글씨**와 *기울임 글씨*를 사용할 수 있습니다.\n\n- 목록 아이템 1\n- 목록 아이템 2\n- 목록 아이템 3\n\n1. 번호 목록 1\n2. 번호 목록 2\n3. 번호 목록 3\n\n```python\n# 코드 블록 예시\ndef hello_world():\n    print(\"Hello, World!\")\n```\n\n![이미지 설명](/이미지파일명.png)\n\n---\n\n추가 내용이 있다면 여기에 작성하세요. "
-  },
-  {
-    "id": "Causal Inference/Paper Review/review-Towards-Optimal Doubly-Robust-Estimation-of-Heterogeneous-Causal-Effects",
-    "title": "[Paper Review] Towards Optimal Doubly-Robust Estimation of Heterogeneous Causal Effects",
-    "date": "2024-01-01",
-    "excerpt": "Doubly-Robust Estimation of Heterogeneous Causal Effects",
-    "category": "Causal Inference",
-    "tags": [
-      "paper review"
-    ],
-    "content": "\n[paper link](https://arxiv.org/pdf/2004.14497)\n\n\n\n\n"
   }
 ]
