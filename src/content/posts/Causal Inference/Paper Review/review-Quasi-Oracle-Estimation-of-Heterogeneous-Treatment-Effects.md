@@ -84,7 +84,9 @@ CATE를 추정하기 위해서는 무작위 할당처럼 unconfoundedness 가정
 - **Conditional Mean Outcome** : $m^*(x) = \mathbb{E}[Y \mid X = x] = \mu^{*(0)}(x) + e^*(x)\tau^*(x)$
 
 
-$$Y_i - m^*(X_i) = \{W_i - e^*(X_i)\} \tau^*(X_i) + \varepsilon_i \tag{1}$$
+$$
+Y_i - m^*(X_i) = \{W_i - e^*(X_i)\} \tau^*(X_i) + \varepsilon_i \tag{1}
+$$
 
 (1)에서 **propensity score $e^*(X_i)$를 통해 X를 통제**합니다.
 
@@ -102,7 +104,9 @@ $$Y_i - m^*(X_i) = \{W_i - e^*(X_i)\} \tau^*(X_i) + \varepsilon_i \tag{1}$$
 
 이 논문의 주요 결과는 이 표현을 사용하여 개인화된 처치효과를 포착하는 손실 함수를 구성할 수 있으며, 이 손실 함수의 정규화된 최소화 해를 찾아 처치효과를 정확하게 추정할 수 있다는 것입니다.
 
-$$\tau^*(\cdot) = \arg\min_{\tau} \mathbb{E}\left[\{Y_i - m^*(X_i)\} - \{W_i - e^*(X_i)\} \tau(X_i)\right]^2 \tag{2}$$
+$$
+\tau^*(\cdot) = \arg\min_{\tau} \mathbb{E}\left[\{Y_i - m^*(X_i)\} - \{W_i - e^*(X_i)\} \tau(X_i)\right]^2 \tag{2}
+$$
 
 
 $$
@@ -132,10 +136,13 @@ where the term $\Lambda_n[\tau(\cdot)]$ is interpreted as a regularizer on the c
 - (3)의 plug-in 버전을 통해 처치효과 추정
 - $\hat{e}^{(-q(i))}(X_i)$ 등은 i번째 훈련 예제가 속한 fold를 사용하지 않고 만든 예측값
 
-$$\hat{\tau}(\cdot) = \arg\min_{\tau} \left\{ \hat{L}_n[\tau(\cdot)] + \Lambda_n[\tau(\cdot)] \right\} \tag{4}$$
+$$
+\hat{\tau}(\cdot) = \arg\min_{\tau} \left\{ \hat{L}_n[\tau(\cdot)] + \Lambda_n[\tau(\cdot)] \right\} \tag{4}
+$$
 
-
-$$\hat{L}_n[\tau(\cdot)] = \frac{1}{n} \sum_{i=1}^n \left[ \{Y_i - \hat{m}^{(-q(i))}(X_i)\} - \{W_i - \hat{e}^{(-q(i))}(X_i)\} \tau(X_i) \right]^2 \tag{4a}$$
+$$
+\hat{L}_n[\tau(\cdot)] = \frac{1}{n} \sum_{i=1}^n \left[ \{Y_i - \hat{m}^{(-q(i))}(X_i)\} - \{W_i - \hat{e}^{(-q(i))}(X_i)\} \tau(X_i) \right]^2 \tag{4a}
+$$
 
 
 > In other words, the first step learns an approximation for the oracle objective, and the second step optimizes it. We refer to this approach as the R-learner in recognition of the work of Robinson (1988) and to emphasize the role of residualization. We will also refer to the squared loss $L_b^n[\tau(\cdot)]$ as the R-loss.
@@ -214,7 +221,9 @@ $$
 - 먼저 $\hat{\mu}^{(w)}(x)$를 비모수 회귀 방법으로 추정
 - 처치 관찰값에 대해 pseudo-effects $D_i = Y_i - \hat{\mu}^{(-i)}{(0)}(X_i)$를 정의하고, 이를 이용해 $\hat{\tau}^{(1)}(X_i)$를 비모수 회귀로 추정
 - 대조군에 대해서도 유사하게 $\hat{\tau}^{(0)}(X_i)$를 구하고, 두 추정기를 다음과 같이 결합:
-$$\hat{\tau}(x) = \{1 - \hat{e}(x)\} \hat{\tau}^{(1)}(x) + \hat{e}(x) \hat{\tau}^{(0)}(x) \tag{7}$$
+$$
+\hat{\tau}(x) = \{1 - \hat{e}(x)\} \hat{\tau}^{(1)}(x) + \hat{e}(x) \hat{\tau}^{(0)}(x) \tag{7}
+$$
 
 **U-learner (Künzel et al., 2019)**:
 - $U_i = \frac{Y_i - m^(X_i)}{W_i - e^(X_i)}$에 대해 $\mathbb{E}[U_i \mid X_i = x] = \tau(x)$임을 이용
@@ -357,9 +366,13 @@ $$
 
 R-loss에 따라 $\hat{\tau}_k(\cdot)$의 최적 양의 선형 결합을 취하여 합의 추정 $\hat{\tau}(\cdot)$를 구축:
 
-$$\hat{\tau}(x) = \hat{c} + \sum_{k=1}^K \alpha_k \hat{\tau}_k(x) \tag{8a}$$
+$$
+\hat{\tau}(x) = \hat{c} + \sum_{k=1}^K \alpha_k \hat{\tau}_k(x) \tag{8a}
+$$
 
-$$(\hat{b}, \hat{c}, \hat{\alpha}) = \arg\min_{b, c, \alpha} \left\{ \sum_{i=1}^n \left[ \left(Y_i - \hat{m}^{(-i)}(X_i)\right) - b - \left(c + \sum_{k=1}^K \alpha_k \hat{\tau}_k^{(-i)}(X_i)\right) \left(W_i - \hat{e}^{(-i)}(X_i)\right) \right]^2 : \alpha \geq 0 \right\} \tag{8b}$$
+$$
+(\hat{b}, \hat{c}, \hat{\alpha}) = \arg\min_{b, c, \alpha} \left\{ \sum_{i=1}^n \left[ \left(Y_i - \hat{m}^{(-i)}(X_i)\right) - b - \left(c + \sum_{k=1}^K \alpha_k \hat{\tau}_k^{(-i)}(X_i)\right) \left(W_i - \hat{e}^{(-i)}(X_i)\right) \right]^2 : \alpha \geq 0 \right\} \tag{8b}
+$$
 
 #### **수식의 구성 요소**
 - **$\hat{c}$**: 상수 처치효과 항 (유연성을 위해 자유롭게 조정)
@@ -372,9 +385,13 @@ $$(\hat{b}, \hat{c}, \hat{\alpha}) = \arg\min_{b, c, \alpha} \left\{ \sum_{i=1}^
 
 다음과 같은 데이터 생성 분포에서 실험을 수행했습니다:
 
-$$X_i \sim N(0, I_{d \times d}), \quad W_i \sim \mathrm{Bernoulli}(0.5) \tag{9a}$$
+$$
+X_i \sim N(0, I_{d \times d}), \quad W_i \sim \mathrm{Bernoulli}(0.5) \tag{9a}
+$$
 
-$$Y_i \mid X_i, W_i \sim N\left(\frac{3}{1 + e^{X_{i3} - X_{i2}}} + (W_i - 0.5) \tau^*(X_i), \sigma^2\right) \tag{9b}$$
+$$
+Y_i \mid X_i, W_i \sim N\left(\frac{3}{1 + e^{X_{i3} - X_{i2}}} + (W_i - 0.5) \tau^*(X_i), \sigma^2\right) \tag{9b}
+$$
 
 **실험 조건:**
 - 샘플 크기: $n = 10,000$ (무작위 연구 설계)
@@ -441,12 +458,16 @@ $$Y_i \mid X_i, W_i \sim N\left(\frac{3}{1 + e^{X_{i3} - X_{i2}}} + (W_i - 0.5) 
 
 Oracle이 이 정보를 알고 있다면, 다음 손실함수를 직접 최소화할 수 있습니다:
 
-$$\mathcal{L}_n^{\text{oracle}}[\tau(\cdot)] = \frac{1}{n} \sum_{i=1}^n \left[ \{Y_i - m^*(X_i)\} - \{W_i - e^*(X_i)\} \tau(X_i) \right]^2$$
+$$
+\mathcal{L}_n^{\text{oracle}}[\tau(\cdot)] = \frac{1}{n} \sum_{i=1}^n \left[ \{Y_i - m^*(X_i)\} - \{W_i - e^*(X_i)\} \tau(X_i) \right]^2
+$$
 
 ### **R-learner (Quasi-Oracle)**
 실제로는 $m^*(x)$와 $e^*(x)$를 모르므로, 추정값 $\hat{m}(\cdot)$과 $\hat{e}(\cdot)$을 사용:
 
-$$\hat{\mathcal{L}}_n[\tau(\cdot)] = \frac{1}{n} \sum_{i=1}^n \left[ \{Y_i - \hat{m}^{(-q(i))}(X_i)\} - \{W_i - \hat{e}^{(-q(i))}(X_i)\} \tau(X_i) \right]^2$$
+$$
+\hat{\mathcal{L}}_n[\tau(\cdot)] = \frac{1}{n} \sum_{i=1}^n \left[ \{Y_i - \hat{m}^{(-q(i))}(X_i)\} - \{W_i - \hat{e}^{(-q(i))}(X_i)\} \tau(X_i) \right]^2
+$$
 
 ## 5.2 Main Theoretical Result
 
@@ -455,7 +476,9 @@ $$\hat{\mathcal{L}}_n[\tau(\cdot)] = \frac{1}{n} \sum_{i=1}^n \left[ \{Y_i - \ha
 ### **Theorem (Informal)**
 적절한 조건 하에서, R-learner $\hat{\tau}$는 다음 성질을 만족합니다:
 
-$$\mathbb{E}\left[\|\hat{\tau} - \tau^*\|^2\right] \lesssim \text{Oracle Rate} + \text{Nuisance Rate}$$
+$$
+\mathbb{E}\left[\|\hat{\tau} - \tau^*\|^2\right] \lesssim \text{Oracle Rate} + \text{Nuisance Rate}
+$$
 
 여기서:
 - **Oracle Rate**: oracle이 달성할 수 있는 최적 수렴률
@@ -464,11 +487,15 @@ $$\mathbb{E}\left[\|\hat{\tau} - \tau^*\|^2\right] \lesssim \text{Oracle Rate} +
 ### **Quasi-Oracle Property**
 만약 nuisance components의 추정이 충분히 빠르게 수렴한다면:
 
-$$\text{Nuisance Rate} = \|\hat{m} - m^*\| \cdot \|\hat{e} - e^*\| \to 0$$
+$$
+\text{Nuisance Rate} = \|\hat{m} - m^*\| \cdot \|\hat{e} - e^*\| \to 0
+$$
 
 이 경우 R-learner는 **oracle rate**를 달성합니다:
 
-$$\mathbb{E}\left[\|\hat{\tau} - \tau^*\|^2\right] \lesssim \text{Oracle Rate}$$
+$$
+\mathbb{E}\left[\|\hat{\tau} - \tau^*\|^2\right] \lesssim \text{Oracle Rate}
+$$
 
 ## 5.3 Why Does This Work?
 
@@ -479,7 +506,9 @@ $$\mathbb{E}\left[\|\hat{\tau} - \tau^*\|^2\right] \lesssim \text{Oracle Rate}$$
 ### **2. Doubly Robust Structure**
 R-loss는 doubly robust 구조를 가집니다:
 
-$$\mathbb{E}\left[\left\{Y_i - m^*(X_i)\right\} - \left\{W_i - e^*(X_i)\right\} \tau^*(X_i) \mid X_i\right] = 0$$
+$$
+\mathbb{E}\left[\left\{Y_i - m^*(X_i)\right\} - \left\{W_i - e^*(X_i)\right\} \tau^*(X_i) \mid X_i\right] = 0
+$$
 
 이는 다음을 의미합니다:
 - $m^*(x)$ 또는 $e^*(x)$ 중 하나만 정확해도 편향이 없음
@@ -488,7 +517,9 @@ $$\mathbb{E}\left[\left\{Y_i - m^*(X_i)\right\} - \left\{W_i - e^*(X_i)\right\} 
 ### **3. Product Form of Error**
 최종 오차는 다음과 같이 분해됩니다:
 
-$$\text{Total Error} \approx \text{Oracle Error} + \|\hat{m} - m^*\| \times \|\hat{e} - e^*\|$$
+$$
+\text{Total Error} \approx \text{Oracle Error} + \|\hat{m} - m^*\| \times \|\hat{e} - e^*\|
+$$
 
 따라서 두 nuisance components가 모두 $o(1)$ 속도로 수렴하면, 곱은 더 빠르게 수렴합니다.
 
@@ -515,7 +546,9 @@ $$\text{Total Error} \approx \text{Oracle Error} + \|\hat{m} - m^*\| \times \|\h
 #### **1. Robinson's Transformation의 마법**
 Robinson's transformation (1988)이 핵심입니다:
 
-$$Y_i - m^*(X_i) = \{W_i - e^*(X_i)\} \tau^*(X_i) + \varepsilon_i$$
+$$
+Y_i - m^*(X_i) = \{W_i - e^*(X_i)\} \tau^*(X_i) + \varepsilon_i
+$$
 
 이 변환의 특별한 성질:
 - **Orthogonality**: $\mathbb{E}[\varepsilon_i \mid X_i, W_i] = 0$
@@ -537,15 +570,21 @@ Step 4: 모든 fold에 대해 반복
 
 핵심은 다음 decomposition입니다:
 
-$$\hat{\mathcal{L}}_n - \mathcal{L}_n^{\text{oracle}} = \text{Bias Term} + \text{Variance Term}$$
+$$
+\hat{\mathcal{L}}_n - \mathcal{L}_n^{\text{oracle}} = \text{Bias Term} + \text{Variance Term}
+$$
 
 **Bias Term**:
-$$\frac{2}{n} \sum_{i=1}^n \left[\{Y_i - m^*(X_i)\} - \{W_i - e^*(X_i)\}\tau^*(X_i)\right] \times \left[\{\hat{m}^{(-i)} - m^*\}(X_i) - \{\hat{e}^{(-i)} - e^*\}(X_i)\tau^*(X_i)\right]$$
+$$
+\frac{2}{n} \sum_{i=1}^n \left[\{Y_i - m^*(X_i)\} - \{W_i - e^*(X_i)\}\tau^*(X_i)\right] \times \left[\{\hat{m}^{(-i)} - m^*\}(X_i) - \{\hat{e}^{(-i)} - e^*\}(X_i)\tau^*(X_i)\right]
+$$
 
 Cross-fitting에 의해 이 term의 기댓값이 0에 가까워집니다.
 
 **Variance Term**:
-$$\left\|\{\hat{m} - m^*\} - \{\hat{e} - e^*\}\tau^*\right\|^2$$
+$$
+\left\|\{\hat{m} - m^*\} - \{\hat{e} - e^*\}\tau^*\right\|^2
+$$
 
 이는 $\|\hat{m} - m^*\| \times \|\hat{e} - e^*\|$의 order입니다.
 
@@ -556,7 +595,9 @@ $$\left\|\{\hat{m} - m^*\} - \{\hat{e} - e^*\}\tau^*\right\|^2$$
 - $\|\hat{e} - e^*\| = O_p(r_e)$
 
 그러면:
-$$\|\hat{\tau} - \tau^*\| = O_p(\max\{r_{\text{oracle}}, r_m \times r_e\})$$
+$$
+\|\hat{\tau} - \tau^*\| = O_p(\max\{r_{\text{oracle}}, r_m \times r_e\})
+$$
 
 **예시**: 
 - $r_m = r_e = n^{-1/4}$ (느린 수렴)
