@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import { parseMarkdown } from './markdown';
 
 export interface NotebookData {
   title: string;
@@ -38,10 +39,10 @@ export async function convertNotebookToHtml(notebookPath: string): Promise<strin
     for (let i = 0; i < notebook.cells.length; i++) {
       const cell = notebook.cells[i];
       if (cell.cell_type === 'code') {
-        html += convertCellToHtml(cell, cellIndex);
+        html += await convertCellToHtml(cell, cellIndex);
         cellIndex++;
       } else if (cell.cell_type === 'markdown' || cell.cell_type === 'raw') {
-        html += convertCellToHtml(cell, i);
+        html += await convertCellToHtml(cell, i);
       }
     }
     
@@ -56,7 +57,7 @@ export async function convertNotebookToHtml(notebookPath: string): Promise<strin
 /**
  * 개별 셀을 HTML로 변환합니다
  */
-function convertCellToHtml(cell: NotebookCell, index: number): string {
+async function convertCellToHtml(cell: NotebookCell, index: number): Promise<string> {
   const source = Array.isArray(cell.source) ? cell.source.join('') : (cell.source || '');
   
   if (cell.cell_type === 'markdown' || cell.cell_type === 'raw') {
@@ -72,7 +73,7 @@ function convertCellToHtml(cell: NotebookCell, index: number): string {
     }
     
     // 마크다운 셀
-    const markdownHtml = convertMarkdownToHtml(content);
+    const markdownHtml = await convertMarkdownToHtml(content);
     return `<div class="jupyter-cell jupyter-markdown-cell">\n${markdownHtml}\n</div>\n\n`;
   } else if (cell.cell_type === 'code') {
     // 빈 코드 셀은 스킵
@@ -85,7 +86,7 @@ function convertCellToHtml(cell: NotebookCell, index: number): string {
     
     // Input 영역
     html += `  <div class="jupyter-input">\n`;
-    html += `    <div class="jupyter-input-prompt"></div>\n`;
+    html += `    <div class="jupyter-input-prompt">In [${index}]:</div>\n`;
     html += `    <div class="jupyter-input-area">\n`;
     html += `      <pre><code class="language-python">${escapeHtml(source)}</code></pre>\n`;
     html += `    </div>\n`;
@@ -94,7 +95,7 @@ function convertCellToHtml(cell: NotebookCell, index: number): string {
     // Output 영역 (있는 경우)
     if (cell.outputs && cell.outputs.length > 0) {
       html += `  <div class="jupyter-output">\n`;
-      html += `    <div class="jupyter-output-prompt"></div>\n`;
+      html += `    <div class="jupyter-output-prompt">Out [${index}]:</div>\n`;
       html += `    <div class="jupyter-output-area">\n`;
       
       for (const output of cell.outputs) {
@@ -103,26 +104,52 @@ function convertCellToHtml(cell: NotebookCell, index: number): string {
           html += `      <div class="jupyter-output-stream">${escapeHtml(text)}</div>\n`;
         } else if (output.output_type === 'execute_result' || output.output_type === 'display_data') {
           if (output.data) {
+            // HTML 출력 (테이블, 그래프 등)
             if (output.data['text/html']) {
               const htmlData = Array.isArray(output.data['text/html']) 
                 ? output.data['text/html'].join('') 
                 : output.data['text/html'];
               html += `      <div class="jupyter-output-html">${htmlData}</div>\n`;
-            } else if (output.data['text/plain']) {
-              const text = Array.isArray(output.data['text/plain']) 
-                ? output.data['text/plain'].join('') 
-                : output.data['text/plain'];
-              html += `      <div class="jupyter-output-text">${escapeHtml(text)}</div>\n`;
-            } else if (output.data['image/png']) {
+            }
+            // LaTeX 출력
+            else if (output.data['text/latex']) {
+              const latexData = Array.isArray(output.data['text/latex']) 
+                ? output.data['text/latex'].join('') 
+                : output.data['text/latex'];
+              html += `      <div class="jupyter-output-latex">${escapeHtml(latexData)}</div>\n`;
+            }
+            // PNG 이미지
+            else if (output.data['image/png']) {
               const imageData = Array.isArray(output.data['image/png']) 
                 ? output.data['image/png'].join('') 
                 : output.data['image/png'];
-              html += `      <img src="data:image/png;base64,${imageData}" alt="Output image" />\n`;
+              html += `      <div class="jupyter-output-image">\n`;
+              html += `        <img src="data:image/png;base64,${imageData}" alt="Output image" style="max-width: 100%; height: auto;" />\n`;
+              html += `      </div>\n`;
             }
+            // SVG 이미지
+            else if (output.data['image/svg+xml']) {
+              const svgData = Array.isArray(output.data['image/svg+xml']) 
+                ? output.data['image/svg+xml'].join('') 
+                : output.data['image/svg+xml'];
+              html += `      <div class="jupyter-output-svg">${svgData}</div>\n`;
+            }
+            // 일반 텍스트 출력
+            else if (output.data['text/plain']) {
+              const text = Array.isArray(output.data['text/plain']) 
+                ? output.data['text/plain'].join('') 
+                : output.data['text/plain'];
+              html += `      <div class="jupyter-output-text"><pre>${escapeHtml(text)}</pre></div>\n`;
+            }
+          }
+          // execute_result의 경우 text/plain이 data 밖에 있을 수도 있음
+          else if (output.text) {
+            const text = Array.isArray(output.text) ? output.text.join('') : output.text;
+            html += `      <div class="jupyter-output-text"><pre>${escapeHtml(text)}</pre></div>\n`;
           }
         } else if (output.output_type === 'error') {
           const errorText = output.traceback?.join('\n') || '';
-          html += `      <div class="jupyter-output-error">${escapeHtml(errorText)}</div>\n`;
+          html += `      <div class="jupyter-output-error"><pre>${escapeHtml(errorText)}</pre></div>\n`;
         }
       }
       
@@ -140,33 +167,41 @@ function convertCellToHtml(cell: NotebookCell, index: number): string {
 /**
  * 간단한 마크다운을 HTML로 변환합니다
  */
-function convertMarkdownToHtml(markdown: string): string {
-  return markdown
-    // 코드 블록 (먼저 처리)
-    .replace(/```(\w+)?\n([\s\S]*?)```/g, (match, lang, code) => {
-      const language = lang || 'text';
-      return `<pre class="language-${language}"><code class="language-${language}">${escapeHtml(code.trim())}</code></pre>`;
-    })
-    // 헤딩
-    .replace(/^### (.*$)/gm, '<h3>$1</h3>')
-    .replace(/^## (.*$)/gm, '<h2>$1</h2>')
-    .replace(/^# (.*$)/gm, '<h1>$1</h1>')
-    // 굵은 글씨
-    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-    // 기울임
-    .replace(/\*(.*?)\*/g, '<em>$1</em>')
-    // 인라인 코드
-    .replace(/`(.*?)`/g, '<code class="language-text">$1</code>')
-    // 리스트
-    .replace(/^\d+\. (.*$)/gm, '<li>$1</li>')
-    .replace(/^- (.*$)/gm, '<li>$1</li>')
-    // 문단
-    .replace(/\n\n/g, '</p><p>')
-    // 줄바꿈
-    .replace(/\n/g, '<br>')
-    // 문단 태그 추가
-    .replace(/^(.+)/, '<p>$1')
-    .replace(/(.+)$/, '$1</p>');
+async function convertMarkdownToHtml(markdown: string): Promise<string> {
+  try {
+    // 기존 markdown.ts의 parseMarkdown 함수 사용
+    return await parseMarkdown(markdown);
+  } catch (error) {
+    console.warn('Failed to parse markdown with full parser, falling back to basic parser:', error);
+    
+    // 폴백: 기본 파서 사용
+    return markdown
+      // 코드 블록 (먼저 처리)
+      .replace(/```(\w+)?\n([\s\S]*?)```/g, (match, lang, code) => {
+        const language = lang || 'text';
+        return `<pre class="language-${language}"><code class="language-${language}">${escapeHtml(code.trim())}</code></pre>`;
+      })
+      // 헤딩
+      .replace(/^### (.*$)/gm, '<h3>$1</h3>')
+      .replace(/^## (.*$)/gm, '<h2>$1</h2>')
+      .replace(/^# (.*$)/gm, '<h1>$1</h1>')
+      // 굵은 글씨
+      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+      // 기울임
+      .replace(/\*(.*?)\*/g, '<em>$1</em>')
+      // 인라인 코드
+      .replace(/`(.*?)`/g, '<code class="language-text">$1</code>')
+      // 리스트
+      .replace(/^\d+\. (.*$)/gm, '<li>$1</li>')
+      .replace(/^- (.*$)/gm, '<li>$1</li>')
+      // 문단
+      .replace(/\n\n/g, '</p><p>')
+      // 줄바꿈
+      .replace(/\n/g, '<br>')
+      // 문단 태그 추가
+      .replace(/^(.+)/, '<p>$1')
+      .replace(/(.+)$/, '$1</p>');
+  }
 }
 
 /**
