@@ -1,19 +1,21 @@
 [
   {
-    "id": "Causal Inference/Paper Review/review-Towards-Optimal Doubly-Robust-Estimation-of-Heterogeneous-Causal-Effects",
-    "title": "[Paper Review] Towards Optimal Doubly-Robust Estimation of Heterogeneous Causal Effects",
+    "id": "English Study/SPEAK/07-20-조언하는표현Review",
+    "title": "Review day",
     "date": "2025-07-20",
-    "excerpt": "Doubly-Robust Estimation of Heterogeneous Causal Effects 논문 리뷰",
-    "category": "Causal Inference",
+    "excerpt": "",
+    "category": "English Study",
     "tags": [
-      "paper review"
+      "영어공부꾸준히!",
+      "SPEAK",
+      "Review day"
     ],
-    "content": "\n[paper link](https://arxiv.org/pdf/2004.14497)\n\n# Abstact\n\n\n\n\n\n"
+    "content": "\n# 오늘 배운거\n\nTry to ~~\n\n- Try to cut down on drinking.\n- Try not to skip breakfast.\n\nMake sure to ~\n- \n- Make sure not to eat too much junk foods.\n\nI`m worried about ~\n- I`m worried about my love life.\n- I`m little worried about my bills.\n\nBe on the lookout for \n- Be on the lookout for pickpockets.\n\nBe careful with ~\n- Be careful with your phone.\n- Be careful not to burn yourself.\n- Be careful not to catch a cold.\n- Be careful not to cut yourself.\n\nBy the way\n- By the way, I was the blind date?\n\nWell the things is\n- Well the thing is I`m not really attracted to her.\n\n# 간단한 작문 (오늘 배운거 사용도 해보면서 작문하는 연습)\n\nTime is so fast. 정신을 차려보면 시간은 한참 지나있다.\nAcheving something like, get a good english, playing guitar well, 좋은 회사에 취직하는 것 ,... are needs many time in the days.\nIf you cant focus on today looking farway and beding nervous, I never acheive somethings that needs days.\n\nYou should know that today is so precious. You can do everthing, but you couldn`t do nothing if you don't move.\nSo, make sure to"
   },
   {
     "id": "Data Science/2025-01-10-jupyter-notebook-test",
     "title": "주피터 노트북 완전 테스트 - 셀에서 메타데이터 설정",
-    "date": "2025-07-17",
+    "date": "2025-07-20",
     "excerpt": "첫 번째 셀에서 메타데이터를 설정하는 방법을 보여주는 예제입니다.",
     "category": "Data Science",
     "tags": [
@@ -25,6 +27,41 @@
       "matplotlib"
     ],
     "content": "---\ntitle: \"주피터 노트북 완전 테스트 - 셀에서 메타데이터 설정\"\ncategory: \"Data Science\"\ntags: [\"jupyter\", \"python\", \"데이터분석\", \"pandas\", \"numpy\", \"matplotlib\"]\nexcerpt: \"첫 번째 셀에서 메타데이터를 설정하는 방법을 보여주는 예제입니다.\"\n--- # 주피터 노트북 완전 테스트\n\n이것은 블로그에서 주피터 노트북이 완전히 어떻게 표시되는지 테스트하는 예제입니다.\n\n## 메타데이터 설정 방법\n\n**첫 번째 셀에 YAML 형식으로 메타데이터를 설정할 수 있습니다:**\n\n```yaml\n---    \ntitle: \"포스트 제목\"  \ncategory: \"카테고리명\"   \ntags: [\"태그1\", \"태그2\", \"태그3\"]   \nexcerpt: \"포스트 요약\"   \n---  \n```    \n\n## 데이터 분석 예제\n\nPython을 사용한 완전한 데이터 분석을 해보겠습니다.\n\n**주요 내용:**\n- 데이터 생성 및 로드\n- 기본 통계 분석\n- 데이터 시각화 import pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nprint(\"패키지를 성공적으로 import했습니다!\")\n # 샘플 데이터 생성\nnp.random.seed(42)\ndata = {\n    \"x\": np.random.randn(100),\n    \"y\": np.random.randn(100) * 2 + 5\n}\ndf = pd.DataFrame(data)\nprint(\"샘플 데이터를 생성했습니다.\")\ndf.head()\n # 기본 통계량 확인\nprint(\"기본 통계량:\")\ndf.describe()\n # 결론\n\n이 예제에서는 다음을 확인했습니다:\n\n1. **데이터 생성**: NumPy를 사용하여 랜덤 데이터를 생성했습니다\n2. **기본 분석**: Pandas를 사용하여 기본 통계량을 확인했습니다\n3. **코드 실행**: 주피터 노트북의 코드 셀과 출력이 잘 표시되는지 "
+  },
+  {
+    "id": "Causal Inference/residualization-fwl-theorem-test",
+    "title": "FWL에 기반한 잔차화 방법론 구현 노트북",
+    "date": "2025-07-20",
+    "excerpt": "잔차화를 하기 위해 nusiance function을 만들고 결과를 분석하는 노트북",
+    "category": "Causal Inference",
+    "tags": [
+      "residualization",
+      "FWL"
+    ],
+    "content": "---\ntitle: \"FWL에 기반한 잔차화 방법론 구현 노트북\"\ncategory: \"Causal Inference\"\ntags: [\"residualization\", \"FWL\"]\nexcerpt: \"잔차화를 하기 위해 nusiance function을 만들고 결과를 분석하는 노트북\"\n--- # Load Data # from src.dataloader.vault.main import VaultDatasetLoader\n# from src.dataloader.vault.utils import split_df_od_os\n# from src.utils.db import SOFTCRM_DBINFO, get_conn\n\n# import warnings\n# import pandas as pd\n# import numpy as np\n\n# warnings.filterwarnings(\"ignore\")\n\n# # pandas display 옵션 설정 - 모든 열 보이기\n# pd.set_option('display.max_columns', None)\n# pd.set_option('display.width', None)\n# pd.set_option('display.max_colwidth', None)\n\n# loader = VaultDatasetLoader()\n# feature_df, y_df = loader.run(start_date=\"2022-01-01\", end_date=\"2024-12-31\", piol_data_path=\"./data/PIOL렌즈주문서.xlsx\", refresh=False, db=\"crm_emr\")\n\n\n# # y_df의 oper_date와 feature_df의 date를 기준으로 병합\n# merged_df = pd.merge(y_df, feature_df,\n#                     left_on=['cust_num', 'oper_date'],\n#                     right_on=['cust_num', 'date'],\n#           "
+  },
+  {
+    "id": "Causal Inference/Paper Review/review-Towards-Optimal Doubly-Robust-Estimation-of-Heterogeneous-Causal-Effects",
+    "title": "[Paper Review] Towards Optimal Doubly-Robust Estimation of Heterogeneous Causal Effects",
+    "date": "2025-07-20",
+    "excerpt": "Doubly-Robust Estimation of Heterogeneous Causal Effects 논문 리뷰",
+    "category": "Causal Inference",
+    "tags": [
+      "paper review"
+    ],
+    "content": "\n[paper link](https://arxiv.org/pdf/2004.14497)\n\n# Abstact\n\n\n\n\n\n"
+  },
+  {
+    "id": "Book/만들어진 신 (The God Delusion)/대단히종교적인불신자",
+    "title": "대단히 종교적인 불신자",
+    "date": "2025-07-19",
+    "excerpt": "나는 인격신을 상상하려는 시도는 하지 않는다. 신은 우리의 불충분한 감각으로 세계의 구조를 이해할 수 있도록 함으로써 경외심을 품게 하는 정도면 충분하다. <알베르트 아인슈타인>",
+    "category": "Book",
+    "tags": [
+      "The God Delusion",
+      "만들어진 신"
+    ],
+    "content": "\n"
   },
   {
     "id": "Current Affairs/중국문화대혁명과홍위병",
@@ -49,18 +86,6 @@
       "ATE"
     ],
     "content": "\n# ATE란?\n---\n\nAverage Treatment Effect (ATE)는 모든 사람들이 받은 처치의 평균 효과를 말한다.\n\n즉, 처치받은 결과와 받지 않은 결과의 차이의 평균이라고 이해할 수 있다.\n\n# ATE 추정\n---\n\n$$\n\\hat{ATE} = \\frac{1}{N} \\sum_{i=1}^{N} (Y_i(1) - Y_i(0)) \\tag{1}\n$$\n\n\n정의에 따라 ATE는 (1)처럼 정의된다.\n하지만 실제로는 모든 사람들이 처치를 받지 않기 때문에 (1)을 직접 계산할 수 없다.\n\n"
-  },
-  {
-    "id": "Causal Inference/residualization-fwl-theorem-test",
-    "title": "FWL에 기반한 잔차화 방법론 구현 노트북",
-    "date": "2025-07-17",
-    "excerpt": "잔차화를 하기 위해 nusiance function을 만들고 결과를 분석하는 노트북",
-    "category": "Causal Inference",
-    "tags": [
-      "residualization",
-      "FWL"
-    ],
-    "content": "---\ntitle: \"FWL에 기반한 잔차화 방법론 구현 노트북\"\ncategory: \"Causal Inference\"\ntags: [\"residualization\", \"FWL\"]\nexcerpt: \"잔차화를 하기 위해 nusiance function을 만들고 결과를 분석하는 노트북\"\n--- # Load Data # from src.dataloader.vault.main import VaultDatasetLoader\n# from src.dataloader.vault.utils import split_df_od_os\n# from src.utils.db import SOFTCRM_DBINFO, get_conn\n\n# import warnings\n# import pandas as pd\n# import numpy as np\n\n# warnings.filterwarnings(\"ignore\")\n\n# # pandas display 옵션 설정 - 모든 열 보이기\n# pd.set_option('display.max_columns', None)\n# pd.set_option('display.width', None)\n# pd.set_option('display.max_colwidth', None)\n\n# loader = VaultDatasetLoader()\n# feature_df, y_df = loader.run(start_date=\"2022-01-01\", end_date=\"2024-12-31\", piol_data_path=\"./data/PIOL렌즈주문서.xlsx\", refresh=False, db=\"crm_emr\")\n\n\n# # y_df의 oper_date와 feature_df의 date를 기준으로 병합\n# merged_df = pd.merge(y_df, feature_df,\n#                     left_on=['cust_num', 'oper_date'],\n#                     right_on=['cust_num', 'date'],\n#           "
   },
   {
     "id": "Causal Inference/double-robustness-explained",
