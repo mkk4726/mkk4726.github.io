@@ -1,21 +1,20 @@
 [
   {
-    "id": "English Study/SPEAK/07-20-조언하는표현Review",
-    "title": "Review day",
-    "date": "2025-07-20",
+    "id": "English Study/SPEAK/07-21-고민할때",
+    "title": "고민하는 표현들",
+    "date": "2025-07-21",
     "excerpt": "",
     "category": "English Study",
     "tags": [
       "영어공부꾸준히!",
-      "SPEAK",
-      "Review day"
+      "SPEAK"
     ],
-    "content": "\n# 오늘 배운거\n\nTry to ~~\n\n- Try to cut down on drinking.\n- Try not to skip breakfast.\n\nMake sure to ~\n- \n- Make sure not to eat too much junk foods.\n\nI`m worried about ~\n- I`m worried about my love life.\n- I`m little worried about my bills.\n\nBe on the lookout for \n- Be on the lookout for pickpockets.\n\nBe careful with ~\n- Be careful with your phone.\n- Be careful not to burn yourself.\n- Be careful not to catch a cold.\n- Be careful not to cut yourself.\n\nBy the way\n- By the way, I was the blind date?\n\nWell the things is\n- Well the thing is I`m not really attracted to her.\n\n# 간단한 작문 (오늘 배운거 사용도 해보면서 작문하는 연습)\n\nTime is so fast. 정신을 차려보면 시간은 한참 지나있다.\nAcheving something like, get a good english, playing guitar well, 좋은 회사에 취직하는 것 ,... are needs many time in the days.\nIf you cant focus on today looking farway and beding nervous, I never acheive somethings that needs days.\n\nYou should know that today is so precious. You can do everthing, but you couldn`t do nothing if you don't move.\nSo, make sure to"
+    "content": "\nOn one hand, the Note has a really big screen.\n\nOn one hand, I haven`t had Korean food in a while\n\nOn one hand, taking a cab would be really convenient\n\nOn the other hand, the new iPhone has a really good camera.\n\nOn the other hand, I`m craving fried chicken.\n\nOn the other hand, I can walk there in 15 minute.\n\nWhether I buy the Note or the new iPhone, I should buy a phone tommorow.\n\n"
   },
   {
     "id": "Data Science/2025-01-10-jupyter-notebook-test",
     "title": "주피터 노트북 완전 테스트 - 셀에서 메타데이터 설정",
-    "date": "2025-07-20",
+    "date": "2025-07-21",
     "excerpt": "첫 번째 셀에서 메타데이터를 설정하는 방법을 보여주는 예제입니다.",
     "category": "Data Science",
     "tags": [
@@ -31,7 +30,7 @@
   {
     "id": "Causal Inference/residualization-fwl-theorem-test",
     "title": "FWL에 기반한 잔차화 방법론 구현 노트북",
-    "date": "2025-07-20",
+    "date": "2025-07-21",
     "excerpt": "잔차화를 하기 위해 nusiance function을 만들고 결과를 분석하는 노트북",
     "category": "Causal Inference",
     "tags": [
@@ -39,6 +38,19 @@
       "FWL"
     ],
     "content": "---\ntitle: \"FWL에 기반한 잔차화 방법론 구현 노트북\"\ncategory: \"Causal Inference\"\ntags: [\"residualization\", \"FWL\"]\nexcerpt: \"잔차화를 하기 위해 nusiance function을 만들고 결과를 분석하는 노트북\"\n--- # Load Data # from src.dataloader.vault.main import VaultDatasetLoader\n# from src.dataloader.vault.utils import split_df_od_os\n# from src.utils.db import SOFTCRM_DBINFO, get_conn\n\n# import warnings\n# import pandas as pd\n# import numpy as np\n\n# warnings.filterwarnings(\"ignore\")\n\n# # pandas display 옵션 설정 - 모든 열 보이기\n# pd.set_option('display.max_columns', None)\n# pd.set_option('display.width', None)\n# pd.set_option('display.max_colwidth', None)\n\n# loader = VaultDatasetLoader()\n# feature_df, y_df = loader.run(start_date=\"2022-01-01\", end_date=\"2024-12-31\", piol_data_path=\"./data/PIOL렌즈주문서.xlsx\", refresh=False, db=\"crm_emr\")\n\n\n# # y_df의 oper_date와 feature_df의 date를 기준으로 병합\n# merged_df = pd.merge(y_df, feature_df,\n#                     left_on=['cust_num', 'oper_date'],\n#                     right_on=['cust_num', 'date'],\n#           "
+  },
+  {
+    "id": "English Study/SPEAK/07-20-조언하는표현Review",
+    "title": "Review day",
+    "date": "2025-07-20",
+    "excerpt": "",
+    "category": "English Study",
+    "tags": [
+      "영어공부꾸준히!",
+      "SPEAK",
+      "Review day"
+    ],
+    "content": "\n# 오늘 배운거\n\nTry to ~~\n\n- Try to cut down on drinking.\n- Try not to skip breakfast.\n\nMake sure to ~\n- \n- Make sure not to eat too much junk foods.\n\nI`m worried about ~\n- I`m worried about my love life.\n- I`m little worried about my bills.\n\nBe on the lookout for \n- Be on the lookout for pickpockets.\n\nBe careful with ~\n- Be careful with your phone.\n- Be careful not to burn yourself.\n- Be careful not to catch a cold.\n- Be careful not to cut yourself.\n\nBy the way\n- By the way, I was the blind date?\n\nWell the things is\n- Well the thing is I`m not really attracted to her.\n\n# 간단한 작문 (오늘 배운거 사용도 해보면서 작문하는 연습)\n\nTime is so fast. 정신을 차려보면 시간은 한참 지나있다.\nAcheving something like, get a good english, playing guitar well, 좋은 회사에 취직하는 것 ,... are needs many time in the days.\nIf you cant focus on today looking farway and beding nervous, I never acheive somethings that needs days.\n\nYou should know that today is so precious. You can do everthing, but you couldn`t do nothing if you don't move.\nSo, make sure to"
   },
   {
     "id": "Causal Inference/Paper Review/review-Towards-Optimal Doubly-Robust-Estimation-of-Heterogeneous-Causal-Effects",
@@ -54,14 +66,14 @@
   {
     "id": "Book/만들어진 신 (The God Delusion)/대단히종교적인불신자",
     "title": "대단히 종교적인 불신자",
-    "date": "2025-07-19",
+    "date": "2025-07-20",
     "excerpt": "나는 인격신을 상상하려는 시도는 하지 않는다. 신은 우리의 불충분한 감각으로 세계의 구조를 이해할 수 있도록 함으로써 경외심을 품게 하는 정도면 충분하다. <알베르트 아인슈타인>",
     "category": "Book",
     "tags": [
       "The God Delusion",
       "만들어진 신"
     ],
-    "content": "\n"
+    "content": "\n# 과학자들이 말하는 신은 뭘까?\n\n> 나는 인격신을 상상하려는 시도는 하지 않는다. 신은 우리의 불충분한 감각으로 세계의 구조를 이해할 수 있도록 함으로써 경외심을 품게 하는 정도면 충분하다. \n> \n> <알베르트 아인슈타인>\n\n과학자들이 말하는 신은 무엇일까?\n같은 신이라는 단어로 표현되고 있지만 이를 구분해서 이해할 필요가 있을 것 같다.\n아이슈타인은 신을 말하며 우주의 합리성과 질서에 대한 경외심을 들어내고 있다.\n예수나 부처와 같은 신을 의미하는게 아닌.\n\n> 훨씬 더 불행한 혼란은 아인슈타인식의 종교와 초자연적인 종교를 구분하지 못함으로써 빚어진다. 알베르트 아인슈타인(Albert Einstein)은 종종 신이라는 명칭을 사용함으로써(그런 무신론자 과학자가 그만은 아니다), 그런 유명한 과학자가 자신들의 편이기를 너무나 바라는 초자연주의자들의 오해를 자초하곤 했다.\n>\n> <만들어진 신>, 리처드 도킨스 - 밀리의 서재\n\n과학자들이 신을 이야기한다고 이들이 신을 믿는다고 생각하면 안될 듯 하다.\n\n> 우리 시대의 위대한 과학자들이 종교적인 말을 하는 듯이 보여도 그들의 신념을 더 깊이 파고 들어가면 대개 그렇지 않다는 사실이 드러난다.\n> \n> <만들어진 신>, 리처드 도킨스 - 밀리의 서재\n\n\n# 다른 사람들은 몰라도 과학자들 중 신을 믿는 사람들은 왜 있는걸까?\n\n고등학교때 친구를 따라 교회를 1~2년도 다녔던 적이 있다.\n그때도 신이라는 존재를 어떻게 믿을 수 있는지에 대해 의문이 들어 주위에 물어봤을 때, 믿음을 믿는다는 이야기를 들었다.\n즉 어떤 근거가 있어서 믿는다기 보다는 믿음 자체를 믿는다는 것이다.\n그래서 믿을 수 없다는 사람에게는 믿음이 부족하다, 성경을 더 공부하다보면 믿게 된다는 이야기를 한다.\n\n나는 이런 믿음이라는게 굉장히 위험하다고 생각한다.\n넷플릭스 시리즈의 \"나는 신이다\"에서 소개되는 JMS 같은 사이비 종교들의 논리와 교회가 다를게 뭔가?\n믿음을 우선시 하는 삶의 태도가 나는 도저히 납득이 안간다.\n\n과학을 하는 사"
   },
   {
     "id": "Current Affairs/중국문화대혁명과홍위병",
