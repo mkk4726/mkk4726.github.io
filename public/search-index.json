@@ -1,5 +1,17 @@
 [
   {
+    "id": "English Study/SPEAK/07-22-선택의상황",
+    "title": "선택의 상황",
+    "date": "2025-07-22",
+    "excerpt": "선택의 상황에서 쓰는 표현들",
+    "category": "English Study",
+    "tags": [
+      "영어공부꾸준히!",
+      "SPEAK"
+    ],
+    "content": "\n# 배운 것들\n\n## 1. best-thing\n~의 가장 좋은 점은 ~이다.\n\nThe best thing about iPhone is its camera.\n\nbest-thing -> 한번에 일기\n\naBOUT \n\n## 2. when it comes to\n~에 대해서는, ~가 가장 좋을 것이다.\n\nWhen it comes to online shopping, Amazon might be the best option.\n\n# 간단한 작문\n\nWhen it comes to smart-watch, Galaxy Fit is the best option.\nThe best thing about Galaxy Fit is price.\nIt is ver cheap, but have good design and good quality.\n\n---\n\n## 더 자연스러운 버전 & 피드백\n\n### 자연스러운 버전\n\nWhen it comes to smartwatches, the Galaxy Fit is the best option.  \nThe best thing about the Galaxy Fit is its price.  \nIt is very cheap, but it also has a good design and high quality.\n\n### 피드백\n\n1. **When it comes to smart-watch, Galaxy Fit is the best option.**  \n   **수정:** When it comes to smartwatches, the Galaxy Fit is the best option.  \n   **피드백:** \"smart-watch\"는 보통 복수형 \"smartwatches\"로 쓰는 것이 자연스럽고, \"the\"를 붙여 특정 제품을 지칭하는 것이 더 명확합니다.\n\n2. **The best thing about Galaxy Fit is price.**  \n   **수정:** The best thing about the Galaxy Fit is its price.  "
+  },
+  {
     "id": "Data Science/parametric-vs-non-parametric",
     "title": "Parametric vs Non-Parametric, GBDT는 왜 non-parametric일까?",
     "date": "2025-07-22",
