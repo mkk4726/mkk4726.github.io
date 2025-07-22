@@ -14,6 +14,47 @@
     "content": "\n\n# Parametric이란?\n\n| 영어                        | 한국어         | 설명                               |\n| ------------------------- | ----------- | -------------------------------- |\n| **parametric model**      | **모수적 모델**  | 고정된 수의 파라미터(모수)를 갖는 모델           |\n| **parametric assumption** | **모수적 가정**  | 데이터가 특정한 분포 형태(예: 정규분포)를 따른다는 가정 |\n| **non-parametric model**  | **비모수적 모델** | 파라미터 수나 함수 형태를 가정하지 않는 유연한 모델    |\n\n데이터에서 패턴을 근사해내는게 Machine Learning의 핵심이라고 할 수 있습니다.\n이때 데이터가 특정한 함수 형태를 따른다고 가정하거나, 모델의 구조(예: 선형 회귀처럼)가 고정되어 있는 경우를 모수적(parametric) 모델이라고 합니다.\n\n# Parametric vs Non-Parametric\n\n| 구분                  | Parametric     | Non-parametric           |\n| ------------------- | -------------- | ------------------------ |\n| **모델 구조**           | 사전에 고정됨        | 유연하고 데이터 기반              |\n| **모수(parameter) 수** | 고정             | 데이터가 많아지면 증가함            |\n| **복잡도 제어**          | 파라미터 조정        | 모델 자체의 구조 변화로 조정         |\n| **예시**              | 선형 회귀, 로지스틱 회귀 | GBDT, KNN, 랜덤포레스트, 커널 회귀 |\n\n반대"
   },
   {
+    "id": "Data Science/bias-variance",
+    "title": "Bias-Variance Tradeoff",
+    "date": "2025-07-22",
+    "excerpt": "Bias-Variance Tradeoff에 대한 간단한 설명",
+    "category": "Data Science",
+    "tags": [
+      "bias-variance",
+      "machine-learning",
+      "statistics"
+    ],
+    "content": "\n# Bias-Variance Tradeoff\n\n머신러닝에서 모델의 성능을 평가할 때 가장 중요한 개념 중 하나가 **Bias-Variance Tradeoff**입니다. 이는 모델의 복잡도와 일반화 성능 사이의 균형을 설명하는 핵심 개념입니다.\n\n## 1. 기본 개념\n\n### Bias (편향)\n> 학습된 모델의 예측값 평균과 실제 값 간의 차이\n\n- **정의**: 모델이 실제 데이터 생성 과정을 얼마나 잘 근사하는지를 나타내는 지표\n- **높은 Bias**: 모델이 너무 단순해서 데이터의 패턴을 제대로 학습하지 못함\n- **낮은 Bias**: 모델이 복잡해서 데이터의 패턴을 잘 학습할 수 있음\n\n### Variance (분산)\n> 예측값이 얼마나 흩어졌는지를 나타내는 지표\n\n- **정의**: 모델이 훈련 데이터의 작은 변화에 얼마나 민감한지를 나타내는 지표\n- **높은 Variance**: 모델이 훈련 데이터에 과도하게 적합되어 새로운 데이터에 대해 성능이 떨어짐\n- **낮은 Variance**: 모델이 훈련 데이터의 노이즈에 덜 민감함\n\n## 2. 수학적 표현\n\n### 예측 오차의 분해\n\n$$E[(y - \\hat{f}(x))^2] = \\text{Bias}^2 + \\text{Variance} + \\text{Irreducible Error}$$\n\n여기서:\n- $y$: 실제 값\n- $\\hat{f}(x)$: 모델의 예측값\n- $\\text{Bias}^2 = E[(\\hat{f}(x) - f(x))^2]$: 편향의 제곱\n- $\\text{Variance} = E[(\\hat{f}(x) - E[\\hat{f}(x)])^2]$: 분산\n- $\\text{Irreducible Error}$: 데이터 자체의 노이즈로 인한 오차\n\n### 편향과 분산의 계산\n\n편향과 분산은 다음과 같이 계산됩니다:\n\n$$\\text{Bias} = E[\\hat{f}(x)] - f(x)$$\n\n$$\\text{Variance} = E[(\\hat{f}(x) - E[\\hat{f}(x)])^2]$$\n\n## 3. Bias"
+  },
+  {
+    "id": "Data Science/2025-01-10-jupyter-notebook-test",
+    "title": "주피터 노트북 완전 테스트 - 셀에서 메타데이터 설정",
+    "date": "2025-07-22",
+    "excerpt": "첫 번째 셀에서 메타데이터를 설정하는 방법을 보여주는 예제입니다.",
+    "category": "Data Science",
+    "tags": [
+      "jupyter",
+      "python",
+      "데이터분석",
+      "pandas",
+      "numpy",
+      "matplotlib"
+    ],
+    "content": "---\ntitle: \"주피터 노트북 완전 테스트 - 셀에서 메타데이터 설정\"\ncategory: \"Data Science\"\ntags: [\"jupyter\", \"python\", \"데이터분석\", \"pandas\", \"numpy\", \"matplotlib\"]\nexcerpt: \"첫 번째 셀에서 메타데이터를 설정하는 방법을 보여주는 예제입니다.\"\n--- # 주피터 노트북 완전 테스트\n\n이것은 블로그에서 주피터 노트북이 완전히 어떻게 표시되는지 테스트하는 예제입니다.\n\n## 메타데이터 설정 방법\n\n**첫 번째 셀에 YAML 형식으로 메타데이터를 설정할 수 있습니다:**\n\n```yaml\n---    \ntitle: \"포스트 제목\"  \ncategory: \"카테고리명\"   \ntags: [\"태그1\", \"태그2\", \"태그3\"]   \nexcerpt: \"포스트 요약\"   \n---  \n```    \n\n## 데이터 분석 예제\n\nPython을 사용한 완전한 데이터 분석을 해보겠습니다.\n\n**주요 내용:**\n- 데이터 생성 및 로드\n- 기본 통계 분석\n- 데이터 시각화 import pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nprint(\"패키지를 성공적으로 import했습니다!\")\n # 샘플 데이터 생성\nnp.random.seed(42)\ndata = {\n    \"x\": np.random.randn(100),\n    \"y\": np.random.randn(100) * 2 + 5\n}\ndf = pd.DataFrame(data)\nprint(\"샘플 데이터를 생성했습니다.\")\ndf.head()\n # 기본 통계량 확인\nprint(\"기본 통계량:\")\ndf.describe()\n # 결론\n\n이 예제에서는 다음을 확인했습니다:\n\n1. **데이터 생성**: NumPy를 사용하여 랜덤 데이터를 생성했습니다\n2. **기본 분석**: Pandas를 사용하여 기본 통계량을 확인했습니다\n3. **코드 실행**: 주피터 노트북의 코드 셀과 출력이 잘 표시되는지 "
+  },
+  {
+    "id": "Causal Inference/residualization-fwl-theorem-test",
+    "title": "FWL에 기반한 잔차화 방법론 구현 노트북",
+    "date": "2025-07-22",
+    "excerpt": "잔차화를 하기 위해 nusiance function을 만들고 결과를 분석하는 노트북",
+    "category": "Causal Inference",
+    "tags": [
+      "residualization",
+      "FWL"
+    ],
+    "content": "---\ntitle: \"FWL에 기반한 잔차화 방법론 구현 노트북\"\ncategory: \"Causal Inference\"\ntags: [\"residualization\", \"FWL\"]\nexcerpt: \"잔차화를 하기 위해 nusiance function을 만들고 결과를 분석하는 노트북\"\n--- # Load Data # from src.dataloader.vault.main import VaultDatasetLoader\n# from src.dataloader.vault.utils import split_df_od_os\n# from src.utils.db import SOFTCRM_DBINFO, get_conn\n\n# import warnings\n# import pandas as pd\n# import numpy as np\n\n# warnings.filterwarnings(\"ignore\")\n\n# # pandas display 옵션 설정 - 모든 열 보이기\n# pd.set_option('display.max_columns', None)\n# pd.set_option('display.width', None)\n# pd.set_option('display.max_colwidth', None)\n\n# loader = VaultDatasetLoader()\n# feature_df, y_df = loader.run(start_date=\"2022-01-01\", end_date=\"2024-12-31\", piol_data_path=\"./data/PIOL렌즈주문서.xlsx\", refresh=False, db=\"crm_emr\")\n\n\n# # y_df의 oper_date와 feature_df의 date를 기준으로 병합\n# merged_df = pd.merge(y_df, feature_df,\n#                     left_on=['cust_num', 'oper_date'],\n#                     right_on=['cust_num', 'date'],\n#           "
+  },
+  {
     "id": "Causal Inference/Paper Review/Double-Debiased-Machine-Learning-for-Treatment-and-Structural-Parameters",
     "title": "[Paper Review] Double Debiased Machine Learning for Treatment and Structural Parameters",
     "date": "2025-07-22",
@@ -35,34 +76,6 @@
       "SPEAK"
     ],
     "content": "\nOn one hand, the Note has a really big screen.\n\nOn one hand, I haven`t had Korean food in a while\n\nOn one hand, taking a cab would be really convenient\n\nOn the other hand, the new iPhone has a really good camera.\n\nOn the other hand, I`m craving fried chicken.\n\nOn the other hand, I can walk there in 15 minute.\n\nWhether I buy the Note or the new iPhone, I should buy a phone tommorow.\n\n"
-  },
-  {
-    "id": "Data Science/2025-01-10-jupyter-notebook-test",
-    "title": "주피터 노트북 완전 테스트 - 셀에서 메타데이터 설정",
-    "date": "2025-07-21",
-    "excerpt": "첫 번째 셀에서 메타데이터를 설정하는 방법을 보여주는 예제입니다.",
-    "category": "Data Science",
-    "tags": [
-      "jupyter",
-      "python",
-      "데이터분석",
-      "pandas",
-      "numpy",
-      "matplotlib"
-    ],
-    "content": "---\ntitle: \"주피터 노트북 완전 테스트 - 셀에서 메타데이터 설정\"\ncategory: \"Data Science\"\ntags: [\"jupyter\", \"python\", \"데이터분석\", \"pandas\", \"numpy\", \"matplotlib\"]\nexcerpt: \"첫 번째 셀에서 메타데이터를 설정하는 방법을 보여주는 예제입니다.\"\n--- # 주피터 노트북 완전 테스트\n\n이것은 블로그에서 주피터 노트북이 완전히 어떻게 표시되는지 테스트하는 예제입니다.\n\n## 메타데이터 설정 방법\n\n**첫 번째 셀에 YAML 형식으로 메타데이터를 설정할 수 있습니다:**\n\n```yaml\n---    \ntitle: \"포스트 제목\"  \ncategory: \"카테고리명\"   \ntags: [\"태그1\", \"태그2\", \"태그3\"]   \nexcerpt: \"포스트 요약\"   \n---  \n```    \n\n## 데이터 분석 예제\n\nPython을 사용한 완전한 데이터 분석을 해보겠습니다.\n\n**주요 내용:**\n- 데이터 생성 및 로드\n- 기본 통계 분석\n- 데이터 시각화 import pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nprint(\"패키지를 성공적으로 import했습니다!\")\n # 샘플 데이터 생성\nnp.random.seed(42)\ndata = {\n    \"x\": np.random.randn(100),\n    \"y\": np.random.randn(100) * 2 + 5\n}\ndf = pd.DataFrame(data)\nprint(\"샘플 데이터를 생성했습니다.\")\ndf.head()\n # 기본 통계량 확인\nprint(\"기본 통계량:\")\ndf.describe()\n # 결론\n\n이 예제에서는 다음을 확인했습니다:\n\n1. **데이터 생성**: NumPy를 사용하여 랜덤 데이터를 생성했습니다\n2. **기본 분석**: Pandas를 사용하여 기본 통계량을 확인했습니다\n3. **코드 실행**: 주피터 노트북의 코드 셀과 출력이 잘 표시되는지 "
-  },
-  {
-    "id": "Causal Inference/residualization-fwl-theorem-test",
-    "title": "FWL에 기반한 잔차화 방법론 구현 노트북",
-    "date": "2025-07-21",
-    "excerpt": "잔차화를 하기 위해 nusiance function을 만들고 결과를 분석하는 노트북",
-    "category": "Causal Inference",
-    "tags": [
-      "residualization",
-      "FWL"
-    ],
-    "content": "---\ntitle: \"FWL에 기반한 잔차화 방법론 구현 노트북\"\ncategory: \"Causal Inference\"\ntags: [\"residualization\", \"FWL\"]\nexcerpt: \"잔차화를 하기 위해 nusiance function을 만들고 결과를 분석하는 노트북\"\n--- # Load Data # from src.dataloader.vault.main import VaultDatasetLoader\n# from src.dataloader.vault.utils import split_df_od_os\n# from src.utils.db import SOFTCRM_DBINFO, get_conn\n\n# import warnings\n# import pandas as pd\n# import numpy as np\n\n# warnings.filterwarnings(\"ignore\")\n\n# # pandas display 옵션 설정 - 모든 열 보이기\n# pd.set_option('display.max_columns', None)\n# pd.set_option('display.width', None)\n# pd.set_option('display.max_colwidth', None)\n\n# loader = VaultDatasetLoader()\n# feature_df, y_df = loader.run(start_date=\"2022-01-01\", end_date=\"2024-12-31\", piol_data_path=\"./data/PIOL렌즈주문서.xlsx\", refresh=False, db=\"crm_emr\")\n\n\n# # y_df의 oper_date와 feature_df의 date를 기준으로 병합\n# merged_df = pd.merge(y_df, feature_df,\n#                     left_on=['cust_num', 'oper_date'],\n#                     right_on=['cust_num', 'date'],\n#           "
   },
   {
     "id": "English Study/SPEAK/07-20-조언하는표현Review",
