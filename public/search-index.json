@@ -12,6 +12,17 @@
     "content": "\n# 배운 것들\n\nAlthough, it`s a bit pricey, the bar has an amazing view at night.\n\nAlthough there is a long wait, it has the best bubble tea in town.\n\n\nEven though, I`m not as big fan of the movie, I still enjoyed it.\n\nI like chocolate, even though I don`t like sweet.\n\nI love burgers. It`s not healthy though.\n\nThe coat is too expensive. but it`s pretty though.\n\nFair enough : 인정\n\n# 간단한 작문\n\nAlthough seoul is confused, full of people, it`s a great place to live.\nMany 편의시설 in here.\n\nEven though I`m not a big fan of anime, I love 귀멸의 칼날.\n\nI really love burgers. It`s not healthy thought.\n\n\n# 더 자연스러운 작문 & 피드백\n\n1. Although Seoul is confusing and crowded, it's a great place to live.  \n   → 피드백: \"confused\" 대신 \"confusing and crowded\"로 자연스럽게 수정. \"Many 편의시설 in here.\"는 \"There are many convenient facilities here.\"로 바꾸면 좋아요.\n\n2. Even though I'm not a big fan of anime, I love Demon Slayer.  \n   → 피드백: \"귀멸의 칼날\"은 영어 제목 \"Demon Slayer\"로 쓰면 자연스러워요.\n\n3. I really love burgers. It's not healthy though.  \n   → 피드백: "
   },
   {
+    "id": "Data Science/law-of-total-expectaion",
+    "title": "Law of total expectation",
+    "date": "2025-07-23",
+    "excerpt": "전체기대법칙에 대해 정리",
+    "category": "Data Science",
+    "tags": [
+      "math"
+    ],
+    "content": "\n### 전체기대법칙, 진짜 생활 버전\n\n> **핵심 아이디어**\n> “전체 평균 = ‘각 상황별 평균’들을 **확률로 가중한 평균**”\n\n---\n\n#### 1. 마트 계산대 이야기로 직관 잡기\n\n* 마트에는 \\*\\*빠른 계산대(셀프)\\*\\*와 **일반 계산대(직원)** 두 줄이 있다.\n* 셀프 계산대를 선택할 확률 70 %, 일반 계산대는 30 %.\n* 셀프에서 걸리는 평균 시간은 2분, 일반 계산대는 6분.\n* “전체 줄 서기 평균 시간”은?\n\n  * **조건부 평균**: 셀프 = 2분, 일반 = 6분\n  * **가중 평균**: $2 \\times 0.7 + 6 \\times 0.3 = 3.2$ 분\n  * 3.2 분이 **Law of Total Expectation** 결과다.  ([Wikipedia][1])\n\n> 한 줄 요약 ― **“상황별 평균을 구한 뒤, 각 상황이 일어날 확률로 다시 한 번 평균을 내면 전체 평균이 된다.”**\n\n---\n\n#### 2. 공식을 뜯어보면\n\n$$\n\\mathbb{E}[X] = \\mathbb{E}\\big[\\;\\mathbb{E}[X \\mid Y]\\;\\big]\n$$\n\n* $X$: 알고 싶은 대상(줄 서는 시간).\n* $Y$: 상황을 나누는 열쇠(선택한 계산대).\n* $\\mathbb{E}[X\\mid Y]$: **“상황 Y 가 주어졌을 때 평균”** — 셀프면 2분, 일반이면 6분.\n* $\\mathbb{E}[\\cdot]$: 그 값들을 **다시 평균** — 확률 0.7, 0.3으로 가중. ([Wikipedia][1])\n\n---\n\n#### 3. ‘3단 요리법’으로 기억하기\n\n| 단계        | 해야 할 일                     | 결과        |\n| --------- | -------------------------- | --------- |\n| ① 상황 나누기  | 문제를 쉽게 쪼갤 변수·사건 $Y$ 고르기    | ‘셀프 / 일반’ |\n| ② 상황별 기대값 | $\\mathbb{E}[X\\mid Y=y]$ 계산 |"
+  },
+  {
     "id": "Data Science/2025-01-10-jupyter-notebook-test",
     "title": "주피터 노트북 완전 테스트 - 셀에서 메타데이터 설정",
     "date": "2025-07-23",
@@ -37,7 +48,7 @@
       "R-learner",
       "인과추론"
     ],
-    "content": "\n\n# 1. CATE estimation이란?\n---\n\n## 1.1 ATE란?\n\n> ATE(Average Treatment Effect)는 전체 집단에서 처치(예: 신약, 정책 등)가 미치는 평균적인 인과 효과를 의미합니다.\n\n$$\n\\text{ATE} = \\mathbb{E}[Y^{(t)} - Y^{(0)}]\n$$\n여기서 $$Y^{(t)}$$은 처치를 받았을 때의 잠재적 결과 (Potential Outcome)이고, $$Y^{(0)}$$은 처치를 받지 않았을 때의 잠재적 결과입니다.\n\n즉 처치를 받았을 때의 평균적인 인과효과를 의미합니다.\n\n\n## 1.2 CATE란?\n\n> CATE(Conditional Average Treatment Effect)는 특정 조건에서 처치가 미치는 평균적인 인과 효과를 의미합니다.\n\n$$\n\\text{CATE} = \\tau(x) = \\mathbb{E}[Y^{(t)} - Y^{(0)} | X = x]\n$$\n여기서 $$X$$는 조건을 의미하고, $$Y^{(t)}$$는 처치를 받았을 때의 잠재적 결과, $$Y^{(0)}$$는 처치를 받지 않았을 때의 잠재적 결과를 의미합니다.\n\nATE를 통해 처치의 평균적인 인과효과(처치가 결과에 미치는 영향)을 추정했습니다.\n다만 개개인별로 인과효과가 다르다는 것은 직관적인데요. 이를 위해 추정하는 값이 CATE 입니다.\n\n> Estimating heteronenous treatment effects is fundamental in causal inference and provides insights into various fields.\n>\n> - Towards R-learner with Continuous Treatment\n\n개인별 처치효과를 추정하는 일은 다양한 분야에서 핵심적인 역할을 합니다.\n학생별 교육효과를 추정해 개인화된 교육 프로그램을 실행하거나, 환자별 처치효과를 추정해 개인화된 처치를 실행할 수 있습니다.\n\n\n# 2. CATE estimation에 사용되는 meta-learner들\n---"
+    "content": "\nR-learner는 CATE estimation에 사용되는 meta-learner 중 하나입니다.\n이에 대해 하나씩 정리헀습니다.\n\n# 1. CATE estimation이란?\n---\n\n## 1.1 ATE란?\n\n> ATE(Average Treatment Effect)는 전체 집단에서 처치(예: 신약, 정책 등)가 미치는 평균적인 인과 효과를 의미합니다.\n\n$$\n\\text{ATE} = \\mathbb{E}[Y^{(t)} - Y^{(0)}]\n$$\n여기서 $$Y^{(t)}$$은 처치를 받았을 때의 잠재적 결과 (Potential Outcome)이고, $$Y^{(0)}$$은 처치를 받지 않았을 때의 잠재적 결과입니다.\n\n즉 처치를 받았을 때의 평균적인 인과효과를 의미합니다.\n\n\n## 1.2 CATE란?\n\n> CATE(Conditional Average Treatment Effect)는 특정 조건에서 처치가 미치는 평균적인 인과 효과를 의미합니다.\n\n$$\n\\text{CATE} = \\tau(x) = \\mathbb{E}[Y^{(t)} - Y^{(0)} | X = x]\n$$\n여기서 $$X$$는 조건을 의미하고, $$Y^{(t)}$$는 처치를 받았을 때의 잠재적 결과, $$Y^{(0)}$$는 처치를 받지 않았을 때의 잠재적 결과를 의미합니다.\n\nATE를 통해 처치의 평균적인 인과효과(처치가 결과에 미치는 영향)을 추정했습니다.\n다만 개개인별로 인과효과가 다르다는 것은 직관적인데요. 이를 위해 추정하는 값이 CATE 입니다.\n\n> Estimating heteronenous treatment effects is fundamental in causal inference and provides insights into various fields.\n>\n> -> Towards R-learner with Continuous Treatment\n\n개인별 처치효과를 추정하는 일은 다양한 분야에서 핵심적인 역할을 합니다.\n학생별 교육효과를 추정해 개인화된 교육 프로그램을 실행하거나, 환자별 처치효"
   },
   {
     "id": "Causal Inference/residualization-fwl-theorem-test",
@@ -50,6 +61,18 @@
       "FWL"
     ],
     "content": "---\ntitle: \"FWL에 기반한 잔차화 방법론 구현 노트북\"\ncategory: \"Causal Inference\"\ntags: [\"residualization\", \"FWL\"]\nexcerpt: \"잔차화를 하기 위해 nusiance function을 만들고 결과를 분석하는 노트북\"\n--- # Load Data # from src.dataloader.vault.main import VaultDatasetLoader\n# from src.dataloader.vault.utils import split_df_od_os\n# from src.utils.db import SOFTCRM_DBINFO, get_conn\n\n# import warnings\n# import pandas as pd\n# import numpy as np\n\n# warnings.filterwarnings(\"ignore\")\n\n# # pandas display 옵션 설정 - 모든 열 보이기\n# pd.set_option('display.max_columns', None)\n# pd.set_option('display.width', None)\n# pd.set_option('display.max_colwidth', None)\n\n# loader = VaultDatasetLoader()\n# feature_df, y_df = loader.run(start_date=\"2022-01-01\", end_date=\"2024-12-31\", piol_data_path=\"./data/PIOL렌즈주문서.xlsx\", refresh=False, db=\"crm_emr\")\n\n\n# # y_df의 oper_date와 feature_df의 date를 기준으로 병합\n# merged_df = pd.merge(y_df, feature_df,\n#                     left_on=['cust_num', 'oper_date'],\n#                     right_on=['cust_num', 'date'],\n#           "
+  },
+  {
+    "id": "Causal Inference/how-can-evaluate-casual-models",
+    "title": "인과모델 평가 방법",
+    "date": "2025-07-23",
+    "excerpt": "인과모델 평가 방법에 대해 정리",
+    "category": "Causal Inference",
+    "tags": [
+      "인과추론",
+      "metrics"
+    ],
+    "content": "\n"
   },
   {
     "id": "English Study/SPEAK/07-22-선택의상황",
@@ -763,7 +786,7 @@
     "content": "\n"
   },
   {
-    "id": "Causal Inference/2025-07-02-what-is-fwl",
+    "id": "Causal Inference/what-is-fwl",
     "title": "FWL(Frisch-Waugh-Lovell) 정리란?",
     "date": "2025-07-02",
     "excerpt": "통계적 편향을 제거하기 위한 방법론",
