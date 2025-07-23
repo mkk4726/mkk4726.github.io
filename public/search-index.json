@@ -1,5 +1,57 @@
 [
   {
+    "id": "English Study/SPEAK/07-23-뭐뭐하긴해도",
+    "title": "뭐뭐하긴 해도",
+    "date": "2025-07-23",
+    "excerpt": "뭐뭐하긴 해도 쓰는 표현들",
+    "category": "English Study",
+    "tags": [
+      "영어공부꾸준히!",
+      "SPEAK"
+    ],
+    "content": "\n# 배운 것들\n\nAlthough, it`s a bit pricey, the bar has an amazing view at night.\n\nAlthough there is a long wait, it has the best bubble tea in town.\n\n\nEven though, I`m not as big fan of the movie, I still enjoyed it.\n\nI like chocolate, even though I don`t like sweet.\n\nI love burgers. It`s not healthy though.\n\nThe coat is too expensive. but it`s pretty though.\n\nFair enough : 인정\n\n# 간단한 작문\n\nAlthough seoul is confused, full of people, it`s a great place to live.\nMany 편의시설 in here.\n\nEven though I`m not a big fan of anime, I love 귀멸의 칼날.\n\nI really love burgers. It`s not healthy thought.\n\n\n# 더 자연스러운 작문 & 피드백\n\n1. Although Seoul is confusing and crowded, it's a great place to live.  \n   → 피드백: \"confused\" 대신 \"confusing and crowded\"로 자연스럽게 수정. \"Many 편의시설 in here.\"는 \"There are many convenient facilities here.\"로 바꾸면 좋아요.\n\n2. Even though I'm not a big fan of anime, I love Demon Slayer.  \n   → 피드백: \"귀멸의 칼날\"은 영어 제목 \"Demon Slayer\"로 쓰면 자연스러워요.\n\n3. I really love burgers. It's not healthy though.  \n   → 피드백: "
+  },
+  {
+    "id": "Data Science/2025-01-10-jupyter-notebook-test",
+    "title": "주피터 노트북 완전 테스트 - 셀에서 메타데이터 설정",
+    "date": "2025-07-23",
+    "excerpt": "첫 번째 셀에서 메타데이터를 설정하는 방법을 보여주는 예제입니다.",
+    "category": "Data Science",
+    "tags": [
+      "jupyter",
+      "python",
+      "데이터분석",
+      "pandas",
+      "numpy",
+      "matplotlib"
+    ],
+    "content": "---\ntitle: \"주피터 노트북 완전 테스트 - 셀에서 메타데이터 설정\"\ncategory: \"Data Science\"\ntags: [\"jupyter\", \"python\", \"데이터분석\", \"pandas\", \"numpy\", \"matplotlib\"]\nexcerpt: \"첫 번째 셀에서 메타데이터를 설정하는 방법을 보여주는 예제입니다.\"\n--- # 주피터 노트북 완전 테스트\n\n이것은 블로그에서 주피터 노트북이 완전히 어떻게 표시되는지 테스트하는 예제입니다.\n\n## 메타데이터 설정 방법\n\n**첫 번째 셀에 YAML 형식으로 메타데이터를 설정할 수 있습니다:**\n\n```yaml\n---    \ntitle: \"포스트 제목\"  \ncategory: \"카테고리명\"   \ntags: [\"태그1\", \"태그2\", \"태그3\"]   \nexcerpt: \"포스트 요약\"   \n---  \n```    \n\n## 데이터 분석 예제\n\nPython을 사용한 완전한 데이터 분석을 해보겠습니다.\n\n**주요 내용:**\n- 데이터 생성 및 로드\n- 기본 통계 분석\n- 데이터 시각화 import pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nprint(\"패키지를 성공적으로 import했습니다!\")\n # 샘플 데이터 생성\nnp.random.seed(42)\ndata = {\n    \"x\": np.random.randn(100),\n    \"y\": np.random.randn(100) * 2 + 5\n}\ndf = pd.DataFrame(data)\nprint(\"샘플 데이터를 생성했습니다.\")\ndf.head()\n # 기본 통계량 확인\nprint(\"기본 통계량:\")\ndf.describe()\n # 결론\n\n이 예제에서는 다음을 확인했습니다:\n\n1. **데이터 생성**: NumPy를 사용하여 랜덤 데이터를 생성했습니다\n2. **기본 분석**: Pandas를 사용하여 기본 통계량을 확인했습니다\n3. **코드 실행**: 주피터 노트북의 코드 셀과 출력이 잘 표시되는지 "
+  },
+  {
+    "id": "Causal Inference/what-is-r-learner",
+    "title": "R-learner란?",
+    "date": "2025-07-23",
+    "excerpt": "R-learner의 개념에 대해 정리",
+    "category": "Causal Inference",
+    "tags": [
+      "R-learner",
+      "인과추론"
+    ],
+    "content": "\n\n# 1. CATE estimation이란?\n---\n\n## 1.1 ATE란?\n\n> ATE(Average Treatment Effect)는 전체 집단에서 처치(예: 신약, 정책 등)가 미치는 평균적인 인과 효과를 의미합니다.\n\n$$\n\\text{ATE} = \\mathbb{E}[Y^{(t)} - Y^{(0)}]\n$$\n여기서 $$Y^{(t)}$$은 처치를 받았을 때의 잠재적 결과 (Potential Outcome)이고, $$Y^{(0)}$$은 처치를 받지 않았을 때의 잠재적 결과입니다.\n\n즉 처치를 받았을 때의 평균적인 인과효과를 의미합니다.\n\n\n## 1.2 CATE란?\n\n> CATE(Conditional Average Treatment Effect)는 특정 조건에서 처치가 미치는 평균적인 인과 효과를 의미합니다.\n\n$$\n\\text{CATE} = \\tau(x) = \\mathbb{E}[Y^{(t)} - Y^{(0)} | X = x]\n$$\n여기서 $$X$$는 조건을 의미하고, $$Y^{(t)}$$는 처치를 받았을 때의 잠재적 결과, $$Y^{(0)}$$는 처치를 받지 않았을 때의 잠재적 결과를 의미합니다.\n\nATE를 통해 처치의 평균적인 인과효과(처치가 결과에 미치는 영향)을 추정했습니다.\n다만 개개인별로 인과효과가 다르다는 것은 직관적인데요. 이를 위해 추정하는 값이 CATE 입니다.\n\n> Estimating heteronenous treatment effects is fundamental in causal inference and provides insights into various fields.\n>\n> - Towards R-learner with Continuous Treatment\n\n개인별 처치효과를 추정하는 일은 다양한 분야에서 핵심적인 역할을 합니다.\n학생별 교육효과를 추정해 개인화된 교육 프로그램을 실행하거나, 환자별 처치효과를 추정해 개인화된 처치를 실행할 수 있습니다.\n\n\n# 2. CATE estimation에 사용되는 meta-learner들\n---"
+  },
+  {
+    "id": "Causal Inference/residualization-fwl-theorem-test",
+    "title": "FWL에 기반한 잔차화 방법론 구현 노트북",
+    "date": "2025-07-23",
+    "excerpt": "잔차화를 하기 위해 nusiance function을 만들고 결과를 분석하는 노트북",
+    "category": "Causal Inference",
+    "tags": [
+      "residualization",
+      "FWL"
+    ],
+    "content": "---\ntitle: \"FWL에 기반한 잔차화 방법론 구현 노트북\"\ncategory: \"Causal Inference\"\ntags: [\"residualization\", \"FWL\"]\nexcerpt: \"잔차화를 하기 위해 nusiance function을 만들고 결과를 분석하는 노트북\"\n--- # Load Data # from src.dataloader.vault.main import VaultDatasetLoader\n# from src.dataloader.vault.utils import split_df_od_os\n# from src.utils.db import SOFTCRM_DBINFO, get_conn\n\n# import warnings\n# import pandas as pd\n# import numpy as np\n\n# warnings.filterwarnings(\"ignore\")\n\n# # pandas display 옵션 설정 - 모든 열 보이기\n# pd.set_option('display.max_columns', None)\n# pd.set_option('display.width', None)\n# pd.set_option('display.max_colwidth', None)\n\n# loader = VaultDatasetLoader()\n# feature_df, y_df = loader.run(start_date=\"2022-01-01\", end_date=\"2024-12-31\", piol_data_path=\"./data/PIOL렌즈주문서.xlsx\", refresh=False, db=\"crm_emr\")\n\n\n# # y_df의 oper_date와 feature_df의 date를 기준으로 병합\n# merged_df = pd.merge(y_df, feature_df,\n#                     left_on=['cust_num', 'oper_date'],\n#                     right_on=['cust_num', 'date'],\n#           "
+  },
+  {
     "id": "English Study/SPEAK/07-22-선택의상황",
     "title": "선택의 상황",
     "date": "2025-07-22",
@@ -37,34 +89,6 @@
       "statistics"
     ],
     "content": "\n# Bias-Variance Tradeoff\n\n머신러닝에서 모델의 성능을 평가할 때 가장 중요한 개념 중 하나가 **Bias-Variance Tradeoff**입니다. 이는 모델의 복잡도와 일반화 성능 사이의 균형을 설명하는 핵심 개념입니다.\n\n## 1. 기본 개념\n\n### Bias (편향)\n> 학습된 모델의 예측값 평균과 실제 값 간의 차이\n\n- **정의**: 모델이 실제 데이터 생성 과정을 얼마나 잘 근사하는지를 나타내는 지표\n- **높은 Bias**: 모델이 너무 단순해서 데이터의 패턴을 제대로 학습하지 못함\n- **낮은 Bias**: 모델이 복잡해서 데이터의 패턴을 잘 학습할 수 있음\n\n### Variance (분산)\n> 예측값이 얼마나 흩어졌는지를 나타내는 지표\n\n- **정의**: 모델이 훈련 데이터의 작은 변화에 얼마나 민감한지를 나타내는 지표\n- **높은 Variance**: 모델이 훈련 데이터에 과도하게 적합되어 새로운 데이터에 대해 성능이 떨어짐\n- **낮은 Variance**: 모델이 훈련 데이터의 노이즈에 덜 민감함\n\n## 2. 수학적 표현\n\n### 예측 오차의 분해\n\n$$E[(y - \\hat{f}(x))^2] = \\text{Bias}^2 + \\text{Variance} + \\text{Irreducible Error}$$\n\n여기서:\n- $y$: 실제 값\n- $\\hat{f}(x)$: 모델의 예측값\n- $\\text{Bias}^2 = E[(\\hat{f}(x) - f(x))^2]$: 편향의 제곱\n- $\\text{Variance} = E[(\\hat{f}(x) - E[\\hat{f}(x)])^2]$: 분산\n- $\\text{Irreducible Error}$: 데이터 자체의 노이즈로 인한 오차\n\n### 편향과 분산의 계산\n\n편향과 분산은 다음과 같이 계산됩니다:\n\n$$\\text{Bias} = E[\\hat{f}(x)] - f(x)$$\n\n$$\\text{Variance} = E[(\\hat{f}(x) - E[\\hat{f}(x)])^2]$$\n\n## 3. Bias"
-  },
-  {
-    "id": "Data Science/2025-01-10-jupyter-notebook-test",
-    "title": "주피터 노트북 완전 테스트 - 셀에서 메타데이터 설정",
-    "date": "2025-07-22",
-    "excerpt": "첫 번째 셀에서 메타데이터를 설정하는 방법을 보여주는 예제입니다.",
-    "category": "Data Science",
-    "tags": [
-      "jupyter",
-      "python",
-      "데이터분석",
-      "pandas",
-      "numpy",
-      "matplotlib"
-    ],
-    "content": "---\ntitle: \"주피터 노트북 완전 테스트 - 셀에서 메타데이터 설정\"\ncategory: \"Data Science\"\ntags: [\"jupyter\", \"python\", \"데이터분석\", \"pandas\", \"numpy\", \"matplotlib\"]\nexcerpt: \"첫 번째 셀에서 메타데이터를 설정하는 방법을 보여주는 예제입니다.\"\n--- # 주피터 노트북 완전 테스트\n\n이것은 블로그에서 주피터 노트북이 완전히 어떻게 표시되는지 테스트하는 예제입니다.\n\n## 메타데이터 설정 방법\n\n**첫 번째 셀에 YAML 형식으로 메타데이터를 설정할 수 있습니다:**\n\n```yaml\n---    \ntitle: \"포스트 제목\"  \ncategory: \"카테고리명\"   \ntags: [\"태그1\", \"태그2\", \"태그3\"]   \nexcerpt: \"포스트 요약\"   \n---  \n```    \n\n## 데이터 분석 예제\n\nPython을 사용한 완전한 데이터 분석을 해보겠습니다.\n\n**주요 내용:**\n- 데이터 생성 및 로드\n- 기본 통계 분석\n- 데이터 시각화 import pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nprint(\"패키지를 성공적으로 import했습니다!\")\n # 샘플 데이터 생성\nnp.random.seed(42)\ndata = {\n    \"x\": np.random.randn(100),\n    \"y\": np.random.randn(100) * 2 + 5\n}\ndf = pd.DataFrame(data)\nprint(\"샘플 데이터를 생성했습니다.\")\ndf.head()\n # 기본 통계량 확인\nprint(\"기본 통계량:\")\ndf.describe()\n # 결론\n\n이 예제에서는 다음을 확인했습니다:\n\n1. **데이터 생성**: NumPy를 사용하여 랜덤 데이터를 생성했습니다\n2. **기본 분석**: Pandas를 사용하여 기본 통계량을 확인했습니다\n3. **코드 실행**: 주피터 노트북의 코드 셀과 출력이 잘 표시되는지 "
-  },
-  {
-    "id": "Causal Inference/residualization-fwl-theorem-test",
-    "title": "FWL에 기반한 잔차화 방법론 구현 노트북",
-    "date": "2025-07-22",
-    "excerpt": "잔차화를 하기 위해 nusiance function을 만들고 결과를 분석하는 노트북",
-    "category": "Causal Inference",
-    "tags": [
-      "residualization",
-      "FWL"
-    ],
-    "content": "---\ntitle: \"FWL에 기반한 잔차화 방법론 구현 노트북\"\ncategory: \"Causal Inference\"\ntags: [\"residualization\", \"FWL\"]\nexcerpt: \"잔차화를 하기 위해 nusiance function을 만들고 결과를 분석하는 노트북\"\n--- # Load Data # from src.dataloader.vault.main import VaultDatasetLoader\n# from src.dataloader.vault.utils import split_df_od_os\n# from src.utils.db import SOFTCRM_DBINFO, get_conn\n\n# import warnings\n# import pandas as pd\n# import numpy as np\n\n# warnings.filterwarnings(\"ignore\")\n\n# # pandas display 옵션 설정 - 모든 열 보이기\n# pd.set_option('display.max_columns', None)\n# pd.set_option('display.width', None)\n# pd.set_option('display.max_colwidth', None)\n\n# loader = VaultDatasetLoader()\n# feature_df, y_df = loader.run(start_date=\"2022-01-01\", end_date=\"2024-12-31\", piol_data_path=\"./data/PIOL렌즈주문서.xlsx\", refresh=False, db=\"crm_emr\")\n\n\n# # y_df의 oper_date와 feature_df의 date를 기준으로 병합\n# merged_df = pd.merge(y_df, feature_df,\n#                     left_on=['cust_num', 'oper_date'],\n#                     right_on=['cust_num', 'date'],\n#           "
   },
   {
     "id": "Causal Inference/Paper Review/Double-Debiased-Machine-Learning-for-Treatment-and-Structural-Parameters",
