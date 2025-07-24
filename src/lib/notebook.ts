@@ -237,6 +237,7 @@ export function extractNotebookMetadata(notebookPath: string): Partial<NotebookD
     let excerpt = '';
     let category = metadata.category || 'Data Science';
     let tags = metadata.tags || ['jupyter', 'notebook'];
+    let date = '';
     
     // 첫 번째 텍스트 셀(markdown 또는 raw)에서 메타데이터 추출
     const firstTextCell = notebook.cells?.find((cell: NotebookCell) => 
@@ -267,6 +268,15 @@ export function extractNotebookMetadata(notebookPath: string): Partial<NotebookD
         
         const excerptMatch = yamlContent.match(/^excerpt:\s*"?([^"\n]+)"?$/m);
         if (excerptMatch) excerpt = excerptMatch[1].trim();
+        
+        const dateMatch = yamlContent.match(/^date:\s*"?([^"\n]+)"?$/m);
+        if (dateMatch) {
+          const extractedDate = dateMatch[1].trim();
+          // 날짜 형식 검증 (YYYY-MM-DD 또는 YYYY-MM-DD HH:MM:SS)
+          if (/^\d{4}-\d{2}-\d{2}/.test(extractedDate)) {
+            date = extractedDate.split(' ')[0]; // 시간 부분 제거하고 날짜만 사용
+          }
+        }
         
         // YAML 메타데이터 이후의 내용에서 excerpt 추출
         if (!excerpt) {
@@ -301,9 +311,11 @@ export function extractNotebookMetadata(notebookPath: string): Partial<NotebookD
       }
     }
     
-    // 파일명에서 날짜 추출 (YYYY-MM-DD 형식)
-    const dateMatch = fileName.match(/(\d{4}-\d{2}-\d{2})/);
-    const date = dateMatch ? dateMatch[1] : new Date().toISOString().split('T')[0];
+    // 파일명에서 날짜 추출 (YYYY-MM-DD 형식) - YAML에서 date가 설정되지 않은 경우에만 사용
+    if (!date) {
+      const dateMatch = fileName.match(/(\d{4}-\d{2}-\d{2})/);
+      date = dateMatch ? dateMatch[1] : new Date().toISOString().split('T')[0];
+    }
     
     return {
       title,
