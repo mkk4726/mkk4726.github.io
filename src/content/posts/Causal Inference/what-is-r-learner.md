@@ -12,6 +12,9 @@ R-learner는 CATE estimation에 사용되는 meta-learner 중 하나입니다.
 # 1. CATE estimation이란?
 ---
 
+인과추론 (Causal Inference)의 목적은 처치의 효과를 추정하는데에 있습니다.
+처치가 결과에 어떤 영향을 미치는지 확인하고 이를 통해 더 좋은 결정을 내릴 수 있습니다.
+
 ## 1.1 ATE란?
 
 > ATE(Average Treatment Effect)는 전체 집단에서 처치(예: 신약, 정책 등)가 미치는 평균적인 인과 효과를 의미합니다.
@@ -34,7 +37,15 @@ $$
 여기서 $$X$$는 조건을 의미하고, $$Y^{(t)}$$는 처치를 받았을 때의 잠재적 결과, $$Y^{(0)}$$는 처치를 받지 않았을 때의 잠재적 결과를 의미합니다.
 
 ATE를 통해 처치의 평균적인 인과효과(처치가 결과에 미치는 영향)을 추정했습니다.
-다만 개개인별로 인과효과가 다르다는 것은 직관적인데요. 이를 위해 추정하는 값이 CATE 입니다.
+다만 개개인별로 인과효과가 다르다는 것은 직관적인데요, 이러한 개별 개체의 처치효과를 ITE라고 합니다.
+
+> ITE (Individual Treatment Effect)
+> - 정의: 개별 개체의 처치 효과
+> - 수식: $$\text{ITE}_i = Y_i^{(1)} - Y_i^{(0)}$$
+> - 의미: 특정 개인이 처치를 받았을 때와 받지 않았을 때의 결과 차이
+> - 특징: 실제로는 관찰 불가능 (fundamental problem of causal inference)
+
+그리고 이를 추정하는 값이 CATE 입니다.
 
 > Estimating heteronenous treatment effects is fundamental in causal inference and provides insights into various fields.
 >
@@ -273,8 +284,11 @@ $$
 
 ## 4.2 R-learner에서 doubly robust가 보장되는 방식
 
+Quasi-Oracle Estimation of Heterogeneous Treatment Effects에서 이를 정의하고 있습니다.
+- [paper link](https://arxiv.org/pdf/1712.04912)
+- [paper review](/posts/Causal%20Inference/Paper%20Review/review-Quasi-Oracle-Estimation-of-Heterogeneous-Treatment-Effects)
 
-
+기본적인 컨셉은 2개의 nuisance function이 이상적일 때의 error bound와 2개 중 1개만 이상적일 때의 error bound가 같다는 것을 증명하는 것입니다.
 
 
 
@@ -284,15 +298,45 @@ Generalized R-loss는 Towards R-learner with Continuous Treatment 논문에서 �
 - [paper link](https://arxiv.org/pdf/2208.00872)
 - [paper review](/posts/Causal%20Inference/Paper%20Review/review-Towards-R-learner-with-Continuous-Treatments)
 
-
-Generalized R-loss:
-
 $$
-L_c(h) = E\left[\left\{Y - m(X) - h(X, T) + E_{\varpi}\{h(X, T) \mid X\}\right\}^2\right]
+L_c(h) = E\left[\left\{Y - m(X) - h(X, T) + E_{\varpi}\{h(X, T) \mid X\}\right\}^2\right] \tag{generalized R-loss}
 $$
 
-이는 다음 두 수식에서 유도됩니다.
+이는 다음 수식들에서 유도됩니다.
+이 수식들은 인과추론의 기본 가정인 unconfoundedness와 stable unit treatment value assumption을 가정하고 있습니다.
+
+- full conditional outcome mean model
+$$
+\mu(x, t) = \mathbb{E}[Y | X = x, T = t]
+$$
+
+- conditional outcome mean
+$$
+\mu(x) = \mathbb{E}[Y | X = x]
+$$
+
+- generalized propensity score
+$$
+\varpi(x) = \mathbb{E}[T | X = x]
+$$
+
+- 수식 전개
+$$
+Y_i^{(T_i)} = \mu(X_i, T_i) + \epsilon_i  = \mu(X_i, 0) + \tau(X_i, T_i) + \epsilon_i \\
+m(X_i) = E(Y_i^{(T_i)} | X=X_i) = \mu(X_i, 0) + E_{\varpi}\{\tau(X, T) | X=X_i\} + \epsilon_i \\
+Y_i^{(T_i)} - m(X_i) = \tau(X_i, T_i) - E_{\varpi}\{\tau(X, T) | X=X_i\} + \epsilon_i \\
+$$
+
+마지막 식을 $\epsilon_i$ 에 대해서 정리하면 loss function을 얻을 수 있습니다.
+여기서 $h(X, t)$는 $tau(X, T)$를 추정하는 함수를 의미합니다.
+
+
+## 5.1 Binary treatment에 대한 loss function
+
+> Quasi-Oracle Estimation of Heterogeneous Treatment Effects에서 정의한 binary treatment에 대한 loss function은 generalized R-loss의 특수한 경우입니다.
 
 $$
-Y
+L_b(h) =E[Y - m(X) - {T-e(X)}h(X, 1)]^2 \tag{binary treatment}
 $$
+
+T가 0 또는 1이 존재하는 경우이기 떄문에 T를 풀어서 쓸 수 있고, $h(x, 0) = 0$이라는 가정을 loss function에 녹여낼 수 있습니다.
