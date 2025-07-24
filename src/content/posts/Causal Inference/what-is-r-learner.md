@@ -233,7 +233,12 @@ R-learner는 FWL-theorem을 meta-learner 형태로 구현한 모델입니다.
 R-learner는 다른 meta-learner들과 다르게 이 모델은 CATE를 직접적으로 추정하고 있습니다.
 따라서 다른 모델보다 CATE를 더 잘 추정한다고 알려져 있습니다.
 
-또한 회귀모델을 통한 잔차화와 propensity score를 통한 잔차화를 진행해 doubly robust 합니다.
+> CATE estimation을 평가하는 방법에는 2가지정도가 있는데,
+> 하나는 임의로 데이터셋을 만들어 실제로 잘 추정하는지 확인하는 것과 
+> 다른 하나는 cate로 정렬해 그룹별로 ATE를 구해 비교하는 것입니다. -> [how to evaluate CATE estimation model](/posts/Causal%20Inference/how-can-evaluate-casual-models)
+
+
+또한 회귀모델을 통한 잔차화와 propensity score를 통한 잔차화를 진행해 doubly robust 하다는 장점도 가지고 있습니다.
 
 # 4. Double robustness란?
 ---
