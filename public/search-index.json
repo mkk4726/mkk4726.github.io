@@ -1,5 +1,33 @@
 [
   {
+    "id": "Data Science/vDB_code_notebook",
+    "title": "vDB관련 샘플 코드들",
+    "date": "2025-07-25",
+    "excerpt": "vDB관련 샘플 코드들",
+    "category": "Data Science",
+    "tags": [
+      "VectorDB",
+      "Qdrant",
+      "ChromaDB",
+      "FAISS",
+      "Milvus"
+    ],
+    "content": "---\ntitle: \"vDB관련 샘플 코드들\"\ndate: \"2025-07-25\"\ncategory: \"Data Science\"\ntags: [\"VectorDB\", \"Qdrant\", \"ChromaDB\", \"FAISS\", \"Milvus\"]\nexcerpt: \"vDB관련 샘플 코드들\"\n--- # Qdrant 파이썬 클라이언트 설치 필요\n# pip install qdrant-client\n\nfrom qdrant_client import QdrantClient\nfrom qdrant_client.models import VectorParams, Distance, PointStruct\nimport numpy as np\n\n# 1. Qdrant 서버에 연결 (로컬 서버 예시)\nclient = QdrantClient(host=\"localhost\", port=6333)\n\n# 2. 컬렉션 생성 (벡터 차원 1536, cosine 거리)\nclient.recreate_collection(\n    collection_name=\"my_collection\",\n    vectors_config=VectorParams(size=1536, distance=Distance.COSINE),\n)\n\n# 3. 벡터 데이터 삽입\nvectors = np.random.rand(3, 1536).tolist()  # 3개 벡터, 1536차원\npayloads = [\n    {\"doc_id\": \"A1\", \"text\": \"문서1\"},\n    {\"doc_id\": \"A2\", \"text\": \"문서2\"},\n    {\"doc_id\": \"A3\", \"text\": \"문서3\"},\n]\npoints = [\n    PointStruct(id=i, vector=vectors[i], payload=payloads[i])\n    for i in range(3)\n]\nclient.upsert(collection_name=\"my_collection\", points=points)\n\n# 4. 유사도 검색 (임의 쿼리 벡터)\nquery_vector = np.ra"
+  },
+  {
+    "id": "Data Science/compare-vDB-libraries",
+    "title": "VectorDB에 사용되는 라이브러리들 비교",
+    "date": "2025-07-25",
+    "excerpt": "챗봇 구현하면서 RAG 부분에 사용할 벡터화된 문서들을 관리할 DB들을 비교",
+    "category": "Data Science",
+    "tags": [
+      "vector-database",
+      "chatbot",
+      "RAG"
+    ],
+    "content": "\n\n# Qdrant vs ChromaDB vs FAISS vs Milvus\n\n| DB         | 주요 특징                              | 장점                                                         | 단점                                                         |\n|------------|----------------------------------------|--------------------------------------------------------------|--------------------------------------------------------------|\n| Qdrant     | Rust 기반, 하이브리드 인덱스, API 다양 | 빠른 쿼리, 확장성, 메타데이터 필터링, 클라우드 지원           | 클러스터 관리 필요, 일부 고급 기능은 미흡                    |\n| ChromaDB   | Python 기반, 내장형, LangChain 연동    | 쉬운 설치, 빠른 프로토타이핑, 파이썬 친화적, 실시간 검색      | 대규모 데이터/분산 미지원, 메모리 누수 이슈, 문서화 부족      |\n| FAISS      | Facebook 개발, 라이브러리, GPU 지원    | 매우 빠른 검색, 다양한 인덱스, 대규모 벡터 처리, 오픈소스     | DB 아님(저장/운영 직접 구현 필요), 확장성/운영 자동화 미흡     |\n| Milvus     | 분산형, 클라우드/온프레미스, MLOps 연동| 대규모 분산처리, 다양한 인덱스, RBAC 등 엔터프라이즈 기능     | 복잡한 배포(쿠버네티스 등), 리소스 요구 높음, 러닝커브 있음    |\n\n---\n\n## 1. Qdrant\n- **특징**: Rust로 개발된 오픈소스 벡터 DB. 하이브리드 인덱스(벡터+속성), 다양한 거리 측도(유클"
+  },
+  {
     "id": "English Study/SPEAK/07-24-물건에대한분석",
     "title": "물건에 대한 분석",
     "date": "2025-07-24",
