@@ -5,8 +5,25 @@
     "date": "2025-07-26",
     "excerpt": "좋은밤 좋은꿈 인트로 부분 핑거스타일 아르페지오 연습",
     "category": "Practice Log",
-    "tags": [],
+    "tags": [
+      "기타연습",
+      "Guitar Practice",
+      "Arpeggio"
+    ],
     "content": "\n@audio[좋은밤 좋은꿈 인트로 연습](/post/guitar/20250726/좋은밤좋은꿈인트로.mp3)\n\n뭔가 맛이 없다 ㅋㅋ\nF랑 Fm가 완벽하게 안누림 특히 3번줄이."
+  },
+  {
+    "id": "Guitar/Practice Log/20250726_고백_스트로크",
+    "title": "델리스파이스 고백 스트로크 연습",
+    "date": "2025-07-26",
+    "excerpt": "기타연습일지",
+    "category": "Practice Log",
+    "tags": [
+      "기타연습",
+      "Guitar Practice",
+      "Strokes"
+    ],
+    "content": "\n@audio[델리스파이스 고백 스트로크 연습](/post/guitar/20250726/고백_인트로_스트로크.mp3)\n\nC#7이 잘 안잡힘. 특히 G#m -> C#7이 잘 안됨.\n\n기타 톤은 낫배드한 듯? AC clean + front pickup + 싱싱싱\n\n"
   },
   {
     "id": "Guitar/Practice Log/20250726_love",
@@ -14,7 +31,10 @@
     "date": "2025-07-26",
     "excerpt": "기타연습일지",
     "category": "Practice Log",
-    "tags": [],
+    "tags": [
+      "기타연습",
+      "Guitar Practice"
+    ],
     "content": "\n\n@audio[웨이브 투어스 사랑으로 인트로 커버](/post/guitar/20250726/love.wav)\n\n확실히 녹음해서 들어보니까 끊기는 부분이 많이 들림. \n박자 나가는 것도 보이고."
   },
   {
