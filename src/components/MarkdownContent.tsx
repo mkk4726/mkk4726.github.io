@@ -17,53 +17,34 @@ export default function MarkdownContent({ content, className = '' }: MarkdownCon
   useEffect(() => {
     const processContent = async () => {
       try {
-        let html = await parseMarkdown(content);
+        console.log('Processing markdown content...');
+        const result = await parseMarkdown(content);
+        console.log('Parsed content:', result);
         
-        // 헤딩에 ID 추가 (한글과 영문 모두 지원)
-        const usedIds = new Set<string>();
-        html = html.replace(
-          /<h([1-6])([^>]*)>(.*?)<\/h[1-6]>/g,
-          (match, level, attributes, text) => {
-            // 이미 ID가 있는지 확인
-            if (attributes.includes('id=')) {
-              return match;
-            }
-            
-            // HTML 태그 제거하고 순수 텍스트만 추출
-            const cleanText = text.replace(/<[^>]*>/g, '');
-            // ID 생성: 특수문자 제거하고 공백을 하이픈으로 변경
-            let id = cleanText
-              .toLowerCase()
-              .replace(/[^a-z0-9가-힣\s]/g, '')
-              .replace(/\s+/g, '-')
-              .replace(/-+/g, '-')
-              .replace(/^-|-$/g, '');
-            
-            // 중복된 ID가 있으면 숫자를 추가하여 고유하게 만들기
-            let counter = 1;
-            const originalId = id;
-            while (usedIds.has(id)) {
-              id = `${originalId}-${counter}`;
-              counter++;
-            }
-            
-            usedIds.add(id);
-            console.log(`Generated ID for "${cleanText}": ${id}`);
-            
-            return `<h${level}${attributes} id="${id}">${text}</h${level}>`;
-          }
-        );
+        // Check if @audio pattern exists in the parsed content
+        const audioRegex = /@audio\[([^\]]+)\]\(([^)]+)\)/g;
+        let match;
+        let processedContent = result;
         
-        setParsedContent(html);
+        while ((match = audioRegex.exec(result)) !== null) {
+          console.log('Found @audio pattern in parsed content:', match);
+          const [, title, src] = match;
+          const audioWrapper = `<div class="audio-player-wrapper" data-audio-src="${src.trim()}" data-audio-title="${title.trim()}"></div>`;
+          processedContent = processedContent.replace(match[0], audioWrapper);
+        }
+        
+        setParsedContent(processedContent);
         setIsContentReady(true);
       } catch (error) {
-        console.error('Error parsing markdown:', error);
+        console.error('Error processing markdown:', error);
         setParsedContent(content);
         setIsContentReady(true);
       }
     };
 
-    processContent();
+    if (content) {
+      processContent();
+    }
   }, [content]);
 
   // 콘텐츠가 렌더링된 후 목차 업데이트를 위한 이벤트 발생
