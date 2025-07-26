@@ -1,5 +1,14 @@
 [
   {
+    "id": "Guitar/Practice Log/20250726_love",
+    "title": "웨이브 투어스 사랑으로 인트로 커버",
+    "date": "2025-07-26",
+    "excerpt": "기타연습일지",
+    "category": "Practice Log",
+    "tags": [],
+    "content": "\n\n@audio[웨이브 투어스 사랑으로 인트로 커버](/post/guitar/20250726/love.wav)\n\n확실히 녹음해서 들어보니까 끊기는 부분이 많이 들림. \n박자 나가는 것도 보이고."
+  },
+  {
     "id": "Data Science/vDB_code_notebook",
     "title": "vDB관련 샘플 코드들",
     "date": "2025-07-25",
@@ -527,7 +536,7 @@
     "excerpt": "기타연습일지",
     "category": "Practice Log",
     "tags": [],
-    "content": "\n\n- 크로매틱\n80bpm 16bit. 처음엔 잘 안된다가 나중에 손풀리니까 잘 됨\n\n- 스케일\n0~4. 이제 다 외울 때가 됐는데.. ㅎㅎ\n\n- 곡 연습\n델리스파이스 고백. 막 빡세게는 안하고 그냥 한번씩 쳐보는 정도?"
+    "content": "\n\n- 크로매틱\n80bpm 16bit. 처음엔 잘 안된다가 나중에 손풀리니까 잘 됨\n\n- 스케일\n0~4. 이제 다 외울 때가 됐는데.. ㅎㅎ\n\n- 곡 연습\n델리스파이스 고백. 막 빡세게는 안하고 그냥 한번씩 쳐보는 정도?\n\n"
   },
   {
     "id": "Guitar/Practice Log/250712",

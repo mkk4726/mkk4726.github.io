@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { parseMarkdown } from '../lib/markdown';
 import '../styles/vocabulary.css';
+import '../styles/audio-player.css';
 
 interface MarkdownContentProps {
   content: string;
@@ -182,6 +183,124 @@ export default function MarkdownContent({ content, className = '' }: MarkdownCon
       return () => clearTimeout(timer);
     }
   }, [isContentReady, parsedContent]);
+
+  // 오디오 플레이어 렌더링
+  useEffect(() => {
+    if (isContentReady && parsedContent) {
+      const timer = setTimeout(() => {
+        const audioWrappers = document.querySelectorAll('.audio-player-wrapper');
+        audioWrappers.forEach((wrapper) => {
+          const src = wrapper.getAttribute('data-audio-src');
+          const title = wrapper.getAttribute('data-audio-title');
+          
+          if (src && !wrapper.querySelector('.custom-audio-player')) {
+            // Create custom audio player HTML
+            const audioHTML = `
+              <div class="custom-audio-player bg-gray-50 dark:bg-gray-800 rounded-lg p-4 border border-gray-200 dark:border-gray-700">
+                <audio src="${src}" preload="metadata" style="display: none;"></audio>
+                ${title ? `<div class="text-sm font-medium text-gray-900 dark:text-gray-100 mb-3">${title}</div>` : ''}
+                <div class="flex items-center space-x-4 mb-3">
+                  <button class="play-pause-btn w-10 h-10 bg-blue-500 hover:bg-blue-600 text-white rounded-full flex items-center justify-center transition-colors">
+                    <svg class="play-icon w-4 h-4 ml-0.5" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path>
+                    </svg>
+                    <svg class="pause-icon w-4 h-4 hidden" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+                    </svg>
+                  </button>
+                  <div class="flex-1">
+                    <div class="time-display text-xs text-gray-500 dark:text-gray-400">0:00 / 0:00</div>
+                  </div>
+                  <div class="flex items-center space-x-2">
+                    <button class="mute-btn text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
+                      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.617.793L4.5 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.5l3.883-2.793a1 1 0 011.617.793zM12.293 7.293a1 1 0 011.414 0L15 8.586l1.293-1.293a1 1 0 111.414 1.414L16.414 10l1.293 1.293a1 1 0 01-1.414 1.414L15 11.414l-1.293 1.293a1 1 0 01-1.414-1.414L13.586 10l-1.293-1.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                      </svg>
+                    </button>
+                    <input type="range" min="0" max="1" step="0.1" value="1" class="volume-slider w-16 h-2 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer">
+                  </div>
+                </div>
+                <div class="w-full">
+                  <input type="range" min="0" max="0" value="0" class="progress-slider w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer">
+                </div>
+              </div>
+            `;
+            wrapper.innerHTML = audioHTML;
+            
+            // Add event listeners
+            const audioElement = wrapper.querySelector('audio') as HTMLAudioElement;
+            const playPauseBtn = wrapper.querySelector('.play-pause-btn') as HTMLButtonElement;
+            const playIcon = wrapper.querySelector('.play-icon') as HTMLElement;
+            const pauseIcon = wrapper.querySelector('.pause-icon') as HTMLElement;
+            const timeDisplay = wrapper.querySelector('.time-display') as HTMLElement;
+            const progressSlider = wrapper.querySelector('.progress-slider') as HTMLInputElement;
+            const volumeSlider = wrapper.querySelector('.volume-slider') as HTMLInputElement;
+            const muteBtn = wrapper.querySelector('.mute-btn') as HTMLButtonElement;
+            
+            if (audioElement && playPauseBtn) {
+              // Play/Pause functionality
+              playPauseBtn.addEventListener('click', () => {
+                if (audioElement.paused) {
+                  audioElement.play();
+                } else {
+                  audioElement.pause();
+                }
+              });
+              
+              // Update play/pause button
+              audioElement.addEventListener('play', () => {
+                playIcon.classList.add('hidden');
+                pauseIcon.classList.remove('hidden');
+              });
+              
+              audioElement.addEventListener('pause', () => {
+                playIcon.classList.remove('hidden');
+                pauseIcon.classList.add('hidden');
+              });
+              
+              // Update time display
+              audioElement.addEventListener('timeupdate', () => {
+                const currentTime = audioElement.currentTime;
+                const duration = audioElement.duration;
+                timeDisplay.textContent = `${formatTime(currentTime)} / ${formatTime(duration)}`;
+                progressSlider.value = currentTime.toString();
+              });
+              
+              audioElement.addEventListener('loadedmetadata', () => {
+                progressSlider.max = audioElement.duration.toString();
+              });
+              
+              // Progress slider
+              progressSlider.addEventListener('input', (e) => {
+                const time = parseFloat((e.target as HTMLInputElement).value);
+                audioElement.currentTime = time;
+              });
+              
+              // Volume control
+              volumeSlider.addEventListener('input', (e) => {
+                const volume = parseFloat((e.target as HTMLInputElement).value);
+                audioElement.volume = volume;
+              });
+              
+              // Mute button
+              muteBtn.addEventListener('click', () => {
+                audioElement.muted = !audioElement.muted;
+              });
+            }
+          }
+        });
+      }, 300);
+
+      return () => clearTimeout(timer);
+    }
+  }, [isContentReady, parsedContent]);
+
+  const formatTime = (time: number) => {
+    if (isNaN(time)) return '0:00';
+    const minutes = Math.floor(time / 60);
+    const seconds = Math.floor(time % 60);
+    return `${minutes}:${seconds.toString().padStart(2, '0')}`;
+  };
 
   return (
     <div 

@@ -1,0 +1,65 @@
+/* Audio Player Slider Styles */
+.volume-slider::-webkit-slider-thumb,
+.progress-slider::-webkit-slider-thumb {
+  appearance: none;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background: #3b82f6;
+  cursor: pointer;
+}
+
+.volume-slider::-moz-range-thumb,
+.progress-slider::-moz-range-thumb {
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background: #3b82f6;
+  cursor: pointer;
+  border: none;
+}
+
+/* Progress slider track */
+.progress-slider::-webkit-slider-track {
+  background: linear-gradient(to right, #3b82f6 0%, #3b82f6 0%, #e5e7eb 0%, #e5e7eb 100%);
+  border-radius: 8px;
+  height: 8px;
+}
+
+.progress-slider::-moz-range-track {
+  background: #e5e7eb;
+  border-radius: 8px;
+  height: 8px;
+  border: none;
+}
+
+/* Dark mode support */
+.dark .progress-slider::-webkit-slider-track {
+  background: linear-gradient(to right, #3b82f6 0%, #3b82f6 0%, #374151 0%, #374151 100%);
+}
+
+.dark .progress-slider::-moz-range-track {
+  background: #374151;
+}
+
+/* Volume slider track */
+.volume-slider::-webkit-slider-track {
+  background: #e5e7eb;
+  border-radius: 8px;
+  height: 8px;
+}
+
+.volume-slider::-moz-range-track {
+  background: #e5e7eb;
+  border-radius: 8px;
+  height: 8px;
+  border: none;
+}
+
+.dark .volume-slider::-webkit-slider-track {
+  background: #374151;
+}
+
+.dark .volume-slider::-moz-range-track {
+  background: #374151;
+} 

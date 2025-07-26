@@ -98,6 +98,7 @@ tags: ["tag1", "tag2", "category"]
 
 - **Headers**: `# H1`, `## H2`, `### H3`
 - **Bold/Italic**: `**bold**`, `*italic*`
+- **Audio Player**: `@audio[Title](path/to/audio.wav)` - Embeds a custom audio player with play/pause, progress bar, and volume controls
 - **Lists**: `-` for bullets, `1.` for numbers
 - **Blockquotes**: `> quoted text`
 - **Code blocks**: \`\`\`language ... \`\`\`
@@ -109,6 +110,24 @@ tags: ["tag1", "tag2", "category"]
 
 1. Place images in the `public/` directory
 2. Reference them in markdown: `![description](/image-name.png)`
+
+### Adding Audio Files
+
+1. Place audio files in the `public/` directory (e.g., `public/guitar/love.wav`)
+2. Use the audio player syntax in markdown: `@audio[Title](path/to/audio.wav)`
+
+**Example:**
+```markdown
+@audio[My Guitar Practice](/guitar/love.wav)
+```
+
+**Features:**
+- Custom audio player with play/pause controls
+- Progress bar for seeking through the audio
+- Volume control with mute button
+- Time display showing current position and total duration
+- Responsive design that works on mobile and desktop
+- Dark mode support
 
 ### Example Post Structure
 
@@ -184,11 +203,16 @@ src/
 │   ├── Footer.tsx      # Site footer
 │   ├── PostCard.tsx    # Blog post card
 │   ├── MarkdownContent.tsx # Markdown rendering component
+│   ├── AudioPlayer.tsx # Custom audio player component
+│   ├── CustomAudioPlayer.tsx # Enhanced audio player component
 │   ├── GoogleAnalytics.tsx # Google Analytics tracking
 │   └── AnalyticsDisplay.tsx # Analytics data display
 ├── lib/               # Utility functions
 │   ├── posts.ts       # Blog post utilities
 │   ├── content.ts     # Content management utilities
+│   ├── markdown.ts    # Markdown parsing with audio support
+│   ├── remark-audio.ts # Remark plugin for audio syntax
+│   ├── rehype-audio.ts # Rehype plugin for audio HTML generation
 │   └── analytics.ts   # Google Analytics utilities
 └── content/           # Markdown files
     ├── posts/         # Blog post markdown files
@@ -196,6 +220,8 @@ src/
     └── portfolio.md   # Portfolio content
 
 public/
+├── guitar/            # Audio files for guitar practice
+│   └── love.wav       # Example audio file
 └── post/             # Blog post images
 ```
 
