@@ -36,4 +36,8 @@ export function getResumeData(): ContentData {
 
 export function getPortfolioData(): ContentData {
   return getContentData('portfolio');
+}
+
+export function getAboutData(): ContentData {
+  return getContentData('about');
 } 

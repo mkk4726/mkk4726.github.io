@@ -954,6 +954,33 @@
     "content": "---\ntitle: \"주피터 노트북 완전 테스트 - 셀에서 메타데이터 설정\"\ndate: \"2025-01-12\"\ncategory: \"Data Science\"\ntags: [\"jupyter\", \"python\", \"데이터분석\", \"pandas\", \"numpy\", \"matplotlib\"]\nexcerpt: \"첫 번째 셀에서 메타데이터를 설정하는 방법을 보여주는 예제입니다.\"\n--- # 주피터 노트북 완전 테스트\n\n이것은 블로그에서 주피터 노트북이 완전히 어떻게 표시되는지 테스트하는 예제입니다.\n\n## 메타데이터 설정 방법\n\n**첫 번째 셀에 YAML 형식으로 메타데이터를 설정할 수 있습니다:**\n\n```yaml\n---    \ntitle: \"포스트 제목\"\ndate: \"날짜\"\ncategory: \"카테고리명\"   \ntags: [\"태그1\", \"태그2\", \"태그3\"]   \nexcerpt: \"포스트 요약\"   \n---  \n```    \n\n## 데이터 분석 예제\n\nPython을 사용한 완전한 데이터 분석을 해보겠습니다.\n\n**주요 내용:**\n- 데이터 생성 및 로드\n- 기본 통계 분석\n- 데이터 시각화 import pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nprint(\"패키지를 성공적으로 import했습니다!\")\n # 샘플 데이터 생성\nnp.random.seed(42)\ndata = {\n    \"x\": np.random.randn(100),\n    \"y\": np.random.randn(100) * 2 + 5\n}\ndf = pd.DataFrame(data)\nprint(\"샘플 데이터를 생성했습니다.\")\ndf.head()\n # 기본 통계량 확인\nprint(\"기본 통계량:\")\ndf.describe()\n # 결론\n\n이 예제에서는 다음을 확인했습니다:\n\n1. **데이터 생성**: NumPy를 사용하여 랜덤 데이터를 생성했습니다\n2. **기본 분석**: Pandas를 사용하여 기본 통계량을 확인했습니다\n3. **코드 실행**:"
   },
   {
+    "id": "Portfolio/chatbot",
+    "title": "AI Chatbot Project",
+    "date": "2024-12-01",
+    "excerpt": "",
+    "category": "",
+    "tags": [],
+    "content": "\n# AI Chatbot Project\n\n## 프로젝트 개요\n자연어 처리 기술을 활용하여 사용자와 자연스럽게 대화할 수 있는 지능형 챗봇 시스템을 개발했습니다.\n\n## 주요 기능\n- **자연어 이해**: 사용자 입력을 분석하여 의도를 파악\n- **맥락 인식**: 대화의 맥락을 유지하며 응답 생성\n- **다국어 지원**: 한국어 및 영어 지원\n- **실시간 응답**: 빠른 응답 속도로 사용자 경험 향상\n\n## 기술 스택\n- **Backend**: Python, FastAPI\n- **NLP**: Transformers, spaCy\n- **Machine Learning**: TensorFlow, PyTorch\n- **Database**: PostgreSQL\n- **Deployment**: Docker, AWS\n\n## 개발 과정\n1. **데이터 수집 및 전처리**: 대화 데이터 수집 및 정제\n2. **모델 설계**: Transformer 기반 언어 모델 구현\n3. **API 개발**: RESTful API를 통한 챗봇 서비스 제공\n4. **성능 최적화**: 응답 속도 및 정확도 개선\n\n## 결과 및 성과\n- 사용자 만족도 85% 달성\n- 평균 응답 시간 0.5초 이내\n- 정확도 92% 달성\n\n## 학습한 점\n- 자연어 처리의 실제 적용 방법\n- 대규모 언어 모델의 효율적인 활용\n- 사용자 경험을 고려한 시스템 설계\n"
+  },
+  {
+    "id": "Portfolio/lenze_size_rec",
+    "title": "Lens Size Recommendation System",
+    "date": "2024-11-15",
+    "excerpt": "",
+    "category": "",
+    "tags": [],
+    "content": "\n# Lens Size Recommendation System\n\n## 프로젝트 개요\n사용자의 안경 프레임과 얼굴 형태를 분석하여 최적의 렌즈 사이즈를 추천하는 머신러닝 기반 시스템을 개발했습니다.\n\n## 주요 기능\n- **얼굴 분석**: 이미지 처리 기술을 통한 얼굴 형태 분석\n- **프레임 매칭**: 안경 프레임과 얼굴의 조화도 평가\n- **개인화 추천**: 사용자 선호도 기반 맞춤형 추천\n- **실시간 피팅**: AR 기술을 활용한 가상 피팅\n\n## 기술 스택\n- **Backend**: Python, Flask\n- **Machine Learning**: Scikit-learn, TensorFlow\n- **Computer Vision**: OpenCV, MediaPipe\n- **Frontend**: React, Three.js\n- **Database**: MongoDB\n\n## 개발 과정\n1. **데이터 수집**: 다양한 얼굴 형태와 안경 프레임 데이터 수집\n2. **특징 추출**: 얼굴 형태 및 프레임 특성 분석\n3. **모델 개발**: 협업 필터링과 콘텐츠 기반 필터링 결합\n4. **웹 서비스**: 사용자 친화적인 웹 인터페이스 구현\n\n## 결과 및 성과\n- 추천 정확도 88% 달성\n- 사용자 만족도 90% 이상\n- 평균 추천 시간 2초 이내\n\n## 학습한 점\n- 컴퓨터 비전과 추천 시스템의 결합\n- 사용자 피드백을 활용한 모델 개선\n- 실시간 이미지 처리 최적화\n"
+  },
+  {
+    "id": "Portfolio/ocr_pipeline",
+    "title": "OCR Pipeline System",
+    "date": "2024-10-20",
+    "excerpt": "",
+    "category": "",
+    "tags": [],
+    "content": "\n# OCR Pipeline System\n\n## 프로젝트 개요\n다양한 형태의 문서 이미지에서 텍스트를 자동으로 추출하고 정제하는 OCR 파이프라인 시스템을 구축했습니다.\n\n## 주요 기능\n- **다중 OCR 엔진**: Tesseract, EasyOCR, PaddleOCR 통합\n- **이미지 전처리**: 노이즈 제거, 회전 보정, 대비 개선\n- **텍스트 후처리**: OCR 결과 정제 및 포맷팅\n- **배치 처리**: 대량 문서의 자동 처리\n- **API 서비스**: RESTful API를 통한 실시간 처리\n\n## 기술 스택\n- **OCR Engines**: Tesseract, EasyOCR, PaddleOCR\n- **Image Processing**: OpenCV, PIL\n- **Backend**: Python, FastAPI\n- **Containerization**: Docker, Docker Compose\n- **Database**: PostgreSQL\n- **Queue System**: Redis, Celery\n\n## 개발 과정\n1. **OCR 엔진 비교**: 다양한 OCR 엔진의 성능 분석\n2. **전처리 파이프라인**: 이미지 품질 개선 알고리즘 개발\n3. **후처리 시스템**: OCR 결과 정제 및 검증 로직 구현\n4. **배치 처리**: 대용량 데이터 처리 최적화\n5. **API 개발**: 실시간 처리 서비스 구현\n\n## 결과 및 성과\n- 텍스트 추출 정확도 95% 달성\n- 처리 속도 기존 대비 3배 향상\n- 하루 10,000개 문서 처리 가능\n- 다양한 언어 지원 (한국어, 영어, 중국어)\n\n## 학습한 점\n- OCR 기술의 한계와 개선 방법\n- 이미지 전처리의 중요성\n- 대용량 데이터 처리 최적화\n- 마이크로서비스 아키텍처 설계\n"
+  },
+  {
     "id": "Recommendation/2024-07-05-recommendation-system-interest",
     "title": "추천시스템에 관심있는 이유",
     "date": "2024-07-04 23:30:00 +0900",
