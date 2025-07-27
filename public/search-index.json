@@ -1,5 +1,17 @@
 [
   {
+    "id": "Engineering/회사에서하는고민_효율적인ML구조",
+    "title": "효율적인 ML 구조 설계는 어떻게 하는걸까?",
+    "date": "2025-07-28",
+    "excerpt": "효율적인 ML 구조 설계에 대한 고민",
+    "category": "Engineering",
+    "tags": [
+      "MLOps",
+      "System Design"
+    ],
+    "content": "\n사수가 없는 회사에서 일을 하다보니 실제로 서비스를 운영하면서 맞닥뜨리는 문제들을 어떻게 해결하는게 좋은지에 대한 고민이 늘 생긴다.\n이를 해결하기 위해 Designing Machine Learning Systems 책을 읽고 공부하면서 적용해보려고 한다.\n\n읽을 책들\n- Designing Machine Learning Systems\n- Machine Learning System Design Interview\n- AI Engineering\n- Designing Data-Intensive Applications\n\n\n회사의 use case별로 ML을 어떻게 배포하고 있는지. 아키텍처 어떻게 설계할지.\n고민했던 부분 포트폴리오로도 녹여내자.\n\n"
+  },
+  {
     "id": "English Study/SPEAK/07-27-선태의상황에서_ReviewDay",
     "title": "선택의 상황에서 쓰는 표현들 Review Day",
     "date": "2025-07-27",
