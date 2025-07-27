@@ -1,14 +1,14 @@
 ---
 title: "Resume"
-lastUpdated: "2025-01-08"
+lastUpdated: "2025-07-27"
 ---
 
-# 김민구 (Minku Kim)
+# 김민규 (Minku Kim)
 
 ## 연락처
 - **이메일**: mkk4726@naver.com
 - **GitHub**: [github.com/mkk4726](https://github.com/mkk4726)
-- **LinkedIn**: [linkedin.com/in/minku-kim](https://www.linkedin.com/in/minku-kim-01aaa5216/m)
+- **LinkedIn**: [linkedin.com/in/minku-kim](https://www.linkedin.com/in/minku-kim-01aaa5216/)
 
 ## 기술 스택
 
@@ -31,12 +31,12 @@ lastUpdated: "2025-01-08"
 
 ## 경력
 
-### AI펠 (AIFFEL) - AI 엔지니어링 과정
-**2024.03 - 2024.12**
+### AIFFEL AI Engineering Course Trainee (2023.08 - 2024.03)
 - AI/ML 기반 프로젝트 수행
 - 데이터 분석 및 시각화 프로젝트
 - 추천 시스템 연구 및 구현
 - 협업 프로젝트를 통한 팀워크 경험
+
 
 ## 프로젝트
 
@@ -57,15 +57,16 @@ lastUpdated: "2025-01-08"
 ## 교육
 
 ### 학사 학위
-- **전공**: 컴퓨터 공학 또는 관련 분야
-- **기간**: 2019 - 2024
+- **전공**: 산업공학 (B.S. in Industrial Engineering, Minor in Statistics)
+- **기간**: 2017.03 - 2023.09
 
 ## 관심 분야
-- 웹 개발 및 풀스택 개발
-- 데이터 분석 및 시각화
-- 머신러닝 및 AI
-- 추천 시스템
-- 클라우드 기술
+- Causal Inference (인과추론)
+- Data Science (데이터 과학)
+- Machine Learning (머신러닝)
+- 개인 프로젝트와 경험 공유
+- 학습 자료와 튜토리얼
+- 데이터 분석과 시각화
 
 ## 언어
 - **한국어**: 모국어
