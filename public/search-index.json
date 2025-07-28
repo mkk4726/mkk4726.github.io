@@ -24,6 +24,19 @@
     "content": "\n사수가 없는 회사에서 일을 하다보니 실제로 서비스를 운영하면서 맞닥뜨리는 문제들을 어떻게 해결하는게 좋은지에 대한 고민이 늘 생긴다.\n이를 해결하기 위해 Designing Machine Learning Systems 책을 읽고 공부하면서 적용해보려고 한다.\n\n읽을 책들\n- Designing Machine Learning Systems\n- Machine Learning System Design Interview\n- AI Engineering\n- Designing Data-Intensive Applications\n\n\n회사의 use case별로 ML을 어떻게 배포하고 있는지. 아키텍처 어떻게 설계할지.\n고민했던 부분 포트폴리오로도 녹여내자.\n\n"
   },
   {
+    "id": "Engineering/Designing Machine Learning Systems/ch3_데이터엔지니어링기초",
+    "title": "데이터 엔지니어링 기초",
+    "date": "2025-07-28",
+    "excerpt": "데이터 엔지니어링 기초",
+    "category": "Engineering",
+    "tags": [
+      "MLOps",
+      "System Design",
+      "Designing Machine Learning Systems"
+    ],
+    "content": "\n> 프로덕션용 ML 시스템을 구축하려면 증가하는 데이터를 수집, 처리, 저장, 검색 및 처리하는 방벙ㅂ을 숙지해야 합니다.\n\n\n> 시스템 관점의 데이터 엔지니어링을 더 자세히 알고 싶다면 마틴 클레프만의 \"데이터 중심 애플리케이션 설계\"를 읽어보기 바랍니다.\n\n[데이터 중심 애플리케이션 설계](https://www.yes24.com/Product/Goods/59566585?pid=123487&cosemkid=go16406746660905354&utm_source=google_pc&utm_medium=cpc&utm_campaign=book_pc&utm_content=ys_240530_google_pc_cc_book_pc_12110%EB%8F%84%EC%84%9C2&utm_term=%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%A4%91%EC%8B%AC%EC%95%A0%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98%EC%84%A4%EA%B3%84&gad_source=1&gad_campaignid=6762605740&gbraid=0AAAAAD79IrrCY3fi_PAlBFJx-I4dljLTE&gclid=Cj0KCQjwnJfEBhCzARIsAIMtfKLstWy3tDioWDUb09s9awYiLSzJGNye21AVOyIieRL-XkSoFprvOQYaArFnEALw_wcB)\n\n# 데이터 소스\n---\n\n> ML 시스템은 다양한 소스에서 온 데이터로 작동합니다.\n> 데이터마다 특성, 목적, 처리 방법이 다르며 데이터 소스를 파악하면 데이터를 보다 효율적으로 사용하는데 도움이 됩니다.\n\n- user input data\n- system-generated data\n\n\n\n# 데이터 포맷\n---\n\n- JSON\n- CSV (행 우선)\n- Parquet (열 우선)\n\n행 우선인 데이터에 행으로 접근하면 빠르고, 열 우선 데이터에 열로 접근하면 빠르다.\n\n\n# 데이터 모델\n---\n\n데이터가 어떻게 표현되는지\n\n## 관계형 모델 : \n\n> 관계형 모"
+  },
+  {
     "id": "Engineering/Designing Machine Learning Systems/ch2_머신러닝시스템설계소개",
     "title": "머신러닝 시스템 설계 소개",
     "date": "2025-07-28",
