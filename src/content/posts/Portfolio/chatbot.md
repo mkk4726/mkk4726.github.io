@@ -22,7 +22,7 @@ date: "2024-12-01"
 ## 기술 스택
 - **Backend**: Python, FastAPI
 - **NLP**: Transformers, spaCy, OpenAI GPT
-- **Vector Database**: ChromaDB
+- **Vector Database**: Qdrant, ChromaDB
 - **Embedding**: BGE-m3
 - **Deployment**: Docker, AWS
 - **Monitoring**: Slack API
@@ -33,6 +33,8 @@ date: "2024-12-01"
 **문제**: 의미적 검색의 한계로 인한 낮은 검색 정확도
 
 **해결책**:
+- **벡터 데이터베이스 구축**: Qdrant를 활용한 고성능 벡터 검색 시스템 구축
+- **메타데이터 필터링**: 의사별, 진료과별 메타데이터 기반 정밀 검색 구현
 - **임베딩 모델 선정**: BGE-m3 모델을 다양한 옵션과 비교하여 최적 성능 확인
 - **키워드 기반 필터링**: 고유명사(의사 이름 등) 처리 개선을 위한 키워드 추출 및 필터링
 - **질문 세분화**: 복합 질문을 단순 질문으로 분해하여 검색 정확도 향상

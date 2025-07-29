@@ -8,7 +8,7 @@
     "tags": [
       "현대자동차 채용공고"
     ],
-    "content": "\n[채용공고와 분석내용](/posts/Career/Job Transition/25-07-29-hyundai-autoever-ml-engineer.md)\n\n\n\n# 챗봇 개발 프로젝트\n\n"
+    "content": "\n[채용공고와 분석내용](/posts/Career/Job Transition/25-07-29-hyundai-autoever-ml-engineer.md)\n\n\n필살기? 유사경험 \n🔍 이런 분과 함께 하고 싶어요 -> 검색 / 챗봇 관련 데이터 구축 및 서비스 개발 경험\n\n- **프로젝트명**: RAG 기반 챗봇 시스템 개발 및 서비스 운영\n- **기간**: 2024.11 ~ 2025.02 (4개월)\n- **성과**: LLM 기반 대화 품질 자동 평가 시스템 구축으로 모니터링 비용 80% 감소 및 사용자 만족도 90%+ 달성\n- **역할**:\n  - RAG 시스템 최적화를 통한 검색 정확도 95%+ 달성으로 답변 품질 향상\n  - Qdrant 벡터 데이터베이스 구축 및 메타데이터 필터링 시스템 개발로 검색 성능 향상\n  - LLM 기반 자동 모니터링 시스템 개발로 하루 30분 수동 모니터링 시간을 5분으로 단축\n  - 질문 분류 모델 개발을 통한 답변 불가 질문 즉시 상담사 연결로 사용자 불만 해소\n  - 프롬프트 엔지니어링 최적화로 답변 정확도 95%+ 달성\n  - 카카오톡 채널 연동을 통한 실제 병원 상담 서비스 운영으로 기존 상담 중 65% 챗봇 대체\n- **기술**:\n  - Python, FastAPI, Transformers, spaCy, OpenAI GPT, Qdrant, ChromaDB, BGE-m3, Docker, AWS\n  - RAG 시스템 아키텍처, 벡터 데이터베이스 구축 및 대화형 AI 서비스 운영 프로세스에 대한 이해 \n\n\n데이터 품질 검증 프로세스 경험자\n\n- **프로젝트명**: OCR 파이프라인 시스템 구축 및 데이터 품질 검증 프로세스 개발\n- **기간**: 2024.08 ~ 2024.10 (3개월)\n- **성과**: 자동화된 데이터 검증 로직 구축으로 OCR 정확도 99% 달성 및 에러율 1% 미만의 안정적인 파이프라인 운영\n- **역할**:\n  - OCR 결과 정제 및 검증 로직 구현을 통한 데이터 품질 향상\n  - 데이터 품질 자동"
   },
   {
     "id": "Causal Inference/residualization-fwl-theorem-test",
@@ -1068,7 +1068,7 @@
     "excerpt": "",
     "category": "",
     "tags": [],
-    "content": "\n# AI Chatbot Project\n\n## 프로젝트 개요\n병원 상담 업무를 자동화하기 위한 RAG(Retrieval-Augmented Generation) 기반 지능형 챗봇 시스템을 개발했습니다. 카카오톡 채널을 통해 고객에게 제공되며, 반복적인 상담 질문에 대한 자동 응답을 통해 상담사의 업무 효율성을 크게 향상시켰습니다.\n\n## 주요 기능\n- **RAG 기반 답변 생성**: 문서 검색과 생성 모델을 결합한 정확한 답변 제공\n- **맥락 인식 대화**: 대화 히스토리를 활용한 연속적인 상담 지원\n- **다국어 지원**: 한국어 및 영어 지원\n- **실시간 응답**: 빠른 응답 속도로 사용자 경험 향상\n- **자동 모니터링**: LLM 기반 대화 품질 자동 평가 시스템\n\n## 기술 스택\n- **Backend**: Python, FastAPI\n- **NLP**: Transformers, spaCy, OpenAI GPT\n- **Vector Database**: ChromaDB\n- **Embedding**: BGE-m3\n- **Deployment**: Docker, AWS\n- **Monitoring**: Slack API\n\n## 핵심 기술적 도전과 해결책\n\n### 1. 문서 검색 성능 최적화\n**문제**: 의미적 검색의 한계로 인한 낮은 검색 정확도\n\n**해결책**:\n- **임베딩 모델 선정**: BGE-m3 모델을 다양한 옵션과 비교하여 최적 성능 확인\n- **키워드 기반 필터링**: 고유명사(의사 이름 등) 처리 개선을 위한 키워드 추출 및 필터링\n- **질문 세분화**: 복합 질문을 단순 질문으로 분해하여 검색 정확도 향상\n- **대화 맥락 반영**: Chat history를 활용한 질문 재정의\n\n**결과**: 검색 정확도 95% 이상 달성\n\n### 2. 사용자 만족도 향상\n**문제**: 챗봇이 답변할 수 없는 질문에 대한 반복 응답으로 인한 사용자 불만\n\n**해결책**:\n- **질문 분류 모델**: 답변 가능/불가능 질문을 사전 판별하는 분류 모델 추가\n"
+    "content": "\n# AI Chatbot Project\n\n## 프로젝트 개요\n병원 상담 업무를 자동화하기 위한 RAG(Retrieval-Augmented Generation) 기반 지능형 챗봇 시스템을 개발했습니다. 카카오톡 채널을 통해 고객에게 제공되며, 반복적인 상담 질문에 대한 자동 응답을 통해 상담사의 업무 효율성을 크게 향상시켰습니다.\n\n## 주요 기능\n- **RAG 기반 답변 생성**: 문서 검색과 생성 모델을 결합한 정확한 답변 제공\n- **맥락 인식 대화**: 대화 히스토리를 활용한 연속적인 상담 지원\n- **다국어 지원**: 한국어 및 영어 지원\n- **실시간 응답**: 빠른 응답 속도로 사용자 경험 향상\n- **자동 모니터링**: LLM 기반 대화 품질 자동 평가 시스템\n\n## 기술 스택\n- **Backend**: Python, FastAPI\n- **NLP**: Transformers, spaCy, OpenAI GPT\n- **Vector Database**: Qdrant, ChromaDB\n- **Embedding**: BGE-m3\n- **Deployment**: Docker, AWS\n- **Monitoring**: Slack API\n\n## 핵심 기술적 도전과 해결책\n\n### 1. 문서 검색 성능 최적화\n**문제**: 의미적 검색의 한계로 인한 낮은 검색 정확도\n\n**해결책**:\n- **벡터 데이터베이스 구축**: Qdrant를 활용한 고성능 벡터 검색 시스템 구축\n- **메타데이터 필터링**: 의사별, 진료과별 메타데이터 기반 정밀 검색 구현\n- **임베딩 모델 선정**: BGE-m3 모델을 다양한 옵션과 비교하여 최적 성능 확인\n- **키워드 기반 필터링**: 고유명사(의사 이름 등) 처리 개선을 위한 키워드 추출 및 필터링\n- **질문 세분화**: 복합 질문을 단순 질문으로 분해하여 검색 정확도 향상\n- **대화 맥락 반영**: Chat history를 활용한 질문 재정의\n\n**결과**: 검색 정확도 95% 이상 달성\n\n### 2. 사용자 만족도 향상\n*"
   },
   {
     "id": "Portfolio/lenze_size_rec",
@@ -1080,13 +1080,22 @@
     "content": "\n# Lens Size Recommendation System\n\n## 프로젝트 개요\n시력교정센터에서 렌즈 삽입술을 위한 최적의 렌즈 크기를 추천하는 머신러닝 기반 시스템을 개발했습니다. 의사의 경험과 노하우에 의존하던 렌즈 선택 과정을 데이터 기반으로 객관화하여, 환자별 맞춤형 렌즈 사이즈를 추천하는 서비스를 제공합니다.\n\n## 주요 기능\n- **예측 모델**: 환자 정보와 렌즈 크기를 입력받아 수술 결과(Vault) 예측\n- **인과추론 기반**: 통계적 편향을 제거한 신뢰할 수 있는 예측 제공\n- **의학적 직관 반영**: 단조 증가/감소 조건을 만족하는 모델 설계\n- **해석 가능성**: 예측 결과에 대한 근거와 설명 제공\n- **실시간 추론**: BentoML 기반 고성능 모델 서빙\n\n## 기술 스택\n- **Backend**: Python, Flask, FastAPI\n- **Machine Learning**: Scikit-learn, LightGBM, XGBoost\n- **Causal Inference**: Orthogonalization, Double ML\n- **Model Serving**: BentoML, Docker\n- **Database**: PostgreSQL\n- **Monitoring**: Airflow, Flask Dashboard\n\n## 핵심 기술적 도전과 해결책\n\n### 1. 신뢰할 수 있는 예측 모델 구축\n**문제**: 단순한 예측 성능만으로는 선택의 신뢰도를 보장할 수 없음\n\n**해결책**:\n- **인과추론 적용**: 교란편향 등 통계적 편향을 제거하여 인과적 관계 기반 예측\n- **직교화(Orthogonalization)**: 예측 변수와 교란 변수를 분리하여 편향 제거\n- **의학적 직관 반영**: 단조 증가/감소 조건을 만족하는 모델 설계\n\n**결과**: 결정계수(R²) 0.7 달성으로 예측 신뢰도 확보\n\n### 2. 사용자 신뢰도 및 만족도 향상\n**문제**: 높은 평가지표가 사용자 신뢰와 만족을 보장하지 않음\n\n**해결책*"
   },
   {
+    "id": "Portfolio/segmentation",
+    "title": "Segmentation Model",
+    "date": "2024-10-20",
+    "excerpt": "",
+    "category": "",
+    "tags": [],
+    "content": "\n# 당뇨병성 망막병증 탐지 모델\n\n## 프로젝트 개요\n\n당뇨병성 망막병증은 당뇨병 환자에게 자주 발생하는 합병증으로, 혈관 손상과 새로운 혈관 생성으로 인해 실명까지 유발할 수 있는 심각한 질환입니다. 초기 진단이 매우 중요한 이 병증을 안저사진을 통해 탐지하는 서비스를 개발했습니다.\n\n안저사진은 눈의 안쪽(망막 부분)을 촬영하여 혈관 상태를 관찰할 수 있게 해주는 의료 영상입니다.\n\n![안저사진](attachment:c3cc07e1-7393-40cb-a62d-d239f3f5ee27:image.png)\n\n이 프로젝트는 의사들의 진단을 지원하는 목적으로 개발되었으며, 입사 전 부트캠프 기간 중 기업연계 프로젝트로 시작하여 입사 후에도 지속적으로 발전시켰습니다.\n\n**관련 링크:**\n- [프로젝트 Github](https://github.com/mkk4726/DR-GeuAl)\n- [발표영상 유튜브](https://www.youtube.com/watch?v=ox_jmqZ1V64&t=223s)\n\n## 데이터 현황 및 도전과제\n\n프로젝트 진행 중 가장 큰 이슈는 데이터 부족이었습니다.\n\n### 초기 데이터 상황\n- 오픈 데이터셋 활용: 약 1,500개 이미지\n- 레이블 보유율: 전체의 80% 정도\n- 데이터 품질 문제: 부적절한 레이블 다수 존재\n\n### 데이터 확보 과정\n입사 후 임상팀과 협업하여 데이터 검수 및 추가 확보를 진행했지만, 여전히 제한된 데이터 환경에서 프로젝트를 진행해야 했습니다.\n\n## 모델링 전략 및 성능 개선\n\n### 모델 선택: U-Net 기반\n\n데이터의 특징상 전체 이미지 중 레이블(마스크)이 포함된 부분이 매우 작은 의료 도메인의 특성상, U-Net 계열 모델이 가장 높은 성능을 보이는 것을 확인했습니다. 실제 연구 결과와 프로젝트 내 비교 실험에서도 U-Net이 최고 성능을 달성했습니다.\n\n### 성능 향상을 위한 핵심 기법들\n\n#### 1. 전처리: CLAHE 적용\n명암대비 향상 기법인 CLAHE를 적용하여 데이터의 특징을 더 명확하게"
+  },
+  {
     "id": "Portfolio/ocr_pipeline",
     "title": "OCR Pipeline System",
     "date": "2024-10-20",
     "excerpt": "",
     "category": "",
     "tags": [],
-    "content": "\n# OCR Pipeline System\n\n## 프로젝트 개요\n병원 검사 결과 이미지에서 실시간으로 데이터를 추출하여 DB에 자동 적재하는 OCR 파이프라인 시스템을 구축했습니다. 기존 수작업으로 진행되던 데이터 입력 과정을 자동화하여 검안사의 업무 효율성을 크게 향상시켰습니다.\n\n## 주요 기능\n- **실시간 OCR 처리**: 검사 완료 즉시 이미지에서 데이터 추출\n- **고정 이미지 최적화**: 검사 장비별 고정된 이미지 구조 활용\n- **다중 OCR 엔진**: TrOCR 기반 고정밀 텍스트 인식\n- **자동 모니터링**: Slack 기반 실시간 에러 알림 및 작업 요약\n- **안정적 파이프라인**: 1% 미만 에러율의 안정적인 서비스 운영\n\n## 기술 스택\n- **OCR Engine**: TrOCR (Microsoft)\n- **Image Processing**: OpenCV, PIL\n- **Backend**: Python, gRPC, FastAPI\n- **Model Serving**: Triton Server\n- **Containerization**: Docker\n- **Monitoring**: Slack API\n- **Database**: PostgreSQL\n\n## 핵심 기술적 도전과 해결책\n\n### 1. OCR 정확도 99% 달성\n**문제**: 검사 결과의 정확성이 매우 중요하므로 높은 OCR 정확도 필요\n\n**해결책**:\n- **고정 이미지 구조 활용**: 검사 장비별 고정된 이미지 레이아웃을 활용하여 Text Detection 단계 생략\n- **TrOCR 모델 적용**: Text Recognition에 특화된 TrOCR 모델 사용으로 정확도 향상\n- **이미지 전처리**: 노이즈 제거, 대비 개선 등 전처리 과정 최적화\n- **결과 후처리**: OCR 결과 정제 및 검증 로직 구현\n\n**결과**: OCR 정확도 99% 달성\n\n### 2. 안정적인 파이프라인 구축\n**문제**: 실시간 데이터 추출을 위한 안정적인 서비스 운영 필요\n\n**해결책**:\n"
+    "content": "\n# OCR Pipeline System\n\n## 프로젝트 개요\n병원 검사 결과 이미지에서 실시간으로 데이터를 추출하여 DB에 자동 적재하는 OCR 파이프라인 시스템을 구축했습니다. 기존 수작업으로 진행되던 데이터 입력 과정을 자동화하여 검안사의 업무 효율성을 크게 향상시켰습니다.\n\n## 주요 기능\n- **실시간 OCR 처리**: 검사 완료 즉시 이미지에서 데이터 추출\n- **고정 이미지 최적화**: 검사 장비별 고정된 이미지 구조 활용\n- **다중 OCR 엔진**: TrOCR 기반 고정밀 텍스트 인식\n- **데이터 품질 자동화**: 분포 분석 및 이상치 탐지 자동화 시스템\n- **일관성 검증**: 고객번호 등 고정값들의 무결성 검증\n- **자동 모니터링**: Slack 기반 실시간 에러 알림 및 작업 요약\n- **안정적 파이프라인**: 1% 미만 에러율의 안정적인 서비스 운영\n\n## 기술 스택\n- **OCR Engine**: TrOCR (Microsoft)\n- **Image Processing**: OpenCV, PIL\n- **Backend**: Python, gRPC, FastAPI\n- **Model Serving**: Triton Server\n- **Containerization**: Docker\n- **Monitoring**: Slack API\n- **Database**: PostgreSQL\n\n## 핵심 기술적 도전과 해결책\n\n### 1. OCR 정확도 99% 달성\n**문제**: 검사 결과의 정확성이 매우 중요하므로 높은 OCR 정확도 필요\n\n**해결책**:\n- **고정 이미지 구조 활용**: 검사 장비별 고정된 이미지 레이아웃을 활용하여 Text Detection 단계 생략\n- **TrOCR 모델 적용**: Text Recognition에 특화된 TrOCR 모델 사용으로 정확도 향상\n- **이미지 전처리**: 노이즈 제거, 대비 개선 등 전처리 과정 최적화\n- **결과 후처리**: OCR 결과 정제 및 검증 로직 구현\n- **데이터 품질 자동화**: 각"
   },
   {
     "id": "Recommendation/2024-07-05-recommendation-system-interest",
