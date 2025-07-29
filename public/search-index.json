@@ -128,6 +128,29 @@
     "content": "---\ntitle: \"vDB관련 샘플 코드들\"\ndate: \"2025-07-25\"\ncategory: \"Data Science\"\ntags: [\"VectorDB\", \"Qdrant\", \"ChromaDB\", \"FAISS\", \"Milvus\"]\nexcerpt: \"vDB관련 샘플 코드들\"\n--- # Qdrant 파이썬 클라이언트 설치 필요\n# pip install qdrant-client\n\nfrom qdrant_client import QdrantClient\nfrom qdrant_client.models import VectorParams, Distance, PointStruct\nimport numpy as np\n\n# 1. Qdrant 서버에 연결 (로컬 서버 예시)\nclient = QdrantClient(host=\"localhost\", port=6333)\n\n# 2. 컬렉션 생성 (벡터 차원 1536, cosine 거리)\nclient.recreate_collection(\n    collection_name=\"my_collection\",\n    vectors_config=VectorParams(size=1536, distance=Distance.COSINE),\n)\n\n# 3. 벡터 데이터 삽입\nvectors = np.random.rand(3, 1536).tolist()  # 3개 벡터, 1536차원\npayloads = [\n    {\"doc_id\": \"A1\", \"text\": \"문서1\"},\n    {\"doc_id\": \"A2\", \"text\": \"문서2\"},\n    {\"doc_id\": \"A3\", \"text\": \"문서3\"},\n]\npoints = [\n    PointStruct(id=i, vector=vectors[i], payload=payloads[i])\n    for i in range(3)\n]\nclient.upsert(collection_name=\"my_collection\", points=points)\n\n# 4. 유사도 검색 (임의 쿼리 벡터)\nquery_vector = np.ra"
   },
   {
+    "id": "Causal Inference/residualization-fwl-theorem-test",
+    "title": "FWL에 기반한 잔차화 방법론 구현 노트북",
+    "date": "2025-07-10T00:00:00.000Z",
+    "excerpt": "잔차화를 하기 위해 nusiance function을 만들고 결과를 분석하는 노트북",
+    "category": "Causal Inference",
+    "tags": [
+      "residualization",
+      "FWL"
+    ],
+    "content": "---\ntitle: \"FWL에 기반한 잔차화 방법론 구현 노트북\"\ndate: 2025-07-10\ncategory: \"Causal Inference\"\ntags: [\"residualization\", \"FWL\"]\nexcerpt: \"잔차화를 하기 위해 nusiance function을 만들고 결과를 분석하는 노트북\"\n--- # Load Data # from src.dataloader.vault.main import VaultDatasetLoader\n# from src.dataloader.vault.utils import split_df_od_os\n# from src.utils.db import SOFTCRM_DBINFO, get_conn\n\n# import warnings\n# import pandas as pd\n# import numpy as np\n\n# warnings.filterwarnings(\"ignore\")\n\n# # pandas display 옵션 설정 - 모든 열 보이기\n# pd.set_option('display.max_columns', None)\n# pd.set_option('display.width', None)\n# pd.set_option('display.max_colwidth', None)\n\n# loader = VaultDatasetLoader()\n# feature_df, y_df = loader.run(start_date=\"2022-01-01\", end_date=\"2024-12-31\", piol_data_path=\"./data/PIOL렌즈주문서.xlsx\", refresh=False, db=\"crm_emr\")\n\n\n# # y_df의 oper_date와 feature_df의 date를 기준으로 병합\n# merged_df = pd.merge(y_df, feature_df,\n#                     left_on=['cust_num', 'oper_date'],\n#                     right_on=['cust_num', 'dat"
+  },
+  {
+    "id": "Career/Job Transition/25-07-29-hyundai-autoever-ml-engineer",
+    "title": "Hyundai Autoever - ML Engineer",
+    "date": "2025-07-29",
+    "excerpt": "현대자동차 채용공고 분석과 준비과정",
+    "category": "Career",
+    "tags": [
+      "현대자동차 채용공고"
+    ],
+    "content": "\n# 채용공고\n\n<details>\n<summary>📋 <strong>채용공고 상세정보</strong></summary>\n\n[링크](https://career.hyundai-autoever.com/ko/o/141703)\n\n[Tech] Machine Learning Engineer - AI 데이터 사이언티스트\n📃 누구나 마음 속에 이력서 한 장은 있으니까, \n⚡ 1분 컷 지원으로 현대오토에버로의 여정을 시작하세요. (이력서 자율양식)\n\n✅ AI ​데이터 ​사이언티스트\n🚀 합류하실 ​팀을 ​소개해요\n인공지능기술실은 ​AI 신기술을 바탕으로 ​전사 ​AI 주제를 리드하며 ​공통 ​활용 ​기술에 대해 다룹니다. ​연구개발을 통해 ​'살아있는 ​AI' 기술을 ​만들어 사내 ​주요 ​서비스 및 제품이 ​더욱 경쟁력 ​있도록 만들어 갑니다. 음성/언어, 비전/인지 등 폭넓은 AI 주제 전반을 다루고 있으며, 개발 결과는 우리 회사 및 그룹의 중요 서비스에 적용되고 있습니다. AI 신기술에 대한 이해와 AI 모델 연구개발 역량을 바탕으로 미래 모빌리티 및 유관 분야의 주인공이 될 개발자/연구자 분들을 모십니다.\n💻 합류하시면 함께 할 업무예요\n  - AI 대화형 서비스를 위한 데이터 분석 및 설계\n  - 프롬프트 엔지니어링 / 데이터 증강\n  - AI 대화형 서비스 데이터 관련 운영 및 품질 관리\n\n🔍 이런 분과 함께 하고 싶어요\n- 검색 / 챗봇 관련 데이터 구축 및 서비스 개발 경험\n- NLP 관련 Task 데이터 구축 및 설계 경험\n- Python 개발 경력 1년 이상 혹은 그에 준하는 실력\n- \n🔍 이런 분이라면 더욱 좋아요\n- 전산언어학/자연어처리 전공 석사 이상\n- LLM 기반 프롬프트 엔지니어링 경험자\n- LLM / GPT 기반 데이터 증강 경험자\n- 딥러닝 모델링 경험자\n- 데이터 품질 검증 프로세스 경험자\n\n⌛ 이렇게 합류해요\n- 서류 접수 → 서류 검토 → 직무역량테스트(코딩 또는 과제테스트) 및 인성검사 → 1차면접 → 2차면접 → 처우협의 및 "
+  },
+  {
     "id": "Data Science/compare-vDB-libraries",
     "title": "VectorDB에 사용되는 라이브러리들 비교",
     "date": "2025-07-25",
@@ -151,18 +174,6 @@
       "SPEAK"
     ],
     "content": "\n# 배운 것들\nIt's not about performance. It's about design.\n\nIt's not about customizabiltiy. It's about compatibility.\n\nIn which case, I'll probably go with the new Galaxy.\n\ngo with : 선택하다\n\n\n\n\n# "
-  },
-  {
-    "id": "Causal Inference/residualization-fwl-theorem-test",
-    "title": "FWL에 기반한 잔차화 방법론 구현 노트북",
-    "date": "2025-07-10T00:00:00.000Z",
-    "excerpt": "잔차화를 하기 위해 nusiance function을 만들고 결과를 분석하는 노트북",
-    "category": "Causal Inference",
-    "tags": [
-      "residualization",
-      "FWL"
-    ],
-    "content": "---\ntitle: \"FWL에 기반한 잔차화 방법론 구현 노트북\"\ndate: 2025-07-10\ncategory: \"Causal Inference\"\ntags: [\"residualization\", \"FWL\"]\nexcerpt: \"잔차화를 하기 위해 nusiance function을 만들고 결과를 분석하는 노트북\"\n--- # Load Data # from src.dataloader.vault.main import VaultDatasetLoader\n# from src.dataloader.vault.utils import split_df_od_os\n# from src.utils.db import SOFTCRM_DBINFO, get_conn\n\n# import warnings\n# import pandas as pd\n# import numpy as np\n\n# warnings.filterwarnings(\"ignore\")\n\n# # pandas display 옵션 설정 - 모든 열 보이기\n# pd.set_option('display.max_columns', None)\n# pd.set_option('display.width', None)\n# pd.set_option('display.max_colwidth', None)\n\n# loader = VaultDatasetLoader()\n# feature_df, y_df = loader.run(start_date=\"2022-01-01\", end_date=\"2024-12-31\", piol_data_path=\"./data/PIOL렌즈주문서.xlsx\", refresh=False, db=\"crm_emr\")\n\n\n# # y_df의 oper_date와 feature_df의 date를 기준으로 병합\n# merged_df = pd.merge(y_df, feature_df,\n#                     left_on=['cust_num', 'oper_date'],\n#                     right_on=['cust_num', 'dat"
   },
   {
     "id": "Causal Inference/how-can-evaluate-casual-models",
