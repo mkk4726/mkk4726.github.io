@@ -6,7 +6,7 @@ category: "Career"
 tags: ["현대자동차 채용공고", "이력서"]
 ---
 
-[채용공고와 분석내용](/posts/Career/Job Transition/25-07-29-hyundai-autoever-ml-engineer)
+[채용공고와 분석내용](/posts/Career/Job%20Transition/25-07-29-hyundai-autoever-ml-engineer)
 
 
 필살기? 유사경험 
