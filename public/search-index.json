@@ -1,15 +1,15 @@
 [
   {
-    "id": "English Study/SPEAK/07-28-나망치면어떡하지",
-    "title": "나망치면 어떡하지?",
-    "date": "2025-07-28",
-    "excerpt": "나망치면 어떡하지?",
+    "id": "English Study/SPEAK/07-29-너아니었으면",
+    "title": "너 아니었으면",
+    "date": "2025-07-29",
+    "excerpt": "너 아니었으면, 너라면 어떻게 했겠어?",
     "category": "English Study",
     "tags": [
       "영어공부꾸준히!",
       "SPEAK"
     ],
-    "content": "---\n\n\n# 배운거\n\n~하면 어쩌지? ~면 어떻게 할거야.\n\nWhat if I mess up?\n\n\nWhat if the flight is delayed?\n\n\nWhat if + 과거형\n-> 현재와 일치하고 있지 않은 상황을 가정\n\nWhat if you were in Seoul?\nWhat if he weren't married?\n(현재와 다른 가정을 할 때는 무조건 were을 씀)\n\n\nWhat would you do if you were in Seoul?\n\nanxious\n\n# 간단한 작문\n\nI think that what if questions are good to check value-thinking (가치관).\nWhat if I got a lot of money? Will I work continue? It then, it means I love my job.\nWhat would I do If I were fluent in English?\n\nThis imaginations make me more 명확하게. \n\n---\n\n## 수정된 버전\n\nI think that \"what if\" questions are good for checking values and priorities.\nWhat if I got a lot of money? Would I continue working? If so, it means I love my job.\nWhat would I do if I were fluent in English?\n\nThese imaginations help me think more clearly.\n\n---\n\n## 피드백\n\n### 문법 수정사항:\n1. **\"what if questions\"** → **\"what if\" questions** (따옴표 추가)\n2. **\"check value-thinking\"** → **\"check values and priorities\"** (더 자연스러운 표현)\n3. **\"Will I work continue?\"** → **\"Would"
+    "content": "\n# 배운거 정리\n\nmatch maker\n\n문법. 현재와 다른 어떤 상황을 가정할 때는 과거완료를 사용.\n\nIf it hadn`t been for you, I wouldn't have made it.\n\nwould've -> /wʊdəv/ (woul-duv)\nwouldn't -> /wʊdnt/ (woul-dnt)\n\nwou-ov \n발음 기호를 추가했습니다!\n\n## 📝 **발음 가이드**\n\n- **would've**: `/wʊdəv/` (woul-duv)\n  - `wʊ` = \"woul\" (wool과 비슷)\n  - `dəv` = \"duv\" (duh + v 소리)\n\n- **wouldn't**: `/wʊdnt/` (woul-dnt)\n  - `wʊ` = \"woul\" (wool과 비슷)\n  - `dnt` = \"dnt\" (d + n + t를 빠르게 연결)\n\n실제로는 \"would have\"와 \"would not\"이 축약되어 더 짧고 빠르게 발음되는 형태입니다.\n\n\nWould you have moved to New York?\n\n"
   },
   {
     "id": "Causal Inference/residualization-fwl-theorem-test",
@@ -44,7 +44,7 @@
       "현대자동차 채용공고",
       "이력서"
     ],
-    "content": "\n[채용공고와 분석내용](/posts/Career/Job Transition/25-07-29-hyundai-autoever-ml-engineer.md)\n\n\n필살기? 유사경험 \n🔍 이런 분과 함께 하고 싶어요 -> 검색 / 챗봇 관련 데이터 구축 및 서비스 개발 경험\n\n- **프로젝트명**: RAG 기반 챗봇 시스템 개발 및 서비스 운영\n- **기간**: 2024.11 ~ 2025.02 (4개월)\n- **성과**: LLM 기반 대화 품질 자동 평가 시스템 구축으로 모니터링 비용 80% 감소 및 사용자 만족도 90%+ 달성\n- **역할**:\n  - RAG 시스템 최적화를 통한 검색 정확도 95%+ 달성으로 답변 품질 향상\n  - Qdrant 벡터 데이터베이스 구축 및 메타데이터 필터링 시스템 개발로 검색 성능 40% 향상\n  - LLM 기반 자동 모니터링 시스템 개발로 하루 30분 수동 모니터링 시간을 5분으로 단축 (83% 시간 절약)\n  - 질문 분류 모델 개발을 통한 답변 불가 질문 즉시 상담사 연결로 사용자 불만 70% 감소\n  - 프롬프트 엔지니어링 최적화로 답변 정확도 95%+ 달성\n  - 카카오톡 채널 연동을 통한 실제 병원 상담 서비스 운영으로 기존 상담 중 65% 챗봇 대체\n- **기술**:\n  - Python, FastAPI, Transformers, spaCy, OpenAI GPT, Qdrant, ChromaDB, BGE-m3, Docker, AWS\n  - RAG 시스템 아키텍처, 벡터 데이터베이스 구축 및 대화형 AI 서비스 운영 프로세스에 대한 이해 \n\n\n데이터 품질 검증 프로세스 경험자\n\n- **프로젝트명**: OCR 파이프라인 시스템 구축 및 데이터 품질 검증 프로세스 개발\n- **기간**: 2024.08 ~ 2024.10 (3개월)\n- **성과**: 자동화된 데이터 검증 로직 구축으로 OCR 정확도 99% 달성 및 에러율 1% 미만의 안정적인 파이프라인 운영\n- **역할**:\n  - OCR 결과 정제 및 검증 로직 구현을 통한 데이터"
+    "content": "\n[채용공고와 분석내용](/posts/Career/Job%20Transition/25-07-29-hyundai-autoever-ml-engineer)\n\n필요한 경험만 살려서 짧고 굵게 쓰기.\n2장정도 분량\n\n필살기? 유사경험 \n🔍 이런 분과 함께 하고 싶어요 -> 검색 / 챗봇 관련 데이터 구축 및 서비스 개발 경험\n\n- **프로젝트명**: 챗봇 시스템 개발 및 서비스 운영\n- **기간**: 2024.11 ~ 2025.02 (4개월)\n- **성과**: RAG 파이프라인 구현 및 최적화로 기존 상담 중 65% 대체 및 사용자 만족도 90% 이상 달성\n- **역할**:\n  - 쿼리 분해 및 재작성, 하이브리드 검색 기반 RAG 파이프라인 구축으로 검색 정확도 90% 이상 달성\n  - 질문 분류 모델 도입으로 불완전 응답률을 낮춰 사용자 불만 70% 감소\n  - 프롬프트 엔지니어링(Instruct, Role, Context 기반) 최적화로 상담 톤의 자연스러운 응답 생성 및 답변 정확도 90% 이상 달성\n  - Qdrant 벡터 데이터베이스 구축 및 운영, 메타데이터 기반 필터링 시스템 구현으로 검색 성능 40% 향상\n  - LLM 기반 대화 품질 자동 평가 시스템 구축으로 모니터링 비용 80% 감소\n  - 카카오톡 채널 연동을 통한 실제 병원 상담 서비스 운영으로 기존 상담 중 65% 챗봇 대체\n- **기술**:\n  - Python, FastAPI, Transformers, Qdrant, Docker, AWS\n  - RAG 시스템 아키텍처, 벡터 데이터베이스 구축 및 운영, 챗봇 서비스 품질 관리 프로세스에 대한 이해\n\n---\n\n데이터 품질 검증 프로세스 경험자\n\n- **프로젝트명**: OCR 파이프라인 시스템 구축 및 데이터 품질 검증 프로세스 개발\n- **기간**: 2024.08 ~ 2024.10 (3개월)\n- **성과**: OCR 파이프라인 최적화로 정확도 99% 달성 및 에러율 1% 미만 운영, 자동화된 데이터 검증 시스템 구축으로 모니터링 자동화\n- *"
   },
   {
     "id": "Career/Job Transition/25-07-29-hyundai-autoever-ml-engineer",
@@ -56,6 +56,18 @@
       "현대자동차 채용공고"
     ],
     "content": "\n# 채용공고\n\n<details>\n<summary>📋 <strong>채용공고 상세정보</strong></summary>\n\n[링크](https://career.hyundai-autoever.com/ko/o/141703)\n\n[Tech] Machine Learning Engineer - AI 데이터 사이언티스트\n📃 누구나 마음 속에 이력서 한 장은 있으니까, \n⚡ 1분 컷 지원으로 현대오토에버로의 여정을 시작하세요. (이력서 자율양식)\n\n✅ AI ​데이터 ​사이언티스트\n🚀 합류하실 ​팀을 ​소개해요\n인공지능기술실은 ​AI 신기술을 바탕으로 ​전사 ​AI 주제를 리드하며 ​공통 ​활용 ​기술에 대해 다룹니다. ​연구개발을 통해 ​'살아있는 ​AI' 기술을 ​만들어 사내 ​주요 ​서비스 및 제품이 ​더욱 경쟁력 ​있도록 만들어 갑니다. 음성/언어, 비전/인지 등 폭넓은 AI 주제 전반을 다루고 있으며, 개발 결과는 우리 회사 및 그룹의 중요 서비스에 적용되고 있습니다. AI 신기술에 대한 이해와 AI 모델 연구개발 역량을 바탕으로 미래 모빌리티 및 유관 분야의 주인공이 될 개발자/연구자 분들을 모십니다.\n\n💻 합류하시면 함께 할 업무예요\n  - AI 대화형 서비스를 위한 데이터 분석 및 설계\n  - 프롬프트 엔지니어링 / 데이터 증강\n  - AI 대화형 서비스 데이터 관련 운영 및 품질 관리\n\n🔍 이런 분과 함께 하고 싶어요\n- 검색 / 챗봇 관련 데이터 구축 및 서비스 개발 경험\n- NLP 관련 Task 데이터 구축 및 설계 경험\n- Python 개발 경력 1년 이상 혹은 그에 준하는 실력\n  \n🔍 이런 분이라면 더욱 좋아요\n- 전산언어학/자연어처리 전공 석사 이상\n- LLM 기반 프롬프트 엔지니어링 경험자\n- LLM / GPT 기반 데이터 증강 경험자\n- 딥러닝 모델링 경험자\n- 데이터 품질 검증 프로세스 경험자\n\n⌛ 이렇게 합류해요\n- 서류 접수 → 서류 검토 → 직무역량테스트(코딩 또는 과제테스트) 및 인성검사 → 1차면접 → 2차면접 → 처우협의 및"
+  },
+  {
+    "id": "English Study/SPEAK/07-28-나망치면어떡하지",
+    "title": "나망치면 어떡하지?",
+    "date": "2025-07-28",
+    "excerpt": "나망치면 어떡하지?",
+    "category": "English Study",
+    "tags": [
+      "영어공부꾸준히!",
+      "SPEAK"
+    ],
+    "content": "---\n\n\n# 배운거\n\n~하면 어쩌지? ~면 어떻게 할거야.\n\nWhat if I mess up?\n\n\nWhat if the flight is delayed?\n\n\nWhat if + 과거형\n-> 현재와 일치하고 있지 않은 상황을 가정\n\nWhat if you were in Seoul?\nWhat if he weren't married?\n(현재와 다른 가정을 할 때는 무조건 were을 씀)\n\n\nWhat would you do if you were in Seoul?\n\nanxious\n\n# 간단한 작문\n\nI think that what if questions are good to check value-thinking (가치관).\nWhat if I got a lot of money? Will I work continue? It then, it means I love my job.\nWhat would I do If I were fluent in English?\n\nThis imaginations make me more 명확하게. \n\n---\n\n## 수정된 버전\n\nI think that \"what if\" questions are good for checking values and priorities.\nWhat if I got a lot of money? Would I continue working? If so, it means I love my job.\nWhat would I do if I were fluent in English?\n\nThese imaginations help me think more clearly.\n\n---\n\n## 피드백\n\n### 문법 수정사항:\n1. **\"what if questions\"** → **\"what if\" questions** (따옴표 추가)\n2. **\"check value-thinking\"** → **\"check values and priorities\"** (더 자연스러운 표현)\n3. **\"Will I work continue?\"** → **\"Would"
   },
   {
     "id": "Engineering/회사에서하는고민_효율적인ML구조",
