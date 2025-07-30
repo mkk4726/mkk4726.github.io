@@ -24,6 +24,17 @@
     "content": "---\ntitle: \"FWL에 기반한 잔차화 방법론 구현 노트북\"\ndate: 2025-07-10\ncategory: \"Causal Inference\"\ntags: [\"residualization\", \"FWL\"]\nexcerpt: \"잔차화를 하기 위해 nusiance function을 만들고 결과를 분석하는 노트북\"\n--- # Load Data # from src.dataloader.vault.main import VaultDatasetLoader\n# from src.dataloader.vault.utils import split_df_od_os\n# from src.utils.db import SOFTCRM_DBINFO, get_conn\n\n# import warnings\n# import pandas as pd\n# import numpy as np\n\n# warnings.filterwarnings(\"ignore\")\n\n# # pandas display 옵션 설정 - 모든 열 보이기\n# pd.set_option('display.max_columns', None)\n# pd.set_option('display.width', None)\n# pd.set_option('display.max_colwidth', None)\n\n# loader = VaultDatasetLoader()\n# feature_df, y_df = loader.run(start_date=\"2022-01-01\", end_date=\"2024-12-31\", piol_data_path=\"./data/PIOL렌즈주문서.xlsx\", refresh=False, db=\"crm_emr\")\n\n\n# # y_df의 oper_date와 feature_df의 date를 기준으로 병합\n# merged_df = pd.merge(y_df, feature_df,\n#                     left_on=['cust_num', 'oper_date'],\n#                     right_on=['cust_num', 'dat"
   },
   {
+    "id": "Career/site-recommendation",
+    "title": "취업 준비 사이트 추천",
+    "date": "2025-07-30",
+    "excerpt": "취업 준비 사이트 추천",
+    "category": "Career",
+    "tags": [
+      "취업"
+    ],
+    "content": "\n\n## 취업 준비 사이트 추천\n\n- [zighang](https://zighang.com/)\n- [offercent](https://offercent.co.kr/company-list?careerType=NOT_MATTER&jobCategories=0070000/)\n- [bzpp](https://www.bzpp.co.kr/)\n\n\n\n\n"
+  },
+  {
     "id": "Career/how-to-write-resume",
     "title": "이력서, 경력기술서 작성 방법 정리",
     "date": "2025-07-29",
