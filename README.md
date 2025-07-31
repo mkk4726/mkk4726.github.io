@@ -249,3 +249,39 @@ This project is open source and available under the [MIT License](LICENSE).
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
+
+## GitHub Pages 배포 방법 (정적 사이트)
+
+이 프로젝트는 Next.js 기반으로, 정적 사이트로 export하여 GitHub Pages에서 배포할 수 있습니다.
+
+### 1. 정적 파일로 내보내기 (export)
+```bash
+npm run export
+```
+- 프로젝트 루트에 `out/` 폴더가 생성됩니다.
+
+### 2. out/ 폴더를 배포 브랜치(gh-pages) 또는 docs/ 폴더로 복사
+- **방법 1:** out/ 폴더의 내용을 gh-pages 브랜치에 커밋
+- **방법 2:** main 브랜치의 docs/ 폴더로 복사 후, GitHub Pages에서 docs/로 지정
+
+### 3. (선택) CNAME, 404.html 등 추가 파일 확인
+- 커스텀 도메인을 쓴다면 `out/CNAME` 파일이 필요합니다.
+- 404 페이지가 필요하다면 `out/404.html`이 생성되어 있는지 확인하세요.
+
+### 4. git add/commit/push
+- out/ 폴더(혹은 docs/)의 변경사항을 커밋하고 푸시합니다.
+
+### 5. GitHub Pages 설정 확인
+- gh-pages 브랜치 또는 docs/ 폴더가 배포 대상으로 지정되어 있는지 확인하세요.
+
+---
+
+#### 요약 체크리스트
+- [x] `npm run export`로 out/ 폴더 생성
+- [x] out/ 폴더를 배포 브랜치/docs/로 복사
+- [x] (필요시) CNAME, 404.html 등 확인
+- [x] git add/commit/push
+
+---
+
+> 이 안내는 자동화/수동 배포 모두 참고할 수 있습니다.

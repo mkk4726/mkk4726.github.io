@@ -78,6 +78,34 @@ function extractNotebookContent(filePath) {
   }
 }
 
+// 마크다운 태그를 제거하는 함수
+function cleanMarkdown(text) {
+  if (!text) return '';
+  
+  // 마크다운 헤더 제거
+  text = text.replace(/^#{1,6}\s+/gm, '');
+  
+  // 마크다운 링크 제거 (텍스트만 유지)
+  text = text.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1');
+  
+  // 마크다운 강조 제거
+  text = text.replace(/\*\*([^*]+)\*\*/g, '$1');
+  text = text.replace(/\*([^*]+)\*/g, '$1');
+  text = text.replace(/`([^`]+)`/g, '$1');
+  
+  // 마크다운 리스트 제거
+  text = text.replace(/^[\s]*[-*+]\s+/gm, '');
+  text = text.replace(/^[\s]*\d+\.\s+/gm, '');
+  
+  // 마크다운 테이블 제거 (테이블 내용은 유지)
+  text = text.replace(/\|/g, ' ');
+  
+  // 여러 공백을 하나로
+  text = text.replace(/\s+/g, ' ');
+  
+  return text.trim();
+}
+
 async function generateSearchIndex() {
   const postFiles = getAllPostFiles(postsDirectory);
   const searchIndex = [];
@@ -102,6 +130,9 @@ async function generateSearchIndex() {
         content = matterResult.content;
       }
 
+      // 마크다운 태그 제거
+      const cleanContent = cleanMarkdown(content);
+
       // 검색 인덱스에 추가
       searchIndex.push({
         id,
@@ -110,7 +141,7 @@ async function generateSearchIndex() {
         excerpt: metadata.excerpt || '',
         category: metadata.category || '',
         tags: metadata.tags || [],
-        content: content.substring(0, 1000), // 처음 1000자만 저장
+        content: cleanContent, // 전체 내용 저장 (마크다운 태그 제거됨)
       });
     } catch (error) {
       console.error(`Error processing ${filePath}:`, error);

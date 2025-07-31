@@ -14,6 +14,30 @@ interface SearchResult {
   content?: string;
 }
 
+// 검색된 텍스트를 하이라이트하는 함수
+function highlightText(text: string, searchTerm: string, maxLength: number = 150) {
+  if (!text || !searchTerm) return text;
+  
+  const lowerText = text.toLowerCase();
+  const lowerSearchTerm = searchTerm.toLowerCase();
+  const index = lowerText.indexOf(lowerSearchTerm);
+  
+  if (index === -1) return text.substring(0, maxLength) + (text.length > maxLength ? '...' : '');
+  
+  const start = Math.max(0, index - 50);
+  const end = Math.min(text.length, index + searchTerm.length + 50);
+  let highlighted = text.substring(start, end);
+  
+  // 검색어를 하이라이트
+  const regex = new RegExp(`(${searchTerm})`, 'gi');
+  highlighted = highlighted.replace(regex, '<mark class="bg-yellow-200 dark:bg-yellow-800">$1</mark>');
+  
+  if (start > 0) highlighted = '...' + highlighted;
+  if (end < text.length) highlighted = highlighted + '...';
+  
+  return highlighted;
+}
+
 export default function SearchBox() {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState<SearchResult[]>([]);
@@ -171,34 +195,55 @@ export default function SearchBox() {
             <div className="text-xs text-gray-500 dark:text-gray-400 mb-2">
               {results.length}개의 검색 결과
             </div>
-            {results.map((result) => (
-              <Link
-                key={result.id}
-                href={`/posts/${result.id}`}
-                onClick={handleResultClick}
-                className="block p-3 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-md transition-colors"
-              >
-                <div className="font-medium text-gray-900 dark:text-gray-100 text-sm mb-1">
-                  {result.title}
-                </div>
-                {result.excerpt && (
-                  <div className="text-xs text-gray-600 dark:text-gray-300 line-clamp-2 mb-1">
-                    {result.excerpt}
+            {results.map((result) => {
+              // 검색어가 제목에 있는지 확인
+              const titleMatch = result.title.toLowerCase().includes(query.toLowerCase());
+              // 검색어가 내용에 있는지 확인
+              const contentMatch = result.content?.toLowerCase().includes(query.toLowerCase());
+              
+              return (
+                <Link
+                  key={result.id}
+                  href={`/posts/${result.id}`}
+                  onClick={handleResultClick}
+                  className="block p-3 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-md transition-colors"
+                >
+                  <div className="font-medium text-gray-900 dark:text-gray-100 text-sm mb-1">
+                    {titleMatch ? (
+                      <span dangerouslySetInnerHTML={{ 
+                        __html: highlightText(result.title, query, 100) 
+                      }} />
+                    ) : (
+                      result.title
+                    )}
                   </div>
-                )}
-                <div className="flex items-center text-xs text-gray-500 dark:text-gray-400">
-                  <span>{result.date}</span>
-                  {result.category && (
-                    <>
-                      <span className="mx-1">•</span>
-                      <span className="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-2 py-0.5 rounded-full">
-                        {result.category}
-                      </span>
-                    </>
+                  {result.excerpt && (
+                    <div className="text-xs text-gray-600 dark:text-gray-300 line-clamp-2 mb-1">
+                      {result.excerpt}
+                    </div>
                   )}
-                </div>
-              </Link>
-            ))}
+                  {contentMatch && !titleMatch && (
+                    <div 
+                      className="text-xs text-gray-500 dark:text-gray-400 line-clamp-2 mb-1"
+                      dangerouslySetInnerHTML={{ 
+                        __html: highlightText(result.content || '', query, 150) 
+                      }}
+                    />
+                  )}
+                  <div className="flex items-center text-xs text-gray-500 dark:text-gray-400">
+                    <span>{result.date}</span>
+                    {result.category && (
+                      <>
+                        <span className="mx-1">•</span>
+                        <span className="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-2 py-0.5 rounded-full">
+                          {result.category}
+                        </span>
+                      </>
+                    )}
+                  </div>
+                </Link>
+              );
+            })}
           </div>
         </div>
       )}

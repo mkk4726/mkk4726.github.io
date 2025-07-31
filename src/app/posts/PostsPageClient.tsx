@@ -147,7 +147,7 @@ export default function PostsPageClient({ posts: initialPosts, folderStructure }
           {displayPosts.length > 0 ? (
             <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
               {displayPosts.map((post) => (
-                <PostCard key={post.id} post={post} />
+                <PostCard key={post.id} post={post} enableSearchHighlight={false} />
               ))}
             </div>
           ) : (

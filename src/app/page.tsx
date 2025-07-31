@@ -48,9 +48,9 @@ export default async function Home() {
           <div className="mb-12">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-8">Latest Posts</h2>
             {posts.length > 0 ? (
-              <div className="grid gap-6 md:grid-cols-2">
+              <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
                 {posts.map((post) => (
-                  <PostCard key={post.id} post={post} />
+                  <PostCard key={post.id} post={post} enableSearchHighlight={false} />
                 ))}
               </div>
             ) : (

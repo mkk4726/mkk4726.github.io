@@ -178,9 +178,9 @@ async function FolderPageContent({ folderPath }: { folderPath: string }) {
         {/* 메인 콘텐츠 - 포스트 리스트 */}
         <div className="flex-1">
           {posts.length > 0 ? (
-            <div className="grid gap-5 lg:gap-6 grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">
+            <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
               {posts.map((post) => (
-                <PostCard key={post.id} post={post} />
+                <PostCard key={post.id} post={post} enableSearchHighlight={false} />
               ))}
             </div>
           ) : (

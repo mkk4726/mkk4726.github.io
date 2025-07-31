@@ -128,7 +128,7 @@ export default function PostsSearchClient({ searchQuery, folderStructure }: Post
           {filteredPosts.length > 0 ? (
             <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
               {filteredPosts.map((post) => (
-                <PostCard key={post.id} post={post} />
+                <PostCard key={post.id} post={post} enableSearchHighlight={true} />
               ))}
             </div>
           ) : (
