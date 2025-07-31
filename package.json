@@ -6,6 +6,8 @@
     "dev": "next dev",
     "prebuild": "node scripts/generate-search-index.js",
     "build": "next build",
+    "build:only": "next build",
+    "build:export": "next build && next export",
     "start": "next start",
     "export": "next export",
     "lint": "next lint",
