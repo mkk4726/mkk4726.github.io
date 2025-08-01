@@ -9,6 +9,10 @@ const nextConfig: NextConfig = {
       unoptimized: true,
     },
   }),
+  // 한글 URL 지원을 위한 설정
+  experimental: {
+    urlImports: ['https://themer.sanity.io'],
+  },
 };
 
 export default nextConfig;

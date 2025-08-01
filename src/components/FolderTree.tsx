@@ -55,7 +55,7 @@ function FolderNodeItem({ node, selectedPath, level = 0 }: FolderNodeItemProps) 
         
         <div className="flex items-center justify-between flex-1 min-w-0">
           <Link
-            href={`/posts/folder/${encodeURIComponent(node.path)}`}
+            href={`/posts/folder/${node.path}`}
             className="flex-1 truncate hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
           >
             <span className="text-sm font-medium">{node.name}</span>
