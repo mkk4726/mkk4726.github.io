@@ -1,5 +1,56 @@
 [
   {
+    "id": "Singing/장효진강의/3강_깊게 마시고 뱉기를 통한 호흡 익히기",
+    "title": "3강 깊게 마시고 뱉기를 통한 호흡 익히기",
+    "date": "2025-08-02",
+    "excerpt": "깊게 마시고 뱉는 법을 통해 내복근 느낌 잡는 법. 관련 연습법 정리",
+    "category": "Singing",
+    "tags": [
+      "Singing Practice",
+      "장효진 강의",
+      "연습방법"
+    ],
+    "content": "점진적 과부하 공기를 다 뺐다고 느낄 때, 그 떄 떠 뺼떄 내복근이 더 많이 쓰임 똑같은 힘으로 끝까지 뱉는 느낌 허리펴고. 같은 힘으로. > 마지막에 마지막에 마지막까지 뱉어주기"
+  },
+  {
+    "id": "Singing/장효진강의/2강_내복근_컨트롤",
+    "title": "2강 내복근 컨트롤",
+    "date": "2025-08-02",
+    "excerpt": "2강 내복근 컨트롤 , 에 대한 내용정리",
+    "category": "Singing",
+    "tags": [
+      "Singing Practice",
+      "장효진 강의"
+    ],
+    "content": "유로인강 유튭 링크 호흡을 내뱉는 법. 패시브가 되어야 함. 횡경막의 역할. 나온 배를 다시 배만 정위치로 돌려놓는 느낌. \"배만 움직이는 느낌\" \"피지컬의 중요성\" 가슴도 안써야됨. 배로만 컨트롤하는 느낌."
+  },
+  {
+    "id": "Singing/장효진강의/1강_개념정리 및 본질",
+    "title": "1강 개념정리 및 본질",
+    "date": "2025-08-02",
+    "excerpt": "1강 개념정리 및 본질 , 에 대한 내용정리",
+    "category": "Singing",
+    "tags": [
+      "Singing Practice",
+      "장효진 강의"
+    ],
+    "content": "전체적인 목차에 대한 설명 호흡에 대한 자세한 설명 발성의 시작. 소리를 만드는 법 성대 컨트롤과 관련된 내용들 정~~말 많은 내용이 있구나. 꾸준히 하나씩 들어보자고. > 시키는대로만 하세요. 묻지도 따지지도 말고 영상에서 하라는대로."
+  },
+  {
+    "id": "Codility Study/코딩테스트합격자되기/그래프/그래프_최단경로_구하기",
+    "title": "그래프 최단 경로 구하기",
+    "date": "2025-08-02",
+    "excerpt": "그래프 최단 경로 구하기",
+    "category": "Codility Study",
+    "tags": [
+      "코딩 테스트 합격자 되기",
+      "Codility Study",
+      "그래프",
+      "알고리즘"
+    ],
+    "content": "> 최단 경로 (shortest path)는 그래프의 종류에 따라 그 진의가 다르게 해석될 수도 있는 주제입니다. 가중치의 여부. 다익스트라(dijkstra) 알고리즘 --- 모든 가중치가 양수일 때. > 다익스트라 알고리즘의 목적은 그래프 내에서 특정 노드를 기준으로 각 노드까지 최단 경로 또는 최단 경로의 길이를 찾는 것에 있습니다. > 다익스트라 알고리즘의 핵심은 현재까지 발견한 가장 적은 비용으로 갈 수 있는 노드를 경유해서, 각 노드까지 최단 경로를 갱신하는 작업을 반복하는 것입니다. 시작 노드에서 각 노드까지 거리를 초기화 현재 가장 적은 비용으로 갈 수 있는 노드 선택 (각 노드는 한 번씩만 선택) 2에서 선택한 노드의 주변 노드 거리를 갱신"
+  },
+  {
     "id": "English Study/SPEAK/08-01-최악의대비_리뷰",
     "title": "최악의 대비 리뷰 데이",
     "date": "2025-08-01",
@@ -34,7 +85,7 @@
       "그래프",
       "알고리즘"
     ],
-    "content": "--- title: \"그래프 탐색 파이썬 구현\" date: \"2025-08-01\" category: \"Codility Study\" tags: [\"코딩 테스트 합격자 되기\", \"Codility Study\", \"그래프\", \"알고리즘\"] excerpt: \"그래프 탐색 파이썬 구현\" --- # DFS 구현 !DFS 그래프 그림"
+    "content": "--- title: \"그래프 탐색 파이썬 구현\" date: \"2025-08-01\" category: \"Codility Study\" tags: [\"코딩 테스트 합격자 되기\", \"Codility Study\", \"그래프\", \"알고리즘\"] excerpt: \"그래프 탐색 파이썬 구현\" --- # DFS 구현 !DFS 그래프 그림 # 인접 리스트로 표시된 그래프 graph = { 1: [4, 5], 2: [3], 3: [], 4: [2, 3], 5: [4] } 방문 여부 visited = [False] (len(graph) + 1) def dfs(current_node): visited[current_node] = True print(current_node) for neighbor in graph[current_node]: if not visited[neighbor]: dfs(neighbor) dfs(1) # BFS 구현 from collections import deque 인접 리스트로 표시된 그래프 graph = { 1: [4, 5], 2: [3], 3: [], 4: [2, 3], 5: [4] } def bfs(start_node): # 방문 여부 visited = [False] (len(graph) + 1) queue = deque([start_node]) visited[start_node] = True while queue: node = queue.popleft() print(node) for adj_node in graph[node]: if not visited[adj_node]: queue.append(adj_node) visited[adj_node] = True bfs(1)"
   },
   {
     "id": "Codility Study/코딩테스트합격자되기/그래프/그래프_탐색",
@@ -48,7 +99,7 @@
       "그래프",
       "알고리즘"
     ],
-    "content": "구현 노트북 그래프 탐색 파이썬 구현 DFS / BFS 더 이상 탐색할 노드가 없을 때까지 일단 가봅니다. 그러다가 더 이상 탐색할 노드가 없으면 최근에 방문했던 노드로 되돌아간 다음 가지 않은 노드를 방문합니다. 현재 위치에서 가장 가까운 노드부터 모두 방문하고 다음 노드로 넘어갑니다. 그 노드에서 또 다시 가장 가까운 노드부터 모두 방문합니다. > DFS와 BFS가 방문처리 시점이 다른 이유 : > DFS는 stack에서 pop을 할 때 방문처리를 하지만, BFS는 queue에 push할 때 방문처리를 함. > 왜냐하면 DFS는 나중에 확인할 노드이고, BFS는 바로 확인할 노드이기 때문에. DFS(Deep-First Search) : 깊이 우선 탐색 > 최대 깊이 노드까지 방문한 다음에는 이전에 방문한 노드를 거슬러 올라가며 해당 노드와 연결된 노드 중 방문하지 않은 노드로 다시 최대 깊이까지 차례대로 방문합니다. stack 자료구조 활용 <figure> <img src=\"/post/CodilityStudy/stack.png\" alt=\"stack\" style=\"width: 100%; height: auto; display: block; margin: 0 auto;\" /> <figcaption style=\"text-align: center;\">그림1. stack 자료구조 : FILO(First In Last Out) 구조</figcaption> </figure> sudo code : 스택이 비었는지 확인. 스택이 비었다면 -> 모든 노드 방문 완료 -> 종료 스택에서 노드를 팝. 팝한 노드는 최근에 스택에 푸쉬한 노드 팝한 노드의 방문 여부 확인 아직 방문 안했으면 -> 노드를 방문처리 방문한 노드와 인접한 모든 노드를 확인 아직 방문하지 않은 노드를 스택에 푸쉬. 고려사항 : 탐색할 노드가 없을 때까지 간선을 타고 내려갈 수 있어야 함 가장 최근에 방문한 노드를 알아야 함 이미 방문한 노드인지 확인할 수 있어야 함 > 가장 깊은 노드까지 방문한 후에 더 이상 방문할 노드가 없으면 최근 방문한 노드로 돌아온 다음, 해당 노드에서 방문할 노드가 있는지 확인한다. back tracking : 탐색하고 있는 방향의 역방향으로 되돌아가는 동작 스택은 최근에 푸쉬한 노드를 팝 연산으로 확인할 수 있으므로 특정 노드를 방문하기 전에 최근 방문노드를 팝 연산으로 쉽게 확인할 수 있음. 스택을 활용한 구현 / 재귀를 활용한 구현 스택을 활용한 깊이 우선 탐색 : <figure> <img src=\"/post/CodilityStudy/DFS_그려보기.png\" alt=\"DFS\" style=\"width: 50%; height: auto; display: block; margin: 0 auto;\" /> <figcaption style=\"text-align: center;\">그림2. DFS stack 구현</figcaption> </figure> 재귀 함수를 활용한 깊이 우선 탐색 : > 재귀 함수를 호출할 때마다 호출한 함수는 시스템 스택이라는 곳에 쌓이므로 깊이 우선 탐색에 활용할 수 있는 것입니다. <figure> <img src=\"/post/CodilityStudy/DFS_재귀.png\" alt=\"DFS\" style=\"width: 50%; height: auto; display: block; margin: 0 auto;\" /> <figcaption style=\"text-align: center;\">그림3. DFS 재귀 구현</figcaption> </figure> stack으로 구현하는 것과 논리는 같음. 스택에 쌓아주는 대신 이웃노드에 대한 재귀함수를 실행시켜주는 방식. BFS(Breadth-First Search) : 너비 우선 탐색 Queue 자료구조 활용 <figure> <img src=\"/post/CodilityStudy/queue.webp\" alt=\"queue\" style=\"width: 50%; height: auto; display: block; margin: 0 auto;\" /> <figcaption style=\"text-align: center;\">그림4. queue 자료구조 : FIFO(First In First Out) 구조</figcaption> </figure> <figure> <img src=\"/post/CodilityStudy/BFS_큐.png\" alt=\"BFS\" style=\"width: 50%; height: auto; display: block; margin: 0 auto;\" /> <figcaption style=\"text-align: center;\">그림5. BFS 큐 구현</figcaption> </figure>"
+    "content": "구현 노트북 그래프 탐색 파이썬 구현 DFS / BFS 더 이상 탐색할 노드가 없을 때까지 일단 가봅니다. 그러다가 더 이상 탐색할 노드가 없으면 최근에 방문했던 노드로 되돌아간 다음 가지 않은 노드를 방문합니다. 현재 위치에서 가장 가까운 노드부터 모두 방문하고 다음 노드로 넘어갑니다. 그 노드에서 또 다시 가장 가까운 노드부터 모두 방문합니다. 최단경로찾기 일때는 보통 BFS, 나머지는 DFS인 경우가 많다. > DFS와 BFS가 방문처리 시점이 다른 이유 : > DFS는 stack에서 pop을 할 때 방문처리를 하지만, BFS는 queue에 push할 때 방문처리를 함. > 왜냐하면 DFS는 나중에 확인할 노드이고, BFS는 바로 확인할 노드이기 때문에. DFS(Deep-First Search) : 깊이 우선 탐색 > 최대 깊이 노드까지 방문한 다음에는 이전에 방문한 노드를 거슬러 올라가며 해당 노드와 연결된 노드 중 방문하지 않은 노드로 다시 최대 깊이까지 차례대로 방문합니다. stack 자료구조 활용 <figure> <img src=\"/post/CodilityStudy/stack.png\" alt=\"stack\" style=\"width: 100%; height: auto; display: block; margin: 0 auto;\" /> <figcaption style=\"text-align: center;\">그림1. stack 자료구조 : FILO(First In Last Out) 구조</figcaption> </figure> sudo code : 스택이 비었는지 확인. 스택이 비었다면 -> 모든 노드 방문 완료 -> 종료 스택에서 노드를 팝. 팝한 노드는 최근에 스택에 푸쉬한 노드 팝한 노드의 방문 여부 확인 아직 방문 안했으면 -> 노드를 방문처리 방문한 노드와 인접한 모든 노드를 확인 아직 방문하지 않은 노드를 스택에 푸쉬. 고려사항 : 탐색할 노드가 없을 때까지 간선을 타고 내려갈 수 있어야 함 가장 최근에 방문한 노드를 알아야 함 이미 방문한 노드인지 확인할 수 있어야 함 > 가장 깊은 노드까지 방문한 후에 더 이상 방문할 노드가 없으면 최근 방문한 노드로 돌아온 다음, 해당 노드에서 방문할 노드가 있는지 확인한다. back tracking : 탐색하고 있는 방향의 역방향으로 되돌아가는 동작 스택은 최근에 푸쉬한 노드를 팝 연산으로 확인할 수 있으므로 특정 노드를 방문하기 전에 최근 방문노드를 팝 연산으로 쉽게 확인할 수 있음. 스택을 활용한 구현 / 재귀를 활용한 구현 스택을 활용한 깊이 우선 탐색 : <figure> <img src=\"/post/CodilityStudy/DFS_그려보기.png\" alt=\"DFS\" style=\"width: 50%; height: auto; display: block; margin: 0 auto;\" /> <figcaption style=\"text-align: center;\">그림2. DFS stack 구현</figcaption> </figure> 재귀 함수를 활용한 깊이 우선 탐색 : > 재귀 함수를 호출할 때마다 호출한 함수는 시스템 스택이라는 곳에 쌓이므로 깊이 우선 탐색에 활용할 수 있는 것입니다. <figure> <img src=\"/post/CodilityStudy/DFS_재귀.png\" alt=\"DFS\" style=\"width: 50%; height: auto; display: block; margin: 0 auto;\" /> <figcaption style=\"text-align: center;\">그림3. DFS 재귀 구현</figcaption> </figure> stack으로 구현하는 것과 논리는 같음. 스택에 쌓아주는 대신 이웃노드에 대한 재귀함수를 실행시켜주는 방식. BFS(Breadth-First Search) : 너비 우선 탐색 Queue 자료구조 활용 <figure> <img src=\"/post/CodilityStudy/queue.webp\" alt=\"queue\" style=\"width: 50%; height: auto; display: block; margin: 0 auto;\" /> <figcaption style=\"text-align: center;\">그림4. queue 자료구조 : FIFO(First In First Out) 구조</figcaption> </figure> <figure> <img src=\"/post/CodilityStudy/BFS_큐.png\" alt=\"BFS\" style=\"width: 50%; height: auto; display: block; margin: 0 auto;\" /> <figcaption style=\"text-align: center;\">그림5. BFS 큐 구현</figcaption> </figure>"
   },
   {
     "id": "Codility Study/코딩테스트합격자되기/그래프/그래프_개념정리",
