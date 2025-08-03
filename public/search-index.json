@@ -1,5 +1,17 @@
 [
   {
+    "id": "English Study/SPEAK/소문및가십/08-03-못믿겠지만탐쿠르즈봤어",
+    "title": "못 믿겠지만 탐크루즈 봤어",
+    "date": "2025-08-03",
+    "excerpt": "믿지 못할만한 소문이나 소식을 전할 때 쓰는 표현들",
+    "category": "English Study",
+    "tags": [
+      "영어공부꾸준히!",
+      "SPEAK"
+    ],
+    "content": "배운 것들 Believe it or not, I bumped into a Tom Cruise. Believe it or not : 너가 믿기 힘들겠지만, 믿든 말든. Believe it or not, Joe and Mary are getting married. Believe it or not, Joe and Mary are engaged. engaged : 약혼하다 divorce : 이혼하다 This may be a surprise : 놀랄만한 일일수도 있는데, 예상치 못했겠지만 This may be a surprise, but Joe is getting divorced. This may be a surprise, but Lenny passed bar exam. bar exam : 변호사 시험 You may not know this : 모를수도 있는데 You may not know this, but Drake is Canadian. 간단한 작문 Believe it or not, I will have love metting(?소개팅, 영어로 뭐지). Someone who is joined in same project suggest it to me. I like her style, maybe she has lovely smile I guess in the picture. You may not know this, my 이상형 is someone who has lovely smile and isn't short (more than 165cm). 피드백이랑 더 자연스러운 작문 Believe it or not, I'm going on a blind date this weekend! Someone from the same project suggested it to me. I really like her style, and from her picture, I can see she has a lovely smile. You might not know this about me, but my ideal type is someone with a beautiful smile and who isn't too short (preferably over 165cm). I'm actually quite nervous about it. I haven't been on a blind date in ages, and I'm not sure what to expect. But I'm trying to stay positive and just be myself. The person who set us up said we have similar interests and personalities, so hopefully we'll hit it off. I'm planning to meet her at a nice café downtown - nothing too fancy, just somewhere comfortable where we can talk and get to know each other. Wish me luck! I'll let you know how it goes. 피드백 원본 작문의 문제점들: 문법 오류들: \"I will have love metting\" → \"I'm going on a blind date\" \"Someone who is joined\" → \"Someone who joined\" \"suggest it to me\" → \"suggested it to me\" 어휘 선택: \"love meeting\" → \"blind date\" (소개팅의 정확한 표현) \"이상형\" → \"ideal type\" 또는 \"type\" 자연스러운 표현: \"I guess in the picture\" → \"from her picture, I can see\" \"isn't short\" → \"isn't too short\" 개선된 점들: 더 자연스러운 문장 구조 감정과 상황 설명 추가 (긴장감, 계획 등) 대화체 톤 유지 (친근하고 자연스러운 느낌) 구체적인 세부사항 (카페에서 만나기, 비슷한 관심사 등) 학습 포인트: 소개팅 = blind date \"hit it off\" = 잘 맞다, 사이가 좋다 \"in ages\" = 오랫동안 \"set us up\" = 소개해주다"
+  },
+  {
     "id": "Singing/장효진강의/3강_깊게 마시고 뱉기를 통한 호흡 익히기",
     "title": "3강 깊게 마시고 뱉기를 통한 호흡 익히기",
     "date": "2025-08-02",
@@ -51,7 +63,7 @@
     "content": "> 최단 경로 (shortest path)는 그래프의 종류에 따라 그 진의가 다르게 해석될 수도 있는 주제입니다. 가중치의 여부. 다익스트라(dijkstra) 알고리즘 --- 모든 가중치가 양수일 때. > 다익스트라 알고리즘의 목적은 그래프 내에서 특정 노드를 기준으로 각 노드까지 최단 경로 또는 최단 경로의 길이를 찾는 것에 있습니다. > 다익스트라 알고리즘의 핵심은 현재까지 발견한 가장 적은 비용으로 갈 수 있는 노드를 경유해서, 각 노드까지 최단 경로를 갱신하는 작업을 반복하는 것입니다. 시작 노드에서 각 노드까지 거리를 초기화 현재 가장 적은 비용으로 갈 수 있는 노드 선택 (각 노드는 한 번씩만 선택) 2에서 선택한 노드의 주변 노드 거리를 갱신"
   },
   {
-    "id": "English Study/SPEAK/08-01-최악의대비_리뷰",
+    "id": "English Study/SPEAK/지나간달/08-01-최악의대비_리뷰",
     "title": "최악의 대비 리뷰 데이",
     "date": "2025-08-01",
     "excerpt": "최악의 대비 관련 표현들 리뷰 데이",
