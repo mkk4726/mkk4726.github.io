@@ -1,5 +1,5 @@
 ---
-title: "Hyundai Autoever - ML Engineer Resume"
+title: "[탈락!] Hyundai Autoever - ML Engineer Resume"
 date: "2025-07-29"
 excerpt: "현대자동차 이력서"
 category: "Career"
@@ -90,3 +90,23 @@ segmentation 모델을 개발하면서 데이터 부족 문제를 해결하기 �
 
 
 
+
+
+# 결과 -> 탈락
+
+1차에서 계속 떨어지는구만..
+왜 떨어지는걸까?
+
+[Tech] Machine Learning Engineer - AI 데이터 사이언티스트  
+서류전형 결과를 안내드립니다.
+
+
+안녕하십니까, 현대오토에버입니다.
+
+당사 채용에 관심을 가지고 귀한 시간을 내주셔서 감사드립니다.
+
+김민규님께서는 아쉽게도 이번 전형에 불합격하셨습니다.
+
+다음번에 더 좋은 인연으로 만나뵙길 희망하며, 앞으로 하시는 일 모두 건승하시길 바랍니다.
+
+감사합니다.
