@@ -3,7 +3,7 @@ title: "Bird Dialects"
 date: "2025-07-14"
 excerpt: "Diagnostic Test 문제 공부"
 category: "English Study" 
-tags: ["TOEFL", "영어", "대학원", "OMSCS"]
+tags: ["TOEFL", "영어", "대학원"]
 ---
 
 # Bird Dialects
