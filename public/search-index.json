@@ -13,6 +13,20 @@
     "content": "참고자료 Bot Penguin - Meta Learning 논문세미나 007 - Meta-Learning의 개념 및 연구 분야 (김도형 연구원) meta-learning이란? 개념적 정의 --- “배우는 방법을 배우는 것” (learning to learn) > meta-learning (메타 러닝)은 기계학습에서 점점 더 중요한 개념이 되고 있으며, 특히 few-shot learning, online adaptation, 개인화 모델링 등에서 매우 강력한 도구입니다. > Meta-learning, also known as \"learning how to learn,\" is a cutting-edge approach in machine learning that focuses on algorithms that learn from their experiences and adapt to new data more effectively 개념만으로는 크게 와닿진 않네. <figure> <img src=\"/post/DataScience/meta_learning_concept_1.webp\" alt=\"Meta-learning 개념도\" /> <figcaption>그림 1. Meta-learning의 기본 개념</figcaption> </figure> > Meta-learning enhances traditional machine learning methods by adding a meta-layer to optimize learning algorithms. 과거의 학습 경험 (데이터나 파라미터)를 바탕으로 새로운 문제에 대해서 빠르게 학습해나가는 방법 <figure> <img src=\"/post/DataScience/A-taxonomy-of-meta-learning-Meta-learning-strategies-are-divided-into-two-main.png\" alt=\"Meta-learning strategies\" /> <figcaption>그림 2. Meta-learning strategies</figcaption> </figure> 기본 아이디어 : 일반적인 머신러닝에서는 하나의 작업(task)에 대해 모델을 학습합니다. 하지만 메타 러닝은 여러 개의 작업들을 보고, 새로운 작업에 빠르게 적응할 수 있는 학습 전략을 학습하는 것이 목표입니다. 일반 머신러닝: 학습: 하나의 데이터셋에서 파라미터를 최적화 테스트: 같은 도메인의 unseen 데이터에 적용 메타 러닝: 학습: 여러 task를 보면서, 모델이 \"어떻게 빠르게 적응할 수 있을지\"를 학습 테스트: 새로운 task에 소수의 샘플(few-shot)만으로 빠르게 적응 Meta-Classifiers and Regressors > Meta-classifiers play a central role in ensemble machine learning techniques. They act as a higher-level classifier that takes the predictions of multiple base-level classifiers to generate a final prediction. 여러 값을 하나로 합치는 역할을 하는 모델. stacking 방법에서 맨 마지막에 쓰이는 모델, 모델의 예측값을 바탕으로 예측값을 생성하는 모델. random-forest도 어떻게 보면 meta-classifier구나. decision-tree 예측값을 voting해서 결과내는 방식이니까."
   },
   {
+    "id": "Data Science/github-notebook-preview",
+    "title": "GitHub에서 Jupyter Notebook 리뷰하기 - ReviewNB",
+    "date": "2025-08-04",
+    "excerpt": "GitHub에서 Jupyter Notebook 코드 리뷰를 쉽게 할 수 있는 ReviewNB 도구 소개",
+    "category": "Data Science",
+    "tags": [
+      "github",
+      "jupyter-notebook",
+      "code-review",
+      "tools"
+    ],
+    "content": "GitHub에서 Jupyter Notebook 리뷰하기 문제 상황 주피터 노트북을 GitHub에서 관리할 때 겪는 어려움: 기존 방식의 한계 JSON diff: 노트북 파일이 JSON 형태로 표시되어 가독성 떨어짐 리뷰 어려움: 실제 코드와 결과를 확인하기 어려움 검증 복잡: 로컬 환경이나 Colab에 포팅해서 validation 필요 실제 문제점 ``json { \"cells\": [ { \"cell_type\": \"code\", \"execution_count\": 1, \"metadata\": {}, \"outputs\": [], \"source\": [ \"import pandas as pd\\n\", \"df = pd.read_csv('data.csv')\" ] } ] } ` 이런 식으로 JSON이 보이면 실제 코드를 이해하기 어려움! 해결책: ReviewNB What is ReviewNB? > \"Say Goodbye to messy JSON diffs!\" ReviewNB는 GitHub에서 Jupyter Notebook 코드 리뷰를 실제 노트북이 렌더링된 상태에서 직관적으로 할 수 있도록 도와주는 도구입니다. 주요 특징 직관적인 리뷰 ✅ 실제 노트북 형태로 렌더링 ✅ 코드와 결과를 함께 확인 ✅ 셀 단위로 리뷰 가능 무료 사용 ✅ Public 저장소: 무제한 무료 사용 ✅ Private 저장소: 제한적 무료 사용 편리한 기능 ✅ Side-by-side diff 확인 ✅ 과거 PR 검토 가능 ✅ 실시간 코멘트 작성 설치 및 사용법 설치 과정 ReviewNB 웹사이트 방문: https://www.reviewnb.com/ \"Install GitHub App\" 버튼 클릭 GitHub 마켓플레이스에서 Free 버전 설치 저장소 권한 설정 사용 방법 PR 리뷰하기 ` GitHub PR 페이지 방문 ReviewNB 탭 확인 노트북 파일 선택 렌더링된 상태에서 리뷰 ` 코멘트 작성 셀 단위로 코멘트 추가 가능 코드 라인별 코멘트 작성 마크다운 지원 실제 사용 예시 Before (기존 방식) ` JSON diff만 보임 실제 코드 내용 파악 어려움 결과 확인 불가능 ` After (ReviewNB 사용) ` 실제 노트북 형태로 표시 코드와 결과를 함께 확인 직관적인 리뷰 가능 `` 장점과 활용 사례 장점 가독성 향상: JSON 대신 실제 노트북 형태 효율성 증대: 별도 환경 구축 불필요 협업 개선: 팀 리뷰 프로세스 간소화 품질 향상: 더 정확한 코드 검토 활용 사례 데이터 사이언스 프로젝트 머신러닝 모델 코드 리뷰 데이터 전처리 과정 검토 시각화 결과 확인 교육 및 튜토리얼 노트북 튜토리얼 리뷰 교육 자료 품질 관리 학습 자료 검증 연구 프로젝트 연구 노트북 공유 실험 결과 검토 재현성 확인 대안 도구들 nbviewer GitHub 노트북 렌더링 단순 뷰어 기능 Binder 인터랙티브 노트북 실행 환경 설정 복잡 Google Colab 클라우드 기반 실행 GitHub 연동 제한 결론 ReviewNB는 GitHub에서 Jupyter Notebook을 관리하는 팀에게 필수적인 도구입니다. 핵심 가치 간편함: 설치 후 즉시 사용 효율성: JSON diff 문제 해결 무료: Public 저장소 무제한 사용 직관성: 실제 노트북 형태로 리뷰 추천 대상 데이터 사이언스 팀 머신러닝 프로젝트 관리자 교육 기관 연구 프로젝트 팀 링크: https://www.reviewnb.com/ --- 이 도구를 사용하면 GitHub에서 Jupyter Notebook 리뷰가 훨씬 효율적이고 직관적이 됩니다!"
+  },
+  {
     "id": "Causal Inference/residualization-fwl-theorem-test",
     "title": "FWL에 기반한 잔차화 방법론 구현 노트북",
     "date": "2025-07-10T00:00:00.000Z",
