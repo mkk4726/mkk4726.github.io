@@ -40,9 +40,11 @@ function BasePostCard({ post }: { post: Omit<PostData, 'content'> & { content?: 
     <article className="bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden">
       <div className="p-5 lg:p-6">
         <div className="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400 mb-3">
-          <time dateTime={post.date}>
-            {format(new Date(post.date), 'MMMM dd, yyyy')}
-          </time>
+          {!post.isPdf && post.date && (
+            <time dateTime={post.date}>
+              {format(new Date(post.date), 'MMMM dd, yyyy')}
+            </time>
+          )}
           <div className="flex items-center space-x-2">
             {post.isPdf && (
               <span className="px-2 py-1 text-xs bg-red-100 dark:bg-red-900 text-red-700 dark:text-red-300 rounded-full flex items-center">
@@ -118,9 +120,11 @@ function SearchablePostCard({ post }: { post: Omit<PostData, 'content'> & { cont
     <article className="bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden">
       <div className="p-5 lg:p-6">
         <div className="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400 mb-3">
-          <time dateTime={post.date}>
-            {format(new Date(post.date), 'MMMM dd, yyyy')}
-          </time>
+          {!post.isPdf && post.date && (
+            <time dateTime={post.date}>
+              {format(new Date(post.date), 'MMMM dd, yyyy')}
+            </time>
+          )}
           <div className="flex items-center space-x-2">
             {post.isPdf && (
               <span className="px-2 py-1 text-xs bg-red-100 dark:bg-red-900 text-red-700 dark:text-red-300 rounded-full flex items-center">

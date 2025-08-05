@@ -51,11 +51,13 @@ export default async function Post({ params }: { params: Promise<{ slug: string[
                   />
                 </div>
               </div>
-              <div className="flex items-center text-gray-600 mb-4">
-                <time dateTime={post.date}>
-                  {format(new Date(post.date), 'MMMM dd, yyyy')}
-                </time>
-              </div>
+              {!post.isPdf && post.date && (
+                <div className="flex items-center text-gray-600 mb-4">
+                  <time dateTime={post.date}>
+                    {format(new Date(post.date), 'MMMM dd, yyyy')}
+                  </time>
+                </div>
+              )}
               
               {post.tags && post.tags.length > 0 && (
                 <div className="flex flex-wrap gap-2">

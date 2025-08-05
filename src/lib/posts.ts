@@ -86,18 +86,18 @@ export async function getSortedPostsData(): Promise<Omit<PostData, 'content'>[]>
       const categoryParts = category.split('/');
       const tags = categoryParts.filter(part => part.trim() !== '');
       
-      return {
-        id,
-        title,
-        date: fileStats.mtime.toISOString().split('T')[0],
-        excerpt: `${title} PDF 문서입니다.`,
-        category,
-        tags: [...tags, 'PDF'],
-        isPdf: true,
-        pdfPath: `/post/${relativePath}`,
-        fileSize: parseFloat(fileSizeInMB),
-        lastModified: fileStats.mtime,
-      };
+              return {
+          id,
+          title,
+          date: '', // PDF는 날짜 없음
+          excerpt: `${title} PDF 문서입니다.`,
+          category,
+          tags: [...tags, 'PDF'],
+          isPdf: true,
+          pdfPath: `/post/${relativePath}`,
+          fileSize: parseFloat(fileSizeInMB),
+          lastModified: fileStats.mtime,
+        };
     } else {
       // For markdown files, use gray-matter
       const fileContents = fs.readFileSync(filePath, 'utf8');
@@ -227,7 +227,7 @@ export async function getPostData(id: string): Promise<PostData> {
       id,
       content: '', // PDF files don't have markdown content
       title,
-      date: fileStats.mtime.toISOString().split('T')[0],
+      date: '', // PDF는 날짜 없음
       excerpt: `${title} PDF 문서입니다.`,
       category,
       tags: [...tags, 'PDF'],
@@ -366,6 +366,9 @@ export async function getPostsByMonth(): Promise<PostsByDate[]> {
   const monthlyData: { [key: string]: number } = {};
   
   for (const post of allPosts) {
+    // PDF 포스트는 제외
+    if (post.isPdf || !post.date) continue;
+    
     // YYYY-MM 형태로 월별 그룹화
     const month = post.date.substring(0, 7);
     monthlyData[month] = (monthlyData[month] || 0) + 1;
@@ -383,6 +386,9 @@ export async function getPostsByYear(): Promise<PostsByDate[]> {
   const yearlyData: { [key: string]: number } = {};
   
   for (const post of allPosts) {
+    // PDF 포스트는 제외
+    if (post.isPdf || !post.date) continue;
+    
     // YYYY 형태로 연도별 그룹화
     const year = post.date.substring(0, 4);
     yearlyData[year] = (yearlyData[year] || 0) + 1;
@@ -400,6 +406,9 @@ export async function getPostsByWeek(): Promise<PostsByDate[]> {
   const weeklyData: { [key: string]: number } = {};
   
   for (const post of allPosts) {
+    // PDF 포스트는 제외
+    if (post.isPdf || !post.date) continue;
+    
     const postDate = new Date(post.date);
     
     // 해당 주의 월요일을 구하기
@@ -435,8 +444,11 @@ export async function getPostsContributionData(): Promise<ContributionDay[]> {
   const allPosts = await getSortedPostsData();
   const dailyData: { [key: string]: number } = {};
   
-  // 모든 포스트의 날짜별 개수 계산
+  // 모든 포스트의 날짜별 개수 계산 (PDF 제외)
   for (const post of allPosts) {
+    // PDF 포스트는 제외
+    if (post.isPdf || !post.date) continue;
+    
     const date = post.date;
     dailyData[date] = (dailyData[date] || 0) + 1;
   }
@@ -480,8 +492,11 @@ export async function getPostsContributionDataByYear(year: number): Promise<Cont
   const allPosts = await getSortedPostsData();
   const dailyData: { [key: string]: number } = {};
   
-  // 해당 연도의 포스트만 필터링하여 날짜별 개수 계산
+  // 해당 연도의 포스트만 필터링하여 날짜별 개수 계산 (PDF 제외)
   for (const post of allPosts) {
+    // PDF 포스트는 제외
+    if (post.isPdf || !post.date) continue;
+    
     const postYear = parseInt(post.date.substring(0, 4));
     if (postYear === year) {
       const date = post.date;
@@ -528,6 +543,9 @@ export async function getActiveYears(): Promise<number[]> {
   const years = new Set<number>();
   
   for (const post of allPosts) {
+    // PDF 포스트는 제외
+    if (post.isPdf || !post.date) continue;
+    
     try {
       const year = parseInt(post.date.substring(0, 4));
       if (!isNaN(year)) {
@@ -553,8 +571,11 @@ export async function getPostsByDayOfWeek(): Promise<PostsByDate[]> {
     dayOfWeekData[day] = 0;
   });
   
-  // 모든 포스트의 요일별 개수 계산
+  // 모든 포스트의 요일별 개수 계산 (PDF 제외)
   for (const post of allPosts) {
+    // PDF 포스트는 제외
+    if (post.isPdf || !post.date) continue;
+    
     try {
       const date = new Date(post.date);
       const dayOfWeek = date.getDay(); // 0 (일요일) ~ 6 (토요일)
@@ -577,8 +598,11 @@ export async function getPostsContributionDataByCategoryAndYear(category: string
   const allPosts = await getSortedPostsData();
   const dailyData: { [key: string]: number } = {};
   
-  // 해당 카테고리와 연도의 포스트만 필터링하여 날짜별 개수 계산
+  // 해당 카테고리와 연도의 포스트만 필터링하여 날짜별 개수 계산 (PDF 제외)
   for (const post of allPosts) {
+    // PDF 포스트는 제외
+    if (post.isPdf || !post.date) continue;
+    
     const postYear = parseInt(post.date.substring(0, 4));
     if (postYear === year && post.category === category) {
       const date = post.date;
@@ -625,6 +649,9 @@ export async function getActiveYearsByCategory(category: string): Promise<number
   const years = new Set<number>();
   
   for (const post of allPosts) {
+    // PDF 포스트는 제외
+    if (post.isPdf || !post.date) continue;
+    
     if (post.category === category) {
       try {
         const year = parseInt(post.date.substring(0, 4));
@@ -646,8 +673,11 @@ export async function getPostsContributionDataByFolderAndYear(folderPath: string
   const allPosts = await getSortedPostsData();
   const dailyData: { [key: string]: number } = {};
   
-  // 해당 폴더와 연도의 포스트만 필터링하여 날짜별 개수 계산
+  // 해당 폴더와 연도의 포스트만 필터링하여 날짜별 개수 계산 (PDF 제외)
   for (const post of allPosts) {
+    // PDF 포스트는 제외
+    if (post.isPdf || !post.date) continue;
+    
     const postYear = parseInt(post.date.substring(0, 4));
     const postFolder = post.id.includes('/') ? post.id.substring(0, post.id.lastIndexOf('/')) : '';
     
@@ -696,6 +726,9 @@ export async function getActiveYearsByFolder(folderPath: string): Promise<number
   const years = new Set<number>();
   
   for (const post of allPosts) {
+    // PDF 포스트는 제외
+    if (post.isPdf || !post.date) continue;
+    
     const postFolder = post.id.includes('/') ? post.id.substring(0, post.id.lastIndexOf('/')) : '';
     
     if (postFolder === folderPath || postFolder.startsWith(folderPath + '/')) {
@@ -717,13 +750,16 @@ export async function getActiveYearsByFolder(folderPath: string): Promise<number
 // 특정 날짜의 포스트들을 가져오는 함수
 export async function getPostsByDate(date: string): Promise<Omit<PostData, 'content'>[]> {
   const allPosts = await getSortedPostsData();
-  return allPosts.filter((post) => post.date === date);
+  return allPosts.filter((post) => post.date === date && !post.isPdf);
 }
 
 // 특정 폴더의 특정 날짜 포스트들을 가져오는 함수
 export async function getPostsByFolderAndDate(folderPath: string, date: string): Promise<Omit<PostData, 'content'>[]> {
   const allPosts = await getSortedPostsData();
   return allPosts.filter((post) => {
+    // PDF 포스트는 제외
+    if (post.isPdf) return false;
+    
     const postFolder = post.id.includes('/') ? post.id.substring(0, post.id.lastIndexOf('/')) : '';
     return post.date === date && (postFolder === folderPath || postFolder.startsWith(folderPath + '/'));
   });
