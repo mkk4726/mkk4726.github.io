@@ -5,7 +5,6 @@ import MarkdownContent from '@/components/MarkdownContent';
 import TableOfContents from '@/components/TableOfContents';
 import CodeHighlight from '@/components/CodeHighlight';
 import JupyterNotebook from '@/components/JupyterNotebook';
-import PdfDownloadButton from '@/components/PdfDownloadButton';
 import Comments from '@/components/Comments';
 
 
@@ -44,12 +43,6 @@ export default async function Post({ params }: { params: Promise<{ slug: string[
             <header className="mb-8">
               <div className="flex items-start justify-between mb-4">
                 <h1 className="text-3xl font-bold text-gray-900 flex-1">{post.title}</h1>
-                <div className="ml-4">
-                  <PdfDownloadButton 
-                    postTitle={post.title}
-                    contentElementId="post-content"
-                  />
-                </div>
               </div>
               {!post.isPdf && post.date && (
                 <div className="flex items-center text-gray-600 mb-4">
