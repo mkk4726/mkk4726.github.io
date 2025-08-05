@@ -14,6 +14,10 @@ export interface PostData {
   category?: string;
   tags?: string[];
   isNotebook?: boolean;
+  isPdf?: boolean;
+  pdfPath?: string;
+  fileSize?: number;
+  lastModified?: Date;
 }
 
 // 폴더 구조를 나타내는 인터페이스
@@ -24,7 +28,7 @@ export interface FolderNode {
   postCount: number;
 }
 
-// 재귀적으로 모든 .md 및 .ipynb 파일을 찾는 함수
+// 재귀적으로 모든 .md, .ipynb, .pdf 파일을 찾는 함수
 function getAllPostFiles(dir: string): string[] {
   const files: string[] = [];
   const items = fs.readdirSync(dir);
@@ -35,7 +39,7 @@ function getAllPostFiles(dir: string): string[] {
     
     if (stat.isDirectory()) {
       files.push(...getAllPostFiles(fullPath));
-    } else if (item.endsWith('.md') || item.endsWith('.ipynb')) {
+    } else if (item.endsWith('.md') || item.endsWith('.ipynb') || item.endsWith('.pdf')) {
       files.push(fullPath);
     }
   }
@@ -44,12 +48,12 @@ function getAllPostFiles(dir: string): string[] {
 }
 
 export async function getSortedPostsData(): Promise<Omit<PostData, 'content'>[]> {
-  // Get all post files (markdown and notebook) recursively
+  // Get all post files (markdown, notebook, and pdf) recursively
   const postFiles = getAllPostFiles(postsDirectory);
   const allPostsData = await Promise.all(postFiles.map(async (filePath: string) => {
     // Get relative path from posts directory and remove extension to get id
     const relativePath = path.relative(postsDirectory, filePath);
-    const id = relativePath.replace(/\.(md|ipynb)$/, '');
+    const id = relativePath.replace(/\.(md|ipynb|pdf)$/, '');
 
     // Handle different file types
     if (filePath.endsWith('.ipynb')) {
@@ -62,6 +66,37 @@ export async function getSortedPostsData(): Promise<Omit<PostData, 'content'>[]>
         excerpt: metadata.excerpt,
         category: metadata.category,
         tags: metadata.tags,
+      };
+    } else if (filePath.endsWith('.pdf')) {
+      // For PDF files, generate metadata from file info
+      const fileName = path.basename(filePath, '.pdf');
+      const fileStats = fs.statSync(filePath);
+      const fileSizeInMB = (fileStats.size / (1024 * 1024)).toFixed(2);
+      
+      // Generate title from filename
+      const title = fileName
+        .replace(/[-_]/g, ' ')
+        .replace(/\b\w/g, l => l.toUpperCase());
+      
+      // Extract category from folder structure
+      const folderPath = path.dirname(relativePath);
+      const category = folderPath !== '.' ? folderPath : 'Documents';
+      
+      // Generate tags from folder structure
+      const categoryParts = category.split('/');
+      const tags = categoryParts.filter(part => part.trim() !== '');
+      
+      return {
+        id,
+        title,
+        date: fileStats.mtime.toISOString().split('T')[0],
+        excerpt: `${title} PDF 문서입니다.`,
+        category,
+        tags: [...tags, 'PDF'],
+        isPdf: true,
+        pdfPath: `/post/${relativePath}`,
+        fileSize: parseFloat(fileSizeInMB),
+        lastModified: fileStats.mtime,
       };
     } else {
       // For markdown files, use gray-matter
@@ -105,7 +140,7 @@ export function getAllPostIds() {
   return postFiles.map((filePath: string) => {
     const relativePath = path.relative(postsDirectory, filePath);
     return {
-      id: relativePath.replace(/\.(md|ipynb)$/, ''),
+      id: relativePath.replace(/\.(md|ipynb|pdf)$/, ''),
     };
   });
 }
@@ -117,6 +152,7 @@ export async function getPostData(id: string): Promise<PostData> {
   // Check if markdown file exists directly in posts directory first
   let fullPath = path.join(postsDirectory, `${decodedId}.md`);
   let isNotebook = false;
+  let isPdf = false;
   
   // If markdown not found, check for notebook file
   if (!fs.existsSync(fullPath)) {
@@ -126,12 +162,20 @@ export async function getPostData(id: string): Promise<PostData> {
     }
   }
   
+  // If still not found, check for PDF file
+  if (!fs.existsSync(fullPath)) {
+    fullPath = path.join(postsDirectory, `${decodedId}.pdf`);
+    if (fs.existsSync(fullPath)) {
+      isPdf = true;
+    }
+  }
+  
   // If still not found, search in subdirectories
   if (!fs.existsSync(fullPath)) {
     const postFiles = getAllPostFiles(postsDirectory);
     const targetFile = postFiles.find((filePath: string) => {
       const relativePath = path.relative(postsDirectory, filePath);
-      return relativePath.replace(/\.(md|ipynb)$/, '') === decodedId;
+      return relativePath.replace(/\.(md|ipynb|pdf)$/, '') === decodedId;
     });
     
     if (!targetFile) {
@@ -140,6 +184,7 @@ export async function getPostData(id: string): Promise<PostData> {
     
     fullPath = targetFile;
     isNotebook = targetFile.endsWith('.ipynb');
+    isPdf = targetFile.endsWith('.pdf');
   }
   
   // Handle notebook files
@@ -156,6 +201,41 @@ export async function getPostData(id: string): Promise<PostData> {
       category: metadata.category,
       tags: metadata.tags,
       isNotebook: true,
+      isPdf: false,
+    };
+  } else if (isPdf) {
+    // Handle PDF files
+    const fileName = path.basename(fullPath, '.pdf');
+    const fileStats = fs.statSync(fullPath);
+    const fileSizeInMB = (fileStats.size / (1024 * 1024)).toFixed(2);
+    const relativePath = path.relative(postsDirectory, fullPath);
+    
+    // Generate title from filename
+    const title = fileName
+      .replace(/[-_]/g, ' ')
+      .replace(/\b\w/g, l => l.toUpperCase());
+    
+    // Extract category from folder structure
+    const folderPath = path.dirname(relativePath);
+    const category = folderPath !== '.' ? folderPath : 'Documents';
+    
+    // Generate tags from folder structure
+    const categoryParts = category.split('/');
+    const tags = categoryParts.filter(part => part.trim() !== '');
+    
+    return {
+      id,
+      content: '', // PDF files don't have markdown content
+      title,
+      date: fileStats.mtime.toISOString().split('T')[0],
+      excerpt: `${title} PDF 문서입니다.`,
+      category,
+      tags: [...tags, 'PDF'],
+      isNotebook: false,
+      isPdf: true,
+      pdfPath: `/post/${relativePath}`,
+      fileSize: parseFloat(fileSizeInMB),
+      lastModified: fileStats.mtime,
     };
   } else {
     // Handle markdown files
@@ -167,6 +247,7 @@ export async function getPostData(id: string): Promise<PostData> {
       content: matterResult.content,
       ...(matterResult.data as { title: string; date: string; excerpt?: string; category?: string; tags?: string[] }),
       isNotebook: false,
+      isPdf: false,
     };
   }
 } 
@@ -210,7 +291,7 @@ function getPostCountInFolder(dir: string): number {
     
     if (stat.isDirectory()) {
       count += getPostCountInFolder(fullPath);
-    } else if (item.endsWith('.md') || item.endsWith('.ipynb')) {
+    } else if (item.endsWith('.md') || item.endsWith('.ipynb') || item.endsWith('.pdf')) {
       count++;
     }
   }

@@ -72,6 +72,8 @@ export default function Header() {
               <Link href="/posts" className="text-gray-600 hover:text-blue-600 transition-colors">
                 Posts
               </Link>
+
+
             </nav>
             <SearchBox />
           </div>
@@ -120,6 +122,8 @@ export default function Header() {
               >
                 Posts
               </Link>
+
+
               {/* Mobile Search */}
               <div className="py-3 px-2">
                 <SearchBox />

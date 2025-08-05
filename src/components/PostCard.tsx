@@ -43,14 +43,29 @@ function BasePostCard({ post }: { post: Omit<PostData, 'content'> & { content?: 
           <time dateTime={post.date}>
             {format(new Date(post.date), 'MMMM dd, yyyy')}
           </time>
-          {post.category && (
-            <Link 
-              href={`/posts/category/${encodeURIComponent(post.category)}`}
-              className="px-2 py-1 text-xs bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors cursor-pointer"
-            >
-              {post.category}
-            </Link>
-          )}
+          <div className="flex items-center space-x-2">
+            {post.isPdf && (
+              <span className="px-2 py-1 text-xs bg-red-100 dark:bg-red-900 text-red-700 dark:text-red-300 rounded-full flex items-center">
+                <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clipRule="evenodd" />
+                </svg>
+                PDF
+              </span>
+            )}
+            {post.isNotebook && (
+              <span className="px-2 py-1 text-xs bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 rounded-full">
+                Notebook
+              </span>
+            )}
+            {post.category && (
+              <Link 
+                href={`/posts/category/${encodeURIComponent(post.category)}`}
+                className="px-2 py-1 text-xs bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors cursor-pointer"
+              >
+                {post.category}
+              </Link>
+            )}
+          </div>
         </div>
         
         <Link href={`/posts/${post.id}`} className="block">
@@ -62,6 +77,13 @@ function BasePostCard({ post }: { post: Omit<PostData, 'content'> & { content?: 
             <p className="text-base text-gray-600 dark:text-gray-300 mb-4 line-clamp-3">
               {post.excerpt}
             </p>
+          )}
+          
+          {/* PDF 파일 정보 표시 */}
+          {post.isPdf && post.fileSize && (
+            <div className="text-sm text-gray-500 dark:text-gray-400 mb-4">
+              파일 크기: {post.fileSize < 1 ? `${(post.fileSize * 1024).toFixed(0)} KB` : `${post.fileSize.toFixed(1)} MB`}
+            </div>
           )}
         </Link>
         
@@ -99,14 +121,29 @@ function SearchablePostCard({ post }: { post: Omit<PostData, 'content'> & { cont
           <time dateTime={post.date}>
             {format(new Date(post.date), 'MMMM dd, yyyy')}
           </time>
-          {post.category && (
-            <Link 
-              href={`/posts/category/${encodeURIComponent(post.category)}`}
-              className="px-2 py-1 text-xs bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors cursor-pointer"
-            >
-              {post.category}
-            </Link>
-          )}
+          <div className="flex items-center space-x-2">
+            {post.isPdf && (
+              <span className="px-2 py-1 text-xs bg-red-100 dark:bg-red-900 text-red-700 dark:text-red-300 rounded-full flex items-center">
+                <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clipRule="evenodd" />
+                </svg>
+                PDF
+              </span>
+            )}
+            {post.isNotebook && (
+              <span className="px-2 py-1 text-xs bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 rounded-full">
+                Notebook
+              </span>
+            )}
+            {post.category && (
+              <Link 
+                href={`/posts/category/${encodeURIComponent(post.category)}`}
+                className="px-2 py-1 text-xs bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors cursor-pointer"
+              >
+                {post.category}
+              </Link>
+            )}
+          </div>
         </div>
         
         <Link href={`/posts/${post.id}`} className="block">

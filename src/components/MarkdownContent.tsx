@@ -32,6 +32,8 @@ export default function MarkdownContent({ content, className = '' }: MarkdownCon
           const audioWrapper = `<div class="audio-player-wrapper" data-audio-src="${src.trim()}" data-audio-title="${title.trim()}"></div>`;
           processedContent = processedContent.replace(match[0], audioWrapper);
         }
+
+
         
         setParsedContent(processedContent);
         setIsContentReady(true);
@@ -164,6 +166,8 @@ export default function MarkdownContent({ content, className = '' }: MarkdownCon
       return () => clearTimeout(timer);
     }
   }, [isContentReady, parsedContent]);
+
+
 
   // 오디오 플레이어 렌더링
   useEffect(() => {
