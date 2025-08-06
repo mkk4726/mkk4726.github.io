@@ -33,8 +33,6 @@ export default function MarkdownContent({ content, className = '' }: MarkdownCon
           processedContent = processedContent.replace(match[0], audioWrapper);
         }
 
-
-        
         setParsedContent(processedContent);
         setIsContentReady(true);
       } catch (error) {
@@ -63,7 +61,7 @@ export default function MarkdownContent({ content, className = '' }: MarkdownCon
     }
   }, [isContentReady, parsedContent]);
 
-  // 외부 링크와 내부 문서 링크가 새 탭에서 열리도록 설정
+  // 외부 링크와 내부 문서 링크가 새 탭에서 열리도록 설정 및 헤딩 토글 기능
   useEffect(() => {
     if (isContentReady && parsedContent) {
       const timer = setTimeout(() => {
@@ -80,6 +78,41 @@ export default function MarkdownContent({ content, className = '' }: MarkdownCon
               anchorElement.setAttribute('target', '_blank');
               anchorElement.setAttribute('rel', 'noopener noreferrer');
             }
+          });
+          
+          // 헤딩에 토글 기능 추가
+          const headings = contentDiv.querySelectorAll('h1, h2, h3, h4, h5, h6');
+          headings.forEach((heading) => {
+            const headingElement = heading as HTMLElement;
+            headingElement.style.cursor = 'pointer';
+            
+            // 클릭 이벤트 추가
+            headingElement.addEventListener('click', function(this: HTMLElement) {
+              let nextElement = this.nextElementSibling;
+              const headingLevel = parseInt(this.tagName.charAt(1));
+              let isCollapsed = false;
+              
+              // 다음 헤딩까지의 모든 요소를 토글
+              while (nextElement && 
+                     (!nextElement.matches('h1, h2, h3, h4, h5, h6') || 
+                      parseInt(nextElement.tagName.charAt(1)) > headingLevel)) {
+                const element = nextElement as HTMLElement;
+                if (element.style.display === 'none') {
+                  element.style.display = '';
+                  isCollapsed = true;
+                } else {
+                  element.style.display = 'none';
+                }
+                nextElement = nextElement.nextElementSibling;
+              }
+              
+              // 토글 상태에 따라 헤딩 스타일 변경
+              if (isCollapsed) {
+                this.classList.remove('collapsed');
+              } else {
+                this.classList.add('collapsed');
+              }
+            });
           });
         }
       }, 100);

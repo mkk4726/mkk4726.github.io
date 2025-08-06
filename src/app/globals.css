@@ -723,4 +723,42 @@ html {
   margin: 24px 0 !important;
 }
 
+/* 헤딩 토글 스타일 */
+.prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.prose h1:hover, .prose h2:hover, .prose h3:hover, .prose h4:hover, .prose h5:hover, .prose h6:hover {
+  background-color: #f3f4f6;
+  border-radius: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  margin: 0.25rem -0.5rem;
+}
+
+/* 접힌 상태 표시 */
+.prose h1.collapsed::after, .prose h2.collapsed::after, .prose h3.collapsed::after,
+.prose h4.collapsed::after, .prose h5.collapsed::after, .prose h6.collapsed::after {
+  content: ' (접힘)';
+  font-size: 0.75em;
+  color: #6b7280;
+  font-weight: normal;
+  margin-left: 0.5rem;
+}
+
+
+
+@media (prefers-color-scheme: dark) {
+  .prose h1:hover, .prose h2:hover, .prose h3:hover, .prose h4:hover, .prose h5:hover, .prose h6:hover {
+    background-color: #4b5563;
+  }
+  
+  /* 다크 모드 접힌 상태 표시 */
+  .prose h1.collapsed::after, .prose h2.collapsed::after, .prose h3.collapsed::after,
+  .prose h4.collapsed::after, .prose h5.collapsed::after, .prose h6.collapsed::after {
+    color: #9ca3af;
+  }
+}
+
 
