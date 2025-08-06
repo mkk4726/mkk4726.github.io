@@ -525,6 +525,29 @@ html {
   font-size: inherit;
 }
 
+/* Figure와 Figcaption 스타일 */
+.prose figure {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.prose figure img {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.prose figcaption {
+  text-align: center;
+  font-size: 0.9em;
+  color: #666;
+  margin-top: 8px;
+  font-style: italic;
+}
+
 @media (prefers-color-scheme: dark) {
   .prose pre {
     background-color: #1e1e1e;
