@@ -10,6 +10,7 @@ tags: ["machine-learning", "confidence-interval"]
 - 1: [Confidence Intervals for Machine Learning](https://www.geeksforgeeks.org/machine-learning/confidence-intervals-for-machine-learning/)
 - 2: [Don’t Forget Confidence Intervals for Your ML Product](https://towardsdatascience.com/dont-forget-confidence-intervals-for-your-ml-product-272009bfab56/)
 - 3: [Creating Confidence Intervals for Machine Learning Classifiers](https://sebastianraschka.com/blog/2022/confidence-intervals-for-ml.html)
+- 4: [Confidence vs Prediction Intervals: Understanding the Difference](https://www.datacamp.com/blog/confidence-intervals-vs-prediction-intervals)
 
 ---
 
@@ -80,6 +81,8 @@ tags: ["machine-learning", "confidence-interval"]
 
 확실히 포함된게 더 보기 좋음
 
+이 블로그에서 CI를 구하는 다양한 방법들을 소개하고 있다. 기본적인 컨셉만 이해하고, 정리하다가 너무 많아서 패스.
+
 ## Confidence Intervals in a Nutshell
 
 > A confidence interval is a method that computes an upper and a lower bound around an estimated value. The actual parameter value is either insider or outside these bounds.
@@ -118,7 +121,72 @@ group1과 group2가 다른지를 신뢰구간을 통해 확인해볼 수 있다.
 겹친다면 겹친 분포를 그리고 여기서 mu = 0이 신뢰구간에 포함되는지를 통해 확인할 수 있다.
 
 
+## Method 1 : Normal Approximation Interval Based on a Test Set
 
+> In our case, the sample mean $\bar x$ is test set accuracy $\text{ACC}_{test}$, a proportion of success (in the context of a Binomial proportion confidence interval).
+
+### Binomial proportion confidence interval?
+
+> 성공/실패와 같은 이항 분포를 따르는 비율(proportion)에 대한 신뢰구간
+
+ML에서의 적용:
+- 분류 모델의 정확도(accuracy)는 이항 분포를 따름
+- 각 예측이 맞음(성공) 또는 틀림(실패)의 두 가지 결과만 가짐
+- 전체 예측 중 맞은 비율이 정확도
+
+예시:
+- 테스트셋에서 100개 샘플 중 85개를 맞췄다면
+- 정확도 = 85/100 = 0.85 (85%)
+- 이 85%라는 비율에 대한 신뢰구간을 구하는 것이 이항 비율 신뢰구간
+
+계산 방법:
+- 정규근사법 (Normal Approximation)
+- Wilson 방법
+- Clopper-Pearson 방법
+
+
+### 수식 정의
+
+standard error : $\sqrt{\frac{1}{n} \text{ACC}_{test} (1 - \text{ACC}_{test})}$
+
+> You can find a description of this method in section 1.7 Confidence Intervals via Normal Approximation of my “[Model Evaluation, Model Selection, and Algorithm Selection in Machine Learning”](https://arxiv.org/pdf/1811.12808).
+
+<figure>
+    <img src="/post/DataScience/CI_for_ML/normal-approx.png" alt="confidence_interval_for_ML" style="width: 80%;" />
+    <figcaption>그림5. 정확도에 대한 신뢰구간 표시</figcaption>
+</figure>
+
+
+## Method 2: Bootstrapping Training Set - Setup Step
+
+> If we only have one estimate, like the accuracy from a single test set, we need to make assumptions about the distribution of this accuracy value.
+> For example, we may assume that the accuracy values (that we would compute from different samples) are normally distributed.
+
+부트스트랩 기반으로 신뢰구간을 구한다는건 정규분포를 가정하는건가?
+
+> No! 부트스트랩은 정규분포 가정 없이도 신뢰구간을 구할 수 있는 강력한 비모수적 방법입니다. 이것이 바로 부트스트랩의 가장 큰 장점 중 하나입니다.
+
+
+# Confidence vs Prediction Intervals: Understanding the Difference (참고4)
+
+> The root cause of this uncertainty is the sampling process. 
+> It is unrealistic to consider the entire population when conducting a statistical analysis.
+
+좋은 문장이다.
+
+> The true value of the population parameter is usually not exactly equal to the value estimated from the sample - this difference is the standard error.
+> To account for this error, it is conventional to estimate an expected value and then specify a range that is expected to contain the actual value.
+
+추정값은 실제값과 차이가 있을 것이고, 이를 범위로 표시한다.
+
+## What is a Prediction Interval?
+
+> A prediction interval is the range that is expected - with some level of confidence, to contain the true value of an individual data point, based on a prediction made using regression analysis. 
+
+내가 원하는 개념이 prediction interval이구나. 개별 추정값에 대한 오차 범위.
+
+> However, you must account for the increased variability of individual data points because you are predicting an individual value (and not an average). 
+> Thus, the prediction interval is larger than the confidence interval. 
 
 
 
