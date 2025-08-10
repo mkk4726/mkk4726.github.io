@@ -107,11 +107,13 @@ relative entropy, I-divergence.
 
 > A simple interpretation of the KL divergence of P from Q is the expected excess surprisal from using Q as a model instead of P when the actual distribution is P.
 
+P대신 Q를 썼을 때 정보량의 변화정도가 KL divergence.
+$$
+D_{KL}(P||Q) = \sum_{x \in X} p(x) \log \frac{p(x)}{q(x)} = H(P, Q) - H(P) \tag{3}
+$$
+
 distance의 속성을 만족하지 못해서 distance라고 표현할 수는 없다.
 squared distances의 속성은 만족한다고 한다. 
-
-
-
 
 - 직관: 진짜가 P인데 Q로 coding하려고 할 때 “추가로 내야 하는 information cost”. directionality이 중요해 KL(P||Q)와 KL(Q||P)는 다른 값을 준다.
 - 수식
@@ -137,9 +139,6 @@ information radius(IRAD) or total divergence
 > It is based on the Kullback-Leibler divergence, with some notable (and useful) differences, including that it is symmetric and it always has a finite value.
 
 square root of Jensen-Shannon divergence == Jensen-Shannon distance
-
-
-
 
 - 직관: 두 distribution의 “중간 distribution” M과의 information difference를 평균해 측정하고, square root을 취해 실제 distance로 만든 값. symmetric이고 0~1 범위라 threshold을 정하기 쉽다.
 - 수식
@@ -168,6 +167,26 @@ $$
 - threshold 힌트: 원 단위 그대로 해석하거나 IQR/표준편차로 normalization해 무단위 distance로 비교. KPI와 직접 연결해 threshold 세팅 용이.
 - 사용처: 큰/구조적 이동 추적, 기준·현재 distribution가 거의 겹치지 않는 상황, 비즈니스 단위 해석이 중요한 경우.
 - 흔한 함정: 고차원 계산량 부담·메모리 사용 증가, 피처 스케일 mismatch 시 왜곡 → 표준화 필수. 다변량 OT는 구현·튜닝 난이도 높음.
+
+
+직관적 이해
+- 🚚 "흙을 옮기는 비용" 개념
+- 한 분포의 "질량"을 다른 분포로 옮기는 최소 작업량을 의미합니다
+- 마치 건설 현장에서 흙을 한 곳에서 다른 곳으로 옮기는 것과 비슷합니다
+- 각 위치에서 필요한 흙의 양과 옮겨야 할 거리를 고려하여 총 작업량을 계산합니다
+
+간단한 예시
+- 분포 P: [0, 0, 1, 0, 0]  (중앙에만 질량)
+- 분포 Q: [0, 0, 0, 1, 0]  (오른쪽으로 한 칸 이동)
+- Wasserstein Distance = 1 (한 칸 옮기면 됨)
+- KL divergence = ∞ (겹치는 부분이 없음)
+
+데이터 드리프트에서의 활용
+- 데이터 드리프트를 감지할 때:
+  - 시간에 따른 분포 변화를 정량적으로 측정
+  - 모델 성능 저하의 원인 분석
+  - 데이터 품질 모니터링에 활용
+- 이 방법은 특히 연속형 변수나 순서가 있는 범주형 변수에서 분포 변화를 측정할 때 매우 유용합니다.
 
 ---
 
