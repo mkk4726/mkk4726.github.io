@@ -22,7 +22,7 @@ tags: ["Paper Review"]
 
 기존 논문에서는 이진 처치의 개인화 처치효과를 추정하는 방법을 이야기했고, 이 논문에서는 이를 확장해서 연속형 처치에 대해서도 이를 적용하기 위한 방법론을 이 논문에서 이야기하고 있습니다.
 
-[[Paper Review] Quasi-Oracle Estimation of Heterogeneous Treatment Effects](/posts/Causal%20Inference/review-Quasi-Oracle-Estimation-of-Heterogeneous-Treatment-Effects) <- 이 논문에 대한 리뷰는 여기서 확인할 수 있습니다.
+[[Paper Review] Quasi-Oracle Estimation of Heterogeneous Treatment Effects](/posts/Data%20Science/Causal%20Inference/Paper%20Review/review-Quasi-Oracle-Estimation-of-Heterogeneous-Treatment-Effects) <- 이 논문에 대한 리뷰는 여기서 확인할 수 있습니다.
 
 > 기존의 방법을 확장할 때 발생하는 문제와 이를 해결한 방법론에 대한 이야기에 집중해서 이 논문을 이해했습니다.
 
@@ -80,7 +80,7 @@ heterogeneous treatment effects는 conditional average treatment effect (CATE)�
 
 
 R-learner는 partially linear model에서 제안한 수학적 분해 방법을 기반으로 삼아서 이를 머신러닝 기반 처치효과 추정으로 확장된 개념입니다.
-이에 대한 간단한 정리는 [What is FWL?](/posts/Causal%20Inference/2025-07-02-what-is-fwl)에서 확인할 수 있습니다.
+이에 대한 간단한 정리는 [What is FWL?](/posts/Data%20Science/Causal%20Inference/what-is-fwl)에서 확인할 수 있습니다.
 
 **참고 논문**: 
 - Robinson, P. M. (1988). Root-N-consistent semiparametric regression. Econometrica, 56(4), 931-954. [[논문 링크](https://www.jstor.org/stable/1912705)]
@@ -155,7 +155,7 @@ $$\tau(x, t) \approx \sum_i \beta_i \phi_i(x, t)$$
 - 행렬의 고유값들이 0에 가까워져서 수치적 불안정성 발생
 - 이는 행렬 교란 이론(matrix perturbation theory)과 스펙트럴 분석이 필요한 이유
 
-**자세한 이론적 배경**: [Ill-conditioned 행렬과 고유값: 연속형 처치 R-learner의 이론적 배경](/posts/Causal%20Inference/ill-conditioned-matrix-theory)
+**자세한 이론적 배경**: [Ill-conditioned 행렬과 고유값: 연속형 처치 R-learner의 이론적 배경](/posts/Data%20Science/Causal%20Inference/ill-conditioned-matrix-theory)
 
 #### 6. 수렴 속도의 특징
 
@@ -489,7 +489,7 @@ $$
 
 강한 (엄격한) convex function을 loss function에 추가하여, loss function을 convex하게 만들어 문제를 해결할 수 있다는 이야기입니다.
 
-**이론적 배경**: Tikhonov regularization과 convex optimization의 자세한 원리는 [Tikhonov Regularization과 Convex Optimization](/posts/Causal%20Inference/tikhonov-regularization-and-convex-optimization)에서 확인할 수 있습니다.
+**이론적 배경**: Tikhonov regularization과 convex optimization의 자세한 원리는 [Tikhonov Regularization과 Convex Optimization](/posts/Data%20Science/Causal%20Inference/tikhonov-regularization-and-convex-optimization)에서 확인할 수 있습니다.
 
 
 **Theorem 1.** 집합 $S$ 내에서 다음과 같은 중간 함수를 정의하자:
@@ -659,7 +659,7 @@ Binary T에서는 T∈{0, 1}이라 (T-e(X))h(X,1) 형태로 식을 재정리하�
    - 이렇게 하면 tilde tau 는 어떤 x 에 대해서도 t 값 전체를 평균 내면 0 이 됩니다.  
      즉 “덧붙일 수 있는 s(x)” 여지가 사라집니다.
 
-[Why Do We Introduce the Centered Function tilde_tau(x,t)?](/posts/Causal%20Inference/tilde-tau-explained)
+[Why Do We Introduce the Centered Function tilde_tau(x,t)?](/posts/Data%20Science/Causal%20Inference/tilde-tau-explained)
 
 3. **정규화와의 연결**  
    - L2 정규화(Tikhonov)로 

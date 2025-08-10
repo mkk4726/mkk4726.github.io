@@ -54,19 +54,22 @@ export async function getSortedPostsData(): Promise<Omit<PostData, 'content'>[]>
     // Get relative path from posts directory and remove extension to get id
     const relativePath = path.relative(postsDirectory, filePath);
     const id = relativePath.replace(/\.(md|ipynb|pdf)$/, '');
+    
+    // Ensure consistent path separators and handle spaces properly
+    const normalizedId = id.replace(/\\/g, '/');
 
     // Handle different file types
     if (filePath.endsWith('.ipynb')) {
       // For Jupyter notebooks, extract metadata directly
       const metadata = extractNotebookMetadata(filePath);
-      return {
-        id,
-        title: metadata.title || id,
-        date: metadata.date || new Date().toISOString().split('T')[0],
-        excerpt: metadata.excerpt,
-        category: metadata.category,
-        tags: metadata.tags,
-      };
+          return {
+      id: normalizedId,
+      title: metadata.title || normalizedId,
+      date: metadata.date || new Date().toISOString().split('T')[0],
+      excerpt: metadata.excerpt,
+      category: metadata.category,
+      tags: metadata.tags,
+    };
     } else if (filePath.endsWith('.pdf')) {
       // For PDF files, generate metadata from file info
       const fileName = path.basename(filePath, '.pdf');
@@ -87,7 +90,7 @@ export async function getSortedPostsData(): Promise<Omit<PostData, 'content'>[]>
       const tags = categoryParts.filter(part => part.trim() !== '');
       
               return {
-          id,
+          id: normalizedId,
           title,
           date: '', // PDF는 날짜 없음
           excerpt: `${title} PDF 문서입니다.`,
@@ -104,7 +107,7 @@ export async function getSortedPostsData(): Promise<Omit<PostData, 'content'>[]>
       const matterResult = matter(fileContents);
       
       return {
-        id,
+        id: normalizedId,
         ...(matterResult.data as { title: string; date: string; excerpt?: string; category?: string; tags?: string[] }),
       };
     }
@@ -139,8 +142,13 @@ export function getAllPostIds() {
   const postFiles = getAllPostFiles(postsDirectory);
   return postFiles.map((filePath: string) => {
     const relativePath = path.relative(postsDirectory, filePath);
+    const id = relativePath.replace(/\.(md|ipynb|pdf)$/, '');
+    
+    // Ensure consistent path separators and handle spaces properly
+    const normalizedId = id.replace(/\\/g, '/');
+    
     return {
-      id: relativePath.replace(/\.(md|ipynb|pdf)$/, ''),
+      id: normalizedId,
     };
   });
 }
@@ -175,7 +183,31 @@ export async function getPostData(id: string): Promise<PostData> {
     const postFiles = getAllPostFiles(postsDirectory);
     const targetFile = postFiles.find((filePath: string) => {
       const relativePath = path.relative(postsDirectory, filePath);
-      return relativePath.replace(/\.(md|ipynb|pdf)$/, '') === decodedId;
+      const relativePathWithoutExt = relativePath.replace(/\.(md|ipynb|pdf)$/, '');
+      
+      // Exact match first
+      if (relativePathWithoutExt === decodedId) {
+        return true;
+      }
+      
+      // Handle cases where the decodedId might have different path separators
+      // or the file is in a nested subdirectory
+      const normalizedDecodedId = decodedId.replace(/\\/g, '/');
+      const normalizedRelativePath = relativePathWithoutExt.replace(/\\/g, '/');
+      
+      if (normalizedRelativePath === normalizedDecodedId) {
+        return true;
+      }
+      
+      // Additional fallback: try to match by filename only if path structure is complex
+      const fileName = path.basename(relativePathWithoutExt);
+      const decodedFileName = path.basename(decodedId);
+      
+      if (fileName === decodedFileName) {
+        return true;
+      }
+      
+      return false;
     });
     
     if (!targetFile) {

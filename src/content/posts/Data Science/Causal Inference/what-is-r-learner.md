@@ -222,7 +222,7 @@ x_cate_test = test.assign(cate=(ps_predict(test,1)*mx0.predict(test[X]) +
 ---
 
 R-learner는 FWL-theorem을 meta-learner 형태로 구현한 모델입니다.
-[FWL theorem이란?](/posts/Causal%20Inference/what-is-fwl)
+[FWL theorem이란?](/posts/Data%20Science/Causal%20Inference/what-is-fwl)
 조금 더 엄밀하게 이야기하면 double/debiased machine learning이라고 말할 수 있고,
 여기에 propensity score를 함께 사용해 편향을 보정하는 모델이 R-learner입니다.
 
@@ -235,7 +235,7 @@ R-learner는 다른 meta-learner들과 다르게 이 모델은 CATE를 직접적
 
 > CATE estimation을 평가하는 방법에는 2가지정도가 있는데,
 > 하나는 임의로 데이터셋을 만들어 실제로 잘 추정하는지 확인하는 것과 
-> 다른 하나는 cate로 정렬해 그룹별로 ATE를 구해 비교하는 것입니다. -> [how to evaluate CATE estimation model](/posts/Causal%20Inference/how-can-evaluate-casual-models)
+> 다른 하나는 cate로 정렬해 그룹별로 ATE를 구해 비교하는 것입니다. -> [how to evaluate CATE estimation model](/posts/Data%20Science/Causal%20Inference/how-can-evaluate-casual-models)
 
 
 또한 회귀모델을 통한 잔차화와 propensity score를 통한 잔차화를 진행해 doubly robust 하다는 장점도 가지고 있습니다.
@@ -249,7 +249,7 @@ R-learner는 다른 meta-learner들과 다르게 이 모델은 CATE를 직접적
 propensity score를 통한 잔차화의 컨셉은 X를 통제할 수 없다면 e(X)를 통제해서, X를 통제한 것과 같은 상태를 만들자는 것입니다.
 
 참고자료
-- [PropensityScoreNotebook.ipynb](/posts/Causal%20Inference/Causal%20Inference%20for%20The%20Brave%20and%20True/PropensityScoreNotebook)
+- [PropensityScoreNotebook.ipynb](/posts/Data%20Science/Causal%20Inference/Causal%20Inference%20for%20The%20Brave%20and%20True/PropensityScoreNotebook)
 - [Causal Inference for The Brave and True - Propensity Score](https://matheusfacure.github.io/python-causality-handbook/11-Propensity-Score.html)
 
 R-leaner는 이 2가지 모두를 사용해 편향을 없애고 있고, 이를 위한 2개의 모델 중 하나의 성능만 보장되면 나머지 하나의 성능이 부족하더라도 CATE estimation의 성능이 보장된다고 합니다.
@@ -291,7 +291,7 @@ $$
 
 Quasi-Oracle Estimation of Heterogeneous Treatment Effects에서 이를 정의하고 있습니다.
 - [paper link](https://arxiv.org/pdf/1712.04912)
-- [paper review](/posts/Causal%20Inference/Paper%20Review/review-Quasi-Oracle-Estimation-of-Heterogeneous-Treatment-Effects)
+- [paper review](/posts/Data%20Science/Causal%20Inference/Paper%20Review/review-Quasi-Oracle-Estimation-of-Heterogeneous-Treatment-Effects)
 
 기본적인 컨셉은 2개의 nuisance function이 이상적일 때의 error bound와 2개 중 1개만 이상적일 때의 error bound가 같다는 것을 증명하는 것입니다.
 
@@ -301,7 +301,7 @@ Quasi-Oracle Estimation of Heterogeneous Treatment Effects에서 이를 정의�
 ---
 Generalized R-loss는 Towards R-learner with Continuous Treatment 논문에서 제안된 손실함수입니다.
 - [paper link](https://arxiv.org/pdf/2208.00872)
-- [paper review](/posts/Causal%20Inference/Paper%20Review/review-Towards-R-learner-with-Continuous-Treatments)
+- [paper review](/posts/Data%20Science/Causal%20Inference/Paper%20Review/review-Towards-R-learner-with-Continuous-Treatments)
 
 $$
 L_c(h) = E\left[\left\{Y - m(X) - h(X, T) + E_{\varpi}\{h(X, T) \mid X\}\right\}^2\right] \tag{generalized R-loss}

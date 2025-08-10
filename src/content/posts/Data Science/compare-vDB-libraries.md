@@ -217,5 +217,5 @@ ChromaDB는 소규모/실험에, FAISS는 직접 구현이 필요하므로 대�
 
 
 # 샘플 코드들
-[compare-vDB-libraries](/posts/Data%20Science/compare-vDB-libraries.ipynb)
+[compare-vDB-libraries](/posts/Data%20Science/Data%20Engineering/vDB_code_notebook)
 

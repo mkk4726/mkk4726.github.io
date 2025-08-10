@@ -193,8 +193,8 @@ ata와 clr의 경우 분포의 차이가 명확히 보이고 있습니다.
 
 예측 모델은 상관관계에 기반해 패턴을 찾습니다.
 
-[인과추론이란?](/posts/Causal%20Inference/what-is-causal-inference)
-[상관관계와 인과관계](/posts/Causal%20Inference/correlation-vs-causation)
+[인과추론이란?](/posts/Data%20Science/Causal%20Inference/what-is-causal-inference)
+[상관관계와 인과관계](/posts/Data%20Science/Causal%20Inference/correlation-vs-causation)
 
 이때 confounding variable은 인과관계가 아닌 상관관계를 만들 수 있습니다.
 
@@ -218,7 +218,7 @@ $Y$와 $T$ 간의 인과관계를 모델링해야 합니다.
 
 
 교란변수를 제거하는 방법은 여러가지가 있지만 그 중에 하나가 잔차화 방법입니다.
-[FWL 정리](/posts/Causal%20Inference/2025-07-02-what-is-fwl) 에서 설명한 것처럼 잔차화 방법을 통해 교란변수를 통제할 수 있습니다.
+[FWL 정리](/posts/Data%20Science/Causal%20Inference/what-is-fwl) 에서 설명한 것처럼 잔차화 방법을 통해 교란변수를 통제할 수 있습니다.
 
 잔차화를 하게 되면 다음과 같은 결과를 얻을 수 있습니다.
 
@@ -259,7 +259,7 @@ $Y$와 $T$ 간의 인과관계를 모델링해야 합니다.
 > 직관적으로 너무나도 당연한 말이지만, 앞서 설명드린 것처럼 이러한 통계적인 편향들을 제거하지 않고 결과를 분석하게 되면 잘못된 결과를 도출할 수 있습니다.
 
 
-잔차화하는 코드는 [잔차화 코드](/posts/Causal%20Inference/residualization-fwl-theorem-test) 확인해볼 수 있습니다.
+잔차화하는 코드는 [잔차화 코드](/posts/Data%20Science/Causal%20Inference/residualization-fwl-theorem-test) 확인해볼 수 있습니다.
 
 
 # 정리

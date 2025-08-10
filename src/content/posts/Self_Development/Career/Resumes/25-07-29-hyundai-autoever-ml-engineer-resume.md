@@ -6,7 +6,7 @@ category: "Career"
 tags: ["현대자동차 채용공고", "이력서"]
 ---
 
-[채용공고와 분석내용](/posts/Career/Job%20Transition/25-07-29-hyundai-autoever-ml-engineer)
+[채용공고와 분석내용](/posts/Self_Development/Career/Job%20Transition/25-07-29-hyundai-autoever-ml-engineer)
 
 필요한 경험만 살려서 짧고 굵게 쓰기.
 2장정도 분량
