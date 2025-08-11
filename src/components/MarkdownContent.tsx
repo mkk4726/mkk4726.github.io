@@ -67,6 +67,18 @@ export default function MarkdownContent({ content, className = '' }: MarkdownCon
       const timer = setTimeout(() => {
         const contentDiv = document.querySelector('.prose');
         if (contentDiv) {
+          // 테이블을 스크롤 가능한 래퍼로 감싸기 (중복 방지)
+          const tables = contentDiv.querySelectorAll('table');
+          tables.forEach((table) => {
+            const parent = table.parentElement;
+            if (!parent) return;
+            if (parent.classList.contains('table-responsive')) return;
+            const wrapper = document.createElement('div');
+            wrapper.className = 'table-responsive';
+            parent.insertBefore(wrapper, table);
+            wrapper.appendChild(table);
+          });
+
           // 모든 링크 선택 (앵커 링크 제외)
           const allLinks = contentDiv.querySelectorAll('a[href]');
           allLinks.forEach((link) => {

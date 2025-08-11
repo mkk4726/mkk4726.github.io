@@ -408,12 +408,38 @@ html {
 
 /* Table styling for markdown tables */
 .prose table {
-  width: 100% !important;
+  /* Make wide tables scroll within the post area instead of overflowing */
+  width: max-content !important;       /* keep natural width to avoid cramped columns */
+  min-width: 100% !important;          /* but fill container when smaller */
   border-collapse: collapse !important;
-  margin: 1rem 0 !important;
-  overflow-x: auto !important;
-  display: table !important;
+  margin: 0 !important;
+  display: table !important;           /* table layout inside wrapper */
+  -webkit-overflow-scrolling: touch !important; /* smooth scroll on iOS */
   font-family: var(--font-nanum-gothic), 'Noto Sans KR', Arial, Helvetica, sans-serif !important;
+}
+
+/* Scrollable wrapper for tables */
+.table-responsive {
+  width: 100% !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  -webkit-overflow-scrolling: touch !important;
+  margin: 1rem 0 !important;
+  padding-bottom: 0.25rem !important; /* small space to hint scroll */
+}
+
+.table-responsive::-webkit-scrollbar {
+  height: 8px;
+}
+.table-responsive::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+.table-responsive::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+.table-responsive:hover::-webkit-scrollbar-thumb {
+  background: #94a3b8;
 }
 
 .prose table thead {
@@ -435,6 +461,13 @@ html {
   border: 1px solid #e5e7eb !important;
   color: #374151 !important;
   font-family: var(--font-nanum-gothic), 'Noto Sans KR', Arial, Helvetica, sans-serif !important;
+}
+
+/* Prevent long words/content from breaking the layout */
+.prose table th,
+.prose table td {
+  white-space: nowrap !important;      /* keep content on one line to preserve natural column width */
+  word-break: keep-all !important;     /* better word handling for Korean */
 }
 
 .prose table tr:nth-child(even) {
@@ -695,7 +728,7 @@ html {
 
 /* PDF 전용 유틸리티 클래스 */
 .pdf-optimized {
-  color-adjust: exact !important;
+  print-color-adjust: exact !important; /* standard */
   -webkit-print-color-adjust: exact !important;
 }
 
