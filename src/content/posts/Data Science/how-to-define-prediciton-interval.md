@@ -8,6 +8,8 @@ tags: ["statistics"]
 
 참고자료
 - 1 : [Confidence vs Prediction Intervals: Understanding the Difference](https://www.datacamp.com/blog/confidence-intervals-vs-prediction-intervals)
+- 2 : [IBM Developer - Prediction intervals explained: A LightGBM tutorial](https://developer.ibm.com/articles/prediction-intervals-explained-a-lightgbm-tutorial/)
+
 
 
 
@@ -29,15 +31,95 @@ $$
 
 ## ML에서의 불확실성 (Uncertainty)
 
-- **Aleatoric uncertainty**: 데이터 자체의 내재적 변동성(heteroscedastic noise 포함). 더 많은 데이터로도 완전히 제거되지 않음.
-- **Epistemic uncertainty**: 모델/파라미터에 대한 불확실성. 데이터가 많아지면 감소.
+- **Aleatoric uncertainty (우연적 불확실성)**: 데이터 자체의 내재적 변동성(heteroscedastic noise 포함). 더 많은 데이터로도 완전히 제거되지 않음. 예: 측정 오차, 자연적인 변동성.
+
+- **Epistemic uncertainty (인식론적 불확실성)**: 모델/파라미터에 대한 불확실성. 데이터가 많아지면 감소. 예: 모델 파라미터 추정의 불확실성, 모델 구조의 한계.
+
+- **CI vs PI**: CI는 주로 epistemic uncertainty를, PI는 epistemic + aleatoric uncertainty 모두를 다룸. 따라서 동일한 설정에서 PI의 폭이 CI보다 넓음.
+
 - **Calibration**: 목표 coverage(예: 90%)에 실제 커버리지가 맞도록 조정.
+
 - **Coverage 유형**: marginal vs conditional. 실무에서는 분포 가정이 약할 때도 사용할 수 있는 marginal coverage 도구(예: conformal)가 유용.
+
+
+## LightGBM에서 Prediction Interval (참고 2)
+
+LGBM에서 prediction interval 기능도 제공하는구나. quantile-regression 기반.
+
+> When you are performing regression tasks, you have the option of generating prediction intervals by using quantile regression, which is a fancy way of estimating the median value for a regression value in a specific quantile.
+> Simply put, a prediction interval is just about generating a lower and upper bound on the final regression value. 
+> This is incredibly important for some tasks, which I explain in this article
+
+### Why use them? (them -> prediction interval)
+> You can never be 100 percent certain about one prediction from one model. 
+> Instead, the idea is to give an interval back to a person who ends up controlling the final decision based on the range that is given by the model.
+
+### Quantile regression
+> In the typical linear regression model, you track the mean difference from the ground truth to optimize the model. 
+> However, in quantile regression, as the name suggests, you track a specific quantile (also known as a percentile) against the median of the ground truth.
+
+### Quantile and assumptions
+
+> Using the median approach lets you specify the quantiles
+
+**중앙값(median) 접근법의 장점:**
+
+- **분위수 지정 가능**: 5% 분위수(데이터의 5%를 포함)와 95% 분위수(데이터의 95%를 포함)를 지정하여 하한과 상한 경계를 설정할 수 있습니다.
+
+- **Outlier에 강함**: 평균(mean)을 사용할 때는 outlier가 있으면 예측 성능이 떨어질 수 있습니다. 평균은 outlier 값에 크게 영향을 받기 때문입니다. 중앙값을 사용하면 outlier에 덜 민감하여 더 나은 하한과 상한 경계를 만들 수 있습니다.
+
+- **분포 가정 불필요**: 선형 회귀와 달리 데이터의 분포에 대한 가정을 하지 않아, 특정 상황에서 더 유용하고 정확합니다.
+
+### Regression
+
+$$
+L = \begin{cases} 
+\alpha(y - X\theta), & \text{if } (y - X\theta) \geq 0 \\ 
+(\alpha - 1)(y - X\theta), & \text{if } (y - X\theta) < 0 
+\end{cases}
+$$
+
+> That changes in quantile regression because you must be able to account for the different quantiles.
+> - When the alpha is high (for example, 0.95), the errors that are less than zero receive a lower error value than if they are greater than zero.
+> - When the alpha is low (for example, 0.05), the errors that are less than zero receive a higher error value than if they are greater than zero, where they receive a smaller error value
+
+### python code
+
+```python
+import lightgbm as lgb
+
+regressor = lgb.LGBMRegressor()
+regressor.fit(x_train, y_train)
+regressor_pred = regressor.predict(x_test)
+
+lower = lgb.LGBMRegressor(objective = 'quantile', alpha = 1 - 0.95)
+lower.fit(x_train, y_train)
+lower_pred = lower.predict(x_test)
+
+upper = lgb.LGBMRegressor(objective = 'quantile', alpha = 0.95)
+upper.fit(x_train, y_train)
+upper_pred = upper.predict(x_test)
+
+plt.figure(figsize=(10, 6))
+
+plt.scatter(x_test.MedInc, lower_pred, color='limegreen', marker='o', label='lower', lw=0.5, alpha=0.5)
+plt.scatter(x_test.MedInc, regressor_pred, color='aqua', marker='x', label='pred', alpha=0.7)
+plt.scatter(x_test.MedInc, upper_pred, color='dodgerblue', marker='o', label='upper', lw=0.5, alpha=0.5)
+plt.plot(sorted(x_test.MedInc), sorted(lower_pred), color='black')
+plt.plot(sorted(x_test.MedInc), sorted(regressor_pred), color='red')
+plt.plot(sorted(x_test.MedInc), sorted(upper_pred), color='black')
+plt.legend()
+
+plt.show()
+```
+
+
+
 
 
 ## 구현 방법들
 
-### 1) Quantile Regression
+### 1 Quantile Regression
 
 - 아이디어: $\tau$-quantile 함수 $q_\tau(x)$를 직접 학습해 $[q_\alpha(x), q_{1-\alpha}(x)]$를 PI로 사용.
 - Loss(“pinball loss”):
@@ -50,7 +132,7 @@ $$
   - quantile crossing 방지: monotonicity penalty 또는 joint training
 - 장점: heteroscedastic noise에 강함, 분포 가정 최소화. 단점: calibration 보장은 없음(사후 조정 가능).
 
-### 2) Conformal Prediction
+### 2 Conformal Prediction
 
 - 가정: 예측 시점과 calibration 데이터가 exchangeable.
 - Split conformal(대중적 실무 절차):
@@ -68,7 +150,7 @@ $$
 
 - 장점: 분포/모델에 거의 비의존적이며 finite-sample marginal coverage 보장. 단점: 데이터 분할 필요, conditional coverage는 일반적으로 미보장.
 
-### 3) Ensemble Methods
+### 3 Ensemble Methods
 
 - Bootstrap ensemble, Random Forest, Deep Ensemble 등으로 여러 예측 $\{\hat f_k(x)\}_{k=1}^K$을 얻어 분산을 추정.
 - 단순히 ensemble 분산으로 $\hat f(x) \pm z\cdot \hat\sigma_{ens}(x)$를 만들면 calibration이 보장되지 않음.
@@ -76,7 +158,7 @@ $$
   - 예: Jackknife+는 leave-one-out 예측 분포를 이용해 하한/상한의 적절한 order statistic을 취해 구간 구성.
 - 장점: 구현 용이, epistemic 반영. 단점: 데이터/계산 비용 증가, 별도 calibration 권장.
 
-### 4) Bayesian Approaches
+### 4 Bayesian Approaches
 
 - 목표: posterior predictive $p(y\mid x, \mathcal{D})$로부터 구간 산출.
 $$
