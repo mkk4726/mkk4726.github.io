@@ -7,7 +7,119 @@ demo: "https://ocr-pipeline-demo.example.com"
 date: "2024-10-20"
 ---
 
-# OCR Pipeline System
+# 정의했던 문제들, 해결하는 과정, 해결한 결과
+
+## DB insert error (deadlock)
+
+```text
+bnviit-ocr-server
+앱  오전 9:51
+[ERROR] pentacam_4_2025-08-09 09:51:50 : Fail to insert ocr result to database, Error message : Traceback (most recent call last):
+  File "/app/assets/ocr/models.py", line 202, in insert_database
+    cursor.execute(query)
+pyodbc.ProgrammingError: ('42000', '[42000] [FreeTDS][SQL Server]Transaction (Process ID 727) was deadlocked on lock | communication buffer resources with another process and has been chosen as the deadlock victim. Rerun the transaction. (1205) (SQLExecDirectW)')
+, Status : None
+```
+
+한번씩 이런 문제가 발생한다. 무슨 문제지?
+
+**GPT 설명**
+> 메시지의 핵심은 “Transaction (Process ID 727) was deadlocked … and has been chosen as the deadlock victim” 으로, 동시에 실행 중인 두(또는 그 이상) 트랜잭션이 서로가 보유한 리소스를 기다리며 교착 상태에 빠졌고, SQL Server가 그 중 하나(네 트랜잭션)를 희생(victim) 으로 골라 롤백했다는 뜻이야. 그래서 간헐적으로 실패가 나고, 보통 재실행하면 성공해. 
+> 메시지에 보이는 lock | communication buffer는 뭘 의미하나?
+> - lock은 우리가 익숙한 테이블/인덱스/키 락 같은 일반 잠금을 뜻하고,
+> - communication buffer는 병렬 실행(Parallelism) 때 스레드 간 데이터를 주고받는 익스체인지(exchange) 버퍼 같은 내부 통신 자원을 뜻해. 드물지만 병렬 계획에서 이 자원 때문에 데드락이 날 수 있어. 
+> 
+> 정리: 네 에러는 “일반 잠금(lock)” 혹은 “병렬 통신 버퍼(communication buffer)” 수준에서 다른 세션과 데드락이 났고, 그 결과 1205로 실패했다는 의미.
+
+
+**코드에서 발견한 문제점**
+
+INSERT가 동시에 실행될 때 deadlock이 발생할 수 있음
+
+- 공통 베이스: `assets/ocr/models.py` (스택트레이스와 일치)
+```173:213:assets/ocr/models.py
+    def insert_database(
+        self, logger: logging.Logger, db_name: str, data_object: BaseDataBinocular | BaseDataMonocular, server_info: ServerInfo
+    ) -> FuncResult[str]:
+        try:
+            conn = get_conn(db_info=server_info.crm_db_info, deploy_env=server_info.deploy_env)
+            cursor = conn.cursor()
+            cust_num = data_object.CUST_NUM["ocr_value"]
+            exam_date = data_object.Exam_Date["ocr_value"]
+            # cust_num, exam_date가 이미 있으면 update, 아니면 insert
+            cursor.execute(self.select_query(cust_num, exam_date, db_name))
+            rows = cursor.fetchall()
+            if len(rows) == 0:
+                keys, values = data_object.get_insert_key_value()
+                query = self.insert_query(keys, values, db_name)
+            else:
+                keys, values = data_object.get_update_key_value()
+                set_query = ",".join([f"{key} = {value}" for key, value in zip(keys, values)])
+                query = self.update_query(set_query, cust_num, exam_date, db_name)
+            logger.info(f"Query : {query}")
+            cursor.execute(query)
+            conn.close()
+```
+
+- 두 워커가 **거의 동시에** 실행되지는 예시
+
+```
+시간축: 0ms    1ms    2ms    3ms    4ms
+워커A:  SELECT → INSERT 시작 → 고유인덱스 잠금 획득 → 클러스터인덱스 잠금 대기
+워커B:         SELECT → INSERT 시작 → 클러스터인덱스 잠금 획득 → 고유인덱스 잠금 대기
+```
+
+- **SQL Server의 내부 처리 방식 :**
+
+SQL Server는 INSERT 작업을 처리할 때 **여러 단계**로 나누어 처리합니다:
+
+**내부 처리 과정:**
+1. **고유성 검증**: 고유 인덱스에 중복 값이 있는지 확인
+2. **공간 할당**: 클러스터 인덱스에서 실제 데이터 페이지 할당
+3. **데이터 삽입**: 실제 데이터를 페이지에 기록
+
+- **잠금 획득 순서의 차이**
+
+**워커 A의 경우:**
+- 고유 인덱스 잠금을 먼저 획득 (중복 검사)
+- 클러스터 인덱스 잠금을 기다림 (데이터 페이지 할당)
+
+**워커 B의 경우:**
+- 클러스터 인덱스 잠금을 먼저 획득 (데이터 페이지 할당)
+- 고유 인덱스 잠금을 기다림 (중복 검사)
+
+- **실제 예시로 설명**
+
+```sql
+-- 워커 A: 고유 인덱스 먼저 잠금
+BEGIN TRANSACTION;
+-- 1. 고유 인덱스 잠금 획득 (중복 검사)
+-- 2. 클러스터 인덱스 잠금 대기 (데이터 페이지 할당)
+INSERT INTO PENTACAM_DATA (CUST_NUM, Exam_Date, ...) VALUES ('1234', '20240820', ...);
+COMMIT;
+
+-- 워커 B: 클러스터 인덱스 먼저 잠금 (동시 실행)
+BEGIN TRANSACTION;
+-- 1. 클러스터 인덱스 잠금 획득 (데이터 페이지 할당)
+-- 2. 고유 인덱스 잠금 대기 (중복 검사)
+INSERT INTO PENTACAM_DATA (CUST_NUM, Exam_Date, ...) VALUES ('1234', '20240820', ...);
+COMMIT;
+```
+
+- **왜 이런 순서가 발생하는가?**
+
+SQL Server의 **쿼리 최적화기(Query Optimizer)**가 각 INSERT 작업의 실행 계획을 **독립적으로** 결정하기 때문입니다:
+
+- **워커 A**: 고유성 검증을 우선적으로 처리
+- **워커 B**: 데이터 페이지 할당을 우선적으로 처리
+
+이렇게 **서로 다른 실행 경로**를 택하면서 **서로 다른 잠금 순서**로 진행되어 Deadlock이 발생하는 것입니다.
+
+
+
+
+
+# 프로젝트 설명
 
 ## 프로젝트 개요
 병원 검사 결과 이미지에서 실시간으로 데이터를 추출하여 DB에 자동 적재하는 OCR 파이프라인 시스템을 구축했습니다. 기존 수작업으로 진행되던 데이터 입력 과정을 자동화하여 검안사의 업무 효율성을 크게 향상시켰습니다.
