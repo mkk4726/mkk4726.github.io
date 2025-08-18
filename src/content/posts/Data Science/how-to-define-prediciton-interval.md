@@ -169,6 +169,130 @@ $$
 - 절차: posterior predictive의 quantile을 취해 PI 구성.
 - 장점: 불확실성 분해 가능(epistemic/aleatoric), 해석력. 단점: 모델/사전 분포에 민감, 대규모 딥러닝에서 근사 필요.
 
+### 5 MAE 기반 Prediction Interval
+
+MAE(Mean Absolute Error)를 기반으로 prediction interval을 구성하는 방법도 있습니다.
+
+#### 기본 아이디어
+- **MAE의 의미**: 예측값과 실제값 간의 평균 절대 오차
+- **분포 가정**: 오차가 대칭 분포를 따른다고 가정할 때, MAE를 이용해 prediction interval을 구성할 수 있음
+
+#### 구현 방법
+
+**1. 단순 MAE 기반**
+```python
+# MAE 계산
+mae = np.mean(np.abs(y_true - y_pred))
+
+# Prediction interval 구성 (대칭 분포 가정)
+# 90% coverage를 위한 경우
+alpha = 0.1
+z_score = norm.ppf(1 - alpha/2)  # 1.645 for 90% coverage
+
+# MAE를 표준편차로 변환 (Laplace 분포 가정)
+# Laplace 분포에서 MAE = σ√2, 따라서 σ = MAE/√2
+sigma_est = mae / np.sqrt(2)
+
+# Prediction interval
+lower_bound = y_pred - z_score * sigma_est
+upper_bound = y_pred + z_score * sigma_est
+```
+
+**2. Heteroscedastic MAE 기반**
+```python
+# 각 예측값별로 MAE를 계산 (예: binning 또는 local averaging)
+def heteroscedastic_mae_based_pi(y_pred, y_true, x_features, bins=10):
+    # 예측값을 기준으로 binning
+    pred_bins = pd.cut(y_pred, bins=bins)
+    
+    # 각 bin별로 MAE 계산
+    bin_mae = {}
+    for bin_name in pred_bins.cat.categories:
+        mask = pred_bins == bin_name
+        if mask.sum() > 0:
+            bin_mae[bin_name] = np.mean(np.abs(y_true[mask] - y_pred[mask]))
+    
+    # 각 예측값에 대해 해당 bin의 MAE 사용
+    pi_bounds = []
+    for i, pred in enumerate(y_pred):
+        bin_name = pred_bins.iloc[i]
+        if bin_name in bin_mae:
+            mae_local = bin_mae[bin_name]
+            sigma_local = mae_local / np.sqrt(2)
+            
+            # 90% coverage
+            z_score = 1.645
+            lower = pred - z_score * sigma_local
+            upper = pred + z_score * sigma_local
+            pi_bounds.append((lower, upper))
+        else:
+            pi_bounds.append((pred, pred))
+    
+    return np.array(pi_bounds)
+```
+
+#### 장단점
+
+**장점:**
+- **구현 간단**: 복잡한 모델링 없이 기존 MAE 지표를 활용
+- **해석 용이**: MAE의 의미를 그대로 prediction interval에 반영
+- **계산 효율**: 추가적인 모델 학습이나 복잡한 추론 과정 불필요
+
+**단점:**
+- **분포 가정**: 오차가 대칭 분포를 따른다는 가정이 필요
+- **Coverage 보장 없음**: 실제 coverage가 목표 coverage와 일치하지 않을 수 있음
+- **Homoscedastic 가정**: 기본적으로는 모든 예측값에 동일한 불확실성을 적용
+
+#### 개선 방안
+
+**1. Calibration 적용**
+```python
+def calibrate_mae_based_pi(y_pred, y_true, target_coverage=0.9):
+    # 초기 MAE 기반 PI 생성
+    mae = np.mean(np.abs(y_true - y_pred))
+    initial_pi = mae * 1.645  # 90% coverage
+    
+    # Calibration을 위한 scaling factor 찾기
+    empirical_coverage = np.mean(
+        (y_true >= y_pred - initial_pi) & 
+        (y_true <= y_pred + initial_pi)
+    )
+    
+    # Scaling factor 조정
+    scaling_factor = target_coverage / empirical_coverage
+    calibrated_pi = initial_pi * scaling_factor
+    
+    return calibrated_pi
+```
+
+**2. Ensemble MAE 활용**
+```python
+def ensemble_mae_based_pi(ensemble_predictions, y_true):
+    # Ensemble 예측값들의 표준편차 계산
+    pred_std = np.std(ensemble_predictions, axis=0)
+    
+    # MAE 계산
+    ensemble_mean = np.mean(ensemble_predictions, axis=0)
+    mae = np.mean(np.abs(y_true - ensemble_mean))
+    
+    # MAE와 ensemble 분산을 결합
+    combined_uncertainty = np.sqrt(mae**2 + pred_std**2)
+    
+    # Prediction interval 구성
+    z_score = 1.645  # 90% coverage
+    lower_bound = ensemble_mean - z_score * combined_uncertainty
+    upper_bound = ensemble_mean + z_score * combined_uncertainty
+    
+    return lower_bound, upper_bound
+```
+
+#### 실무 적용 시 고려사항
+
+- **데이터 특성**: 오차의 분포가 대칭에 가까운지 확인
+- **Calibration 필수**: 실제 coverage와 목표 coverage 간의 차이를 보정
+- **Heteroscedasticity**: 예측값에 따라 불확실성이 달라지는 경우 local MAE 사용 고려
+- **Ensemble과 결합**: MAE의 장점과 ensemble의 epistemic uncertainty 추정을 결합하여 더 robust한 PI 구성
+
 
 ## 실무 체크리스트
 
