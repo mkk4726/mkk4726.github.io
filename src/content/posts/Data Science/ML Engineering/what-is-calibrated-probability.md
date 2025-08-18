@@ -7,9 +7,8 @@ tags: ["calibration", "probability", "machine-learning", "logistic-regression", 
 ---
 
 참고자료
-- [Scikit-learn - Probability Calibration](https://scikit-learn.org/stable/modules/calibration.html)
-- [Towards Data Science - Probability Calibration](https://towardsdatascience.com/probability-calibration-7c0e27119bb1)
-- [Papers with Code - Calibration](https://paperswithcode.com/task/calibration)
+- 1: [Scikit-learn - Probability Calibration](https://scikit-learn.org/stable/modules/calibration.html)
+- 2: [nannyML](https://www.nannyml.com/blog/probability-calibration)
 
 # 보정된 확률(Calibrated Probability)이란?
 
@@ -214,3 +213,126 @@ fraction_of_positives, mean_predicted_value = calibration_curve(
   - `isotonic`: tree-based 모델에 더 적합
 
 따라서 `predict_proba`를 직접 확률로 사용하면 안 되고, 반드시 보정 과정을 거쳐야 합니다.
+
+---
+
+# Bad Machine Learning models can still be well-calibrated (2번 글 정리)
+
+> Machine learning models are often evaluated based on their performance, measured by how close some metric is to zero or one (depending on the metric), 
+> but this is not the only factor that determines their usefulness. 
+
+explore the difference between good calibration and good performance and when one might be preferred over the other.
+
+Probability calibration?
+> Probability calibration, in its strong definition, is the degree to which the probabilities predicted by a classification model match the true frequencies of the target classes in a dataset
+
+> A model with strong calibration guarantees that its predictions satisfy the frequentist definition of probability (as opposed to the Bayesian one), which states that an event’s probability is the limit of its relative frequency in many trials.
+
+대부분의 ML 알고리즘은 ill-calibrated하다. 확률로 쓰기는 어려움. 
+
+> Most machine learning models are ill-calibrated, and the reasons depend on the learning algorithm
+
+1. **Tree-based Ensembles의 문제점**
+- **Random Forest**: 여러 개별 트리의 예측을 평균내어 최종 예측 생성
+- **확률 추정의 한계**: 0과 1에 가까운 확률을 얻기 어려움
+- **이유**: 개별 트리들 간에 항상 분산(variance)이 존재
+
+2. **확률 추정의 왜곡 현상**
+- **0 근처**: 실제보다 높게 추정 (overestimate)
+- **1 근처**: 실제보다 낮게 추정 (underestimate)
+- **결과**: 극단적인 확률(0% 또는 100%)을 신뢰할 수 없음
+
+3. **모델 최적화의 문제**
+- **Binary metrics**: 정확도(accuracy) 등은 단순히 맞다/틀리다만 판단
+- **확실성 무시**: 모델이 얼마나 확신하는지는 고려하지 않음
+- **Gini-impurity**: 의사결정트리가 분할을 결정할 때 사용하는 지표
+- **목표**: 가능한 한 빠르고 정확하게 분류하는 것
+
+왜 이런 현상이 발생할까?
+1. **Ensemble 특성**: 여러 트리의 예측을 평균내면서 극단값이 완화됨
+2. **분산 존재**: 각 트리가 서로 다른 패턴을 학습
+3. **최적화 목표**: 분류 정확도에 집중, 확률 추정은 부차적
+
+
+> The consequence of this is that while the scores produced by most machine learning models preserve order (the higher the number, the more likely the positive class), they cannot be interpreted as frequentist probabilities.
+
+## Do you even need calibration?
+
+> When training a classification model, you need to ask yourself a crucial question: do you actually need the model to be well-calibrated? 
+> The answer will depend on how the model will be used. Let’s take a look at some examples.
+
+문제에 따라 calibration이 필요한지 정해진다.
+ranking 같은 문제에서는 필요 없을 것이고, 은행에서 대출을 갚을 확률 같은 경우에는 엄밀한 calibration이 필요할 것이다.
+
+## A story of a poor, well-calibrated model
+
+> But guess what, getting accurate predictions is not what we need! Just like in the credit line assignment and performance estimation examples, here too, the game is all about getting the probabilities right.
+
+모델의 성능이 안좋을때도 유용할 수 있다.
+
+> The model’s test accuracy was 63%. This is certainly better than a dummy model, which always predicts the home team to win; such a model would score 46% as the hosts tend to win almost half of the games. That said, 63% does not seem to be a great result.
+
+## When it’s impossible to get a good performance
+
+> Now consider an attempt to predict dice rolls. Our model should produce a probability of the die facing up to six after it has been rolled.
+
+주사위를 굴려서 6이 나올 확률을 예측하는 모델의 성능은 높일 수가 없다. 어떤 값에 의해 결정되는게 아닌 랜덤이니까.
+
+> Consider these two competing approaches. Model A is a dummy binary classifier that always predicts with full confidence that the rolled number is not a six;  that is, it predicts a six 0% of the time and a not-six 100% of the time. Model B also never predicts a six, but the probabilities it outputs are different: it always predicts a six with the probability of  ⅙ and a not-six with the probability of  ⅚.
+
+> In the long run, both models feature the same accuracy: they are correct 5 out of 6 times. And this is as good as any model can get. However, an important fact differentiates between the two models: model B is perfectly calibrated while Model A is not calibrated at all.
+
+되게 좋은 예시네. 예측 성능만으로는 평가할 수 없는 이유.
+
+> As far as calibration is concerned, the two models couldn’t be more different. How about the usefulness of the two models? > Model A doesn’t really deliver any value. 
+> Model B, on the other hand, allows us to accurately predict the target frequency in the long run. 
+> It also allows us to run simulations to answer more complex questions such as: what is the probability of rolling four not-six and seven sixes in 11 rolls? Once again, despite the poor predictive performance, good calibration yields the model useful!
+
+
+
+
+
+# Calibration probability 성능 확인하는 법
+
+🔎 Calibration 성능 평가 관점 2가지
+
+## 1. **Calibration quality (확률 보정 품질)**
+
+* 여기서 calibration curve가 **가장 직관적인 도구**예요.
+* 하지만 curve는 **시각적** 확인이므로, 정량적인 지표도 함께 씁니다:
+
+  * **ECE (Expected Calibration Error)**
+
+    * 예측확률 bin별 편차를 가중평균한 값.
+    * 작을수록 확률이 잘 보정됨.
+  * **MCE (Maximum Calibration Error)**
+
+    * bin별 최대 편차.
+  * **Brier Score**
+
+    * 확률 예측과 실제 라벨(0/1)의 평균제곱오차.
+    * 분류 성능 + 보정 품질 모두 반영.
+* 따라서 “curve + ECE/Brier 같은 수치”를 함께 봐야 함.
+
+---
+
+## 2. **Discrimination ability (분류력, 순위 유지 성능)**
+
+* 모델이 보정되었더라도, 분류력(예: AUC, Accuracy, F1)이 나빠지면 의미가 없죠.
+* calibration은 보통 \*\*단조 변환(sigmoid, isotonic)\*\*이라서 **순위 기반 metric(AUC)은 거의 유지**되지만, 임계값 기반 정확도·정밀도 등은 달라질 수 있어요.
+* 따라서 calibration 후에도 **AUC나 Accuracy를 확인**해야 합니다.
+
+---
+
+* **Calibration curve만으로는 부족**합니다.
+* 추천 평가 방법:
+
+  1. **Calibration curve** → 직관적 모양 확인
+  2. **ECE / Brier score** → 정량적 calibration 품질
+  3. **AUC / Accuracy / F1** → 분류력 유지 여부
+
+---
+
+👉 정리하면, 확률 보정의 성능은 **“확률의 신뢰도”와 “분류력” 두 축을 모두 확인해야** 하고, 따라서 curve 하나로만 판단하면 위험합니다.
+
+원하시면 제가 \*\*실제 예측 확률 데이터(예: 100개 샘플 가상)\*\*를 만들어서, 보정 전후의 **calibration curve + ECE + AUC**를 직접 비교해 드릴까요?
