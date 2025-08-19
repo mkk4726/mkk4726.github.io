@@ -72,8 +72,9 @@ export default function Header() {
               <Link href="/posts" className="text-gray-600 hover:text-blue-600 transition-colors">
                 Posts
               </Link>
-
-
+              <Link href="/portfolio" className="text-gray-600 hover:text-blue-600 transition-colors">
+                Portfolio
+              </Link>
             </nav>
             <SearchBox />
           </div>
@@ -121,6 +122,13 @@ export default function Header() {
                 onClick={closeMenu}
               >
                 Posts
+              </Link>
+              <Link 
+                href="/portfolio" 
+                className="block text-gray-600 hover:text-blue-600 transition-colors py-3 px-2 rounded-md hover:bg-gray-50"
+                onClick={closeMenu}
+              >
+                Portfolio
               </Link>
 
 

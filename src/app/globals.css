@@ -794,4 +794,108 @@ html {
   }
 }
 
+/* 포트폴리오 페이지 전용 스타일 - 최고 우선순위 */
+.portfolio-page .prose,
+.portfolio-page .prose * {
+  color: #000000 !important;
+  text-shadow: none !important;
+  opacity: 1 !important;
+}
+
+.portfolio-page .prose h1,
+.portfolio-page .prose h2,
+.portfolio-page .prose h3,
+.portfolio-page .prose h4,
+.portfolio-page .prose h5,
+.portfolio-page .prose h6 {
+  color: #000000 !important;
+  font-weight: 800 !important;
+  text-shadow: none !important;
+  opacity: 1 !important;
+}
+
+.portfolio-page .prose p,
+.portfolio-page .prose p * {
+  color: #000000 !important;
+  font-weight: 500 !important;
+  text-shadow: none !important;
+  opacity: 1 !important;
+}
+
+.portfolio-page .prose strong,
+.portfolio-page .prose b {
+  color: #000000 !important;
+  font-weight: 900 !important;
+  text-shadow: none !important;
+  opacity: 1 !important;
+}
+
+.portfolio-page .prose li,
+.portfolio-page .prose li * {
+  color: #000000 !important;
+  font-weight: 500 !important;
+  text-shadow: none !important;
+  opacity: 1 !important;
+}
+
+.portfolio-page .prose a {
+  color: #1d4ed8 !important;
+  text-decoration: underline !important;
+  font-weight: 600 !important;
+  text-shadow: none !important;
+  opacity: 1 !important;
+}
+
+.portfolio-page .prose a:hover {
+  color: #1e40af !important;
+  text-decoration: underline !important;
+}
+
+/* 추가 강제 스타일링 */
+.portfolio-page .prose ul li,
+.portfolio-page .prose ol li {
+  color: #000000 !important;
+}
+
+.portfolio-page .prose ul li::marker,
+.portfolio-page .prose ol li::marker {
+  color: #000000 !important;
+}
+
+/* 다크 모드 포트폴리오 페이지 스타일 */
+@media (prefers-color-scheme: dark) {
+  .portfolio-page .prose {
+    color: #d1d5db !important;
+  }
+  
+  .portfolio-page .prose h1,
+  .portfolio-page .prose h2,
+  .portfolio-page .prose h3,
+  .portfolio-page .prose h4,
+  .portfolio-page .prose h5,
+  .portfolio-page .prose h6 {
+    color: #f9fafb !important;
+  }
+  
+  .portfolio-page .prose p {
+    color: #d1d5db !important;
+  }
+  
+  .portfolio-page .prose strong {
+    color: #f9fafb !important;
+  }
+  
+  .portfolio-page .prose li {
+    color: #d1d5db !important;
+  }
+  
+  .portfolio-page .prose a {
+    color: #60a5fa !important;
+  }
+  
+  .portfolio-page .prose a:hover {
+    color: #93c5fd !important;
+  }
+}
+
 
