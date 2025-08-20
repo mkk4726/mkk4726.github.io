@@ -4,6 +4,7 @@ date: "2025-07-10"
 excerpt: "HETEROGENEOUS TREATMENT EFFECTS ESTIMATION: WHEN MACHINE LEARNING MEETS MULTIPLE TREATMENT REGIME"
 category: "Causal Inference"
 tags: ["Paper Review"]
+public: false
 ---
 
 

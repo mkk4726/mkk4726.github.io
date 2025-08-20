@@ -4,6 +4,7 @@ date: "2025-07-29"
 excerpt: "현대자동차 이력서"
 category: "Career"
 tags: ["현대자동차 채용공고", "이력서"]
+public: false
 ---
 
 [채용공고와 분석내용](/posts/Self_Development/Career/Job%20Transition/25-07-29-hyundai-autoever-ml-engineer)

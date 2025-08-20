@@ -4,6 +4,7 @@ date: "2025-08-12"
 excerpt: "현대자동차 이력서"
 category: "Career"
 tags: ["현대자동차 채용공고", "이력서"]
+public: false
 ---
 
 [피드백 받은 이력서](/posts/Self_Development/Career/Resumes/25-07-29-hyundai-autoever-ml-engineer-resume)
