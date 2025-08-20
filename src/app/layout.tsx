@@ -6,6 +6,7 @@ import "katex/dist/katex.min.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
+import { AdminModeProvider } from "@/contexts/AdminModeProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -49,13 +50,15 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${nanumGothic.variable} antialiased bg-gray-50 min-h-screen`}
       >
-        <div className="flex flex-col min-h-screen">
-          <Header />
-          <main className="flex-grow">
-            {children}
-          </main>
-          <Footer />
-        </div>
+        <AdminModeProvider>
+          <div className="flex flex-col min-h-screen">
+            <Header />
+            <main className="flex-grow">
+              {children}
+            </main>
+            <Footer />
+          </div>
+        </AdminModeProvider>
         {GA_MEASUREMENT_ID && <GoogleAnalytics GA_MEASUREMENT_ID={GA_MEASUREMENT_ID} />}
       </body>
     </html>

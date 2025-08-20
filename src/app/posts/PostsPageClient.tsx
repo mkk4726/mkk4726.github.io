@@ -6,6 +6,8 @@ import PostCard from '@/components/PostCard';
 import FolderTree from '@/components/FolderTree';
 import Link from 'next/link';
 import { FolderNode } from '@/lib/posts';
+import { useAdminMode } from '@/hooks/useAdminMode';
+import AdminModeToggle from '@/components/AdminModeToggle';
 
 interface PostData {
   id: string;
@@ -15,6 +17,7 @@ interface PostData {
   category?: string;
   tags?: string[];
   content?: string;
+  public?: boolean;
 }
 
 interface PostsPageClientProps {
@@ -25,6 +28,7 @@ interface PostsPageClientProps {
 export default function PostsPageClient({ posts: initialPosts, folderStructure }: PostsPageClientProps) {
   const searchParams = useSearchParams();
   const searchQuery = searchParams?.get('search') || '';
+  const { isAdminMode } = useAdminMode();
   
   const [posts, setPosts] = useState<PostData[]>([]);
   const [filteredPosts, setFilteredPosts] = useState<PostData[]>([]);
@@ -52,7 +56,7 @@ export default function PostsPageClient({ posts: initialPosts, folderStructure }
     });
   }, []);
 
-  // 검색이 있을 때만 추가 포스트 데이터 로드
+  // 검색이 있을 때만 검색 인덱스 데이터 로드
   useEffect(() => {
     if (searchQuery) {
       setLoading(true);
@@ -83,8 +87,17 @@ export default function PostsPageClient({ posts: initialPosts, folderStructure }
     }
   }, [searchQuery, posts, performSearch]);
 
-  // 표시할 포스트 결정
-  const displayPosts = searchQuery ? filteredPosts : (posts.length > 0 ? posts : initialPosts);
+  // 표시할 포스트 결정 (private 포스트 필터링 포함)
+  const filterPrivatePosts = (postsToFilter: PostData[]) => {
+    if (isAdminMode) {
+      return postsToFilter; // 관리자 모드에서는 모든 포스트 표시
+    }
+    return postsToFilter.filter(post => post.public !== false);
+  };
+
+  const displayPosts = filterPrivatePosts(
+    searchQuery ? filteredPosts : (posts.length > 0 ? posts : initialPosts)
+  );
 
   const displayTitle = searchQuery ? `검색 결과: "${searchQuery}"` : '모든 포스트';
   const displayDescription = searchQuery 
@@ -136,11 +149,19 @@ export default function PostsPageClient({ posts: initialPosts, folderStructure }
               </div>
             )}
             
-            <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-4">
-              {displayTitle}
-            </h1>
+            <div className="flex items-center justify-between mb-4">
+              <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">
+                {displayTitle}
+              </h1>
+              <AdminModeToggle />
+            </div>
             <p className="text-gray-600 dark:text-gray-300 mb-6">
               {displayDescription}
+              {isAdminMode && (
+                <span className="ml-2 text-sm text-red-600 dark:text-red-400">
+                  (관리자 모드: private 포스트 포함)
+                </span>
+              )}
             </p>
           </div>
 

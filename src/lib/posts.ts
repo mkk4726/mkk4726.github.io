@@ -18,6 +18,7 @@ export interface PostData {
   pdfPath?: string;
   fileSize?: number;
   lastModified?: Date;
+  public?: boolean;
 }
 
 // 폴더 구조를 나타내는 인터페이스
@@ -47,7 +48,7 @@ function getAllPostFiles(dir: string): string[] {
   return files;
 }
 
-export async function getSortedPostsData(): Promise<Omit<PostData, 'content'>[]> {
+export async function getSortedPostsData(includePrivate: boolean = false): Promise<Omit<PostData, 'content'>[]> {
   // Get all post files (markdown, notebook, and pdf) recursively
   const postFiles = getAllPostFiles(postsDirectory);
   const allPostsData = await Promise.all(postFiles.map(async (filePath: string) => {
@@ -69,6 +70,7 @@ export async function getSortedPostsData(): Promise<Omit<PostData, 'content'>[]>
       excerpt: metadata.excerpt,
       category: metadata.category,
       tags: metadata.tags,
+      public: metadata.public !== false, // default to true if not specified
     };
     } else if (filePath.endsWith('.pdf')) {
       // For PDF files, generate metadata from file info
@@ -100,6 +102,7 @@ export async function getSortedPostsData(): Promise<Omit<PostData, 'content'>[]>
           pdfPath: `/post/${relativePath}`,
           fileSize: parseFloat(fileSizeInMB),
           lastModified: fileStats.mtime,
+          public: true, // PDF files are public by default
         };
     } else {
       // For markdown files, use gray-matter
@@ -108,13 +111,19 @@ export async function getSortedPostsData(): Promise<Omit<PostData, 'content'>[]>
       
       return {
         id: normalizedId,
-        ...(matterResult.data as { title: string; date: string; excerpt?: string; category?: string; tags?: string[] }),
+        ...(matterResult.data as { title: string; date: string; excerpt?: string; category?: string; tags?: string[]; public?: boolean }),
+        public: matterResult.data.public !== false, // default to true if not specified
       };
     }
   }));
 
+  // Filter private posts if not in admin mode
+  const filteredPosts = includePrivate 
+    ? allPostsData 
+    : allPostsData.filter(post => post.public !== false);
+
   // Sort posts by date
-  return allPostsData.sort((a, b) => {
+  return filteredPosts.sort((a, b) => {
     if (a.date < b.date) {
       return 1;
     } else {
@@ -123,8 +132,8 @@ export async function getSortedPostsData(): Promise<Omit<PostData, 'content'>[]>
   });
 }
 
-export async function getPostsByCategory(category: string): Promise<Omit<PostData, 'content'>[]> {
-  const allPosts = await getSortedPostsData();
+export async function getPostsByCategory(category: string, includePrivate: boolean = false): Promise<Omit<PostData, 'content'>[]> {
+  const allPosts = await getSortedPostsData(includePrivate);
   return allPosts.filter((post) => post.category === category);
 }
 
@@ -277,7 +286,8 @@ export async function getPostData(id: string): Promise<PostData> {
     return {
       id,
       content: matterResult.content,
-      ...(matterResult.data as { title: string; date: string; excerpt?: string; category?: string; tags?: string[] }),
+      ...(matterResult.data as { title: string; date: string; excerpt?: string; category?: string; tags?: string[]; public?: boolean }),
+      public: matterResult.data.public !== false, // default to true if not specified
       isNotebook: false,
       isPdf: false,
     };

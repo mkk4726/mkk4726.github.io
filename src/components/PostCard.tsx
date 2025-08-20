@@ -36,8 +36,10 @@ function highlightText(text: string, searchTerm: string, maxLength: number = 150
 
 // 기본 PostCard 컴포넌트 (검색 하이라이트 없음)
 function BasePostCard({ post }: { post: Omit<PostData, 'content'> & { content?: string } }) {
+  const isPrivate = post.public === false;
+  
   return (
-    <article className="bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden">
+    <article className={`bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden ${isPrivate ? 'ring-2 ring-red-200 dark:ring-red-800' : ''}`}>
       <div className="p-5 lg:p-6">
         <div className="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400 mb-3">
           {!post.isPdf && post.date && (
@@ -46,6 +48,14 @@ function BasePostCard({ post }: { post: Omit<PostData, 'content'> & { content?: 
             </time>
           )}
           <div className="flex items-center space-x-2">
+            {isPrivate && (
+              <span className="px-2 py-1 text-xs bg-red-100 dark:bg-red-900 text-red-700 dark:text-red-300 rounded-full flex items-center">
+                <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
+                </svg>
+                Private
+              </span>
+            )}
             {post.isPdf && (
               <span className="px-2 py-1 text-xs bg-red-100 dark:bg-red-900 text-red-700 dark:text-red-300 rounded-full flex items-center">
                 <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
@@ -110,6 +120,7 @@ function BasePostCard({ post }: { post: Omit<PostData, 'content'> & { content?: 
 function SearchablePostCard({ post }: { post: Omit<PostData, 'content'> & { content?: string } }) {
   const searchParams = useSearchParams();
   const searchQuery = searchParams?.get('search') || '';
+  const isPrivate = post.public === false;
   
   // 검색어가 제목에 있는지 확인
   const titleMatch = searchQuery && post.title.toLowerCase().includes(searchQuery.toLowerCase());
@@ -117,7 +128,7 @@ function SearchablePostCard({ post }: { post: Omit<PostData, 'content'> & { cont
   const contentMatch = searchQuery && post.content?.toLowerCase().includes(searchQuery.toLowerCase());
 
   return (
-    <article className="bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden">
+    <article className={`bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden ${isPrivate ? 'ring-2 ring-red-200 dark:ring-red-800' : ''}`}>
       <div className="p-5 lg:p-6">
         <div className="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400 mb-3">
           {!post.isPdf && post.date && (
@@ -126,6 +137,14 @@ function SearchablePostCard({ post }: { post: Omit<PostData, 'content'> & { cont
             </time>
           )}
           <div className="flex items-center space-x-2">
+            {isPrivate && (
+              <span className="px-2 py-1 text-xs bg-red-100 dark:bg-red-900 text-red-700 dark:text-red-300 rounded-full flex items-center">
+                <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
+                </svg>
+                Private
+              </span>
+            )}
             {post.isPdf && (
               <span className="px-2 py-1 text-xs bg-red-100 dark:bg-red-900 text-red-700 dark:text-red-300 rounded-full flex items-center">
                 <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">

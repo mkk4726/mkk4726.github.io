@@ -142,6 +142,7 @@ async function generateSearchIndex() {
         category: metadata.category || '',
         tags: metadata.tags || [],
         content: cleanContent, // 전체 내용 저장 (마크다운 태그 제거됨)
+        public: metadata.public !== false, // public 필드 추가
       });
     } catch (error) {
       console.error(`Error processing ${filePath}:`, error);
