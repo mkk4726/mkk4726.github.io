@@ -1,5 +1,5 @@
 ---
-title: "[Paper Review] Nonparametric Bounds on Treatment Effects"
+title: "Manski Bounds 개념 정리"
 date: "2025-08-20"
 excerpt: "Manski bounds에 대한 설명"
 category: "Causal Inference"
