@@ -21,8 +21,8 @@ function AdminModeProviderInner({ children }: { children: ReactNode }) {
   const pathname = usePathname();
 
   useEffect(() => {
-    // Check URL parameter first
-    const adminParam = searchParams?.get('admin');
+    // Check URL parameter first (case insensitive)
+    const adminParam = searchParams?.get('admin')?.toLowerCase();
     
     // Check localStorage for persistent admin state
     const storedAdminMode = typeof window !== 'undefined' 

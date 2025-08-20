@@ -3,7 +3,6 @@
 import Link from 'next/link';
 import { useState, useEffect, useRef } from 'react';
 import SearchBox from './SearchBox';
-import AdminModeToggle from './AdminModeToggle';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -77,10 +76,7 @@ export default function Header() {
                 Portfolio
               </Link>
             </nav>
-            <div className="flex items-center space-x-4">
-              <SearchBox />
-              <AdminModeToggle />
-            </div>
+            <SearchBox />
           </div>
           
           {/* Mobile Menu Button */}
@@ -136,10 +132,9 @@ export default function Header() {
               </Link>
 
 
-              {/* Mobile Search and Admin Toggle */}
-              <div className="py-3 px-2 space-y-3">
+              {/* Mobile Search */}
+              <div className="py-3 px-2">
                 <SearchBox />
-                <AdminModeToggle />
               </div>
             </nav>
           </div>

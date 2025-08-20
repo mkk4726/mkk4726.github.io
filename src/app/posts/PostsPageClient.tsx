@@ -7,7 +7,6 @@ import FolderTree from '@/components/FolderTree';
 import Link from 'next/link';
 import { FolderNode } from '@/lib/posts';
 import { useAdminMode } from '@/hooks/useAdminMode';
-import AdminModeToggle from '@/components/AdminModeToggle';
 
 interface PostData {
   id: string;
@@ -149,12 +148,9 @@ export default function PostsPageClient({ posts: initialPosts, folderStructure }
               </div>
             )}
             
-            <div className="flex items-center justify-between mb-4">
-              <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">
-                {displayTitle}
-              </h1>
-              <AdminModeToggle />
-            </div>
+            <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+              {displayTitle}
+            </h1>
             <p className="text-gray-600 dark:text-gray-300 mb-6">
               {displayDescription}
               {isAdminMode && (

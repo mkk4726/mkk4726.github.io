@@ -4,7 +4,8 @@ import ContributionGraph from '@/components/ContributionGraph';
 import Link from 'next/link';
 
 export default async function Home() {
-  const posts = (await getSortedPostsData()).slice(0, 6); // Show only the latest 6 posts
+  const allPosts = await getSortedPostsData(false); // Home page shows only public posts
+  const posts = allPosts.slice(0, 6); // Show only the latest 6 posts
   const monthlyData = await getPostsByMonth();
   const dayOfWeekData = await getPostsByDayOfWeek();
   

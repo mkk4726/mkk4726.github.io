@@ -10,7 +10,7 @@ import TableOfContents from '@/components/TableOfContents';
 import CodeHighlight from '@/components/CodeHighlight';
 import JupyterNotebook from '@/components/JupyterNotebook';
 import Comments from '@/components/Comments';
-import AdminModeToggle from '@/components/AdminModeToggle';
+
 
 interface PostDetailClientProps {
   post: PostData;
@@ -46,7 +46,6 @@ export default function PostDetailClient({ post: initialPost, postId }: PostDeta
             이 포스트는 비공개 포스트입니다. 관리자 권한이 필요합니다.
           </p>
           <div className="space-y-4">
-            <AdminModeToggle />
             <div>
               <Link 
                 href="/posts"
@@ -70,7 +69,7 @@ export default function PostDetailClient({ post: initialPost, postId }: PostDeta
         <div className="flex-1 min-w-0">
           <article className={`bg-white rounded-lg shadow-md p-8 ${isPrivate ? 'ring-2 ring-red-200' : ''}`} id="post-content">
             {/* Back to posts link */}
-            <div className="mb-6 no-print flex items-center justify-between">
+            <div className="mb-6 no-print">
               <Link 
                 href={getAdminUrl("/posts")}
                 className="text-blue-600 hover:text-blue-800 transition-colors flex items-center"
@@ -80,7 +79,6 @@ export default function PostDetailClient({ post: initialPost, postId }: PostDeta
                 </svg>
                 Back to Posts
               </Link>
-              <AdminModeToggle />
             </div>
 
             {/* Post header */}
