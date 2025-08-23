@@ -1,11 +1,10 @@
-import { getAboutData, getResumeData, getPortfolioData } from '@/lib/content';
+import { getAboutData, getResumeData } from '@/lib/content';
 import AboutContent from '@/components/AboutContent';
 import Link from 'next/link';
 
 export default function AboutPage() {
   const aboutData = getAboutData();
   const resumeData = getResumeData();
-  const portfolioData = getPortfolioData();
 
   const aboutPages = [
     {
@@ -15,14 +14,6 @@ export default function AboutPage() {
       lastUpdated: aboutData.lastUpdated,
       href: '#about',
       icon: '👤'
-    },
-    {
-      id: 'portfolio',
-      title: portfolioData.title,
-      excerpt: '주요 프로젝트 및 기술 스택',
-      lastUpdated: portfolioData.lastUpdated,
-      href: '#portfolio',
-      icon: '💼'
     },
     {
       id: 'resume',
@@ -42,7 +33,7 @@ export default function AboutPage() {
           About
         </h1>
         <p className="text-white mb-6">
-          저에 대한 정보와 경력을 확인할 수 있습니다.
+          저에 대한 간단한 소개와 제 이력사항을 정리했습니다.
         </p>
       </div>
 
@@ -98,19 +89,6 @@ export default function AboutPage() {
             )}
           </div>
           <AboutContent content={aboutData.content} />
-        </div>
-
-        {/* Portfolio Section */}
-        <div id="portfolio" className="bg-gray-800 rounded-lg shadow-sm p-8 border border-gray-700">
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-2xl font-bold text-white">{portfolioData.title}</h2>
-            {portfolioData.lastUpdated && (
-              <span className="text-sm text-gray-300">
-                Last updated: {portfolioData.lastUpdated}
-              </span>
-            )}
-          </div>
-          <AboutContent content={portfolioData.content} />
         </div>
 
         {/* Resume Section */}
