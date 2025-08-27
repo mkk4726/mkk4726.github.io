@@ -44,17 +44,17 @@ Projects:
 
 Project Overview:
 
-Developed a service to help surgeons select appropriate lens sizes for vision correction surgery, replacing reliance on experience and intuition with data-driven decision making.
+Developed a service that predicts surgical outcomes for vision correction, enabling surgeons to select optimal lens sizes based on data-driven predictions rather than solely on experience and intuition.
 
 Problem-Solving Process:
 
 1. Model Validation Challenge
 
 - Problem
-Addressing prediction accuracy when the model generates 4 size options but only 1 can be validated against real customer data.
+Faced challenges in evaluating prediction accuracy when the model generated four size options but only one could be validated with real customer data.
 
 - Solution
-
+데이터를 확인해보니 처치별로 통계적 차이가 보였다. 이는 당연하게도 의사가 고객을 보고 결정하기 때문이다. 따라서 직관적으로 다음과 같은 의문이 들었다. 눈이 작은 사람이 렌즈 크기를 크게 쓰는 경우가 없는데, 예측값을 신뢰할 수 있나?
 
 - Result
 
@@ -63,11 +63,9 @@ Addressing prediction accuracy when the model generates 4 size options but only 
 2. ML Infrastructure Challenges:
 
 - Problem
-
-Missing ML system for training and inference
 Data consistency issues between training and production environments
 Lack of monitoring for silent failures and model performance
-No deployment pipeline for model updates and inference management"
+No deployment pipeline for model updates and inference management
 
 - Solution
 
@@ -75,3 +73,10 @@ No deployment pipeline for model updates and inference management"
 
 
 
+## OCR  Pipeline
+
+
+
+
+
+## Chatbot
