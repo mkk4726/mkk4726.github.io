@@ -271,6 +271,8 @@ RAG 기반 챗봇 운영
 ## RAG Pipeline 구조
 
 
+## Hallucination 등 조용한 에러 상황을 모니터링 하자
+
 
 
 
