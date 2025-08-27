@@ -33,7 +33,45 @@ JD에서 확인한 필수요구사항들.
 3개의 프로젝트를 리드한 경험 적어보자. + CV 다뤘던 경험
 
 
+# 이력서 스케치 (영문 PDF 제출)
 
+Led 3 projects with development involvement at a startup, demonstrating rapid growth and leadership capabilities.
+
+Projects:
+
+## Lenze size recommendation
+- 2025.03 - Present (6 months)
+
+Project Overview:
+
+Developed a service to help surgeons select appropriate lens sizes for vision correction surgery, replacing reliance on experience and intuition with data-driven decision making.
+
+Problem-Solving Process:
+
+1. Model Validation Challenge
+
+- Problem
+Addressing prediction accuracy when the model generates 4 size options but only 1 can be validated against real customer data.
+
+- Solution
+
+
+- Result
+
+
+
+2. ML Infrastructure Challenges:
+
+- Problem
+
+Missing ML system for training and inference
+Data consistency issues between training and production environments
+Lack of monitoring for silent failures and model performance
+No deployment pipeline for model updates and inference management"
+
+- Solution
+
+- Result
 
 
 
