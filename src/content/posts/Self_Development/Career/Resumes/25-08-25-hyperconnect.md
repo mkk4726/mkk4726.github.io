@@ -54,22 +54,39 @@ Problem-Solving Process:
 Faced challenges in evaluating prediction accuracy when the model generated four size options but only one could be validated with real customer data.
 
 - Solution
-데이터를 확인해보니 처치별로 통계적 차이가 보였다. 이는 당연하게도 의사가 고객을 보고 결정하기 때문이다. 따라서 직관적으로 다음과 같은 의문이 들었다. 눈이 작은 사람이 렌즈 크기를 크게 쓰는 경우가 없는데, 예측값을 신뢰할 수 있나?
+Leveraged causal inference (positivity assumption) to exploit distributional overlap across treatments (lens sizes), facilitating indirect performance evaluation.
+Accounted for non-random treatment assignment (lens sizes) by quantifying overlap in the data and separating overlapping from non-overlapping regions for analysis.
+Validated this approach not only through domain expertise but also by statistically examining the distribution across treatments.
+
+Used prediction intervals where treatment distributions overlapped and applied partial identification to quantify prediction ranges in non-overlapping regions.
+Motivated by the goal of increasing user trust, expressed predictive uncertainty explicitly through intervals.
 
 - Result
+Indirectly evaluated unobserved predictions and visualized both guaranteed and non-guaranteed ranges to effectively communicate predictive uncertainty.
 
 
-
-2. ML Infrastructure Challenges:
+2. Data consistency issues between training and production environments
 
 - Problem
-Data consistency issues between training and production environments
-Lack of monitoring for silent failures and model performance
-No deployment pipeline for model updates and inference management
+
 
 - Solution
 
 - Result
+Data consistency issues between training and production environments
+
+3. 통계 분석을 통한 피처 선택 및 개발
+
+
+
+
+
+
+
+4. Lack of monitoring for silent failures and model performance
+
+
+
 
 
 
