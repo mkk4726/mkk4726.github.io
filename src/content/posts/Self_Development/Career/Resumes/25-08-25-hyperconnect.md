@@ -119,13 +119,34 @@ Implemented performance tracking by monitoring prediction–outcome gaps in real
 Enhanced service stability and maintained user trust by proactively identifying data drift and performance degradation before they impacted end users.
 
 
-## OCR  Pipeline
+## OCR Pipeline
+- 2024.07 - 2024.10 (4 months)
+
+Project Overview:
+
+Developed a robust OCR pipeline to extract test results from medical images and store them in a structured database. 
+Since the pipeline served as a critical component for collecting data used in production services, it was designed with a strong focus on real-time processing, stability, and high accuracy.
+
+Problem-Solving Process:
+
+1. 안정적인 서비스를 운영하기 위해 중요한 것들
+
+- Problem
+전임자가 작업하던 프로젝트를 이어서 하게 됨. 에러 로그가 쌓여 있었는데 절차지향적으로 막 쌓여있는 코드 때문에 에러 원인 파악이 어려웠음.
 
 
+2. OCR 정확도를 높이기 위해 시도한 것들
+
+- Problem
 
 
+- Solution
 
+
+- Result
 
 
 
 ## Chatbot
+- 2024.11 - 2025.03 (4 months)
+
