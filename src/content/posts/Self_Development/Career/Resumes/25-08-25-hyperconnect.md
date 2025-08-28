@@ -65,32 +65,68 @@ Motivated by the goal of increasing user trust, expressed predictive uncertainty
 Indirectly evaluated unobserved predictions and visualized both guaranteed and non-guaranteed ranges to effectively communicate predictive uncertainty.
 
 
-2. Data consistency issues between training and production environments
+2. Data quality and consistency challenges between training and inference environments
+
+- Problem
+In the absence of a unified data pipeline, training and inference each pulled data directly from the data lake, leading to inconsistencies in data processing between environments.
+
+- Solution
+Developed a robust data pipeline to cleanse both OCR-collected and external data sources, incorporating data validation and schema enforcement to ensure data quality. 
+In addition, built a feature store that unified offline (training) and online (serving) features, securing data consistency across environments and improving the reliability of model deployment.
+
+- Result
+Secured data quality through the new pipeline and established consistency across training and inference via the feature store, increasing confidence in model outputs and stability in deployment.
+
+
+
+3. Modeling Approach
 
 - Problem
 
+The goal of model development was to deliver results that achieve user satisfaction, thereby fostering trust.
+This required not only improving predictive accuracy within the dataset, but also ensuring robust performance in inference settings. 
+In addition, the model needed to produce outputs aligned with user intuition—particularly important as the primary users were physicians, necessitating medically interpretable predictions.
 
 - Solution
 
+To improve model performance, I placed strong emphasis on thoroughly examining the data. 
+I first analyzed feature distributions and filtered out implausible values that deviated from clinical standards, ensuring a reliable dataset. 
+
+Drawing on physician intuition, I engineered clinically meaningful features—for example, capturing the relationship between age and lens thickness—which not only improved predictive accuracy but also aligned the model’s behavior with medical reasoning. 
+
+To further strengthen reliability, I incorporated medical domain knowledge into the model by applying monotonicity constraints where clinically appropriate. 
+
+Finally, I used interpretability tools such as Shapley values to explain prediction outcomes, enabling physicians to better understand and trust the model’s decisions.
+
 - Result
-Data consistency issues between training and production environments
 
-3. 통계 분석을 통한 피처 선택 및 개발
-
-
-
-
+Through detailed data analysis, I improved data quality and developed new features that enhanced model performance while producing results consistent with medical intuition. 
+In addition, the model was not treated as a black box; I provided explanations for its outputs, ensuring that the reasoning behind predictions was transparent and understandable.
 
 
 
 4. Lack of monitoring for silent failures and model performance
 
+- Problem
 
+Monitoring was required to ensure model performance in inference settings. 
+It was important to track not only how well the model performed during real-world usage, but also to detect potential issues such as data shift. 
+Without such monitoring, the service could appear to function normally while causing user discomfort through silent failures, ultimately reducing user trust and engagement.
+
+- Solution
+
+
+
+
+- Result
 
 
 
 
 ## OCR  Pipeline
+
+
+
 
 
 
