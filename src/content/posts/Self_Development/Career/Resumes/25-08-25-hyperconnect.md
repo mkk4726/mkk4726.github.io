@@ -103,24 +103,20 @@ Finally, I used interpretability tools such as Shapley values to explain predict
 Through detailed data analysis, I improved data quality and developed new features that enhanced model performance while producing results consistent with medical intuition. 
 In addition, the model was not treated as a black box; I provided explanations for its outputs, ensuring that the reasoning behind predictions was transparent and understandable.
 
-
-
 4. Lack of monitoring for silent failures and model performance
 
 - Problem
 
 Monitoring was required to ensure model performance in inference settings. 
-It was important to track not only how well the model performed during real-world usage, but also to detect potential issues such as data shift. 
+It was important to track not only how well the model performed during real-world usage, but also to detect potential issues such as data drift. 
 Without such monitoring, the service could appear to function normally while causing user discomfort through silent failures, ultimately reducing user trust and engagement.
 
 - Solution
-
-
-
+Developed an automated monitoring pipeline with Airflow to detect data drift using statistical measures (e.g., Jensen–Shannon distance) and to continuously compare training vs. inference data distributions. 
+Implemented performance tracking by monitoring prediction–outcome gaps in real time, enabling early detection of silent failures and ensuring reliable model performance in production.
 
 - Result
-
-
+Enhanced service stability and maintained user trust by proactively identifying data drift and performance degradation before they impacted end users.
 
 
 ## OCR  Pipeline
