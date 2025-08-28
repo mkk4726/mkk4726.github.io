@@ -129,24 +129,48 @@ Since the pipeline served as a critical component for collecting data used in pr
 
 Problem-Solving Process:
 
-1. 안정적인 서비스를 운영하기 위해 중요한 것들
+1. Ensuring Stable Service Operations
 
 - Problem
-전임자가 작업하던 프로젝트를 이어서 하게 됨. 에러 로그가 쌓여 있었는데 절차지향적으로 막 쌓여있는 코드 때문에 에러 원인 파악이 어려웠음.
-
-
-2. OCR 정확도를 높이기 위해 시도한 것들
-
-- Problem
-
+Inherited a legacy project with a large backlog of error logs. The codebase was written in a purely procedural manner, making it extremely difficult to trace the root causes of errors. The lack of clear structure and responsibility boundaries hindered both debugging efficiency and long-term maintainability.
 
 - Solution
+Refactored the system into an object-oriented architecture, applying core principles such as single-responsibility per function and well-defined ownership for each object. This restructuring enabled clearer separation of concerns and improved readability. 
 
+Additionally, integrated unit testing with pytest and static type checking with mypy to proactively detect potential runtime errors. Together, these practices established a robust foundation for reliable and maintainable service operations.
 
 - Result
+Achieved an error rate below 1%, while significantly improving debuggability. 
+Even when issues occurred, the modular design and testing framework enabled rapid root-cause identification and resolution, ensuring stable service delivery and reducing operational overhead.
 
+
+2. Improving OCR Accuracy
+
+- Problem
+The existing deployed OCR model had been developed without a proper test set and was only validated manually by its original developer. 
+To rigorously evaluate performance, I constructed a dedicated test dataset covering ~100 samples for each of the six different diagnostic devices. 
+
+Benchmarking revealed that the deployed model achieved less than 70% accuracy, which was far below the reliability required for production use.
+
+In addition, silent failures in production (e.g., plausible but clinically invalid outputs) were not being detected, creating risks for downstream systems and users.
+
+- Solution
+Leveraged domain-specific characteristics to boost performance. Although the image types varied across devices, the regions of interest to extract were fixed per device type. 
+This allowed the use of rule-based localization to reliably identify the relevant regions, effectively simplifying the text detection step. 
+
+For text recognition, integrated TrOCR, an open-source model specialized in OCR tasks. Model evaluation with the curated dataset showed accuracy around 95%, which was further improved to over 99% by applying tailored image preprocessing and position-specific postprocessing strategies.
+
+To address silent failures, designed a monitoring layer that applied clinical plausibility checks and probabilistic anomaly detection. The system raised alerts whenever extracted values were outside valid ranges or statistically improbable given the device type, enabling proactive detection of hidden errors.
+
+- Result
+Achieved over 99% OCR accuracy in a mission-critical pipeline while also ensuring reliability through monitoring. The monitoring layer consistently surfaced out-of-range or anomalous values, reducing undetected OCR errors and enabling faster triage when issues occurred. 
+These improvements ensured stable service operations, minimized error propagation to downstream systems, and reinforced trust in the automated data pipeline.
 
 
 ## Chatbot
 - 2024.11 - 2025.03 (4 months)
+
+Project Overview:
+
+하루 100~200건정도 상담건을 대체하기 위해 RAG 기반 고객상담용 챗봇 개발
 
