@@ -21,7 +21,7 @@ silent failure란 무엇인지와 어떻게 모니터링 할 수 있는지에 �
 
 ## 주요 silent failure 유형들
 
-### 1. Hallucination (환각)
+### 1. Hallucination
 
 **Hallucination**은 특히 Large Language Model(LLM)에서 자주 발생하는 현상으로, 모델이 잘못된 정보를 확신을 가지고 생성하는 것을 의미합니다.
 
@@ -33,7 +33,7 @@ silent failure란 무엇인지와 어떻게 모니터링 할 수 있는지에 �
 
 이 경우 모델은 에러 메시지를 보여주지 않고, 마치 정확한 정보인 것처럼 답변을 제공합니다. 사용자는 이를 신뢰할 수 있어 더욱 위험합니다.
 
-### 2. Data Drift (데이터 표류)
+### 2. Data Drift
 
 **Data Drift**는 입력 데이터의 분포가 모델 훈련 시와 다르게 변하는 현상을 의미합니다.
 
@@ -49,7 +49,7 @@ silent failure란 무엇인지와 어떻게 모니터링 할 수 있는지에 �
 
 [data drift란? 수치적으로 어떻게 정의할 수 있는지에 대한 글](/post/Data%20Science/Statistics/what-is-data-drift)
 
-### 3. Concept Drift (개념 표류)
+### 3. Concept Drift
 
 **Concept Drift**는 데이터와 타겟 간의 관계가 시간이 지나며 변화하는 현상입니다.
 
@@ -66,7 +66,7 @@ silent failure란 무엇인지와 어떻게 모니터링 할 수 있는지에 �
 모델의 성능을 확인하고, 성능에 확인이 안되는 부분은 비즈니스 지표 등을 함께 확인해야합니다.
 
 
-### 4. Model Degradation (모델 성능 저하)
+### 4. Model Degradation
 
 **Model Degradation**은 모델의 예측 품질이 서서히 떨어지는 현상입니다.
 
