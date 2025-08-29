@@ -20,8 +20,7 @@ export default function PortfolioPage() {
       title: '[Visuworks] AI Chatbot Project',
       excerpt: '고객상담용 챗봇 설계 및 구현, 서비스 운영',
       technologies: ['RAG'],
-      // github: 'https://github.com/mkk4726/chatbot-project',
-      // demo: 'https://chatbot-demo.example.com',
+      view: 'https://pf.kakao.com/_xiHdxeZ',
       date: '2024.11 ~ 2025.02 (4개월)',
       icon: '🤖',
       href: '/posts/Self_Development/Career/Portfolio/visuworks_chatbot'
@@ -54,7 +53,7 @@ export default function PortfolioPage() {
       excerpt: '부트캠프에서 기업 프로젝트를 진행하며 당뇨망막병증 병변 탐지 모델 개발한 내용입니다.',
       technologies: ['Aiffel'],
       github: 'https://github.com/mkk4726/DR-GeuAl',
-      demo: 'https://www.youtube.com/watch?v=ox_jmqZ1V64&t=223s',
+      view: 'https://www.youtube.com/watch?v=ox_jmqZ1V64&t=223s',
       date: '2023.12 ~ 2024.03 (4개월)',
       icon: '🩺',
       href: '/posts/Self_Development/Career/Portfolio/aiffel_segmentation'
@@ -143,13 +142,13 @@ export default function PortfolioPage() {
                       </svg>
                     </a>
                   )}
-                  {post.demo && (
+                  {post.view && (
                     <a
-                      href={post.demo}
+                      href={post.view}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-gray-400 hover:text-white transition-colors"
-                      title="Demo"
+                      title="View"
                     >
                       <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M8 5v14l11-7z"/>
