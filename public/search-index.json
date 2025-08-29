@@ -1,5 +1,69 @@
 [
   {
+    "id": "Self_Development/Career/Portfolio/segmentation",
+    "title": "Segmentation Model",
+    "date": "2025-08-29",
+    "excerpt": "눈의 안쪽 부분을 찍는 안저사진에서 망막병증을 탐지하는 모델",
+    "category": "Career",
+    "tags": [
+      "Python",
+      "NLP",
+      "Machine Learning",
+      "FastAPI",
+      "RAG"
+    ],
+    "content": "기간 : 2024.04 ~ 2024.06 (3개월) 역할 : 문제정의, 프로젝트 설계, 구현까지 모든 과정 결과 (성과) : 정확도 99%, 에러율 1% 미만의 안정적인 OCR 파이프라인 구축 비즈니스에 주는 영향 : 안정적인 데이터 수집 기반을 구축하여 서비스 개발 및 운영의 안정성 확보 당뇨병성 망막병증 탐지 모델 프로젝트 개요 당뇨병성 망막병증은 당뇨병 환자에게 자주 발생하는 합병증으로, 혈관 손상과 새로운 혈관 생성으로 인해 실명까지 유발할 수 있는 심각한 질환입니다. 초기 진단이 매우 중요한 이 병증을 안저사진을 통해 탐지하는 서비스를 개발했습니다. 안저사진은 눈의 안쪽(망막 부분)을 촬영하여 혈관 상태를 관찰할 수 있게 해주는 의료 영상입니다. !안저사진 이 프로젝트는 의사들의 진단을 지원하는 목적으로 개발되었으며, 입사 전 부트캠프 기간 중 기업연계 프로젝트로 시작하여 입사 후에도 지속적으로 발전시켰습니다. 관련 링크: 프로젝트 Github 발표영상 유튜브 데이터 현황 및 도전과제 프로젝트 진행 중 가장 큰 이슈는 데이터 부족이었습니다. 초기 데이터 상황 오픈 데이터셋 활용: 약 1,500개 이미지 레이블 보유율: 전체의 80% 정도 데이터 품질 문제: 부적절한 레이블 다수 존재 데이터 확보 과정 입사 후 임상팀과 협업하여 데이터 검수 및 추가 확보를 진행했지만, 여전히 제한된 데이터 환경에서 프로젝트를 진행해야 했습니다. 모델링 전략 및 성능 개선 모델 선택: U-Net 기반 데이터의 특징상 전체 이미지 중 레이블(마스크)이 포함된 부분이 매우 작은 의료 도메인의 특성상, U-Net 계열 모델이 가장 높은 성능을 보이는 것을 확인했습니다. 실제 연구 결과와 프로젝트 내 비교 실험에서도 U-Net이 최고 성능을 달성했습니다. 성능 향상을 위한 핵심 기법들 전처리: CLAHE 적용 명암대비 향상 기법인 CLAHE를 적용하여 데이터의 특징을 더 명확하게 만들었습니다. !CLAHE 적용 결과 육안으로도 특징이 더 명확하게 보이며, 실제 성능도 향상되었습니다. 다만 과도한 명암대비 향상은 false positive를 증가시키므로 실험을 통해 적정 수준을 설정했습니다. Contrastive Learning 기반 사전학습 ImageNet 사전학습 가중치가 안저사진과 같은 특수한 의료 영상에는 효과적이지 않다는 것을 실험을 통해 확인했습니다. 대신 회사 내 보유한 대량의 안저사진(레이블 없음)을 활용하여 contrastive learning 기반 사전학습을 진행했습니다. 결과: 성능 10-15% 향상 달성 Multi-Task Learning U-Net의 인코더-디코더 구조를 활용하여 segmentation 외에 reconstruction task를 추가로 수행하는 multi-task learning을 적용했습니다. 모델 서빙 및 배포 배포 전략 서비스 초기 단계의 특성을 고려하여 빠른 모델 배포가 가능한 방법을 채택했습니다. 기술 스택 모델 최적화: TensorRT engine 변환 서빙 플랫폼: Triton Server 장점: 모델 추론 최적화 용이 GPU 자원 관리 자동화 요청/응답 처리 간소화 프로젝트 성과 항목 내용 ------ ------ 프로젝트명 당뇨병성 망막병증 병변 탐지 모델링 및 서비스 개발 기간 2024년 4월 ~ 2025년 6월 (3개월) 주요 성과 • Contrastive Learning 적용으로 일반화 성능 향상<br>• 제한된 데이터에서도 모델 판별력 개선<br>• Multi-Task Learning으로 병변 탐지 성능 최적화<br>• Segmentation 성능: IoU 개선, Dice Score 0.8 달성 역할 • 최신 연구 분석 및 모델 설계 적용<br>• 데이터 부족 문제 해결을 위한 기법 적용<br>• 데이터 품질 개선 및 정제<br>• 모델 최적화 및 하이퍼파라미터 튜닝 기술 스택 PyTorch, Triton-Server, gRPC, Docker",
+    "public": true
+  },
+  {
+    "id": "Self_Development/Career/Portfolio/ocr_pipeline",
+    "title": "OCR Pipeline System",
+    "date": "2025-08-29",
+    "excerpt": "문서 이미지에서 텍스트를 추출하는 자동화된 OCR 파이프라인",
+    "category": "Career",
+    "tags": [
+      "Python",
+      "OCR",
+      "Computer Vision",
+      "Docker",
+      "gRPC"
+    ],
+    "content": "기간 : 2024.06 ~ 2024.09 (4개월) 역할 : 시스템 기획부터 구현까지 모든 과정 결과 (성과) : 정확도 99%, 에러율 1% 미만의 안정적인 OCR 파이프라인 구축 비즈니스에 주는 영향 : 안정적인 데이터 수집 기반을 구축하여 서비스 개발 및 운영의 안정성 확보 프로젝트 개요 : 병원 검사 결과 이미지에서 실시간으로 검사 결과 데이터를 추출해 데이터베이스에 적재하는 OCR 파이프라인 시스템을 설계하고 구현하는 프로젝트를 진행했습니다. 환자의 검사 결과를 바탕으로 \"시력 교정 수술 추천 서비스\"나 \"렌즈 사이즈 추천 서비스\"를 운영하고 있었기 떄문에, 안정적인 파이프라인을 구축해야만 안정적인 서비스를 운영할 수 있는 상황이었습니다. <figure> <img src=\"/post/Portfolio/OCR_pipeline.png\" alt=\"OCR Pipeline\" width=\"100%\" /> <figcaption>그림1. OCR Pipeline 구조</figcaption> </figure> 제가 구성한 파이프라인 구조는 그림1과 같습니다. 6가지 종류, 총 40~50대의 검사장비에서 검사를 진행하고 이를 실시간으로 OCR하고 추출된 데이터를 DB에 적재하게 됩니다. 파이프라인을 설계하면서 정의했던 목표는 크게 2가지입니다. 에러가 발생하지 않고 안정적인 상태 안정적인 서비스 개발 및 운영을 위해서 99% 이상의 OCR 정확도 \"검사 결과\"이기 때문에 OCR 오류가 치명적일 수 있음 프로젝트가 끝나고 결과 혹은 성과는 다음과 같습니다. 에러율 1% 미만의 안정적인 파이프라인 구조 기능과 역할이 명확하게 구분된 객체지향적인 코드 구조 문제 이유와 범위가 명확하게 보이는 에러 로그 지속적인 모니터링 시스템 비동기구조 적용으로 속도 향상 유닛 테스트와 타입 검증 99% 이상의 OCR 정확도 이미지 전처리를 통해 정확도 향상 테스크의 특성을 활용해 최적화된 모델 사용 및 후처리 로직으로 목표 정확도 달성 이러한 결과를 얻기 위해 어떤 선택들을 했는지에 대해 정리했습니다. 프로젝트 시작할 때의 상황 : 처음 프로젝트를 시작할 때의 상황은 전임자가 프로젝트르 진행하다가 중간에 떠난 상황이었습니다. 알 수 없는 에러로그가 쌓이고 있었고, OCR 모델의 정확도는 알 수 없었습니다. 어떤 문제를 해결하려고 해도 어디서 발생한 에러인지, 그 범위는 어디까지인지 알 수 없었습니다. 또 절차지향적으로, 정확히는 하나의 .py에 구조없이 구현된 코드들은 기능과 역할이 모호했습니다. 목표를 달성하기 위해서는 코드 구조를 개선하며 에러를 잡아나가야 했고, OCR 모델 개선해야 했습니다. 맞으면서 배우다, 객체지향 설계의 중요성 : 무자비하게 쌓인 코드들을 보면서, 머리로 이해했던 1기능 1함수 원칙이나 디자인 패턴 등 코드를 잘 짜기 위한 방법들을 마음으로 이해할 수 있었습니다. 여러 기능이 하나의 함수에 작성되어있고, 타입힌트도 전혀 작성되어있지 않은 코드를 이해하고 디버깅하는 과정은 굉장히 어려웠습니다. 하지만 이런 코드를 이해하고 고쳐나가는 과정은 코드를 작성하는 능력을 키우는데 굉장히 큰 도움이 됐습니다. 이해하기 쉽고 디버깅이 쉬운 코드를 작성하기 위한 나름의 규칙들을 세울 수 있었습니다. 함수에는 꼭 하나의 기능만, 객체에는 하나의 역할만 부여하기 객체 지향의 꽃은 추상화, 입력과 출력만 신경쓸 수 있도록 이를 고려해 코드를 작성했고 문제를 하나씩 고쳐나갈 수 있었습니다. 에러의 범위와 원인을 파악하기 쉬워졌고, 전체 문제를 작은 문제들로 쪼갤 수 있었습니다. 문제를 정확히 이해하기, 비동기 구조로 속도 향상 : <figure> <img src=\"/post/Portfolio/OCR_server_threadpool.png\" alt=\"OCR Server 구조\" width=\"80%\" /> <figcaption>그림2. OCR Server 구조</figcaption> </figure> client와 server에서 실행되는 로직은 그림2와 같습니다. 처음 프로젝트를 인수인계 받을 때 동시에 여러 이미지를 처리하더라도 OCR 속도가 1초 미만이어야 한다고 했습니다. 그 이유는 Client 프로그램에서 Server로부터 응답이 늦게 오면, 그 다음에 진행되는 작업도 늦어지게 되고, 이는 고객에게 불편함을 주기 때문입니다. Client에서 OCR 성공 여부를 확인할 필요가 있나? 에 대한 의문에서 시작했습니다. 이미지 송수신 여부만 확인하면 되기 때문에 주고 받을 성공여부에 대한 의미를 재정의했습니다. 그리고 Server에서의 역할을 구분했고, OCR 과정이 속도가 오래걸리더라도 Client에는 영향을 미치지 않는 구조로 재정의할 수 있었습니다. 런타임 에러 줄이기, pytest를 활용한 unit test와 mypy를 활용한 타입 검증 : 안정적인 파이프라인을 운영하기 위해 런타임 에러를 줄일 수 있는 방법에 대해 고민했습니다. 런타임 에러를 줄이기 위해 사용한 방법은, pytest를 통한 unitest와 mypy를 이용한 타입 검증입니다. 작게 쪼개놓은 기능이나 역할들이 잘 수행되는지 unit test를 통해 미리 확인하고, 주고 받는 값들의 타입들이 맞는지 미리 확인하는 작업을 CI과정에서 진행했습니다. 이를 통해 어떤 기능을 추가하거나 수정했을 때 발생할 수 있는 런타임 에러들을 미리 검증하고 사전에 파악할 수 있었습니다. 문제에 특화된 모델 사용하기, OCR 정확도 확보 : <figure> <img src=\"/post/Portfolio/OCR_tritonserver.png\" alt=\"OCR Model\" width=\"50%\" /> <figcaption>그림3. OCR Model</figcaption> </figure> 안정적인 파이프라인이 어느정도 완성된 다음에는 99%이상의 OCR 정확도를 어떻게 달성할 수 있을지에 대한 고민을 했습니다. 이를 위해서 문제의 특징을 사용했습니다. OCR은 크게 2단계로 구분됩니다. 위치를 찾는 Text Detection과 텍스트를 인식하는 Text Recognition입니다. 검사장비에서 생성되는 검사 이미지는 고정되니까 위치 정보를 사전에 정의해놓을 수 있었습니다. 따라서 텍스트를 인식하는 부분에 특화된 모델만이 필요했습니다. 여러 모델을 찾던 중 TrOCR이라는 오픈소스 모델을 발견했고, 이 모델이 개발된 동기가 Text Detection은 추후로미루고 Text Recognition에 특화된 모델 먼저 만들겠다는 것입니다. 이미지 전처리와 결과 후처리 작업을 추가하니, 200건정도로 구성한 테스트 셋에서 99%이상, 거의 100%에 가까운 정확도를 확인할 수 있었습니다. 모델 배포는 온프레미스로 진행했고, TritonServer를 사용했습니다. TritonServer를 선택한 주요 이유는 동적 배치 처리와 동시성 관리를 쉽게 구현할 수 있고, 이를 통해 처리량을 달성할 수 있기 때문입니다.",
+    "public": true
+  },
+  {
+    "id": "Self_Development/Career/Portfolio/lenze_size_rec",
+    "title": "Lens Size Recommendation System",
+    "date": "2025-08-29",
+    "excerpt": "머신러닝을 활용한 맞춤형 렌즈 사이즈 추천 시스템",
+    "category": "Career",
+    "tags": [
+      "Python",
+      "Machine Learning",
+      "Causal Inference",
+      "Flask",
+      "BentoML"
+    ],
+    "content": "기간 : 2025.03 ~ 현재 (5개월) 역할 : 문제정의, 프로젝트 설계, 구현까지 모든 과정 결과 (성과) : 비즈니스에 주는 영향 : <figure> <img src=\"/post/Portfolio/Lenze_size_reco.png\" alt=\"lenze size reco\" width=\"100%\" /> <figcaption>그림5. 렌즈 사이즈 추천 서비스</figcaption> </figure> 렌즈 삽입술 후의 결과를 예측해서, 렌즈 사이즈를 선택하는데 도움을 주는 서비스를 개발하는 프로젝트를 진행했습니다. 프로젝트는 다음의 의문을 해결하는 것부터 시작했습니다. 예측 성능을 어떻게 평가할 수 있을까? : <figure> <img src=\"/post/Portfolio/Lenze_size_evaluate.png\" alt=\"how to evalute\" width=\"100%\" /> <figcaption>그림6. 예측값 평가 방법</figcaption> </figure> 그림 6처럼 고객은 4개의 렌즈 사이즈 중 하나에 대해서 수술을 받게 됩니다. 따라서 4개의 예측 결과 중 하나에 대한 실제 결과값을 알 수 있으며, 나머지 3개에 대한 실제 값은 알 수 없습니다. 이러한 선택의 문제에서 예측 성능은 어떻게 평가할 수 있을지에 대한 고민이 있었습니다. 이에 대한 해답을 \"인과추론\"에서 얻을 수 있었습니다. <figure> <img src=\"/post/Portfolio/Lenze_size_RCT.png\" alt=\"RCT\" width=\"80%\" /> <figcaption>그림7. RCT 상황에서의 평가</figcaption> </figure> 만약 고객이 랜덤으로 사이즈를 선택해 수술을 받았다면, 이 고객과 비슷한 환자는 다른 사이즈로 수술을 받았다고 생각할 수 있습니다. 그리고 이를 통해 A에 대한 결과를 간접적으로 평가할 수 있습니다. 즉, 처치(사이즈)별로 분포가 겹쳐있다면 선택하지 않은 사이즈에 대한 예측값도 간접적으로 평가가 가능합니다. <figure> <img src=\"/post/Portfolio/Lenze_size_OS.png\" alt=\"Observaional Study\" width=\"80%\" /> <figcaption>그림8. 실제 상황에서의 평가</figcaption> </figure> 하지만 실제 상황에서는 모든 처치의 분포가 겹쳐 있지 않습니다. 왜냐하면 환자의 눈의 조건을 보고 의사가 사이즈를 결정하기 때문입니다. 그림8처럼 13.2만을 사용할 환자의 경우에는 13.2외에 다른 사이즈에 대한 예측값을 신뢰하기 어렵습니다. 이러한 불확실성을 어떻게 수치적으로 표현할 수 있을지에 대해 고민했습니다. 보장할 수 있는 예측값의 범위는? : 가장 먼저 예측 평가지표 (MSE, MAE)로 성능을 확인한 예측의 범위를 정해야 합니다. 이는 성향 점수 (propensity score)를 추정함으로써 정할 수 있습니다. 성향 점수는 처치를 선택할 확률을 의미하며, $P(T X)$을 추정하는 문제입니다. 성햠 점수 추정 모델로 고객별로 데이터에서 처치의 분포가 겹치는 범위를 정할 수 있습니다. (인과추론의 가장 기본적인 가정인 양수성을 만족하는 범위를 찾는다고도 할 수 있습니다) <figure> <img src=\"/post/Portfolio/Lenze_size_propensity.png\" alt=\"Positivity\" width=\"80%\" /> <figcaption>그림9. 양수성 조건 만족하는 범위</figcaption> </figure> 그림9에서 고객 A는 12.1, 12.6, 13.2에 대한 예측 성능을 신뢰할 수 있고, 고객 B는 12.6에 대한 예측 성능을 신뢰할 수 있습니다. 신뢰할 수 없는 처치의 예측은? : 신뢰할 수 있는 정도를 예측 범위로 나타낼 수 있고, 따라서 양수성이 보장되지 않는 예측 범위의 예측 범위를 넓게 그려주고자 했습니다. 양수성이 보장되는 처치의 예측값은 신뢰구간을 예측해 보여주고, 나머지 처치에 대해서는 \"partial identification\"과 같은 개념을 사용해 예측 범위를 추정했습니다. <figure> <img src=\"/post/Portfolio/Lenze_size_PI.png\" alt=\"Prediction Interval\" width=\"80%\" /> <figcaption>그림10. 양수성 조건에 따른 예측 구간</figcaption> </figure> 고객 A에 대한 예시입니다. 양수성이 보장되는 12.1, 12.6, 13.2보다 13.7의 예측 범위가 더 넓고, 이를 통해 불확실성을 표현하고 있습니다. ML 시스템 설계 및 구현 기간 : 2024.09 ~ 2024.10 (2개월) 역할 : 문제정의, 프로젝트 설계, 구현까지 모든 과정 결과 (성과) : 데이터 일관성 확보, 실제 성능 모니터링 구축 비즈니스에 주는 영향 : 실제 서비스 상황에서의 성능 확인 입사했을 때 회사에서는 시력교정술 수술 추천이라는 ML을 이용한 서비스를 운영 중이었습니다. 이를 살펴봤을 때 몇가지 문제점들이 보였습니다. 이를 정의하고 해결해나가면서 ML system을 설계하고 구현하는 프로젝트를 진행했습니다. 제가 정의한 문제는 다음과 같습니다. 데이터 일관성 확보가 안되고 있다. 학습 및 실험에서 사용하는 데이터와 추론에서 사용하는 데이터가 다르다. 데이터 웨어하우스에서 데이터를 조합하는 방식 등의 전처리 방식, 불러오는 로직 차이 등으로 인해 실험과 추론 상황에 사용되는 데이터가 달랐습니다. 이런 상황에서는 실험에서 판단한 일반화 성능이 추론 상황에서 보장이 안될 수 있는, 치명적인 상황입니다. 모델에 대한 모니터링을 하고 있지 않다. 모델이 실제 서비스 상황에서 어떤 성능을 보이는지, data shift 같은 건 없는지 등을 확인하고 있지 않았습니다. 데이터는 계속 바뀌고, 이에 따라 모델의 성능이 변할 수 있기 때문에 이를 지속적으로 확인하고 재학습시키는 과정이 필요하다고 판단했습니다. 이 2가지 문제를 해결하고자 했고, Feature store와 Moninitoring 기능을 개발하여 전체적인 ML 시스템을 완성했습니다. 대략적인 구조 : <figure> <img src=\"/post/Portfolio/ML_system.png\" alt=\"ML system\" width=\"100%\" /> <figcaption>그림4. ML system</figcaption> </figure> 개별적으로 외부 데이터에서 추출해서 사용하던 부분을 Aiflow DAG를 활용해 지속적으로 DW에 업데이트되게 수정 Feature Store를 통해 데이터 일관성을 확보 Monitoring 기능을 통해 추론 상황에서 성능 확인, Data shift 모니터링 데이터 일관성을 확보하자, Feature Store 구현 : 가장 중요하게 생각하고, 이 프로젝트를 시작하게 된 이유입니다. 기존에는 실험 환경과 추론 환경에서 서로 다른 데이터 전처리 로직을 사용하고 있었습니다. 데이터 웨어하우스에서 데이터를 조합하는 방식, 불러오는 로직의 차이로 인해 학습 시와 추론 시 사용되는 피처가 달랐습니다. 이는 모델의 일반화 성능을 보장할 수 없는 치명적인 문제였습니다. 이 문제를 해결하기 위해 Feature Store를 구축하여 데이터 일관성을 확보했습니다. 중앙화된 피처 저장소를 만들어 모든 피처를 Feature Store에 저장하여 실험과 추론에서 동일한 데이터를 사용할 수 있게 했습니다. 피처 정의와 값의 버전을 관리하여 재현 가능성을 확보했고,일관된 피처 생성 프로세스를 구축했습니다. 결과적으로 실험 환경과 추론 환경에서 100% 동일한 피처를 사용할 수 있게 되어, 모델의 일반화 성능을 신뢰할 수 있게 되었습니다. 또한 피처 재사용성과 개발 효율성도 크게 향상되었습니다. 데이터 분포 변화는 없나? Monitoring 구현 : 모델이 실제 서비스 상황에서 어떤 성능을 보이는지, 데이터 분포 변화가 있는지 등을 지속적으로 모니터링하는 것은 ML 시스템 운영의 핵심입니다. 데이터는 계속 변화하고, 이에 따라 모델의 성능이 변할 수 있기 때문에 이를 지속적으로 확인하고 재학습시키는 과정이 필요했습니다. 구현한 모니터링 기능으로는 실시간 성능 모니터링이 있습니다. 추론 요청에 대한 예측 결과와 실제 결과를 비교하여 모델의 성능을 실시간으로 추적합니다. 정확도, 정밀도, 재현율 등의 메트릭을 지속적으로 계산하고, 성능 저하 시 즉시 알림을 발생시킵니다. 데이터 Drift 감지 기능도 구현했습니다. 입력 데이터의 분포 변화를 감지하여 모델 성능 저하의 원인을 사전에 파악합니다. 피처별 통계량(평균, 표준편차, 분포)을 학습 시점과 비교하고, 임계값을 초과하는 변화가 있을 때 경고를 발생시킵니다. 모델 Drift 모니터링도 지속적으로 수행합니다. 모델의 예측 분포가 학습 시점과 비교하여 얼마나 달라졌는지를 추적합니다. 예측값의 분포 변화, 신뢰도 점수 변화 등을 모니터링하여 모델의 안정성을 평가합니다. 자동화된 알림 시스템도 구축했습니다. 성능 지표나 drift 지표가 임계값을 초과할 때 담당자에게 자동으로 알림을 보내는 시스템으로, Slack, 이메일 등을 통해 즉시 상황을 파악할 수 있도록 했습니다. 결과적으로 모델의 성능 변화를 사전에 감지할 수 있게 되어, 성능 저하 시 즉시 대응할 수 있었습니다. 데이터 drift가 발생했을 때도 원인을 빠르게 파악하고 적절한 조치를 취할 수 있어 모델의 안정성을 크게 향상시켰습니다.",
+    "public": true
+  },
+  {
+    "id": "Self_Development/Career/Portfolio/chatbot",
+    "title": "AI Chatbot Project",
+    "date": "2025-08-29",
+    "excerpt": "자연어 처리를 활용한 지능형 챗봇 시스템",
+    "category": "Career",
+    "tags": [
+      "Python",
+      "NLP",
+      "Machine Learning",
+      "FastAPI",
+      "RAG"
+    ],
+    "content": "기간 : 2024.11 ~ 2025.02 (4개월) 역할 : 결과 (성과) : 비즈니스에 주는 영향 : AI Chatbot Project 프로젝트 개요 병원 상담 업무를 자동화하기 위한 RAG(Retrieval-Augmented Generation) 기반 지능형 챗봇 시스템을 개발했습니다. 카카오톡 채널을 통해 고객에게 제공되며, 반복적인 상담 질문에 대한 자동 응답을 통해 상담사의 업무 효율성을 크게 향상시켰습니다. 주요 기능 RAG 기반 답변 생성: 문서 검색과 생성 모델을 결합한 정확한 답변 제공 맥락 인식 대화: 대화 히스토리를 활용한 연속적인 상담 지원 다국어 지원: 한국어 및 영어 지원 실시간 응답: 빠른 응답 속도로 사용자 경험 향상 자동 모니터링: LLM 기반 대화 품질 자동 평가 시스템 기술 스택 Backend: Python, FastAPI NLP: Transformers, spaCy, OpenAI GPT Vector Database: Qdrant, ChromaDB Embedding: BGE-m3 Deployment: Docker, AWS Monitoring: Slack API 핵심 기술적 도전과 해결책 문서 검색 성능 최적화 문제: 의미적 검색의 한계로 인한 낮은 검색 정확도 해결책: 벡터 데이터베이스 구축: Qdrant를 활용한 고성능 벡터 검색 시스템 구축 메타데이터 필터링: 의사별, 진료과별 메타데이터 기반 정밀 검색 구현 임베딩 모델 선정: BGE-m3 모델을 다양한 옵션과 비교하여 최적 성능 확인 키워드 기반 필터링: 고유명사(의사 이름 등) 처리 개선을 위한 키워드 추출 및 필터링 질문 세분화: 복합 질문을 단순 질문으로 분해하여 검색 정확도 향상 대화 맥락 반영: Chat history를 활용한 질문 재정의 결과: 검색 정확도 95% 이상 달성 사용자 만족도 향상 문제: 챗봇이 답변할 수 없는 질문에 대한 반복 응답으로 인한 사용자 불만 해결책: 질문 분류 모델: 답변 가능/불가능 질문을 사전 판별하는 분류 모델 추가 상담사 연결: 답변 불가 질문 시 즉시 실제 상담사로 연결하는 시스템 구현 결과: 사용자 만족도 90% 이상 달성 유지보수 비용 최적화 문제: 수동 모니터링으로 인한 높은 운영 비용 (하루 30분 이상 소요) 해결책: 자동 모니터링 시스템: LLM 기반 대화 품질 평가 자동화 핵심 지표 추적: 답변 출처 적합성: 답변이 검색된 문서에서 생성되었는지 평가 질문-문서 연관성: 질문과 검색된 문서 간의 관련성 평가 임계치 기반 알림: 품질 점수가 임계치 이하인 대화만 알림 전송 결과: 모니터링 비용 80% 감소 답변 생성 최적화 프롬프트 엔지니어링 다음 3가지 관점에서 프롬프트를 최적화했습니다: 문서 사용성: 답변이 얼마나 문서에 기반했는지 친절성: 얼마나 친절하고 상냥하게 응답하는지 정확도: 얼마나 질문에 맞는 답변을 하는지 할루시네이션 방지 의료 정보의 정확성은 매우 중요하므로: 검색된 문서에서만 답변 생성하도록 강제 RAGAS 컨셉을 활용한 답변 기반성 자동 평가 LLM이 추출한 명제/개념의 문서 기반성 검증 결과 및 성과 답변 정확도: 95% 이상 달성 사용자 만족도: 90% 이상 달성 모니터링 자동화: 유지보수 비용 80% 감소 업무 효율성: 기존 상담 중 65% 챗봇으로 대체 응답 속도: 평균 0.5초 이내 학습한 점 RAG 시스템의 실제 적용 방법과 한계점 사용자 경험을 고려한 챗봇 설계의 중요성 자동화된 모니터링 시스템의 구축 방법 의료 분야에서의 AI 시스템 신뢰성 확보 방법",
+    "public": true
+  },
+  {
     "id": "Data Science/Causal Inference/what-is-positivity",
     "title": "Positivity(양수성)이란? Overlap assumption이란?",
     "date": "2025-08-29",
@@ -9,7 +73,7 @@
       "Positivity",
       "Overlap assumption"
     ],
-    "content": "",
+    "content": "ddd",
     "public": true
   },
   {
@@ -201,18 +265,6 @@
       "비교 및 비유할 때 쓰는 표현들"
     ],
     "content": "배운 표현들 There is nothing as motivating as a deadline. There is nothing as motivating as a good salary. There is nothing as demotivating as a rejection letter. There is noting as encouring as a supportive family. There is noting as refresing as a goodnight's sleep. He is not only my husband but also my bestfriend. He is not only intelligence but also atheletic. 간단한 작문 Today I learned expressions using \"nothing as ~ as \" and \"not only ~ but only\". These are used to explain something. When I express what it is amazing, I can say like that there is nothing as motivating as mindfulness. It is so helpful to me, it makes me more calm and focused. It is not only helpful for healthy mind but also helpful for succesful life. I can make more success when I can focused. Mindfulness make me more focused to kill monkey-mind. And if my mind be more peaceful, I can be more focused. In my opinion, focusness (몰입) is component of happy. We can be happy when we feel focusness. So mindfulness make us more happy. --- 피드백 및 수정된 버전 피드백 전반적으로 mindfulness와 focus에 대한 좋은 생각들을 표현했습니다! 문법과 어휘 선택 부분에서 몇 가지 개선점이 있습니다: 주요 개선 포인트: 동사 시제 일치: \"makes\", \"is\", \"helps\" 등 현재형 동사의 일관성 관사 사용: \"a\" 또는 \"the\" 적절한 사용 어휘 선택: 더 자연스러운 영어 표현들 문장 구조: 좀 더 매끄러운 연결 수정된 버전 Today I learned expressions using \"nothing as ~ as\" and \"not only ~ but also\". These expressions are used to emphasize and compare things. When I want to express something amazing, I can say that there is nothing as motivating as mindfulness. It is so helpful to me - it makes me calmer and more focused. It is not only helpful for a healthy mind but also helpful for a successful life. I can achieve more success when I am focused. Mindfulness helps me focus better and quiet my monkey-mind. When my mind becomes more peaceful, I can concentrate better. In my opinion, focus (몰입) is a component of happiness. We can be happy when we experience deep focus. So mindfulness makes us happier.",
-    "public": true
-  },
-  {
-    "id": "Self_Development/Career/Portfolio/diner-recommendation",
-    "title": "음식점 추천 서비스 개발",
-    "date": "2025-08-17",
-    "excerpt": "",
-    "category": "Career",
-    "tags": [
-      "이력서"
-    ],
-    "content": "정의했던 문제들, 해결하는 과정, 해결한 결과",
     "public": true
   },
   {
@@ -2166,46 +2218,6 @@
     ],
     "content": "비공개 테스트 포스트 이 포스트는 public: false 설정으로 인해 관리자 모드에서만 볼 수 있습니다. 내용 URL에 ?admin=true 또는 ?admin=True를 추가하면 이 포스트를 볼 수 있어야 합니다. 테스트 항목 포스트 목록에서 표시 여부 검색 결과에서 표시 여부 직접 URL 접근 시 차단 여부 시각적 표시 (🔒 아이콘, 빨간 테두리) 이 내용이 보인다면 관리자 모드가 정상적으로 작동하고 있는 것입니다!",
     "public": false
-  },
-  {
-    "id": "Self_Development/Career/Portfolio/chatbot",
-    "title": "AI Chatbot Project",
-    "date": "2024-12-01",
-    "excerpt": "",
-    "category": "",
-    "tags": [],
-    "content": "AI Chatbot Project 프로젝트 개요 병원 상담 업무를 자동화하기 위한 RAG(Retrieval-Augmented Generation) 기반 지능형 챗봇 시스템을 개발했습니다. 카카오톡 채널을 통해 고객에게 제공되며, 반복적인 상담 질문에 대한 자동 응답을 통해 상담사의 업무 효율성을 크게 향상시켰습니다. 주요 기능 RAG 기반 답변 생성: 문서 검색과 생성 모델을 결합한 정확한 답변 제공 맥락 인식 대화: 대화 히스토리를 활용한 연속적인 상담 지원 다국어 지원: 한국어 및 영어 지원 실시간 응답: 빠른 응답 속도로 사용자 경험 향상 자동 모니터링: LLM 기반 대화 품질 자동 평가 시스템 기술 스택 Backend: Python, FastAPI NLP: Transformers, spaCy, OpenAI GPT Vector Database: Qdrant, ChromaDB Embedding: BGE-m3 Deployment: Docker, AWS Monitoring: Slack API 핵심 기술적 도전과 해결책 문서 검색 성능 최적화 문제: 의미적 검색의 한계로 인한 낮은 검색 정확도 해결책: 벡터 데이터베이스 구축: Qdrant를 활용한 고성능 벡터 검색 시스템 구축 메타데이터 필터링: 의사별, 진료과별 메타데이터 기반 정밀 검색 구현 임베딩 모델 선정: BGE-m3 모델을 다양한 옵션과 비교하여 최적 성능 확인 키워드 기반 필터링: 고유명사(의사 이름 등) 처리 개선을 위한 키워드 추출 및 필터링 질문 세분화: 복합 질문을 단순 질문으로 분해하여 검색 정확도 향상 대화 맥락 반영: Chat history를 활용한 질문 재정의 결과: 검색 정확도 95% 이상 달성 사용자 만족도 향상 문제: 챗봇이 답변할 수 없는 질문에 대한 반복 응답으로 인한 사용자 불만 해결책: 질문 분류 모델: 답변 가능/불가능 질문을 사전 판별하는 분류 모델 추가 상담사 연결: 답변 불가 질문 시 즉시 실제 상담사로 연결하는 시스템 구현 결과: 사용자 만족도 90% 이상 달성 유지보수 비용 최적화 문제: 수동 모니터링으로 인한 높은 운영 비용 (하루 30분 이상 소요) 해결책: 자동 모니터링 시스템: LLM 기반 대화 품질 평가 자동화 핵심 지표 추적: 답변 출처 적합성: 답변이 검색된 문서에서 생성되었는지 평가 질문-문서 연관성: 질문과 검색된 문서 간의 관련성 평가 임계치 기반 알림: 품질 점수가 임계치 이하인 대화만 알림 전송 결과: 모니터링 비용 80% 감소 답변 생성 최적화 프롬프트 엔지니어링 다음 3가지 관점에서 프롬프트를 최적화했습니다: 문서 사용성: 답변이 얼마나 문서에 기반했는지 친절성: 얼마나 친절하고 상냥하게 응답하는지 정확도: 얼마나 질문에 맞는 답변을 하는지 할루시네이션 방지 의료 정보의 정확성은 매우 중요하므로: 검색된 문서에서만 답변 생성하도록 강제 RAGAS 컨셉을 활용한 답변 기반성 자동 평가 LLM이 추출한 명제/개념의 문서 기반성 검증 결과 및 성과 답변 정확도: 95% 이상 달성 사용자 만족도: 90% 이상 달성 모니터링 자동화: 유지보수 비용 80% 감소 업무 효율성: 기존 상담 중 65% 챗봇으로 대체 응답 속도: 평균 0.5초 이내 학습한 점 RAG 시스템의 실제 적용 방법과 한계점 사용자 경험을 고려한 챗봇 설계의 중요성 자동화된 모니터링 시스템의 구축 방법 의료 분야에서의 AI 시스템 신뢰성 확보 방법",
-    "public": true
-  },
-  {
-    "id": "Self_Development/Career/Portfolio/lenze_size_rec",
-    "title": "Lens Size Recommendation System",
-    "date": "2024-11-15",
-    "excerpt": "",
-    "category": "",
-    "tags": [],
-    "content": "정의했던 문제들, 해결하는 과정, 해결한 결과 프로젝트 설명 프로젝트 개요 시력교정센터에서 렌즈 삽입술을 위한 최적의 렌즈 크기를 추천하는 머신러닝 기반 시스템을 개발했습니다. 의사의 경험과 노하우에 의존하던 렌즈 선택 과정을 데이터 기반으로 객관화하여, 환자별 맞춤형 렌즈 사이즈를 추천하는 서비스를 제공합니다. 주요 기능 예측 모델: 환자 정보와 렌즈 크기를 입력받아 수술 결과(Vault) 예측 인과추론 기반: 통계적 편향을 제거한 신뢰할 수 있는 예측 제공 의학적 직관 반영: 단조 증가/감소 조건을 만족하는 모델 설계 해석 가능성: 예측 결과에 대한 근거와 설명 제공 실시간 추론: BentoML 기반 고성능 모델 서빙 기술 스택 Backend: Python, Flask, FastAPI Machine Learning: Scikit-learn, LightGBM, XGBoost Causal Inference: Orthogonalization, Double ML Model Serving: BentoML, Docker Database: PostgreSQL Monitoring: Airflow, Flask Dashboard 핵심 기술적 도전과 해결책 신뢰할 수 있는 예측 모델 구축 문제: 단순한 예측 성능만으로는 선택의 신뢰도를 보장할 수 없음 해결책: 인과추론 적용: 교란편향 등 통계적 편향을 제거하여 인과적 관계 기반 예측 직교화(Orthogonalization): 예측 변수와 교란 변수를 분리하여 편향 제거 의학적 직관 반영: 단조 증가/감소 조건을 만족하는 모델 설계 결과: 결정계수(R²) 0.7 달성으로 예측 신뢰도 확보 사용자 신뢰도 및 만족도 향상 문제: 높은 평가지표가 사용자 신뢰와 만족을 보장하지 않음 해결책: 도메인 지식 기반 근거 제시: AI 예측 결과와 함께 의학적 근거 제공 사용자 피드백 반영: 주기적인 피드백 수집 및 UI/리포팅 기능 개선 차별화 증명: 연구 내용을 학술 논문으로 작성하여 제품 차별점 입증 결과: 사용자 친화적인 서비스 설계로 신뢰도 향상 데이터 품질 및 특성 분석 문제: 다양한 소스의 데이터 품질과 일관성 확보 해결책: 종합적 EDA: 좌안/우안 차이, 검사 장비 오류, 의사별 차이 등 분석 데이터 검증: OCR 결과, 수기 입력 데이터의 완전성 검증 피처 엔지니어링: 렌즈 회전각도, 종류, 두께 등 도메인 지식 기반 피처 추가 결과: 데이터 품질 향상 및 예측 성능 개선 모델링 접근법 모델링 조건 설정 서비스 목표에 맞는 모델 조건을 다음과 같이 정의했습니다: 단조성 조건: 특정 변수와 예측값 간의 단조 증가/감소 관계 유지 해석 가능성: 모델이 해석 가능하거나 결과를 추정할 수 있어야 함 모델 선택 및 최적화 Linear Regression 계열: Lasso, Ridge, ElasticNet (회귀 계수로 단조성 확보) GBDT 계열: LightGBM, XGBoost, CatBoost (monotonic constraint 적용) 앙상블: Voting과 Stacking을 통한 성능 향상 하이퍼파라미터 튜닝: Bayesian optimization 활용 일반화 성능 확보 Data Leakage 방지: 시간 기반 test set 구성 및 unknown 처리 의학적 논리 검증: 회귀 계수, feature importance, SHAP 분석을 통한 정성평가 정기적 성능 확인: 특정 주기로만 test set 확인하여 과적합 방지 시스템 아키텍처 모델 서빙 BentoML 활용: Docker 이미지로 패키징하여 버전 관리 온프레미스 배포: 기존 서버 리소스 활용한 추론 서버 구축 데이터 일관성 확보 Feature Store 구축: 학습과 추론에서 동일한 로직으로 데이터 처리 FastAPI 기반: ORM을 활용한 데이터 관리 시스템 모니터링 시스템 Flask Dashboard: 모델 성능 및 데이터 분포 실시간 모니터링 Airflow 스케줄링: 정기적인 모니터링 데이터 업데이트 현재 연구 및 개선 방향 한계점 인식 현재 모델의 성능 한계를 다음과 같이 분석했습니다: 측정 한계: 검사 장비는 홍채 윗부분만 측정 가능 구조적 요소: 실제 렌즈 삽입 위치(섬모체 낭) 정보 부족 모델 한계: Linear/GBDT 모델로는 latent space 구성 어려움 향후 연구 방향 구조적 요소 추정: 보이지 않는 해부학적 구조를 추정할 수 있는 모델 개발 Latent Space 모델링: 복잡한 구조적 관계를 학습할 수 있는 고급 모델 연구 결과 및 성과 예측 신뢰도: 결정계수(R²) 0.7 달성 통계적 편향 제거: 인과추론 기반 신뢰할 수 있는 예측 제공 사용자 만족도: 도메인 지식 기반 근거 제시로 신뢰도 향상 시스템 안정성: 자동화된 모니터링으로 안정적인 서비스 운영 학습한 점 인과추론을 통한 예측 모델의 신뢰성 확보 방법 의료 분야에서의 AI 시스템 설계 및 검증 방법 사용자 중심의 서비스 설계 및 피드백 반영 과정 대용량 데이터 처리 및 모델 서빙 시스템 구축",
-    "public": true
-  },
-  {
-    "id": "Self_Development/Career/Portfolio/segmentation",
-    "title": "Segmentation Model",
-    "date": "2024-10-20",
-    "excerpt": "",
-    "category": "",
-    "tags": [],
-    "content": "당뇨병성 망막병증 탐지 모델 프로젝트 개요 당뇨병성 망막병증은 당뇨병 환자에게 자주 발생하는 합병증으로, 혈관 손상과 새로운 혈관 생성으로 인해 실명까지 유발할 수 있는 심각한 질환입니다. 초기 진단이 매우 중요한 이 병증을 안저사진을 통해 탐지하는 서비스를 개발했습니다. 안저사진은 눈의 안쪽(망막 부분)을 촬영하여 혈관 상태를 관찰할 수 있게 해주는 의료 영상입니다. !안저사진 이 프로젝트는 의사들의 진단을 지원하는 목적으로 개발되었으며, 입사 전 부트캠프 기간 중 기업연계 프로젝트로 시작하여 입사 후에도 지속적으로 발전시켰습니다. 관련 링크: 프로젝트 Github 발표영상 유튜브 데이터 현황 및 도전과제 프로젝트 진행 중 가장 큰 이슈는 데이터 부족이었습니다. 초기 데이터 상황 오픈 데이터셋 활용: 약 1,500개 이미지 레이블 보유율: 전체의 80% 정도 데이터 품질 문제: 부적절한 레이블 다수 존재 데이터 확보 과정 입사 후 임상팀과 협업하여 데이터 검수 및 추가 확보를 진행했지만, 여전히 제한된 데이터 환경에서 프로젝트를 진행해야 했습니다. 모델링 전략 및 성능 개선 모델 선택: U-Net 기반 데이터의 특징상 전체 이미지 중 레이블(마스크)이 포함된 부분이 매우 작은 의료 도메인의 특성상, U-Net 계열 모델이 가장 높은 성능을 보이는 것을 확인했습니다. 실제 연구 결과와 프로젝트 내 비교 실험에서도 U-Net이 최고 성능을 달성했습니다. 성능 향상을 위한 핵심 기법들 전처리: CLAHE 적용 명암대비 향상 기법인 CLAHE를 적용하여 데이터의 특징을 더 명확하게 만들었습니다. !CLAHE 적용 결과 육안으로도 특징이 더 명확하게 보이며, 실제 성능도 향상되었습니다. 다만 과도한 명암대비 향상은 false positive를 증가시키므로 실험을 통해 적정 수준을 설정했습니다. Contrastive Learning 기반 사전학습 ImageNet 사전학습 가중치가 안저사진과 같은 특수한 의료 영상에는 효과적이지 않다는 것을 실험을 통해 확인했습니다. 대신 회사 내 보유한 대량의 안저사진(레이블 없음)을 활용하여 contrastive learning 기반 사전학습을 진행했습니다. 결과: 성능 10-15% 향상 달성 Multi-Task Learning U-Net의 인코더-디코더 구조를 활용하여 segmentation 외에 reconstruction task를 추가로 수행하는 multi-task learning을 적용했습니다. 모델 서빙 및 배포 배포 전략 서비스 초기 단계의 특성을 고려하여 빠른 모델 배포가 가능한 방법을 채택했습니다. 기술 스택 모델 최적화: TensorRT engine 변환 서빙 플랫폼: Triton Server 장점: 모델 추론 최적화 용이 GPU 자원 관리 자동화 요청/응답 처리 간소화 프로젝트 성과 항목 내용 ------ ------ 프로젝트명 당뇨병성 망막병증 병변 탐지 모델링 및 서비스 개발 기간 2024년 4월 ~ 2025년 6월 (3개월) 주요 성과 • Contrastive Learning 적용으로 일반화 성능 향상<br>• 제한된 데이터에서도 모델 판별력 개선<br>• Multi-Task Learning으로 병변 탐지 성능 최적화<br>• Segmentation 성능: IoU 개선, Dice Score 0.8 달성 역할 • 최신 연구 분석 및 모델 설계 적용<br>• 데이터 부족 문제 해결을 위한 기법 적용<br>• 데이터 품질 개선 및 정제<br>• 모델 최적화 및 하이퍼파라미터 튜닝 기술 스택 PyTorch, Triton-Server, gRPC, Docker",
-    "public": true
-  },
-  {
-    "id": "Self_Development/Career/Portfolio/ocr_pipeline",
-    "title": "OCR Pipeline System",
-    "date": "2024-10-20",
-    "excerpt": "",
-    "category": "",
-    "tags": [],
-    "content": "정의했던 문제들, 해결하는 과정, 해결한 결과 DB insert error (deadlock) ``text bnviit-ocr-server 앱 오전 9:51 [ERROR] pentacam_4_2025-08-09 09:51:50 : Fail to insert ocr result to database, Error message : Traceback (most recent call last): File \"/app/assets/ocr/models.py\", line 202, in insert_database cursor.execute(query) pyodbc.ProgrammingError: ('42000', '[42000] [FreeTDS][SQL Server]Transaction (Process ID 727) was deadlocked on lock communication buffer resources with another process and has been chosen as the deadlock victim. Rerun the transaction. (1205) (SQLExecDirectW)') , Status : None ` 한번씩 이런 문제가 발생한다. 무슨 문제지? GPT 설명 > 메시지의 핵심은 “Transaction (Process ID 727) was deadlocked … and has been chosen as the deadlock victim” 으로, 동시에 실행 중인 두(또는 그 이상) 트랜잭션이 서로가 보유한 리소스를 기다리며 교착 상태에 빠졌고, SQL Server가 그 중 하나(네 트랜잭션)를 희생(victim) 으로 골라 롤백했다는 뜻이야. 그래서 간헐적으로 실패가 나고, 보통 재실행하면 성공해. > 메시지에 보이는 lock communication buffer는 뭘 의미하나? > - lock은 우리가 익숙한 테이블/인덱스/키 락 같은 일반 잠금을 뜻하고, > - communication buffer는 병렬 실행(Parallelism) 때 스레드 간 데이터를 주고받는 익스체인지(exchange) 버퍼 같은 내부 통신 자원을 뜻해. 드물지만 병렬 계획에서 이 자원 때문에 데드락이 날 수 있어. > > 정리: 네 에러는 “일반 잠금(lock)” 혹은 “병렬 통신 버퍼(communication buffer)” 수준에서 다른 세션과 데드락이 났고, 그 결과 1205로 실패했다는 의미. 코드에서 발견한 문제점 INSERT가 동시에 실행될 때 deadlock이 발생할 수 있음 공통 베이스: assets/ocr/models.py (스택트레이스와 일치) `173:213:assets/ocr/models.py def insert_database( self, logger: logging.Logger, db_name: str, data_object: BaseDataBinocular BaseDataMonocular, server_info: ServerInfo ) -> FuncResult[str]: try: conn = get_conn(db_info=server_info.crm_db_info, deploy_env=server_info.deploy_env) cursor = conn.cursor() cust_num = data_object.CUST_NUM[\"ocr_value\"] exam_date = data_object.Exam_Date[\"ocr_value\"] # cust_num, exam_date가 이미 있으면 update, 아니면 insert cursor.execute(self.select_query(cust_num, exam_date, db_name)) rows = cursor.fetchall() if len(rows) == 0: keys, values = data_object.get_insert_key_value() query = self.insert_query(keys, values, db_name) else: keys, values = data_object.get_update_key_value() set_query = \",\".join([f\"{key} = {value}\" for key, value in zip(keys, values)]) query = self.update_query(set_query, cust_num, exam_date, db_name) logger.info(f\"Query : {query}\") cursor.execute(query) conn.close() ` 두 워커가 거의 동시에 실행되지는 예시 ` 시간축: 0ms 1ms 2ms 3ms 4ms 워커A: SELECT → INSERT 시작 → 고유인덱스 잠금 획득 → 클러스터인덱스 잠금 대기 워커B: SELECT → INSERT 시작 → 클러스터인덱스 잠금 획득 → 고유인덱스 잠금 대기 ` SQL Server의 내부 처리 방식 : SQL Server는 INSERT 작업을 처리할 때 여러 단계로 나누어 처리합니다: 내부 처리 과정: 고유성 검증: 고유 인덱스에 중복 값이 있는지 확인 공간 할당: 클러스터 인덱스에서 실제 데이터 페이지 할당 데이터 삽입: 실제 데이터를 페이지에 기록 잠금 획득 순서의 차이 워커 A의 경우: 고유 인덱스 잠금을 먼저 획득 (중복 검사) 클러스터 인덱스 잠금을 기다림 (데이터 페이지 할당) 워커 B의 경우: 클러스터 인덱스 잠금을 먼저 획득 (데이터 페이지 할당) 고유 인덱스 잠금을 기다림 (중복 검사) 실제 예시로 설명 `sql -- 워커 A: 고유 인덱스 먼저 잠금 BEGIN TRANSACTION; -- 1. 고유 인덱스 잠금 획득 (중복 검사) -- 2. 클러스터 인덱스 잠금 대기 (데이터 페이지 할당) INSERT INTO PENTACAM_DATA (CUST_NUM, Exam_Date, ...) VALUES ('1234', '20240820', ...); COMMIT; -- 워커 B: 클러스터 인덱스 먼저 잠금 (동시 실행) BEGIN TRANSACTION; -- 1. 클러스터 인덱스 잠금 획득 (데이터 페이지 할당) -- 2. 고유 인덱스 잠금 대기 (중복 검사) INSERT INTO PENTACAM_DATA (CUST_NUM, Exam_Date, ...) VALUES ('1234', '20240820', ...); COMMIT; `` 왜 이런 순서가 발생하는가? SQL Server의 쿼리 최적화기(Query Optimizer)가 각 INSERT 작업의 실행 계획을 독립적으로 결정하기 때문입니다: 워커 A: 고유성 검증을 우선적으로 처리 워커 B: 데이터 페이지 할당을 우선적으로 처리 이렇게 서로 다른 실행 경로를 택하면서 서로 다른 잠금 순서로 진행되어 Deadlock이 발생하는 것입니다. 프로젝트 설명 프로젝트 개요 병원 검사 결과 이미지에서 실시간으로 데이터를 추출하여 DB에 자동 적재하는 OCR 파이프라인 시스템을 구축했습니다. 기존 수작업으로 진행되던 데이터 입력 과정을 자동화하여 검안사의 업무 효율성을 크게 향상시켰습니다. 주요 기능 실시간 OCR 처리: 검사 완료 즉시 이미지에서 데이터 추출 고정 이미지 최적화: 검사 장비별 고정된 이미지 구조 활용 다중 OCR 엔진: TrOCR 기반 고정밀 텍스트 인식 데이터 품질 자동화: 분포 분석 및 이상치 탐지 자동화 시스템 일관성 검증: 고객번호 등 고정값들의 무결성 검증 자동 모니터링: Slack 기반 실시간 에러 알림 및 작업 요약 안정적 파이프라인: 1% 미만 에러율의 안정적인 서비스 운영 기술 스택 OCR Engine: TrOCR (Microsoft) Image Processing: OpenCV, PIL Backend: Python, gRPC, FastAPI Model Serving: Triton Server Containerization: Docker Monitoring: Slack API Database: PostgreSQL 핵심 기술적 도전과 해결책 OCR 정확도 99% 달성 문제: 검사 결과의 정확성이 매우 중요하므로 높은 OCR 정확도 필요 해결책: 고정 이미지 구조 활용: 검사 장비별 고정된 이미지 레이아웃을 활용하여 Text Detection 단계 생략 TrOCR 모델 적용: Text Recognition에 특화된 TrOCR 모델 사용으로 정확도 향상 이미지 전처리: 노이즈 제거, 대비 개선 등 전처리 과정 최적화 결과 후처리: OCR 결과 정제 및 검증 로직 구현 데이터 품질 자동화: 각 값의 분포 분석 및 이상치 탐지 자동화 시스템 구축 일관성 검증: 고객번호 등 고정값들의 일관성 검증 로직 개발 결과: OCR 정확도 99% 달성 안정적인 파이프라인 구축 문제: 실시간 데이터 추출을 위한 안정적인 서비스 운영 필요 해결책: 객체 지향 설계: 각 기능을 담당하는 객체들로 파이프라인 구성 단계별 에러 처리: 이미지 송수신, 전처리, OCR, 후처리, DB 적재 각 단계별 명확한 에러 처리 비동기 처리: 1초 이내 응답을 위한 비동기 처리 구조 구현 자동 모니터링: 각 객체별 모니터링 자동화 결과: 에러율 1% 미만의 안정적인 파이프라인 구축 기존 프로세스 방해 최소화 문제: 검안사의 기존 업무 프로세스에 변화를 주지 않으면서 OCR 서비스 추가 해결책: Client-Server 구조: 병원 컴퓨터의 client가 이미지를 전송 후 기존 \"아이리더\" 프로그램에 자동 적재 gRPC 통신: 빠른 이미지 전송을 위한 gRPC 프로토콜 사용 권한 문제 해결: 다양한 병원 환경에 맞는 배포 방식 (Python/Go) 응답 속도 최적화: 1초 이내 응답으로 기존 프로세스 지연 최소화 결과: 기존 프로세스에 방해 없이 OCR 서비스 성공적 통합 시스템 아키텍처 Client 프로그램 목적: 기존 프로세스 방해 없이 OCR 서버로 이미지 전송 기술: gRPC를 통한 고속 이미지 전송 환경 대응: 다양한 병원 컴퓨터 환경에 맞는 배포 (Python/Go) 자동화: 이미지 전송 후 기존 \"아이리더\" 프로그램에 자동 적재 OCR Server 비동기 처리: 이미지 수신 즉시 응답 후 백그라운드에서 OCR 처리 모델 서빙: Triton Server를 통한 TrOCR 모델 고성능 서빙 GPU 활용: 온프레미스 GPU 서버를 통한 고속 추론 고정 이미지 처리: 검사 장비별 pixel 기반 조건문으로 Text Detection 생략 모니터링 시스템 Slack 알림: 에러 발생 시 실시간 알림 작업 요약: 하루 작업량 및 성공률 자동 보고 객체별 모니터링: 각 기능별 독립적인 모니터링 로그 관리: 깔끔한 로그 구조로 쉬운 문제 진단 핵심 최적화 포인트 Text Detection 생략 검사 결과 이미지가 고정된 구조를 가지고 있다는 특성을 활용: 검사 장비별 이미지 버전 및 페이지 구분 Pixel 값 기반 조건문으로 영역 분할 Text Recognition 단계에만 집중하여 처리 속도 향상 TrOCR 모델 선택 다양한 OCR 모델 비교 후 TrOCR 선택: 정확도: 벤치마크에서 98% 정확도 실제 성능: 숫자 인식 100% 정확도 한국어 지원: 문자 인식은 단위 정보로 고정 위치 활용 비동기 처리 구조 사용자 경험을 위한 응답 속도 최적화: 이미지 수신 즉시 응답 (1초 이내) 백그라운드에서 OCR 처리 상담 시점까지 충분한 처리 시간 확보 결과 및 성과 OCR 정확도: 99% 달성 에러율: 1% 미만의 안정적인 파이프라인 구축 처리 속도: 1초 이내 응답으로 기존 프로세스 지연 최소화 유지보수 효율: 코드 구조 개선으로 유지보수 효율 10배 증가 모니터링 비용: 자동화를 통한 모니터링 시간 90% 감소 학습한 점 고정 이미지 구조를 활용한 OCR 최적화 방법 실시간 데이터 처리 파이프라인의 안정성 확보 방법 기존 프로세스와의 통합 시 사용자 경험 고려의 중요성 객체 지향 설계를 통한 유지보수성 향상 자동화된 모니터링 시스템의 구축 및 운영 방법",
-    "public": true
   },
   {
     "id": "Data Science/Recommendation/2024-07-05-recommendation-system-interest",

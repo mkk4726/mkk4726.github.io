@@ -1,234 +1,112 @@
 ---
 title: "OCR Pipeline System"
-description: "문서 이미지에서 텍스트를 추출하는 자동화된 OCR 파이프라인"
-technologies: ["Python", "OCR", "Computer Vision", "Docker", "gRPC"]
-github: "https://github.com/mkk4726/ocr-pipeline"
-demo: "https://ocr-pipeline-demo.example.com"
-date: "2024-10-20"
+excerpt: "문서 이미지에서 텍스트를 추출하는 자동화된 OCR 파이프라인"
+category: "Career"
+tags: ["Python", "OCR", "Computer Vision", "Docker", "gRPC"]
 ---
 
-# 정의했던 문제들, 해결하는 과정, 해결한 결과
+- 기간 : 2024.06 ~ 2024.09 (4개월)
+- 역할 : 시스템 기획부터 구현까지 모든 과정
+- 결과 (성과) : 정확도 99%, 에러율 1% 미만의 안정적인 OCR 파이프라인 구축
+- 비즈니스에 주는 영향 : 안정적인 데이터 수집 기반을 구축하여 서비스 개발 및 운영의 안정성 확보
 
-## DB insert error (deadlock)
+## 프로젝트 개요 : 
 
-```text
-bnviit-ocr-server
-앱  오전 9:51
-[ERROR] pentacam_4_2025-08-09 09:51:50 : Fail to insert ocr result to database, Error message : Traceback (most recent call last):
-  File "/app/assets/ocr/models.py", line 202, in insert_database
-    cursor.execute(query)
-pyodbc.ProgrammingError: ('42000', '[42000] [FreeTDS][SQL Server]Transaction (Process ID 727) was deadlocked on lock | communication buffer resources with another process and has been chosen as the deadlock victim. Rerun the transaction. (1205) (SQLExecDirectW)')
-, Status : None
-```
+병원 검사 결과 이미지에서 실시간으로 검사 결과 데이터를 추출해 데이터베이스에 적재하는 OCR 파이프라인 시스템을 설계하고 구현하는 프로젝트를 진행했습니다.
+환자의 검사 결과를 바탕으로 "시력 교정 수술 추천 서비스"나 "렌즈 사이즈 추천 서비스"를 운영하고 있었기 떄문에, 안정적인 파이프라인을 구축해야만 안정적인 서비스를 운영할 수 있는 상황이었습니다.
 
-한번씩 이런 문제가 발생한다. 무슨 문제지?
+<figure>
+<img src="/post/Portfolio/OCR_pipeline.png" alt="OCR Pipeline" width="100%" />
+<figcaption>그림1. OCR Pipeline 구조</figcaption>
+</figure>
 
-**GPT 설명**
-> 메시지의 핵심은 “Transaction (Process ID 727) was deadlocked … and has been chosen as the deadlock victim” 으로, 동시에 실행 중인 두(또는 그 이상) 트랜잭션이 서로가 보유한 리소스를 기다리며 교착 상태에 빠졌고, SQL Server가 그 중 하나(네 트랜잭션)를 희생(victim) 으로 골라 롤백했다는 뜻이야. 그래서 간헐적으로 실패가 나고, 보통 재실행하면 성공해. 
-> 메시지에 보이는 lock | communication buffer는 뭘 의미하나?
-> - lock은 우리가 익숙한 테이블/인덱스/키 락 같은 일반 잠금을 뜻하고,
-> - communication buffer는 병렬 실행(Parallelism) 때 스레드 간 데이터를 주고받는 익스체인지(exchange) 버퍼 같은 내부 통신 자원을 뜻해. 드물지만 병렬 계획에서 이 자원 때문에 데드락이 날 수 있어. 
-> 
-> 정리: 네 에러는 “일반 잠금(lock)” 혹은 “병렬 통신 버퍼(communication buffer)” 수준에서 다른 세션과 데드락이 났고, 그 결과 1205로 실패했다는 의미.
+제가 구성한 파이프라인 구조는 그림1과 같습니다.
+6가지 종류, 총 40~50대의 검사장비에서 검사를 진행하고 이를 실시간으로 OCR하고 추출된 데이터를 DB에 적재하게 됩니다. 
 
+**파이프라인을 설계하면서 정의했던 목표는 크게 2가지입니다.**
 
-**코드에서 발견한 문제점**
+1. 에러가 발생하지 않고 안정적인 상태
+   - 안정적인 서비스 개발 및 운영을 위해서
+2. 99% 이상의 OCR 정확도
+   - "검사 결과"이기 때문에 OCR 오류가 치명적일 수 있음
 
-INSERT가 동시에 실행될 때 deadlock이 발생할 수 있음
+**프로젝트가 끝나고 결과 혹은 성과는 다음과 같습니다.**
 
-- 공통 베이스: `assets/ocr/models.py` (스택트레이스와 일치)
-```173:213:assets/ocr/models.py
-    def insert_database(
-        self, logger: logging.Logger, db_name: str, data_object: BaseDataBinocular | BaseDataMonocular, server_info: ServerInfo
-    ) -> FuncResult[str]:
-        try:
-            conn = get_conn(db_info=server_info.crm_db_info, deploy_env=server_info.deploy_env)
-            cursor = conn.cursor()
-            cust_num = data_object.CUST_NUM["ocr_value"]
-            exam_date = data_object.Exam_Date["ocr_value"]
-            # cust_num, exam_date가 이미 있으면 update, 아니면 insert
-            cursor.execute(self.select_query(cust_num, exam_date, db_name))
-            rows = cursor.fetchall()
-            if len(rows) == 0:
-                keys, values = data_object.get_insert_key_value()
-                query = self.insert_query(keys, values, db_name)
-            else:
-                keys, values = data_object.get_update_key_value()
-                set_query = ",".join([f"{key} = {value}" for key, value in zip(keys, values)])
-                query = self.update_query(set_query, cust_num, exam_date, db_name)
-            logger.info(f"Query : {query}")
-            cursor.execute(query)
-            conn.close()
-```
+1. 에러율 1% 미만의 안정적인 파이프라인 구조
+   - 기능과 역할이 명확하게 구분된 객체지향적인 코드 구조
+   - 문제 이유와 범위가 명확하게 보이는 에러 로그
+   - 지속적인 모니터링 시스템
+   - 비동기구조 적용으로 속도 향상
+   - 유닛 테스트와 타입 검증
+2. 99% 이상의 OCR 정확도
+   - 이미지 전처리를 통해 정확도 향상
+   - 테스크의 특성을 활용해 최적화된 모델 사용 및 후처리 로직으로 목표 정확도 달성
 
-- 두 워커가 **거의 동시에** 실행되지는 예시
+이러한 결과를 얻기 위해 어떤 선택들을 했는지에 대해 정리했습니다.
 
-```
-시간축: 0ms    1ms    2ms    3ms    4ms
-워커A:  SELECT → INSERT 시작 → 고유인덱스 잠금 획득 → 클러스터인덱스 잠금 대기
-워커B:         SELECT → INSERT 시작 → 클러스터인덱스 잠금 획득 → 고유인덱스 잠금 대기
-```
+## 프로젝트 시작할 때의 상황 : 
 
-- **SQL Server의 내부 처리 방식 :**
+처음 프로젝트를 시작할 때의 상황은 전임자가 프로젝트르 진행하다가 중간에 떠난 상황이었습니다.
+알 수 없는 에러로그가 쌓이고 있었고, OCR 모델의 정확도는 알 수 없었습니다.
+어떤 문제를 해결하려고 해도 어디서 발생한 에러인지, 그 범위는 어디까지인지 알 수 없었습니다.
+또 절차지향적으로, 정확히는 하나의 .py에 구조없이 구현된 코드들은 기능과 역할이 모호했습니다.
 
-SQL Server는 INSERT 작업을 처리할 때 **여러 단계**로 나누어 처리합니다:
+**목표를 달성하기 위해서는 코드 구조를 개선하며 에러를 잡아나가야 했고, OCR 모델 개선해야 했습니다.**
 
-**내부 처리 과정:**
-1. **고유성 검증**: 고유 인덱스에 중복 값이 있는지 확인
-2. **공간 할당**: 클러스터 인덱스에서 실제 데이터 페이지 할당
-3. **데이터 삽입**: 실제 데이터를 페이지에 기록
+## 맞으면서 배우다, 객체지향 설계의 중요성 :
 
-- **잠금 획득 순서의 차이**
+무자비하게 쌓인 코드들을 보면서, 머리로 이해했던 1기능 1함수 원칙이나 디자인 패턴 등 코드를 잘 짜기 위한 방법들을 마음으로 이해할 수 있었습니다.
+여러 기능이 하나의 함수에 작성되어있고, 타입힌트도 전혀 작성되어있지 않은 코드를 이해하고 디버깅하는 과정은 굉장히 어려웠습니다.
 
-**워커 A의 경우:**
-- 고유 인덱스 잠금을 먼저 획득 (중복 검사)
-- 클러스터 인덱스 잠금을 기다림 (데이터 페이지 할당)
+하지만 이런 코드를 이해하고 고쳐나가는 과정은 코드를 작성하는 능력을 키우는데 굉장히 큰 도움이 됐습니다.
+이해하기 쉽고 디버깅이 쉬운 코드를 작성하기 위한 나름의 규칙들을 세울 수 있었습니다.
 
-**워커 B의 경우:**
-- 클러스터 인덱스 잠금을 먼저 획득 (데이터 페이지 할당)
-- 고유 인덱스 잠금을 기다림 (중복 검사)
+1. 함수에는 꼭 하나의 기능만, 객체에는 하나의 역할만 부여하기
+2. 객체 지향의 꽃은 추상화, 입력과 출력만 신경쓸 수 있도록
 
-- **실제 예시로 설명**
+이를 고려해 코드를 작성했고 문제를 하나씩 고쳐나갈 수 있었습니다.
+에러의 범위와 원인을 파악하기 쉬워졌고, 전체 문제를 작은 문제들로 쪼갤 수 있었습니다.
 
-```sql
--- 워커 A: 고유 인덱스 먼저 잠금
-BEGIN TRANSACTION;
--- 1. 고유 인덱스 잠금 획득 (중복 검사)
--- 2. 클러스터 인덱스 잠금 대기 (데이터 페이지 할당)
-INSERT INTO PENTACAM_DATA (CUST_NUM, Exam_Date, ...) VALUES ('1234', '20240820', ...);
-COMMIT;
+## 문제를 정확히 이해하기, 비동기 구조로 속도 향상 :
 
--- 워커 B: 클러스터 인덱스 먼저 잠금 (동시 실행)
-BEGIN TRANSACTION;
--- 1. 클러스터 인덱스 잠금 획득 (데이터 페이지 할당)
--- 2. 고유 인덱스 잠금 대기 (중복 검사)
-INSERT INTO PENTACAM_DATA (CUST_NUM, Exam_Date, ...) VALUES ('1234', '20240820', ...);
-COMMIT;
-```
+<figure>
+<img src="/post/Portfolio/OCR_server_threadpool.png" alt="OCR Server 구조" width="80%" />
+<figcaption>그림2. OCR Server 구조</figcaption>
+</figure>
 
-- **왜 이런 순서가 발생하는가?**
+client와 server에서 실행되는 로직은 그림2와 같습니다.
+처음 프로젝트를 인수인계 받을 때 동시에 여러 이미지를 처리하더라도 OCR 속도가 1초 미만이어야 한다고 했습니다.
+그 이유는 Client 프로그램에서 Server로부터 응답이 늦게 오면, 그 다음에 진행되는 작업도 늦어지게 되고, 이는 고객에게 불편함을 주기 때문입니다.
 
-SQL Server의 **쿼리 최적화기(Query Optimizer)**가 각 INSERT 작업의 실행 계획을 **독립적으로** 결정하기 때문입니다:
+Client에서 OCR 성공 여부를 확인할 필요가 있나? 에 대한 의문에서 시작했습니다.
+이미지 송수신 여부만 확인하면 되기 때문에 주고 받을 성공여부에 대한 의미를 재정의했습니다.
+그리고 Server에서의 역할을 구분했고, **OCR 과정이 속도가 오래걸리더라도 Client에는 영향을 미치지 않는 구조**로 재정의할 수 있었습니다.
 
-- **워커 A**: 고유성 검증을 우선적으로 처리
-- **워커 B**: 데이터 페이지 할당을 우선적으로 처리
+## 런타임 에러 줄이기, pytest를 활용한 unit test와 mypy를 활용한 타입 검증 : 
 
-이렇게 **서로 다른 실행 경로**를 택하면서 **서로 다른 잠금 순서**로 진행되어 Deadlock이 발생하는 것입니다.
+안정적인 파이프라인을 운영하기 위해 런타임 에러를 줄일 수 있는 방법에 대해 고민했습니다.
 
+런타임 에러를 줄이기 위해 사용한 방법은, pytest를 통한 unitest와 mypy를 이용한 타입 검증입니다.
+작게 쪼개놓은 기능이나 역할들이 잘 수행되는지 unit test를 통해 미리 확인하고, 주고 받는 값들의 타입들이 맞는지 미리 확인하는 작업을 CI과정에서 진행했습니다.
 
+이를 통해 어떤 기능을 추가하거나 수정했을 때 발생할 수 있는 런타임 에러들을 미리 검증하고 사전에 파악할 수 있었습니다.
 
+## 문제에 특화된 모델 사용하기, OCR 정확도 확보 :
 
+<figure>
+<img src="/post/Portfolio/OCR_tritonserver.png" alt="OCR Model" width="50%" />
+<figcaption>그림3. OCR Model</figcaption>
+</figure>
 
-# 프로젝트 설명
+안정적인 파이프라인이 어느정도 완성된 다음에는 99%이상의 OCR 정확도를 어떻게 달성할 수 있을지에 대한 고민을 했습니다.
+이를 위해서 문제의 특징을 사용했습니다.
 
-## 프로젝트 개요
-병원 검사 결과 이미지에서 실시간으로 데이터를 추출하여 DB에 자동 적재하는 OCR 파이프라인 시스템을 구축했습니다. 기존 수작업으로 진행되던 데이터 입력 과정을 자동화하여 검안사의 업무 효율성을 크게 향상시켰습니다.
+OCR은 크게 2단계로 구분됩니다. 위치를 찾는 Text Detection과 텍스트를 인식하는 Text Recognition입니다.
+검사장비에서 생성되는 검사 이미지는 고정되니까 위치 정보를 사전에 정의해놓을 수 있었습니다.
+따라서 텍스트를 인식하는 부분에 특화된 모델만이 필요했습니다.
+여러 모델을 찾던 중 TrOCR이라는 오픈소스 모델을 발견했고, 이 모델이 개발된 동기가 Text Detection은 추후로미루고 Text Recognition에 특화된 모델 먼저 만들겠다는 것입니다.
 
-## 주요 기능
-- **실시간 OCR 처리**: 검사 완료 즉시 이미지에서 데이터 추출
-- **고정 이미지 최적화**: 검사 장비별 고정된 이미지 구조 활용
-- **다중 OCR 엔진**: TrOCR 기반 고정밀 텍스트 인식
-- **데이터 품질 자동화**: 분포 분석 및 이상치 탐지 자동화 시스템
-- **일관성 검증**: 고객번호 등 고정값들의 무결성 검증
-- **자동 모니터링**: Slack 기반 실시간 에러 알림 및 작업 요약
-- **안정적 파이프라인**: 1% 미만 에러율의 안정적인 서비스 운영
+이미지 전처리와 결과 후처리 작업을 추가하니, 200건정도로 구성한 테스트 셋에서 99%이상, 거의 100%에 가까운 정확도를 확인할 수 있었습니다.
 
-## 기술 스택
-- **OCR Engine**: TrOCR (Microsoft)
-- **Image Processing**: OpenCV, PIL
-- **Backend**: Python, gRPC, FastAPI
-- **Model Serving**: Triton Server
-- **Containerization**: Docker
-- **Monitoring**: Slack API
-- **Database**: PostgreSQL
-
-## 핵심 기술적 도전과 해결책
-
-### 1. OCR 정확도 99% 달성
-**문제**: 검사 결과의 정확성이 매우 중요하므로 높은 OCR 정확도 필요
-
-**해결책**:
-- **고정 이미지 구조 활용**: 검사 장비별 고정된 이미지 레이아웃을 활용하여 Text Detection 단계 생략
-- **TrOCR 모델 적용**: Text Recognition에 특화된 TrOCR 모델 사용으로 정확도 향상
-- **이미지 전처리**: 노이즈 제거, 대비 개선 등 전처리 과정 최적화
-- **결과 후처리**: OCR 결과 정제 및 검증 로직 구현
-- **데이터 품질 자동화**: 각 값의 분포 분석 및 이상치 탐지 자동화 시스템 구축
-- **일관성 검증**: 고객번호 등 고정값들의 일관성 검증 로직 개발
-
-**결과**: OCR 정확도 99% 달성
-
-### 2. 안정적인 파이프라인 구축
-**문제**: 실시간 데이터 추출을 위한 안정적인 서비스 운영 필요
-
-**해결책**:
-- **객체 지향 설계**: 각 기능을 담당하는 객체들로 파이프라인 구성
-- **단계별 에러 처리**: 이미지 송수신, 전처리, OCR, 후처리, DB 적재 각 단계별 명확한 에러 처리
-- **비동기 처리**: 1초 이내 응답을 위한 비동기 처리 구조 구현
-- **자동 모니터링**: 각 객체별 모니터링 자동화
-
-**결과**: 에러율 1% 미만의 안정적인 파이프라인 구축
-
-### 3. 기존 프로세스 방해 최소화
-**문제**: 검안사의 기존 업무 프로세스에 변화를 주지 않으면서 OCR 서비스 추가
-
-**해결책**:
-- **Client-Server 구조**: 병원 컴퓨터의 client가 이미지를 전송 후 기존 "아이리더" 프로그램에 자동 적재
-- **gRPC 통신**: 빠른 이미지 전송을 위한 gRPC 프로토콜 사용
-- **권한 문제 해결**: 다양한 병원 환경에 맞는 배포 방식 (Python/Go)
-- **응답 속도 최적화**: 1초 이내 응답으로 기존 프로세스 지연 최소화
-
-**결과**: 기존 프로세스에 방해 없이 OCR 서비스 성공적 통합
-
-## 시스템 아키텍처
-
-### Client 프로그램
-- **목적**: 기존 프로세스 방해 없이 OCR 서버로 이미지 전송
-- **기술**: gRPC를 통한 고속 이미지 전송
-- **환경 대응**: 다양한 병원 컴퓨터 환경에 맞는 배포 (Python/Go)
-- **자동화**: 이미지 전송 후 기존 "아이리더" 프로그램에 자동 적재
-
-### OCR Server
-- **비동기 처리**: 이미지 수신 즉시 응답 후 백그라운드에서 OCR 처리
-- **모델 서빙**: Triton Server를 통한 TrOCR 모델 고성능 서빙
-- **GPU 활용**: 온프레미스 GPU 서버를 통한 고속 추론
-- **고정 이미지 처리**: 검사 장비별 pixel 기반 조건문으로 Text Detection 생략
-
-### 모니터링 시스템
-- **Slack 알림**: 에러 발생 시 실시간 알림
-- **작업 요약**: 하루 작업량 및 성공률 자동 보고
-- **객체별 모니터링**: 각 기능별 독립적인 모니터링
-- **로그 관리**: 깔끔한 로그 구조로 쉬운 문제 진단
-
-## 핵심 최적화 포인트
-
-### 1. Text Detection 생략
-검사 결과 이미지가 고정된 구조를 가지고 있다는 특성을 활용:
-- 검사 장비별 이미지 버전 및 페이지 구분
-- Pixel 값 기반 조건문으로 영역 분할
-- Text Recognition 단계에만 집중하여 처리 속도 향상
-
-### 2. TrOCR 모델 선택
-다양한 OCR 모델 비교 후 TrOCR 선택:
-- **정확도**: 벤치마크에서 98% 정확도
-- **실제 성능**: 숫자 인식 100% 정확도
-- **한국어 지원**: 문자 인식은 단위 정보로 고정 위치 활용
-
-### 3. 비동기 처리 구조
-사용자 경험을 위한 응답 속도 최적화:
-- 이미지 수신 즉시 응답 (1초 이내)
-- 백그라운드에서 OCR 처리
-- 상담 시점까지 충분한 처리 시간 확보
-
-## 결과 및 성과
-- **OCR 정확도**: 99% 달성
-- **에러율**: 1% 미만의 안정적인 파이프라인 구축
-- **처리 속도**: 1초 이내 응답으로 기존 프로세스 지연 최소화
-- **유지보수 효율**: 코드 구조 개선으로 유지보수 효율 10배 증가
-- **모니터링 비용**: 자동화를 통한 모니터링 시간 90% 감소
-
-## 학습한 점
-- 고정 이미지 구조를 활용한 OCR 최적화 방법
-- 실시간 데이터 처리 파이프라인의 안정성 확보 방법
-- 기존 프로세스와의 통합 시 사용자 경험 고려의 중요성
-- 객체 지향 설계를 통한 유지보수성 향상
-- 자동화된 모니터링 시스템의 구축 및 운영 방법
+모델 배포는 온프레미스로 진행했고, TritonServer를 사용했습니다.
+TritonServer를 선택한 주요 이유는 동적 배치 처리와 동시성 관리를 쉽게 구현할 수 있고, 이를 통해 처리량을 달성할 수 있기 때문입니다.

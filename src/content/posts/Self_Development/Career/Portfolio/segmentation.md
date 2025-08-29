@@ -1,11 +1,14 @@
 ---
 title: "Segmentation Model"
-description: "눈의 안쪽 부분을 찍는 안저사진에서 망막병증을 탐지하는 모델"
-technologies: ["Python", "Computer Vision", "Docker", "Triton Server"]
-github: "https://github.com/mkk4726/DR-GeuAl"
-demo: "https://www.youtube.com/watch?v=ox_jmqZ1V64&t=223s"
-date: "2024-10-20"
+excerpt: "눈의 안쪽 부분을 찍는 안저사진에서 망막병증을 탐지하는 모델"
+category: "Career"
+tags: ["Python", "NLP", "Machine Learning", "FastAPI", "RAG"]
 ---
+
+- 기간 : 2024.04 ~ 2024.06 (3개월)
+- 역할 : 문제정의, 프로젝트 설계, 구현까지 모든 과정
+- 결과 (성과) : 정확도 99%, 에러율 1% 미만의 안정적인 OCR 파이프라인 구축
+- 비즈니스에 주는 영향 : 안정적인 데이터 수집 기반을 구축하여 서비스 개발 및 운영의 안정성 확보
 
 # 당뇨병성 망막병증 탐지 모델
 

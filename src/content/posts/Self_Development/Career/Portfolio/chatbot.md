@@ -1,11 +1,14 @@
 ---
 title: "AI Chatbot Project"
-description: "자연어 처리를 활용한 지능형 챗봇 시스템"
-technologies: ["Python", "NLP", "Machine Learning", "FastAPI", "RAG"]
-github: "https://github.com/mkk4726/chatbot-project"
-demo: "https://chatbot-demo.example.com"
-date: "2024-12-01"
+excerpt: "자연어 처리를 활용한 지능형 챗봇 시스템"
+category: "Career"
+tags: ["Python", "NLP", "Machine Learning", "FastAPI", "RAG"]
 ---
+
+- 기간 : 2024.11 ~ 2025.02 (4개월)
+- 역할 : 
+- 결과 (성과) : 
+- 비즈니스에 주는 영향 : 
 
 # AI Chatbot Project
 
