@@ -47,7 +47,7 @@ silent failure란 무엇인지와 어떻게 모니터링 할 수 있는지에 �
 가장 많이 발생하는 문제로, 학습했던 데이터 분포와 실제 데이터 분포 간에 차이가 발생하는 문제입니다.
 주로 모델의 성능과 함께 모니터링하는 대상입니다.
 
-[data drift란? 수치적으로 어떻게 정의할 수 있는지에 대한 글](/post/Data%20Science/Statistics/what-is-data-drift)
+[data drift란? 수치적으로 어떻게 정의할 수 있는지에 대한 글](/posts/Data%20Science/Statistics/what-is-data-drift)
 
 ### 3. Concept Drift
 
