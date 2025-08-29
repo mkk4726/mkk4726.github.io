@@ -23,10 +23,6 @@ tags: ["Python", "NLP", "Machine Learning", "FastAPI", "RAG"]
 
 이 프로젝트는 의사들의 진단을 지원하는 목적으로 개발되었으며, 입사 전 부트캠프 기간 중 기업연계 프로젝트로 시작하여 입사 후에도 지속적으로 발전시켰습니다.
 
-**관련 링크:**
-- [프로젝트 Github](https://github.com/mkk4726/DR-GeuAl)
-- [발표영상 유튜브](https://www.youtube.com/watch?v=ox_jmqZ1V64&t=223s)
-
 ## 데이터 현황 및 도전과제
 
 프로젝트 진행 중 가장 큰 이슈는 데이터 부족이었습니다.

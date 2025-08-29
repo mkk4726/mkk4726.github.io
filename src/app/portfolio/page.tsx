@@ -6,47 +6,58 @@ export default function PortfolioPage() {
   const portfolioPosts = [
     {
       id: 'ocr-pipeline',
-      title: 'OCR Pipeline System',
+      title: '[Visuworks] OCR Pipeline System',
       excerpt: '99% 정확도와 1% 미만의 에러율, 안정적인 데이터 수집 파이프라인',
       technologies: ['OCR'],
       // github: 'https://github.com/mkk4726/ocr-pipeline',
       // demo: 'https://ocr-pipeline-demo.example.com',
       date: '2024-06 ~ 2024.09 (4개월)',
       icon: '🔍',
-      href: '/posts/Self_Development/Career/Portfolio/ocr_pipeline'
+      href: '/posts/Self_Development/Career/Portfolio/visuworks_ocr_pipeline'
     },
     {
       id: 'chatbot',
-      title: 'AI Chatbot Project',
+      title: '[Visuworks] AI Chatbot Project',
       excerpt: '고객상담용 챗봇 설계 및 구현, 서비스 운영',
       technologies: ['RAG'],
       // github: 'https://github.com/mkk4726/chatbot-project',
       // demo: 'https://chatbot-demo.example.com',
       date: '2024.11 ~ 2025.02 (4개월)',
       icon: '🤖',
-      href: '/posts/Self_Development/Career/Portfolio/chatbot'
+      href: '/posts/Self_Development/Career/Portfolio/visuworks_chatbot'
     },
     {
       id: 'lenze-size-rec',
-      title: 'Lens Size Recommendation System',
+      title: '[Visuworks] Lens Size Recommendation System',
       excerpt: '렌즈 삽입술 후 결과 예측을 통한 렌즈 사이즈 추천 시스템',
       technologies: ['Machine Learning', 'Causal Inference', 'Statistics'],
       // github: 'https://github.com/mkk4726/lenze-size-rec',
       // demo: 'https://lenze-size-demo.example.com',
       date: '2025.03 ~ 현재 (6개월)',
       icon: '👁️',
-      href: '/posts/Self_Development/Career/Portfolio/lenze_size_rec'
+      href: '/posts/Self_Development/Career/Portfolio/visuworks_lenze_size_rec'
     },
     {
-      id: 'segmentation',
-      title: 'Diabetic Retinal Disease Segmentation',
+      id: 'visuworks_segmentation',
+      title: '[Visuworks] Diabetic Retinal Disease Segmentation',
       excerpt: '당뇨망막병증 병변 탐지 모델 개발',
       technologies: ['Python', 'Deep Learning', 'Computer Vision', 'PyTorch', 'Medical AI'],
       // github: 'https://github.com/mkk4726/retinal-segmentation',
       // demo: 'https://segmentation-demo.example.com',
       date: '2024.04 ~ 2024.06 (3개월)',
       icon: '🩺',
-      href: '/posts/Self_Development/Career/Portfolio/segmentation'
+      href: '/posts/Self_Development/Career/Portfolio/visuworks_segmentation'
+    },
+    {
+      id: 'aiffel_segmentation',
+      title: '[Aiffel] Diabetic Retinal Disease Segmentation',
+      excerpt: '부트캠프에서 기업 프로젝트를 진행하며 당뇨망막병증 병변 탐지 모델 개발한 내용입니다.',
+      technologies: ['Aiffel'],
+      github: 'https://github.com/mkk4726/DR-GeuAl',
+      demo: 'https://www.youtube.com/watch?v=ox_jmqZ1V64&t=223s',
+      date: '2023.12 ~ 2024.03 (4개월)',
+      icon: '🩺',
+      href: '/posts/Self_Development/Career/Portfolio/aiffel_segmentation'
     }
   ];
 
@@ -119,7 +130,32 @@ export default function PortfolioPage() {
                 </Link>
                 
                 <div className="flex space-x-2">
-                  {/* 향후 GitHub과 Demo 링크를 추가할 수 있습니다 */}
+                  {post.github && (
+                    <a
+                      href={post.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-gray-400 hover:text-white transition-colors"
+                      title="GitHub"
+                    >
+                      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 4.624-5.479 4.92.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                      </svg>
+                    </a>
+                  )}
+                  {post.demo && (
+                    <a
+                      href={post.demo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-gray-400 hover:text-white transition-colors"
+                      title="Demo"
+                    >
+                      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M8 5v14l11-7z"/>
+                      </svg>
+                    </a>
+                  )}
                 </div>
               </div>
             </div>
