@@ -1,5 +1,6 @@
 ---
 title: "Lens Size Recommendation System"
+date: ""
 excerpt: "머신러닝을 활용한 맞춤형 렌즈 사이즈 추천 시스템"
 category: "Career"
 tags: ["Python", "Machine Learning", "Causal Inference", "Flask", "BentoML"]

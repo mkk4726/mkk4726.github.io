@@ -1,5 +1,6 @@
 ---
 title: "Segmentation Model"
+date: ""
 excerpt: "눈의 안쪽 부분을 찍는 안저사진에서 망막병증을 탐지하는 모델"
 category: "Career"
 tags: ["Python", "NLP", "Machine Learning", "FastAPI", "RAG"]

@@ -1,5 +1,6 @@
 ---
 title: "OCR Pipeline System"
+date: ""
 excerpt: "문서 이미지에서 텍스트를 추출하는 자동화된 OCR 파이프라인"
 category: "Career"
 tags: ["Python", "OCR", "Computer Vision", "Docker", "gRPC"]

@@ -1,5 +1,6 @@
 ---
 title: "AI Chatbot Project"
+date: ""
 excerpt: "자연어 처리를 활용한 지능형 챗봇 시스템"
 category: "Career"
 tags: ["Python", "NLP", "Machine Learning", "FastAPI", "RAG"]
