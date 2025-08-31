@@ -3,9 +3,13 @@ title: "Resume"
 lastUpdated: "2025-08-29"
 ---
 
-# 김민규 (Minku Gyu)
+# 학력사항
 
-## 연락처
-- **이메일**: mkk4726@naver.com
-- **GitHub**: [github.com/mkk4726](https://github.com/mkk4726)
-- **LinkedIn**: [linkedin.com/in/mingyu-kim](https://www.linkedin.com/in/mingyu-kim-01aaa5216/)
+부산대학교 산업공학 학사 (통계학 부전공) 
+- 2017.03 ~ 2023.09
+
+# 경력사항 
+
+비쥬웍스
+- 2024.04 ~ 현재
+- 데이터과학자

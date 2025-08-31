@@ -68,8 +68,12 @@ export default function PortfolioPage() {
           Portfolio
         </h1>
         <p className="text-white mb-6">
-          제가 진행했던 프로젝트들에 대한 내용입니다. 프로젝트가 진행된 상황과 진행하면서 고민했던 문제들, 
-          그리고 이 문제들을 어떻게 해결했는지와 해결한 결과를 담고 있습니다.
+          제가 진행했던 프로젝트들에 대한 내용입니다. <br />
+          프로젝트를 진행하면서 고민했던 부분들과 문제를 정의하고 해결했던 과정을 담고 있습니다. <br />
+          매번 최선의 선택을 하진 못했지만, 선택을 하게 된 논리적 과정과 프로젝트를 진행하며 배운 것들을 중점적으로 기술했습니다. <br />
+          <br />
+          - Visuworks: 스타트업에서 데이터 과학자로 일하면서 프로젝트를 리드하며 문제정의부터 서비스 운영까지, A-Z까지 모든 과정에 대한 경험을 담고 있습니다. <br />
+          - Aiffel : 모두의연구소에서 AI 엔지니어 양성과정 부트캠프을 수료하며 진행했던 프로젝트입니다. <br />
         </p>
       </div>
 
@@ -160,25 +164,6 @@ export default function PortfolioPage() {
             </div>
           </article>
         ))}
-      </div>
-
-      {/* 상세 내용 섹션 */}
-      <div className="space-y-12">
-        {/* Portfolio Overview Section */}
-        <div className="bg-gray-800 rounded-lg shadow-sm p-8 border border-gray-700">
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-2xl font-bold text-white">Portfolio Overview</h2>
-          </div>
-          <div className="prose prose-invert max-w-none">
-            <p className="text-white mb-4">
-              저의 경험들은 스타트업에서 근무하면서 회사에 안정적인 ML 시스템을 구축하고 서비스를 운영했던 경험들입니다.
-            </p>
-            <p className="text-white mb-4">
-              가장 최적의 판단을 내렸다고는 자신할 수 없지만, 해당 상황에서 제가 할 수 있는 최선을 선택을 해왔다고 생각합니다.
-              제가 어떻게 문제를 정의하고, 이를 해결하기 위해 어떤 선택을 했는지 살펴봐주시면 감사하겠습니다.
-            </p>
-          </div>
-        </div>
       </div>
     </div>
   );
