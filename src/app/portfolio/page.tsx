@@ -83,6 +83,7 @@ export default function PortfolioPage() {
           <br />
           - Visuworks: 스타트업에서 데이터 과학자로 일하면서 프로젝트를 리드하며 문제정의부터 서비스 운영까지, A-Z까지 모든 과정에 대한 경험을 담고 있습니다. <br />
           - Aiffel : 모두의연구소에서 AI 엔지니어 양성과정 부트캠프을 수료하며 진행했던 프로젝트입니다. <br />
+          - PNU : 대학교에서 진행한 프로젝트입니다. <br />
         </p>
       </div>
 
