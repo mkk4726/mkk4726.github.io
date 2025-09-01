@@ -5,15 +5,15 @@ export default function PortfolioPage() {
 
   const portfolioPosts = [
     {
-      id: 'ocr-pipeline',
-      title: '[Visuworks] OCR Pipeline System',
-      excerpt: '99% 정확도와 1% 미만의 에러율, 안정적인 데이터 수집 파이프라인',
-      technologies: ['OCR'],
-      // github: 'https://github.com/mkk4726/ocr-pipeline',
-      // demo: 'https://ocr-pipeline-demo.example.com',
-      date: '2024-06 ~ 2024.09 (4개월)',
-      icon: '🔍',
-      href: '/posts/Self_Development/Career/Portfolio/visuworks_ocr_pipeline'
+      id: 'lenze-size-rec',
+      title: '[Visuworks] Lens Size Recommendation System',
+      excerpt: '렌즈 삽입술 후 결과 예측을 통한 렌즈 사이즈 추천 시스템',
+      technologies: ['Machine Learning', 'Causal Inference', 'Statistics'],
+      // github: 'https://github.com/mkk4726/lenze-size-rec',
+      // demo: 'https://lenze-size-demo.example.com',
+      date: '2025.03 ~ 현재 (6개월)',
+      icon: '👁️',
+      href: '/posts/Self_Development/Career/Portfolio/visuworks_lenze_size_rec'
     },
     {
       id: 'chatbot',
@@ -26,15 +26,15 @@ export default function PortfolioPage() {
       href: '/posts/Self_Development/Career/Portfolio/visuworks_chatbot'
     },
     {
-      id: 'lenze-size-rec',
-      title: '[Visuworks] Lens Size Recommendation System',
-      excerpt: '렌즈 삽입술 후 결과 예측을 통한 렌즈 사이즈 추천 시스템',
-      technologies: ['Machine Learning', 'Causal Inference', 'Statistics'],
-      // github: 'https://github.com/mkk4726/lenze-size-rec',
-      // demo: 'https://lenze-size-demo.example.com',
-      date: '2025.03 ~ 현재 (6개월)',
-      icon: '👁️',
-      href: '/posts/Self_Development/Career/Portfolio/visuworks_lenze_size_rec'
+      id: 'ocr-pipeline',
+      title: '[Visuworks] OCR Pipeline System',
+      excerpt: '99% 정확도와 1% 미만의 에러율, 안정적인 데이터 수집 파이프라인',
+      technologies: ['OCR'],
+      // github: 'https://github.com/mkk4726/ocr-pipeline',
+      // demo: 'https://ocr-pipeline-demo.example.com',
+      date: '2024-06 ~ 2024.09 (4개월)',
+      icon: '🔍',
+      href: '/posts/Self_Development/Career/Portfolio/visuworks_ocr_pipeline'
     },
     {
       id: 'visuworks_segmentation',
