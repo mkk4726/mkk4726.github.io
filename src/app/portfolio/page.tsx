@@ -32,7 +32,7 @@ export default function PortfolioPage() {
       technologies: ['OCR'],
       // github: 'https://github.com/mkk4726/ocr-pipeline',
       // demo: 'https://ocr-pipeline-demo.example.com',
-      date: '2024-06 ~ 2024.09 (4개월)',
+      date: '2024-07 ~ 2024.10 (4개월)',
       icon: '🔍',
       href: '/posts/Self_Development/Career/Portfolio/visuworks_ocr_pipeline'
     },
