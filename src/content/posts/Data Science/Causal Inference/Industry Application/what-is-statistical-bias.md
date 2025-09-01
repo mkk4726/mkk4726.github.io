@@ -159,12 +159,13 @@ tags: ["편향", "통계적", "bias"]
 > 처치(수술방법, 삽입하는 렌즈크기)별로 환자 눈의 분포가 같은가? 
 
 <figure>
-  <img src="/post/what-is-statistical-bias/처치별_Feature_DensityPlot.png" alt="처치별 Feature Density Plot">
+  <img src="/post/what-is-statistical-bias/처치별분포_피처이름제거.png" alt="처치별 Feature Density Plot">
   <figcaption>그림 1: 처치별 Feature 분포 비교</figcaption>
 </figure>
 
+
 <figure>
-  <img src="/post/what-is-statistical-bias/boxplot_grouped_by_size.png" alt="Boxplot Grouped by Size">
+  <img src="/post/what-is-statistical-bias/처치별박스플랏_피처이름제거.pngg" alt="Boxplot Grouped by Size">
   <figcaption>그림 2: 크기별 그룹화된 박스플롯</figcaption>
 </figure>
 
@@ -177,7 +178,7 @@ ata와 clr의 경우 분포의 차이가 명확히 보이고 있습니다.
 
 
 <figure>
-  <img src="/post/what-is-statistical-bias/처치별결과비교.png" alt="처치별 결과 비교">
+  <img src="/post/what-is-statistical-bias/처치별결과분포_피처이름제거.png" alt="처치별 결과 비교">
   <figcaption>그림 3: 처치별 결과 분포 비교</figcaption>
 </figure>
 
@@ -248,16 +249,13 @@ $Y$와 $T$ 간의 인과관계를 모델링해야 합니다.
 이 결과를 좀 더 직관적을 해석해보면
 
 <figure>
-  <img src="/post/what-is-statistical-bias/같은렌즈크기_같은결과_다른눈.png" alt="같은렌즈크기_같은결과_다른눈">
+  <img src="/post/what-is-statistical-bias/같은렌즈크기_다른눈_피처이름제거.png" alt="같은렌즈크기_같은결과_다른눈">
   <figcaption>그림 6: 같은 렌즈 크기에 같은 결과를 얻었지만 다른 눈을 가진 경우</figcaption>
 </figure>
-
-
 
 같은 결과를 얻었고 같은 사이즈를 사용했기 때문에, 눈이 결과에 미치는 영향을 고려하지 않으면 렌즈 크기의 영향을 제대로 판단할 수 없습니다.
 
 > 직관적으로 너무나도 당연한 말이지만, 앞서 설명드린 것처럼 이러한 통계적인 편향들을 제거하지 않고 결과를 분석하게 되면 잘못된 결과를 도출할 수 있습니다.
-
 
 잔차화하는 코드는 [잔차화 코드](/posts/Data%20Science/Causal%20Inference/residualization-fwl-theorem-test) 확인해볼 수 있습니다.
 
