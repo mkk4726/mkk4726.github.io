@@ -7,7 +7,7 @@ tags: ["이력서"]
 public: false
 ---
 
-[하이퍼 커넥트 채용공고](/posts/Self_Development/Career/Job Transition/25-08-04-하이퍼커넥트)
+[하이퍼 커넥트 채용공고](/posts/Self_Development/Career/Job%20Transition/25-08-04-하이퍼커넥트)
 
 채용공고 스케치
 
