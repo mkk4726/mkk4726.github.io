@@ -1,8 +1,20 @@
 [
   {
+    "id": "Self_Development/Reflections/2025-09-02-self-introduction",
+    "title": "자기소개의 어려움",
+    "date": "2025-09-02",
+    "excerpt": "3줄 자기소개... 나를 소개하는 건 늘 어렵다",
+    "category": "Reflections",
+    "tags": [
+      "이런저런 생각들"
+    ],
+    "content": "자기소개는 늘 어려운 것 같다... 나를 소개한다는게, 내가 아직 많은 모습 중에 어떤 부분을 말해야할지 모르겠다는 어려움이 있다. 10차원의 공간을 2차원으로 줄이는 느낌? 어쨌든 \"선택\"이 필요한 부분인데, 선택을 잘하기 위해서는 명확한 기준이 필요하다. \"기준\" 이번에 가짜연구소 스터디에 지원하면서 3줄 자기소개를 적게 됐다. 스터디에 맞는 나의 모습은 어떤걸까? 어떤 부분을 이야기하면 좋을까? 성장을 목적으로 하는 곳이니, 성장에 대한 나의 모습을 들어내면 좋을 것 같다. 키워드만 적어보자. 데싸, 인과추론, 업무 적용, 문제를 고민하고 푸는 걸 좋아함,",
+    "public": false
+  },
+  {
     "id": "Self_Development/Career/Portfolio/visuworks_segmentation",
     "title": "[Visuworks] Segmentation Model",
-    "date": "2025-09-01",
+    "date": "2025-09-02",
     "excerpt": "출혈관련 병변 탐지 모델 개발",
     "category": "Career",
     "tags": [
@@ -15,7 +27,7 @@
   {
     "id": "Self_Development/Career/Portfolio/visuworks_ocr_pipeline",
     "title": "OCR Pipeline System",
-    "date": "2025-09-01",
+    "date": "2025-09-02",
     "excerpt": "문서 이미지에서 텍스트를 추출하는 자동화된 OCR 파이프라인",
     "category": "Career",
     "tags": [
@@ -31,7 +43,7 @@
   {
     "id": "Self_Development/Career/Portfolio/visuworks_lenze_size_rec",
     "title": "Lens Size Recommendation System",
-    "date": "2025-09-01",
+    "date": "2025-09-02",
     "excerpt": "머신러닝을 활용한 맞춤형 렌즈 사이즈 추천 시스템",
     "category": "Career",
     "tags": [
@@ -47,7 +59,7 @@
   {
     "id": "Self_Development/Career/Portfolio/visuworks_chatbot",
     "title": "AI Chatbot Project",
-    "date": "2025-09-01",
+    "date": "2025-09-02",
     "excerpt": "고객상담용 챗봇 개발",
     "category": "Career",
     "tags": [
@@ -59,7 +71,7 @@
   {
     "id": "Self_Development/Career/Portfolio/pnu_cloud_funding_prediction",
     "title": "[PNU] Cloud Funding Success prediction model",
-    "date": "2025-09-01",
+    "date": "2025-09-02",
     "excerpt": "부산대학교 산업공학과 졸업 프로젝트",
     "category": "Career",
     "tags": [
@@ -73,7 +85,7 @@
   {
     "id": "Self_Development/Career/Portfolio/aiffel_segmentation",
     "title": "Segmentation Model",
-    "date": "2025-09-01",
+    "date": "2025-09-02",
     "excerpt": "눈의 안쪽 부분을 찍는 안저사진에서 망막병증을 탐지하는 모델",
     "category": "Career",
     "tags": [
