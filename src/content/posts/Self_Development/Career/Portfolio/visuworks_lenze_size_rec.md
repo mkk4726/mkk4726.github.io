@@ -125,11 +125,20 @@ Docker를 활용한 배포로 인프라 관리의 복잡성을 줄이고, S3를 
 - [양수성에 대해 정리한 글](/posts/Data%20Science/Causal%20Inference/what-is-positivity)
 
 
+---
+
+## 추론 로직 구조
+
+<figure>
+<img src="/post/Portfolio/Lenze_size_inference1.png" alt="Positivity" width="80%" />
+<figcaption>그림4. 추론할 때의 로직</figcaption>
+</figure>
+
 
 
 ---
 
-## 신뢰할 수 있는 예측값의 범위는?
+### 1. 신뢰할 수 있는 예측값의 범위는?
 
 가장 먼저 예측 평가지표 (MSE, MAE)로 성능을 확인한 예측의 범위를 정해야 합니다.
 이는 성향 점수 (propensity score)를 추정함으로써 정할 수 있습니다.
@@ -139,22 +148,29 @@ Docker를 활용한 배포로 인프라 관리의 복잡성을 줄이고, S3를 
 (인과추론의 가장 기본적인 가정인 양수성을 만족하는 범위를 찾는다고도 할 수 있습니다)
 
 <figure>
-<img src="/post/Portfolio/Lenze_size_propensity.png" alt="Positivity" width="80%" />
-<figcaption>그림9. 양수성 조건 만족하는 범위</figcaption>
+<img src="/post/Portfolio/Lenze_size_propensity.png" alt="Positivity" width="70%" />
+<figcaption>그림5. 양수성 조건 만족하는 범위</figcaption>
 </figure>
 
-그림9에서 고객 A는 12.1, 12.6, 13.2에 대한 예측 성능을 신뢰할 수 있고, 고객 B는 12.6에 대한 예측 성능을 신뢰할 수 있습니다.
+그림5에서 고객 A는 12.1, 12.6, 13.2에 대한 예측 성능을 신뢰할 수 있고, 고객 B는 12.6에 대한 예측 성능을 신뢰할 수 있습니다.
 
 ---
 
-## 신뢰할 수 없는 예측은 어떻게 할까?
+### 2. 신뢰할 수 있는 범위의 예측은 어떻게 할까 : CQR
+
+
+
+
+---
+
+### 3. 신뢰할 수 없는 범위의 예측은 어떻게 할까 : Partial Identification
 
 신뢰할 수 있는 정도를 예측 범위로 나타낼 수 있고, 따라서 양수성이 보장되지 않는 예측 범위의 예측 범위를 넓게 그려주고자 했습니다.
 양수성이 보장되는 처치의 예측값은 신뢰구간을 예측해 보여주고, 나머지 처치에 대해서는 "partial identification"과 같은 개념을 사용해 예측 범위를 추정했습니다.
 
 <figure>
 <img src="/post/Portfolio/Lenze_size_PI.png" alt="Prediction Interval" width="80%" />
-<figcaption>그림10. 양수성 조건에 따른 예측 구간</figcaption>
+<figcaption>그림6. 양수성 조건에 따른 예측 구간</figcaption>
 </figure>
 
 고객 A에 대한 예시입니다. 양수성이 보장되는 12.1, 12.6, 13.2보다 13.7의 예측 범위가 더 넓고, 이를 통해 불확실성을 표현하고 있습니다.
