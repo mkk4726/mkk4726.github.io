@@ -6,11 +6,14 @@ category: "Data Science"
 tags: ["statistics", "regression", "quantile", "prediction-interval"]
 ---
 
-## Quantile Regression이란?
+**Quantile regression** 은 전통적인 회귀분석과 달리 **특정 분위수(quantile)**를 예측하는 방법입니다.
+이를 통해 예측구간 등을 추정할 수 있습니다.
 
-**Quantile regression**은 전통적인 회귀분석과 달리 **특정 분위수(quantile)를 직접 예측**하는 방법입니다.
+---
 
-### 전통적 회귀분석 vs Quantile Regression
+## 전통적 회귀분석 vs Quantile Regression
+
+기존의 regression과는 목적이 다릅니다. 따라서 다른 loss함수를 사용하고 있습니다.
 
 **전통적 회귀분석 (OLS):**
 - 목표: 조건부 평균 $\mathbb{E}[Y|X]$ 예측
@@ -22,15 +25,18 @@ tags: ["statistics", "regression", "quantile", "prediction-interval"]
 - Loss: Pinball Loss (Quantile Loss)
 - 가정: 분포 가정 없음, 더 robust
 
+---
+
 ## Pinball Loss (Quantile Loss)
 
-Quantile regression의 핵심은 **pinball loss**입니다:
+Quantile regression의 핵심은 **pinball loss** 입니다.
+이를 통해 모델이 분위수를 예측하도록 유도할 수 있습니다.
 
 $$
 \mathcal{L}_\tau(y, \hat{q}_\tau(x)) = \max\big(\tau \cdot [y - \hat{q}_\tau(x)], (1-\tau) \cdot [\hat{q}_\tau(x) - y]\big)
 $$
 
-### Pinball Loss의 직관적 이해
+위의 식을 통해 아래와 같이 이해할 수 있습니다.
 
 - $\tau = 0.5$ (중앙값): 양쪽 오차에 동일한 페널티
 - $\tau = 0.9$ (90분위수): 
@@ -38,9 +44,63 @@ $$
   - 예측값이 실제값보다 크면 작은 페널티
 - $\tau = 0.1$ (10분위수): 반대 패턴
 
+<figure>
+<img src="/post/DataScience/pinball_loss.png" alt="pinball_loss" /><width="100%"/>
+<figcaption>그림1. Pinball Loss</figcaption>
+</figure>
+
+pinball loss는 비대칭 손실을 정의한 것입니다. (MSE는 대칭 손실)
+그림1을 보면, 실제 값보다 작게 예측했을 때는 큰 패널티를, 크게 예측했을 때는 작은 패널티를 부여하고 있음을 알 수 있습니다.
+
+이를 통해 모델이 90%의 데이터가 예측값보다 작도록, 10%의 데이터가 예측값보다 크도록 예측값을 높게 설정하게 됩니다.
+
+### 구체적인 예시
+
+실제 데이터로 검증해보겠습니다.
+
+**예시: 90분위수 예측**
+
+실제 데이터가 `[1, 3, 5, 7, 9, 11, 13, 15, 17, 19]`라고 가정해보겠습니다.
+90분위수는 **17**입니다 (10개 중 9개가 17보다 작음).
+
+#### 모델 학습 과정
+
+1. **초기 예측값**: 10 (중간값)
+
+2. **손실 계산**:
+   - `y > 10`인 데이터: `[11, 13, 15, 17, 19]` (5개)
+   - `y < 10`인 데이터: `[1, 3, 5, 7, 9]` (5개)
+
+3. **90분위수 손실** ($\tau = 0.9$):
+   - 과소예측 오차: $0.9 \times (11-10 + 13-10 + 15-10 + 17-10 + 19-10) = 0.9 \times 25 = 22.5$
+   - 과대예측 오차: $0.1 \times (10-1 + 10-3 + 10-5 + 10-7 + 10-9) = 0.1 \times 20 = 2.0$
+   - **총 손실**: 24.5
+
+#### 모델이 예측값을 높이는 이유
+
+- **과소예측에 큰 페널티(0.9배)**가 있기 때문에:
+  - 모델은 $y > \hat{q}_{0.9}$인 데이터를 줄이려고 함
+  - 즉, 예측값을 높여서 더 많은 데이터가 예측값보다 작게 만들려고 함
+
+- **과대예측에 작은 페널티(0.1배)**가 있기 때문에:
+  - 모델은 $y < \hat{q}_{0.9}$인 데이터가 많아져도 큰 문제없음
+
+#### 최적해 도달
+
+모델이 예측값을 17로 설정하면:
+- `y > 17`: `[19]` (1개, 10%)
+- `y < 17`: `[1, 3, 5, 7, 9, 11, 13, 15]` (8개, 80%)
+- `y = 17`: `[17]` (1개, 10%)
+
+**정확히 90%의 데이터가 17보다 작거나 같게 됩니다!**
+
+이렇게 비대칭 손실 함수가 모델을 자동으로 올바른 분위수로 "밀어올리는" 것입니다.
+
+---
+
 ## Prediction Interval 구성
 
-Quantile regression으로 prediction interval을 만들 수 있습니다:
+Quantile regression으로 prediction interval을 만들 수 있습니다.
 
 1. **두 개의 quantile 모델 학습:**
    - $\tau = \alpha/2$ (하한)
@@ -53,6 +113,10 @@ Quantile regression으로 prediction interval을 만들 수 있습니다:
 - $\tau = 0.05$ 모델로 하한 예측
 - $\tau = 0.95$ 모델로 상한 예측
 - 결과: $[q_{0.05}(x), q_{0.95}(x)]$
+
+---
+
+장점과 특징을 정리하면 아래와 같습니다.
 
 ## 장점과 특징
 
@@ -67,113 +131,4 @@ Quantile regression으로 prediction interval을 만들 수 있습니다:
 - **계산 효율성**: 선형 프로그래밍으로 해결 가능
 - **해석력**: 각 변수의 영향력을 분위수별로 분석 가능
 
-## 구현 방법
-
-### Python 예시 (scikit-learn)
-
-```python
-from sklearn.linear_model import QuantileRegressor
-import numpy as np
-
-# 데이터 준비
-X = np.random.randn(1000, 2)
-y = X[:, 0] + X[:, 1] + np.random.randn(1000) * (1 + abs(X[:, 0]))
-
-# 10분위수와 90분위수 모델 학습
-q10_model = QuantileRegressor(quantile=0.1, alpha=0)
-q90_model = QuantileRegressor(quantile=0.9, alpha=0)
-
-q10_model.fit(X, y)
-q90_model.fit(X, y)
-
-# Prediction interval
-q10_pred = q10_model.predict(X)
-q90_pred = q90_model.predict(X)
-
-# 80% prediction interval
-pi_lower = q10_pred
-pi_upper = q90_pred
-```
-
-### LightGBM에서의 구현
-
-```python
-import lightgbm as lgb
-
-# Quantile regression을 위한 파라미터
-params = {
-    'objective': 'quantile',
-    'metric': 'quantile',
-    'quantile': 0.1,  # 10분위수
-    'boosting_type': 'gbdt'
-}
-
-# 모델 학습
-model_q10 = lgb.train(params, train_data)
-model_q90 = lgb.train(params, train_data)
-
-# Prediction interval
-q10_pred = model_q10.predict(X_test)
-q90_pred = model_q90.predict(X_test)
-```
-
-## 실무 활용 사례
-
-### 1. 금융 리스크 관리
-- **VaR (Value at Risk)**: 특정 분위수로 위험 측정
-- **Credit scoring**: 대출 상환 확률의 분위수 예측
-
-### 2. 의료 진단
-- **혈압 예측**: 정상 범위의 상하한 예측
-- **약물 반응**: 개인별 반응의 분위수 예측
-
-### 3. 제조업 품질 관리
-- **품질 지표**: 제품 특성의 허용 범위 예측
-- **불량률 예측**: 특정 임계값 이하/이상 확률
-
-### 4. 부동산 가격 예측
-- **가격 범위**: 시장 변동성을 고려한 가격 구간
-- **투자 리스크**: 하락 가능성과 상승 가능성 동시 고려
-
-## 주의사항과 한계
-
-### 주의사항
-- **Quantile crossing**: 높은 분위수가 낮은 분위수보다 작아질 수 있음
-- **Calibration**: 실제 coverage가 목표 coverage와 다를 수 있음
-- **데이터 요구량**: 극단적 분위수 예측에는 충분한 데이터 필요
-
-### 한계
-- **계산 복잡도**: OLS보다 계산 비용 높음
-- **해석 복잡성**: 여러 분위수 모델의 동시 해석 필요
-- **불확실성 분해**: epistemic vs aleatoric uncertainty 구분 어려움
-
-## 최신 발전 동향
-
-### 1. Deep Quantile Regression
-- 신경망 기반 quantile regression
-- 복잡한 비선형 관계 모델링
-
-### 2. Conformal Quantile Regression
-- Finite-sample coverage 보장
-- Calibration 자동화
-
-### 3. Multi-task Quantile Learning
-- 여러 분위수를 동시에 학습
-- Quantile crossing 방지
-
-## 결론
-
-Quantile regression은 전통적인 회귀분석의 한계를 넘어서는 강력한 도구입니다. 특히:
-
-- **Prediction interval** 구성에 매우 유용
-- **분포 가정 없이** robust한 예측 가능
-- **실무적 해석**이 직관적이고 명확
-
-다만, 여러 분위수 모델의 동시 학습과 calibration 등 실무적 고려사항을 잘 파악하고 사용하는 것이 중요합니다.
-
 ---
-
-**참고자료:**
-- [Quantile Regression - Wikipedia](https://en.wikipedia.org/wiki/Quantile_regression)
-- [scikit-learn QuantileRegressor](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.QuantileRegressor.html)
-- [LightGBM Quantile Regression](https://lightgbm.readthedocs.io/en/latest/Parameters.html#objective)

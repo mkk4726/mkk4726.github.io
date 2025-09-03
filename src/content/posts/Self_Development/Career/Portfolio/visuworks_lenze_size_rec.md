@@ -124,6 +124,8 @@ Docker를 활용한 배포로 인프라 관리의 복잡성을 줄이고, S3를 
 이에 대한 답을 "양수성" 혹은 "분포의 겹침"에서 찾을 수 있었습니다.
 - [양수성에 대해 정리한 글](/posts/Data%20Science/Causal%20Inference/what-is-positivity)
 
+기본적인 개념은 
+
 
 ---
 
@@ -164,14 +166,21 @@ propensity score를 추정해, 고객에 대해 신뢰할 수 있는 처치범�
 <figcaption>그림6. 양수성 조건 만족하는 범위</figcaption>
 </figure>
 
-그림5에서 고객 A는 12.1, 12.6, 13.2에 대한 예측 성능을 신뢰할 수 있고, 고객 B는 12.6에 대한 예측 성능을 신뢰할 수 있습니다.
+그림6에서는 고객 A는 12.1, 12.6, 13.2에 대한 예측 성능을 신뢰할 수 있고, 고객 B는 12.6에 대한 예측값을 신뢰할 수 있다고 판단할 수 있습니다.
+
+
 
 ---
 
 ### 2. 신뢰할 수 있는 범위의 예측은 어떻게 할까 : CQR
 
+신뢰할 수 있는 범위는 예측 지표를 통해 고도화한 예측 모델을 사용하면 됩니다.
+예측 구간 (Prediction Interval)을 그려주기 위해 Quantile Regressor를 사용했습니다.
 
+그 후에 Conformal prediction의 개념을 도입해 범위구간을 더 잘 설정하도록 헀습니다.
 
+- [Quantile Regression이란?](/posts/Data%20Science/ML%20Engineering/quantile-regression-explained)
+- [Conformal prediciton이란?](/posts/Data%20Science/Statistics/conformal-prediction-explained)
 
 ---
 
@@ -184,6 +193,5 @@ propensity score를 추정해, 고객에 대해 신뢰할 수 있는 처치범�
 
 고객 A에 대한 예시입니다. 양수성이 보장되는 12.1, 12.6, 13.2보다 13.7의 예측 범위가 더 넓고, 이를 통해 불확실성을 표현하고 있습니다.
 
-
-
-
+- [Partial Identification이란?](/posts/Data%20Science/Causal%20Inference/what-is-partial-identification)
+- [Manski Bounds란?](/posts/Data%20Science/Causal%20Inference/what-is-manski-bounds)
