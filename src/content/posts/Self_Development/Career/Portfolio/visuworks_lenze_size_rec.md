@@ -134,11 +134,23 @@ Docker를 활용한 배포로 인프라 관리의 복잡성을 줄이고, S3를 
 <figcaption>그림4. 추론할 때의 로직</figcaption>
 </figure>
 
+현재 가져가고 있는 추론 로직은 그림 4와 같습니다.
+propensity score를 추정해, 고객에 대해 신뢰할 수 있는 처치범위와 그렇지 않은 범위를 정하고, 각각에 따라 다른 예측 모델을 사용하고 있습니다.
 
+
+<figure>
+<img src="/post/Portfolio/Lenze_size_PI.png" alt="Prediction Interval" width="80%" />
+<figcaption>그림5. 양수성 조건에 따른 예측</figcaption>
+</figure>
+
+양수성 혹은 분포의 겹침이 보장되어 신뢰할 수 있는 처치의 범위는 CQR을 통해 예측 범위를 추정하고,
+그렇지 않은 곳은 partial identification의 아이디어를 차용해 예측 범위를 추정했습니다.
+
+이를 통해 예측의 불확실성을 구간으로 표현할 수 있습니다.
 
 ---
 
-### 1. 신뢰할 수 있는 예측값의 범위는?
+### 1. 신뢰할 수 있는 처치의 범위는 어떻게 구할까 : Propensity Estimator
 
 가장 먼저 예측 평가지표 (MSE, MAE)로 성능을 확인한 예측의 범위를 정해야 합니다.
 이는 성향 점수 (propensity score)를 추정함으로써 정할 수 있습니다.
@@ -149,7 +161,7 @@ Docker를 활용한 배포로 인프라 관리의 복잡성을 줄이고, S3를 
 
 <figure>
 <img src="/post/Portfolio/Lenze_size_propensity.png" alt="Positivity" width="70%" />
-<figcaption>그림5. 양수성 조건 만족하는 범위</figcaption>
+<figcaption>그림6. 양수성 조건 만족하는 범위</figcaption>
 </figure>
 
 그림5에서 고객 A는 12.1, 12.6, 13.2에 대한 예측 성능을 신뢰할 수 있고, 고객 B는 12.6에 대한 예측 성능을 신뢰할 수 있습니다.
@@ -168,10 +180,7 @@ Docker를 활용한 배포로 인프라 관리의 복잡성을 줄이고, S3를 
 신뢰할 수 있는 정도를 예측 범위로 나타낼 수 있고, 따라서 양수성이 보장되지 않는 예측 범위의 예측 범위를 넓게 그려주고자 했습니다.
 양수성이 보장되는 처치의 예측값은 신뢰구간을 예측해 보여주고, 나머지 처치에 대해서는 "partial identification"과 같은 개념을 사용해 예측 범위를 추정했습니다.
 
-<figure>
-<img src="/post/Portfolio/Lenze_size_PI.png" alt="Prediction Interval" width="80%" />
-<figcaption>그림6. 양수성 조건에 따른 예측 구간</figcaption>
-</figure>
+
 
 고객 A에 대한 예시입니다. 양수성이 보장되는 12.1, 12.6, 13.2보다 13.7의 예측 범위가 더 넓고, 이를 통해 불확실성을 표현하고 있습니다.
 
