@@ -172,5 +172,74 @@ These improvements ensured stable service operations, minimized error propagatio
 
 Project Overview:
 
-하루 100~200건정도 상담건을 대체하기 위해 RAG 기반 고객상담용 챗봇 개발
+Developed an AI chatbot service to automate repetitive customer inquiries, reducing the burden on human agents and improving overall customer service efficiency. The system processed an average of 100-200 daily inquiries, significantly enhancing agent productivity.
+
+Problem-Solving Process:
+
+1. Improving User Satisfaction through Classification
+
+- Problem
+User feedback revealed that the most common source of dissatisfaction was the LLM generating ambiguous responses to questions it couldn't clearly answer. This was particularly problematic when customers asked about services that required manual intervention (e.g., appointment scheduling with personal information), yet the system continued to engage in unnecessary back-and-forth conversations.
+
+- Solution
+Implemented a classification model at the front-end of the RAG pipeline to categorize incoming questions and route them appropriately. Used LLM-based classification prompts to identify question types and ensure proper handling of different inquiry categories.
+
+- Result
+Reduced "unsatisfied" feedback by over 50% by preventing inappropriate responses and unnecessary conversations.
+
+2. Context-Aware Document Retrieval
+
+- Problem
+The system needed to maintain conversation context to provide relevant responses. For example, when a user asked "What's the price of LASIK?" followed by "What about LASEK?", the system should understand the second question refers to LASEK pricing.
+
+- Solution
+Implemented question rephrasing using Redis to store short-term conversation history. The system retrieves conversation context and rephrases questions to match the conversation flow, enabling more accurate document retrieval.
+
+- Result
+Improved response relevance by maintaining conversation context and reducing the need for users to repeat information.
+
+3. Enhanced Search Performance through Query Decomposition and Keyword Extraction
+
+- Problem
+Single questions often contained multiple semantic components (e.g., "Tell me the prices of both LASIK and LASEK"), requiring retrieval of documents for multiple sub-questions. Additionally, semantic search limitations and embedding model constraints made it difficult to find documents containing proper nouns like doctor names.
+
+- Solution
+Implemented query decomposition to break complex questions into multiple sub-queries, each targeting specific information needs. Added keyword extraction to complement semantic search, enabling filtering based on extracted entities like proper nouns.
+
+- Result
+Improved search accuracy for complex queries and enhanced retrieval of documents containing specific entities that embedding models might miss.
+
+4. Document Retrieval Optimization
+
+- Problem
+The core challenge was creating high-quality embedding vectors for semantic search to retrieve the most relevant FAQ documents.
+
+- Solution
+Built a test dataset from FAQ data using LLM-generated questions to evaluate different embedding models. Selected the best-performing model through systematic comparison. Implemented Qdrant as the vector database with real-time updates when documents are modified, minimizing maintenance costs. Used multi-tenancy features to clearly separate document versions.
+
+- Result
+Achieved optimal document retrieval performance with a maintainable and scalable vector database solution.
+
+5. Response Generation
+
+- Problem
+Generated responses needed to be both accurate (based only on retrieved documents) and user-friendly, maintaining a conversational tone that customers would find approachable and easy to understand.
+
+- Solution
+Applied prompt engineering to constrain the LLM to generate responses based solely on retrieved document content while maintaining a friendly and accessible tone. This dual focus ensured both accuracy and positive user experience.
+
+- Result
+Delivered responses that were both factually accurate and user-friendly, improving overall customer satisfaction.
+
+6. Monitoring and Maintenance
+
+- Problem
+Silent failures in the chatbot system could go undetected, potentially causing user discomfort and reducing trust in the service. Continuous monitoring was needed to ensure reliable performance and minimize maintenance costs.
+
+- Solution
+Implemented an automated monitoring system using the RAGAS framework to evaluate response quality. The system scores responses based on their grounding in retrieved documents and tracks performance metrics. Used Airflow to process chat logs from spreadsheets, generating daily and weekly performance reports and alerting high-scoring conversations via Slack.
+
+- Result
+Proactively detected silent failures and performance issues, ensuring reliable service operation and maintaining user trust through continuous quality monitoring.
+
 
