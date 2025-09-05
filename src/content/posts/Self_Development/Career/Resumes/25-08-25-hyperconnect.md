@@ -40,6 +40,22 @@ Led 3 projects with development involvement at a startup, demonstrating rapid gr
 Projects:
 
 ## Lenze size recommendation
+
+1. Achievement (How + Result one line)
+Quantified prediction uncertainty using causal inference to evaluate prediction reliability for unobserved lens sizes and ensured model stability through integrated data pipeline and monitoring system
+
+2. Role/Solution Process (3-4 lines)
+- Prediction Evaluation Problem Solving: 
+Resolved limitations in evaluating predictions for unobserved treatments by leveraging causal inference's positivity assumption and propensity scores, expressing prediction uncertainty through intervals using CQR and partial identification
+- Data Consistency Assurance: 
+Addressed data inconsistency between training and inference environments by building integrated data pipeline and feature store, standardizing data preprocessing processes and ensuring consistency across environments
+- Monitoring System Development: 
+Developed automated monitoring pipeline using Airflow for real-time data drift detection and performance tracking, enabling early detection of silent failures and ensuring service stability
+- Domain-Specific Modeling: 
+Enhanced model interpretability through clinically meaningful feature engineering and monotonicity constraints aligned with physician intuition, and provided model explanations using Shapley values to increase medical staff trust
+
+
+
 - 2025.03 - Present (6 months)
 
 Project Overview:
@@ -120,6 +136,17 @@ Enhanced service stability and maintained user trust by proactively identifying 
 
 
 ## OCR Pipeline
+
+Achievement (How + Result):
+- Achieved error rate below 1% and 99%+ OCR accuracy by implementing object-oriented design and unit testing framework
+Role (3-4 lines):
+- Refactored procedural code into object-oriented architecture to clearly separate functional responsibilities and improve debugging efficiency
+- Built unit testing and type validation system using pytest and mypy to prevent runtime errors proactively
+- Improved OCR accuracy from 70% to 99%+ by applying domain-specific models tailored to fixed regions per device type and optimizing image preprocessing/postprocessing logic
+- Established clinical validity verification and anomaly detection monitoring system to prevent silent failures and ensure stable service operations
+
+
+
 - 2024.07 - 2024.10 (4 months)
 
 Project Overview:
@@ -168,6 +195,22 @@ These improvements ensured stable service operations, minimized error propagatio
 
 
 ## Chatbot
+
+Achievement (How + Result)
+- Automated customer service operations through RAG pipeline implementation (classification model integration, search accuracy improvement) and monitoring system development
+
+Role (3-4 lines)
+- Led end-to-end process from problem definition to RAG pipeline design and implementation for automating repetitive customer service tasks
+- Improved user satisfaction by implementing classification model at pipeline frontend and developing context-aware question rephrasing and keyword extraction features, reducing unsatisfied feedback by over 50%
+- Built Qdrant-based VectorDB system enabling users to select document versions and perform real-time updates
+- Established monitoring system using RAGAS framework integrated with Airflow for silent failure detection and performance metric tracking to minimize maintenance costs
+
+
+
+
+
+
+
 - 2024.11 - 2025.03 (4 months)
 
 Project Overview:
@@ -241,5 +284,21 @@ Implemented an automated monitoring system using the RAGAS framework to evaluate
 
 - Result
 Proactively detected silent failures and performance issues, ensuring reliable service operation and maintaining user trust through continuous quality monitoring.
+
+
+
+
+# Cover letter
+
+I am writing to express my strong interest in the Machine Learning Engineer role at HYPERCONNECT.
+Although I am still a junior developer, my career goal has always been clear: to grow into a developer who not only builds technology but also creates meaningful impact for users and the business.
+
+During my time at a startup, I had the opportunity to work on real services, which taught me how technology can directly influence user experience and business outcomes. I consistently strived to go beyond solving technical problems in isolation, and instead focused on how each solution could improve the service and deliver value to both users and the company.
+
+I am particularly inspired by HYPERCONNECT’s work, which I have followed through technical blogs and research publications. I was impressed by how your team demonstrates not only strong technical expertise but also a commitment to driving tangible business results. This aligns closely with my own aspiration to become a developer who bridges technical innovation with real-world impact.
+
+At HYPERCONNECT, I would be eager to contribute my hands-on startup experience, adaptability, and strong motivation to grow. I believe my background equips me to quickly integrate into your team, learn from the challenges ahead, and make meaningful contributions to your mission.
+
+Thank you for considering my application. I look forward to the opportunity to discuss how my skills and passion can contribute to HYPERCONNECT’s continued success.
 
 
