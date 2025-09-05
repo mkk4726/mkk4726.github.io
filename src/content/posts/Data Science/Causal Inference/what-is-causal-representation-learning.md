@@ -1,6 +1,6 @@
 ---
 title: "Causal Representaion Learning에 대한 정리"
-date: "2025-06-20"
+date: "2025-09-04"
 excerpt: "Causal Representation에 대한 개념 정리"
 category: "Causal Inference"
 tags: ["상관관계", "인과관계", "인과추론"]

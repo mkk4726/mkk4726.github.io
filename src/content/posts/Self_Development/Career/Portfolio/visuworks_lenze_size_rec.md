@@ -30,6 +30,8 @@ tags: ["Python", "Machine Learning", "Causal Inference"]
 문제를 정의하고 해결한 과정을 아래에 정리했습니다.
 
 모델에 대한 연구는 계속 진행 중이며, 관련한 내용을 논문으로 작성 중입니다.
+- [연구 방향에 대해 정리한 글 - 외삽 문제를 어떻게 다뤄야할까?](/posts/Data%20Science/Causal%20Inference/Industry%20Application/what-can-I-do-in-extrapolation-problem)
+
 
 ---
 
@@ -89,6 +91,8 @@ Docker를 활용한 배포로 인프라 관리의 복잡성을 줄이고, S3를 
 결과적으로 모델의 성능 변화를 사전에 감지할 수 있게 되어서, 성능 저하 시 즉시 대응할 수 있었습니다. 
 데이터 drift가 발생했을 때도 원인을 빠르게 파악하고 적절한 조치를 취할 수 있어서 모델의 안정성과 신뢰성을 크게 향상시킬 수 있었습니다.
 
+- [data drfit란?](/posts/Data%20Science/Statistics/what-is-data-drift/)
+- [silent failure에 대해서](/posts/Data%20Science/ML%20Engineering/about-silent-failures/)
 
 ---
 
