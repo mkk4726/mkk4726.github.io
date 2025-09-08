@@ -4,7 +4,6 @@ date: "2025-09-02"
 excerpt: "3줄 자기소개... 나를 소개하는 건 늘 어렵다"
 category: "Reflections"
 tags: ["이런저런 생각들"]
-public: false
 ---
 
 자기소개는 늘 어려운 것 같다... 

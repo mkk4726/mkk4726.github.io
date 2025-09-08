@@ -1,22 +1,20 @@
 [
   {
-    "id": "Self_Development/English Study/SPEAK/t1/성장에 필요한 마음가짐/The Greatest of All Time",
-    "title": "The Greatest of All Time - 대상혁~~",
-    "date": "2025-09-05",
-    "excerpt": "You don't grow from winning all the time",
-    "category": "English Study",
+    "id": "Self_Development/Reflections/2025-09-08-about-target",
+    "title": "스스로 생각하는 나의 한계와 목표에 대해서",
+    "date": "2025-09-08",
+    "excerpt": "매너리즘에서 빠져나오게 해준 글과 이에 대한 생각 정리",
+    "category": "Reflections",
     "tags": [
-      "영어공부꾸준히!",
-      "SPEAK",
-      "T1"
+      "이런저런 생각들"
     ],
-    "content": "참 좋은 말이네 ㅎㅎ 대상혁~~~",
-    "public": false
+    "content": "참조한 글 1: Aim High , 링크드인에서 발견한 하이퍼커넥트 직원 분이 올려주신 글 --- 1~2달정도 굉장히 나태하게 지낸 것 같다. 그 전에는 회사에서 프로젝트 성공적으로 끝내려고 노력했고, 좋은 결과를 얻었다. 퇴근 후에는 사이드 프로젝트나 개인 공부를 꾸준히 해왔었다. 하지만 최근에는 번아웃인지는 모르겠지만, 푹 퍼져있는 느낌으로 지넀다. 퍼져있는게 행복했다면 다행이지만, 막연한 불안함에 행복하지도 않았다... ㅎ.ㅎ 그 이유를 생각해보면, 회사일에 흥미가 떨어졌고 이직을 준비하고 있지만 쉽지 않은 과정에서 도피를 한 것 같다. 회사에서 성과를 이룰 수 없다고 생각하는데, 그렇다고 이직도 어려우니 목표가 사라져버리는 느낌을 받은 것 같다. 그러면서 매너리즘에 빠진 것 같은데, 이런 생각이 오늘 아침에 깨졌다. 1번 글에서 나한테 도움되는 내용을 찾을 수 있었다. --- 회사에서 더 이상 성취할 수 없다. 이 생각의 기저에는 회사의 목표 수준이 낮다는데에 있다. 목표가 애매한 프로젝트가 대부분이고 거기서 원하는 목표도 낮다. 하지만 사실 이 생각은 틀렸다. 사실상 내가 프로젝트를 이끌어가고 있고, 이때 목표는 내가 정할 수 있다. 더 정확한 문제는 스스로 생각하는 목표수준이 낮다는데에 있다. 이만하면 됐지라며 끝냈던 경험을 떠올려보자. > 우리가 운동 할 때에 코치를 두는 이유는 이러한 틀을 체계적으로 부숴줄 수 있기 때문입니다. > 조직은 그렇기 때문에 이러한 틀을 부숴주는 높은 기준을 요구하는 환경을 제공할 수 있도록 노력해야 합니다. > 저희가 늘 리터러쳐 서베이를 100편씩 일주일이면 할 수 있어야 한다고 이야기하는 이유는 이를 해본 적이 없는 사람은 상상조차 하지 못하지만 막상해보고 숙달되면 실제로 할 수 있는 그런 종류의 작업이기 때문입니다. 높은 기준을 요구하는 조직에 있지 않더라도, 스스로 요구할 수 있다. 회사가 이렇기 때문에, 같이 일하는 동료가 이렇기 때문에라고 말하는 건 사실 전부 핑계다. 내가 좋아하는 \"박재훈\"이라는 보디빌더는 코치없이 세계적인 무대에서 성적을 내고 있다. 일할 때 스스로 더 높은 목표를 세워보고 성취해보자. 그런 기준은 만들고 높여나가 보자. --- 안될 것 같은 불안함 나 스스로의 행동패턴을 최근에 발견했다. 불안하고 고통스러울 때 회피하고 도파민만을 쫒고 있다. 어떤 목표가 있을 때는 그걸 달성하기 위한 작은 목표들을 세우고, 그 목표들을 하나씩 달성해나가는데에 집중해야 한다. 그렇지 않는다면 평생 제자리에 있을 것이다. 이런 행동패턴을 바꾸는 건 일종의 훈련이 필요한 영역이라고 생각이 든다. 스스로 높은 목표를 설정하고, 이를 달성하기 위한 노력을 하는 것과 같은 맥락이다. 뛰어난 사람들을 보면 이런 행동패턴들이 보인다. 자연스럽게 습득이 된 것이던, 의식적으로 만든 것이던 공통적으로 보인다. 스스로 훈련을 통해 이런 패턴을 만들어보자.",
+    "public": true
   },
   {
     "id": "Self_Development/Career/Portfolio/visuworks_segmentation",
     "title": "[Visuworks] Segmentation Model",
-    "date": "2025-09-05",
+    "date": "2025-09-08",
     "excerpt": "출혈관련 병변 탐지 모델 개발",
     "category": "Career",
     "tags": [
@@ -29,7 +27,7 @@
   {
     "id": "Self_Development/Career/Portfolio/visuworks_ocr_pipeline",
     "title": "OCR Pipeline System",
-    "date": "2025-09-05",
+    "date": "2025-09-08",
     "excerpt": "문서 이미지에서 텍스트를 추출하는 자동화된 OCR 파이프라인",
     "category": "Career",
     "tags": [
@@ -45,7 +43,7 @@
   {
     "id": "Self_Development/Career/Portfolio/visuworks_lenze_size_rec",
     "title": "Lens Size Recommendation System",
-    "date": "2025-09-05",
+    "date": "2025-09-08",
     "excerpt": "머신러닝을 활용한 맞춤형 렌즈 사이즈 추천 시스템",
     "category": "Career",
     "tags": [
@@ -59,7 +57,7 @@
   {
     "id": "Self_Development/Career/Portfolio/visuworks_chatbot",
     "title": "AI Chatbot Project",
-    "date": "2025-09-05",
+    "date": "2025-09-08",
     "excerpt": "고객상담용 챗봇 개발",
     "category": "Career",
     "tags": [
@@ -71,7 +69,7 @@
   {
     "id": "Self_Development/Career/Portfolio/pnu_cloud_funding_prediction",
     "title": "[PNU] Cloud Funding Success prediction model",
-    "date": "2025-09-05",
+    "date": "2025-09-08",
     "excerpt": "부산대학교 산업공학과 졸업 프로젝트",
     "category": "Career",
     "tags": [
@@ -85,7 +83,7 @@
   {
     "id": "Self_Development/Career/Portfolio/aiffel_segmentation",
     "title": "Segmentation Model",
-    "date": "2025-09-05",
+    "date": "2025-09-08",
     "excerpt": "눈의 안쪽 부분을 찍는 안저사진에서 망막병증을 탐지하는 모델",
     "category": "Career",
     "tags": [
@@ -93,6 +91,20 @@
     ],
     "content": "기간 : 2023.12 ~ 2024.03 (4개월) 역할 : 문제정의, 프로젝트 설계, 구현까지 모든 과정 --- 프로젝트 개요 아이펠이라는 AI 엔지니어 양성과정 부트캠프를 들으면서 진행했던 기업 연계 프로젝트입니다. 사람들의 건강에 기여하고 싶었고, 이를 위해 의료 도메인과 관련된 프로젝트를 진행했습니다. 그 중에서 \"안과\" 도메인인 회사와 기업 연계 프로젝트를 진행하게 되었습니다. 여러가지 주제 중 \"당뇨병성 망막병증 병변 탐지\"라는 문제를 정의해 프로젝트를 진행했습니다. 그 이유는 실명률이 가장 높은 질환이었고, 당뇨병 환자에게 자주 발생하는 합병증이기 때문이었습니다. 아버지가 당뇨가 있으시기 때문에, 가족의 건강에 직접적으로 기여할 수 있다는 생각에 관련 문제를 풀어보고 싶었습니다. <figure> <img src=\"/post/Portfolio/aiffel_presentaion_1.png\" alt=\"aiffel_presentaion_1\" /><width 80%/> <figcaption>그림1. 왜 당뇨병성 망막병증으로 주제를 정했는지</figcaption> </figure> <small>발표자료 링크</small> 눈의 안쪽 사진인 \"안저사진\"에 당뇨병성 망막병증 관련 병변들이 보이고, 이를 통해 초기 진단을 할 수 있습니다. 이를 돕기 위해 안저사진에서 병변들을 탐지하는, Segmentation 모델을 개발하는 프로젝트를 진행했습니다. 프로젝트를 진행하면서, 논문을 읽고 Segmenation 모델들 구현하고 고도화하는 과정을 통해 개발 능력을 키울 수 있었고, 데이터를 뜯어보면서 이미지 전처리를 고도화하는 과정에서 데이터 전처리에 대한 감을 키울 수 있었습니다. --- 문제 해결 과정 어떤 문제들이 있었고, 이를 해결하는 과정을 정리했습니다. --- 데이터셋은? > 데이터셋이 없다... 가장 어려웠던 부분입니다. 제공되는 데이터셋이 없었기 때문에 데이터 수집부터 해야했습니다. 하지만 데이터셋이 없으니 거의 1~2주정도를 데이터를 구하기 위한 구글링에 시간을 썼던 것 같습니다. 그러던 중 FGADR 이라는 데이터셋을 찾았고 대략 1500건정도의 데이터를 확보할 수 있었습니다. --- 모델링 > Unet vs DeepLab Segmentation은 크게 Unet 계열과 DeepLab 계열로 구분할 수 있었고, 각각 다양한 모델들이 존재했습니다. 여러 논문에서 전체 이미지 중 레이블(마스크)이 포함된 부분이 매우 작은 의료 도메인의 특성상, U-Net 계열 모델이 가장 높은 성능을 보였고, 실제로 가지고 있는 데이터셋안에서도 확인할 수 있었습니다. 초기 실험을 통해 Unet을 베이스라인으로 잡았고, 이를 고도화시켜나가는 방식으로 실험읋 진행했습니다. --- 이미지 전처리: CLAHE 적용 <figure> <img src=\"/post/Portfolio/aiffel_presentation_clahe.png\" alt=\"aiffel_presentaion_clahe\" /><width 80%/> <figcaption>그림2. 이미지 전처리 방법 적용 : CLAHE</figcaption> </figure> 가장 성능을 높일 수 있었던 부분입니다. 명암대비를 향상시킬 수 있는 방법으로, 병변의 특징을 더 명확하게 보이게 만들 수 있었습니다. 실제로 모델이 그림2의 사진처럼 작은 병변들을 더 잘 찾는 것을 확인할 수 있었습니다. 다만 과도한 명암대비 향상은 false positive를 증가시키므로 실험을 통해 적정 수준을 설정했습니다. --- multi-task learning <figure> <img src=\"/post/Portfolio/aiffel_presentation_mtl.png\" alt=\"aiffel_presentaion_mtl\" /><width 80%/> <figcaption>그림3. 인코더 풍부하게 하기 : MTL</figcaption> </figure> 다음으로는 Unet의 Encoder를 풍부하게 학습시키기 위해서 multi-task learning을 적용했습니다. 이는 관련 논문들에서 제시한 아이디어들을 참고해 구현한 것입니다. 논문들에서 구현 코드가 공개되어 있지 않아 실제로 구현해보면서 많은 시행착오를 겪어야 했습니다. 특히 Encoder의 어느 부분까지 pretraining 시켜야하며, segmentaion task를 학습할 때는 다른 task의 가중치를 얼마나 줘야하는지 등을 실험을 통해 확인할 수 있었습니다. MTL을 적용하고 많은 성능은 아니지만 향상된 것을 확인할 수 있었습니다.",
     "public": true
+  },
+  {
+    "id": "Self_Development/English Study/SPEAK/t1/성장에 필요한 마음가짐/The Greatest of All Time",
+    "title": "The Greatest of All Time - 대상혁~~",
+    "date": "2025-09-05",
+    "excerpt": "You don't grow from winning all the time",
+    "category": "English Study",
+    "tags": [
+      "영어공부꾸준히!",
+      "SPEAK",
+      "T1"
+    ],
+    "content": "참 좋은 말이네 ㅎㅎ 대상혁~~~",
+    "public": false
   },
   {
     "id": "Data Science/ML Engineering/about-silent-failures",
@@ -199,7 +211,7 @@
       "이런저런 생각들"
     ],
     "content": "자기소개는 늘 어려운 것 같다... 나를 소개한다는게, 내가 아직 많은 모습 중에 어떤 부분을 말해야할지 모르겠다는 어려움이 있다. 10차원의 공간을 2차원으로 줄이는 느낌? 어쨌든 \"선택\"이 필요한 부분인데, 선택을 잘하기 위해서는 명확한 기준이 필요하다. \"기준\" 이번에 가짜연구소 스터디에 지원하면서 3줄 자기소개를 적게 됐다. 스터디에 맞는 나의 모습은 어떤걸까? 어떤 부분을 이야기하면 좋을까? 성장을 목적으로 하는 곳이니, 성장에 대한 나의 모습을 들어내면 좋을 것 같다. 키워드만 적어보자. 데싸, 인과추론, 업무 적용, 문제를 고민하고 푸는 걸 좋아함,",
-    "public": false
+    "public": true
   },
   {
     "id": "Self_Development/English Study/SPEAK/수입과지출/25-09-02-나는주식으로돈을별로못벌었어",
