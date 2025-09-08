@@ -31,27 +31,6 @@ const config: Config = {
               paddingLeft: '1.5rem',
               color: '#374151',
             },
-            h1: {
-              fontSize: '2.25rem',
-              fontWeight: '800',
-              marginTop: '2rem',
-              marginBottom: '1rem',
-              color: '#111827',
-            },
-            h2: {
-              fontSize: '1.875rem',
-              fontWeight: '700',
-              marginTop: '1.5rem',
-              marginBottom: '0.75rem',
-              color: '#111827',
-            },
-            h3: {
-              fontSize: '1.5rem',
-              fontWeight: '600',
-              marginTop: '1.25rem',
-              marginBottom: '0.5rem',
-              color: '#111827',
-            },
             blockquote: {
               borderLeftWidth: '4px',
               borderLeftColor: '#3b82f6',
