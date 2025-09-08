@@ -36,7 +36,7 @@ export default async function Home() {
         <div className="lg:col-span-2">
           {/* Hero Section */}
           <div className="text-center mb-16">
-            <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-gray-100 mb-4">
               Welcome to my little victories
             </h1>
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
@@ -47,7 +47,7 @@ export default async function Home() {
 
           {/* Latest Posts Section */}
           <div className="mb-12">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-8">Latest Posts</h2>
+            <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-gray-100 mb-8">Latest Posts</h2>
             {posts.length > 0 ? (
               <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
                 {posts.map((post) => (

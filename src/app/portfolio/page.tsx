@@ -73,7 +73,7 @@ export default function PortfolioPage() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 bg-gray-900">
       {/* 페이지 헤더 */}
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-white mb-4">
+        <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-4">
           Portfolio
         </h1>
         <p className="text-white mb-6">
@@ -97,7 +97,7 @@ export default function PortfolioPage() {
             <div className="p-5 lg:p-6">
               <div className="flex items-center mb-4">
                 <span className="text-2xl mr-3">{post.icon}</span>
-                <h2 className="text-xl lg:text-xl font-bold text-white">
+                <h2 className="text-lg sm:text-xl font-bold text-white">
                   {post.title}
                 </h2>
               </div>

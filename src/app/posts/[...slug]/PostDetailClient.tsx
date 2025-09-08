@@ -84,7 +84,7 @@ export default function PostDetailClient({ post: initialPost, postId }: PostDeta
             {/* Post header */}
             <header className="mb-8">
               <div className="flex items-start justify-between mb-4">
-                <h1 className="text-3xl font-bold text-gray-900 flex-1">
+                <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 flex-1">
                   {post.title}
                   {isPrivate && (
                     <span className="ml-3 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">

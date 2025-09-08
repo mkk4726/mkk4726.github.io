@@ -81,7 +81,7 @@ function BasePostCard({ post }: { post: Omit<PostData, 'content'> & { content?: 
         </div>
         
         <Link href={`/posts/${post.id}`} className="block">
-          <h2 className="text-xl lg:text-xl font-bold text-gray-900 dark:text-gray-100 mb-3 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+          <h2 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-gray-100 mb-3 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
             {post.title}
           </h2>
           
@@ -170,7 +170,7 @@ function SearchablePostCard({ post }: { post: Omit<PostData, 'content'> & { cont
         </div>
         
         <Link href={`/posts/${post.id}`} className="block">
-          <h2 className="text-xl lg:text-xl font-bold text-gray-900 dark:text-gray-100 mb-3 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+          <h2 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-gray-100 mb-3 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
             {titleMatch ? (
               <span dangerouslySetInnerHTML={{ 
                 __html: highlightText(post.title, searchQuery, 100) 

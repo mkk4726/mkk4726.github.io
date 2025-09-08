@@ -29,7 +29,7 @@ export default function AboutPage() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 bg-gray-900">
       {/* 페이지 헤더 */}
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-white mb-4">
+        <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-4">
           About
         </h1>
         <p className="text-white mb-6">
@@ -47,7 +47,7 @@ export default function AboutPage() {
             <div className="p-5 lg:p-6">
               <div className="flex items-center mb-4">
                 <span className="text-2xl mr-3">{page.icon}</span>
-                <h2 className="text-xl lg:text-xl font-bold text-white">
+                <h2 className="text-lg sm:text-xl font-bold text-white">
                   {page.title}
                 </h2>
               </div>
@@ -81,7 +81,7 @@ export default function AboutPage() {
         {/* About Me Section */}
         <div id="about" className="bg-gray-800 rounded-lg shadow-sm p-8 border border-gray-700">
           <div className="flex items-center justify-between mb-6">
-            <h2 className="text-2xl font-bold text-white">{aboutData.title}</h2>
+            <h2 className="text-xl sm:text-2xl font-bold text-white">{aboutData.title}</h2>
             {aboutData.lastUpdated && (
               <span className="text-sm text-gray-300">
                 Last updated: {aboutData.lastUpdated}
@@ -94,7 +94,7 @@ export default function AboutPage() {
         {/* Resume Section */}
         <div id="resume" className="bg-gray-800 rounded-lg shadow-sm p-8 border border-gray-700">
           <div className="flex items-center justify-between mb-6">
-            <h2 className="text-2xl font-bold text-white">{resumeData.title}</h2>
+            <h2 className="text-xl sm:text-2xl font-bold text-white">{resumeData.title}</h2>
             {resumeData.lastUpdated && (
               <span className="text-sm text-gray-300">
                 Last updated: {resumeData.lastUpdated}
