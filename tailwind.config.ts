@@ -22,14 +22,14 @@ const config: Config = {
               marginBottom: '1.2em',
               listStyleType: 'disc',
               paddingLeft: '1.5rem',
-              color: '#374151',
+              color: '#111827',
             },
             ol: { 
               marginTop: '1.2em', 
               marginBottom: '1.2em',
               listStyleType: 'decimal',
               paddingLeft: '1.5rem',
-              color: '#374151',
+              color: '#111827',
             },
             blockquote: {
               borderLeftWidth: '4px',
