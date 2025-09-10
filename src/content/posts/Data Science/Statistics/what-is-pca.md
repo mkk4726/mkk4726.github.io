@@ -39,6 +39,7 @@ $$
 \max_w w^T S w, \quad \text{s.t.} \quad w^T w = 1 \tag{1}
 $$
 - $S$ : covariance matrix
+- $w^T w = 1 $ : 단위 벡터로 제한하여 방향에만 집중
 
 이 최적화 문제의 해는 **eigenvalue decomposition**을 통해 구할 수 있다.
 
