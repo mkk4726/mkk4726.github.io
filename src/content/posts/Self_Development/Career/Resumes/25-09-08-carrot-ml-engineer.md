@@ -8,6 +8,7 @@ public: false
 ---
 
 - [채용공고](/posts/Self_Development/Career/Job%20Transition/25-09-08-당근-ML-Engineer)
+- [지원한 이력서](/posts/Self_Development/Career/Resumes/pdf_files/당근_이력서)
 
 ---
 
@@ -18,5 +19,6 @@ public: false
 
 3개의 ML 서비스 운영 경험. 그 과정에서 했던 고민들 정리해서 적기 + 포트폴리오.
 
+기존에 썻던 내용을 깔끔하게만 정리해서 제출
 
-
+---

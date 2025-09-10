@@ -4,10 +4,42 @@ date: "2025-08-25"
 excerpt: "하이퍼 커넥트 이력서 컨셉과 방향 적어보기"
 category: "Career"
 tags: ["이력서"]
-public: false
 ---
 
-[하이퍼 커넥트 채용공고](/posts/Self_Development/Career/Job%20Transition/25-08-04-하이퍼커넥트)
+- [하이퍼 커넥트 채용공고](/posts/Self_Development/Career/Job%20Transition/25-08-04-하이퍼커넥트)
+- [지원한 이력서](/posts/Self_Development/Career/Resumes/pdf_files/resume_hyperconnect)
+
+---
+탈락 ㅠ -> Fit하지 않다는 피드백. 빈말일 수도 있지만, 실제로 내 이력서에 관련 업무 경험이 없긴 하다.
+이 부분이 가장 어려운 부분... 사이드프로젝트를 꾸준히 잘 정리했다면 결과가 달라질 수도 있지 않을까?
+
+
+```
+안녕하세요 김민규님,
+하이퍼커넥트 Talent Acquisition Team입니다.
+ 
+하이퍼커넥트에 관심 가지고 지원해 주셔서 진심으로 감사합니다.
+서류 지원 과정 중 저희가 의도치 않게 불편을 드린 점은 없었는지 마음이 쓰입니다.
+ 
+김민규님의 뛰어난 역량에도 불구하고, 안타깝게도 이번 서류 심사 과정에서 Machine Learning Engineer (HYPERCONNECT AI - Contents Understanding) 포지션으로 귀하를 모실 수 없게 되었습니다. 
+이는 역량의 부족이 아닌 포지션과의 Fit이 맞지 않아서임을 양해해 주시길 부탁드립니다. 
+늘 건승하시기 바라며 더 좋은 기회로 인사 드릴 수 있길 희망합니다.
+ 
+하이퍼커넥트도 김민규님이 보여주신 관심에 보답할 수 있도록 더욱 더 성장할 수 있도록 하겠습니다. 
+ 
+감사합니다.
+하이퍼커넥트 Talent Acquisition Team
+
+Confidential / 대외비
+
+CONFIDENTIALITY NOTICE: This e-mail communication and any attachments contains confidential and privileged information for the sole use of the designated recipients named above. It is prohibited to disclose, disseminate, distribute or copy this e-mail and any attachments beyond the scope which is mutually agreed with the sender of this e-mail. If you are not the intended recipient, please notify the sender by return e-mail and delete and/or destroy all copies of this communication and any attachments immediately.
+
+본 이메일 및 첨부파일은 지정된 수신인만을 위한 것이며, 회사의 비밀정보를 포함합니다. 본 정보를 발신인과 합의된 범위 외에 사용, 공개, 배포하는 것은 엄격히 금지됩니다. 귀하가 만일 지정된 수신인이 아닌 경우, 발신인에게 그 사실을 통지해 주시고 원본 이메일과 첨부파일 및 모든 사본을 즉시 삭제하여 주시기 바랍니다.
+```
+
+
+---
+
 
 채용공고 스케치
 
