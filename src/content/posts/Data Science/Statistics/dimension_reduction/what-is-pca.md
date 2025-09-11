@@ -43,6 +43,8 @@ $$
 
 이 최적화 문제의 해는 **eigenvalue decomposition**을 통해 구할 수 있다.
 
+---
+
 ## Eigenvalue와 Eigenvector
 
 공분산 행렬 $S$에 대해 다음을 만족하는 벡터 $v$와 스칼라 $\lambda$가 존재한다:
@@ -55,6 +57,8 @@ $$
 - $v$: **eigenvector** (고유벡터)
 - $\lambda$: **eigenvalue** (고유값)
 
+---
+
 ## PCA와 Eigenvalue의 연결
 
 수식 (1)에서 $w$는 우리가 찾고자 하는 방향 벡터(변수)이고, 이 최적화 문제의 **해 $w^*$가 바로 공분산 행렬 $S$의 eigenvector**가 된다.
@@ -64,6 +68,8 @@ $$
 - **$w^*$**: 최적해 = $S$의 가장 큰 eigenvalue에 해당하는 eigenvector
 
 즉, 분산을 최대화하는 방향은 데이터의 주된 변동 방향과 일치하며, 이는 공분산 행렬의 첫 번째 eigenvector로 구할 수 있다.
+
+---
 
 ## Eigenvector의 의미
 
@@ -84,6 +90,7 @@ $$
 - $(x_1', x_2')$: 새로운 eigenvector 좌표계로 투영된 데이터
 - 투영 과정: 원본 데이터를 eigenvector 방향으로 사영하여 새로운 좌표를 얻음
 
+---
 
 
 ## 최적화 과정: Lagrangian Multiplier
