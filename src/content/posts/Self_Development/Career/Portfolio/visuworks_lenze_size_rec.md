@@ -47,7 +47,7 @@ tags: ["Python", "Machine Learning", "Causal Inference"]
 </figure>
 
 1번 OCR 파이프라인에 대한 내용은 다음 포스트해서 확인할 수 있습니다.
-- [OCR pipeline 구현](/posts/Self_Development/Career/Portfolio/visuworks_ocr_pipeline)
+- [portfolio - OCR pipeline 구현](/posts/Self_Development/Career/Portfolio/visuworks_ocr_pipeline)
 
 ---
 
@@ -91,6 +91,7 @@ Docker를 활용한 배포로 인프라 관리의 복잡성을 줄이고, S3를 
 결과적으로 모델의 성능 변화를 사전에 감지할 수 있게 되어서, 성능 저하 시 즉시 대응할 수 있었습니다. 
 데이터 drift가 발생했을 때도 원인을 빠르게 파악하고 적절한 조치를 취할 수 있어서 모델의 안정성과 신뢰성을 크게 향상시킬 수 있었습니다.
 
+개념에 대해서 제가 이해한 부분들을 정리한 내용입니다.
 - [data drfit란?](/posts/Data%20Science/Statistics/what-is-data-drift/)
 - [silent failure에 대해서](/posts/Data%20Science/ML%20Engineering/about-silent-failures/)
 
@@ -185,6 +186,7 @@ propensity score를 추정해, 고객에 대해 신뢰할 수 있는 처치범�
 예측 구간 (Prediction Interval)을 그려주기 위해 Quantile Regressor를 사용했습니다.
 그 후에 Conformal prediction의 개념을 도입해 원하는 신뢰구간을 포함하는 예측구간을 추정할 수 있도록 했습니다.
 
+개념에 대해서 제가 이해한 부분들을 정리한 내용입니다.
 - [Quantile Regression이란?](/posts/Data%20Science/ML%20Engineering/quantile-regression-explained)
 - [Conformal prediciton이란?](/posts/Data%20Science/Statistics/conformal-prediction-explained)
 
@@ -195,5 +197,6 @@ propensity score를 추정해, 고객에 대해 신뢰할 수 있는 처치범�
 신뢰할 수 있는 정도를 예측 범위로 나타낼 수 있고, 따라서 양수성이 보장되지 않는 예측 범위의 예측 범위를 넓게 그려주고자 했습니다.
 양수성이 보장되는 처치의 예측값은 신뢰구간을 예측해 보여주고, 나머지 처치에 대해서는 "partial identification"과 같은 개념을 사용해 예측 범위를 추정했습니다.
 
+개념에 대해서 제가 이해한 부분들을 정리한 내용입니다.
 - [Partial Identification이란?](/posts/Data%20Science/Causal%20Inference/what-is-partial-identification)
 - [Manski Bounds란?](/posts/Data%20Science/Causal%20Inference/what-is-manski-bounds)
