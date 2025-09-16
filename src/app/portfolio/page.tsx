@@ -63,7 +63,7 @@ export default function PortfolioPage() {
       title: '[PNU] Clound Funding Success prediction',
       excerpt: '대학교 졸업 프로젝트로 진행한, 클라우드 펀딩 성공 예측 서비스를 개발한 내용입니다.',
       technologies: ['ML', "Prediction", "Crawling"],
-      date: '2023.03 ~ 2024.06 (4개월)',
+      date: '2022.03 ~ 2022.06 (4개월)',
       icon: '☁️',
       href: '/posts/Self_Development/Career/Portfolio/pnu_cloud_funding_prediction'
     }
