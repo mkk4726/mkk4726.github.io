@@ -1,9 +1,9 @@
 [
   {
     "id": "Self_Development/English Study/SPEAK/경험관련된표현들",
-    "title": "Self_Development/English Study/SPEAK/경험관련된표현들",
+    "title": "과거 경험 묻고 답하기",
     "date": "2025-09-16 ",
-    "excerpt": "",
+    "excerpt": "경험에 대해 이야기 나눌 때 사용하는 표현",
     "category": "English Study",
     "tags": [
       "영어공부꾸준히!",
@@ -15,7 +15,7 @@
   {
     "id": "Self_Development/Career/Portfolio/visuworks_segmentation",
     "title": "[Visuworks] Segmentation Model",
-    "date": "2025-09-15",
+    "date": "2025-09-16",
     "excerpt": "출혈관련 병변 탐지 모델 개발",
     "category": "Career",
     "tags": [
@@ -28,7 +28,7 @@
   {
     "id": "Self_Development/Career/Portfolio/visuworks_ocr_pipeline",
     "title": "OCR Pipeline System",
-    "date": "2025-09-15",
+    "date": "2025-09-16",
     "excerpt": "문서 이미지에서 텍스트를 추출하는 자동화된 OCR 파이프라인",
     "category": "Career",
     "tags": [
@@ -44,7 +44,7 @@
   {
     "id": "Self_Development/Career/Portfolio/visuworks_lenze_size_rec",
     "title": "Lens Size Recommendation System",
-    "date": "2025-09-15",
+    "date": "2025-09-16",
     "excerpt": "머신러닝을 활용한 맞춤형 렌즈 사이즈 추천 시스템",
     "category": "Career",
     "tags": [
@@ -58,7 +58,7 @@
   {
     "id": "Self_Development/Career/Portfolio/visuworks_chatbot",
     "title": "AI Chatbot Project",
-    "date": "2025-09-15",
+    "date": "2025-09-16",
     "excerpt": "고객상담용 챗봇 개발",
     "category": "Career",
     "tags": [
@@ -70,7 +70,7 @@
   {
     "id": "Self_Development/Career/Portfolio/pnu_cloud_funding_prediction",
     "title": "[PNU] Cloud Funding Success prediction model",
-    "date": "2025-09-15",
+    "date": "2025-09-16",
     "excerpt": "부산대학교 산업공학과 졸업 프로젝트",
     "category": "Career",
     "tags": [
@@ -84,7 +84,7 @@
   {
     "id": "Self_Development/Career/Portfolio/aiffel_segmentation",
     "title": "Segmentation Model",
-    "date": "2025-09-15",
+    "date": "2025-09-16",
     "excerpt": "눈의 안쪽 부분을 찍는 안저사진에서 망막병증을 탐지하는 모델",
     "category": "Career",
     "tags": [
