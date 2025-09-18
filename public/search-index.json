@@ -1,21 +1,8 @@
 [
   {
-    "id": "Self_Development/English Study/SPEAK/계획과실행/나너한테전화하려고했는데일이생겼어",
-    "title": "계획이 바뀌었을 때 쓰는 표현들",
-    "date": "2025-09-17",
-    "excerpt": "나 너한테 전화하려고 했는데, 일이 좀 생겼어",
-    "category": "English Study",
-    "tags": [
-      "영어공부꾸준히!",
-      "SPEAK"
-    ],
-    "content": "I was gonna (going to) 말할 때 쓰는 표현들. I was gonna go to the movies. I was gonna cook dinner. I was gonna cook dinner, but I just ordered takeout instead. I was goona call my grandma, but someting came up. it slipped my mind : 까먹었어 대화 시뮬레이션, 예시 상황 1: 친구와의 약속 A: Hey, are you coming to the party tonight? B: Oh, I was gonna come, but something came up at work. I have to stay late. A: That's too bad. Maybe next time! B: Yeah, I was really looking forward to it too. 상황 2: 가족과의 통화 A: Mom, I was gonna call you yesterday, but it slipped my mind. B: That's okay, honey. What were you going to tell me? A: I was gonna ask about the recipe for your apple pie. B: Oh, I can tell you right now! 상황 3: 운동 계획 변경 A: I was gonna go to the gym this morning, but I overslept. B: That happens to everyone. Are you going to go later? A: I was gonna, but now I have a meeting. Maybe tomorrow. 상황 4: 쇼핑 계획 A: I was gonna buy groceries today, but I just ordered takeout instead. B: What made you change your mind? A: I was too tired to cook, and I was gonna make something simple anyway.",
-    "public": true
-  },
-  {
     "id": "Self_Development/Career/Portfolio/visuworks_segmentation",
     "title": "[Visuworks] Segmentation Model",
-    "date": "2025-09-17",
+    "date": "2025-09-18",
     "excerpt": "출혈관련 병변 탐지 모델 개발",
     "category": "Career",
     "tags": [
@@ -28,7 +15,7 @@
   {
     "id": "Self_Development/Career/Portfolio/visuworks_ocr_pipeline",
     "title": "OCR Pipeline System",
-    "date": "2025-09-17",
+    "date": "2025-09-18",
     "excerpt": "문서 이미지에서 텍스트를 추출하는 자동화된 OCR 파이프라인",
     "category": "Career",
     "tags": [
@@ -44,7 +31,7 @@
   {
     "id": "Self_Development/Career/Portfolio/visuworks_lenze_size_rec",
     "title": "Lens Size Recommendation System",
-    "date": "2025-09-17",
+    "date": "2025-09-18",
     "excerpt": "머신러닝을 활용한 맞춤형 렌즈 사이즈 추천 시스템",
     "category": "Career",
     "tags": [
@@ -58,7 +45,7 @@
   {
     "id": "Self_Development/Career/Portfolio/visuworks_chatbot",
     "title": "AI Chatbot Project",
-    "date": "2025-09-17",
+    "date": "2025-09-18",
     "excerpt": "고객상담용 챗봇 개발",
     "category": "Career",
     "tags": [
@@ -70,7 +57,7 @@
   {
     "id": "Self_Development/Career/Portfolio/pnu_cloud_funding_prediction",
     "title": "[PNU] Cloud Funding Success prediction model",
-    "date": "2025-09-17",
+    "date": "2025-09-18",
     "excerpt": "부산대학교 산업공학과 졸업 프로젝트",
     "category": "Career",
     "tags": [
@@ -84,13 +71,38 @@
   {
     "id": "Self_Development/Career/Portfolio/aiffel_segmentation",
     "title": "Segmentation Model",
-    "date": "2025-09-17",
+    "date": "2025-09-18",
     "excerpt": "눈의 안쪽 부분을 찍는 안저사진에서 망막병증을 탐지하는 모델",
     "category": "Career",
     "tags": [
       "Segmentation"
     ],
     "content": "기간 : 2023.12 ~ 2024.03 (4개월) 역할 : 문제정의, 프로젝트 설계, 구현까지 모든 과정 --- 프로젝트 개요 아이펠이라는 AI 엔지니어 양성과정 부트캠프를 들으면서 진행했던 기업 연계 프로젝트입니다. 사람들의 건강에 기여하고 싶었고, 이를 위해 의료 도메인과 관련된 프로젝트를 진행했습니다. 그 중에서 \"안과\" 도메인인 회사와 기업 연계 프로젝트를 진행하게 되었습니다. 여러가지 주제 중 \"당뇨병성 망막병증 병변 탐지\"라는 문제를 정의해 프로젝트를 진행했습니다. 그 이유는 실명률이 가장 높은 질환이었고, 당뇨병 환자에게 자주 발생하는 합병증이기 때문이었습니다. 아버지가 당뇨가 있으시기 때문에, 가족의 건강에 직접적으로 기여할 수 있다는 생각에 관련 문제를 풀어보고 싶었습니다. <figure> <img src=\"/post/Portfolio/aiffel_presentaion_1.png\" alt=\"aiffel_presentaion_1\" /><width 80%/> <figcaption>그림1. 왜 당뇨병성 망막병증으로 주제를 정했는지</figcaption> </figure> <small>발표자료 링크</small> 눈의 안쪽 사진인 \"안저사진\"에 당뇨병성 망막병증 관련 병변들이 보이고, 이를 통해 초기 진단을 할 수 있습니다. 이를 돕기 위해 안저사진에서 병변들을 탐지하는, Segmentation 모델을 개발하는 프로젝트를 진행했습니다. 프로젝트를 진행하면서, 논문을 읽고 Segmenation 모델들 구현하고 고도화하는 과정을 통해 개발 능력을 키울 수 있었고, 데이터를 뜯어보면서 이미지 전처리를 고도화하는 과정에서 데이터 전처리에 대한 감을 키울 수 있었습니다. --- 문제 해결 과정 어떤 문제들이 있었고, 이를 해결하는 과정을 정리했습니다. --- 데이터셋은? > 데이터셋이 없다... 가장 어려웠던 부분입니다. 제공되는 데이터셋이 없었기 때문에 데이터 수집부터 해야했습니다. 하지만 데이터셋이 없으니 거의 1~2주정도를 데이터를 구하기 위한 구글링에 시간을 썼던 것 같습니다. 그러던 중 FGADR 이라는 데이터셋을 찾았고 대략 1500건정도의 데이터를 확보할 수 있었습니다. --- 모델링 > Unet vs DeepLab Segmentation은 크게 Unet 계열과 DeepLab 계열로 구분할 수 있었고, 각각 다양한 모델들이 존재했습니다. 여러 논문에서 전체 이미지 중 레이블(마스크)이 포함된 부분이 매우 작은 의료 도메인의 특성상, U-Net 계열 모델이 가장 높은 성능을 보였고, 실제로 가지고 있는 데이터셋안에서도 확인할 수 있었습니다. 초기 실험을 통해 Unet을 베이스라인으로 잡았고, 이를 고도화시켜나가는 방식으로 실험읋 진행했습니다. --- 이미지 전처리: CLAHE 적용 <figure> <img src=\"/post/Portfolio/aiffel_presentation_clahe.png\" alt=\"aiffel_presentaion_clahe\" /><width 80%/> <figcaption>그림2. 이미지 전처리 방법 적용 : CLAHE</figcaption> </figure> 가장 성능을 높일 수 있었던 부분입니다. 명암대비를 향상시킬 수 있는 방법으로, 병변의 특징을 더 명확하게 보이게 만들 수 있었습니다. 실제로 모델이 그림2의 사진처럼 작은 병변들을 더 잘 찾는 것을 확인할 수 있었습니다. 다만 과도한 명암대비 향상은 false positive를 증가시키므로 실험을 통해 적정 수준을 설정했습니다. --- multi-task learning <figure> <img src=\"/post/Portfolio/aiffel_presentation_mtl.png\" alt=\"aiffel_presentaion_mtl\" /><width 80%/> <figcaption>그림3. 인코더 풍부하게 하기 : MTL</figcaption> </figure> 다음으로는 Unet의 Encoder를 풍부하게 학습시키기 위해서 multi-task learning을 적용했습니다. 이는 관련 논문들에서 제시한 아이디어들을 참고해 구현한 것입니다. 논문들에서 구현 코드가 공개되어 있지 않아 실제로 구현해보면서 많은 시행착오를 겪어야 했습니다. 특히 Encoder의 어느 부분까지 pretraining 시켜야하며, segmentaion task를 학습할 때는 다른 task의 가중치를 얼마나 줘야하는지 등을 실험을 통해 확인할 수 있었습니다. MTL을 적용하고 많은 성능은 아니지만 향상된 것을 확인할 수 있었습니다.",
+    "public": true
+  },
+  {
+    "id": "Data Science/Statistics/what-is-simpsons-paradox",
+    "title": "Simson's Paradow란?",
+    "date": "2025-09-18",
+    "excerpt": "심슨의 역설에 대한 개념 정리",
+    "category": "Data Science",
+    "tags": [
+      "statistics"
+    ],
+    "content": "참고자료 1 : 구체적인 사례가 잘 나와있음 --- 통계는 결과를 해석하는데 중요한 도구이지만, 사용할 때 굉장히 주의해야한다. 잘못 사용되기 쉽고, 이는 잘못된 해석과 결과를 가져온다. 특히 어떤 연구를 할 때 무지성 t-test를 남발하는 경우가 많다. t-test의 의미가 뭔지, t-test의 유의성을 보장하기 위해 주의해야하는 건 뭔지, t-test의 결과가 진실을 보장하는 것은 아닌 이유 등을 이해하고 비판적인 시선이 필요하다. 심슨의 역설을 통해 이런 문제들을 이해할 수 있다. --- 심슨의 역설(Simpson's Paradox)이란? > 심슨의 역설은 통계학에서 매우 흥미로운 현상으로, 전체 데이터를 보았을 때와 부분 집단별로 나누어 보았을 때 완전히 반대되는 결과가 나타나는 현상 또는 > 특정 집단에서의 추세가 전체적으로 발견되는 추세와 다른 현상 정의 여러 그룹으로 나누어 분석했을 때는 각 그룹에서 A가 B보다 우세하지만, 전체 데이터를 합쳐서 보면 오히려 B가 A보다 우세해 보이는 상황이 발생합니다. 이는 데이터의 구조적 특성과 변수들 간의 상호작용 때문에 생기는 현상. 유명한 예시: 버클리 대학교 입학 성별 차별 사건 1973년 버클리 대학교의 대학원 입학에서 발생한 사건이 가장 유명한 예시. 전체 데이터 남성 지원자: 8,442명 중 3,738명 합격 (44.3%) 여성 지원자: 4,321명 중 1,511명 합격 (35.0%) 전체적으로는 남성의 합격률이 여성보다 9.3%포인트 높았다. 여자가 차별받고 있다. 학과별 데이터 (일부 예시) 학과 남성 지원자 남성 합격자 남성 합격률 여성 지원자 여성 합격자 여성 합격률 ------ ------------- ------------- ------------- ------------- ------------- ------------- A 825 512 62.1% 108 89 82.4% B 560 353 63.0% 25 17 68.0% C 325 120 36.9% 593 202 34.1% D 417 138 33.1% 375 131 34.9% 대부분의 학과에서 여성의 합격률이 더 높았다. > 남/여의 편견으로 인해 남성의 합격률이 높다는 해석은 잘못된 해석. 역설이 발생하는 원인 혼동 변수(Confounding Variable) 숨겨진 제3의 변수가 결과에 영향을 미치는 경우입니다. 버클리 사건에서는 \"학과\"가 혼동 변수였다. 데이터의 구조적 편향 여성이 주로 지원하는 학과들의 전체적인 합격률이 낮았음 남성이 주로 지원하는 학과들의 전체적인 합격률이 높았음 이로 인해 전체적으로는 남성의 합격률이 높아 보였음 변수들 간의 상호작용 독립변수들(성별과 학과)이 서로 영향을 미치는 경우입니다. 다른 예시들 의료 치료 효과 전체적으로는 치료 A가 치료 B보다 효과가 좋아 보임 하지만 환자 그룹별로 나누어 보면 치료 B가 더 효과적 이는 치료 A를 받은 그룹에 더 심각한 환자들이 많았기 때문 스포츠 성적 전체 시즌에서 선수 A가 선수 B보다 평균 성적이 좋음 하지만 월별로 나누어 보면 선수 B가 더 일관된 성적을 기록 이는 선수 A가 특정 월에만 뛰어난 성과를 냈기 때문 데이터 분석에서의 교훈 > 단순히 통계적인 수치만을 신뢰하는게 아닌, 문제에 대해 깊게 고민하고 데이터를 뜯어봐야 한다. 계층적 분석의 중요성 단순히 전체 통계만 보는 것이 아니라, 데이터를 적절한 그룹으로 나누어 분석해야함. 혼동 변수 고려 인과관계를 추론할 때는 반드시 혼동 변수를 고려해야 함. 데이터의 구조와 맥락 이해 데이터의 구조와 맥락을 충분히 이해한 후에 결론을 내려야 함. 심슨의 역설 탐지 방법 계층적 분석 데이터를 여러 그룹으로 나누어 각각 분석해보기 혼동 변수 식별 결과에 영향을 줄 수 있는 숨겨진 변수들을 찾아보기 시각화 그룹별 데이터를 시각화하여 패턴을 확인해보기 통계적 검정 적절한 통계적 검정을 통해 유의성을 확인해보기 결론 심슨의 역설은 데이터 분석에서 매우 중요한 교훈을 제공합니다. 단순한 전체 통계만으로는 진실을 파악하기 어려울 수 있으며, 데이터를 적절한 그룹으로 나누어 분석하는 것이 얼마나 중요한지 보여준다. 특히 인과관계를 추론할 때는 반드시 혼동 변수를 고려하고, 데이터의 구조와 맥락을 충분히 이해한 후에 결론을 내려야 한다. 이러한 역설을 이해하고 적절히 대응하는 것은 데이터 사이언티스트에게 필수적인 역량이라고 생각함.",
+    "public": true
+  },
+  {
+    "id": "Self_Development/English Study/SPEAK/계획과실행/나너한테전화하려고했는데일이생겼어",
+    "title": "계획이 바뀌었을 때 쓰는 표현들",
+    "date": "2025-09-17",
+    "excerpt": "나 너한테 전화하려고 했는데, 일이 좀 생겼어",
+    "category": "English Study",
+    "tags": [
+      "영어공부꾸준히!",
+      "SPEAK"
+    ],
+    "content": "I was gonna (going to) 말할 때 쓰는 표현들. I was gonna go to the movies. I was gonna cook dinner. I was gonna cook dinner, but I just ordered takeout instead. I was goona call my grandma, but someting came up. it slipped my mind : 까먹었어 대화 시뮬레이션, 예시 상황 1: 친구와의 약속 A: Hey, are you coming to the party tonight? B: Oh, I was gonna come, but something came up at work. I have to stay late. A: That's too bad. Maybe next time! B: Yeah, I was really looking forward to it too. 상황 2: 가족과의 통화 A: Mom, I was gonna call you yesterday, but it slipped my mind. B: That's okay, honey. What were you going to tell me? A: I was gonna ask about the recipe for your apple pie. B: Oh, I can tell you right now! 상황 3: 운동 계획 변경 A: I was gonna go to the gym this morning, but I overslept. B: That happens to everyone. Are you going to go later? A: I was gonna, but now I have a meeting. Maybe tomorrow. 상황 4: 쇼핑 계획 A: I was gonna buy groceries today, but I just ordered takeout instead. B: What made you change your mind? A: I was too tired to cook, and I was gonna make something simple anyway.",
     "public": true
   },
   {
