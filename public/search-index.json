@@ -1,21 +1,8 @@
 [
   {
-    "id": "Self_Development/English Study/SPEAK/가정_상상/25-09-20",
-    "title": "나라면~~하겠다.",
-    "date": "2025-09-20",
-    "excerpt": "나~하기로 했어. 나라면 ~하겠어.",
-    "category": "English Study",
-    "tags": [
-      "영어공부꾸준히!",
-      "SPEAK"
-    ],
-    "content": "I've decided to continue working here. pursue a career in tech. I've decided to pursue a career in English Teaching. If I were you, I'd do the same thing. Would you do that too? continue If I were you, I'd shoot for the stars. If I were you, I'd be more realistic. 대화 시뮬레이션 상황 1: 친구의 진로 고민 A: I'm thinking about quitting my job and starting a business. B: Really? That's a big decision. If I were you, I'd think about it carefully first. A: What would you do in my situation? B: If I were you, I'd save up some money first and create a solid business plan. A: That makes sense. I've decided to take some business courses before making the leap. B: That's smart! Would you do that too if you were in my shoes? 상황 2: 여행 계획 A: I've decided to travel to Europe next summer. B: That sounds amazing! If I were you, I'd visit Italy first - the food is incredible. A: What about you? What would you do if you had a month off? B: If I were you, I'd explore different countries but not try to see everything. Quality over quantity! A: Good advice. I'm thinking about staying in each city for at least a week. B: Perfect! If I were you, I'd book accommodations early - summer gets busy. 상황 3: 새로운 도전 A: I'm considering learning a new language. B: That's exciting! If I were you, I'd start with Spanish - it's widely spoken. A: What would you choose if you had to pick one? B: If I were you, I'd go with something that interests you personally, not just what's practical. A: I've decided to learn Korean because I love K-dramas. B: Great choice! If I were you, I'd also try watching shows without subtitles to practice listening.",
-    "public": true
-  },
-  {
     "id": "Self_Development/Career/Portfolio/visuworks_segmentation",
     "title": "[Visuworks] Segmentation Model",
-    "date": "2025-09-20",
+    "date": "2025-09-22",
     "excerpt": "출혈관련 병변 탐지 모델 개발",
     "category": "Career",
     "tags": [
@@ -28,7 +15,7 @@
   {
     "id": "Self_Development/Career/Portfolio/visuworks_ocr_pipeline",
     "title": "OCR Pipeline System",
-    "date": "2025-09-20",
+    "date": "2025-09-22",
     "excerpt": "문서 이미지에서 텍스트를 추출하는 자동화된 OCR 파이프라인",
     "category": "Career",
     "tags": [
@@ -44,7 +31,7 @@
   {
     "id": "Self_Development/Career/Portfolio/visuworks_lenze_size_rec",
     "title": "Lens Size Recommendation System",
-    "date": "2025-09-20",
+    "date": "2025-09-22",
     "excerpt": "머신러닝을 활용한 맞춤형 렌즈 사이즈 추천 시스템",
     "category": "Career",
     "tags": [
@@ -58,7 +45,7 @@
   {
     "id": "Self_Development/Career/Portfolio/visuworks_chatbot",
     "title": "AI Chatbot Project",
-    "date": "2025-09-20",
+    "date": "2025-09-22",
     "excerpt": "고객상담용 챗봇 개발",
     "category": "Career",
     "tags": [
@@ -68,9 +55,9 @@
     "public": true
   },
   {
-    "id": "Self_Development/Career/Portfolio/recommendation_study",
+    "id": "Self_Development/Career/Portfolio/side_recommendation_study",
     "title": "[Side] 추천 모델링 공부",
-    "date": "2025-09-20",
+    "date": "2025-09-22",
     "excerpt": "추천 모델링 공부를 위한 과정들",
     "category": "Career",
     "tags": [
@@ -78,13 +65,13 @@
       "Crawling",
       "Prediction"
     ],
-    "content": "두 가지 루트 : Kaggle 대회 활용 공개 데이터셋 직접 활용. 처음엔 Avazu (가볍고 전처리 연습에 적합) 중간엔 Outbrain (관계형 데이터 + 대규모) 제대로 깊게 하고 싶으면 Criteo (업계 benchmark) --- Kaggle 대회 (추천/광고/CTR 관련) Kaggle에는 광고 추천, CTR 예측, 전환율 예측 같은 대회가 꾸준히 있었습니다. 지금 당장 열려있는 건 시기에 따라 다르지만, 참고할 만한 과거 유명 대회는 아래와 같습니다: Avazu CTR Prediction 목표: 모바일 광고 클릭 여부 예측 (binary classification) 데이터: 수억 건 단위 (압축 후 1GB+). 대규모 샘플링해서 연습하기 좋아요. Kaggle 대회 링크 Criteo Display Advertising Challenge 목표: 디스플레이 광고 클릭 예측 (industry standard benchmark) 데이터: 40M+ samples, 약 13GB. Dataset 링크 Outbrain Click Prediction 목표: 뉴스 아웃브레인 플랫폼에서 어떤 기사/광고가 클릭될지 예측 복잡한 관계형 데이터 구조 (users, documents, ads, clicks) → real-world pipeline 연습에 최적 Kaggle 대회 링크 TalkingData AdTracking Fraud Detection 목표: 광고 클릭이 실제 사용자 행동인지, 봇/사기인지 판별 CTR 예측과는 조금 다르지만, 광고 데이터 전처리/특징 추출 연습에 적합 Kaggle 대회 링크 --- 공개 데이터셋 캐글 외에도 광고 추천용 benchmark 데이터셋들이 많이 공개돼 있습니다: Criteo Terabyte Dataset (CTR 예측용, 업계 표준) Facebook, Google 논문에도 자주 쓰이는 CTR 예측 benchmark. 1TB급 원본 데이터 → 샘플링 버전도 제공. Criteo AI Labs iPinYou Dataset (RTB 광고 경매 로그) Real-Time Bidding 광고 로그 공개 데이터셋. CTR 예측 + bidding 전략 실험에 활용 가능. iPinYou dataset paper & link KDD Cup 2012 - Track 2 (CTR Prediction) 마이크로소프트가 공개한 광고 클릭 예측 데이터. 규모는 크지 않지만, 학습용으로 적합. KDD Cup 2012 Data --- 사이드프로젝트 확장 아이디어 Baseline: Logistic Regression, XGBoost로 CTR 예측 (정형데이터 baseline) 확장: DeepFM, Wide & Deep, DCN 같은 추천 모델 적용 실험: Feature engineering (시간, user-agent, campaign id 등) → 모델 개선 서비스화: 간단한 Flask API로 “사용자 요청 → 광고 후보 추천” 시뮬레이션 ---",
+    "content": "두 가지 루트 : Kaggle 대회 활용 공개 데이터셋 직접 활용. 처음엔 Avazu (가볍고 전처리 연습에 적합) 중간엔 Outbrain (관계형 데이터 + 대규모) 제대로 깊게 하고 싶으면 Criteo (업계 benchmark) --- 모델을 공부하며 다양한 데이터셋에서 모델링을 경험했습니다. --- Avazu CTR Prediction 목표: 모바일 광고 클릭 여부 예측 (binary classification) 데이터: 수억 건 단위 (압축 후 1GB+). 대규모 샘플링해서 연습하기 좋아요. Kaggle 대회 링크 Criteo Display Advertising Challenge 목표: 디스플레이 광고 클릭 예측 (industry standard benchmark) 데이터: 40M+ samples, 약 13GB. Dataset 링크 Outbrain Click Prediction 목표: 뉴스 아웃브레인 플랫폼에서 어떤 기사/광고가 클릭될지 예측 복잡한 관계형 데이터 구조 (users, documents, ads, clicks) → real-world pipeline 연습에 최적 Kaggle 대회 링크 TalkingData AdTracking Fraud Detection 목표: 광고 클릭이 실제 사용자 행동인지, 봇/사기인지 판별 CTR 예측과는 조금 다르지만, 광고 데이터 전처리/특징 추출 연습에 적합 Kaggle 대회 링크 Criteo Terabyte Dataset (CTR 예측용, 업계 표준) Facebook, Google 논문에도 자주 쓰이는 CTR 예측 benchmark. 1TB급 원본 데이터 → 샘플링 버전도 제공. Criteo AI Labs iPinYou Dataset (RTB 광고 경매 로그) Real-Time Bidding 광고 로그 공개 데이터셋. CTR 예측 + bidding 전략 실험에 활용 가능. iPinYou dataset paper & link KDD Cup 2012 - Track 2 (CTR Prediction) 마이크로소프트가 공개한 광고 클릭 예측 데이터. 규모는 크지 않지만, 학습용으로 적합. KDD Cup 2012 Data ---",
     "public": false
   },
   {
     "id": "Self_Development/Career/Portfolio/pnu_cloud_funding_prediction",
     "title": "[PNU] Cloud Funding Success prediction model",
-    "date": "2025-09-20",
+    "date": "2025-09-22",
     "excerpt": "부산대학교 산업공학과 졸업 프로젝트",
     "category": "Career",
     "tags": [
@@ -98,13 +85,76 @@
   {
     "id": "Self_Development/Career/Portfolio/aiffel_segmentation",
     "title": "Segmentation Model",
-    "date": "2025-09-20",
+    "date": "2025-09-22",
     "excerpt": "눈의 안쪽 부분을 찍는 안저사진에서 망막병증을 탐지하는 모델",
     "category": "Career",
     "tags": [
       "Segmentation"
     ],
     "content": "기간 : 2023.12 ~ 2024.03 (4개월) 역할 : 문제정의, 프로젝트 설계, 구현까지 모든 과정 --- 프로젝트 개요 아이펠이라는 AI 엔지니어 양성과정 부트캠프를 들으면서 진행했던 기업 연계 프로젝트입니다. 사람들의 건강에 기여하고 싶었고, 이를 위해 의료 도메인과 관련된 프로젝트를 진행했습니다. 그 중에서 \"안과\" 도메인인 회사와 기업 연계 프로젝트를 진행하게 되었습니다. 여러가지 주제 중 \"당뇨병성 망막병증 병변 탐지\"라는 문제를 정의해 프로젝트를 진행했습니다. 그 이유는 실명률이 가장 높은 질환이었고, 당뇨병 환자에게 자주 발생하는 합병증이기 때문이었습니다. 아버지가 당뇨가 있으시기 때문에, 가족의 건강에 직접적으로 기여할 수 있다는 생각에 관련 문제를 풀어보고 싶었습니다. <figure> <img src=\"/post/Portfolio/aiffel_presentaion_1.png\" alt=\"aiffel_presentaion_1\" /><width 80%/> <figcaption>그림1. 왜 당뇨병성 망막병증으로 주제를 정했는지</figcaption> </figure> <small>발표자료 링크</small> 눈의 안쪽 사진인 \"안저사진\"에 당뇨병성 망막병증 관련 병변들이 보이고, 이를 통해 초기 진단을 할 수 있습니다. 이를 돕기 위해 안저사진에서 병변들을 탐지하는, Segmentation 모델을 개발하는 프로젝트를 진행했습니다. 프로젝트를 진행하면서, 논문을 읽고 Segmenation 모델들 구현하고 고도화하는 과정을 통해 개발 능력을 키울 수 있었고, 데이터를 뜯어보면서 이미지 전처리를 고도화하는 과정에서 데이터 전처리에 대한 감을 키울 수 있었습니다. --- 문제 해결 과정 어떤 문제들이 있었고, 이를 해결하는 과정을 정리했습니다. --- 데이터셋은? > 데이터셋이 없다... 가장 어려웠던 부분입니다. 제공되는 데이터셋이 없었기 때문에 데이터 수집부터 해야했습니다. 하지만 데이터셋이 없으니 거의 1~2주정도를 데이터를 구하기 위한 구글링에 시간을 썼던 것 같습니다. 그러던 중 FGADR 이라는 데이터셋을 찾았고 대략 1500건정도의 데이터를 확보할 수 있었습니다. --- 모델링 > Unet vs DeepLab Segmentation은 크게 Unet 계열과 DeepLab 계열로 구분할 수 있었고, 각각 다양한 모델들이 존재했습니다. 여러 논문에서 전체 이미지 중 레이블(마스크)이 포함된 부분이 매우 작은 의료 도메인의 특성상, U-Net 계열 모델이 가장 높은 성능을 보였고, 실제로 가지고 있는 데이터셋안에서도 확인할 수 있었습니다. 초기 실험을 통해 Unet을 베이스라인으로 잡았고, 이를 고도화시켜나가는 방식으로 실험읋 진행했습니다. --- 이미지 전처리: CLAHE 적용 <figure> <img src=\"/post/Portfolio/aiffel_presentation_clahe.png\" alt=\"aiffel_presentaion_clahe\" /><width 80%/> <figcaption>그림2. 이미지 전처리 방법 적용 : CLAHE</figcaption> </figure> 가장 성능을 높일 수 있었던 부분입니다. 명암대비를 향상시킬 수 있는 방법으로, 병변의 특징을 더 명확하게 보이게 만들 수 있었습니다. 실제로 모델이 그림2의 사진처럼 작은 병변들을 더 잘 찾는 것을 확인할 수 있었습니다. 다만 과도한 명암대비 향상은 false positive를 증가시키므로 실험을 통해 적정 수준을 설정했습니다. --- multi-task learning <figure> <img src=\"/post/Portfolio/aiffel_presentation_mtl.png\" alt=\"aiffel_presentaion_mtl\" /><width 80%/> <figcaption>그림3. 인코더 풍부하게 하기 : MTL</figcaption> </figure> 다음으로는 Unet의 Encoder를 풍부하게 학습시키기 위해서 multi-task learning을 적용했습니다. 이는 관련 논문들에서 제시한 아이디어들을 참고해 구현한 것입니다. 논문들에서 구현 코드가 공개되어 있지 않아 실제로 구현해보면서 많은 시행착오를 겪어야 했습니다. 특히 Encoder의 어느 부분까지 pretraining 시켜야하며, segmentaion task를 학습할 때는 다른 task의 가중치를 얼마나 줘야하는지 등을 실험을 통해 확인할 수 있었습니다. MTL을 적용하고 많은 성능은 아니지만 향상된 것을 확인할 수 있었습니다.",
+    "public": true
+  },
+  {
+    "id": "Data Science/Recommendation/what-is-logarithmic-loss",
+    "title": "Logarithmic Loss란?",
+    "date": "2025-09-22",
+    "excerpt": "CTR prediction에서 사용되는 metric 정리",
+    "category": "Recommendation",
+    "tags": [
+      "CTR-prediction"
+    ],
+    "content": "Logarithmic Loss(로그 손실)는 분류 문제, 특히 이진 분류에서 모델의 예측 성능을 측정하는 지표입니다. 다른 이름으로는 Log Loss, Cross-Entropy Loss라고도 불립니다. $$ \\text{Log Loss} = -\\frac{1}{N} \\sum_{i=1}^{N} [y_i \\log(p_i) + (1-y_i) \\log(1-p_i)] $$ N: 샘플의 수 y: 실제 클래스 (0 또는 1) p: 예측된 확률 (0과 1 사이) 단순히 클릭/비클릭을 예측하는 것이 아니라, 얼마나 정확한 확률을 예측하는지를 중요하게 여기기 때문에 이 지표를 사용한다고 합니다. > 정확도가 단순히 정답/오답만을 판별하는 것과 달리, 로그 손실은 모델이 예측한 확률값을 기반으로 성능을 평가합니다. > 즉, 모델이 정답을 얼마나 확신하는지를 고려합니다. --- 파이썬 구현 기본 구현 ``python import numpy as np from sklearn.metrics import log_loss def logarithmic_loss(y_true, y_pred_proba): \"\"\" Logarithmic Loss 계산 Parameters: y_true: 실제 클래스 (0 또는 1) y_pred_proba: 예측 확률 (0과 1 사이) \"\"\" # 0으로 나누는 것을 방지하기 위해 아주 작은 값 추가 epsilon = 1e-15 y_pred_proba = np.clip(y_pred_proba, epsilon, 1 - epsilon) # Log Loss 계산 log_loss = -np.mean(y_true np.log(y_pred_proba) + (1 - y_true) np.log(1 - y_pred_proba)) return log_loss 예시 데이터 y_true = np.array([1, 0, 1, 0, 1]) y_pred_proba = np.array([0.9, 0.1, 0.8, 0.2, 0.7]) 구현한 함수로 계산 custom_log_loss = logarithmic_loss(y_true, y_pred_proba) print(f\"Custom Log Loss: {custom_log_loss:.4f}\") sklearn으로 검증 sklearn_log_loss = log_loss(y_true, y_pred_proba) print(f\"Sklearn Log Loss: {sklearn_log_loss:.4f}\") ` CTR 예측에서의 활용 `python import pandas as pd from sklearn.model_selection import train_test_split from sklearn.linear_model import LogisticRegression from sklearn.metrics import log_loss 예시: CTR 데이터 실제 사용 시에는 train_df, test_df를 사용 X_train, X_test, y_train, y_test = train_test_split( features, target, test_size=0.2, random_state=42, stratify=target ) 모델 훈련 model = LogisticRegression() model.fit(X_train, y_train) 예측 확률 y_pred_proba = model.predict_proba(X_test)[:, 1] Log Loss 계산 log_loss_score = log_loss(y_test, y_pred_proba) print(f\"Log Loss: {log_loss_score:.4f}\") ` Log Loss 해석 `python 다양한 예측 확률에 따른 Log Loss 비교 def compare_predictions(): y_true = [1, 1, 0, 0] # 실제 클릭 여부 predictions = { \"Perfect\": [1.0, 1.0, 0.0, 0.0], # 완벽한 예측 \"Good\": [0.9, 0.8, 0.1, 0.2], # 좋은 예측 \"Poor\": [0.6, 0.7, 0.4, 0.3], # 나쁜 예측 \"Terrible\": [0.1, 0.2, 0.9, 0.8] # 매우 나쁜 예측 } for name, pred in predictions.items(): loss = log_loss(y_true, pred) print(f\"{name:>10}: {loss:.4f}\") compare_predictions() ` 결과 해석: Perfect (0.0000): 완벽한 예측으로 Log Loss가 0에 가까움 Good (0.1993): 좋은 예측으로 낮은 Log Loss Poor (0.6829): 나쁜 예측으로 높은 Log Loss Terrible (2.3026): 매우 나쁜 예측으로 매우 높은 Log Loss 실제 CTR 예측에서의 고려사항 `python 클래스 불균형 처리 def balanced_log_loss(y_true, y_pred_proba, sample_weight=None): \"\"\" 클래스 불균형이 심한 CTR 데이터에서 사용할 수 있는 가중치가 적용된 Log Loss \"\"\" if sample_weight is None: # 클릭 비율에 따른 자동 가중치 계산 click_ratio = np.mean(y_true) sample_weight = np.where(y_true == 1, 1/click_ratio, 1/(1-click_ratio)) epsilon = 1e-15 y_pred_proba = np.clip(y_pred_proba, epsilon, 1 - epsilon) log_loss = -np.mean(sample_weight ( y_true np.log(y_pred_proba) + (1 - y_true) * np.log(1 - y_pred_proba) )) return log_loss ``",
+    "public": true
+  },
+  {
+    "id": "Data Science/Recommendation/logistic-regression-error",
+    "title": "Logistic Regression Error",
+    "date": "2025-09-22",
+    "excerpt": "Divide by Zero & Overflow이 발생하는 이유",
+    "category": "Recommendation",
+    "tags": [
+      "Azura",
+      "Modeling"
+    ],
+    "content": "``python from sklearn.linear_model import LogisticRegression lg_reg = LogisticRegression() lg_reg.fit(X_tr, y_tr) ` LogisticRegression을 학습할 때 다음과 같은 에러가 발생하는 이유 ` /miniconda3/lib/python3.12/site-packages/sklearn/utils/extmath.py:203: RuntimeWarning: divide by zero encountered in matmul ret = a @ b /miniconda3/lib/python3.12/site-packages/sklearn/utils/extmath.py:203: RuntimeWarning: overflow encountered in matmul ret = a @ b /miniconda3/lib/python3.12/site-packages/sklearn/utils/extmath.py:203: RuntimeWarning: invalid value encountered in matmul ret = a @ b ` > 핵심은 X_tr @ w(또는 X_tr.T @ r) 같은 연산에서 값이 ±inf로 튀거나 NaN이 생겨버렸다는 것 나의 경우에는 카테고리형 피처를 label encoding 했는데, 카테고리 개수가 많이지면서 다른 피처 값이랑 차이가 많이 나게 되어서 발생한 문제. Label Encoding된 categorical 변수들이 매우 큰 값을 가짐 예: device_id가 1000000+ 의 값 예: site_id가 500000+ 의 값 피처 간 스케일 차이가 극심함 hour_of_day: 0~23 device_id: 0~1000000+ 가중치(weights) 계산 시 수치적 불안정성 발생 Sklearn의 LogisticRegression의 solver liblinear (default) ` LogisticRegression(solver='liblinear') ` 특징: 작은 데이터셋에 최적화 (수천~수만 개 샘플) L1, L2 정규화 모두 지원 메모리 효율적 수치적으로 안정적 단일 스레드 장점: 빠르고 안정적, 정규화 옵션 풍부 단점: 대용량 데이터에서는 느림 saga (Stochastic Average Gradient) ` LogisticRegression(solver='saga') ` 특징: 대용량 데이터에 최적화 (수십만~수백만 개 샘플) L1, L2 정규화 모두 지원 Sparse 데이터에 효율적 멀티스레드 지원 Stochastic gradient 기반 장점: 대용량 데이터에서 빠름, 메모리 효율적 단점: 작은 데이터에서는 오히려 느릴 수 있음 lbfgs (Limited-memory BFGS) ` LogisticRegression(solver='lbfgs') `` 특징: 중간 크기 데이터에 적합 L2 정규화만 지원 Quasi-Newton 방법 메모리 사용량이 큼 장점: 수렴이 빠름 (적은 반복) 단점: L1 정규화 불가, 메모리 많이 사용 newton-cg (Newton Conjugate Gradient) 특징: L2 정규화만 지원 Hessian 행렬 계산 메모리 사용량이 큼 장점: 정확한 수렴 단점: 메모리 많이 사용, L1 정규화 불가",
+    "public": true
+  },
+  {
+    "id": "Data Science/Recommendation/Azura_CTR/summary",
+    "title": "Azura modeling 정리",
+    "date": "2025-09-22",
+    "excerpt": "Azura dataset으로 모델링하면서 고민했던 부분, 배웠던 부분 정리",
+    "category": "Recommendation",
+    "tags": [
+      "Azura",
+      "Modeling"
+    ],
+    "content": "Baseline model : Logistic Regression 가장 처음으로 baseline model 만들기. 가장 단순한 모델과 단순한 피처만 사용해보기 model : logistic regression feature : \"banner_pos\", \"C1\" (광고에 대한 정보만 사용) label encoding 에서의 문제 세부카테고리가 너무 많은 경우에 label encoding을 하게 되면 encoding된 값이 너무 커지는 문제가 생기네. 이렇게 커질정도로 카테고리가 많은 피처는 애초에 제외하고 사용하는게 맞는 것 같다. label 불균형에서 오는 문제 ``python y_tr.value_counts(normalize=True) click 0 0.830194 1 0.169806 Name: proportion, dtype: float64 ` 그냥 학습시키게 되면 예측값을 다 0으로 뱉어버림. 0으로만 해도 84%정도는 맞추니까 loss 값이 낮아지게 되기 때문에 `python lg_reg = LogisticRegression(solver=\"liblinear\", random_state=42) y_pred = lg_reg.predict(X_ts) ` `python print(y_pred.mean()) 0.0 ` 가장 단순하게 해결하는 방법은 label별로 가중치를 조정해주는 것 `python lg_reg = LogisticRegression( solver='saga', class_weight='balanced', # 자동으로 클래스 비율에 반비례하는 가중치 C=0.1, random_state=42 ) ` `python print(y_pred.mean()) 0.27988432552202047 ` 결과 0으로만 뱉는 문제 해결됨. logloss도 0.59정도에서 0.69로 향상. 하지만 여전히 성능은 안좋은 상태. ` Log Loss: 0.6904 ROC AUC: 0.5335 Accuracy: 0.6920 Precision: 0.1994 Recall: 0.2718 F1 Score: 0.2301 Actual CTR: 0.1693 Predicted CTR: 0.4983 CTR Bias: 0.3290 ` 사실 안좋은건지에 대한 감도 잘 안온다. CTR prediction task는 처음이라. 피처들이 전부 다 범주형이라서 CatBoost가 효과적이지 않을까? --- Catboost feature : \"banner_pos\", \"C1\" (광고에 대한 정보만 사용) ` === Baseline Logistic Regression Results === Log Loss: 0.6956 ROC AUC: 0.5392 Accuracy: 0.6920 Precision: 0.1994 Recall: 0.2718 F1 Score: 0.2301 Actual CTR: 0.1693 Predicted CTR: 0.5028 CTR Bias: 0.3336 ` 성능이 크게 좋아지진 않았네. feature : 'C1', 'banner_pos', 'site_id', 'site_domain', 'site_category', 'app_id', 'app_domain', 'app_category' (광고에 대한 정보 + 사이즈 정보 + 앱 정보) ` === Baseline Logistic Regression Results === Log Loss: 0.6357 ROC AUC: 0.7282 Accuracy: 0.6920 Precision: 0.1994 Recall: 0.2718 F1 Score: 0.2301 Actual CTR: 0.1693 Predicted CTR: 0.4680 CTR Bias: 0.2987 ``",
+    "public": true
+  },
+  {
+    "id": "Data Science/Recommendation/Azura_CTR/notebook",
+    "title": "[Kaggle] - Click-Through Rate Prediciton - Azura",
+    "date": "2025-09-22",
+    "excerpt": "CTR prediction modeling",
+    "category": "Recommendation",
+    "tags": [
+      "Recommendation Study"
+    ],
+    "content": "--- title: \"[Kaggle] - Click-Through Rate Prediciton - Azura\" date: \"2025-09-22\" category: \"Recommendation\" tags: [\"Recommendation Study\"] excerpt: \"CTR prediction modeling\" --- - 캐글 url import os os.listdir(\"./avazu-ctr-prediction/\") - train Training set. 10 days of click-through data, ordered chronologically. Non-clicks and clicks are subsampled according to different strategies. test Test set. 1 day of ads to for testing your model predictions. sampleSubmission.csv Sample submission file in the correct format, corresponds to the All-0.5 Benchmark. import pandas as pd train_df = pd.read_csv(\"./avazu-ctr-prediction/train.gz\") # 읽는데 엄청 오래 걸리네 40초 정도 y_col = \"click\" # binary, 0/1 for non-click/click train_df.sample(10) train_df.info() train_df.isna().mean() Azura CTR 예측 문제의 데이터 필드들에 대해 설명드리겠습니다. 이는 광고 클릭률(Click-Through Rate) 예측을 위한 데이터셋으로, 각 필드는 광고 노출과 클릭에 영향을 미치는 다양한 요소들을 나타냅니다. 기본 식별자 및 타겟 변수: id: 광고 식별자로, 각 광고 노출을 고유하게 구분하는 ID입니다. click: 타겟 변수로, 0은 클릭하지 않음, 1은 클릭함을 의미합니다. hour: 시간 정보로 YYMMDDHH 형식(예: 14091123은 2014년 9월 11일 23:00 UTC)입니다. 사용자의 시간대별 행동 패턴을 파악하는 데 중요합니다. 광고 관련 피처: banner_pos: 배너 광고의 위치를 나타냅니다. 웹페이지나 앱 내에서 광고가 표시되는 위치(상단, 하단, 사이드바 등)에 따라 클릭률이 달라질 수 있습니다. C1: 익명화된 범주형 변수로, 광고의 특성이나 유형을 나타낼 가능성이 높습니다. 사이트/웹 관련 피처: site_id: 광고가 노출된 웹사이트의 고유 식별자입니다. site_domain: 웹사이트의 도메인명으로, 신뢰성이나 인지도가 클릭률에 영향을 줄 수 있습니다. site_category: 웹사이트의 카테고리(뉴스, 쇼핑, 엔터테인먼트 등)로, 사용자의 관심사와 광고의 관련성에 따라 클릭률이 달라집니다. 앱 관련 피처: app_id: 광고가 노출된 모바일 앱의 고유 식별자입니다. app_domain: 앱의 도메인 정보입니다. app_category: 앱의 카테고리(게임, 소셜, 유틸리티 등)로, 앱의 성격이 광고 클릭률에 영향을 미칩니다. 디바이스 관련 피처: device_id: 사용자의 디바이스 고유 식별자입니다. device_ip: 디바이스의 IP 주소로, 지역 정보나 네트워크 환경을 추정할 수 있습니다. device_model: 디바이스 모델명으로, 디바이스 성능이나 사용자 세그먼트를 파악하는 데 도움이 됩니다. device_type: 디바이스 유형(스마트폰, 태블릿, 데스크톱 등)으로, 사용 환경에 따라 광고 상호작용 패턴이 다릅니다. device_conn_type: 네트워크 연결 유형(WiFi, 4G, 5G 등)으로, 연결 속도나 안정성이 광고 로딩과 상호작용에 영향을 줄 수 있습니다. 추가 범주형 변수: C14-C21: 익명화된 범주형 변수들로, 사용자 행동, 광고 특성, 또는 기타 컨텍스트 정보를 나타낼 수 있습니다. 각각의 구체적인 의미는 데이터 제공자가 보안상 공개하지 않았지만, 모델링 과정에서 중요한 예측 변수로 활용될 수 있습니다. 이러한 피처들은 모두 광고 클릭률에 영향을 미칠 수 있는 다양한 요인들을 나타내며, 머신러닝 모델에서 사용자의 클릭 행동을 예측하는 데 중요한 역할을 합니다. 특히 시간, 디바이스, 사이트/앱 특성 등의 조합을 통해 사용자의 클릭 확률을 예측하는 것이 이 문제의 핵심입니다. train_df['banner_pos'].value_counts() train_df['C1'].value_counts() from sklearn.preprocessing import LabelEncoder df = train_df.copy() df = df[[\"click\", \"banner_pos\", \"C1\", \"hour\"]] hour 분해 if 'hour' in df.columns: df['day'] = df['hour'] // 100 df['hour_of_day'] = df['hour'] % 100 df = df.drop('hour', axis=1) string -> numeric for col in df.select_dtypes(include=['object']).columns: df[col] = LabelEncoder().fit_transform(df[col].astype(str)) # 그냥 이진 분류 모델 만들고 성능 확인해보기 tr_df = df[~df['hour'].astype(str).str.contains('141030', na=False)] # 9일 ts_df = df[df['hour'].astype(str).str.contains('141030', na=False)] # 1일 올바른 방법 X_tr = tr_df.drop(['click', 'hour'], axis=1) # 피처들 y_tr = tr_df['click'] # 타겟 변수 X_ts = ts_df.drop(['click', 'hour'], axis=1) # 피처들 y_ts = ts_df['click'] # 타겟 변수 from sklearn.linear_model import LogisticRegression lg_reg = LogisticRegression(solver=\"liblinear\", random_state=42) lg_reg = LogisticRegression( solver='saga', class_weight='balanced', # 자동으로 클래스 비율에 반비례하는 가중치 C=0.1, random_state=42 ) 수동 가중치 설정 model = LogisticRegression( solver='saga', class_weight={0: 1, 1: 5}, # 클릭(1)에 5배 가중치 C=0.1, random_state=42 ) lg_reg.fit(X_tr, y_tr) y_tr.value_counts(normalize=True) # 예측 확률과 예측 클래스 y_pred_proba = lg_reg.predict_proba(X_ts)[:, 1] y_pred = lg_reg.predict(X_ts) print(y_pred.mean()) from sklearn.metrics import log_loss, roc_auc_score, accuracy_score, recall_score, precision_score, f1_score 메트릭 계산 print(\"=== Baseline Logistic Regression Results ===\") print(f\"Log Loss: {log_loss(y_ts, y_pred_proba):.4f}\") print(f\"ROC AUC: {roc_auc_score(y_ts, y_pred_proba):.4f}\") print(f\"Accuracy: {accuracy_score(y_ts, y_pred):.4f}\") print(f\"Precision: {precision_score(y_ts, y_pred):.4f}\") print(f\"Recall: {recall_score(y_ts, y_pred):.4f}\") print(f\"F1 Score: {f1_score(y_ts, y_pred):.4f}\") CTR 관련 메트릭 actual_ctr = y_ts.mean() predicted_ctr = y_pred_proba.mean() print(f\"\\nActual CTR: {actual_ctr:.4f}\") print(f\"Predicted CTR: {predicted_ctr:.4f}\") print(f\"CTR Bias: {predicted_ctr - actual_ctr:.4f}\") # 2. Catbost train_df.columns tr_df = train_df[~train_df['hour'].astype(str).str.contains('141030', na=False)] # 9일 ts_df = train_df[train_df['hour'].astype(str).str.contains('141030', na=False)] # 1일 feature_cols = ['C1', 'banner_pos', 'site_id', 'site_domain', 'site_category', 'app_id', 'app_domain', 'app_category'] X_tr = tr_df[feature_cols] # 피처들 y_tr = tr_df['click'] # 타겟 변수 X_ts = ts_df[feature_cols] # 피처들 y_ts = ts_df['click'] # 타겟 변수 from catboost import CatBoostClassifier 최종 권장 코드 model = CatBoostClassifier( iterations=300, learning_rate=0.1, depth=4, class_weights=[1, 5], # 클릭에 5배 가중치 random_seed=42, verbose=100 ) # 훈련 (범주형 컬럼 자동 처리) model.fit( X_tr, y_tr, cat_features=feature_cols, ) # 예측 y_pred_proba = model.predict_proba(X_ts)[:, 1] 성능 평가 from sklearn.metrics import log_loss, roc_auc_score print(f\"Log Loss: {log_loss(y_ts, y_pred_proba):.4f}\") print(f\"ROC AUC: {roc_auc_score(y_ts, y_pred_proba):.4f}\") print(y_pred.mean()) from sklearn.metrics import log_loss, roc_auc_score, accuracy_score, recall_score, precision_score, f1_score 메트릭 계산 print(\"=== Baseline Logistic Regression Results ===\") print(f\"Log Loss: {log_loss(y_ts, y_pred_proba):.4f}\") print(f\"ROC AUC: {roc_auc_score(y_ts, y_pred_proba):.4f}\") print(f\"Accuracy: {accuracy_score(y_ts, y_pred):.4f}\") print(f\"Precision: {precision_score(y_ts, y_pred):.4f}\") print(f\"Recall: {recall_score(y_ts, y_pred):.4f}\") print(f\"F1 Score: {f1_score(y_ts, y_pred):.4f}\") CTR 관련 메트릭 actual_ctr = y_ts.mean() predicted_ctr = y_pred_proba.mean() print(f\"\\nActual CTR: {actual_ctr:.4f}\") print(f\"Predicted CTR: {predicted_ctr:.4f}\") print(f\"CTR Bias: {predicted_ctr - actual_ctr:.4f}\")",
+    "public": true
+  },
+  {
+    "id": "Self_Development/English Study/SPEAK/가정_상상/25-09-20",
+    "title": "나라면~~하겠다.",
+    "date": "2025-09-20",
+    "excerpt": "나~하기로 했어. 나라면 ~하겠어.",
+    "category": "English Study",
+    "tags": [
+      "영어공부꾸준히!",
+      "SPEAK"
+    ],
+    "content": "I've decided to continue working here. pursue a career in tech. I've decided to pursue a career in English Teaching. If I were you, I'd do the same thing. Would you do that too? continue If I were you, I'd shoot for the stars. If I were you, I'd be more realistic. 대화 시뮬레이션 상황 1: 친구의 진로 고민 A: I'm thinking about quitting my job and starting a business. B: Really? That's a big decision. If I were you, I'd think about it carefully first. A: What would you do in my situation? B: If I were you, I'd save up some money first and create a solid business plan. A: That makes sense. I've decided to take some business courses before making the leap. B: That's smart! Would you do that too if you were in my shoes? 상황 2: 여행 계획 A: I've decided to travel to Europe next summer. B: That sounds amazing! If I were you, I'd visit Italy first - the food is incredible. A: What about you? What would you do if you had a month off? B: If I were you, I'd explore different countries but not try to see everything. Quality over quantity! A: Good advice. I'm thinking about staying in each city for at least a week. B: Perfect! If I were you, I'd book accommodations early - summer gets busy. 상황 3: 새로운 도전 A: I'm considering learning a new language. B: That's exciting! If I were you, I'd start with Spanish - it's widely spoken. A: What would you choose if you had to pick one? B: If I were you, I'd go with something that interests you personally, not just what's practical. A: I've decided to learn Korean because I love K-dramas. B: Great choice! If I were you, I'd also try watching shows without subtitles to practice listening.",
     "public": true
   },
   {
