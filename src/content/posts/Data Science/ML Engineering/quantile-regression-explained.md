@@ -6,7 +6,7 @@ category: "Data Science"
 tags: ["statistics", "regression", "quantile", "prediction-interval"]
 ---
 
-**Quantile regression** 은 전통적인 회귀분석과 달리 **특정 분위수(quantile)**를 예측하는 방법입니다.
+**Quantile regression** 은 전통적인 회귀분석과 달리 **특정 분위수(quantile)** 를 예측하는 방법입니다.
 이를 통해 예측구간 등을 추정할 수 있습니다.
 
 ---
