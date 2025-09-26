@@ -8,13 +8,21 @@ tags: ["Quantile Regression", "Metrics"]
 
 # 스케치
 
-1. Pinball loss
-2. Coverage Probability
-3. Interval Score : Coverage + Sharpness
+quantile regressor로 구간을 추정하는 방향. 어떤 모델이 최적일까?
+pinball loss가 최소인 모델?
+
+직관적으로 생각할 때는 목표하는 신뢰수준을 만족하는가 (예측구간이 데이터를 얼만큼 포함하는지) + 신뢰수준의 길이
+원하는 신뢰수준을 만족하는 모델일 때 신뢰수준이 최소인 모델을 고르면 될 것 같은데
+보통 어떤 metric을 보려나?
+
+
+GPT가 제시해준 5개 지표.
+1. Pinball loss -> 모델이 학습할 때 쓰는 loss. 
+   - [pinball loss에 대해 간단히 정리했던 글](/Users/visuworks/Desktop/mkk4726.github.io/src/content/posts/Data%20Science/ML%20Engineering/quantile-regression-explained.md)
+2. Coverage Probability -> 예측구간에서 데이터를 얼마나 포함하는지 여부
+3. Interval Score : Coverage + Sharpness -> 두 개 다 같이 고려한 경우. 이것과 관련된 지표들이 많더라.
 4. CRPS (Continuous Ranked Probability Score)
-5. Calibration Metrics
-
-
+5. Calibration Metrics -> 예측된 분위수/구간이 실제 데이터 분포와 일치하는가?를 살펴보는 것들.
 
 
 **Winkler Interval score metric :**
@@ -43,3 +51,4 @@ where $\hat y^{\text{boundary}}_{i}$ is the nearest interval boundary not contai
 
 
 
+---
