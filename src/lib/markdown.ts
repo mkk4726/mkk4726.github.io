@@ -6,9 +6,11 @@ import remarkRehype from 'remark-rehype';
 import rehypeKatex from 'rehype-katex';
 import rehypeStringify from 'rehype-stringify';
 import { remarkAudio } from './remark-audio';
+import { remarkEmphasisFix } from './remark-emphasis-fix';
 
 export async function parseMarkdown(content: string): Promise<string> {
   const result = await remark()
+    .use(remarkEmphasisFix)  // 강조 마커 뒤 문자 패턴 수정
     .use(remarkMath)
     .use(remarkGfm)
     .use(remarkBreaks)
