@@ -126,6 +126,182 @@ Bayesian Optimization은 **"샘플 효율적인 hyperparameter tuning"** 방법�
 
 ---
 
+# 함수 모델링 방법: GP vs TPE
+
+Bayesian Optimization에서 핵심은 "알지 못하는 목적함수 $f(x)$를 어떻게 확률적으로 모델링하는가"입니다. 앞서 설명에서는 Gaussian Process를 중심으로 다뤘지만, 실제로는 다양한 모델링 방법이 존재합니다. 특히 실무에서는 **Gaussian Process (GP)** 와 **Tree-structured Parzen Estimator (TPE)** 가 가장 널리 사용됩니다.
+
+## Gaussian Process 기반 접근
+
+**Gaussian Process**는 함수 위의 확률 분포를 직접 모델링하는 방법입니다. 입력 $x$가 주어졌을 때 함수값 $f(x)$의 분포를 모델링합니다.
+
+$$
+P(f(x) \mid x) \sim \mathcal{GP}(m(x), k(x, x'))
+$$
+
+GP는 kernel function $k(x, x')$을 통해 입력 공간의 유사도를 정의하고, 관찰한 데이터로부터 각 지점의 예측 평균 $\mu(x)$와 불확실성 $\sigma(x)$를 계산합니다. 이 정보를 바탕으로 acquisition function (EI, UCB 등)을 계산하여 다음 탐색 지점을 결정합니다.
+
+**GP의 특징:**
+- 이론적으로 매우 잘 정립되어 있음
+- 불확실성을 정교하게 추정
+- 연속형 하이퍼파라미터에 적합
+- 저차원 문제에서 강력한 성능
+
+**주요 라이브러리:** `scikit-optimize`, `GPyOpt`, `bayes_opt`
+
+## Tree-structured Parzen Estimator (TPE) 기반 접근
+
+**TPE**는 GP와 반대 방향으로 접근합니다. 함수값이 주어졌을 때 입력의 분포를 모델링합니다.
+
+$$
+P(x \mid f(x))
+$$
+
+구체적으로 TPE는 관찰한 데이터를 성능에 따라 두 그룹으로 나눕니다:
+- $\mathcal{L}$: 성능이 좋은 상위 샘플들 (예: 상위 15%)
+- $\mathcal{G}$: 성능이 나쁜 나머지 샘플들
+
+그리고 각 그룹에 대한 입력 분포를 별도로 학습합니다:
+
+$$
+l(x) = P(x \mid y < y^*) \quad \text{(좋은 하이퍼파라미터들의 분포)}
+$$
+
+$$
+g(x) = P(x \mid y \geq y^*) \quad \text{(나쁜 하이퍼파라미터들의 분포)}
+$$
+
+이 두 분포를 Parzen Window (kernel density estimation)로 추정하고, acquisition function을 다음과 같이 정의합니다:
+
+$$
+\text{EI}(x) \propto \frac{l(x)}{g(x)}
+$$
+
+**직관:** "좋은 샘플들 사이에서는 흔하지만 ($l(x)$ 높음), 나쁜 샘플들 사이에서는 드문 ($g(x)$ 낮음)" 영역을 선택합니다.
+
+**TPE의 특징:**
+- 고차원 문제에서도 효율적
+- Categorical/discrete 파라미터 자연스럽게 처리
+- 조건부 하이퍼파라미터 공간 (conditional space) 처리 용이
+- GP보다 계산 비용이 낮음
+
+**주요 라이브러리:** `Optuna`, `HyperOpt`
+
+## GP와 TPE 비교
+
+| 측면 | Gaussian Process (GP) | Tree-structured Parzen Estimator (TPE) |
+|------|----------------------|----------------------------------------|
+| **모델링 대상** | $P(f(x) \mid x)$ | $P(x \mid f(x))$ |
+| **이론적 기반** | 매우 강력 (함수 위의 확률 과정) | 상대적으로 경험적 (heuristic) |
+| **불확실성 추정** | 정교함 ($\sigma(x)$ 명시적) | 덜 정교함 (분포 비율로 간접 추정) |
+| **계산 복잡도** | $O(n^3)$ (kernel matrix 역행렬) | $O(n \log n)$ (density estimation) |
+| **차원 확장성** | 고차원에서 급격히 성능 저하 (~10차원 이상) | 고차원에서도 상대적으로 안정적 |
+| **파라미터 타입** | 연속형에 최적화, categorical 처리 어려움 | Categorical/discrete 자연스럽게 처리 |
+| **조건부 공간** | 처리 어려움 | Tree 구조로 자연스럽게 처리 |
+| **수렴 보장** | 이론적 regret bound 존재 | 이론적 보장 약함 |
+| **적합한 상황** | 저차원, 연속형, 이론적 보장 필요 | 고차원, mixed types, 실용적 성능 중시 |
+
+## 실무 선택 가이드
+
+**GP를 선택해야 할 때:**
+- 하이퍼파라미터가 10개 이하의 저차원
+- 대부분 연속형 변수
+- 불확실성 추정이 중요한 경우
+- 이론적 보장이 필요한 연구 환경
+- 실험 횟수가 매우 제한적 (수십 회 이하)
+
+**TPE를 선택해야 할 때:**
+- 하이퍼파라미터가 10개 이상의 고차원
+- Categorical/discrete 변수가 많은 경우
+- 조건부 하이퍼파라미터가 있는 경우 (예: optimizer='adam'일 때만 learning_rate 의미 있음)
+- 빠른 계산이 중요한 경우
+- 실용적 성능을 우선시하는 경우
+
+실제로 **Optuna**가 TPE를 기본으로 사용하여 널리 사용되는 이유는, 대부분의 실무 하이퍼파라미터 튜닝 문제가 고차원이고 mixed parameter types를 가지기 때문입니다. 반면 **scikit-optimize** 같은 GP 기반 라이브러리는 이론적 깊이가 필요하거나 저차원 문제에서 선호됩니다.
+
+---
+
+# Bayesian Optimization의 장단점 (GP vs TPE)
+
+## 장점
+
+Bayesian Optimization (GP와 TPE 모두)은 하이퍼파라미터 튜닝에서 매우 강력한 장점들을 가지고 있습니다. 가장 큰 장점은 **샘플 효율성**입니다. Grid Search나 Random Search와 달리 이전 실험 결과를 활용해 다음 탐색 지점을 똑똑하게 선택하기 때문에, 적은 수의 실험으로도 좋은 하이퍼파라미터를 찾을 수 있습니다. 특히 모델 학습 한 번에 몇 시간씩 걸리는 딥러닝이나 대규모 데이터셋에서 매우 유용합니다.
+
+두 번째로 **exploration과 exploitation의 자동 균형 조절**이 가능합니다. Acquisition function이 자동으로 "이미 좋다고 알려진 영역을 더 탐색할지" vs "아직 잘 모르는 영역을 탐험할지"를 결정해줍니다. GP는 $\mu(x)$와 $\sigma(x)$를 통해, TPE는 $l(x)/g(x)$ 비율을 통해 이를 자동으로 조절합니다.
+
+세 번째로 **black-box 최적화**가 가능합니다. 목적함수의 gradient나 내부 구조를 알 필요 없이, 입력과 출력만으로 최적화를 수행합니다. 따라서 복잡한 머신러닝 파이프라인, 시뮬레이션, 또는 미분 불가능한 함수에도 적용할 수 있습니다.
+
+네 번째로 **불확실성을 활용**할 수 있습니다. GP는 각 지점에서 예측값뿐만 아니라 불확실성($\sigma(x)$)을 명시적으로 제공하여 매우 정교한 의사결정이 가능합니다. TPE는 불확실성을 직접 추정하진 않지만, 좋은 샘플과 나쁜 샘플의 분포 차이를 통해 간접적으로 유망한 영역을 식별합니다.
+
+다섯 번째로 **다양한 파라미터 타입 지원**입니다. GP는 연속형 변수에 강력하며, TPE는 continuous, categorical, discrete, 그리고 조건부 하이퍼파라미터까지 자연스럽게 처리할 수 있습니다. 이는 실무에서 매우 중요한 장점입니다.
+
+마지막으로 **이론적 보장**이 있습니다. 특히 GP 기반의 UCB acquisition function은 이론적으로 regret bound가 증명되어 있어, 장기적으로 최적해에 수렴함이 보장됩니다. TPE는 이론적 보장은 약하지만 실증적으로 강력한 성능을 보입니다.
+
+## 단점
+
+하지만 Bayesian Optimization도 몇 가지 단점이 있으며, GP와 TPE는 각각 다른 약점을 가집니다.
+
+**초기 설정의 복잡성:** GP는 kernel 선택, length scale, noise level 등 여러 메타 파라미터를 설정해야 하며, 잘못된 선택은 성능 저하로 이어집니다. TPE는 상대적으로 설정이 간단하지만, 상위 샘플 비율 $\gamma$ (예: 15%)를 결정해야 하고, 이 선택에 따라 exploration-exploitation balance가 달라집니다.
+
+**계산 비용 문제:** GP의 가장 큰 약점은 계산 복잡도입니다. Posterior 계산은 kernel matrix의 역행렬을 구해야 하므로 $O(n^3)$의 시간 복잡도를 가집니다. 따라서 관찰한 데이터가 수백 개를 넘어가면 계산이 매우 느려집니다. Acquisition function을 최적화하는 과정도 추가 계산 비용이 듭니다. 반면 TPE는 $O(n \log n)$으로 훨씬 가볍지만, kernel density estimation의 품질이 샘플 수에 민감할 수 있습니다.
+
+**고차원의 저주:** 하이퍼파라미터 차원이 10~20개를 넘어가면 GP의 성능이 급격히 떨어집니다. 고차원에서는 데이터 포인트 간 거리가 멀어지고, kernel이 제대로 작동하지 않는 "차원의 저주"가 발생합니다. **TPE는 이 문제를 어느 정도 완화**하지만, 여전히 매우 고차원 (50+ 차원)에서는 두 방법 모두 효율이 떨어집니다.
+
+**파라미터 타입 제약:** GP는 기본적으로 연속 공간을 위해 설계되었기 때문에, categorical 변수 (예: optimizer 종류, activation function 등)나 discrete 변수를 다루려면 추가적인 encoding이나 특별한 kernel이 필요합니다. 조건부 하이퍼파라미터 (예: optimizer='adam'일 때만 beta1이 의미 있음)는 더욱 처리가 어렵습니다. **TPE는 이런 경우에 훨씬 자연스럽게 작동**하며, 이것이 Optuna가 널리 사용되는 주요 이유입니다.
+
+**불확실성 추정의 trade-off:** GP는 정교한 불확실성 $\sigma(x)$를 제공하지만 계산 비용이 높습니다. TPE는 계산이 빠르지만 불확실성을 직접 추정하지 않아, GP만큼 정밀한 exploration 제어가 어렵습니다.
+
+## 한계점
+
+Bayesian Optimization의 근본적인 한계점들은 GP와 TPE 모두에게 적용됩니다.
+
+**Local optimization 문제:** Acquisition function을 최적화할 때 local optimum에 빠질 수 있습니다. 특히 복잡한 탐색 공간에서는 acquisition function 자체가 multi-modal일 수 있어, 진정한 global optimum을 찾기 어려울 수 있습니다. GP의 EI나 UCB, TPE의 $l(x)/g(x)$ 모두 이 문제에서 자유롭지 못합니다. 실무에서는 acquisition function을 최적화할 때 multi-start나 random sampling을 사용하여 이를 완화합니다.
+
+**함수 가정의 제약:** GP는 stationary kernel (RBF 등)을 사용할 때 함수의 통계적 특성이 공간 전체에서 동일하다고 가정합니다. 실제 하이퍼파라미터 공간에서는 어떤 영역은 매끄럽고 어떤 영역은 급격하게 변할 수 있어 이 가정이 깨집니다. TPE는 각 차원을 독립적으로 모델링하기 때문에 다른 문제가 있습니다. 하이퍼파라미터 간 상호작용 (예: learning rate와 batch size의 관계)을 제대로 포착하지 못할 수 있습니다.
+
+**병렬화의 어려움:** Bayesian Optimization은 본질적으로 sequential한 알고리즘입니다. 다음 탐색 지점을 결정하려면 이전 실험 결과를 관찰해야 하므로, 여러 GPU나 머신을 활용한 병렬 실험이 자연스럽지 않습니다. Batch BO, constant liar, local penalization 같은 방법들이 제안되었지만, GP와 TPE 모두 sequential 버전보다 이론적 보장이 약해지고 구현이 복잡해집니다. 병렬 자원이 풍부하다면 Random Search가 더 효율적일 수 있습니다.
+
+**Noisy observation 문제:** 머신러닝에서 validation score는 random seed, data split, mini-batch sampling 등으로 인해 noisy합니다. 같은 하이퍼파라미터로 여러 번 실험하면 다른 결과가 나올 수 있습니다. GP는 noise level $\sigma_n^2$를 모델에 포함할 수 있지만, 이를 적절히 설정하기 어렵습니다. TPE는 noise에 대한 명시적 모델링이 없어, 매우 noisy한 환경에서는 좋은 샘플과 나쁜 샘플의 구분이 모호해집니다.
+
+**Cold start 문제:** 초기 몇 번의 랜덤 샘플링으로 모델을 초기화하는데, 이 초기 샘플이 운이 나쁘면 이후 탐색이 잘못된 방향으로 진행될 수 있습니다. GP는 prior가 너무 강하면 초기 샘플에 과도하게 영향받고, TPE는 초기 샘플 수가 적으면 $l(x)$와 $g(x)$ 추정이 불안정해집니다. 초기 샘플 수를 어떻게 정할지에 대한 명확한 가이드라인이 없으며, 보통 경험적으로 차원 수의 2~5배 정도를 사용합니다.
+
+**Warm start의 어려움:** 이전 실험 결과나 전이 학습을 활용하기 어렵습니다. GP의 경우 prior를 설정할 수 있지만 실무에서는 잘 활용되지 않고, TPE는 warm start 메커니즘이 제한적입니다.
+
+## 실무에서의 권장사항
+
+이러한 장단점과 한계점을 고려할 때, 상황에 따라 적절한 방법을 선택해야 합니다.
+
+**GP 기반 BO (scikit-optimize, bayes_opt)를 선택하세요:**
+- 하이퍼파라미터가 3~10개의 저차원 문제
+- 대부분 연속형 변수 (learning rate, regularization 등)
+- 실험 비용이 매우 높아 수십 회 이내로 제한적
+- 불확실성 추정이 중요 (예: 안전이 중요한 시스템)
+- 이론적 보장이 필요한 연구 환경
+- 파라미터 간 smooth한 관계를 가정할 수 있는 경우
+
+**TPE 기반 BO (Optuna, HyperOpt)를 선택하세요:**
+- 하이퍼파라미터가 10개 이상의 고차원 문제
+- Categorical/discrete 변수가 많은 경우 (optimizer, activation, architecture 등)
+- 조건부 하이퍼파라미터가 있는 경우
+- 수백~수천 번의 실험이 가능한 경우
+- 빠른 실험 iteration이 중요한 경우
+- 실용적 성능을 우선시하는 프로덕션 환경
+- Neural Architecture Search (NAS) 같은 복잡한 구조 탐색
+
+**Random Search를 선택하세요:**
+- 병렬 자원이 매우 풍부한 경우 (수십~수백 GPU)
+- 하이퍼파라미터 공간이 매우 넓고 불규칙한 경우
+- 빠른 baseline이 필요한 초기 탐색
+- Bayesian Optimization 설정이 어려운 경우
+
+**실무 팁:**
+1. **처음엔 Random Search로 시작**하여 탐색 공간을 파악하고, 실험 비용이 감당 가능하면 계속 사용
+2. **실험 비용이 높아지면 Optuna (TPE)**로 전환. Optuna는 설정이 간단하고 다양한 파라미터 타입을 지원
+3. **저차원 연속형 문제**에서는 scikit-optimize (GP)를 고려. 특히 불확실성 추정이 필요하다면 GP가 유리
+4. **매우 고차원 (20+)** 이면 evolutionary algorithms (CMA-ES 등)나 Population Based Training 고려
+5. **노이즈가 심하면** 같은 설정으로 여러 번 실험하거나, GP의 noise parameter를 조정
+
+---
+
 # 주요 키워드 상세 설명
 
 ## Gaussian Process란?
