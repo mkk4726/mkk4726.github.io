@@ -6,7 +6,7 @@ category: "Career"
 tags: ["Python", "Machine Learning", "Causal Inference"]
 ---
 
-- 기간 : 2025.03 ~ 현재 (6개월)
+- 기간 : 2025.03 ~ 현재 (7개월)
 - 역할 : 문제정의, 프로젝트 설계, 구현까지 모든 과정
 
 ---
@@ -188,8 +188,7 @@ propensity score를 추정해, 고객에 대해 신뢰할 수 있는 처치범�
 
 개념에 대해서 제가 이해한 부분들을 정리한 내용입니다.
 - [Quantile Regression이란?](/posts/Data%20Science/ML%20Engineering/quantile-regression-explained)
-- [Conformal prediciton이란?](/posts/Data%20Science/Statistics/conformal-prediction-explained)
-
+- [Conformal prediciton이란?](/posts/Data%20Science/ML%20Engineering/quantile_regression/conformal-prediction-explained.md)
 ---
 
 ### 3. 신뢰할 수 없는 범위의 예측은 어떻게 할까 : Partial Identification
