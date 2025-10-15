@@ -12,14 +12,12 @@ export async function parseMarkdown(content: string): Promise<string> {
   // **text**letter → **text** letter
   let processedContent = content;
   
-  // Bold markers (** or __) followed immediately by non-whitespace characters
+  // Bold markers (**) followed immediately by non-whitespace characters
   processedContent = processedContent.replace(/(\*\*[^*\n]+?\*\*)([^\s*])/g, '$1 $2');
-  processedContent = processedContent.replace(/(__[^_\n]+?__)([^\s_])/g, '$1 $2');
   
-  // Italic markers (* or _) followed immediately by non-whitespace characters
-  // Negative lookbehind/lookahead to avoid matching ** or __
+  // Italic markers (*) followed immediately by non-whitespace characters
+  // Negative lookbehind/lookahead to avoid matching **
   processedContent = processedContent.replace(/(?<!\*)(\*[^*\n]+?\*)(?!\*)([^\s*])/g, '$1 $2');
-  processedContent = processedContent.replace(/(?<!_)(_[^_\n]+?_)(?!_)([^\s_])/g, '$1 $2');
   
   const result = await remark()
     .use(remarkMath)
