@@ -8,10 +8,10 @@ export default function PortfolioPage() {
       id: 'lenze-size-rec',
       title: '[Visuworks] Lens Size Recommendation System',
       excerpt: '렌즈 삽입술 후 결과 예측을 통한 렌즈 사이즈 추천 시스템',
-      technologies: ['ML', 'Causal Inference', 'Serving', "Monitoring"],
+      technologies: ['Machine Learning'],
       // github: 'https://github.com/mkk4726/lenze-size-rec',
       // demo: 'https://lenze-size-demo.example.com',
-      date: '2025.03 ~ 현재 (6개월)',
+      date: '2025.03 ~ 현재 (7개월)',
       icon: '👁️',
       href: '/posts/Self_Development/Career/Portfolio/visuworks_lenze_size_rec'
     },

@@ -3,7 +3,7 @@ title: "Lens Size Recommendation System"
 date: ""
 excerpt: "머신러닝을 활용한 맞춤형 렌즈 사이즈 추천 시스템"
 category: "Career"
-tags: ["Python", "Machine Learning", "Causal Inference"]
+tags: ["Portfolio"]
 ---
 
 - 기간 : 2025.03 ~ 현재 (7개월)
@@ -18,40 +18,55 @@ tags: ["Python", "Machine Learning", "Causal Inference"]
 
 <figure>
 <img src="/post/Portfolio/Lenze_size_reco.png" alt="lenze size reco" width="100%" />
-<figcaption>그림1. 렌즈 사이즈 추천 서비스</figcaption>
+<figcaption>그림1. 기본적인 렌즈 사이즈 추천 서비스 컨셉</figcaption>
 </figure>
 
 이러한 선택을 도와주기 위해 렌즈 삽입 후 결과 (렌즈 후면과 수정체 전면까지의 거리) 를 예측해 렌즈 사이즈를 추천하는 서비스를 운영하고 있습니다.
+기존에 진행되던 프로젝트를 이어서 진행했고, 서비스를 발전시키기 위해 기술적으로 해결해야하는 부분과 사용자의 만족도를 높이기 위한 부분들에 대한 문제를 정의하고 해결해나갔습니다.
 
-기존에 진행되던 프로젝트를 이어서, 전반적인 부분에 대한 문제를 정의하고 해결하는 프로젝트를 진행했습니다.
+그 과정을 요약하면 다음과 같습니다.
 
-데이터 수집부터 모델 개발, 서빙, 모니터링까지 ML 서비스를 위한 모든 부분에 대해 문제를 정의하고 해결했습니다.
-이 과정에서 전체적인 흐름에 대해 배울 수 있었고, 문제를 해결해 나가는 과정에서 각 부분에서 중요하게 생각해야 하는 점들을 배울 수 있었습니다.
-문제를 정의하고 해결한 과정을 아래에 정리했습니다.
+1. 기본적인 ML system 설계하고 개발하기
+   - 데이터 수집부터 모델 개발, 서빙, 모니터링까지 ML 서비스를 위한 모든 부분에 대해 문제를 정의하고 해결했습니다.
+   - 이 과정에서 데이터 파이프라인 개발 (피처 스토어)을 통해 데이터 불일치 문제에서 발생하는 성능 저하 문제를 20% 정도 개선했습니다.
+   - 실제 추론 상황에서 성능을 확인하기 위해 모니터링 기능을 개발해 silent failure를 사전에 감지할 수 있게 되었습니다.
+   - 전체적인 흐름에 대해 배울 수 있었고, 문제를 해결해 나가는 과정에서 각 부분에서 중요하게 생각해야 하는 점들을 배울 수 있었습니다.
 
-모델에 대한 연구는 계속 진행 중이며, 관련한 내용을 논문으로 작성 중입니다.
-- [연구 방향에 대해 정리한 글 - 외삽 문제를 어떻게 다뤄야할까?](/posts/Data%20Science/Causal%20Inference/Industry%20Application/what-can-I-do-in-extrapolation-problem)
+2. 모델 고도화하기
+   - 기존에 정의되어있던 방향에서 모델을 고도화하려고 시도했습니다. (기존에 사용하던 평가지표인 MAE를 낮추기 위한 방향)
+   - 
+
+3. 양수성 개념을 도입해보기 (실패했던 경험)
+   - [연구 방향에 대해 정리한 글 - 외삽 문제를 어떻게 다뤄야할까?](/posts/Data%20Science/Causal%20Inference/Industry%20Application/what-can-I-do-in-extrapolation-problem)
+
+
+4. 문제를 재정의하고, 이에 맞춰 모델 및 평가지표 설계하기
+
+
+5. 4번에서 정의한 문제를 고도화하는 모델 개발 (진행 중)
+
 
 
 ---
 
 # 문제 해결 과정
 
-크게 데이터 관련 / 서빙과 모니터링 관련 / 모델링 관련 으로 문제 해결과정을 구분해서 정리했습니다.
+문제를 해결했던 과정을 시간 순서대로 정리했습니다.
 
-전체적인 ML 파이프라인은 다음과 같습니다.
+## 1. 기본적인 ML system 구축하기
 
 <figure>
 <img src="/post/Portfolio/lenze_size_ml_system.png" alt="data pipeline" width="100%" />
 <figcaption>그림2. ML pipeline</figcaption>
 </figure>
 
+제가 구성하고 개발한 ML 파이프라인은 그림2와 같습니다.
 1번 OCR 파이프라인에 대한 내용은 다음 포스트해서 확인할 수 있습니다.
 - [portfolio - OCR pipeline 구현](/posts/Self_Development/Career/Portfolio/visuworks_ocr_pipeline)
 
----
+어떤 문제가 있었는지, 이를 해결하기 위해 어떤 선택을 했는지를 정리했습니다.
 
-## 2. 데이터 일관성을 확보하자 : data pipeline, feature store 구현 
+### 1.1 데이터 일관성을 확보하자 : data pipeline, feature store 구현 
 
 모델을 개발하면서 첫번째로 마주한 문제는 데이터 일관성 문제입니다.
 
@@ -65,9 +80,8 @@ tags: ["Python", "Machine Learning", "Causal Inference"]
 구현할 때는 유명한 프레임워크나 툴을 사용하기보다 현재 필요한 기능에 맞도록 구현했습니다.
 필요없는 기술을 위해 복잡성을 증가시키지 않고, 해결하고자 하는 문제에 집중했습니다.
 
----
 
-## 3. 모델 서빙은 어떻게 하면 좋을까?
+### 1.2 모델 서빙은 어떻게 하면 좋을까?
 
 모델을 서빙할 때 고려했던 핵심 요소는 배포 환경의 일관성과 모델 업데이트의 용이성이었습니다. 
 
@@ -75,9 +89,8 @@ tags: ["Python", "Machine Learning", "Causal Inference"]
 
 Docker를 활용한 배포로 인프라 관리의 복잡성을 줄이고, S3를 통해 모델 파일을 중앙 집중식으로 관리하여 새로운 모델 버전을 쉽게 배포할 수 있도록 했습니다. 이는 특히모델 성능 개선 시 빠른 반영이 가능하게 해주었습니다.
 
----
 
-## 4. 추론 상황에서의 성능은? :  Monitoring 구현
+### 1.3 추론 상황에서의 성능은? :  Monitoring 구현
 
 모델이 실제 서비스 상황에서 어떤 성능을 보이는지, 데이터 분포 변화가 있는지 등을 지속적으로 모니터링하는 것이 중요했습니다. 
 
@@ -97,7 +110,8 @@ Docker를 활용한 배포로 인프라 관리의 복잡성을 줄이고, S3를 
 
 ---
 
-# 모델링 : 선택의 문제에서 예측 모델이 가지는 한계점
+## 2. 모델 고도화하기 
+
 
 모델링 부분이 가장 어려웠습니다. 
 답을 알려줄 사람이 없다보니, 문제를 풀기 위해 이런저런 논문이나 내용도 찾아보고 세미나에 가서 조언도 구했습니다.
@@ -106,9 +120,14 @@ Docker를 활용한 배포로 인프라 관리의 복잡성을 줄이고, S3를 
 이 과정을 요약하면, 선택의 문제를 예측의 문제로 정의했을 때의 한계점을 확인하고 이를 해결하기 위한 방안을 제시했습니다.
 어떤 문제인지, 어떻게 해결방안을 정의했는지 정리했습니다.
 
+
+
 ---
 
-## 측정하지 않은 값에 대한 예측 성능을 어떻게 평가할 수 있을까?
+
+## 3. 양수성 개념 도입해서 문제 해결해보기
+
+### 측정하지 않은 값에 대한 예측 성능을 어떻게 평가할 수 있을까?
 
 이 프로젝트는 그림1처럼 최적의 렌즈 사이즈 선택하는 문제를 풀고 있습니다.
 선택의 문제에서 예측 평가지표만을 통해 모델을 신뢰하기엔 한계가 있습니다.
@@ -137,7 +156,7 @@ Docker를 활용한 배포로 인프라 관리의 복잡성을 줄이고, S3를 
 
 ---
 
-## 추론 로직 구조
+### 추론 로직 구조
 
 <figure>
 <img src="/post/Portfolio/Lenze_size_inference1.png" alt="Positivity" width="80%" />
@@ -160,7 +179,7 @@ propensity score를 추정해, 고객에 대해 신뢰할 수 있는 처치범�
 
 ---
 
-### 1. 신뢰할 수 있는 처치의 범위는 어떻게 구할까 : Propensity Estimator
+### 3.1 신뢰할 수 있는 처치의 범위는 어떻게 구할까 : Propensity Estimator
 
 가장 먼저 예측 평가지표 (MSE, MAE)로 성능을 확인한 예측의 범위를 정해야 합니다.
 이는 성향 점수 (propensity score)를 추정함으로써 정할 수 있습니다.
@@ -178,9 +197,21 @@ propensity score를 추정해, 고객에 대해 신뢰할 수 있는 처치범�
 
 고객 A는 12.1, 12.6, 13.2에 대한 예측 성능을 신뢰할 수 있고, 고객 B는 12.6에 대한 예측값을 신뢰할 수 있다고 판단할 수 있습니다.
 
+### 3.2 신뢰할 수 없는 범위의 예측은 어떻게 할까 : Partial Identification
+
+신뢰할 수 있는 정도를 예측 범위로 나타낼 수 있고, 따라서 양수성이 보장되지 않는 예측 범위의 예측 범위를 넓게 그려주고자 했습니다.
+양수성이 보장되는 처치의 예측값은 신뢰구간을 예측해 보여주고, 나머지 처치에 대해서는 "partial identification"과 같은 개념을 사용해 예측 범위를 추정했습니다.
+
+개념에 대해서 제가 이해한 부분들을 정리한 내용입니다.
+- [Partial Identification이란?](/posts/Data%20Science/Causal%20Inference/what-is-partial-identification)
+- [Manski Bounds란?](/posts/Data%20Science/Causal%20Inference/what-is-manski-bounds)
+
+
 ---
 
-### 2. 신뢰할 수 있는 범위의 예측은 어떻게 할까 : CQR
+## 4. 문제 재정의하기
+
+### 4.1 신뢰할 수 있는 범위의 예측은 어떻게 할까 : CQR
 
 신뢰할 수 있는 범위는 예측 지표를 통해 고도화한 예측 모델을 사용하면 됩니다.
 예측 구간 (Prediction Interval)을 그려주기 위해 Quantile Regressor를 사용했습니다.
@@ -189,13 +220,10 @@ propensity score를 추정해, 고객에 대해 신뢰할 수 있는 처치범�
 개념에 대해서 제가 이해한 부분들을 정리한 내용입니다.
 - [Quantile Regression이란?](/posts/Data%20Science/ML%20Engineering/quantile-regression-explained)
 - [Conformal prediciton이란?](/posts/Data%20Science/ML%20Engineering/quantile_regression/conformal-prediction-explained.md)
+
+
+
 ---
 
-### 3. 신뢰할 수 없는 범위의 예측은 어떻게 할까 : Partial Identification
+## 5. 모델 고도화하기
 
-신뢰할 수 있는 정도를 예측 범위로 나타낼 수 있고, 따라서 양수성이 보장되지 않는 예측 범위의 예측 범위를 넓게 그려주고자 했습니다.
-양수성이 보장되는 처치의 예측값은 신뢰구간을 예측해 보여주고, 나머지 처치에 대해서는 "partial identification"과 같은 개념을 사용해 예측 범위를 추정했습니다.
-
-개념에 대해서 제가 이해한 부분들을 정리한 내용입니다.
-- [Partial Identification이란?](/posts/Data%20Science/Causal%20Inference/what-is-partial-identification)
-- [Manski Bounds란?](/posts/Data%20Science/Causal%20Inference/what-is-manski-bounds)
