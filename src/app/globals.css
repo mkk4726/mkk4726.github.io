@@ -925,4 +925,134 @@ html {
   }
 }
 
+/* About 페이지 다크 모드 스타일 */
+.about-dark.prose {
+  color: #f3f4f6 !important;
+}
+
+.about-dark.prose h1,
+.about-dark.prose h2,
+.about-dark.prose h3,
+.about-dark.prose h4,
+.about-dark.prose h5,
+.about-dark.prose h6 {
+  color: #f9fafb !important;
+}
+
+.about-dark.prose p {
+  color: #f3f4f6 !important;
+}
+
+.about-dark.prose strong {
+  color: #f9fafb !important;
+  font-weight: 700 !important;
+}
+
+.about-dark.prose li {
+  color: #f3f4f6 !important;
+}
+
+.about-dark.prose li::marker {
+  color: #f3f4f6 !important;
+}
+
+.about-dark.prose ul li::marker {
+  color: #f3f4f6 !important;
+}
+
+.about-dark.prose ol li::marker {
+  color: #f3f4f6 !important;
+}
+
+.about-dark.prose a {
+  color: #93c5fd !important;
+}
+
+.about-dark.prose a:hover {
+  color: #bfdbfe !important;
+  background-color: #1e3a8a !important;
+}
+
+/* About 페이지 테이블 스타일 */
+.about-dark.prose table {
+  width: 100% !important;
+  border-collapse: collapse !important;
+  margin: 1rem 0 !important;
+  display: table !important;
+  background-color: #1f2937 !important;
+  table-layout: auto !important;
+}
+
+.about-dark.prose table thead {
+  background-color: #374151 !important;
+}
+
+.about-dark.prose table th {
+  padding: 0.75rem 1rem !important;
+  text-align: left !important;
+  font-weight: 600 !important;
+  color: #f9fafb !important;
+  border: 1px solid #4b5563 !important;
+  background-color: #374151 !important;
+  white-space: normal !important;
+  word-break: keep-all !important;
+  vertical-align: top !important;
+}
+
+.about-dark.prose table td {
+  padding: 0.75rem 1rem !important;
+  border: 1px solid #4b5563 !important;
+  color: #f3f4f6 !important;
+  white-space: normal !important;
+  word-break: keep-all !important;
+  vertical-align: top !important;
+  line-height: 1.6 !important;
+}
+
+.about-dark.prose table tr:nth-child(even) {
+  background-color: #1f2937 !important;
+}
+
+.about-dark.prose table tr:nth-child(odd) {
+  background-color: #111827 !important;
+}
+
+.about-dark.prose table tr:hover {
+  background-color: #374151 !important;
+}
+
+/* About 페이지 테이블 내부 br 태그 처리 */
+.about-dark.prose table td br {
+  display: block !important;
+  content: "" !important;
+  margin: 0.25rem 0 !important;
+}
+
+/* About 페이지 테이블 responsive wrapper */
+.about-dark .table-responsive {
+  width: 100% !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  -webkit-overflow-scrolling: touch !important;
+  margin: 1rem 0 !important;
+  padding-bottom: 0.25rem !important;
+}
+
+.about-dark .table-responsive::-webkit-scrollbar {
+  height: 8px;
+}
+
+.about-dark .table-responsive::-webkit-scrollbar-track {
+  background: #374151;
+}
+
+.about-dark .table-responsive::-webkit-scrollbar-thumb {
+  background: #6b7280;
+  border-radius: 9999px;
+}
+
+.about-dark .table-responsive:hover::-webkit-scrollbar-thumb {
+  background: #9ca3af;
+}
+
 
