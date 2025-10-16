@@ -16,7 +16,7 @@ lastUpdated: "2025-10-16"
 
 | 프로젝트 | 기간 | 주요 성과 |
 |----------|------|-----------|
-| **렌즈 사이즈 추천 서비스 개발** | 2025.03 - 현재<br/>(7개월) | ML system 개발, 통계적 분석에 기반한 피처 개발, 모델링 등을 통해 **기존 대비 성능 약 20% 향상**. 서비스에 맞는 문제 및 모델, 평가지표 등을 재설계해 사용자 만족도 개선<br/>[포트폴리오 링크](/portfolio) |
-| **RAG pipeline 기반 고객상담 챗봇 개발** | 2024.11 - 2025.03<br/>(4개월) | **일평균 150건 상담 대체**, **검색정확도 90% 이상** 달성. 도메인 특화 pipeline 구성으로 **초기 대비 불만족도 80% 이상 감소**<br/>[포트폴리오 링크](/portfolio) |
-| **OCR pipeline 개발** | 2024.07 - 2024.10<br/>(4개월) | **정확도 99%**, **에러율 1% 미만**, **응답지연시간 1초 미만** 달성<br/>[포트폴리오 링크](/portfolio) |
-| **병변탐지 모델 개발** | 2024.04 - 2024.06<br/>(3개월) | 도메인 특화 전처리, MTL, loss 재설계 등으로 **기존 대비 성능 40% 향상** |
+| 렌즈 사이즈 추천 서비스 개발 | 2025.03 - 현재<br/>(7개월) | ML system 개발, 통계적 분석에 기반한 피처 개발, 모델링 등을 통해 기존 대비 성능 약 20% 향상. 서비스에 맞는 문제 및 모델, 평가지표 등을 재설계해 사용자 만족도 개선<br/>[포트폴리오 링크](/posts/Self_Development/Career/Portfolio/visuworks_lenze_size_rec) |
+| RAG pipeline 기반 고객상담 챗봇 개발 | 2024.11 - 2025.03<br/>(4개월) | 일평균 150건 상담 대체, 검색정확도 90% 이상 달성. 도메인 특화 pipeline 구성으로 초기 대비 불만족도 80% 이상 감소<br/>[포트폴리오 링크](/posts/Self_Development/Career/Portfolio/visuworks_chatbot) |
+| OCR pipeline 개발 | 2024.07 - 2024.10<br/>(4개월) | 정확도 99%, 에러율 1% 미만, 응답지연시간 1초 미만 달성<br/>[포트폴리오 링크](/posts/Self_Development/Career/Portfolio/visuworks_ocr_pipeline) |
+| 병변탐지 모델 개발 | 2024.04 - 2024.06<br/>(3개월) | 도메인 특화 전처리, MTL, loss 재설계 등으로 기존 대비 성능 40% 향상 <br/>[포트폴리오 링크](/posts/Self_Development/Career/Portfolio/visuworks_segmentation)|
