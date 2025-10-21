@@ -1,13 +1,13 @@
 ---
-title: "Quantile Regression: 평균이 아닌 분위수를 예측하는 방법"
+title: "Quantile Regression이란?"
 date: "2025-08-13"
-excerpt: "전통적인 회귀분석과 달리 특정 분위수를 직접 예측하는 quantile regression의 개념과 활용법"
+excerpt: "특정 분위수를 직접 예측하는 quantile regression은 어떻게 학습되는가?"
 category: "Data Science"
-tags: ["statistics", "regression", "quantile", "prediction-interval"]
+tags: ["regression", "quantile", "prediction-interval", "pinball-loss"]
 ---
 
-**Quantile regression** 은 전통적인 회귀분석과 달리 **특정 분위수(quantile)** 를 예측하는 방법입니다.
-이를 통해 예측구간 등을 추정할 수 있습니다.
+quantile regression은 기존의 회귀분석과 다르게 특정 분위수 (quantile)을 예측하는 방법입니다.
+이를 통해 예측구간 등을 추정할 수 있습니다. 신뢰수준 0.9 예측구간은 0.05 quantile과 0.95 quantile을 통해 추정할 수 있습니다.
 
 ---
 
