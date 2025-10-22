@@ -1,7 +1,7 @@
 ---
 title: "Non-crossing nonlinear regression quantiles by monotone composite quantile regression neural network, with application to rainfall extremes"
 date: "2025-10-21"
-excerpt: "한줄 요약 : "
+excerpt: "한줄 요약 : tau를 monotone covariate로 사용해 composite, monotonity 모두 만족하는 모델 구조 (MCQRNN) 제안한 논문"
 category: "Machine Learning"
 tags: ["Quantile Regression", "paper review"]
 ---
@@ -285,26 +285,265 @@ Huber function의 특징:
 
 이 approximation을 사용하면 gradient descent로 안정적으로 학습할 수 있다.
 
+<figure>
+  <img src="/post/PaperReview/MCQRNN/pinball_vs_hubered.png" alt="Pinball loss vs Huber-approximated pinball loss 그래프">
+  <figcaption>
+    Pinball loss와 Huber-norm approximation의 비교. Huber-norm은 $\alpha$ 구간에서 smooth하게 연결되어 gradient descent에 적합하다. $\alpha \to 0$일 때에는 두 함수가 일치한다.
+  </figcaption>
+</figure>
+
+실제로 그려봤을 때 위와 같은 형태가 나옴. error가 작은 부분에서 곡선의 형태를 보임.
 
 
+또한, 과도한 비선형 모델링을 방지하기 위해 **regularization term**(정규화 항)을 에러 함수에 추가할 수 있다. 이를 통해 파라미터 크기를 제한할 수 있다.
+
+최종적으로 사용되는 에러 함수는 다음과 같이 정리할 수 있다:
+
+$$
+E_s^{(A)} = E_s^{(A)} + \kappa^{(h)} \frac{1}{VJ} \sum_{i=1}^V \sum_{j=1}^J \left(W_{ij}^{(h)}\right)^2
++ \kappa \frac{1}{J} \sum_{j=1}^J w_j^2
+\tag{10}
+$$
+
+- $W^{(h)}_{ij}$: 은닉층 weight
+- $w_j$: output layer weight
+- $\kappa^{(h)} \geq 0$, $\kappa \geq 0$: 각각 $W^{(h)}$, $w$에 적용되는 정규화 계수(hyperparameter)
+- $V$, $J$: 각각 은닉층 입력, 노드 개수
+
+이때, **정규화 계수**($\kappa^{(h)}$, $\kappa$)와 노드 개수($J$) 등은 일반적으로 cross-validation 또는 Akaike information criterion(QAIC) 등 정보 기준을 최소화하도록 선택한다.
+
+QAIC는 다음과 같이 계산된다:
+
+$$
+\text{QAIC} = 2 \log(\hat{L}) + E_s^{(A)} + 2p
+\tag{11}
+$$
+
+- $\hat{L}$: 모델의 likelihood
+- $p$: 모델의 효과적인 파라미터 개수 추정치
+
+즉, 정규화 계수 및 모델 복잡도는 out-of-sample 성능(일반화 오차)을 기준으로 튜닝한다.
 
 
+#### Monotone composite quantile regression neural network (MCQRNN)
+
+composite QRNN 형태.
+동시에 여러 quantile을 학습하면서 non-crossing quantile condition을 추가하는 것.
+
+> CQRNN shares the same goal as the linear composite quantile regression (CQR) model (Zou and Yuan 2008), namely to borrow strength across multiple regression quantiles to improve the estimate of the true, unknown relationship between covariates and the response.
+
+> This is especially valuable in situations where the error follows a heavy-tailed distribution.
+
+공통된 가중치를 사용하면서 공통된 지식을 학습하게 되고, 이를 통해 더 강건한 모델을 만들 수 있음.
+
+> Hence, the models are not explicitly trying to describe the full conditional response distribution, but rather a single tau-independent function that best describes the true covariate-response relationship.
+
+MTL (multi-task learning)과 같은 컨셉.
+
+이때 quantile regression error 함수는 $K$개의 서로 다른 quantile(보통 $[0,1]$ 구간에 균등 간격으로 배치)에 대해 합산하여 사용한다.
+
+$$
+E^{(A)}_C = \frac{1}{KN} \sum_{k=1}^K \sum_{t=1}^N q^{(A)}_{s_k} \left(y^{(t)} - \hat{y}^{(t)}_{s_k}\right)
+\tag{12}
+$$
+
+여기서 $s_k = \frac{k}{K+1}$ $(k=1,2,...,K)$로 예를 들 수 있다. 패널티 항(정규화 항, Eq. 10 참조)은 동일하게 추가할 수 있다.
+
+- MCQRNN 모델은 아래 두 요소를 결합:
+  - MQRNN 네트워크 구조(Eq. 5)
+  - 복합(composite) quantile regression 에러 함수(Eq. 12)
+  → 여러 quantile에 대해 non-crossing 회귀 quantile을 동시에 추정
+
+> tau를 피처로 추가해서 사용 -> monotone covariate
+> X(tau) = [tau, x1, x2, ..., XI]
+
+- 데이터 변환 과정:
+  - 입력: N x #I 크기의 covariates 행렬 X, 길이 N의 response 벡터 y
+  - 목표: $\tau_1$, $\tau_2$, ..., $\tau_K$ 에 대한 non-crossing quantile 함수 추정
+
+  - 아래와 같이 "stacked" 데이터 셋 구성:
+    1. 각 quantile 지점($\tau_1$ ~ $\tau_K$)을 N번씩 반복하여 S = K x N 길이의 monotone covariate 벡터 xₘ^(S)를 만듦
+    2. X를 K번 복제한 다음 xₘ^(S)와 합쳐서 S x (1 + #I) 크기의 covariate matrix X^(S)를 만듦
+    3. y를 K번 반복하여 길이 S의 y^(S)를 만듦
+
+  - 위 1~3을 통해 stacked dataset 구성
+
+> By treating the $\tau$ values as a monotone covariate, predictions $\hat y_{\tau}^{S}$ from Eq. 5 for fixed values of the non-monotone covariates are guaranteed to increase with s. 
+> Non-crossing is imposed by construction.
+
+제약조건을 추가로 주기보다는 모델 구조 자체가 crossing 하지 못하도록 만드는 것.
+
+- composite quantile regression error function (stacked 데이터셋 기준):  
+  - s(s) = x₁^(S)(s)로 정의  
+  - 에러 함수:  
+    $$
+    E^{(A,S)}_{Cs} = \sum_{s=1}^S w_s(s) \, q^{(A)}_{s(s)}(y^{(S)}_{s(s)} - \hat{y}^{(S)}_{s(s)})
+    $$
+    - 여기서 $w_s(s)$는 quantile별 loss에 대한 가중치 (Jiang et al. 2012; Sun et al. 2013)
+    - $w_s(s)=1/S$ 로 일정하게 주면 standard composite quantile regression loss와 같아짐
+
+- Eq. 14 (위 수식) minimization을 통해 MCQRNN 모델을 학습  
+- (참고) non-crossing expectile regression도 $a \ne 0$인 $q^{(A)}_s$ 적용으로 얻을 수 있음  
+- 모델 학습 이후:  
+  - monotone covariate(tau)에 원하는 tau값을 넣으면, 임의의 $\tau_1 \leq \tau \leq \tau_K$에 대해 conditional quantile 예측 가능
+
+- 실험 예시(Fig.1):  
+  - MCQRNN 모델 파라미터: J=4, $k^{(h)}=0.00001$, $k=0$, $K=9$, $s=0.1,0.2,\ldots,0.9$  
+  - Bondell et al. (2010)의 두 함수에 대해 synthetic 데이터(500개 샘플) 사용  
+    - $y_1 = 0.5 + 2x + \sin(2\pi x - 0.5) + e$  
+    - $y_2 = 3x + [0.5 + 2x + \sin(2\pi x - 0.5)]e$  
+    - $x$ ~ $U(0,1)$, $e$ ~ $N(0,1)$
+  - 모든 s에 대해 가중치 동일하게 적용 ($w_s(s)$는 상수)
+  - 비교: 각 s-quantile 별로 독립적으로 QRNN 학습(J=4, $k^{(h)}=0.00001$)
+    - QRNN: quantile curve들이 training data 경계에서 crossing 발생
+    - MCQRNN: quantile crossing 없이, true conditional quantile에 더 근접하게 여러 개의 non-crossing quantile 함수 추정 가능
+      - QRNN에서도 weight penalty(Cannon 2011)로 crossing을 완화시키는 것은 가능하지만, 완전히 보장할 수 없음
+      - MCQRNN은 구조 자체로 crossing 방지
 
 
+#### Aditional constraints and uncertainty estimates
+
+> As mentioned above, constraints in addition to non-crossing of quantile functions may be useful for some MCQRNN modelling tasks.
+
+> A form of the parametric bootstrap can be used to estimate uncertainty in the conditional tau-quantile functions.
+
+parametric bootstrap을 통해 quantile regression의 불확실성을 추정.
+
+- 불확실성 추정을 위해 parametric bootstrap 방법 사용
+  - MCQRNN은 K개의 s(quantile) 값에 대해 명시적으로 학습하지만, monotone covariate로 tau(s)를 사용하므로 임의의 구간 $s_1 \leq s \leq s_K$에 대해 보간 가능
+  - 분포의 꼬리 부분(tail)에 대해 parametric form을 가정하면 분포함수, 확률밀도함수, quantile 함수 모두 생성 가능 (Quinonero Candela et al. 2006; Cannon 2011)
+  - parametric bootstrap 절차
+    1. 모델이 예측한 조건부 분포에서 임의로 샘플 생성
+    2. MCQRNN 모델을 다시 학습
+    3. 조건부 s-quantile을 추정
+    4. 위 과정을 여러 번 반복 (repeat)
+    5. 반복 결과로 얻은 bootstrapped conditional s-quantile 값들로 신뢰구간(confidence interval) 추정
+- positivity, monotonicity 제약 및 bootstrap 기반 신뢰구간을 적용한 예시는 Fig. 2(Bondell et al.(2010) 함수) 참고
 
 ---
-
 
 ## Experiment
 - 어떤 데이터셋, 비교 모델, 지표, 향상 정도인가
 - 표 1개, 그림 1개만 선택해서 숫자 메모
 - 나중에 “이 논문은 기존 대비 ~% 향상” 이런 식으로 바로 인용 가능하게
 
----
+### Monte Carlo simulation
 
-## 한 줄 요약 갱신
-- (문제) — (핵심 아이디어) — (결과) 구조로 다시 요약
-- 예: “Imbalanced CTR 데이터에서 feature interaction의 과적합을 완화하기 위해 regularized cross-network를 제안했고, AUC +0.7% 향상.
+> Given the close relationship between the MCQRNN and CQRNN models, performance is first assessed via Monte Carlo simulation using the experimental setup adopted by Xu et al. (2017) for CQRNN
+
+Xu et al. (2017) CQRNN 실험 재현해서 모델 평가
+- 예제 함수 3개 사용 (Eq.17–19)
+  - 예제1:  $y = \sin(2x_1) + 2e^{-16x_2^2} + 0.5\epsilon$,  $x_1, x_2 \sim U(0,1)$,  $\epsilon \sim N(0,1)$
+  - 예제2:  $y = (1 - x + 2x^2) e^{-0.5x^2} + (1 + 0.2x) 5\epsilon$,  $x \sim U(0,1)$,  $\epsilon \sim N(0,1)$
+  - 예제3:  
+    - $y = 40 \exp\left\{-8\left[(x_1-0.5)^2 + (x_2-0.5)^2\right]\right\}$
+    - $\quad\,/\, \exp\left\{-8\left[(x_1-0.2)^2 + (x_2-0.7)^2\right]\right\}$
+    - $+ \exp\left\{-8\left[(x_1-0.7)^2 + (x_2-0.7)^2\right]\right\} + \epsilon$
+    - $x_1, x_2 \sim U(0,1)$, $\epsilon \sim N(0,1)$
+- (문제) — (핵심 아이디어) — (결과)로 한 줄 요약 준비
+
+For each example function, random errors (noise) are generated from three different distributions:
+- Normal distribution: $e \sim N(0, 0.25)$
+- t-distribution with 3 degrees of freedom: $e \sim t(3)$
+- Chi-squared distribution with 3 degrees of freedom: $e \sim \chi^2(3)$
+
+> Monte Carlo simulations are performed for the nine resulting datasets.
+
+example function에서 반복적으로 데이터 추출 -> 모델 평가
+
+실험과정
+- 각 예제함수(3개)에 대해 3종류의 잡음분포(N(0,0.25), t(3), χ²(3))를 적용해 총 9개 데이터셋 생성
+- 각 데이터셋은 400 샘플(훈련 200, 테스트 200)로 구성, 실험 1000회 반복
+- 비교모델: QRNN(s=0.5), MLP, CQRNN, CQRNN*(monotonicity 미적용), MCQRNN(K=19개 quantile 동시추정)
+- 모든 모델의 은닉노드수: 예제1은 4개, 예제2/3은 5개로 통일, 정규화/가중치페널티 미적용
+- 테스트셋 RMSE로 성능 비교, CQRNN*/MCQRNN은 예측 quantile 평균값으로 점추정
+
+실험결과
+- e∼N(0,0.25)에서는 MLP가 평균적으로 가장 좋은 성능(RMSE) 보이나, 모든 모델의 차이가 10% 이내로 미미함
+- e∼t(3), e∼χ²(3) 등 비정규분포에서는 CQRNN*/MCQRNN이 테스트셋에서 가장 낮은 RMSE 기록, 특히 MCQRNN이 예제3에서 가장 강인함
+- MLP는 이상치에 취약(최악 5/95퍼센타일RMSE 기준), MCQRNN은 Stable하고 전반적 최적
+- MCQRNN의 non-crossing 제약이 성능에 추가적으로 기여함(CQRNN* 대비 예제3과 비정규분포에서 우위)
+- 전체적으로 MCQRNN이 기존 신경망 기반 quantile 추정모델 대비 우수 혹은 동등 이상의 성능 달성
+
+
+### Rainfall IDF curve
+
+이 부분은 MCQRNN 모델을 실제 강우 빈도-지속시간-강도(IDF, Intensity-Duration-Frequency) 곡선 문제에 적용한 사례 연구다.
+
+#### 배경: IDF 곡선이란?
+
+IDF(Intensity-Duration-Frequency) curve는 비가 얼마나 세게(강도), 얼마나 오래(지속시간), 얼마나 자주(빈도) 오는지를 나타내는 곡선으로, 홍수 설계(배수, 댐, 수문 설계)에 필수적인 기초 자료다. 빈도(Frequency/Return period)는 2년, 5년, 10년, 100년 빈도로 표현되며 이는 각각 $s=0.5, 0.8, 0.9, 0.99$ quantile에 해당한다. 지속시간(Duration)은 보통 5분에서 24시간까지 범위를 가지며, 강도(Intensity)는 주어진 빈도와 지속시간에서의 강우 강도(mm/hr)를 나타낸다.
+
+#### 기존 ECCC(캐나다 환경청)의 IDF 곡선 작성 방법
+
+ECCC는 캐나다 전역 565개 관측소의 데이터를 이용해 다음 절차로 공식 IDF 곡선을 만들어왔다. 먼저 각 관측소와 지속시간별로 연 최대 강우량(annual max rainfall)을 구하고, 그 데이터에 Gumbel 분포(극값 분포)를 피팅한다. 그 다음 각 재현기간(2년, 5년, ..., 100년)의 강우강도를 계산하고, log-log 선형 보간식(log(duration) vs log(intensity))으로 IDF 곡선을 그린다. 결과적으로 각 지점마다 30개의 파라미터(분포+보간식)로 IDF 곡선을 만든다.
+
+이 방법의 문제점은 관측소가 없는 지역(ungauged location)에는 IDF 곡선을 만들 수 없다는 점과, 파라메트릭 분포(Gumbel 가정)가 항상 실제 분포를 잘 설명하지 않는다는 점이다.
+
+#### MCQRNN을 이용한 새로운 접근
+
+논문은 MCQRNN을 이용해 비관측 지역에서도 IDF 곡선을 예측하고, monotonic(비교차/non-crossing) 제약을 보장하는 방법을 제안한다.
+
+**모델 입력과 출력:**
+
+입력(covariates)으로는 위도(lat), 경도(lon), 고도(elev), 겨울 강수량(DJF), 여름 강수량(JJA) 등 5개의 변수를 사용하며, 단조형(monotone) covariates로는 quantile level(s, 즉 재현기간)과 log(Duration, D)를 사용한다. 출력(response)은 단기 강우 강도(rainfall rate)다.
+
+모델 구조는 주변 80개 관측소 데이터를 모아 지역 데이터 풀(pool)을 형성하는 regionalization 방식을 사용하며, 각 관측소를 한 번씩 "비관측(ungauged)" 상태로 두고 leave-one-out 검증을 수행한다.
+
+#### 모델 평가 방법
+
+Leave-one-out cross-validation(LOO-CV) 방식을 사용하여, 565개 관측소 각각을 "비관측소"로 가정하고 주변 80개 데이터로 모델을 학습한 후 해당 관측소에서 예측하여 실제값과 비교한다. 비교 대상은 기존 QRNN(Quantile Regression Neural Network)과 제안된 MCQRNN이다.
+
+모델 복잡도는 hidden node 수(J)로 제어하며, QAIC(Akaike Information Criterion 기반)으로 최적 J를 선택한다. 결과적으로 QRNN은 최적 $J=1$, MCQRNN은 최적 $J=3$을 보였다.
+
+#### 실험 결과
+
+**성능 비교:**
+
+두 모델의 평균 오차(quantile regression error)는 5% 이내로 비슷하지만, MCQRNN이 단기(5분~2시간) 강우에서는 조금 더 우수하고 QRNN은 장기(6~24시간)에서 약간 더 나은 성능을 보였다. 하지만 MCQRNN에 가중치($w_s(s) \propto \log(D)$)를 주면 장기에서도 개선된다.
+
+**구조적 장점:**
+
+MCQRNN은 non-crossing, monotonic(빈도↑ → 강도↑, 지속시간↑ → 강도↓)을 구조적으로 보장하지만, QRNN은 교차(crossing)나 비단조적 패턴이 나타날 수 있다. 실제로 Fig.7에서 QRNN의 100년빈도 곡선이 뒤섞이는 현상이 관찰되었다.
+
+**모델 효율성:**
+
+| 모델     | 구조                                       | 총 파라미터 수     |
+| ------ | ---------------------------------------- | ------------ |
+| QRNN   | 54개 별도 모델 (6 quantiles × 9 durations) | 432개         |
+| MCQRNN | 모든 s, D 통합 학습                           | 28개 (J=3 기준) |
+
+MCQRNN은 약 15배 이상 단순화되면서도 거의 같은 성능을 보여, QRNN의 파라미터 상당수가 중복(redundant)임을 보여준다.
+
+**과적합 방지 효과:**
+
+QRNN은 hidden node 수(J)가 커지면 overfitting이 심화되지만, MCQRNN은 monotonic constraint 덕분에 J가 커져도 성능 저하가 거의 없다. 즉, 비교차 제약 자체가 regularization 역할을 수행한다.
+
+**실제 ECCC 곡선과 비교:**
+
+$R_s$ = (ECCC 곡선의 in-sample 오차) / (MCQRNN의 예측 오차)로 정의할 때, $R_s = 1$이면 비관측 MCQRNN 예측이 실제 곡선과 동일한 수준이며, $R_s \geq 0.9$이면 매우 양호한 수준이다. 54개의 (duration, quantile) 조합 중 41개(약 76%)가 $R_s > 0.9$를 기록했으며, 나머지 전부 $R_s > 0.7$로 전반적으로 매우 높은 재현성을 보였다.
+
+**관측소 밀도 영향:**
+
+관측소 간격이 좁을수록 성능이 우수하며($R_s \approx 1$), 거리 500km 이상 떨어진 지역부터 오차가 증가한다. 따라서 데이터가 희소한 북부 지역에서는 추정 신뢰도가 낮다.
+
+#### 전체 요약
+
+| 구분        | 내용                                                                    |
+| --------- | --------------------------------------------------------------------- |
+| **목적**    | 비관측 지역에서 강우 IDF 곡선을 추정하는 강건한 방법 제안                                    |
+| **모델**    | MCQRNN (monotone composite quantile regression neural net)            |
+| **입력 변수** | 위도, 경도, 고도, 계절별 강수량, quantile level s, log(duration)                  |
+| **비교 모델** | QRNN (separate quantile별 신경망)                                         |
+| **검증 방법** | Leave-one-out cross-validation (565개 관측소)                             |
+| **성능**    | 평균 오차 ±5% 이내, $R_s > 0.9$ (41/54 조합)                                 |
+| **장점**    | - non-crossing/monotonic 보장<br>- 파라미터 수 대폭 감소<br>- overfitting 저항성 강함 |
+| **한계**    | 관측소 밀도 낮은 지역에서는 정확도 하락                                                |
+
+**한 문장 요약:**
+
+MCQRNN은 캐나다 전역의 강우 IDF 곡선을 학습하면서, 기존 QRNN보다 훨씬 단순하고 안정적인 구조로 비교차·단조 제약을 만족하면서도 유사한 성능을 보였고, 비관측 지역에서도 높은 정확도의 IDF 추정이 가능하다는 것을 Monte Carlo-Cross-validation 실험으로 검증했다.
+
 
 ---
 
