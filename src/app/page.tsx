@@ -1,6 +1,7 @@
 import { getSortedPostsData, getPostsByMonth, getPostsContributionDataByYear, getActiveYears, getPostsByDayOfWeek, ContributionDay } from '@/lib/posts';
 import PostCard from '@/components/PostCard';
 import ContributionGraph from '@/components/ContributionGraph';
+import MyServiceCard from '@/components/MyServiceCard';
 import Link from 'next/link';
 
 export default async function Home() {
@@ -79,6 +80,9 @@ export default async function Home() {
 
         {/* 사이드바 (오른쪽) */}
         <div className="lg:col-span-1 space-y-8">
+          {/* 내가 만든 서비스 */}
+          <MyServiceCard />
+          
           {/* GitHub 스타일 잔디밭 */}
           <ContributionGraph 
             allYearData={allYearData}
