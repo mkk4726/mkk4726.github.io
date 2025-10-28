@@ -41,6 +41,10 @@ function getAllPostFiles(dir: string): string[] {
     if (stat.isDirectory()) {
       files.push(...getAllPostFiles(fullPath));
     } else if (item.endsWith('.md') || item.endsWith('.ipynb') || item.endsWith('.pdf')) {
+      // README 파일은 일반 포스트로 처리하지 않음
+      if (item.toLowerCase() === 'readme.md') {
+        continue;
+      }
       files.push(fullPath);
     }
   }

@@ -2,7 +2,7 @@ import { getPostsByFolderPath, getAllFolderPaths, getFolderStructure, getPostsCo
 import PostCard from '@/components/PostCard';
 import FolderTree from '@/components/FolderTree';
 import ContributionGraph from '@/components/ContributionGraph';
-import MarkdownContent from '@/components/MarkdownContent';
+import AboutContent from '@/components/AboutContent';
 import Link from 'next/link';
 
 interface FolderPageProps {
@@ -132,9 +132,7 @@ async function FolderPageContent({ folderPath }: { folderPath: string }) {
           <h2 className="text-lg lg:text-xl font-semibold text-gray-900 dark:text-gray-100 mb-4">
             📖 폴더 설명
           </h2>
-          <div className="prose prose-sm lg:prose-base max-w-none prose-headings:text-gray-900 dark:prose-headings:text-gray-100 prose-p:text-gray-700 dark:prose-p:text-gray-300 prose-strong:text-gray-900 dark:prose-strong:text-gray-100 prose-em:text-gray-600 dark:prose-em:text-gray-400 prose-ul:text-gray-700 dark:prose-ul:text-gray-300 prose-ol:text-gray-700 dark:prose-ol:text-gray-300 prose-li:text-gray-700 dark:prose-li:text-gray-300 prose-li:marker:text-gray-700 dark:prose-li:marker:text-gray-300">
-            <MarkdownContent content={readmeContent} />
-          </div>
+          <AboutContent content={readmeContent} />
         </div>
       )}
 
