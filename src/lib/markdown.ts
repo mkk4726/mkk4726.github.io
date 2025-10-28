@@ -8,6 +8,11 @@ import rehypeStringify from 'rehype-stringify';
 import { remarkAudio } from './remark-audio';
 
 export async function parseMarkdown(content: string): Promise<string> {
+  // content가 유효한지 확인
+  if (!content || typeof content !== 'string') {
+    return '';
+  }
+  
   // 마크다운 파싱 전에 강조 마커 뒤에 바로 오는 문자 패턴 수정
   // **text**letter → **text** letter
   let processedContent = content;

@@ -1,7 +1,8 @@
-import { getPostsByFolderPath, getAllFolderPaths, getFolderStructure, getPostsContributionDataByFolderAndYear, getActiveYearsByFolder, ContributionDay, getPostsByFolderAndDate, getSortedPostsData } from '@/lib/posts';
+import { getPostsByFolderPath, getAllFolderPaths, getFolderStructure, getPostsContributionDataByFolderAndYear, getActiveYearsByFolder, ContributionDay, getPostsByFolderAndDate, getSortedPostsData, getFolderReadme } from '@/lib/posts';
 import PostCard from '@/components/PostCard';
 import FolderTree from '@/components/FolderTree';
 import ContributionGraph from '@/components/ContributionGraph';
+import MarkdownContent from '@/components/MarkdownContent';
 import Link from 'next/link';
 
 interface FolderPageProps {
@@ -29,7 +30,8 @@ export async function generateStaticParams() {
   for (const post of allPosts) {
     const postFolder = post.id.includes('/') ? post.id.substring(0, post.id.lastIndexOf('/')) : '';
     
-    if (postFolder) {
+    // post.date가 존재하는지 확인
+    if (postFolder && post.date && typeof post.date === 'string') {
       if (!folderDateMap.has(postFolder)) {
         folderDateMap.set(postFolder, new Set());
       }
@@ -77,6 +79,7 @@ export default async function FolderPage({ params }: FolderPageProps) {
 async function FolderPageContent({ folderPath }: { folderPath: string }) {
   const posts = await getPostsByFolderPath(folderPath);
   const folderStructure = getFolderStructure();
+  const readmeContent = await getFolderReadme(folderPath);
 
   // 폴더 이름 추출 (마지막 세그먼트)
   const folderName = folderPath.split('/').pop() || folderPath;
@@ -122,6 +125,18 @@ async function FolderPageContent({ folderPath }: { folderPath: string }) {
           : '이 폴더에는 아직 포스트가 없습니다.'
         }
       </p>
+
+      {/* README.md 내용 표시 */}
+      {readmeContent && readmeContent.trim() !== '' && (
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 lg:p-6 mb-6">
+          <h2 className="text-lg lg:text-xl font-semibold text-gray-900 dark:text-gray-100 mb-4">
+            📖 폴더 설명
+          </h2>
+          <div className="prose prose-sm lg:prose-base max-w-none prose-headings:text-gray-900 dark:prose-headings:text-gray-100 prose-p:text-gray-700 dark:prose-p:text-gray-300 prose-strong:text-gray-900 dark:prose-strong:text-gray-100 prose-em:text-gray-600 dark:prose-em:text-gray-400 prose-ul:text-gray-700 dark:prose-ul:text-gray-300 prose-ol:text-gray-700 dark:prose-ol:text-gray-300 prose-li:text-gray-700 dark:prose-li:text-gray-300 prose-li:marker:text-gray-700 dark:prose-li:marker:text-gray-300">
+            <MarkdownContent content={readmeContent} />
+          </div>
+        </div>
+      )}
 
       {/* 모바일: 세로 레이아웃, 데스크톱: 가로 레이아웃 */}
       <div className="flex flex-col xl:flex-row gap-6 xl:gap-8">

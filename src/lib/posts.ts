@@ -805,4 +805,48 @@ export async function getPostsByFolderAndDate(folderPath: string, date: string):
     const postFolder = post.id.includes('/') ? post.id.substring(0, post.id.lastIndexOf('/')) : '';
     return post.date === date && (postFolder === folderPath || postFolder.startsWith(folderPath + '/'));
   });
+}
+
+// 폴더에 README.md 파일이 있는지 확인하고 내용을 반환하는 함수
+export async function getFolderReadme(folderPath: string): Promise<string | null> {
+  try {
+    // folderPath가 유효한지 확인
+    if (!folderPath || typeof folderPath !== 'string') {
+      return null;
+    }
+    
+    const folderFullPath = path.join(postsDirectory, folderPath);
+    const readmePath = path.join(folderFullPath, 'README.md');
+    
+    // 폴더가 존재하는지 확인
+    if (!fs.existsSync(folderFullPath)) {
+      return null;
+    }
+    
+    // README.md 파일이 존재하는지 확인
+    if (!fs.existsSync(readmePath)) {
+      return null;
+    }
+    
+    // 파일 내용 읽기
+    const fileContent = fs.readFileSync(readmePath, 'utf8');
+    
+    // 파일 내용이 비어있는지 확인
+    if (!fileContent || fileContent.trim() === '') {
+      return null;
+    }
+    
+    // frontmatter가 있는지 확인하고 제거
+    const { content } = matter(fileContent);
+    
+    // content가 유효한지 확인
+    if (!content || typeof content !== 'string') {
+      return null;
+    }
+    
+    return content.trim();
+  } catch (error) {
+    console.error(`Error reading README.md for folder ${folderPath}:`, error);
+    return null;
+  }
 } 
