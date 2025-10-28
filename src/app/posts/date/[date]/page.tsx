@@ -12,7 +12,10 @@ export async function generateStaticParams() {
   const allPosts = await getSortedPostsData();
   const uniqueDates = [...new Set(allPosts.map(post => post.date))];
   
-  return uniqueDates.map((date) => ({
+  // 빈 문자열과 undefined 제거
+  const validDates = uniqueDates.filter(date => date && date.trim() !== '');
+  
+  return validDates.map((date) => ({
     date: date,
   }));
 }

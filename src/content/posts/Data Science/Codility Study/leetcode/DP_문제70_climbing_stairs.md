@@ -1,7 +1,7 @@
 ---
-title: "하루에 한 문제는 풀자"
+title: "70. Climbing Stairs"
 date: "2025-10-25"
-excerpt: "문제 풀이 정리"
+excerpt: "DP 문제, Easy 난이도."
 category: "Codility Study"
 tags: ["leetcode"]
 ---
