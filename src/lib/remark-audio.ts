@@ -20,7 +20,7 @@ interface LinkNode extends UnistNode {
 
 export const remarkAudio: Plugin = () => {
   return (tree) => {
-    console.log('=== remarkAudio plugin running ===');
+    // console.log('=== remarkAudio plugin running ===');
     
     visit(tree, 'paragraph', (node: UnistNode) => {
       const children = node.children as UnistNode[];
@@ -33,13 +33,13 @@ export const remarkAudio: Plugin = () => {
             firstChild.value === '@audio' && 
             secondChild.type === 'link') {
           
-          console.log('Found @audio + link pattern:', children);
+          // console.log('Found @audio + link pattern:', children);
           
           const linkNode = secondChild as LinkNode;
           const title = linkNode.children?.[0]?.value || '';
           const src = linkNode.url || '';
           
-          console.log('Extracted title:', title, 'src:', src);
+          // console.log('Extracted title:', title, 'src:', src);
           
           // Create HTML text node directly
           const htmlString = `<div class="audio-player-wrapper" data-audio-src="${src}" data-audio-title="${title}"></div>`;
@@ -51,12 +51,12 @@ export const remarkAudio: Plugin = () => {
           
           // Replace the paragraph node with the HTML node
           Object.assign(node, htmlNode);
-          console.log('✅ Paragraph replaced with HTML node:', node);
-          console.log('HTML string:', htmlString);
+          // console.log('✅ Paragraph replaced with HTML node:', node);
+          // console.log('HTML string:', htmlString);
         }
       }
     });
     
-    console.log('=== remarkAudio plugin finished ===');
+    // console.log('=== remarkAudio plugin finished ===');
   };
 }; 
