@@ -2,7 +2,7 @@
   {
     "id": "Self_Development/Career/Portfolio/visuworks_segmentation",
     "title": "[Visuworks] Segmentation Model",
-    "date": "2025-10-29",
+    "date": "2025-10-30",
     "excerpt": "출혈관련 병변 탐지 모델 개발",
     "category": "Career",
     "tags": [
@@ -15,7 +15,7 @@
   {
     "id": "Self_Development/Career/Portfolio/visuworks_ocr_pipeline",
     "title": "OCR Pipeline System",
-    "date": "2025-10-29",
+    "date": "2025-10-30",
     "excerpt": "문서 이미지에서 텍스트를 추출하는 자동화된 OCR 파이프라인",
     "category": "Career",
     "tags": [
@@ -31,7 +31,7 @@
   {
     "id": "Self_Development/Career/Portfolio/visuworks_lenze_size_rec",
     "title": "Lens Size Recommendation System",
-    "date": "2025-10-29",
+    "date": "2025-10-30",
     "excerpt": "머신러닝을 활용한 맞춤형 렌즈 사이즈 추천 시스템",
     "category": "Career",
     "tags": [
@@ -43,7 +43,7 @@
   {
     "id": "Self_Development/Career/Portfolio/visuworks_chatbot",
     "title": "AI Chatbot Project",
-    "date": "2025-10-29",
+    "date": "2025-10-30",
     "excerpt": "고객상담용 챗봇 개발",
     "category": "Career",
     "tags": [
@@ -55,7 +55,7 @@
   {
     "id": "Self_Development/Career/Portfolio/side_recommendation_study",
     "title": "[Side] 추천 모델링 공부",
-    "date": "2025-10-29",
+    "date": "2025-10-30",
     "excerpt": "추천 모델링 공부를 위한 과정들",
     "category": "Career",
     "tags": [
@@ -69,7 +69,7 @@
   {
     "id": "Self_Development/Career/Portfolio/pnu_cloud_funding_prediction",
     "title": "[PNU] Cloud Funding Success prediction model",
-    "date": "2025-10-29",
+    "date": "2025-10-30",
     "excerpt": "부산대학교 산업공학과 졸업 프로젝트",
     "category": "Career",
     "tags": [
@@ -83,13 +83,25 @@
   {
     "id": "Self_Development/Career/Portfolio/aiffel_segmentation",
     "title": "Segmentation Model",
-    "date": "2025-10-29",
+    "date": "2025-10-30",
     "excerpt": "눈의 안쪽 부분을 찍는 안저사진에서 망막병증을 탐지하는 모델",
     "category": "Career",
     "tags": [
       "Segmentation"
     ],
     "content": "기간 : 2023.12 ~ 2024.03 (4개월) 역할 : 문제정의, 프로젝트 설계, 구현까지 모든 과정 --- 프로젝트 개요 아이펠이라는 AI 엔지니어 양성과정 부트캠프를 들으면서 진행했던 기업 연계 프로젝트입니다. 사람들의 건강에 기여하고 싶었고, 이를 위해 의료 도메인과 관련된 프로젝트를 진행했습니다. 그 중에서 \"안과\" 도메인인 회사와 기업 연계 프로젝트를 진행하게 되었습니다. 여러가지 주제 중 \"당뇨병성 망막병증 병변 탐지\"라는 문제를 정의해 프로젝트를 진행했습니다. 그 이유는 실명률이 가장 높은 질환이었고, 당뇨병 환자에게 자주 발생하는 합병증이기 때문이었습니다. 아버지가 당뇨가 있으시기 때문에, 가족의 건강에 직접적으로 기여할 수 있다는 생각에 관련 문제를 풀어보고 싶었습니다. <figure> <img src=\"/post/Portfolio/aiffel_presentaion_1.png\" alt=\"aiffel_presentaion_1\" /><width 80%/> <figcaption>그림1. 왜 당뇨병성 망막병증으로 주제를 정했는지</figcaption> </figure> <small>발표자료 링크</small> 눈의 안쪽 사진인 \"안저사진\"에 당뇨병성 망막병증 관련 병변들이 보이고, 이를 통해 초기 진단을 할 수 있습니다. 이를 돕기 위해 안저사진에서 병변들을 탐지하는, Segmentation 모델을 개발하는 프로젝트를 진행했습니다. 프로젝트를 진행하면서, 논문을 읽고 Segmenation 모델들 구현하고 고도화하는 과정을 통해 개발 능력을 키울 수 있었고, 데이터를 뜯어보면서 이미지 전처리를 고도화하는 과정에서 데이터 전처리에 대한 감을 키울 수 있었습니다. --- 문제 해결 과정 어떤 문제들이 있었고, 이를 해결하는 과정을 정리했습니다. --- 데이터셋은? > 데이터셋이 없다... 가장 어려웠던 부분입니다. 제공되는 데이터셋이 없었기 때문에 데이터 수집부터 해야했습니다. 하지만 데이터셋이 없으니 거의 1~2주정도를 데이터를 구하기 위한 구글링에 시간을 썼던 것 같습니다. 그러던 중 FGADR 이라는 데이터셋을 찾았고 대략 1500건정도의 데이터를 확보할 수 있었습니다. --- 모델링 > Unet vs DeepLab Segmentation은 크게 Unet 계열과 DeepLab 계열로 구분할 수 있었고, 각각 다양한 모델들이 존재했습니다. 여러 논문에서 전체 이미지 중 레이블(마스크)이 포함된 부분이 매우 작은 의료 도메인의 특성상, U-Net 계열 모델이 가장 높은 성능을 보였고, 실제로 가지고 있는 데이터셋안에서도 확인할 수 있었습니다. 초기 실험을 통해 Unet을 베이스라인으로 잡았고, 이를 고도화시켜나가는 방식으로 실험읋 진행했습니다. --- 이미지 전처리: CLAHE 적용 <figure> <img src=\"/post/Portfolio/aiffel_presentation_clahe.png\" alt=\"aiffel_presentaion_clahe\" /><width 80%/> <figcaption>그림2. 이미지 전처리 방법 적용 : CLAHE</figcaption> </figure> 가장 성능을 높일 수 있었던 부분입니다. 명암대비를 향상시킬 수 있는 방법으로, 병변의 특징을 더 명확하게 보이게 만들 수 있었습니다. 실제로 모델이 그림2의 사진처럼 작은 병변들을 더 잘 찾는 것을 확인할 수 있었습니다. 다만 과도한 명암대비 향상은 false positive를 증가시키므로 실험을 통해 적정 수준을 설정했습니다. --- multi-task learning <figure> <img src=\"/post/Portfolio/aiffel_presentation_mtl.png\" alt=\"aiffel_presentaion_mtl\" /><width 80%/> <figcaption>그림3. 인코더 풍부하게 하기 : MTL</figcaption> </figure> 다음으로는 Unet의 Encoder를 풍부하게 학습시키기 위해서 multi-task learning을 적용했습니다. 이는 관련 논문들에서 제시한 아이디어들을 참고해 구현한 것입니다. 논문들에서 구현 코드가 공개되어 있지 않아 실제로 구현해보면서 많은 시행착오를 겪어야 했습니다. 특히 Encoder의 어느 부분까지 pretraining 시켜야하며, segmentaion task를 학습할 때는 다른 task의 가중치를 얼마나 줘야하는지 등을 실험을 통해 확인할 수 있었습니다. MTL을 적용하고 많은 성능은 아니지만 향상된 것을 확인할 수 있었습니다.",
+    "public": true
+  },
+  {
+    "id": "Data Science/Codility Study/leetcode/DP_322_Coin_Change",
+    "title": "322. Coin Change",
+    "date": "2025-10-30",
+    "excerpt": "DP 문제, Medium 난이도.",
+    "category": "Codility Study",
+    "tags": [
+      "leetcode"
+    ],
+    "content": "링크 --- 문제 정리 정수 배열 coins와 정수 amount가 주어진다. 각 coins[i]는 서로 다른 동전의 단위며, 각 동전은 무한 개씩 사용할 수 있다. 목표: coins에 있는 동전들로 합이 정확히 amount가 되도록 만들 때, 필요한 동전 개수의 최솟값을 구하라. 만들 수 없다면 -1을 반환한다. 예시 Input: coins = [1,2,5], amount = 11 Output: 3 설명: 11 = 5 + 5 + 1 Input: coins = [2], amount = 3 Output: -1 Input: coins = [1], amount = 0 Output: 0 제약 1 <= coins.length <= 12 1 <= coins[i] <= 2³¹ - 1 0 <= amount <= 10⁴ --- 풀이 이것도 그냥 단순한 dp 문제네. medium정도는 이제 쉽다. 항상 예외처리 신경쓰기! 범위보면서 test case 생각하기 내 풀이 예외처리 생각못해서 처음에 틀렸음 -> 라이브 코테라면 상관없겠지만(?) 주의하자. ``python class Solution: def coinChange(self, coins: List[int], amount: int) -> int: if amount == 0: return 0 min_cnt_list = [-1] (amount + 1) for coin in coins: if coin <= amount: min_cnt_list[coin] = 1 def dp(amount): if min_cnt_list[amount] != -1: return min_cnt_list[amount] # 구할 수 없는 경우에 대한 처리가 안되고 있음 min_cnt = 1e5 for coin in coins: if amount - coin >= 0: min_cnt = min(dp(amount - coin) + 1, min_cnt) min_cnt_list[amount] = min_cnt return min_cnt answer = dp(amount) if answer == 1e5: return -1 else: return answer ` --- AI 풀이 더 효율적인 풀이로, Top-down(재귀+메모이제이션) 대신 Bottom-up 방식의 DP(반복문)도 많이 사용됩니다. 불필요한 재귀 호출 없이 메모리와 시간이 모두 절약됩니다. `python from typing import List class Solution: def coinChange(self, coins: List[int], amount: int) -> int: dp = [float('inf')] (amount + 1) dp[0] = 0 for coin in coins: for x in range(coin, amount + 1): dp[x] = min(dp[x], dp[x - coin] + 1) return dp[amount] if dp[amount] != float('inf') else -1 ` dp[x]`: 금액 x를 만들기 위한 최소 동전 개수 dp[0]은 항상 0으로 시작(=동전 0개 필요) 각 동전에 대해 반복적으로 업데이트하며, 이전 값을 계속 참고 최종 답이 unreachable이면 -1 반환",
     "public": true
   },
   {
@@ -997,6 +1009,22 @@
     "public": true
   },
   {
+    "id": "Data Science/Data Engineering/aws-ec2-ebs",
+    "title": "AWS EC2와 EBS 완벽 가이드",
+    "date": "2025-08-14",
+    "excerpt": "AWS EC2와 EBS의 개념, 사용법, 그리고 EBS 백업 기능에 대한 상세한 설명",
+    "category": "Data Engineering",
+    "tags": [
+      "AWS",
+      "EC2",
+      "EBS",
+      "Cloud Computing",
+      "Infrastructure"
+    ],
+    "content": "AWS EC2와 EBS 완벽 가이드 EC2 (Elastic Compute Cloud)란? EC2는 AWS에서 제공하는 가상 서버 서비스입니다. 사용자가 필요에 따라 컴퓨팅 리소스를 유연하게 확장하거나 축소할 수 있는 클라우드 컴퓨팅 서비스입니다. EC2의 주요 특징 가상 서버: 물리적 서버를 가상화하여 제공 확장성: 필요에 따라 인스턴스 수를 늘리거나 줄일 수 있음 다양한 인스턴스 타입: CPU, 메모리, 스토리지 요구사항에 맞는 다양한 옵션 온디맨드 요금: 사용한 만큼만 비용 지불 EC2 사용 사례 웹 애플리케이션 호스팅 웹 서버, 애플리케이션 서버 운영 로드 밸런서와 함께 고가용성 확보 데이터 처리 대용량 데이터 분석 작업 배치 프로세싱 및 ETL 작업 개발 및 테스트 환경 개발, 스테이징, 테스트 환경 구축 CI/CD 파이프라인 구축 게임 서버 온라인 게임 서버 운영 트래픽에 따른 자동 스케일링 EBS (Elastic Block Store)란? EBS는 EC2 인스턴스에 연결할 수 있는 블록 레벨 스토리지 서비스입니다. 하드 디스크와 유사한 기능을 제공하며, EC2 인스턴스의 부팅 디스크나 추가 데이터 스토리지로 사용됩니다. EBS의 주요 특징 블록 레벨 스토리지: 파일 시스템이 아닌 블록 단위로 데이터 저장 영구 저장: 인스턴스가 종료되어도 데이터 유지 다양한 볼륨 타입: SSD, HDD 등 성능과 비용에 따른 선택 가능 스냅샷 기능: 데이터 백업 및 복구 지원 EBS 볼륨 타입 SSD 기반 볼륨 gp3: 범용 SSD, 균형잡힌 성능과 비용 io2: 고성능 SSD, 높은 IOPS 요구사항에 적합 HDD 기반 볼륨 st1: 처리량 최적화 HDD, 빅데이터 워크로드에 적합 sc1: 콜드 스토리지, 자주 접근하지 않는 데이터에 적합 EBS 사용 사례 부팅 디스크 EC2 인스턴스의 운영체제 및 애플리케이션 설치 시스템 파일 및 설정 저장 데이터베이스 스토리지 MySQL, PostgreSQL 등의 데이터베이스 파일 저장 높은 IOPS가 필요한 워크로드에 적합 파일 서버 사용자 업로드 파일 저장 공유 파일 및 문서 저장 백업 및 복구 중요한 데이터의 스냅샷 생성 재해 복구를 위한 데이터 보호 EC2와 EBS의 연동 연결 방식 부팅 볼륨: EC2 인스턴스 생성 시 자동으로 연결되는 루트 볼륨 추가 볼륨: 인스턴스에 추가로 연결할 수 있는 데이터 볼륨 볼륨 분리: 인스턴스에서 볼륨을 분리하여 다른 인스턴스에 연결 가능 성능 최적화 EBS 최적화: EC2 인스턴스와 EBS 간의 네트워크 성능 최적화 프로비저닝된 IOPS: 예측 가능한 성능을 위한 IOPS 예약 스루풋 최적화: 대용량 데이터 전송에 최적화된 처리량 EBS 백업 기능 스냅샷 (Snapshots) EBS의 핵심 백업 기능으로, 특정 시점의 볼륨 상태를 저장합니다. 스냅샷의 특징 증분 백업: 변경된 블록만 백업하여 저장 공간 절약 지역 간 복사: 다른 AWS 리전으로 백업 복사 가능 자동화: AWS Lambda와 CloudWatch를 통한 자동 스냅샷 생성 비용 효율성: 사용하지 않는 스냅샷은 삭제하여 비용 절약 스냅샷 생성 방법 수동 생성: AWS 콘솔, CLI, SDK를 통한 수동 스냅샷 생성 자동 생성: 정책 기반 자동 스냅샷 생성 및 관리 스케줄링: 정기적인 백업 스케줄 설정 AWS Backup AWS에서 제공하는 중앙화된 백업 서비스로, EBS 볼륨을 포함한 다양한 AWS 리소스를 백업할 수 있습니다. 주요 기능 통합 관리: 여러 AWS 서비스의 백업을 한 곳에서 관리 정책 기반 백업: 백업 정책을 정의하여 자동화된 백업 실행 크로스 리전 백업: 여러 리전에 백업 복사본 저장 규정 준수: 다양한 규정 및 표준에 맞는 백업 정책 적용 백업 전략 3-2-1 백업 규칙 3개의 백업 복사본 2개의 다른 저장 매체 1개의 오프사이트 백업 백업 주기 일일 백업: 중요한 데이터의 경우 주간 백업: 일반적인 데이터의 경우 월간 백업: 장기 보관이 필요한 데이터의 경우 백업 보존 기간 단기 보존: 30일 이내의 백업 중기 보존: 90일 이내의 백업 장기 보존: 1년 이상의 백업 실제 사용 예시 웹 애플리케이션 구축 `` EC2 인스턴스 (t3.medium) ├── EBS gp3 볼륨 (20GB) - 부팅 디스크 └── EBS io2 볼륨 (100GB) - 데이터베이스 ` 데이터 분석 환경 ` EC2 인스턴스 (r5.2xlarge) ├── EBS gp3 볼륨 (50GB) - 부팅 디스크 ├── EBS st1 볼륨 (500GB) - 원시 데이터 └── EBS gp3 볼륨 (200GB) - 처리된 데이터 `` 비용 최적화 팁 적절한 볼륨 타입 선택: 워크로드에 맞는 볼륨 타입으로 비용 절약 미사용 볼륨 정리: 사용하지 않는 EBS 볼륨 삭제 스냅샷 관리: 오래된 스냅샷 정리 및 보존 기간 최적화 예약 인스턴스: 장기 사용 시 예약 인스턴스로 비용 절약 결론 AWS EC2와 EBS는 클라우드 인프라의 핵심 서비스로, 함께 사용하여 안정적이고 확장 가능한 시스템을 구축할 수 있습니다. EBS의 강력한 백업 기능을 활용하면 데이터 손실 위험을 최소화하고, 비즈니스 연속성을 보장할 수 있습니다. 올바른 EC2 인스턴스 타입과 EBS 볼륨 타입을 선택하고, 체계적인 백업 전략을 수립하여 클라우드 환경을 효율적으로 운영하시기 바랍니다.",
+    "public": true
+  },
+  {
     "id": "Data Science/Paper-Review/A-Gentle-Introduction-to-Conformal-Prediction-and-Distribution-Free-Uncertainty-Quantification",
     "title": "A Gentle Introduction to Conformal Prediction and Distribution-Free Uncertainty Quantification",
     "date": "2025-08-13",
@@ -1589,22 +1617,6 @@
       "비교 및 비유할 때 쓰는 표현들"
     ],
     "content": "He is such a poser 공부한 것들 정리 so that such It's so sunny that you don't need to wear a jacket outside. He is so stubborn that he won't listen to me. ㅋㅋ I'm so hungry that I could eat a horse. She is such a drama quen. drama quen : 늘 오하면서 관심받고 싷ㅍ어하는 사람 night owl : 저녁형 이간 morning person : 아침형 인간 cat person : 공야이 좋아하는 사람 oportunitist : 기회주의 a know-it-all : 아는척 하는 사람 hopeless romantic : 답없는 낭만주의자 be obssessed with 간단한 작문하기 Today I learned representations(표현) using so ~ that and such. It is used to represent the situation or person. If someone ask me about me, I wll answer that I'm such a dog person. Or do you want to eat lunch, I will answer that I'm so hungry that I could eat a horse. So let's summary, when metapor somthing, I can use \"so ~ that\" and \"such\". It is very useful. --- 피드백 (Feedback) Your writing shows a good understanding of the \"so ~ that\" and \"such\" structures! Here are some suggestions for improvement: Grammar corrections: \"representations(표현)\" → \"expressions\" (더 자연스러운 표현) \"If someone ask me\" → \"If someone asks me\" (3인칭 단수) \"I wll answer\" → \"I will answer\" (오타) \"Or do you want to eat lunch\" → \"Or if you ask do you want to eat lunch\" (문맥상 더 자연스러움) \"let's summary\" → \"let's summarize\" (동사형) \"metapor somthing\" → \"metaphor something\" (철자) Structure improvements: 문장들을 더 자연스럽게 연결할 수 있어요 예시를 더 다양하게 들 수 있어요 더 자세한 버전 (Detailed Version) Understanding \"So ~ That\" and \"Such\" Expressions Today I learned about powerful expressions using \"so ~ that\" and \"such\" that help us emphasize situations or describe people more vividly. How these expressions work: \"So ~ that\" structure: Used with adjectives/adverbs Pattern: so + adjective/adverb + that + result/consequence Example: \"I'm so hungry that I could eat a horse.\" \"Such\" structure: Used with nouns (often with adjectives) Pattern: such + (adjective) + noun Example: \"He's such a poser\" or \"She's such a drama queen.\" Personal examples: When someone asks about my personality, I can confidently say \"I'm such a dog person\" because I absolutely love dogs and prefer their company to cats. This expression immediately conveys my strong preference. If someone invites me to lunch when I'm starving, I might respond, \"Yes! I'm so hungry that I could eat a horse!\" This dramatically emphasizes just how hungry I am. Why these expressions are useful: These metaphorical expressions add color and emphasis to our speech. Instead of simply saying \"I'm hungry,\" saying \"I'm so hungry that I could eat a horse\" creates a vivid image and shows the intensity of the feeling. Similarly, calling someone \"such a drama queen\" is much more expressive than just saying \"she's dramatic.\" Additional examples for practice: \"The movie was so boring that I fell asleep.\" \"He's such a night owl that he never goes to bed before 2 AM.\" \"The weather is so nice that we should go for a walk.\" \"She's such a know-it-all that nobody wants to work with her.\" These expressions help make our English more natural and emotionally expressive, allowing us to communicate not just facts but also our feelings and attitudes.",
-    "public": true
-  },
-  {
-    "id": "Data Science/Data Engineering/aws-ec2-ebs",
-    "title": "AWS EC2와 EBS 완벽 가이드",
-    "date": "2025-08-14",
-    "excerpt": "AWS EC2와 EBS의 개념, 사용법, 그리고 EBS 백업 기능에 대한 상세한 설명",
-    "category": "Data Engineering",
-    "tags": [
-      "AWS",
-      "EC2",
-      "EBS",
-      "Cloud Computing",
-      "Infrastructure"
-    ],
-    "content": "AWS EC2와 EBS 완벽 가이드 EC2 (Elastic Compute Cloud)란? EC2는 AWS에서 제공하는 가상 서버 서비스입니다. 사용자가 필요에 따라 컴퓨팅 리소스를 유연하게 확장하거나 축소할 수 있는 클라우드 컴퓨팅 서비스입니다. EC2의 주요 특징 가상 서버: 물리적 서버를 가상화하여 제공 확장성: 필요에 따라 인스턴스 수를 늘리거나 줄일 수 있음 다양한 인스턴스 타입: CPU, 메모리, 스토리지 요구사항에 맞는 다양한 옵션 온디맨드 요금: 사용한 만큼만 비용 지불 EC2 사용 사례 웹 애플리케이션 호스팅 웹 서버, 애플리케이션 서버 운영 로드 밸런서와 함께 고가용성 확보 데이터 처리 대용량 데이터 분석 작업 배치 프로세싱 및 ETL 작업 개발 및 테스트 환경 개발, 스테이징, 테스트 환경 구축 CI/CD 파이프라인 구축 게임 서버 온라인 게임 서버 운영 트래픽에 따른 자동 스케일링 EBS (Elastic Block Store)란? EBS는 EC2 인스턴스에 연결할 수 있는 블록 레벨 스토리지 서비스입니다. 하드 디스크와 유사한 기능을 제공하며, EC2 인스턴스의 부팅 디스크나 추가 데이터 스토리지로 사용됩니다. EBS의 주요 특징 블록 레벨 스토리지: 파일 시스템이 아닌 블록 단위로 데이터 저장 영구 저장: 인스턴스가 종료되어도 데이터 유지 다양한 볼륨 타입: SSD, HDD 등 성능과 비용에 따른 선택 가능 스냅샷 기능: 데이터 백업 및 복구 지원 EBS 볼륨 타입 SSD 기반 볼륨 gp3: 범용 SSD, 균형잡힌 성능과 비용 io2: 고성능 SSD, 높은 IOPS 요구사항에 적합 HDD 기반 볼륨 st1: 처리량 최적화 HDD, 빅데이터 워크로드에 적합 sc1: 콜드 스토리지, 자주 접근하지 않는 데이터에 적합 EBS 사용 사례 부팅 디스크 EC2 인스턴스의 운영체제 및 애플리케이션 설치 시스템 파일 및 설정 저장 데이터베이스 스토리지 MySQL, PostgreSQL 등의 데이터베이스 파일 저장 높은 IOPS가 필요한 워크로드에 적합 파일 서버 사용자 업로드 파일 저장 공유 파일 및 문서 저장 백업 및 복구 중요한 데이터의 스냅샷 생성 재해 복구를 위한 데이터 보호 EC2와 EBS의 연동 연결 방식 부팅 볼륨: EC2 인스턴스 생성 시 자동으로 연결되는 루트 볼륨 추가 볼륨: 인스턴스에 추가로 연결할 수 있는 데이터 볼륨 볼륨 분리: 인스턴스에서 볼륨을 분리하여 다른 인스턴스에 연결 가능 성능 최적화 EBS 최적화: EC2 인스턴스와 EBS 간의 네트워크 성능 최적화 프로비저닝된 IOPS: 예측 가능한 성능을 위한 IOPS 예약 스루풋 최적화: 대용량 데이터 전송에 최적화된 처리량 EBS 백업 기능 스냅샷 (Snapshots) EBS의 핵심 백업 기능으로, 특정 시점의 볼륨 상태를 저장합니다. 스냅샷의 특징 증분 백업: 변경된 블록만 백업하여 저장 공간 절약 지역 간 복사: 다른 AWS 리전으로 백업 복사 가능 자동화: AWS Lambda와 CloudWatch를 통한 자동 스냅샷 생성 비용 효율성: 사용하지 않는 스냅샷은 삭제하여 비용 절약 스냅샷 생성 방법 수동 생성: AWS 콘솔, CLI, SDK를 통한 수동 스냅샷 생성 자동 생성: 정책 기반 자동 스냅샷 생성 및 관리 스케줄링: 정기적인 백업 스케줄 설정 AWS Backup AWS에서 제공하는 중앙화된 백업 서비스로, EBS 볼륨을 포함한 다양한 AWS 리소스를 백업할 수 있습니다. 주요 기능 통합 관리: 여러 AWS 서비스의 백업을 한 곳에서 관리 정책 기반 백업: 백업 정책을 정의하여 자동화된 백업 실행 크로스 리전 백업: 여러 리전에 백업 복사본 저장 규정 준수: 다양한 규정 및 표준에 맞는 백업 정책 적용 백업 전략 3-2-1 백업 규칙 3개의 백업 복사본 2개의 다른 저장 매체 1개의 오프사이트 백업 백업 주기 일일 백업: 중요한 데이터의 경우 주간 백업: 일반적인 데이터의 경우 월간 백업: 장기 보관이 필요한 데이터의 경우 백업 보존 기간 단기 보존: 30일 이내의 백업 중기 보존: 90일 이내의 백업 장기 보존: 1년 이상의 백업 실제 사용 예시 웹 애플리케이션 구축 `` EC2 인스턴스 (t3.medium) ├── EBS gp3 볼륨 (20GB) - 부팅 디스크 └── EBS io2 볼륨 (100GB) - 데이터베이스 ` 데이터 분석 환경 ` EC2 인스턴스 (r5.2xlarge) ├── EBS gp3 볼륨 (50GB) - 부팅 디스크 ├── EBS st1 볼륨 (500GB) - 원시 데이터 └── EBS gp3 볼륨 (200GB) - 처리된 데이터 `` 비용 최적화 팁 적절한 볼륨 타입 선택: 워크로드에 맞는 볼륨 타입으로 비용 절약 미사용 볼륨 정리: 사용하지 않는 EBS 볼륨 삭제 스냅샷 관리: 오래된 스냅샷 정리 및 보존 기간 최적화 예약 인스턴스: 장기 사용 시 예약 인스턴스로 비용 절약 결론 AWS EC2와 EBS는 클라우드 인프라의 핵심 서비스로, 함께 사용하여 안정적이고 확장 가능한 시스템을 구축할 수 있습니다. EBS의 강력한 백업 기능을 활용하면 데이터 손실 위험을 최소화하고, 비즈니스 연속성을 보장할 수 있습니다. 올바른 EC2 인스턴스 타입과 EBS 볼륨 타입을 선택하고, 체계적인 백업 전략을 수립하여 클라우드 환경을 효율적으로 운영하시기 바랍니다.",
     "public": true
   },
   {
