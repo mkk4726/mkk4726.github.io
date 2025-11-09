@@ -1,8 +1,20 @@
 [
   {
+    "id": "Data Science/Information-Retrieval/25-11-10-공부해야하는키워드수집",
+    "title": "공부해야 하는 키워드 수집",
+    "date": "2025-11-10",
+    "excerpt": "검색 분야에서 알아야하는 기본적인 개념들에 대해 정리해보기",
+    "category": "Information Retrieval",
+    "tags": [
+      "IR"
+    ],
+    "content": "참고자료 토스에 국내 최고 수준의 검색 조직이 필요한 이유 --- 검색분야에서 일을 해보려면 여기서 사용하는 기본적인 키워드에 대해 공부하는 것으로 시작하자. <figure> <img src=\"/post/IR/토스기술블로그-기술스택.png\" alt=\"토스 기술블로그 - 기술스택\" /> <figcaption>토스 기술블로그에서 발췌한 검색 조직의 기술 스택</figcaption> </figure> > 토스 검색의 아키텍처는 Retrieval–Candidate Generation–Re-ranking으로 이어지는 멀티 스테이지 구조로 되어 있고, 각 단계별로 Search Platform, Ranking Modeling, NLP 팀이 핵심 과제를 추진하고 있어요. <figure> <img src=\"/post/IR/토스기술블로그-파이프라인.png\" alt=\"토스 기술블로그 - 검색 파이프라인\" /> <figcaption>토스 기술블로그에서 발췌한 검색 파이프라인 구조</figcaption> </figure> 블로그 하나에도 모르는 키워드가 정말 많네. 1~2 안에 여기 있는 키워드들 공부하고 정리하자.",
+    "public": true
+  },
+  {
     "id": "Self_Development/Career/Portfolio/visuworks_segmentation",
     "title": "[Visuworks] Segmentation Model",
-    "date": "2025-11-07",
+    "date": "2025-11-09",
     "excerpt": "출혈관련 병변 탐지 모델 개발",
     "category": "Career",
     "tags": [
@@ -15,7 +27,7 @@
   {
     "id": "Self_Development/Career/Portfolio/visuworks_ocr_pipeline",
     "title": "OCR Pipeline System",
-    "date": "2025-11-07",
+    "date": "2025-11-09",
     "excerpt": "문서 이미지에서 텍스트를 추출하는 자동화된 OCR 파이프라인",
     "category": "Career",
     "tags": [
@@ -31,7 +43,7 @@
   {
     "id": "Self_Development/Career/Portfolio/visuworks_lenze_size_rec",
     "title": "Lens Size Recommendation System",
-    "date": "2025-11-07",
+    "date": "2025-11-09",
     "excerpt": "머신러닝을 활용한 맞춤형 렌즈 사이즈 추천 시스템",
     "category": "Career",
     "tags": [
@@ -43,7 +55,7 @@
   {
     "id": "Self_Development/Career/Portfolio/visuworks_chatbot",
     "title": "AI Chatbot Project",
-    "date": "2025-11-07",
+    "date": "2025-11-09",
     "excerpt": "고객상담용 챗봇 개발",
     "category": "Career",
     "tags": [
@@ -55,7 +67,7 @@
   {
     "id": "Self_Development/Career/Portfolio/side_recommendation_study",
     "title": "[Side] 추천 모델링 공부",
-    "date": "2025-11-07",
+    "date": "2025-11-09",
     "excerpt": "추천 모델링 공부를 위한 과정들",
     "category": "Career",
     "tags": [
@@ -69,7 +81,7 @@
   {
     "id": "Self_Development/Career/Portfolio/pnu_cloud_funding_prediction",
     "title": "[PNU] Cloud Funding Success prediction model",
-    "date": "2025-11-07",
+    "date": "2025-11-09",
     "excerpt": "부산대학교 산업공학과 졸업 프로젝트",
     "category": "Career",
     "tags": [
@@ -83,7 +95,7 @@
   {
     "id": "Self_Development/Career/Portfolio/aiffel_segmentation",
     "title": "Segmentation Model",
-    "date": "2025-11-07",
+    "date": "2025-11-09",
     "excerpt": "눈의 안쪽 부분을 찍는 안저사진에서 망막병증을 탐지하는 모델",
     "category": "Career",
     "tags": [
