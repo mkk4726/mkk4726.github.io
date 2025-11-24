@@ -2,7 +2,7 @@
   {
     "id": "Self_Development/Career/Portfolio/visuworks_segmentation",
     "title": "[Visuworks] Segmentation Model",
-    "date": "2025-11-21",
+    "date": "2025-11-24",
     "excerpt": "출혈관련 병변 탐지 모델 개발",
     "category": "Career",
     "tags": [
@@ -15,7 +15,7 @@
   {
     "id": "Self_Development/Career/Portfolio/visuworks_ocr_pipeline",
     "title": "OCR Pipeline System",
-    "date": "2025-11-21",
+    "date": "2025-11-24",
     "excerpt": "문서 이미지에서 텍스트를 추출하는 자동화된 OCR 파이프라인",
     "category": "Career",
     "tags": [
@@ -31,7 +31,7 @@
   {
     "id": "Self_Development/Career/Portfolio/visuworks_lenze_size_rec",
     "title": "Lens Size Recommendation System",
-    "date": "2025-11-21",
+    "date": "2025-11-24",
     "excerpt": "머신러닝을 활용한 맞춤형 렌즈 사이즈 추천 시스템",
     "category": "Career",
     "tags": [
@@ -43,7 +43,7 @@
   {
     "id": "Self_Development/Career/Portfolio/visuworks_chatbot",
     "title": "AI Chatbot Project",
-    "date": "2025-11-21",
+    "date": "2025-11-24",
     "excerpt": "고객상담용 챗봇 개발",
     "category": "Career",
     "tags": [
@@ -55,7 +55,7 @@
   {
     "id": "Self_Development/Career/Portfolio/side_recommendation_study",
     "title": "[Side] 추천 모델링 공부",
-    "date": "2025-11-21",
+    "date": "2025-11-24",
     "excerpt": "추천 모델링 공부를 위한 과정들",
     "category": "Career",
     "tags": [
@@ -69,7 +69,7 @@
   {
     "id": "Self_Development/Career/Portfolio/pnu_cloud_funding_prediction",
     "title": "[PNU] Cloud Funding Success prediction model",
-    "date": "2025-11-21",
+    "date": "2025-11-24",
     "excerpt": "부산대학교 산업공학과 졸업 프로젝트",
     "category": "Career",
     "tags": [
@@ -83,13 +83,28 @@
   {
     "id": "Self_Development/Career/Portfolio/aiffel_segmentation",
     "title": "Segmentation Model",
-    "date": "2025-11-21",
+    "date": "2025-11-24",
     "excerpt": "눈의 안쪽 부분을 찍는 안저사진에서 망막병증을 탐지하는 모델",
     "category": "Career",
     "tags": [
       "Segmentation"
     ],
     "content": "기간 : 2023.12 ~ 2024.03 (4개월) 역할 : 문제정의, 프로젝트 설계, 구현까지 모든 과정 --- 프로젝트 개요 아이펠이라는 AI 엔지니어 양성과정 부트캠프를 들으면서 진행했던 기업 연계 프로젝트입니다. 사람들의 건강에 기여하고 싶었고, 이를 위해 의료 도메인과 관련된 프로젝트를 진행했습니다. 그 중에서 \"안과\" 도메인인 회사와 기업 연계 프로젝트를 진행하게 되었습니다. 여러가지 주제 중 \"당뇨병성 망막병증 병변 탐지\"라는 문제를 정의해 프로젝트를 진행했습니다. 그 이유는 실명률이 가장 높은 질환이었고, 당뇨병 환자에게 자주 발생하는 합병증이기 때문이었습니다. 아버지가 당뇨가 있으시기 때문에, 가족의 건강에 직접적으로 기여할 수 있다는 생각에 관련 문제를 풀어보고 싶었습니다. <figure> <img src=\"/post/Portfolio/aiffel_presentaion_1.png\" alt=\"aiffel_presentaion_1\" /><width 80%/> <figcaption>그림1. 왜 당뇨병성 망막병증으로 주제를 정했는지</figcaption> </figure> <small>발표자료 링크</small> 눈의 안쪽 사진인 \"안저사진\"에 당뇨병성 망막병증 관련 병변들이 보이고, 이를 통해 초기 진단을 할 수 있습니다. 이를 돕기 위해 안저사진에서 병변들을 탐지하는, Segmentation 모델을 개발하는 프로젝트를 진행했습니다. 프로젝트를 진행하면서, 논문을 읽고 Segmenation 모델들 구현하고 고도화하는 과정을 통해 개발 능력을 키울 수 있었고, 데이터를 뜯어보면서 이미지 전처리를 고도화하는 과정에서 데이터 전처리에 대한 감을 키울 수 있었습니다. --- 문제 해결 과정 어떤 문제들이 있었고, 이를 해결하는 과정을 정리했습니다. --- 데이터셋은? > 데이터셋이 없다... 가장 어려웠던 부분입니다. 제공되는 데이터셋이 없었기 때문에 데이터 수집부터 해야했습니다. 하지만 데이터셋이 없으니 거의 1~2주정도를 데이터를 구하기 위한 구글링에 시간을 썼던 것 같습니다. 그러던 중 FGADR 이라는 데이터셋을 찾았고 대략 1500건정도의 데이터를 확보할 수 있었습니다. --- 모델링 > Unet vs DeepLab Segmentation은 크게 Unet 계열과 DeepLab 계열로 구분할 수 있었고, 각각 다양한 모델들이 존재했습니다. 여러 논문에서 전체 이미지 중 레이블(마스크)이 포함된 부분이 매우 작은 의료 도메인의 특성상, U-Net 계열 모델이 가장 높은 성능을 보였고, 실제로 가지고 있는 데이터셋안에서도 확인할 수 있었습니다. 초기 실험을 통해 Unet을 베이스라인으로 잡았고, 이를 고도화시켜나가는 방식으로 실험읋 진행했습니다. --- 이미지 전처리: CLAHE 적용 <figure> <img src=\"/post/Portfolio/aiffel_presentation_clahe.png\" alt=\"aiffel_presentaion_clahe\" /><width 80%/> <figcaption>그림2. 이미지 전처리 방법 적용 : CLAHE</figcaption> </figure> 가장 성능을 높일 수 있었던 부분입니다. 명암대비를 향상시킬 수 있는 방법으로, 병변의 특징을 더 명확하게 보이게 만들 수 있었습니다. 실제로 모델이 그림2의 사진처럼 작은 병변들을 더 잘 찾는 것을 확인할 수 있었습니다. 다만 과도한 명암대비 향상은 false positive를 증가시키므로 실험을 통해 적정 수준을 설정했습니다. --- multi-task learning <figure> <img src=\"/post/Portfolio/aiffel_presentation_mtl.png\" alt=\"aiffel_presentaion_mtl\" /><width 80%/> <figcaption>그림3. 인코더 풍부하게 하기 : MTL</figcaption> </figure> 다음으로는 Unet의 Encoder를 풍부하게 학습시키기 위해서 multi-task learning을 적용했습니다. 이는 관련 논문들에서 제시한 아이디어들을 참고해 구현한 것입니다. 논문들에서 구현 코드가 공개되어 있지 않아 실제로 구현해보면서 많은 시행착오를 겪어야 했습니다. 특히 Encoder의 어느 부분까지 pretraining 시켜야하며, segmentaion task를 학습할 때는 다른 task의 가중치를 얼마나 줘야하는지 등을 실험을 통해 확인할 수 있었습니다. MTL을 적용하고 많은 성능은 아니지만 향상된 것을 확인할 수 있었습니다.",
+    "public": true
+  },
+  {
+    "id": "Data Science/Statistics/ab-test-statistics-vs-bootstrap",
+    "title": "A/B Test 결과 해석: 전통적 통계 vs 부트스트랩",
+    "date": "2025-11-24",
+    "excerpt": "A/B 테스트 결과를 해석할 때 사용하는 전통적인 통계적 검정 방법(t-test 등)과 부트스트랩(Bootstrap) 방법의 차이점과 장단점을 비교합니다.",
+    "category": "Data Science",
+    "tags": [
+      "AB-Test",
+      "Statistics",
+      "Bootstrap",
+      "Hypothesis-Testing"
+    ],
+    "content": "A/B 테스트를 진행한 후, 두 그룹(대조군과 실험군) 간의 차이가 우연에 의한 것인지 아니면 실제 효과에 의한 것인지를 판단하기 위해 통계적 검정을 수행합니다. 이때 주로 사용되는 두 가지 접근 방식인 전통적인 통계적 검정(Parametric Tests)과 부트스트랩(Bootstrap) 방법에 대해 알아보고, 각각의 특징과 차이점을 비교해 보겠습니다. --- 전통적인 통계적 검정 (Traditional Statistical Tests) 우리가 흔히 접하는 t-test, z-test 등이 여기에 속합니다. 이 방법들은 데이터가 특정 확률 분포(주로 정규분포)를 따른다는 가정(Assumption) 하에 이론적인 수식을 사용하여 p-value와 신뢰구간을 계산합니다. 방법론 (Methodology) 가설 설정 (Hypothesis Setup): 귀무가설($H_0$: 차이가 없다)과 대립가설($H_1$: 차이가 있다)을 설정합니다. 검정 통계량 계산 (Test Statistic Calculation): 표본 데이터를 이용해 t-value, z-score 등의 검정 통계량을 계산합니다. 이 값은 관측된 차이가 표준 오차(Standard Error) 대비 얼마나 큰지를 나타냅니다. 이론적 분포와 비교: 계산된 통계량이 귀무가설 하의 이론적 분포(t-분포, 정규분포 등)에서 어디에 위치하는지 확인합니다. P-value 및 신뢰구간 도출: 관측된 통계량보다 더 극단적인 값이 나올 확률(p-value)을 구하거나, 신뢰구간(Confidence Interval)을 계산하여 유의성을 판단합니다. 주요 특징 가정 기반: 데이터가 정규분포를 따르거나, 표본의 크기가 충분히 커서 중심극한정리(CLT)에 의해 정규성을 만족한다고 가정합니다. 빠른 계산: 수식에 대입하여 계산하므로 연산 속도가 매우 빠릅니다. 표준화된 해석: p-value, t-statistic 등 널리 통용되는 지표를 제공하여 해석의 기준이 명확합니다. 장점 계산 비용이 매우 적습니다. 데이터가 가정을 잘 만족할 경우 검정력이 높습니다. 널리 알려져 있어 결과를 공유하고 설득하기 용이합니다. 한계점 (Limitations) 엄격한 가정 (Strict Assumptions): 정규성(Normality), 등분산성(Homoscedasticity), 독립성(Independence) 등의 가정이 충족되지 않으면 결과의 신뢰도가 급격히 떨어집니다. 특히 실무 데이터는 이러한 이상적인 조건을 만족하지 않는 경우가 많습니다. 이상치에 민감 (Sensitivity to Outliers): 평균(Mean)을 기반으로 하기 때문에 극단적인 이상치 하나가 전체 결과와 검정력을 왜곡시킬 수 있습니다. 표본 크기의 영향: 표본이 너무 작으면 검정력이 낮아 차이를 발견하지 못하고, 반대로 표본이 너무 크면 실질적으로 의미 없는 미세한 차이도 통계적으로 유의하다고(Significant) 판정할 위험이 있습니다. P-value의 오해: P-value는 \"귀무가설이 참일 때 이런 데이터가 관측될 확률\"이지, \"대립가설이 참일 확률\"이 아닙니다. 이를 직관적으로 이해하기 어려워 잘못된 의사결정으로 이어질 수 있습니다. --- 부트스트랩 (Bootstrap) 부트스트랩은 재표본추출(Resampling)을 통해 통계량의 분포를 추정하는 비모수적(Non-parametric) 방법입니다. 원본 데이터에서 복원 추출을 수천 번 반복하여 가상의 표본 분포를 만들어냅니다. 방법론 (Methodology) 재표본추출 (Resampling): 원본 데이터(크기 $N$)에서 복원 추출(Sampling with replacement)을 통해 크기가 $N$인 새로운 표본(Bootstrap Sample)을 생성합니다. 통계량 계산: 생성된 부트스트랩 표본에 대해 관심 있는 통계량(예: 평균의 차이, 중위수의 차이 등)을 계산합니다. 반복 (Iteration): 위 과정을 수천 번(예: 10,000번) 반복하여 통계량들의 집합을 얻습니다. 분포 구성 및 추론: 모아진 통계량들로 경험적 분포(Empirical Distribution)를 구성합니다. 이 분포의 양 끝단(예: 2.5%, 97.5% 지점)을 잘라 신뢰구간을 구하거나, 귀무가설 값(예: 0)이 분포 내에서 어디에 위치하는지를 통해 유의성을 검증합니다. 주요 특징 가정 불필요: 데이터가 특정 분포를 따른다는 가정이 필요 없습니다. 데이터 그 자체의 경험적 분포(Empirical Distribution)를 이용합니다. 시뮬레이션 기반: 컴퓨터의 연산 능력을 활용하여 직접 분포를 생성합니다. 유연성: 평균, 비율뿐만 아니라 중위수(Median), 백분위수(Percentile) 등 이론적 분포를 알기 어려운 통계량에 대해서도 신뢰구간을 쉽게 구할 수 있습니다. 장점 데이터의 분포가 정규분포가 아니거나, 이상치가 섞여 있어도 강건(Robust)한 결과를 보여줍니다. 매출(Revenue) 데이터와 같이 0이 많고 꼬리가 긴(Long-tail) 분포를 가진 데이터 분석에 유리합니다. 직관적인 해석이 가능합니다. (예: \"시뮬레이션 결과 95%의 경우에서 B안이 A안보다 좋았다\") 한계점 (Limitations) 계산 비용 (Computational Cost): 반복적인 연산이 필요하므로 데이터가 매우 크거나 복잡한 모델을 사용할 경우 시간이 오래 걸립니다. 실시간 분석에는 부적합할 수 있습니다. 원본 표본의 대표성 의존 (Dependence on Original Sample): 부트스트랩은 \"원본 표본이 모집단을 잘 대표한다\"는 가정에 전적으로 의존합니다. 만약 원본 표본 자체가 편향(Biased)되어 있거나 너무 작아서 모집단의 특성을 담지 못한다면, 부트스트랩 결과도 편향됩니다. (Garbage In, Garbage Out) 재현성 문제 (Reproducibility): 난수 생성(Randomness)에 기반하므로 실행할 때마다 결과가 미세하게 달라집니다. 결과를 고정하려면 시드(Seed)를 설정해야 합니다. 극단적인 값 추정의 어려움: 분포의 꼬리 부분(극단적인 분위수 등)을 추정할 때는 매우 많은 반복 횟수가 필요하며, 여전히 부정확할 수 있습니다. --- 비교 및 요약 구분 전통적 통계 방법 (t-test 등) 부트스트랩 (Bootstrap) :--- :--- :--- 기반 이론적 확률 분포 (정규분포 등) 데이터 기반 시뮬레이션 (재표본추출) 가정 정규성, 등분산성 등 가정 필요 별도의 분포 가정 불필요 계산 속도 매우 빠름 상대적으로 느림 (데이터 크기에 비례) 적용 사례 표본이 크고 정규성을 따르는 일반적인 경우 분포가 특이하거나, 복잡한 통계량을 비교할 때 해석 p-value, 신뢰구간 (이론적) 신뢰구간 (경험적), 승률 (Win Rate) --- 결론: 언제 무엇을 써야 할까? A/B 테스트 분석 방법을 선택할 때는 데이터의 특성, 분석의 목적, 가용 리소스를 종합적으로 고려해야 합니다. 단순히 \"부트스트랩이 더 최신 방법이니 좋다\"라고 판단하기보다는, 상황에 맞는 최적의 도구를 선택하는 것이 중요합니다. 4.1. 선택 가이드라인 (Decision Guide) 상황 (Scenario) 추천 방법 이유 :--- :--- :--- 데이터가 정규분포에 가까움 전통적 방법 (t-test) 가장 효율적이고 검정력이 높음. 표본 크기가 매우 큼 (N > 10,000) 전통적 방법 (z-test) 중심극한정리에 의해 정규성 가정이 성립하므로 계산이 빠른 전통적 방법이 유리함. 데이터 분포가 심하게 치우침 (Skewed) 부트스트랩 매출(Revenue), 체류 시간 등 롱테일 분포 데이터에서 평균의 신뢰구간을 더 정확하게 추정함. 이상치(Outlier)가 많음 부트스트랩 이상치의 영향을 덜 받는 강건한(Robust) 추정이 가능함. 비율/평균 외의 지표 비교 (중위수 등) 부트스트랩 중위수, 분위수 등 표준 오차 공식이 복잡하거나 없는 통계량을 비교할 때 필수적임. 실시간 대시보드 구현 전통적 방법 연산 속도가 빨라 실시간으로 p-value를 계산하고 시각화하는 데 적합함. 4.2. 상호 보완적인 접근 (Hybrid Approach) 최근 데이터 분석 트렌드는 두 방법을 상호 보완적으로 사용하는 것입니다. 1차 스크리닝: 계산이 빠른 t-test로 전체적인 경향성을 빠르게 파악합니다. 심층 분석: 주요 지표(Key Metrics)나 결과가 모호한 경우(Borderline), 부트스트랩을 수행하여 결과의 신뢰성을 재확인합니다. AA 테스트 검증: A/B 테스트 시작 전, AA 테스트 단계에서 부트스트랩을 통해 제1종 오류(Type I Error)가 적절히 통제되는지 시뮬레이션해 볼 수 있습니다. 4.3. 마무리 결국 \"데이터를 보고 결정하라\"는 것이 핵심입니다. 데이터의 분포를 시각화(Histogram, Boxplot)해 보고, 정규성 가정이 위배될 소지가 있다면 주저 없이 부트스트랩을 활용하세요. 컴퓨팅 파워가 저렴해진 현대 데이터 과학 환경에서, 부트스트랩은 더 이상 선택이 아닌 필수적인 검증 도구입니다. > 경험이 중요한 부분. 직관에 의한 판단이 필요하겠다.",
     "public": true
   },
   {
@@ -103,7 +118,7 @@
       "Supercent",
       "Draft"
     ],
-    "content": "이력서 초안 (슈퍼센트 - 데이터 사이언티스트) 자기소개 (Summary) \"불확실성을 정량화하여 비즈니스 의사결정을 돕는 데이터 사이언티스트\" 데이터의 한계를 기술적으로 극복하고, 단순한 예측값을 넘어 '신뢰할 수 있는 정보'를 제공하는 데 강점이 있습니다. 최근 렌즈 삽입술 부작용 예방을 위한 예측 시스템을 구축하며, 데이터 부족으로 인한 불확실성(Aleatoric Uncertainty)을 Quantile Regression과 Conformal Prediction으로 해결한 경험이 있습니다. 이러한 경험은 LTV나 ROAS와 같이 변동성이 크고 불확실한 마케팅 지표를 예측하고 전략을 수립하는 데에도 강력한 무기가 될 것이라 확신합니다. 또한, 모델링에 그치지 않고 데이터 파이프라인부터 서빙, 모니터링까지 End-to-End ML 시스템을 직접 구축하여 운영한 경험이 있어, MLOps 환경에서의 안정적인 모델 운영과 자동화에도 기여할 수 있습니다. --- 핵심 역량 (Core Competencies) Advanced Modeling: Regression (Quantile, CQR), Uncertainty Estimation, Hyperparameter Tuning. MLOps & Engineering: End-to-End Pipeline 구축, Docker, FastAPI, Model Monitoring (Data Drift, Silent Failure 감지). Experiment Management: Hydra, W&B를 활용한 체계적인 실험 설계 및 추적. Problem Solving: 도메인 지식 기반의 가설 수립 및 검증, 비즈니스 요구사항을 통계적 문제로 재정의. --- 프로젝트 경험 (Project Experience) 렌즈 사이즈 추천 시스템 고도화 및 MLOps 구축 2025.03 ~ 현재 (7개월) [프로젝트 개요] 시력교정 수술의 안전 지표인 Vault(렌즈-수정체 거리)를 예측하여 의사의 의사결정을 지원하는 AI 시스템 개발 및 운영. [주요 성과 및 기여] 불확실성 정량화를 통한 신뢰도 확보 (Modeling) 문제: 렌즈 정보 부재로 인한 데이터 불확실성(Aleatoric Uncertainty)으로 MAE 개선의 한계 직면. 해결: 문제를 '정확한 값 예측'에서 '신뢰할 수 있는 구간(Prediction Interval) 추정'으로 재정의. 기술: Quantile Regression과 Conformal Prediction (CQR)을 도입하여 통계적 타당성을 갖춘 예측 구간 생성 파이프라인 구축. 성과: 의사에게 \"틀릴 수 있는 단일 값\" 대신 \"안전 구간\"을 제공하여 사용자 신뢰도 및 만족도 향상. End-to-End ML 파이프라인 및 모니터링 시스템 구축 (MLOps) 문제: 학습/추론 데이터 불일치 및 운영 중 성능 저하(Silent Failure) 감지 불가. 해결: Data Pipeline & Feature Store: 전처리 로직 통일로 데이터 일관성 확보 (성능 저하 20% 개선). Serving: Docker & FastAPI 기반의 경량화된 서빙 환경 구축. Monitoring: 추론 로그 수집 및 Data Drift 감지 시스템 구축으로 모델 성능 변화 실시간 추적. 성과: 안정적인 서비스 운영 환경 마련 및 이슈 발생 시 즉각 대응 체계 확립. 도메인 지식 기반 성능 최적화 해결: \"나이에 따른 수정체 두께 변화\" 등 도메인 가설을 데이터로 검증하여 신규 피처 발굴. 성과: 기존 모델 대비 성능 30% 향상 (고도화 초기 단계). --- 기술 스택 (Tech Stack) Languages: Python, SQL ML/DL: PyTorch, Scikit-learn, XGBoost, LightGBM MLOps: Docker, FastAPI, Hydra, W&B, Airflow(개념 이해) Data: Pandas, NumPy --- 슈퍼센트 지원 동기 및 포부 (Draft) 슈퍼센트는 데이터를 기반으로 빠르게 성장하는 조직이며, 특히 LTV와 ROAS 예측은 비즈니스의 핵심입니다. 저는 \"불확실한 데이터 속에서 신뢰할 수 있는 패턴을 찾아내는 것\"에 몰입해 왔습니다. 렌즈 사이즈 추천 프로젝트에서 증명했듯, 단순히 높은 정확도를 쫓는 것을 넘어 비즈니스 현장에서 실제로 활용 가능한 '설명력 있는 예측'과 '안정적인 시스템'을 만들고 싶습니다. 슈퍼센트의 방대한 유저 데이터를 바탕으로, 마케팅 효율을 극대화할 수 있는 정교한 예측 모델과 파이프라인을 구축하는 데 기여하겠습니다.",
+    "content": "이력서 초안 (슈퍼센트 - 데이터 사이언티스트) 강조할만한 부분 -> 모델링, 데이터 파이프라인 개발 일단 쓰고 나서 수정하던가 하자 (그만 미루고!)",
     "public": true
   },
   {
