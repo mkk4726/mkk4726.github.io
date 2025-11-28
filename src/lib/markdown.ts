@@ -15,14 +15,17 @@ export async function parseMarkdown(content: string): Promise<string> {
   
   // 마크다운 파싱 전에 강조 마커 뒤에 바로 오는 문자 패턴 수정
   // **text**letter → **text** letter
+  // 단, 괄호나 구두점은 제외 (예: **text**(text) 또는 **text**. 는 그대로 유지)
   let processedContent = content;
   
   // Bold markers (**) followed immediately by non-whitespace characters
-  processedContent = processedContent.replace(/(\*\*[^*\n]+?\*\*)([^\s*])/g, '$1 $2');
+  // 괄호, 구두점, 특수문자는 제외하여 볼드 처리가 깨지지 않도록 함
+  processedContent = processedContent.replace(/(\*\*[^*\n]+?\*\*)([^\s*()[\].,;:!?\-])/g, '$1 $2');
   
   // Italic markers (*) followed immediately by non-whitespace characters
   // Negative lookbehind/lookahead to avoid matching **
-  processedContent = processedContent.replace(/(?<!\*)(\*[^*\n]+?\*)(?!\*)([^\s*])/g, '$1 $2');
+  // 괄호, 구두점, 특수문자는 제외
+  processedContent = processedContent.replace(/(?<!\*)(\*[^*\n]+?\*)(?!\*)([^\s*()[\].,;:!?\-])/g, '$1 $2');
   
   const result = await remark()
     .use(remarkMath)
