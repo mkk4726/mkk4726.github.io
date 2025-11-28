@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const matter = require('gray-matter');
 
-const postsDirectory = path.join(process.cwd(), 'src/content/posts');
+const postsDirectory = path.join(process.cwd(), 'posts');
 const outputPath = path.join(process.cwd(), 'public/search-index.json');
 
 // 재귀적으로 모든 .md 및 .ipynb 파일을 찾는 함수

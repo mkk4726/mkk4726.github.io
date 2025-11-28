@@ -3,7 +3,7 @@ import path from 'path';
 import matter from 'gray-matter';
 import { convertNotebookToHtml, extractNotebookMetadata } from './notebook';
 
-const postsDirectory = path.join(process.cwd(), 'src/content/posts');
+const postsDirectory = path.join(process.cwd(), 'posts');
 
 export interface PostData {
   id: string;
@@ -286,10 +286,43 @@ export async function getPostData(id: string): Promise<PostData> {
     // Handle markdown files
     const fileContents = fs.readFileSync(fullPath, 'utf8');
     const matterResult = matter(fileContents);
+    
+    // Convert relative image paths to absolute paths based on post location
+    let processedContent = matterResult.content;
+    const relativePath = path.relative(postsDirectory, fullPath);
+    const postDir = path.dirname(relativePath);
+    
+    // Helper function to encode path segments (spaces, etc.)
+    const encodePath = (pathStr: string): string => {
+      return pathStr.split('/').map(segment => encodeURIComponent(segment)).join('/');
+    };
+    
+    // Replace relative image paths (./images/...) with absolute paths
+    // Pattern: ./images/filename.png -> /posts/category/subcategory/images/filename.png
+    processedContent = processedContent.replace(
+      /(<img[^>]+src=")(\.\/images\/([^"]+))(")/g,
+      (match, prefix, fullRelativePath, imageFilename, closingQuote) => {
+        const absolutePath = postDir !== '.' 
+          ? `/posts/${encodePath(postDir)}/images/${encodeURIComponent(imageFilename)}`
+          : `/posts/images/${encodeURIComponent(imageFilename)}`;
+        return `${prefix}${absolutePath}${closingQuote}`;
+      }
+    );
+    
+    // Also handle markdown image syntax: ![alt](./images/file.png)
+    processedContent = processedContent.replace(
+      /(!\[[^\]]*\]\()(\.\/images\/([^)]+))(\))/g,
+      (match, prefix, fullRelativePath, imageFilename, closingParen) => {
+        const absolutePath = postDir !== '.' 
+          ? `/posts/${encodePath(postDir)}/images/${encodeURIComponent(imageFilename)}`
+          : `/posts/images/${encodeURIComponent(imageFilename)}`;
+        return `${prefix}${absolutePath}${closingParen}`;
+      }
+    );
 
     return {
       id,
-      content: matterResult.content,
+      content: processedContent,
       ...(matterResult.data as { title: string; date: string; excerpt?: string; category?: string; tags?: string[]; public?: boolean }),
       public: matterResult.data.public !== false, // default to true if not specified
       isNotebook: false,
@@ -308,6 +341,11 @@ function buildFolderStructure(dir: string, basePath: string = ''): FolderNode[] 
     const stat = fs.statSync(fullPath);
     
     if (stat.isDirectory()) {
+      // images 폴더는 제외
+      if (item === 'images') {
+        continue;
+      }
+      
       const relativePath = basePath ? `${basePath}/${item}` : item;
       const children = buildFolderStructure(fullPath, relativePath);
       

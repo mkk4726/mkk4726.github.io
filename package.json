@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "node scripts/copy-pdfs.js && next dev",
-    "prebuild": "node scripts/generate-search-index.js && node scripts/copy-pdfs.js",
+    "dev": "node scripts/copy-assets.js && next dev",
+    "prebuild": "node scripts/generate-search-index.js && node scripts/copy-assets.js",
     "build": "next build",
     "build:only": "next build",
     "build:export": "next build && next export",
@@ -12,7 +12,7 @@
     "export": "next export",
     "lint": "next lint",
     "generate-search": "node scripts/generate-search-index.js",
-    "copy-pdfs": "node scripts/copy-pdfs.js"
+    "copy-assets": "node scripts/copy-assets.js"
   },
   "dependencies": {
     "@types/jsdom": "^21.1.7",
