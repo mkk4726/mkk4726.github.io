@@ -17,7 +17,7 @@ tags: ["DB", "SQL", "B-Tree"]
 ## 1. B-Tree 구조
 
 <figure>
-<img src="/post/DataEngineering/B-Tree-Structure.png" alt="B-Tree Structure" />
+<img src="./images/B-Tree-Structure.png" alt="B-Tree Structure" />
 <figcaption>그림1. B-Tree Structure</figcaption>
 </figure>
 

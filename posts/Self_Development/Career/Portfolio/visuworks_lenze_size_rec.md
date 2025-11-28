@@ -29,7 +29,7 @@ tags: ["Portfolio"]
 Quantile Regression과 Conformal Prediction을 도입하여 불확실성을 정량화했고, 결과적으로 의사들에게 "틀릴 수도 있는 하나의 값"이 아닌, **"통계적으로 검증된 안전 구간"**을 제공함으로써 서비스의 신뢰도를 비약적으로 높였습니다.
 
 <figure>
-<img src="/post/Portfolio/Lenze_size_reco.png" alt="lenze size reco" width="100%" />
+<img src="./images/Lenze_size_reco.png" alt="lenze size reco" width="100%" />
 <figcaption>그림1. 렌즈 사이즈 추천 서비스 컨셉 : 예측값에서 예측 구간으로의 진화</figcaption>
 </figure>
 
@@ -77,7 +77,7 @@ Quantile Regression과 Conformal Prediction을 도입하여 불확실성을 정�
 이러한 문제들을 해결하기 위해 End-to-End ML system을 설계하고 구현했습니다.
 
 <figure>
-<img src="/post/Portfolio/lenze_size_ml_system.png" alt="data pipeline" width="100%" />
+<img src="./images/lenze_size_ml_system.png" alt="data pipeline" width="100%" />
 <figcaption>그림2. ML pipeline</figcaption>
 </figure>
 
@@ -207,7 +207,7 @@ ML system을 End-to-End로 구축하면서 다음과 같은 성과를 달성할 
 이를 해결하기 위해 인과추론의 관점에서 "양수성"이라는 개념을 사용해 문제를 정의했습니다.
 
 <figure>
-<img src="/post/Portfolio/Lenze_size_evaluate.png" alt="how to evalute" width="100%" />
+<img src="./images/Lenze_size_evaluate.png" alt="how to evalute" width="100%" />
 <figcaption>그림3. 고민했던 문제 : 어떻게 평가할 것인가, 어디까지 신뢰할 수 있는지</figcaption>
 </figure>
 
@@ -233,7 +233,7 @@ ML system을 End-to-End로 구축하면서 다음과 같은 성과를 달성할 
 ### 3.1 추론 로직 구조
 
 <figure>
-<img src="/post/Portfolio/Lenze_size_inference1.png" alt="Positivity" width="80%" />
+<img src="./images/Lenze_size_inference1.png" alt="Positivity" width="80%" />
 <figcaption>그림4. 추론할 때의 로직</figcaption>
 </figure>
 
@@ -241,7 +241,7 @@ ML system을 End-to-End로 구축하면서 다음과 같은 성과를 달성할 
 propensity score를 추정해, 고객에 대해 신뢰할 수 있는 처치범위와 그렇지 않은 범위를 정하고, 각각에 따라 다른 예측 모델을 사용하고 있습니다.
 
 <figure>
-<img src="/post/Portfolio/Lenze_size_PI.png" alt="Prediction Interval" width="80%" />
+<img src="./images/Lenze_size_PI.png" alt="Prediction Interval" width="80%" />
 <figcaption>그림5. 양수성 조건에 따른 예측</figcaption>
 </figure>
 
@@ -259,7 +259,7 @@ propensity score를 추정해, 고객에 대해 신뢰할 수 있는 처치범�
 (인과추론의 가장 기본적인 가정인 양수성을 만족하는 범위를 찾는다고도 할 수 있습니다)
 
 <figure>
-<img src="/post/Portfolio/Lenze_size_propensity.png" alt="Positivity" width="70%" />
+<img src="./images/Lenze_size_propensity.png" alt="Positivity" width="70%" />
 <figcaption>그림6. 양수성 조건 만족하는 범위</figcaption>
 </figure>
 
@@ -292,7 +292,7 @@ propensity score를 추정해, 고객에 대해 신뢰할 수 있는 처치범�
 이는 아래의 그림 7과 같은 형태입니다, 신뢰수준 0.9를 만족하기 위해 0.05와 0.95 quantile을 예측해 예측구간을 추정합니다.
 
 <figure>
-<img src="/post/Portfolio/lenze_size_CQR_1.png" alt="Quantile Regression" width="100%" />
+<img src="./images/lenze_size_CQR_1.png" alt="Quantile Regression" width="100%" />
 <figcaption>그림7. CQR로 예측 구간 추정</figcaption>
 </figure>
 

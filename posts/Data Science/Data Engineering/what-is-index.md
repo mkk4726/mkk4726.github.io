@@ -17,7 +17,7 @@ tags: ["DB", "Index"]
 > 인덱스란 추가적인 쓰기 작업과 저장 공간을 활용하여 데이터베이스 테이블의 검색 속도를 향상시키기 위한 자료구조이다. (참고 1)
 
 <figure>
-<img src="/post/DataEngineering/index.png" alt="What is Index" />
+<img src="./images/index.png" alt="What is Index" />
 <figcaption>그림1. Index 설명</figcaption>
 </figure>
 
@@ -126,7 +126,7 @@ tags: ["DB", "Index"]
 > 해시 테이블은 (Key, Value)로 데이터를 저장하는 자료구조 중 하나로 빠른 데이터 검색 (시간복잡도 O(1)) 이 필요할 때 유용하다
 
 <figure>
-<img src="/post/DataEngineering/hash_table.png" alt="What is Hash Table" />
+<img src="./images/hash_table.png" alt="What is Hash Table" />
 <figcaption>그림2. Hash Table 설명</figcaption>
 </figure>
 
@@ -430,7 +430,7 @@ Bucket[2]: [Key3, Value3] (충돌로 인한 이동)
 ## B+Tree
 
 <figure>
-<img src="/post/DataEngineering/InnoDB-B-Tree-Structure.png" alt="InnoDB의 B+Tree 구조" />
+<img src="./images/InnoDB-B-Tree-Structure.png" alt="InnoDB의 B+Tree 구조" />
 <figcaption>그림3. InnoDB의 B+Tree 구조</figcaption>
 </figure>
 

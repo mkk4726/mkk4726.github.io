@@ -47,7 +47,7 @@ QRNN 모델 대비 실제 문제를 풀기 위한 다양한 조건들도 포함�
 - “입력–처리–출력–평가” 흐름을 머릿속에 그려둬.
 
 <figure>
-  <img src="/post/PaperReview/MCQRNN/figure1.png" alt="MCQRNN" />
+  <img src="./images/figure1.png" alt="MCQRNN" />
   <figcaption>Fig. 1</figcaption>
 </figure>
 - 그림 설명 정리:
@@ -62,7 +62,7 @@ QRNN 모델 대비 실제 문제를 풀기 위한 다양한 조건들도 포함�
 MCQRNN이 조금 더 안정적이다. 
 
 <figure>
-  <img src="/post/PaperReview/MCQRNN/figure2.png" alt="MCQRNN" />
+  <img src="./images/figure2.png" alt="MCQRNN" />
   <figcaption>Fig. 2</figcaption>
 </figure>
 
@@ -286,7 +286,7 @@ Huber function의 특징:
 이 approximation을 사용하면 gradient descent로 안정적으로 학습할 수 있다.
 
 <figure>
-  <img src="/post/PaperReview/MCQRNN/pinball_vs_hubered.png" alt="Pinball loss vs Huber-approximated pinball loss 그래프">
+  <img src="./images/pinball_vs_hubered.png" alt="Pinball loss vs Huber-approximated pinball loss 그래프">
   <figcaption>
     Pinball loss와 Huber-norm approximation의 비교. Huber-norm은 $\alpha$ 구간에서 smooth하게 연결되어 gradient descent에 적합하다. $\alpha \to 0$일 때에는 두 함수가 일치한다.
   </figcaption>

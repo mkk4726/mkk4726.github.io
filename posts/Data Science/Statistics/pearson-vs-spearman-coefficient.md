@@ -14,7 +14,7 @@ tags: ["statistics", "correlation"]
 > Pearson vs Spearman Coefficient. 어떤 것을 선택할까?
 
 <figure>
-<img src="/post/DataScience/linear_corr.gif" alt="Pearson vs Spearman" style="width: 50%; height: auto;" />
+<img src="./images/linear_corr.gif" alt="Pearson vs Spearman" style="width: 50%; height: auto;" />
 <figcaption>Pearson vs Spearman</figcaption>
 </figure>
 

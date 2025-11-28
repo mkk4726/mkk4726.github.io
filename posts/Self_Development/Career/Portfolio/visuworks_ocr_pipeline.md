@@ -14,7 +14,7 @@ tags: ["Python", "OCR", "Computer Vision", "Docker", "gRPC"]
 병원 검사 결과 이미지에서 실시간으로 검사 결과 데이터를 추출해 데이터베이스에 적재하는 OCR 파이프라인 시스템을 설계하고 구현했습니다. 환자의 검사 결과를 바탕으로 "시력 교정 수술 추천 서비스"나 "렌즈 사이즈 추천 서비스"를 운영하고 있었기 때문에, 안정적인 파이프라인을 구축해야만 안정적인 서비스를 운영할 수 있는 상황이었습니다.
 
 <figure>
-<img src="/post/Portfolio/OCR_pipeline.png" alt="OCR Pipeline" width="100%" />
+<img src="./images/OCR_pipeline.png" alt="OCR Pipeline" width="100%" />
 <figcaption>그림1. OCR Pipeline 구조</figcaption>
 </figure>
 
@@ -75,7 +75,7 @@ tags: ["Python", "OCR", "Computer Vision", "Docker", "gRPC"]
 ### 3. 비동기 처리 구조 도입으로 속도 최적화
 
 <figure>
-<img src="/post/Portfolio/OCR_server_threadpool.png" alt="OCR Server 구조" width="80%" />
+<img src="./images/OCR_server_threadpool.png" alt="OCR Server 구조" width="80%" />
 <figcaption>그림2. OCR Server 구조</figcaption>
 </figure>
 
@@ -94,7 +94,7 @@ Client에서 OCR 성공 여부를 확인할 필요가 있나? 에 대한 의문�
 ### 5. OCR 정확도 개선
 
 <figure>
-<img src="/post/Portfolio/OCR_tritonserver.png" alt="OCR Model" width="50%" />
+<img src="./images/OCR_tritonserver.png" alt="OCR Model" width="50%" />
 <figcaption>그림3. OCR Model</figcaption>
 </figure>
 

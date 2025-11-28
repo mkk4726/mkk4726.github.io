@@ -17,7 +17,7 @@ tags: ["추천시스템", "인과추론"]
 인과추론(causal inference)와 예측(prediction)은 목적이 다릅니다.
 
 <figure>
-<img src="/post/Recommendation/CS-vs-Prediction.png" alt="CS-vs-Prediction" width="100%" />
+<img src="./images/CS-vs-Prediction.png" alt="CS-vs-Prediction" width="100%" />
 <figcaption>그림1. 인과추론과 예측의 목적 차이 (출처 : Korea Summer Workshop on Causal Inference 2022)</figcaption>
 </figure>
 
@@ -44,7 +44,7 @@ $$
 ## 상어 빈도 횟수와 매출 간의 관계
 
 <figure>
-<img src="/post/Recommendation/example1.png" alt="example" width="80%" />
+<img src="./images/example1.png" alt="example" width="80%" />
 <figcaption>그림2. 상어 출몰 횟수와 아이스크림 매출</figcaption>
 </figure>
 
@@ -52,7 +52,7 @@ $$
 직관적으로 알 수 있듯, 이는 인과관계가 아닙니다. 상어의 출몰 횟수가 아이스크림의 판매량을 결정하지 않습니다.
 
 <figure>
-<img src="/post/Recommendation/example2.png" alt="example" width="80%" />
+<img src="./images/example2.png" alt="example" width="80%" />
 <figcaption>그림3. 상어 출몰 횟수와 아이스크림 매출, 온도 변수</figcaption>
 </figure>
 
@@ -64,7 +64,7 @@ $$
 ## 가격과 매출 간의 관계
 
 <figure>
-<img src="/post/Recommendation/example3.png" alt="example" width="80%" />
+<img src="./images/example3.png" alt="example" width="80%" />
 <figcaption>그림4. 가격과 매출</figcaption>
 </figure>
 
@@ -73,7 +73,7 @@ $$
 그렇다면 매출을 올리기 위해서 가격을 올리면 되는 것일까요?
 
 <figure>
-<img src="/post/Recommendation/example4.png" alt="example" width="80%" />
+<img src="./images/example4.png" alt="example" width="80%" />
 <figcaption>그림5. 가격과 매출</figcaption>
 </figure>
 
@@ -207,7 +207,7 @@ RCT 자체를 진행할 수 없는 경우도 있습니다.
 # 4. Causal Recommendation (참고 1 정리)
 
 <figure>
-<img src="/post/Recommendation/survey-fig1.png" alt="figure1" width="80%" />
+<img src="./images/survey-fig1.png" alt="figure1" width="80%" />
 <figcaption>그림6. causal inference를 적용했을 때의 장점</figcaption>
 </figure>
 
@@ -219,14 +219,14 @@ RCT 자체를 진행할 수 없는 경우도 있습니다.
 하지만 실제 상황에서는 상관관계보다 인과관계가 더 중요하며, 상관관계로는 잘못된 선택을 할 수 있습니다.
 
 <figure>
-<img src="/post/Recommendation/example5.png" alt="example" width="80%" />
+<img src="./images/example5.png" alt="example" width="80%" />
 <figcaption>그림7. 과거 기록으로 취향을 추정할 때 생길 수 있는 문제</figcaption>
 </figure>
 
 예를 들어, 영화 추천 플랫폼에서 여성 사용자가 액션 영화를 시청했다고 해서 그녀가 액션 영화를 좋아한다고 결론짓고 관련 액션 영화를 많이 추천할 수 있습니다. 하지만 실제로는 사용자가 개인적인 선호도 때문이 아니라 단순히 인기도 때문에 그 영화를 봤을 가능성이 큽니다. 전통적인 추천시스템이 학습한 사용자 관심사와 영화 장르 간의 허위 상관관계(spurious correlation)는 사용자 경험을 저하시킬 수 있습니다. 
 
 <figure>
-<img src="/post/Recommendation/example6.png" alt="example" width="80%" />
+<img src="./images/example6.png" alt="example" width="80%" />
 <figcaption>그림8. 인과효과를 추정하는 경우</figcaption>
 </figure>
 
@@ -242,7 +242,7 @@ RCT 자체를 진행할 수 없는 경우도 있습니다.
 ---
 
 <figure>
-<img src="/post/Recommendation/survey-fig2.png" alt="figure2" width="100%" />
+<img src="./images/survey-fig2.png" alt="figure2" width="100%" />
 <figcaption>그림8. 추천에 사용되는 causal inference 방법론들</figcaption>
 </figure>
 

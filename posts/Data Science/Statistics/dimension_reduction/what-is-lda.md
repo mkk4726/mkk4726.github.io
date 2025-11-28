@@ -18,21 +18,21 @@ LDA에서는 정보의 양을 클래스끼리 구분되는 정도를 정보의 �
 PCA에서는 "분산"을 정보의 양이라고 정의.
 
 <figure>
-<img src="/post/DataScience/LDA.png" alt="LDA" width="100%"/>
+<img src="./images/LDA.png" alt="LDA" width="100%"/>
 <figcaption>그림1. LDA vs PCA</figcaption>
 </figure>
 
 LDA에서는 클래스 간의 구분이 최대가 되는 축을 찾는 것을 목표로 함.
 
 <figure>
-<img src="/post/DataScience/LDA2.png" alt="LDA" width="100%"/>
+<img src="./images/LDA2.png" alt="LDA" width="100%"/>
 <figcaption>그림2. LDA 예시 그림</figcaption>
 </figure>
 
 클래스 간의 구분이 최대가 된다, 는 말을 어떻게 정의할 수 있을까?
 
 <figure>
-<img src="/post/DataScience/LDA3.pngg" alt="LDA" width="100%"/>
+<img src="./images/LDA3.pngg" alt="LDA" width="100%"/>
 <figcaption>그림3. LDA 예시 그림</figcaption>
 </figure>
 

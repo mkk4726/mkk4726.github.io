@@ -10,7 +10,7 @@ tags: ["evaluation"]
 # 문제정의
 
 <figure>
-    <img src="/post/Causal_Inference/선택문제_평가_고민.png" alt="선택 문제 평가 고민" />
+    <img src="./images/선택문제_평가_고민.png" alt="선택 문제 평가 고민" />
     <figcaption>그림1. 선택의 문제에서 평가에 대한 고민</figcaption>
 </figure>
 
@@ -52,7 +52,7 @@ A와 비슷한 A"는 13.2로 수술을 받았을 것입니다.
 의사는 고객의 상태를 보고 처치를 결정하기 때문입니다.
 
 <figure>
-  <img src="/post/what-is-statistical-bias/처치별_Feature_DensityPlot.png" alt="처치별 Feature Density Plot">
+  <img src="./images/처치별_Feature_DensityPlot.png" alt="처치별 Feature Density Plot">
   <figcaption>그림 2: 처치별 Feature 분포 비교</figcaption>
 </figure>
 
@@ -70,12 +70,12 @@ A와 비슷한 A"는 13.2로 수술을 받았을 것입니다.
 X를 고객의 눈의 상태로, Y를 처치로 두고 모델을 학습시키면 됩니다.
 
 <figure>
-  <img src="/post/Causal_Inference/선택문제_확률추정모델결과_1.png" alt="확률추정결과">
+  <img src="./images/선택문제_확률추정모델결과_1.png" alt="확률추정결과">
   <figcaption>그림 3: 12.1과 12.6이 겹치는 고객 (처치 : size, 나머지는 고객 눈의 조건)</figcaption>
 </figure>
 
 <figure>
-  <img src="/post/Causal_Inference/선택문제_확률추정모델결과_2.png" alt="확률추정결과">
+  <img src="./images/선택문제_확률추정모델결과_2.png" alt="확률추정결과">
   <figcaption>그림 4: 12.6과 13.2가 겹치는 고객 (처치 : size, 나머지는 고객 눈의 조건)</figcaption>
 </figure>
 

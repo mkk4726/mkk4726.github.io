@@ -21,7 +21,7 @@ PCA에서는 "분산"을 "정보의 양"이라고 정의하고, 분산이 최대
 목표가 다르다면 다른 방법을 써야 함.
 
 <figure>
-<img src="/post/DataScience/LDA.png" alt="LDA" width="100%" />
+<img src="./images/LDA.png" alt="LDA" width="100%" />
 <figcaption>그림1. LDA 예시 그림</figcaption>
 </figure>
 
@@ -31,7 +31,7 @@ PCA에서는 "분산"을 "정보의 양"이라고 정의하고, 분산이 최대
 > PCA 는 특정 기저에 모든 데이터를 사영되었을 시, 사영된 데이터의 퍼진 정도가 최대인 기저를 찾습니다. (참고 1)
 
 <figure>
-<img src="/post/DataScience/PCA.png" alt="PCA" width="100%" />
+<img src="./images/PCA.png" alt="PCA" width="100%" />
 <figcaption>그림2. PCA 예시 그림</figcaption>
 </figure>
 

@@ -156,14 +156,14 @@ Primal problem을 Dual problem으로 재정의하는 건 크게 3가지 단계�
 * Step 3: Make the coefficients of the resultant constraint match the object function. Then, the RHS of the resultant constaint is an upper bound of z*.
 
 <figure>
-<img src="/post/DataScience/Math/primal_problem.png" alt="Primal problem" /><width="80%" />
+<img src="./images/primal_problem.png" alt="Primal problem" /><width="80%" />
 <figcaption>그림1. Primal problem</figcaption>
 </figure>
 
 그림1과 같은 primal problem이 있을 때, z의 upper bound를 dual problem으로 치환해서 구할 수 있습니다.
 
 <figure>
-<img src="/post/DataScience/Math/duality_1.png" alt="Dual problem" /><width="80%" />
+<img src="./images/duality_1.png" alt="Dual problem" /><width="80%" />
 <figcaption>그림2. Dual problem 예시</figcaption>
 </figure>
 
@@ -171,18 +171,18 @@ Primal problem을 Dual problem으로 재정의하는 건 크게 3가지 단계�
 그 후에 이를 정리해서 새로운 제약 조건과 목적함수를 만듭니다.
 
 <figure>
-<img src="/post/DataScience/Math/duality_2.png" alt="Dual problem" /><width="80%" />
+<img src="./images/duality_2.png" alt="Dual problem" /><width="80%" />
 <figcaption>그림3. Dual problem 예시</figcaption>
 </figure>
 
 일반화된 수식으로는 그림3처럼 표현할 수 있습니다.
 
 <figure>
-<img src="/post/DataScience/Math/duality_3.png" alt="Dual problem" /><width="80%" />
+<img src="./images/duality_3.png" alt="Dual problem" /><width="80%" />
 <figcaption>그림4. Dual problem 예시</figcaption>
 </figure>
 <figure>
-<img src="/post/DataScience/Math/duality_4.png" alt="Dual problem" /><width="80%" />
+<img src="./images/duality_4.png" alt="Dual problem" /><width="80%" />
 <figcaption>그림5. Dual problem 예시</figcaption>
 </figure>
 

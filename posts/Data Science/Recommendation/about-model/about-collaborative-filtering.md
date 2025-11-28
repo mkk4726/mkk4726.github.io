@@ -48,7 +48,7 @@ CF는 content-based 보다 더 정확하고 "domain free" 한 좋은 방법이�
 - 비슷한 아이템은 비슷한 사용자들에게 선택될 것이다 (item-based)
 
 <figure>
-<img src="/post/Recommendation/CF/item-user-cf.png" alt="item-user-cf" width="100%" />
+<img src="./images/item-user-cf.png" alt="item-user-cf" width="100%" />
 <figcaption>그림1. item-based와 user-based의 차이 (출처 :  참고1)</figcaption>
 </figure>
 

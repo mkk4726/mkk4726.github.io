@@ -19,7 +19,7 @@ positivity 혹은 overlap assumption은 인과추론의 기본적인 가정들 �
 처치효과를 구하는 가장 단순한 아이디어는 처치를 받은 상태와 아닌 상태를 비교하는 것입니다.
 
 <figure>
-<img src="/post/Causal_Inference/처치효과_예시1.png" alt="RCT" width="60%" />
+<img src="./images/처치효과_예시1.png" alt="RCT" width="60%" />
 <figcaption>그림1. 처치효과를 구하는 단순한 아이디어</figcaption>
 </figure>
 
@@ -40,7 +40,7 @@ positivity 혹은 overlap assumption은 인과추론의 기본적인 가정들 �
 이러한 문제들을 RCT (무작위 배정 실험)을 통해 극복할 수 있습니다.
 
 <figure>
-<img src="/post/Causal_Inference/Positivity/RCT.png" alt="RCT" width="80%" />
+<img src="./images/RCT.png" alt="RCT" width="80%" />
 <figcaption>그림2. RCT, 무작위 배정 실험</figcaption>
 </figure>
 
@@ -91,7 +91,7 @@ RCT에서는 무작위 배정을 통해 자연스럽게 양수성이 충족됩�
 > 즉 양수성이 보장된다면 실제 결과가 없더라도 이를 간접적으로 평가할 수 있습니다.
 
 <figure>
-<img src="/post/Causal_Inference/선택문제_평가_고민.png" alt="평가고민" width="80%" />
+<img src="./images/선택문제_평가_고민.png" alt="평가고민" width="80%" />
 <figcaption>그림3. 간접적인 평가방식</figcaption>
 </figure>
 
@@ -110,14 +110,14 @@ RCT에서는 무작위 배정을 통해 자연스럽게 양수성이 충족됩�
 이를 통해 모델을 간접적으로 평가할 수 있습니다.
 
 <figure>
-<img src="/post/Causal_Inference/Positivity/overlap.png" alt="분포가 겹칠 때" width="80%" />
+<img src="./images/overlap.png" alt="분포가 겹칠 때" width="80%" />
 <figcaption>그림4. 분포가 겹칠 때의 상황</figcaption>
 </figure>
 
 그림4처럼 처치 간의 분포가 겹칠 때는 모델의 성능을 간접적으로 평가할 수 있고 추론 결과를 신뢰할 수 있습니다.
 
 <figure>
-<img src="/post/Causal_Inference/Positivity/no-overlap.png" alt="평가고민" width="80%" />
+<img src="./images/no-overlap.png" alt="평가고민" width="80%" />
 <figcaption>그림5. 분포가 겹치지 않을 때</figcaption>
 </figure>
 
@@ -134,7 +134,7 @@ RCT에서는 무작위 배정을 통해 자연스럽게 양수성이 충족됩�
 왜냐하면 "무작위"로 처치가 배정되지 않기 때문입니다.
 
 <figure>
-<img src="/post/what-is-statistical-bias/처치별분포_피처이름제거.png" alt="평가고민" width="100%" />
+<img src="./images/처치별분포_피처이름제거.png" alt="평가고민" width="100%" />
 <figcaption>그림6. 처치 간의 분포 차이</figcaption>
 </figure>
 

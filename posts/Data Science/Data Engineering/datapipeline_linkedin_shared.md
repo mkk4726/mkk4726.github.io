@@ -10,7 +10,7 @@ tags: ["Data Pipeline"]
 - [링크드인 - Aurimas Griclunas](https://www.linkedin.com/posts/aurimas-griciunas_ai-machinelearning-dataengineering-activity-7355922071824011264-xe3s/?utm_source=share&utm_medium=member_android&rcm=ACoAADafY9YBl0pYjiYslOSavtyIuLdy1Q7QDOo)
 
 <figure>
-  <img src="/post/DataScience/Datapipeline_linkedin.gif" alt="Data Pipeline LinkedIn" />
+  <img src="./images/Datapipeline_linkedin.gif" alt="Data Pipeline LinkedIn" />
   <figcaption>Data Pipeline LinkedIn</figcaption>
 </figure>
 

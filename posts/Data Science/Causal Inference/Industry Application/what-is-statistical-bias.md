@@ -159,13 +159,13 @@ tags: ["편향", "통계적", "bias"]
 > 처치(수술방법, 삽입하는 렌즈크기)별로 환자 눈의 분포가 같은가? 
 
 <figure>
-  <img src="/post/what-is-statistical-bias/처치별분포_피처이름제거.png" alt="처치별 Feature Density Plot">
+  <img src="./images/처치별분포_피처이름제거.png" alt="처치별 Feature Density Plot">
   <figcaption>그림 1: 처치별 Feature 분포 비교</figcaption>
 </figure>
 
 
 <figure>
-  <img src="/post/what-is-statistical-bias/처치별박스플랏_피처이름제거.pngg" alt="Boxplot Grouped by Size">
+  <img src="./images/처치별박스플랏_피처이름제거.pngg" alt="Boxplot Grouped by Size">
   <figcaption>그림 2: 크기별 그룹화된 박스플롯</figcaption>
 </figure>
 
@@ -178,7 +178,7 @@ ata와 clr의 경우 분포의 차이가 명확히 보이고 있습니다.
 
 
 <figure>
-  <img src="/post/what-is-statistical-bias/처치별결과분포_피처이름제거.png" alt="처치별 결과 비교">
+  <img src="./images/처치별결과분포_피처이름제거.png" alt="처치별 결과 비교">
   <figcaption>그림 3: 처치별 결과 분포 비교</figcaption>
 </figure>
 
@@ -225,7 +225,7 @@ $Y$와 $T$ 간의 인과관계를 모델링해야 합니다.
 
 
 <figure>
-  <img src="/post/what-is-statistical-bias/사이즈별잔차분포.png" alt="결과에서 교란변수에 대한 영향 제거후 분포">
+  <img src="./images/사이즈별잔차분포.png" alt="결과에서 교란변수에 대한 영향 제거후 분포">
   <figcaption>그림 4: 잔차화를 통해 교란변수에 대한 영향을 제거한 결과 분포</figcaption>
 </figure>
 
@@ -239,7 +239,7 @@ $Y$와 $T$ 간의 인과관계를 모델링해야 합니다.
 교란변수와 독립인지는 교란변수로 잔차를 예측하는 모델을 만들어 확인할 수 있습니다.
 
 <figure>
-  <img src="/post/what-is-statistical-bias/조건부독립성검사.png" alt="교란변수로 잔차를 예측하는 모델 결과">
+  <img src="./images/조건부독립성검사.png" alt="교란변수로 잔차를 예측하는 모델 결과">
   <figcaption>그림 5: 교란변수로 잔차를 예측하는 모델 결과</figcaption>
 </figure>
 
@@ -249,7 +249,7 @@ $Y$와 $T$ 간의 인과관계를 모델링해야 합니다.
 이 결과를 좀 더 직관적을 해석해보면
 
 <figure>
-  <img src="/post/what-is-statistical-bias/같은렌즈크기_다른눈_피처이름제거.png" alt="같은렌즈크기_같은결과_다른눈">
+  <img src="./images/같은렌즈크기_다른눈_피처이름제거.png" alt="같은렌즈크기_같은결과_다른눈">
   <figcaption>그림 6: 같은 렌즈 크기에 같은 결과를 얻었지만 다른 눈을 가진 경우</figcaption>
 </figure>
 

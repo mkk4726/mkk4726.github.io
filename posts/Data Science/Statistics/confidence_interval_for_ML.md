@@ -28,7 +28,7 @@ tags: ["machine-learning", "confidence-interval"]
 보통 ML의 신뢰구간은 metric에 대한 신뢰구간을 의미하는 것 같다.
 
 <figure>
-    <img src="/post/DataScience/CI_for_ML/CI_example1.png" alt="confidence_interval_for_ML" style="width: 50%;" />
+    <img src="./images/CI_example1.png" alt="confidence_interval_for_ML" style="width: 50%;" />
     <figcaption>그림1. confidence_interval_for_ML (참고1)</figcaption>
 </figure>
 
@@ -75,7 +75,7 @@ tags: ["machine-learning", "confidence-interval"]
 공감이 된다. 어떤 추정값을 이야기할 때 불확실성에 대한 이야기는 꼭 포함이 되어야 한다고 생각한다.
 
 <figure>
-    <img src="/post/DataScience/CI_for_ML/with_CI_without_CI.png" alt="confidence_interval_for_ML" style="width: 80%;" />
+    <img src="./images/with_CI_without_CI.png" alt="confidence_interval_for_ML" style="width: 80%;" />
     <figcaption>그림2. with_CI_without_CI</figcaption>
 </figure>
 
@@ -90,7 +90,7 @@ tags: ["machine-learning", "confidence-interval"]
 추정값에 대한 불확실성을 정량화한게 신뢰구간이라고 생각해볼 수 있겠다.
 
 <figure>
-    <img src="/post/DataScience/CI_for_ML/95_percent_CI.png" alt="confidence_interval_for_ML" style="width: 80%;" />
+    <img src="./images/95_percent_CI.png" alt="confidence_interval_for_ML" style="width: 80%;" />
     <figcaption>그림3. 95% 신뢰구간의 의미</figcaption>
 </figure>
 
@@ -112,7 +112,7 @@ tags: ["machine-learning", "confidence-interval"]
 > 통계적 유의성은 관찰된 결과가 단순한 우연이나 확률적 변동이 아닌, 실제로 의미 있는 차이나 관계가 있다고 판단할 수 있는 정도를 나타냅니다.
 
 <figure>
-    <img src="/post/DataScience/CI_for_ML/ci-overlap.png" alt="confidence_interval_for_ML" style="width: 80%;" />
+    <img src="./images/ci-overlap.png" alt="confidence_interval_for_ML" style="width: 80%;" />
     <figcaption>그림4. 신뢰구간의 중복을 통한 판단</figcaption>
 </figure>
 
@@ -152,7 +152,7 @@ standard error : $\sqrt{\frac{1}{n} \text{ACC}_{test} (1 - \text{ACC}_{test})}$
 > You can find a description of this method in section 1.7 Confidence Intervals via Normal Approximation of my “[Model Evaluation, Model Selection, and Algorithm Selection in Machine Learning”](https://arxiv.org/pdf/1811.12808).
 
 <figure>
-    <img src="/post/DataScience/CI_for_ML/normal-approx.png" alt="confidence_interval_for_ML" style="width: 80%;" />
+    <img src="./images/normal-approx.png" alt="confidence_interval_for_ML" style="width: 80%;" />
     <figcaption>그림5. 정확도에 대한 신뢰구간 표시</figcaption>
 </figure>
 

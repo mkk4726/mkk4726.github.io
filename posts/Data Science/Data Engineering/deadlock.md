@@ -11,7 +11,7 @@ tags: ["Deadlock"]
 > Deadlock(교착상태)은 두 개 이상의 프로세스나 트랜잭션이 서로가 가진 리소스를 기다리면서 무한정 대기하는 상태를 말합니다.
 
 <figure>
-<img src="/post/DataEngineering/Deadlock.png" alt="Deadlock" width="80%" />
+<img src="./images/Deadlock.png" alt="Deadlock" width="80%" />
 <figcaption>Deadlock 예시</figcaption>
 </figure>
 

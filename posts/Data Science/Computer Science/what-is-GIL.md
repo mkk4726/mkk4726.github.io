@@ -25,7 +25,7 @@ Global Interpreter Lock
 > GIL은 문자 그대로 인터프리터에 대한 Lock이다.
 
 <figure>
-<img src="/post/CS/GIL_그림1.png" alt="GIL" /><width="80%" />
+<img src="./images/GIL_그림1.png" alt="GIL" /><width="80%" />
 <figcaption>GIL 예시 (1)</figcaption>
 </figure>
 
@@ -49,7 +49,7 @@ Lock은 인터프리터가 여러 스레드를 병렬적으로 실행하지 않�
 # GIL이 필요한 이유
 
 <figure>
-<img src="/post/CS/ThreadMemory.png" alt="ThreadMemory" /><width="80%" />
+<img src="./images/ThreadMemory.png" alt="ThreadMemory" /><width="80%" />
 <figcaption>ThreadMemory</figcaption>
 </figure>
 
@@ -71,7 +71,7 @@ Lock은 인터프리터가 여러 스레드를 병렬적으로 실행하지 않�
 이는 각 객체가 몇 개의 변수나 다른 객체에 의해 참조되고 있는지를 카운트하는 방식.
 
 <figure>
-<img src="/post/CS/ReferenceCounting.png" alt="ReferenceCounting" /><width="80%" />
+<img src="./images/ReferenceCounting.png" alt="ReferenceCounting" /><width="80%" />
 <figcaption>Reference Counting (RC)</figcaption>
 </figure>
 
@@ -129,7 +129,7 @@ Python 3.14부터 도입된 free-threaded 빌드는 GIL을 제거하여 진정�
 ### TCP 성능 테스트
 
 <figure>
-<img src="/post/CS/benchmark_1.png" alt="benchmark_1" /><width="80%" />
+<img src="./images/benchmark_1.png" alt="benchmark_1" /><width="80%" />
 <figcaption>tcp benchmark</figcaption>
 </figure>
 
@@ -140,7 +140,7 @@ Python 3.14부터 도입된 free-threaded 빌드는 GIL을 제거하여 진정�
 ### 웹 스크래핑 성능 (aiohttp 사용)
 
 <figure>
-<img src="/post/CS/benchmark_2.png" alt="benchmark_2" /><width="80%" />
+<img src="./images/benchmark_2.png" alt="benchmark_2" /><width="80%" />
 <figcaption>webscraping benchmark_2</figcaption>
 </figure>
 

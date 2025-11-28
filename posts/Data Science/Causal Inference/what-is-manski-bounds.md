@@ -82,7 +82,7 @@ $$
 
 
 <figure>
-<img src="/post/Causal_Inference/Observational-Counterfactual-Decomposition.png" alt="Observational-Counterfactual Decomposition" width="80%" />
+<img src="./images/Observational-Counterfactual-Decomposition.png" alt="Observational-Counterfactual Decomposition" width="80%" />
 <figcaption>그림1. Observational-Counterfactual Decomposition</figcaption>
 </figure>
 
@@ -91,14 +91,14 @@ $$
 그림1과 같이 수식을 전개할 수 있고
 
 <figure>
-<img src="/post/Causal_Inference/No-Assumptions-Bound.png" alt="No-Assumptions-Bound" width="80%" />
+<img src="./images/No-Assumptions-Bound.png" alt="No-Assumptions-Bound" width="80%" />
 <figcaption>그림2. No-Assumptions-Bound</figcaption>
 </figure>
 
 추정할 수 없는 값들에 대해서는 수식 3에서 정의한 것과 같이, Y(t)의 범위를 넣어 추정할 수 있습니다.
 
 <figure>
-<img src="/post/Causal_Inference/No-Assumptions-Interval-Length.png" alt="No-Assumptions-Interval-Length" width="80%" />
+<img src="./images/No-Assumptions-Interval-Length.png" alt="No-Assumptions-Interval-Length" width="80%" />
 <figcaption>그림3. No-Assumptions-Interval-Length</figcaption>
 </figure>
 

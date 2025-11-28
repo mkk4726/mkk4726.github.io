@@ -56,7 +56,7 @@ $$\text{Variance} = E[(\hat{f}(x) - E[\hat{f}(x)])^2]$$
 ### 시각적 예시
 
 <figure style="text-align: center;">
-  <img src="/post/bias_variance/bias_variance_1.png" alt="Bias-Variance Tradeoff" style="width: 100%; max-width: 600px; display: block; margin: 0 auto;"/>
+  <img src="./images/bias_variance_1.png" alt="Bias-Variance Tradeoff" style="width: 100%; max-width: 600px; display: block; margin: 0 auto;"/>
   <figcaption>그림 1: Bias-Variance 개념 설명 그림</figcaption>
 </figure>
 
@@ -69,7 +69,7 @@ $$\text{Variance} = E[(\hat{f}(x) - E[\hat{f}(x)])^2]$$
 따라서 분산이 낮으면 한 곳에 뭉쳐있고, 분산이 높으면 넓게 펴져있는 것을 확인할 수 있습니다.
 
 <figure style="text-align: center;">
-  <img src="/post/bias_variance/bias_variance_2.png" alt="Bias-Variance Tradeoff" style="width: 100%; max-width: 600px; display: block; margin: 0 auto;"/>
+  <img src="./images/bias_variance_2.png" alt="Bias-Variance Tradeoff" style="width: 100%; max-width: 600px; display: block; margin: 0 auto;"/>
   <figcaption>그림 2: 실제 예측에서의 Bias-Variance Tradeoff - 단순한 모델(높은 편향, 낮은 분산) vs 복잡한 모델(낮은 편향, 높은 분산)</figcaption>
 </figure>
 

@@ -29,7 +29,7 @@ ML(AI) 모델들은 학습된 분포에 과적합되기 쉽고, robustness가 �
 # 해결방안에 대한 생각 간단히 정리
 
 <figure>
-    <img src="/post/Causal_Inference/extrapolation_idea_sketch.png" alt="extrapolation_idea_sketch" width="100%"/>
+    <img src="./images/extrapolation_idea_sketch.png" alt="extrapolation_idea_sketch" width="100%"/>
     <figcaption>그림1. 아이디어 스케치</figcaption>
 </figure>
 

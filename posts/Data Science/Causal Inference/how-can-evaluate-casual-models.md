@@ -54,7 +54,7 @@ CATE estimation을 통해 개인별 민감도를 계산하고 이를 활용해 �
 > All we need is to compare the outcome between the treated and untreated.
 
 <figure style="text-align: center;">
-  <img src="/post/Causal_Inference/cate_metric_using_ate.png" alt="cate_metric_using_ate" />
+  <img src="./images/cate_metric_using_ate.png" alt="cate_metric_using_ate" />
   <figcaption> 그림1. CATE 평가 방법에 대한 직관적 설명 (low: 비처치대상, high: 처치대상-가격을 높였을 때)</figcaption>
 </figure>
 
@@ -72,7 +72,7 @@ CATE estimation을 통해 개인별 민감도를 계산하고 이를 활용해 �
 계속해서 가져가고 있는 컨셉은, CATE estimation은 개인별로 cate를 구분되게 추정하는 것이 목표이고, 이를 사용해 정렬한 후 그룹을 나눠 ATE를 구하면 차이가 나야한다는 것입니다.
 
 <figure style="text-align: center;">
-  <img src="/post/Causal_Inference/cumulative_gain_curve.png" alt="cumulative_gain_curve" />
+  <img src="./images/cumulative_gain_curve.png" alt="cumulative_gain_curve" />
   <figcaption> 그림2. Cumulative gain curve</figcaption>
 </figure>
 

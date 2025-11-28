@@ -12,7 +12,7 @@ tags: ["DataBase"]
 
 
 <figure>
-  <img src="/post/DataScience/sharding_vs_partitioning.gif" alt="Sharding vs Partitioning 차이점" />
+  <img src="./images/sharding_vs_partitioning.gif" alt="Sharding vs Partitioning 차이점" />
   <figcaption>Sharding vs Partitioning</figcaption>
 </figure>
 

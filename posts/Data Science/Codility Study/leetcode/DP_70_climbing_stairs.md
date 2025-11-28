@@ -45,7 +45,7 @@ Constraints:
 - 큰 문제의 해결책은 작은 문제의 합으로 구성할 수 있어야 함
 
 <figure>
-  <img src="/post/Codility%20Study/leetcode/문제70.png" alt="Climbing Stairs 문제 설명 이미지" style="max-width:100%;">
+  <img src="./images/문제70.png" alt="Climbing Stairs 문제 설명 이미지" style="max-width:100%;">
   <figcaption>LeetCode 70번 - Climbing Stairs 문제 개념도</figcaption>
 </figure>
 

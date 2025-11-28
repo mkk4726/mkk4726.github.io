@@ -79,7 +79,7 @@ tags: ["ICL-Lenze-sizing"]
 앞서 언급한 것처럼 데이터에 통계적 편향(교란편향)이 존재하면 예측 모델은 잘못된 패턴, 즉 인과관계가 아닌 패턴을 학습할 수 있다. 렌즈 사이징 문제에서 데이터는 통계적 편향을 가지고 있다. 이는 렌즈 크기별(처치별)로 환자의 분포가 다르다는 의미이며, 데이터에서 확인된다. 
 
 <figure>
-  <img src="/post/what-is-statistical-bias/처치별_Feature_DensityPlot.png" alt="처치별 Feature Density Plot">
+  <img src="./images/처치별_Feature_DensityPlot.png" alt="처치별 Feature Density Plot">
   <figcaption>그림 1: 처치별 환자 눈의 크기 분포 비교</figcaption>
 </figure>
 
@@ -123,7 +123,7 @@ tags: ["ICL-Lenze-sizing"]
 이때 인과추론 방법론을 통해 통계적 편향을 제거할 수 있다.
 
 <figure>
-  <img src="/post/what-is-statistical-bias/처치별결과비교.png" alt="처치별 결과 비교">
+  <img src="./images/처치별결과비교.png" alt="처치별 결과 비교">
   <figcaption>그림 2: 처치별 결과 분포 비교</figcaption>
 </figure>
 
@@ -131,7 +131,7 @@ tags: ["ICL-Lenze-sizing"]
 처치효과를 추정하기 위해서는 통계적 편향을 제거해야 한다.
 
 <figure>
-  <img src="/post/what-is-statistical-bias/사이즈별잔차분포.png" alt="결과에서 교란변수에 대한 영향 제거후 분포">
+  <img src="./images/사이즈별잔차분포.png" alt="결과에서 교란변수에 대한 영향 제거후 분포">
   <figcaption>그림 3: 잔차화를 통해 통계적 편향을 제거한 결과 분포</figcaption>
 </figure>
 

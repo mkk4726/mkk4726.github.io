@@ -35,7 +35,7 @@ tags: ["data-drift", "machine-learning", "statistics", "data-engineering"]
 
 
 <figure>
-<img src="/post/DataScience/DataDrift_plot_1.gif" alt="Data Drift Plot" />
+<img src="./images/DataDrift_plot_1.gif" alt="Data Drift Plot" />
 <figcaption>그림 1. Data Drift Plot</figcaption>
 </figure>
 

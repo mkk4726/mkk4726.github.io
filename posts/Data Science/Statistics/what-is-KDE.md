@@ -150,7 +150,7 @@ $$\text{count}_i = \text{density}_i \times N \times \text{bin\_width}_i$$
 ## 주요 Kernel 함수들
 
 <figure>
-<img src="/post/DataScience/kernel_functions.png" alt="Kernel functions" />
+<img src="./images/kernel_functions.png" alt="Kernel functions" />
 <figcaption>Kernel functions</figcaption>
 </figure>
 

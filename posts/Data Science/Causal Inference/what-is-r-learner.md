@@ -72,7 +72,7 @@ $$
 $$
 
 <figure style="text-align: center;">
-  <img src="/post/Causal_Inference/T-learner.png" alt="T-learner" style="display: block; margin: 0 auto;" />
+  <img src="./images/T-learner.png" alt="T-learner" style="display: block; margin: 0 auto;" />
   <figcaption style="text-align: center;">
     그림 1 : T-learner 구조<br/>
     <a href="https://matheusfacure.github.io/python-causality-handbook/21-Meta-Learners.html" target="_blank" style="font-size: 0.8em; color: #fff;">출처: Causal Inference for The Brave and True</a>
@@ -103,7 +103,7 @@ $$
 $$
 
 <figure style="text-align: center;">
-  <img src="/post/Causal_Inference/S-learner.png" alt="S-learner" style="display: block; margin: 0 auto;" />
+  <img src="./images/S-learner.png" alt="S-learner" style="display: block; margin: 0 auto;" />
   <figcaption style="text-align: center;">
     그림 2 : S-learner 구조<br/>
     <a href="https://matheusfacure.github.io/python-causality-handbook/21-Meta-Learners.html" target="_blank" style="font-size: 0.8em; color: #fff;">출처: Causal Inference for The Brave and True</a>
@@ -131,7 +131,7 @@ s_learner_cate_test = test.assign(
 
 
 <figure style="text-align: center;">
-  <img src="/post/Causal_Inference/X-learner.png" alt="X-learner" style="display: block; margin: 0 auto;" />
+  <img src="./images/X-learner.png" alt="X-learner" style="display: block; margin: 0 auto;" />
   <figcaption style="text-align: center;">
     그림 3 : X-learner 구조<br/>
     <a href="https://matheusfacure.github.io/python-causality-handbook/21-Meta-Learners.html" target="_blank" style="font-size: 0.8em; color: #fff;">출처: Causal Inference for The Brave and True</a>

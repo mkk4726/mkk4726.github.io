@@ -45,7 +45,7 @@ $$
 - $\tau = 0.1$ (10분위수): 반대 패턴
 
 <figure>
-<img src="/post/DataScience/pinball_loss.png" alt="pinball_loss" /><width="100%"/>
+<img src="./images/pinball_loss.png" alt="pinball_loss" /><width="100%"/>
 <figcaption>그림1. Pinball Loss</figcaption>
 </figure>
 

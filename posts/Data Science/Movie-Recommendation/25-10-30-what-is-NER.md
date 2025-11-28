@@ -43,7 +43,7 @@ tags: ["Movie-Recommendation"]
 엔티티를 토큰으로 정의하고, 정확히는 토큰 중 엔티티에 해당하는 걸 엔티티 토큰으로 정의하고 맞추는 문제 푸는구나.
 
 <figure>
-  <img src="/post/Recommendation/BERT_for_NER.png" alt="BERT 기반 NER 구조도" style="max-width: 500px; width: 100%; border: 1px solid #eee;">
+  <img src="./images/BERT_for_NER.png" alt="BERT 기반 NER 구조도" style="max-width: 500px; width: 100%; border: 1px solid #eee;">
   <figcaption>
     <b>BERT를 이용한 NER(개체명 인식) 예시 구조</b><br>
     입력 문장이 토큰화되어 임베딩되고, 각 토큰별로 엔티티(Label)를 예측하는 구조.<br>

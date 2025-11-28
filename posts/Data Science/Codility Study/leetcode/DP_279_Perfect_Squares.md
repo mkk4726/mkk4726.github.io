@@ -36,7 +36,7 @@ tags: ["leetcode"]
 유형은 눈에 들어오는데 점화식이 바로 세워지진 않네.
 
 <figure>
-  <img src="/post/Codility%20Study/leetcode/문제279.png" alt="문제 스케치" style="max-width:100%;">
+  <img src="./images/문제279.png" alt="문제 스케치" style="max-width:100%;">
   <figcaption>LeetCode 279번. 문제 스케치</figcaption>
 </figure>
 

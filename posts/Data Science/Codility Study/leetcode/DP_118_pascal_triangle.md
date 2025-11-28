@@ -53,7 +53,7 @@ Output: [[1]]
 - memoization을 사용해 중복 계산 방지
 
 <figure>
-  <img src="/post/Codility%20Study/leetcode/문제118.png" alt="Pascal's Triangle 문제 설명 이미지" style="max-width:100%;">
+  <img src="./images/문제118.png" alt="Pascal's Triangle 문제 설명 이미지" style="max-width:100%;">
   <figcaption>LeetCode 118번 문제 스케치</figcaption>
 </figure>
 

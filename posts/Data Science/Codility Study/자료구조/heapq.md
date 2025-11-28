@@ -9,7 +9,7 @@ tags: ["코딩 테스트 합격자 되기", "Codility Study", "자료구조"]
 # heapq와 우선순위 큐 (Priority Queue)
 
 <figure>
-  <img src="/post/CodilityStudy/heapq.png" alt="heapq 개념도" />
+  <img src="./images/heapq.png" alt="heapq 개념도" />
   <figcaption>heapq 그림</figcaption>
 </figure>
 

@@ -22,7 +22,7 @@ tags: ["Segmentation"]
 아버지가 당뇨가 있으시기 때문에, 가족의 건강에 직접적으로 기여할 수 있다는 생각에 관련 문제를 풀어보고 싶었습니다.
 
 <figure>
-<img src="/post/Portfolio/aiffel_presentaion_1.png" alt="aiffel_presentaion_1" /><width 80%/>
+<img src="./images/aiffel_presentaion_1.png" alt="aiffel_presentaion_1" /><width 80%/>
 <figcaption>그림1. 왜 당뇨병성 망막병증으로 주제를 정했는지</figcaption>
 </figure>
 
@@ -67,7 +67,7 @@ Segmentation은 크게 Unet 계열과 DeepLab 계열로 구분할 수 있었고,
 ## 이미지 전처리: CLAHE 적용
 
 <figure>
-<img src="/post/Portfolio/aiffel_presentation_clahe.png" alt="aiffel_presentaion_clahe" /><width 80%/>
+<img src="./images/aiffel_presentation_clahe.png" alt="aiffel_presentaion_clahe" /><width 80%/>
 <figcaption>그림2. 이미지 전처리 방법 적용 : CLAHE</figcaption>
 </figure>
 
@@ -82,7 +82,7 @@ Segmentation은 크게 Unet 계열과 DeepLab 계열로 구분할 수 있었고,
 ## multi-task learning 
 
 <figure>
-<img src="/post/Portfolio/aiffel_presentation_mtl.png" alt="aiffel_presentaion_mtl" /><width 80%/>
+<img src="./images/aiffel_presentation_mtl.png" alt="aiffel_presentaion_mtl" /><width 80%/>
 <figcaption>그림3. 인코더 풍부하게 하기 : MTL</figcaption>
 </figure>
 

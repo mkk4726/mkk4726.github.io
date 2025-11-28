@@ -20,7 +20,7 @@ T-distributed Stochastic Neighbor Embedding
 ## PCA vs t-SNE
 
 <figure>
-<img src="/post/DataScience/pca-vs-t-sne.png" alt="PCA vs t-SNE" width="100%"/>
+<img src="./images/pca-vs-t-sne.png" alt="PCA vs t-SNE" width="100%"/>
 <figcaption>그림1. PCA vs t-SNE</figcaption>
 </figure>
 

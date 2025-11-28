@@ -22,7 +22,7 @@ tags: ["meta-learning", "machine-learning", "statistics"]
 개념만으로는 크게 와닿진 않네.
 
 <figure>
-<img src="/post/DataScience/meta_learning_concept_1.webp" alt="Meta-learning 개념도" />
+<img src="./images/meta_learning_concept_1.webp" alt="Meta-learning 개념도" />
 <figcaption>그림 1. Meta-learning의 기본 개념</figcaption>
 </figure>
 
@@ -31,7 +31,7 @@ tags: ["meta-learning", "machine-learning", "statistics"]
 과거의 학습 경험 (데이터나 파라미터)를 바탕으로 새로운 문제에 대해서 빠르게 학습해나가는 방법
 
 <figure>
-<img src="/post/DataScience/A-taxonomy-of-meta-learning-Meta-learning-strategies-are-divided-into-two-main.png" alt="Meta-learning strategies" />
+<img src="./images/A-taxonomy-of-meta-learning-Meta-learning-strategies-are-divided-into-two-main.png" alt="Meta-learning strategies" />
 <figcaption>그림 2. Meta-learning strategies</figcaption>
 </figure>
 

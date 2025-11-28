@@ -135,7 +135,7 @@ ACID (Atomicity, Consistency, Isolation, Durability)
 > ETL은 데이터를 범용 처리 및 원하는 모양과 포맷으로 집계함을 의미
 
 <figure>
-  <img src="/post/DesigningMachineLaerningSystem/ETL.webp" alt="ETL Process" />
+  <img src="./images/ETL.webp" alt="ETL Process" />
   <figcaption>
     출처: <a href="https://www.getdbt.com/blog/etl-vs-elt" target="_blank" rel="noopener noreferrer">https://www.getdbt.com/blog/etl-vs-elt</a>
   </figcaption>
@@ -147,7 +147,7 @@ ACID (Atomicity, Consistency, Isolation, Durability)
 > 데이터를 먼저 스토리지에 적재한 뒤 나중에 처리하는 프로세스
 
 <figure>
-  <img src="/post/DesigningMachineLaerningSystem/ELT.webp" alt="ELT Process" />
+  <img src="./images/ELT.webp" alt="ELT Process" />
   <figcaption>
     출처: <a href="https://www.getdbt.com/blog/etl-vs-elt" target="_blank" rel="noopener noreferrer">https://www.getdbt.com/blog/etl-vs-elt</a>
   </figcaption>

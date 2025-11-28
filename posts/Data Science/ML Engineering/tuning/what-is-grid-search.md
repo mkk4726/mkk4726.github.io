@@ -9,7 +9,7 @@ tags: ["Tuning", "Grid Search"]
 # Grid Search란?
 
 <figure>
-<img src="/post/DataScience/GridSearch.png" alt="Grid Search" />
+<img src="./images/GridSearch.png" alt="Grid Search" />
 <figcaption>그림1. Grid Search</figcaption>
 </figure>
 

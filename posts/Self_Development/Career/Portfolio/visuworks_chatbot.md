@@ -58,10 +58,10 @@ tags: ["RAG"]
 RAG 파이프라인은 다음과 같이 구성되어있습니다.
 
 <figure>
-<img src="/post/Portfolio/chatbot_pipeline1.png" alt="RAG pipeline" width="50%" />
+<img src="./images/chatbot_pipeline1.png" alt="RAG pipeline" width="50%" />
 </figure>
 <figure>
-<img src="/post/Portfolio/chatbot_pipeline2.png" alt="RAG pipeline" width="100%" />
+<img src="./images/chatbot_pipeline2.png" alt="RAG pipeline" width="100%" />
 <figcaption>그림1. RAG pipeline</figcaption>
 </figure>
 

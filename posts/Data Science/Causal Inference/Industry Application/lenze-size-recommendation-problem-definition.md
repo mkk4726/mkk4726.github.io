@@ -93,7 +93,7 @@ $T=12.1$mm 렌즈를 기준으로 상대적 효과(CATE)를 정의하고,
 # 측정하지 않은 값에 대한 예측값은 어떻게 평가할 것인가
 ---
 <figure>
-<img src="/post/Causal_Inference/렌즈추천_평가고민.jpeg" alt="how-to-evalutate-counterfactual" />
+<img src="./images/렌즈추천_평가고민.jpeg" alt="how-to-evalutate-counterfactual" />
 <figcaption>그림1. 측정하지 않은 값에 대한 예측값은 어떻게 평가할 것인가</figcaption>
 </figure>
 
