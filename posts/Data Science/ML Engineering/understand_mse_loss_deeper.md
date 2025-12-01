@@ -13,11 +13,10 @@ regression model에서 기본적으로 mse loss를 사용하는데, 왜 그런�
 
 ## 들어가며
 
-Regression 모델에서 기본적으로 MSE loss를 사용하는데, 왜 그럴까요? 단순히 "성능이 잘 나와서"가 아니라, **이론적 배경**이 있습니다.
+Regression 모델에서 기본적으로 MSE loss를 사용하는데, 왜 그럴까요? 
+단순히 "성능이 잘 나와서"가 아니라, **이론적 배경**이 있다.
 
-> **💡 핵심 개념**  
-> MSE loss는 **error term을 Gaussian으로 가정**하고 **Maximum Likelihood Estimation (MLE)** 관점에서 자연스럽게 도출됩니다. 이 가정의 배경에는 **중심극한정리(Central Limit Theorem, CLT)**가 있습니다.
-
+> [링크드인 이제헌님 글]
 > error term을 Gaussian으로 가정하고 maximum likelihood estimation 관점에서 해석할 수 있기 때문입니다. 
 > 그 가정의 배경에는 중심극한정리(central limit theorem)가 있습니다. 
 > linear regression과 같은 생각의 흐름을 deep networks에서도 적용할 수 있는 것까지 이해하면, deep networks에서도 regression 문제를 풀 때 MSE loss를 쓰는 게 자연스러워집니다. 
@@ -36,9 +35,7 @@ Regression 모델에서 기본적으로 MSE loss를 사용하는데, 왜 그럴�
 ```
 
 중심극한정리에 따르면:
-
-> **📌 참고**  
-> 독립적인 확률변수들의 합은 표본 크기가 충분히 크면 **정규분포(Gaussian distribution)**에 근사합니다.
+> 독립적인 확률변수들의 합(표본평균)은 표본 크기가 충분히 크면 **정규분포(Gaussian distribution)**에 근사합니다.
 
 따라서:
 - 오차항 ε ~ N(0, σ²)로 가정하는 것이 합리적
@@ -79,7 +76,52 @@ maximize log L(θ) ⟺ minimize Σᵢ (yᵢ - f(xᵢ; θ))²
 > **💡 핵심 개념**  
 > **MSE loss는 Gaussian noise 가정 하에서 MLE의 결과**입니다. 즉, MSE를 최소화하는 것 = 데이터의 likelihood를 최대화하는 것입니다.
 
-### 1.3 MSE는 조건부 평균을 추정
+### 1.3 MSE와 σ²의 관계
+
+모델에서 ε ~ N(0, σ²)로 가정했을 때, **MSE는 일반적으로 σ²보다 크거나 같습니다**.
+
+**Bias-Variance Decomposition** 관점에서:
+
+$$
+E[(y - \hat{y})^2] = \underbrace{(E[\hat{y}] - f(x))^2}_{\text{Bias}^2} + \underbrace{\text{Var}(\hat{y})}_{\text{Variance}} + \underbrace{\sigma^2}_{\text{Irreducible Error}}
+$$
+
+이를 다음과 같이 정리할 수 있습니다:
+
+$$
+\text{총 오차 (MSE)} = \text{모델 오차} + \text{데이터 오차}
+$$
+
+$$
+\text{MSE} = \underbrace{\text{Bias}^2 + \text{Variance}}_{\text{모델 오차}} + \underbrace{\sigma^2}_{\text{데이터 오차}}
+$$
+
+여기서:
+- **모델 오차 (Reducible Error)**: 모델 자체의 한계로 인한 오차
+  - **Bias²**: 모델의 예측 평균과 실제 함수 f(x) 간의 차이 (모델이 데이터 생성 과정을 얼마나 잘 근사하는지)
+  - **Variance**: 모델 예측값의 분산 (훈련 데이터의 작은 변화에 얼마나 민감한지)
+- **데이터 오차 (Irreducible Error)**: σ²로 표현되는 데이터 자체의 노이즈로 인한 오차. 모델이 아무리 완벽해도 줄일 수 없는 오차
+
+### 불확실성 관점에서의 해석
+
+Bias-Variance Decomposition의 각 구성요소를 불확실성 모델링 관점에서 해석할 수 있습니다:
+
+| 통계적 구성요소               | 의미                     | 불확실성(모델링) 관점                         |
+| ---------------------- | ---------------------- | ------------------------------------ |
+| Bias²                  | 모델의 구조적 한계로 인해 발생하는 오차 | **Epistemic Uncertainty** (지식 부족)    |
+| Variance               | 훈련 데이터 변화에 대한 민감도      | **Epistemic Uncertainty** (데이터 부족)   |
+| Irreducible Error (σ²) | 데이터 생성 과정 자체의 노이즈      | **Aleatoric Uncertainty** (본질적 무작위성) |
+
+**핵심 포인트**:
+- 모델이 완벽하면 (Bias = 0, Variance = 0): **MSE = σ²**
+- 실제로는 모델이 완벽하지 않으므로: **MSE ≥ σ²**
+- 따라서 σ²는 MSE의 **하한선(lower bound)**입니다
+
+실제 회귀 문제에서:
+- 모델이 데이터 생성 과정을 완벽히 학습하면 → MSE ≈ σ²
+- 모델이 부족하거나 과적합되면 → MSE > σ²
+
+### 1.4 MSE는 조건부 평균을 추정
 
 MSE loss의 또 다른 중요한 특성:
 
@@ -178,6 +220,7 @@ p(ε) = (1/2b) exp(-|ε|/b)
 
 ### 4.1 MAE Loss는 언제?
 
+> [링크드인 이제헌님 글]
 > 그렇다면 MAE loss는 언제 합리적일까요? MSE는 조건부 평균을, MAE는 조건부 중앙값을 추정합니다. 
 > 중앙값이 평균보다 적합한 상황, 예를 들어 heavy-tailed noise나 outlier가 많은 경우라면 MAE가 자연스러운 선택이 됩니다. 
 > 이 개념을 이해하면 MAE loss를 일반화해 quantile regression까지도 확장해볼 수 있습니다.
@@ -221,6 +264,7 @@ where ρ_τ(u) = u(τ - 𝟙{u < 0})
 
 ### 4.3 불확실성 모델링
 
+> [링크드인 이제헌님 글]
 > 그럼 이걸 알면 어떤 부분에서 현업에 도움을 받을 수 있을까요? 우리는 종종 deep networks에서 불확실성을 모델링해야할 필요가 있습니다. 
 > 이 때 quantile regression을 한가지 방법으로 고려해볼 수 있습니다. 
 > 특히, UCB(upper confidence bound)가 필요한 상황에서 아주 간단하게 불확실성을 모델링하고 baseline으로 사용할 수 있게 됩니다. 
