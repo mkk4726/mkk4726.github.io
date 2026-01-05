@@ -1,8 +1,20 @@
 [
   {
+    "id": "Self_Development/Reflections/2026-01-05-2025-year-in-review",
+    "title": "2025년 회고",
+    "date": "2026-01-05",
+    "excerpt": "2025에 대한 생각 정리해보기",
+    "category": "Reflections",
+    "tags": [
+      "이런저런 생각들"
+    ],
+    "content": "2025년을 회고해보자. 회고하는 과정은 굉장히 중요하다. 과거의 경험을 그냥 흘려보내는게 아닌 데이터로 사용할 수 있게 되고, 현재 상황에 대해 더 잘 인지할 수 있게 된다. 어떻게 회고해볼까? 참고할만한 사고 프레임워크가 있네. KPT. (Keep, Problem, Try). 유지할 것, 문제점, 시도해볼 것. Keep. 유지하면 좋을 것. 꾸준히 글을 쓰는 것. 회고하는 습관 (매일 일기 쓰기). 시스템적 사고 (목표보다는 매일의 습관을 잘 구성하기), 이에 비롯된 꾸준한 연습 (기타, 운동, 영어, 마음공부) Problem. 문제점. 꽤나 치명적인 문제를 하나 발견할 수 있었다. 문제정의가 제대로 안되고 있었는데 면접경험 (12/29), 소개팅 애프터 경험(12/31)을 겪으면서 정의할 수 있게 됐다. 일희일비가 너무 심하다. 혼자 과하게 기대하고 과하게 실망한다. 기분의 편차가 굉장히 큰 편이다. 이 정도로 정의해볼 수 있을 것 같다. 이 패턴이 굉장히 자주 보이는 한 해였다. 과하게 기뻐하고 과하게 낙담 혹은 슬퍼하는. 이게 문제인 이유는 나 스스로가 너무 고통스럽다. 행복한 삶과는 거리가 있다. 그리고 커리어라던지, 내가 원하는 목표를 달성하는데에도 꽤나 치명적이다. 정의해놓고 보니 이 패턴은 고등학교때부터 존재했다. 시험 하나에 크게 좌절하고, 이는 부정적인 사고 패턴과 맞물려 실제보다 훨씬 더 고통스러워 했다. 내가 원하는 방향은 내가 구축한 시스템 안에서 내가 해야하는 것들에 차분히 몰입하는 삶이다. 무던한 삶. 고요한 바다 위에 있는 것 같은 느낌. 이 방향으로 나아가보자. Try. 시도해볼 것. 새해 다짐을 담은 염주를 하나 샀다. 어떤 목표를 달성하기 위해 가장 필요한 건 자주 떠올리는 것이라고 생각하는데, 이 염주를 보며 목표를 떠올려보려고 한다. 마음공부. Mindfulness. 올해 (2026)에 가장 중요하게 생각하는 키워드. 꾸준히 공부하고 연습해보자.",
+    "public": true
+  },
+  {
     "id": "Self_Development/Career/Portfolio/visuworks_segmentation",
     "title": "[Visuworks] Segmentation Model",
-    "date": "2025-12-02",
+    "date": "2026-01-05",
     "excerpt": "출혈관련 병변 탐지 모델 개발",
     "category": "Career",
     "tags": [
@@ -15,7 +27,7 @@
   {
     "id": "Self_Development/Career/Portfolio/visuworks_ocr_pipeline",
     "title": "OCR Pipeline System",
-    "date": "2025-12-02",
+    "date": "2026-01-05",
     "excerpt": "문서 이미지에서 텍스트를 추출하는 자동화된 OCR 파이프라인",
     "category": "Career",
     "tags": [
@@ -31,7 +43,7 @@
   {
     "id": "Self_Development/Career/Portfolio/visuworks_lenze_size_rec",
     "title": "Lens Size Recommendation System",
-    "date": "2025-12-02",
+    "date": "2026-01-05",
     "excerpt": "머신러닝을 활용한 맞춤형 렌즈 사이즈 추천 시스템",
     "category": "Career",
     "tags": [
@@ -43,7 +55,7 @@
   {
     "id": "Self_Development/Career/Portfolio/visuworks_chatbot",
     "title": "AI Chatbot Project",
-    "date": "2025-12-02",
+    "date": "2026-01-05",
     "excerpt": "고객상담용 챗봇 개발",
     "category": "Career",
     "tags": [
@@ -55,7 +67,7 @@
   {
     "id": "Self_Development/Career/Portfolio/side_recommendation_study",
     "title": "[Side] 추천 모델링 공부",
-    "date": "2025-12-02",
+    "date": "2026-01-05",
     "excerpt": "추천 모델링 공부를 위한 과정들",
     "category": "Career",
     "tags": [
@@ -69,7 +81,7 @@
   {
     "id": "Self_Development/Career/Portfolio/pnu_cloud_funding_prediction",
     "title": "[PNU] Cloud Funding Success prediction model",
-    "date": "2025-12-02",
+    "date": "2026-01-05",
     "excerpt": "부산대학교 산업공학과 졸업 프로젝트",
     "category": "Career",
     "tags": [
@@ -83,7 +95,7 @@
   {
     "id": "Self_Development/Career/Portfolio/aiffel_segmentation",
     "title": "Segmentation Model",
-    "date": "2025-12-02",
+    "date": "2026-01-05",
     "excerpt": "눈의 안쪽 부분을 찍는 안저사진에서 망막병증을 탐지하는 모델",
     "category": "Career",
     "tags": [
@@ -1205,15 +1217,15 @@
     "public": true
   },
   {
-    "id": "Data Science/Causal Inference/what-is-partial-identification",
-    "title": "Partial Identification에 대한 설명",
-    "date": "2025-08-19",
-    "excerpt": "Partial Identification이 무엇이고, 양수성이 위반되었을 때 어떻게 쓸 수 있는지",
-    "category": "Causal Inference",
+    "id": "Data Science/Data Engineering/deadlock",
+    "title": "Deadlock에 대한 정리",
+    "date": "2025-08-17",
+    "excerpt": "Deadlock은 뭐고 왜 발생하는가? OCR 프로젝트에서 발생한 문제도 같이 정리",
+    "category": "Data Engineering",
     "tags": [
-      "Partial Identification"
+      "Deadlock"
     ],
-    "content": "Partial Idenfication은 인과추론의 가정들이 깨졌을 때 사용하는 방법입니다. --- Treatment positivity assumption (positivity / overlap assumption) 인과추론(causal inference)에서 필수 가정 중 하나입니다. $$ 0 < P(T=1 \\mid X=x) < 1 \\quad \\text{for all } x \\tag{1} $$ 수식 1과 같이 정의됩니다. 이는 모든 공변량 $x$에 대해 처리를 받을 확률도 0보다 크고, 받지 않을 확률도 0보다 커야 한다는 조건을 뜻합니다. 이는 어떤 $x$ 값을 가진 집단도 완전히 한쪽 처우(treated/untreated)에만 속하면 안 된다는 것을 의미하고, 이게 만족해야 비교(반사실적 추정)가 가능해지기 떄문입니다. 하지만 현실에서는 positivity violation이 자주 발생합니다. 예를 들면 특정 연령대(아주 어린 아이)는 어떤 약을 절대 처방하지 않는 경우가 있습니다. 그러면 $P(T=1 \\mid X=x) = 0$이 되어버립니다. --- Partial identification 완전식별과 부분식별로 구분지어 이해할 수 있습니다. 완전한 식별(full identification): 모든 가정(ignorability, positivity 등)이 만족되면 인과효과(ATE 등)를 점추정(point estimate)할 수 있습니다. 부분 식별(partial identification): 가정이 일부 깨져서 정확한 점추정이 불가능할 때, 가능한 인과효과의 범위(bound, interval)를 추정하는 방법입니다. → “효과가 정확히 β다” 대신 “효과는 \\[a, b] 사이에 있다”라고 말하는 방식. --- Positivity 위반과 partial identification의 관계 Partial identification 접근은 positivity assumption이 위반된 상황을 다루는 대표적인 방법 중 하나입니다. positivity가 깨지면 특정 $X$ 영역에서 반사실적 결과를 추정할 수 없게 되는데, 이때 그 영역에서 인과효과가 어떤 범위에 있을지 논리적·수학적 제약을 통해 interval bound를 구합니다. Manski(1990s 이후)의 work나 최근 causal inference 문헌에서는 이런 상황을 \"bounded causal effects\" 문제로 다룹니다. --- 예시 어떤 약이 어린이에게는 절대 투여되지 않았다고 해봅시다. → positivity violation. 그럼 어린이 집단에서는 “투여 시 결과”를 관측할 수 없습니다. Partial identification 접근 (a) 이 집단에서의 결과가 최소한 관측된 범위 안에 있을 것이라는 가정, (b) monotonicity 같은 추가 가정 등을 사용해서, \"효과는 최소 0 이상, 최대 5 이하\" 처럼 구간 추정을 제시하는 개념입니다. --- 부분 식별이 필요한 대표적 상황 (1) Positivity violation (overlap 위반)* 어떤 $X$ 값에서 처리(Treatment)가 전혀 주어지지 않는 경우. 예: 어떤 나이대 아이들에게는 절대 약물이 투여되지 않았다면 $P(T=1 X)=0$. 이때 그 구간에서 반사실적(counterfactual) 결과는 관측 불가능. 해결: 그 구간에서 가능한 결과 범위를 가정하여 bound 제시. → Manski bounds (1989, 1990): 관찰 가능한 부분과 불가능한 부분을 분리해, 논리적으로 가능한 최대·최소 효과를 제시. --- (2) Unobserved confounding (비관측 교란) 교란변수 $U$가 관측되지 않으면 ignorability가 깨짐. 이 경우 “효과의 점추정”은 불가능하지만, 추가 가정(예: 교란의 최대 효과 크기 제한)을 넣으면 bounded effect를 제시할 수 있음. 예: Rosenbaum의 sensitivity analysis → 교란이 얼마나 강해야 추정된 효과가 무너질지를 bound로 제시. --- (3) Instrumental Variables (IV) 도구변수 접근에서도 부분 식별이 자주 등장. 강한 가정(완전한 독립성, exclusion restriction 등)이 만족되면 LATE(Local Average Treatment Effect)를 점추정할 수 있음. 하지만 가정을 완화하면 → LATE 자체는 interval identification으로만 가능. 대표적: Imbens & Manski (2004) bounds. --- (4) Selection bias / Missing data 데이터가 무작위로 빠지지 않고 선택적 결측(non-ignorable missingness)이 있을 때. 이 경우도 관찰 불가능한 부분에 대해 최소·최대 범위를 계산하는 Manski’s missing data bounds가 있음. --- 대표적인 Bound 기법들 Manski bounds (worst-case bounds) 가장 기본적인 형태. 가정을 최소화하고, 관측된 데이터만으로 논리적으로 가능한 인과효과의 상한/하한을 계산. 단점: 보통 interval이 너무 넓어서 실용성이 떨어짐. Lee bounds (2009) \\\\선택적 이탈(selection)\\\\이 있는 프로그램 평가에서 사용. monotonicity (단조성) 가정을 추가해서 bound를 좁힘. Imbens-Manski bounds (2004) 도구변수 기반 추론에서 treatment effect 범위 제시. Sensitivity analysis 기반 bounds 비관측 교란이 있을 때, 특정 “감도(sensitivity)” 가정을 통해 효과 범위를 제시. --- 이론적 철학 점추정(point identification) 은 강한 가정(positivity, ignorability 등)을 요구. 현실에서는 이 가정들이 자주 깨짐 → 강한 가정 대신 약한 가정만 두고, 추정 가능한 부분만으로 inference → 부분 식별. 따라서 partial identification은 \"robust inference under weaker assumptions\" 라고 할 수 있습니다. Manski는 이를 \"honest inference\" 라고 부릅니다. (불필요하게 강한 가정으로 잘못된 점추정을 하느니, 범위를 제시하는 것이 더 정직하다). ---",
+    "content": "Deadlock이란? > Deadlock(교착상태)은 두 개 이상의 프로세스나 트랜잭션이 서로가 가진 리소스를 기다리면서 무한정 대기하는 상태를 말합니다. <figure> <img src=\"./images/Deadlock.png\" alt=\"Deadlock\" width=\"80%\" /> <figcaption>Deadlock 예시</figcaption> </figure> P1과 P2가 리소스 A, B 둘 다를 얻어야 한다고 가정할 때, t1에 P1이 리소스를 A를 얻고 P2가 리소스 B를 얻었다면 t2때 P1은 리소스 B를, P2는 리소스 A를 기다리게 됩니다. 하지만 서로 원하는 리소스가 상대방에게 할당되어 있기 때문에 이 두 프로세스는 무한정 기다리게 되는데 이러한 상태을 DeadLock상태라고 합니다. 출처: https://jwprogramming.tistory.com/12 [개발자를 꿈꾸는 프로그래머:티스토리] --- Microsoft Datalocks guide 링크 내용이 자세하게 설명되어있는게 많네. 시간날 때 읽어보자. A deadlock occurs when two or more tasks permanently block each other by each task having a lock on a resource that the other tasks are trying to lock. For example: Transaction A acquires a shared lock on row 1. Transaction B acquires a shared lock on row 2. Transaction A now requests an exclusive lock on row 2, and is blocked until transaction B finishes and releases the shared lock it has on row 2. Transaction B now requests an exclusive lock on row 1, and is blocked until transaction A finishes and releases the shared lock it has on row 1. The SQL Server Database Engine deadlock monitor periodically checks for tasks that are in a deadlock. If the monitor detects a cyclic dependency, it chooses one of the tasks as a victim and terminates its transaction with an error. OCR 프로젝트에서 발생한 에러 메세지가 이 부분에 해당하는구나. This allows the other task to complete its transaction. The application with the transaction that terminated with an error can retry the transaction, which usually completes after the other deadlocked transaction finishes.",
     "public": true
   },
   {
@@ -1230,6 +1242,18 @@
       "Infrastructure"
     ],
     "content": "AWS EC2와 EBS 완벽 가이드 EC2 (Elastic Compute Cloud)란? EC2는 AWS에서 제공하는 가상 서버 서비스입니다. 사용자가 필요에 따라 컴퓨팅 리소스를 유연하게 확장하거나 축소할 수 있는 클라우드 컴퓨팅 서비스입니다. EC2의 주요 특징 가상 서버: 물리적 서버를 가상화하여 제공 확장성: 필요에 따라 인스턴스 수를 늘리거나 줄일 수 있음 다양한 인스턴스 타입: CPU, 메모리, 스토리지 요구사항에 맞는 다양한 옵션 온디맨드 요금: 사용한 만큼만 비용 지불 EC2 사용 사례 웹 애플리케이션 호스팅 웹 서버, 애플리케이션 서버 운영 로드 밸런서와 함께 고가용성 확보 데이터 처리 대용량 데이터 분석 작업 배치 프로세싱 및 ETL 작업 개발 및 테스트 환경 개발, 스테이징, 테스트 환경 구축 CI/CD 파이프라인 구축 게임 서버 온라인 게임 서버 운영 트래픽에 따른 자동 스케일링 EBS (Elastic Block Store)란? EBS는 EC2 인스턴스에 연결할 수 있는 블록 레벨 스토리지 서비스입니다. 하드 디스크와 유사한 기능을 제공하며, EC2 인스턴스의 부팅 디스크나 추가 데이터 스토리지로 사용됩니다. EBS의 주요 특징 블록 레벨 스토리지: 파일 시스템이 아닌 블록 단위로 데이터 저장 영구 저장: 인스턴스가 종료되어도 데이터 유지 다양한 볼륨 타입: SSD, HDD 등 성능과 비용에 따른 선택 가능 스냅샷 기능: 데이터 백업 및 복구 지원 EBS 볼륨 타입 SSD 기반 볼륨 gp3: 범용 SSD, 균형잡힌 성능과 비용 io2: 고성능 SSD, 높은 IOPS 요구사항에 적합 HDD 기반 볼륨 st1: 처리량 최적화 HDD, 빅데이터 워크로드에 적합 sc1: 콜드 스토리지, 자주 접근하지 않는 데이터에 적합 EBS 사용 사례 부팅 디스크 EC2 인스턴스의 운영체제 및 애플리케이션 설치 시스템 파일 및 설정 저장 데이터베이스 스토리지 MySQL, PostgreSQL 등의 데이터베이스 파일 저장 높은 IOPS가 필요한 워크로드에 적합 파일 서버 사용자 업로드 파일 저장 공유 파일 및 문서 저장 백업 및 복구 중요한 데이터의 스냅샷 생성 재해 복구를 위한 데이터 보호 EC2와 EBS의 연동 연결 방식 부팅 볼륨: EC2 인스턴스 생성 시 자동으로 연결되는 루트 볼륨 추가 볼륨: 인스턴스에 추가로 연결할 수 있는 데이터 볼륨 볼륨 분리: 인스턴스에서 볼륨을 분리하여 다른 인스턴스에 연결 가능 성능 최적화 EBS 최적화: EC2 인스턴스와 EBS 간의 네트워크 성능 최적화 프로비저닝된 IOPS: 예측 가능한 성능을 위한 IOPS 예약 스루풋 최적화: 대용량 데이터 전송에 최적화된 처리량 EBS 백업 기능 스냅샷 (Snapshots) EBS의 핵심 백업 기능으로, 특정 시점의 볼륨 상태를 저장합니다. 스냅샷의 특징 증분 백업: 변경된 블록만 백업하여 저장 공간 절약 지역 간 복사: 다른 AWS 리전으로 백업 복사 가능 자동화: AWS Lambda와 CloudWatch를 통한 자동 스냅샷 생성 비용 효율성: 사용하지 않는 스냅샷은 삭제하여 비용 절약 스냅샷 생성 방법 수동 생성: AWS 콘솔, CLI, SDK를 통한 수동 스냅샷 생성 자동 생성: 정책 기반 자동 스냅샷 생성 및 관리 스케줄링: 정기적인 백업 스케줄 설정 AWS Backup AWS에서 제공하는 중앙화된 백업 서비스로, EBS 볼륨을 포함한 다양한 AWS 리소스를 백업할 수 있습니다. 주요 기능 통합 관리: 여러 AWS 서비스의 백업을 한 곳에서 관리 정책 기반 백업: 백업 정책을 정의하여 자동화된 백업 실행 크로스 리전 백업: 여러 리전에 백업 복사본 저장 규정 준수: 다양한 규정 및 표준에 맞는 백업 정책 적용 백업 전략 3-2-1 백업 규칙 3개의 백업 복사본 2개의 다른 저장 매체 1개의 오프사이트 백업 백업 주기 일일 백업: 중요한 데이터의 경우 주간 백업: 일반적인 데이터의 경우 월간 백업: 장기 보관이 필요한 데이터의 경우 백업 보존 기간 단기 보존: 30일 이내의 백업 중기 보존: 90일 이내의 백업 장기 보존: 1년 이상의 백업 실제 사용 예시 웹 애플리케이션 구축 `` EC2 인스턴스 (t3.medium) ├── EBS gp3 볼륨 (20GB) - 부팅 디스크 └── EBS io2 볼륨 (100GB) - 데이터베이스 ` 데이터 분석 환경 ` EC2 인스턴스 (r5.2xlarge) ├── EBS gp3 볼륨 (50GB) - 부팅 디스크 ├── EBS st1 볼륨 (500GB) - 원시 데이터 └── EBS gp3 볼륨 (200GB) - 처리된 데이터 `` 비용 최적화 팁 적절한 볼륨 타입 선택: 워크로드에 맞는 볼륨 타입으로 비용 절약 미사용 볼륨 정리: 사용하지 않는 EBS 볼륨 삭제 스냅샷 관리: 오래된 스냅샷 정리 및 보존 기간 최적화 예약 인스턴스: 장기 사용 시 예약 인스턴스로 비용 절약 결론 AWS EC2와 EBS는 클라우드 인프라의 핵심 서비스로, 함께 사용하여 안정적이고 확장 가능한 시스템을 구축할 수 있습니다. EBS의 강력한 백업 기능을 활용하면 데이터 손실 위험을 최소화하고, 비즈니스 연속성을 보장할 수 있습니다. 올바른 EC2 인스턴스 타입과 EBS 볼륨 타입을 선택하고, 체계적인 백업 전략을 수립하여 클라우드 환경을 효율적으로 운영하시기 바랍니다.",
+    "public": true
+  },
+  {
+    "id": "Data Science/Data Engineering/sharding_vs_partitioning",
+    "title": "sharding vs partitioning",
+    "date": "2025-08-05",
+    "excerpt": "DB관리할 때 sharding과 partitioning의 차이에 대한 개념 정리",
+    "category": "Data Science",
+    "tags": [
+      "DataBase"
+    ],
+    "content": "참고한 글 링크드인 게시물 - Ashish Pratap Singh <figure> <img src=\"./images/sharding_vs_partitioning.gif\" alt=\"Sharding vs Partitioning 차이점\" /> <figcaption>Sharding vs Partitioning</figcaption> </figure> 구분 Partitioning Sharding ------ ------------- ---------- 범위 단일 서버 내 여러 서버 간 목적 성능 최적화 수평적 확장 복잡도 상대적으로 단순 복잡한 분산 시스템 사용 시기 단일 머신 내 최적화 단일 머신 한계 초과 시 Partitioning이란? > 하나의 큰 테이블을 더 작은 청크(파티션)로 나누는 것 목적: 성능 향상과 유지보수 단순화 특징: 논리적으로는 하나의 테이블: 개발자가 쿼리할 때는 마치 하나의 테이블처럼 사용 (파티션을 신경 쓸 필요 없음) 물리적으로는 여러 파일로 분산: 실제로는 각 파티션이 별도의 파일/세그먼트로 저장됨 쿼리 성능 향상 (특정 파티션만 스캔) 데이터 관리 용이성 (오래된 파티션 삭제 등) ``sql -- 파티셔닝된 테이블을 조회할 때 SELECT FROM logs WHERE log_date >= '2024-01-01'; -- 개발자는 마치 하나의 테이블을 조회하는 것처럼 사용 -- 하지만 DB 엔진은 내부적으로 2024년 파티션만 스캔함 ` 파티셔닝은 대부분의 현대적인 DBMS에서 지원하는 기능 지원하는 DBMS MySQL: Range, List, Hash, Key 파티셔닝 지원 PostgreSQL: Range, List, Hash 파티셔닝 지원 Oracle: Range, List, Hash, Composite 파티셔닝 지원 SQL Server: Range, List, Hash 파티셔닝 지원 BigQuery: Date, Integer Range 파티셔닝 지원 Snowflake: 다양한 파티셔닝 전략 지원 지원하지 않는 DBMS SQLite: 기본적으로 파티셔닝 미지원 일부 NoSQL DB: 파티셔닝 대신 샤딩 개념 사용 MySQL 파티셔닝 예시 `sql -- 월별 Range 파티셔닝 CREATE TABLE logs ( id INT, log_date DATE, message TEXT ) PARTITION BY RANGE (YEAR(log_date) 100 + MONTH(log_date)) ( PARTITION p202401 VALUES LESS THAN (202402), PARTITION p202402 VALUES LESS THAN (202403), PARTITION p202403 VALUES LESS THAN (202404), PARTITION p_future VALUES LESS THAN MAXVALUE ); ` Sharding이란? > 데이터를 여러 데이터베이스 서버에 분산 배치 목적: 수평적 확장(horizontal scaling)을 통한 대용량 처리 특징: 각 서버(샤드)가 전체 데이터셋의 일부를 보유 단일 머신의 한계를 넘어서는 확장성 제공 복잡한 분산 시스템 관리 필요 예시 `sql -- 샤딩된 환경에서 사용자 조회 -- 사용자 ID를 4로 나눈 나머지로 샤드 결정 shard_number = user_id % 4 -- 사용자 ID가 123인 경우: 123 % 4 = 3 → shard_3에서 조회 SELECT * FROM users WHERE user_id = 123; -- 실제로는 shard_3 서버에서 실행됨 ` 수평적 확장(Horizontal Scaling)이란? > 수평적 확장은 \"더 많은 서버를 추가\"하는 방식으로 시스템을 확장하는 것을 의미 수직적 확장 vs 수평적 확장 구분 수직적 확장 (Vertical Scaling) 수평적 확장 (Horizontal Scaling) ------ ------------------------------- ---------------------------------- 방식 기존 서버의 성능을 향상 새로운 서버를 추가 예시 CPU 4코어 → 16코어, RAM 8GB → 64GB 서버 1대 → 서버 10대 장점 구현이 단순 무제한 확장 가능 단점 물리적 한계 존재, 비용 증가 복잡한 분산 시스템 관리 필요 샤딩에서의 수평적 확장 ` 초기 상태: 서버 1대 (모든 데이터 보유) ├── 사용자 1~1000 ├── 사용자 1001~2000 └── 사용자 2001~3000 샤딩 후: 서버 3대 (데이터 분산) ├── 서버1: 사용자 1~1000 ├── 서버2: 사용자 1001~2000 └── 서버3: 사용자 2001~3000 더 많은 사용자가 늘어나면: ├── 서버1: 사용자 1~1000 ├── 서버2: 사용자 1001~2000 ├── 서버3: 사용자 2001~3000 ├── 서버4: 사용자 3001~4000 ← 새로 추가 └── 서버5: 사용자 4001~5000 ← 새로 추가 `` RDBMS MySQL: ProxySQL, MySQL Router 등 미들웨어 필요 PostgreSQL: 기본 버전은 샤딩 미지원 Oracle: RAC는 있지만 샤딩과는 다름 SQL Server: 기본 버전은 샤딩 미지원 샤딩 구현 방법 샤딩은 DBMS에서 직접 지원하는 경우가 적어서, 다양한 방법으로 구현해야 합니다. 3.1 DBMS별 샤딩 지원 현황 내장 샤딩 지원 DBMS MongoDB: 자동 샤딩 지원 (shard key 기반) Cassandra: 파티션 키 기반 샤딩 Redis Cluster: 해시 슬롯 기반 샤딩 Elasticsearch: 인덱스 기반 샤딩 샤딩 미지원 DBMS (수동 구현 필요) MySQL: ProxySQL, MySQL Router 등 미들웨어 필요 PostgreSQL: 기본 버전은 샤딩 미지원 (Citus 확장으로 가능) Oracle: RAC는 있지만 샤딩과는 다름 SQL Server: 기본 버전은 샤딩 미지원 3.2 샤딩 구현 방식 애플리케이션 레벨 샤딩 개념: 개발자가 직접 애플리케이션 코드에서 샤딩 로직을 구현 방식: 사용자 ID나 다른 키를 기반으로 어떤 샤드에 접근할지 결정 장점: 완전한 제어 가능, 세밀한 튜닝 가능 단점: 개발 복잡도 증가, 유지보수 부담 미들웨어를 통한 샤딩 개념: 데이터베이스와 애플리케이션 사이에 중간 계층을 두어 샤딩 처리 방식: 쿼리를 받아서 적절한 샤드로 라우팅 장점: 애플리케이션 코드 변경 최소화, 전문적인 샤딩 관리 단점: 추가적인 인프라 복잡도, 성능 오버헤드 클라우드 서비스 활용 개념: 클라우드 제공업체가 관리하는 샤딩 서비스 사용 방식: 설정만으로 자동 샤딩 구성 장점: 관리 부담 최소화, 자동 확장 단점: 벤더 종속성, 비용 증가 3.3 샤딩 전략 Hash 기반 샤딩 개념: 데이터의 해시값을 기반으로 샤드 결정 특징: 데이터가 균등하게 분산됨 예시: 사용자 ID를 해시해서 샤드 번호 결정 Range 기반 샤딩 개념: 데이터의 범위를 기반으로 샤드 결정 특징: 범위 쿼리 성능이 좋음 예시: 날짜별, ID 범위별로 샤드 할당 Directory 기반 샤딩 개념: 매핑 테이블을 사용해서 샤드 결정 특징: 유연한 샤드 할당 가능 예시: 특정 사용자를 특정 샤드에 고정 배치 3.4 샤딩 시 고려사항 장점 무제한 수평적 확장 가능 각 샤드별 독립적인 성능 최적화 장애 격리 (한 샤드 장애가 전체에 영향 없음) 단점 복잡한 분산 시스템 관리 크로스 샤드 쿼리의 성능 이슈 데이터 일관성 보장의 어려움 트랜잭션 관리의 복잡성",
     "public": true
   },
   {
@@ -1646,6 +1670,18 @@
     "public": true
   },
   {
+    "id": "Data Science/Causal Inference/what-is-partial-identification",
+    "title": "Partial Identification에 대한 설명",
+    "date": "2025-08-19",
+    "excerpt": "Partial Identification이 무엇이고, 양수성이 위반되었을 때 어떻게 쓸 수 있는지",
+    "category": "Causal Inference",
+    "tags": [
+      "Partial Identification"
+    ],
+    "content": "Partial Idenfication은 인과추론의 가정들이 깨졌을 때 사용하는 방법입니다. --- Treatment positivity assumption (positivity / overlap assumption) 인과추론(causal inference)에서 필수 가정 중 하나입니다. $$ 0 < P(T=1 \\mid X=x) < 1 \\quad \\text{for all } x \\tag{1} $$ 수식 1과 같이 정의됩니다. 이는 모든 공변량 $x$에 대해 처리를 받을 확률도 0보다 크고, 받지 않을 확률도 0보다 커야 한다는 조건을 뜻합니다. 이는 어떤 $x$ 값을 가진 집단도 완전히 한쪽 처우(treated/untreated)에만 속하면 안 된다는 것을 의미하고, 이게 만족해야 비교(반사실적 추정)가 가능해지기 떄문입니다. 하지만 현실에서는 positivity violation이 자주 발생합니다. 예를 들면 특정 연령대(아주 어린 아이)는 어떤 약을 절대 처방하지 않는 경우가 있습니다. 그러면 $P(T=1 \\mid X=x) = 0$이 되어버립니다. --- Partial identification 완전식별과 부분식별로 구분지어 이해할 수 있습니다. 완전한 식별(full identification): 모든 가정(ignorability, positivity 등)이 만족되면 인과효과(ATE 등)를 점추정(point estimate)할 수 있습니다. 부분 식별(partial identification): 가정이 일부 깨져서 정확한 점추정이 불가능할 때, 가능한 인과효과의 범위(bound, interval)를 추정하는 방법입니다. → “효과가 정확히 β다” 대신 “효과는 \\[a, b] 사이에 있다”라고 말하는 방식. --- Positivity 위반과 partial identification의 관계 Partial identification 접근은 positivity assumption이 위반된 상황을 다루는 대표적인 방법 중 하나입니다. positivity가 깨지면 특정 $X$ 영역에서 반사실적 결과를 추정할 수 없게 되는데, 이때 그 영역에서 인과효과가 어떤 범위에 있을지 논리적·수학적 제약을 통해 interval bound를 구합니다. Manski(1990s 이후)의 work나 최근 causal inference 문헌에서는 이런 상황을 \"bounded causal effects\" 문제로 다룹니다. --- 예시 어떤 약이 어린이에게는 절대 투여되지 않았다고 해봅시다. → positivity violation. 그럼 어린이 집단에서는 “투여 시 결과”를 관측할 수 없습니다. Partial identification 접근 (a) 이 집단에서의 결과가 최소한 관측된 범위 안에 있을 것이라는 가정, (b) monotonicity 같은 추가 가정 등을 사용해서, \"효과는 최소 0 이상, 최대 5 이하\" 처럼 구간 추정을 제시하는 개념입니다. --- 부분 식별이 필요한 대표적 상황 (1) Positivity violation (overlap 위반)* 어떤 $X$ 값에서 처리(Treatment)가 전혀 주어지지 않는 경우. 예: 어떤 나이대 아이들에게는 절대 약물이 투여되지 않았다면 $P(T=1 X)=0$. 이때 그 구간에서 반사실적(counterfactual) 결과는 관측 불가능. 해결: 그 구간에서 가능한 결과 범위를 가정하여 bound 제시. → Manski bounds (1989, 1990): 관찰 가능한 부분과 불가능한 부분을 분리해, 논리적으로 가능한 최대·최소 효과를 제시. --- (2) Unobserved confounding (비관측 교란) 교란변수 $U$가 관측되지 않으면 ignorability가 깨짐. 이 경우 “효과의 점추정”은 불가능하지만, 추가 가정(예: 교란의 최대 효과 크기 제한)을 넣으면 bounded effect를 제시할 수 있음. 예: Rosenbaum의 sensitivity analysis → 교란이 얼마나 강해야 추정된 효과가 무너질지를 bound로 제시. --- (3) Instrumental Variables (IV) 도구변수 접근에서도 부분 식별이 자주 등장. 강한 가정(완전한 독립성, exclusion restriction 등)이 만족되면 LATE(Local Average Treatment Effect)를 점추정할 수 있음. 하지만 가정을 완화하면 → LATE 자체는 interval identification으로만 가능. 대표적: Imbens & Manski (2004) bounds. --- (4) Selection bias / Missing data 데이터가 무작위로 빠지지 않고 선택적 결측(non-ignorable missingness)이 있을 때. 이 경우도 관찰 불가능한 부분에 대해 최소·최대 범위를 계산하는 Manski’s missing data bounds가 있음. --- 대표적인 Bound 기법들 Manski bounds (worst-case bounds) 가장 기본적인 형태. 가정을 최소화하고, 관측된 데이터만으로 논리적으로 가능한 인과효과의 상한/하한을 계산. 단점: 보통 interval이 너무 넓어서 실용성이 떨어짐. Lee bounds (2009) \\\\선택적 이탈(selection)\\\\이 있는 프로그램 평가에서 사용. monotonicity (단조성) 가정을 추가해서 bound를 좁힘. Imbens-Manski bounds (2004) 도구변수 기반 추론에서 treatment effect 범위 제시. Sensitivity analysis 기반 bounds 비관측 교란이 있을 때, 특정 “감도(sensitivity)” 가정을 통해 효과 범위를 제시. --- 이론적 철학 점추정(point identification) 은 강한 가정(positivity, ignorability 등)을 요구. 현실에서는 이 가정들이 자주 깨짐 → 강한 가정 대신 약한 가정만 두고, 추정 가능한 부분만으로 inference → 부분 식별. 따라서 partial identification은 \"robust inference under weaker assumptions\" 라고 할 수 있습니다. Manski는 이를 \"honest inference\" 라고 부릅니다. (불필요하게 강한 가정으로 잘못된 점추정을 하느니, 범위를 제시하는 것이 더 정직하다). ---",
+    "public": true
+  },
+  {
     "id": "Self_Development/English Study/SPEAK/비교및비유/08-18-근력운동은할수록힘이세져",
     "title": "근력 운동은 할수록 힘이 세져",
     "date": "2025-08-18",
@@ -1725,18 +1761,6 @@
       "Toss"
     ],
     "content": "인터뷰 정리 인터뷰 링크 > ddd",
-    "public": true
-  },
-  {
-    "id": "Data Science/Data Engineering/deadlock",
-    "title": "Deadlock에 대한 정리",
-    "date": "2025-08-17",
-    "excerpt": "Deadlock은 뭐고 왜 발생하는가? OCR 프로젝트에서 발생한 문제도 같이 정리",
-    "category": "Data Engineering",
-    "tags": [
-      "Deadlock"
-    ],
-    "content": "Deadlock이란? > Deadlock(교착상태)은 두 개 이상의 프로세스나 트랜잭션이 서로가 가진 리소스를 기다리면서 무한정 대기하는 상태를 말합니다. <figure> <img src=\"./images/Deadlock.png\" alt=\"Deadlock\" width=\"80%\" /> <figcaption>Deadlock 예시</figcaption> </figure> P1과 P2가 리소스 A, B 둘 다를 얻어야 한다고 가정할 때, t1에 P1이 리소스를 A를 얻고 P2가 리소스 B를 얻었다면 t2때 P1은 리소스 B를, P2는 리소스 A를 기다리게 됩니다. 하지만 서로 원하는 리소스가 상대방에게 할당되어 있기 때문에 이 두 프로세스는 무한정 기다리게 되는데 이러한 상태을 DeadLock상태라고 합니다. 출처: https://jwprogramming.tistory.com/12 [개발자를 꿈꾸는 프로그래머:티스토리] --- Microsoft Datalocks guide 링크 내용이 자세하게 설명되어있는게 많네. 시간날 때 읽어보자. A deadlock occurs when two or more tasks permanently block each other by each task having a lock on a resource that the other tasks are trying to lock. For example: Transaction A acquires a shared lock on row 1. Transaction B acquires a shared lock on row 2. Transaction A now requests an exclusive lock on row 2, and is blocked until transaction B finishes and releases the shared lock it has on row 2. Transaction B now requests an exclusive lock on row 1, and is blocked until transaction A finishes and releases the shared lock it has on row 1. The SQL Server Database Engine deadlock monitor periodically checks for tasks that are in a deadlock. If the monitor detects a cyclic dependency, it chooses one of the tasks as a victim and terminates its transaction with an error. OCR 프로젝트에서 발생한 에러 메세지가 이 부분에 해당하는구나. This allows the other task to complete its transaction. The application with the transaction that terminated with an error can retry the transaction, which usually completes after the other deadlocked transaction finishes.",
     "public": true
   },
   {
@@ -2112,18 +2136,6 @@
       "confidence-interval"
     ],
     "content": "참고자료 1: Confidence Intervals for Machine Learning 2: Don’t Forget Confidence Intervals for Your ML Product 3: Creating Confidence Intervals for Machine Learning Classifiers 4: Confidence vs Prediction Intervals: Understanding the Difference --- 신뢰구간의 정의 > A confidence interval provides a range of values within which a population parameter is likely to fall, with a certain level of confidence. 신뢰구간은 모집단의 모수(parameter)가 특정 범위 내에 있을 가능성을 나타내는 통계적 구간 --- metric에 대한 신뢰구간 (참고1) 보통 ML의 신뢰구간은 metric에 대한 신뢰구간을 의미하는 것 같다. <figure> <img src=\"./images/CI_example1.png\" alt=\"confidence_interval_for_ML\" style=\"width: 50%;\" /> <figcaption>그림1. confidence_interval_for_ML (참고1)</figcaption> </figure> > For example, a 95% confidence interval of [85%, 90%] for model accuracy means that if we repeated the process multiple times, about 95% of the intervals would contain the true accuracy. This helps in assess model reliability and make informed decisions. 정확도와 같은 평가지표를 신뢰구간으로 제시하면 데이터가 바뀌었을 때에 대한 고려도 할 수 있고, 이러한 이유 떄문에 선택에 더 도움이 됨. --- 신뢰구간의 중요성 (참고1) 신뢰구간은 머신러닝의 다양한 영역에서 가치 있는 정보를 제공합니다: 모델 성능 평가 정확도나 F1-score와 같은 단일 지표에만 의존하는 대신, 신뢰구간은 서로 다른 샘플에서의 성능 변화를 이해하는 데 도움을 줍니다. 예시: 모델의 정확도가 85%이고 95% 신뢰구간이 [82%, 88%]라면, 새로운 데이터에서 테스트할 때 모델의 정확도가 이 범위 내에서 변동할 수 있음을 의미합니다. 회귀 계수 해석 선형 회귀 모델에서 신뢰구간은 추정된 계수의 신뢰성을 평가하는 데 도움을 줍니다. 예시: 특정 특성의 계수가 2.5이고 95% 신뢰구간이 [1.8, 3.2]라면, 해당 특성이 양의 효과를 가진다고 합리적으로 확신할 수 있습니다. 예측의 불확실성 신뢰구간은 모델 예측에 대한 불확실성 측정을 제공하며, 특히 확률적 모델에서 유용합니다. 예시: 주택 가격을 [200K, 250K] 범위로 95% 신뢰수준에서 예측한다면, 실제 가격이 이 범위 내에 있을 가능성이 높음을 의미합니다. A/B 테스트 및 가설 검정 두 모델이나 특성을 비교할 때, 신뢰구간은 차이가 통계적으로 유의한지 판단하는 데 도움을 줍니다. 예시: 모델 A의 정확도가 90% [88%, 92%]이고 모델 B가 87% [85%, 89%]라면, 모델 A가 우수하다는 증거가 있습니다. --- 신뢰구간을 구하는 법 (참고2) > So how can we create and add confidence intervals to our models? As the name implies, to build confidence intervals (or any other measure of confidence) you first need to define what your metric represents and what confidence means to you and your user. > There are many ways to derive a measure of confidence but all depend on some sort of knowledge which you can use to validate and test your predictions. --- 신뢰구간을 구하는 법 (참고3) > Confidence intervals are no silver bullet, but at the very least, they can offer an additional glimpse into the uncertainty of the reported accuracy and performance of a model. 여러 글에서 신뢰구간을 제시하는게 소통을 하는데 도움을 준다고 이야기하네. 공감이 된다. 어떤 추정값을 이야기할 때 불확실성에 대한 이야기는 꼭 포함이 되어야 한다고 생각한다. <figure> <img src=\"./images/with_CI_without_CI.png\" alt=\"confidence_interval_for_ML\" style=\"width: 80%;\" /> <figcaption>그림2. with_CI_without_CI</figcaption> </figure> 확실히 포함된게 더 보기 좋음 이 블로그에서 CI를 구하는 다양한 방법들을 소개하고 있다. 기본적인 컨셉만 이해하고, 정리하다가 너무 많아서 패스. Confidence Intervals in a Nutshell > A confidence interval is a method that computes an upper and a lower bound around an estimated value. The actual parameter value is either insider or outside these bounds. 추정값에 대한 불확실성을 정량화한게 신뢰구간이라고 생각해볼 수 있겠다. <figure> <img src=\"./images/95_percent_CI.png\" alt=\"confidence_interval_for_ML\" style=\"width: 80%;\" /> <figcaption>그림3. 95% 신뢰구간의 의미</figcaption> </figure> 95% 신뢰구간의 의미는? > “95% 신뢰구간”이란, 동일한 방법으로 표본을 여러 번 뽑아서 신뢰구간을 계속 계산한다면, 그중 약 95%의 신뢰구간이 모집단의 참값을 포함하게 된다는 의미 오해와 정확한 해석 > 많은 사람들이 “이 신뢰구간 안에 진짜 평균이 95% 확률로 들어 있다”라고 생각하지만, 엄밀하게는 틀린 해석이야. 참값은 이미 고정된 값이니까, 확률로 해석하지 않아. 올바른 해석은 “이 방식으로 구한 신뢰구간이 모집단의 평균을 95% 수준으로 포함한다”는 것. 원하는 건 모델의 성능에 대한 값들. 신뢰구간은 위에서 언급한 것처럼 모델이 추정값에 대한 얼만큼의 불확실성을 가지고 있는지를 의미. A Note About Statistical Significance 통계적 유의성이란? > 통계적 유의성은 관찰된 결과가 단순한 우연이나 확률적 변동이 아닌, 실제로 의미 있는 차이나 관계가 있다고 판단할 수 있는 정도를 나타냅니다. <figure> <img src=\"./images/ci-overlap.png\" alt=\"confidence_interval_for_ML\" style=\"width: 80%;\" /> <figcaption>그림4. 신뢰구간의 중복을 통한 판단</figcaption> </figure> group1과 group2가 다른지를 신뢰구간을 통해 확인해볼 수 있다. 당연하게도 완전히 겹치지 않으면 확실히 다른 것이라고 판단할 수 있다. 겹친다면 겹친 분포를 그리고 여기서 mu = 0이 신뢰구간에 포함되는지를 통해 확인할 수 있다. Method 1 : Normal Approximation Interval Based on a Test Set > In our case, the sample mean $\\bar x$ is test set accuracy $\\text{ACC}_{test}$, a proportion of success (in the context of a Binomial proportion confidence interval). Binomial proportion confidence interval? > 성공/실패와 같은 이항 분포를 따르는 비율(proportion)에 대한 신뢰구간 ML에서의 적용: 분류 모델의 정확도(accuracy)는 이항 분포를 따름 각 예측이 맞음(성공) 또는 틀림(실패)의 두 가지 결과만 가짐 전체 예측 중 맞은 비율이 정확도 예시: 테스트셋에서 100개 샘플 중 85개를 맞췄다면 정확도 = 85/100 = 0.85 (85%) 이 85%라는 비율에 대한 신뢰구간을 구하는 것이 이항 비율 신뢰구간 계산 방법: 정규근사법 (Normal Approximation) Wilson 방법 Clopper-Pearson 방법 수식 정의 standard error : $\\sqrt{\\frac{1}{n} \\text{ACC}_{test} (1 - \\text{ACC}_{test})}$ > You can find a description of this method in section 1.7 Confidence Intervals via Normal Approximation of my “Model Evaluation, Model Selection, and Algorithm Selection in Machine Learning”. <figure> <img src=\"./images/normal-approx.png\" alt=\"confidence_interval_for_ML\" style=\"width: 80%;\" /> <figcaption>그림5. 정확도에 대한 신뢰구간 표시</figcaption> </figure> Method 2: Bootstrapping Training Set - Setup Step > If we only have one estimate, like the accuracy from a single test set, we need to make assumptions about the distribution of this accuracy value. > For example, we may assume that the accuracy values (that we would compute from different samples) are normally distributed. 부트스트랩 기반으로 신뢰구간을 구한다는건 정규분포를 가정하는건가? > No! 부트스트랩은 정규분포 가정 없이도 신뢰구간을 구할 수 있는 강력한 비모수적 방법입니다. 이것이 바로 부트스트랩의 가장 큰 장점 중 하나입니다. Confidence vs Prediction Intervals: Understanding the Difference (참고4) > The root cause of this uncertainty is the sampling process. > It is unrealistic to consider the entire population when conducting a statistical analysis. 좋은 문장이다. > The true value of the population parameter is usually not exactly equal to the value estimated from the sample - this difference is the standard error. > To account for this error, it is conventional to estimate an expected value and then specify a range that is expected to contain the actual value. 추정값은 실제값과 차이가 있을 것이고, 이를 범위로 표시한다. What is a Prediction Interval? > A prediction interval is the range that is expected - with some level of confidence, to contain the true value of an individual data point, based on a prediction made using regression analysis. 내가 원하는 개념이 prediction interval이구나. 개별 추정값에 대한 오차 범위. > However, you must account for the increased variability of individual data points because you are predicting an individual value (and not an average). > Thus, the prediction interval is larger than the confidence interval.",
-    "public": true
-  },
-  {
-    "id": "Data Science/Data Engineering/sharding_vs_partitioning",
-    "title": "sharding vs partitioning",
-    "date": "2025-08-05",
-    "excerpt": "DB관리할 때 sharding과 partitioning의 차이에 대한 개념 정리",
-    "category": "Data Science",
-    "tags": [
-      "DataBase"
-    ],
-    "content": "참고한 글 링크드인 게시물 - Ashish Pratap Singh <figure> <img src=\"./images/sharding_vs_partitioning.gif\" alt=\"Sharding vs Partitioning 차이점\" /> <figcaption>Sharding vs Partitioning</figcaption> </figure> 구분 Partitioning Sharding ------ ------------- ---------- 범위 단일 서버 내 여러 서버 간 목적 성능 최적화 수평적 확장 복잡도 상대적으로 단순 복잡한 분산 시스템 사용 시기 단일 머신 내 최적화 단일 머신 한계 초과 시 Partitioning이란? > 하나의 큰 테이블을 더 작은 청크(파티션)로 나누는 것 목적: 성능 향상과 유지보수 단순화 특징: 논리적으로는 하나의 테이블: 개발자가 쿼리할 때는 마치 하나의 테이블처럼 사용 (파티션을 신경 쓸 필요 없음) 물리적으로는 여러 파일로 분산: 실제로는 각 파티션이 별도의 파일/세그먼트로 저장됨 쿼리 성능 향상 (특정 파티션만 스캔) 데이터 관리 용이성 (오래된 파티션 삭제 등) ``sql -- 파티셔닝된 테이블을 조회할 때 SELECT FROM logs WHERE log_date >= '2024-01-01'; -- 개발자는 마치 하나의 테이블을 조회하는 것처럼 사용 -- 하지만 DB 엔진은 내부적으로 2024년 파티션만 스캔함 ` 파티셔닝은 대부분의 현대적인 DBMS에서 지원하는 기능 지원하는 DBMS MySQL: Range, List, Hash, Key 파티셔닝 지원 PostgreSQL: Range, List, Hash 파티셔닝 지원 Oracle: Range, List, Hash, Composite 파티셔닝 지원 SQL Server: Range, List, Hash 파티셔닝 지원 BigQuery: Date, Integer Range 파티셔닝 지원 Snowflake: 다양한 파티셔닝 전략 지원 지원하지 않는 DBMS SQLite: 기본적으로 파티셔닝 미지원 일부 NoSQL DB: 파티셔닝 대신 샤딩 개념 사용 MySQL 파티셔닝 예시 `sql -- 월별 Range 파티셔닝 CREATE TABLE logs ( id INT, log_date DATE, message TEXT ) PARTITION BY RANGE (YEAR(log_date) 100 + MONTH(log_date)) ( PARTITION p202401 VALUES LESS THAN (202402), PARTITION p202402 VALUES LESS THAN (202403), PARTITION p202403 VALUES LESS THAN (202404), PARTITION p_future VALUES LESS THAN MAXVALUE ); ` Sharding이란? > 데이터를 여러 데이터베이스 서버에 분산 배치 목적: 수평적 확장(horizontal scaling)을 통한 대용량 처리 특징: 각 서버(샤드)가 전체 데이터셋의 일부를 보유 단일 머신의 한계를 넘어서는 확장성 제공 복잡한 분산 시스템 관리 필요 예시 `sql -- 샤딩된 환경에서 사용자 조회 -- 사용자 ID를 4로 나눈 나머지로 샤드 결정 shard_number = user_id % 4 -- 사용자 ID가 123인 경우: 123 % 4 = 3 → shard_3에서 조회 SELECT * FROM users WHERE user_id = 123; -- 실제로는 shard_3 서버에서 실행됨 ` 수평적 확장(Horizontal Scaling)이란? > 수평적 확장은 \"더 많은 서버를 추가\"하는 방식으로 시스템을 확장하는 것을 의미 수직적 확장 vs 수평적 확장 구분 수직적 확장 (Vertical Scaling) 수평적 확장 (Horizontal Scaling) ------ ------------------------------- ---------------------------------- 방식 기존 서버의 성능을 향상 새로운 서버를 추가 예시 CPU 4코어 → 16코어, RAM 8GB → 64GB 서버 1대 → 서버 10대 장점 구현이 단순 무제한 확장 가능 단점 물리적 한계 존재, 비용 증가 복잡한 분산 시스템 관리 필요 샤딩에서의 수평적 확장 ` 초기 상태: 서버 1대 (모든 데이터 보유) ├── 사용자 1~1000 ├── 사용자 1001~2000 └── 사용자 2001~3000 샤딩 후: 서버 3대 (데이터 분산) ├── 서버1: 사용자 1~1000 ├── 서버2: 사용자 1001~2000 └── 서버3: 사용자 2001~3000 더 많은 사용자가 늘어나면: ├── 서버1: 사용자 1~1000 ├── 서버2: 사용자 1001~2000 ├── 서버3: 사용자 2001~3000 ├── 서버4: 사용자 3001~4000 ← 새로 추가 └── 서버5: 사용자 4001~5000 ← 새로 추가 `` RDBMS MySQL: ProxySQL, MySQL Router 등 미들웨어 필요 PostgreSQL: 기본 버전은 샤딩 미지원 Oracle: RAC는 있지만 샤딩과는 다름 SQL Server: 기본 버전은 샤딩 미지원 샤딩 구현 방법 샤딩은 DBMS에서 직접 지원하는 경우가 적어서, 다양한 방법으로 구현해야 합니다. 3.1 DBMS별 샤딩 지원 현황 내장 샤딩 지원 DBMS MongoDB: 자동 샤딩 지원 (shard key 기반) Cassandra: 파티션 키 기반 샤딩 Redis Cluster: 해시 슬롯 기반 샤딩 Elasticsearch: 인덱스 기반 샤딩 샤딩 미지원 DBMS (수동 구현 필요) MySQL: ProxySQL, MySQL Router 등 미들웨어 필요 PostgreSQL: 기본 버전은 샤딩 미지원 (Citus 확장으로 가능) Oracle: RAC는 있지만 샤딩과는 다름 SQL Server: 기본 버전은 샤딩 미지원 3.2 샤딩 구현 방식 애플리케이션 레벨 샤딩 개념: 개발자가 직접 애플리케이션 코드에서 샤딩 로직을 구현 방식: 사용자 ID나 다른 키를 기반으로 어떤 샤드에 접근할지 결정 장점: 완전한 제어 가능, 세밀한 튜닝 가능 단점: 개발 복잡도 증가, 유지보수 부담 미들웨어를 통한 샤딩 개념: 데이터베이스와 애플리케이션 사이에 중간 계층을 두어 샤딩 처리 방식: 쿼리를 받아서 적절한 샤드로 라우팅 장점: 애플리케이션 코드 변경 최소화, 전문적인 샤딩 관리 단점: 추가적인 인프라 복잡도, 성능 오버헤드 클라우드 서비스 활용 개념: 클라우드 제공업체가 관리하는 샤딩 서비스 사용 방식: 설정만으로 자동 샤딩 구성 장점: 관리 부담 최소화, 자동 확장 단점: 벤더 종속성, 비용 증가 3.3 샤딩 전략 Hash 기반 샤딩 개념: 데이터의 해시값을 기반으로 샤드 결정 특징: 데이터가 균등하게 분산됨 예시: 사용자 ID를 해시해서 샤드 번호 결정 Range 기반 샤딩 개념: 데이터의 범위를 기반으로 샤드 결정 특징: 범위 쿼리 성능이 좋음 예시: 날짜별, ID 범위별로 샤드 할당 Directory 기반 샤딩 개념: 매핑 테이블을 사용해서 샤드 결정 특징: 유연한 샤드 할당 가능 예시: 특정 사용자를 특정 샤드에 고정 배치 3.4 샤딩 시 고려사항 장점 무제한 수평적 확장 가능 각 샤드별 독립적인 성능 최적화 장애 격리 (한 샤드 장애가 전체에 영향 없음) 단점 복잡한 분산 시스템 관리 크로스 샤드 쿼리의 성능 이슈 데이터 일관성 보장의 어려움 트랜잭션 관리의 복잡성",
     "public": true
   },
   {
