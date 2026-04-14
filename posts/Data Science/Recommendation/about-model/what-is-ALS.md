@@ -1,9 +1,13 @@
 ---
 title: "Alternating Least Squares 란?"
-date: "2025-10-06"
+date: 2025-10-06
 excerpt: "MF를 효율적으로 진행하는 모델인 ALS에 대해 정리해보기"
 category: "Recommendation"
-tags: ["ALS", "MF", "CF"]
+tags:
+  - "ALS"
+  - "MF"
+  - "CF"
+public: true
 ---
 
 # 개념 스케치

@@ -1,9 +1,14 @@
 ---
 title: "GitHub에서 Jupyter Notebook 리뷰하기 - ReviewNB"
-date: "2025-08-04"
+date: 2025-08-04
 excerpt: "GitHub에서 Jupyter Notebook 코드 리뷰를 쉽게 할 수 있는 ReviewNB 도구 소개"
 category: "Data Science"
-tags: ["github", "jupyter-notebook", "code-review", "tools"]
+tags:
+  - "github"
+  - "jupyter-notebook"
+  - "code-review"
+  - "tools"
+public: true
 ---
 
 # GitHub에서 Jupyter Notebook 리뷰하기

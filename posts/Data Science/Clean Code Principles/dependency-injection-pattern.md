@@ -1,9 +1,16 @@
 ---
 title: "의존성 주입 패턴으로 코드 품질 향상하기"
-date: "2025-07-14"
+date: 2025-07-14
 excerpt: "의존성 주입 패턴을 통해 코드의 결합도를 낮추고 테스트 용이성을 높이는 방법을 실제 예제와 함께 설명합니다."
 category: "Data Science"
-tags: ["python", "design-pattern", "dependency-injection", "software-architecture", "clean-code", "testing"]
+tags:
+  - "python"
+  - "design-pattern"
+  - "dependency-injection"
+  - "software-architecture"
+  - "clean-code"
+  - "testing"
+public: true
 ---
 
 # 배경

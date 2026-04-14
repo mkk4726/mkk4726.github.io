@@ -1,9 +1,13 @@
 ---
 title: "Bias-Variance Tradeoff"
-date: "2025-07-22"
+date: 2025-07-22
 excerpt: "Bias-Variance Tradeoff에 대한 간단한 설명"
 category: "Data Science"
-tags: ["bias-variance", "machine-learning", "statistics"]
+tags:
+  - "bias-variance"
+  - "machine-learning"
+  - "statistics"
+public: true
 ---
 
 # Bias-Variance Tradeoff

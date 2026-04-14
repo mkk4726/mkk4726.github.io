@@ -1,9 +1,12 @@
 ---
 title: "Factorization Machines에 대해 정리"
-date: "2025-09-24"
+date: 2025-09-24
 excerpt: "FM에 대해 이해해보자"
 category: "Recommendation"
-tags: ["FM", "ML"]
+tags:
+  - "FM"
+  - "ML"
+public: true
 ---
 
 참고자료

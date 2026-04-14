@@ -1,9 +1,12 @@
 ---
 title: "how to evaluate CATE estimation model"
-date: "2025-07-24"
+date: 2025-07-24
 excerpt: "CATE estimation model 평가 방법에 대해 정리"
 category: "Causal Inference"
-tags: ["인과추론", "metrics"]
+tags:
+  - "인과추론"
+  - "metrics"
+public: true
 ---
 
 참고한 자료

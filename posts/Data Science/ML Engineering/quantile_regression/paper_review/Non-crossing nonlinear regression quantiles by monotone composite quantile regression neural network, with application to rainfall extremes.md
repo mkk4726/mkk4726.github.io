@@ -1,9 +1,12 @@
 ---
 title: "Non-crossing nonlinear regression quantiles by monotone composite quantile regression neural network, with application to rainfall extremes"
-date: "2025-10-21"
+date: 2025-10-21
 excerpt: "한줄 요약 : tau를 monotone covariate로 사용해 composite, monotonity 모두 만족하는 모델 구조 (MCQRNN) 제안한 논문"
 category: "Machine Learning"
-tags: ["Quantile Regression", "paper review"]
+tags:
+  - "Quantile-Regression"
+  - "paper-review"
+public: true
 ---
 
 - [paper link](https://link.springer.com/article/10.1007/s00477-018-1573-6)

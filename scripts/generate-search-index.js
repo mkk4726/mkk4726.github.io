@@ -110,6 +110,34 @@ function cleanMarkdown(text) {
   return text.trim();
 }
 
+function normalizeDate(value) {
+  if (value instanceof Date && !Number.isNaN(value.getTime())) {
+    return value.toISOString().split('T')[0];
+  }
+  if (typeof value === 'string') {
+    const trimmed = value.trim();
+    if (trimmed) {
+      const isoLike = trimmed.match(/^(\d{4}-\d{2}-\d{2})/);
+      if (isoLike) return isoLike[1];
+      const parsed = new Date(trimmed);
+      if (!Number.isNaN(parsed.getTime())) {
+        return parsed.toISOString().split('T')[0];
+      }
+    }
+  }
+  return '';
+}
+
+function normalizeTags(value) {
+  if (Array.isArray(value)) {
+    return value.map((tag) => String(tag).trim()).filter(Boolean);
+  }
+  if (typeof value === 'string') {
+    return value.split(',').map((tag) => tag.trim()).filter(Boolean);
+  }
+  return [];
+}
+
 async function generateSearchIndex() {
   const postFiles = getAllPostFiles(postsDirectory);
   const searchIndex = [];
@@ -141,10 +169,10 @@ async function generateSearchIndex() {
       searchIndex.push({
         id,
         title: metadata.title || id,
-        date: metadata.date || new Date().toISOString().split('T')[0],
+        date: normalizeDate(metadata.date) || new Date().toISOString().split('T')[0],
         excerpt: metadata.excerpt || '',
         category: metadata.category || '',
-        tags: metadata.tags || [],
+        tags: normalizeTags(metadata.tags),
         content: cleanContent, // 전체 내용 저장 (마크다운 태그 제거됨)
         public: metadata.public !== false, // public 필드 추가
       });

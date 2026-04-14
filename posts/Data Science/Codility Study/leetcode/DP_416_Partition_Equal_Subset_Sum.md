@@ -1,9 +1,11 @@
 ---
 title: "416. Partition Equal Subset Sum"
-date: "2025-10-31"
+date: 2025-10-31
 excerpt: "DP 문제, Medium 난이도."
 category: "Codility Study"
-tags: ["leetcode"]
+tags:
+  - "leetcode"
+public: true
 ---
 
 - [링크](https://leetcode.com/problems/partition-equal-subset-sum/description/?envType=study-plan-v2&envId=top-100-liked)

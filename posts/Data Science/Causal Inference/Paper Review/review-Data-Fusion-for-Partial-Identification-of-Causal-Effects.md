@@ -1,9 +1,10 @@
 ---
 title: "[Paper Review] Data Fusion for Partial Identification of Causal Effects"
-date: "2025-07-10"
+date: 2025-07-10
 excerpt: "Data Fusion for Partial Identification of Causal Effects Paper review"
 category: "Causal Inference"
-tags: ["Paper Review"]
+tags:
+  - "Paper-Review"
 public: false
 ---
 

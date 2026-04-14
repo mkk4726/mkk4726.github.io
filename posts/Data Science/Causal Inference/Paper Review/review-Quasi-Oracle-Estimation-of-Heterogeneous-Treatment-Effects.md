@@ -1,9 +1,11 @@
 ---
 title: "[Paper Review] Quasi-Oracle Estimation of Heterogeneous Treatment Effects"
-date: "2025-07-17"
+date: 2025-07-17
 excerpt: "R-leaner 방법 소개와 이게 가지는 quasi-oracle property에 대해 설명"
 category: "Causal Inference"
-tags: ["Paper Review"]
+tags:
+  - "Paper-Review"
+public: true
 ---
 
 [paper link](https://arxiv.org/pdf/1712.04912)

@@ -1,9 +1,11 @@
 ---
 title: "외삽 문제에서 DS가 할 수 있는 방법들"
-date: "2025-09-05"
+date: 2025-09-05
 excerpt: "외삽 문제 상황에 어떻게 대처할 수 있을까?"
 category: "Causal Inference"
-tags: ["extrapolation"]
+tags:
+  - "extrapolation"
+public: true
 ---
 
 ML(AI) 모델들은 학습된 분포에 과적합되기 쉽고, robustness가 보장되기 어렵습니다. 

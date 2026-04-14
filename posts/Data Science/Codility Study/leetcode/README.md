@@ -1,3 +1,15 @@
+---
+title: "README"
+date: 2025-11-30
+excerpt: "리트 코드를 하나씩 풀어가고 있습니다."
+category: "Data Science/Codility Study/leetcode"
+tags:
+  - "Data-Science"
+  - "Codility-Study"
+  - "leetcode"
+public: true
+---
+
 리트 코드를 하나씩 풀어가고 있습니다.
 - [leetcode top100](https://leetcode.com/studyplan/top-100-liked/)
 

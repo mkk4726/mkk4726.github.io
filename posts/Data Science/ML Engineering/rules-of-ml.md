@@ -1,9 +1,11 @@
 ---
 title: "좋은 ML 서비스란? 어떻게 정의할 수 있고, 어떻게 개발할 수 있을지"
-date: "2025-11-07"
+date: 2025-11-07
 excerpt: "Google - rules of ml에서 이야기하는 내용들 정리"
 category: "Data Science"
-tags: ["ML Engineering"]
+tags:
+  - "ML-Engineering"
+public: true
 ---
 
 ML 서비스를 구축하면서 놓치고 있던 개념들, 생각들을 정리해보자.

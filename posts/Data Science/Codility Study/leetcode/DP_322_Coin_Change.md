@@ -1,9 +1,11 @@
 ---
 title: "322. Coin Change"
-date: "2025-10-30"
+date: 2025-10-30
 excerpt: "DP 문제, Medium 난이도."
 category: "Codility Study"
-tags: ["leetcode"]
+tags:
+  - "leetcode"
+public: true
 ---
 
 - [링크](https://leetcode.com/problems/coin-change/description/?envType=study-plan-v2&envId=top-100-liked)

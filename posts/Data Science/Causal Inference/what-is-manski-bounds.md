@@ -1,9 +1,13 @@
 ---
 title: "Manski Bounds 개념 정리"
-date: "2025-08-20"
+date: 2025-08-20
 excerpt: "Manski bounds에 대한 설명"
 category: "Causal Inference"
-tags: ["Paper Review", "Partial Identification", "Manski bounds"]
+tags:
+  - "Paper-Review"
+  - "Partial-Identification"
+  - "Manski-bounds"
+public: true
 ---
 
 참고자료 

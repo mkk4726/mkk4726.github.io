@@ -1,9 +1,13 @@
 ---
 title: "데이터 전처리 방법론들에 대해 정리"
-date: "2025-10-21"
+date: 2025-10-21
 excerpt: "왜 데이터 전처리를 해야하고, 어떤 방법을 써야하고, 어떤 효과를 가지는지정리"
 category: "Engineering"
-tags: ["Preprocessing", "Feature Engineering", "Power Transformation"]
+tags:
+  - "Preprocessing"
+  - "Feature-Engineering"
+  - "Power-Transformation"
+public: true
 ---
 
 머신러닝 모델을 학습시킬 때, 데이터의 분포가 한쪽으로 크게 치우쳐 있거나 분산이 불균일하면 모델 성능에 문제가 생길 수 있습니다.

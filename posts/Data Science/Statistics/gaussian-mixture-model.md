@@ -1,9 +1,13 @@
 ---
 title: "Gaussian Mixture Model (GMM) 개념 정리해보기"
-date: "2025-11-21"
+date: 2025-11-21
 excerpt: "GMM(Gaussian Mixture Model)의 개념, 원리, EM 알고리즘, 그리고 활용 사례에 대한 정리"
 category: "Data Science"
-tags: ["statistics", "machine-learning", "clustering"]
+tags:
+  - "statistics"
+  - "machine-learning"
+  - "clustering"
+public: true
 ---
 
 # Gaussian Mixture Model (GMM)이란?

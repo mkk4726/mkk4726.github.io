@@ -1,9 +1,11 @@
 ---
 title: "A/B Test를 이해해보자!"
-date: "2025-12-27"
-excerpt: ""
+date: 2025-12-27
+excerpt: "A/B Test에 대하여"
 category: "Data Science"
-tags: [""]
+tags:
+  - "Data-Science"
+public: true
 ---
 
 ## 참고 문헌

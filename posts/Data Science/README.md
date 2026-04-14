@@ -1,3 +1,13 @@
+---
+title: "README"
+date: 2025-11-30
+excerpt: "커리어와 관련된 포스트들을 정리하고 있습니다."
+category: "Data Science"
+tags:
+  - "Data-Science"
+public: true
+---
+
 커리어와 관련된 포스트들을 정리하고 있습니다.
 - ML / AI 관련된 지식들
 - 기초 지식 (수학, 통계, 코드 작성)

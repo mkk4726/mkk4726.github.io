@@ -1,9 +1,14 @@
 ---
 title: "ML 서비스에서 모니터링이 중요한 이유 - silent failures"
-date: "2025-08-27"
+date: 2025-08-27
+excerpt: "3개의 프로젝트를 리드해서 서비스를 운영해보면서 모니터링의 중요성을 깨닫고 있습니다."
 category: "ML Engineering"
-tags: ["Monitoring", "Silent Failures", "Data Drift", "Hallucination"]
-description: "ML 서비스를 운영할 때 발생할 수 있는 silent failure들의 유형과 모니터링 방법에 대해 정리했습니다."
+tags:
+  - "Monitoring"
+  - "Silent-Failures"
+  - "Data-Drift"
+  - "Hallucination"
+public: true
 ---
 
 3개의 프로젝트를 리드해서 서비스를 운영해보면서 모니터링의 중요성을 깨닫고 있습니다. 

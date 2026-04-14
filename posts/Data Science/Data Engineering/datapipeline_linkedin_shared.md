@@ -1,9 +1,11 @@
 ---
 title: "링크드인에서 공유된 Data Pipeline 구조 정리"
-date: "2025-08-05"
+date: 2025-08-05
 excerpt: "링크드인에서 공유된 Data Pipeline 참고해서 그림 그려보고, 이해하는 과정"
 category: "Data Science"
-tags: ["Data Pipeline"]
+tags:
+  - "Data-Pipeline"
+public: true
 ---
 
 참고한 글

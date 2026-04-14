@@ -1,9 +1,12 @@
 ---
 title: "선택의 상황에서 쓰는 표현들 Review Day"
-date: "2025-07-27"
+date: 2025-07-27
 excerpt: "선택의 상황에서"
 category: "English Study"
-tags: ["영어공부꾸준히!", "SPEAK"]
+tags:
+  - "영어공부꾸준히!"
+  - "SPEAK"
+public: true
 ---
 
 # 배운 것들

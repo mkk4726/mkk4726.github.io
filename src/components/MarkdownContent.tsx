@@ -84,11 +84,16 @@ export default function MarkdownContent({ content, className = '' }: MarkdownCon
           allLinks.forEach((link) => {
             const anchorElement = link as HTMLAnchorElement;
             const href = anchorElement.getAttribute('href') || '';
+            const isExternalLink = /^(https?:)?\/\//.test(href) || href.startsWith('mailto:');
+            const isAnchorLink = href.startsWith('#');
             
-            // 앵커 링크(#으로 시작)가 아닌 모든 링크를 새 탭에서 열기
-            if (!href.startsWith('#') && href.trim() !== '') {
+            // 외부 링크만 새 탭에서 열고, 내부 링크(예: /posts/...)는 같은 탭 유지
+            if (!isAnchorLink && isExternalLink && href.trim() !== '') {
               anchorElement.setAttribute('target', '_blank');
               anchorElement.setAttribute('rel', 'noopener noreferrer');
+            } else {
+              anchorElement.removeAttribute('target');
+              anchorElement.removeAttribute('rel');
             }
           });
           

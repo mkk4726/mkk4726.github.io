@@ -1,9 +1,11 @@
 ---
 title: "HyperConnect ML Engineer"
-date: "2025-08-25"
+date: 2025-08-25
 excerpt: "하이퍼 커넥트 이력서 컨셉과 방향 적어보기"
 category: "Career"
-tags: ["이력서"]
+tags:
+  - "이력서"
+public: true
 ---
 
 - [하이퍼 커넥트 채용공고](/posts/Self_Development/Career/Job%20Transition/25-08-04-하이퍼커넥트)

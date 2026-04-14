@@ -1,9 +1,12 @@
 ---
 title: "효율적인 ML 구조 설계는 어떻게 하는걸까?"
-date: "2025-07-28"
+date: 2025-07-28
 excerpt: "효율적인 ML 구조 설계에 대한 고민"
 category: "Engineering"
-tags: ["MLOps", "System Design"]
+tags:
+  - "MLOps"
+  - "System-Design"
+public: true
 ---
 
 사수가 없는 회사에서 일을 하다보니 실제로 서비스를 운영하면서 맞닥뜨리는 문제들을 어떻게 해결하는게 좋은지에 대한 고민이 늘 생긴다.

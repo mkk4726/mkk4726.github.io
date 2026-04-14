@@ -1,10 +1,12 @@
 ---
-title: "[Paper Review] Causal Transformer for Estimating Counterfactual Outcomes "
-date: "2025-09-03"
+title: "[Paper Review] Causal Transformer for Estimating Counterfactual Outcomes"
+date: 2025-09-03
 excerpt: "Causal Transformer for Estimating Counterfactual Outcomes 논문 리뷰"
 category: "AI Engineering"
-tags: ["Transformer", "Causal Inference"]
-pubic: false
+tags:
+  - "Transformer"
+  - "Causal-Inference"
+public: true
 ---
 
 - [논문 링크](https://arxiv.org/pdf/2204.07258)

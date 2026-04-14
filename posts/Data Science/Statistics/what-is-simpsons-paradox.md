@@ -1,9 +1,11 @@
 ---
 title: "Simson's Paradox란?"
-date: "2025-09-18"
+date: 2025-09-18
 excerpt: "심슨의 역설에 대한 개념 정리"
 category: "Data Science"
-tags: ["statistics"]
+tags:
+  - "statistics"
+public: true
 ---
 
 참고자료

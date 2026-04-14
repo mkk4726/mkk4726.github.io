@@ -1,9 +1,12 @@
 ---
 title: "그리드 서치란(Grid Search)?"
-date: "2025-09-15"
+date: 2025-09-15
 excerpt: "하이퍼 파라미터를 찾는 가장 기본적인 컨셉"
 category: "Engineering"
-tags: ["Tuning", "Grid Search"]
+tags:
+  - "Tuning"
+  - "Grid-Search"
+public: true
 ---
 
 # Grid Search란?

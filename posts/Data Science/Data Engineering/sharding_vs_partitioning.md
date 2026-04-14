@@ -1,9 +1,11 @@
 ---
 title: "sharding vs partitioning"
-date: "2025-08-05"
+date: 2025-08-05
 excerpt: "DB관리할 때 sharding과 partitioning의 차이에 대한 개념 정리"
 category: "Data Science"
-tags: ["DataBase"]
+tags:
+  - "DataBase"
+public: true
 ---
 
 참고한 글

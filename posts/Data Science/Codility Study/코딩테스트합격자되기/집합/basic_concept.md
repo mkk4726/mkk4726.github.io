@@ -1,9 +1,12 @@
 ---
 title: "집합 개념정리"
-date: "2025-09-30"
+date: 2025-09-30
 excerpt: "코딩테스트에서 사용되는 집합 개념정리"
 category: "Codility Study"
-tags: ["코딩 테스트 합격자 되기", "Codility Study"]
+tags:
+  - "코딩-테스트-합격자-되기"
+  - "Codility-Study"
+public: true
 ---
 
 # 개념 스케치

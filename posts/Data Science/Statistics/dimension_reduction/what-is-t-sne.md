@@ -1,9 +1,11 @@
 ---
-title: t-SNE 에 대해 정리"
-date: "2025-09-11"
+title: "t-SNE 에 대해 정리\""
+date: 2025-09-11
 excerpt: "T-SNE에 대해 이해해보기"
 category: "Data Science"
-tags: ["statistics"]
+tags:
+  - "statistics"
+public: true
 ---
 
 T-distributed Stochastic Neighbor Embedding

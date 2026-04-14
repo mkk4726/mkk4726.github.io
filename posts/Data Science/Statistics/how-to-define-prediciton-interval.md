@@ -1,9 +1,11 @@
 ---
 title: "ML의 prediction interval은 어떻게 정의할 수 있을까?"
-date: "2025-08-12"
+date: 2025-08-12
 excerpt: "ML의 prediction interval 정의하는 법 정리"
 category: "Data Science"
-tags: ["statistics"]
+tags:
+  - "statistics"
+public: true
 ---
 
 참고자료

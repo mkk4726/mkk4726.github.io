@@ -1,9 +1,11 @@
 ---
 title: "LDA에 대해 정리"
-date: "2025-09-11"
+date: 2025-09-11
 excerpt: "Linear Discriminant Analysis에 대해 정리"
 category: "Data Science"
-tags: ["statistics"]
+tags:
+  - "statistics"
+public: true
 ---
 
 참고자료

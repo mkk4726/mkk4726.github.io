@@ -1,9 +1,11 @@
 ---
 title: "Toss Platform 팀 관련 정리"
-date: "2025-08-17"
+date: 2025-08-17
 excerpt: "Toss Platform에 대한 인터뷰, 채용공고 등을 정리"
 category: "Career"
-tags: ["Toss"]
+tags:
+  - "Toss"
+public: true
 ---
 
 # 인터뷰 정리

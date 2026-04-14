@@ -1,9 +1,12 @@
 ---
 title: "Redis란?"
-date: "2025-08-11"
+date: 2025-08-11
 excerpt: "Redis의 개념과 활용되는 사례에 대한 정리"
 category: "Data Science"
-tags: ["machine-learning", "statistics"]
+tags:
+  - "machine-learning"
+  - "statistics"
+public: true
 ---
 
 - 인메모리 데이터 저장소: 데이터를 RAM에 저장해 마이크로초~밀리초 단위 응답을 제공

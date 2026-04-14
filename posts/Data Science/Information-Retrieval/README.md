@@ -1,3 +1,14 @@
+---
+title: "README"
+date: 2025-11-30
+excerpt: "현재는 많이 부족하지만, 사실 거의 아무것도 없는 상태이지만 추천/검색 엔지니어로 꼭 일해보고 싶다."
+category: "Data Science/Information-Retrieval"
+tags:
+  - "Data-Science"
+  - "Information-Retrieval"
+public: true
+---
+
 현재는 많이 부족하지만, 사실 거의 아무것도 없는 상태이지만 추천/검색 엔지니어로 꼭 일해보고 싶다.
 작더라도 조금씩 쌓아나가면 대단한 엔지니어는 아니더라도 일은 한번 해볼 수 있지 않을까?
 하고 싶은게 분명히 있는데 느껴지는 불안함은 뭐지? 

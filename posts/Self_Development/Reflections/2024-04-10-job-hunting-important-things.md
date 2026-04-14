@@ -1,10 +1,11 @@
 ---
-title: 취준할 때 중요한 것
-date: 2024-04-10 12:00:00 +0900
+title: "취준할 때 중요한 것"
+date: 2024-04-10
+excerpt: "저는 현재 의료인공지능 회사에서 데이터과학자로 일하고 있습니다."
 category: "Reflections"
-tags: [취준]
-description: 취업준비할 때 중요하게 생각했고, 앞으로 중요하게 생각할 것들
-render_with_liquid: false
+tags:
+  - "취준"
+public: true
 ---
 
    

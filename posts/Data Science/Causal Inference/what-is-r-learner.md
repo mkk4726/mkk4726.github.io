@@ -1,9 +1,12 @@
 ---
 title: "R-learner란?"
-date: "2025-07-23"
+date: 2025-07-23
 excerpt: "R-learner의 개념에 대해 정리"
 category: "Causal Inference"
-tags: ["R-learner", "인과추론"]
+tags:
+  - "R-learner"
+  - "인과추론"
+public: true
 ---
 
 R-learner는 CATE estimation에 사용되는 meta-learner 중 하나입니다.

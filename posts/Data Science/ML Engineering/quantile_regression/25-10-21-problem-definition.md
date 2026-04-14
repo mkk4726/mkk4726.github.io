@@ -1,9 +1,12 @@
 ---
 title: "문제정의 해보기"
-date: "2025-10-21"
+date: 2025-10-21
 excerpt: "문제정의하는 연습하기 - 회사에서 지금 어떤 문제를 풀고 있을까?"
 category: "Machine Learning"
-tags: ["Quantile Regression", "문제정의"]
+tags:
+  - "Quantile-Regression"
+  - "문제정의"
+public: true
 ---
 
 지금 회사에서 풀고 있는 문제 정리하기.

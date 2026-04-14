@@ -1,9 +1,11 @@
 ---
 title: "Ill-conditioned 행렬과 고유값: 연속형 처치 R-learner의 이론적 배경"
-date: "2025-07-11"
+date: 2025-07-11
 excerpt: "연속형 처치에서 발생하는 non-identification 문제와 ill-conditioned 행렬, 고유값의 관계를 자세히 설명"
 category: "Causal Inference"
-tags: ["Theory", "Linear Algebra", "Matrix Analysis"]
+tags:
+  - "Theory"
+public: true
 ---
 
 # Ill-conditioned 행렬과 고유값: 연속형 처치 R-learner의 이론적 배경

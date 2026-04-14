@@ -1,9 +1,12 @@
 ---
 title: "Cold Start 해결 방법에 대한 고민"
-date: "2025-07-08"
+date: 2025-07-08
 excerpt: "사이드프로젝트에서 진행한 cold start 해결방안과 데이터의 한계점 극복 고민"
 category: "Recommendation"
-tags: ["사이드프로젝트정리", "추천시스템"]
+tags:
+  - "사이드프로젝트정리"
+  - "추천시스템"
+public: true
 ---
 
 # 배경

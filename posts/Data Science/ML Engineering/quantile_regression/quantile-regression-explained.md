@@ -1,9 +1,14 @@
 ---
 title: "Quantile Regression이란?"
-date: "2025-08-13"
+date: 2025-08-13
 excerpt: "특정 분위수를 직접 예측하는 quantile regression은 어떻게 학습되는가?"
 category: "Data Science"
-tags: ["regression", "quantile", "prediction-interval", "pinball-loss"]
+tags:
+  - "regression"
+  - "quantile"
+  - "prediction-interval"
+  - "pinball-loss"
+public: true
 ---
 
 quantile regression은 기존의 회귀분석과 다르게 특정 분위수 (quantile)을 예측하는 방법입니다.

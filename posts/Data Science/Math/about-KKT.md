@@ -1,9 +1,14 @@
 ---
 title: "KKT condtion 이란?"
-date: "2025-09-23"
+date: 2025-09-23
 excerpt: "Karush-Kuhn-Tucker에 대해 이해해보기"
 category: "Math"
-tags: ["KKT", "DS", "Math", "Linear Programming"]
+tags:
+  - "KKT"
+  - "DS"
+  - "Math"
+  - "Linear-Programming"
+public: true
 ---
 
 참고자료

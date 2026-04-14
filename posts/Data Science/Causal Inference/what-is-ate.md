@@ -1,9 +1,11 @@
 ---
 title: "What is ATE?"
-date: "2025-07-17"
+date: 2025-07-17
 excerpt: "What is ATE?"
 category: "Causal Inference"
-tags: ["ATE"]
+tags:
+  - "ATE"
+public: true
 ---
 
 # ATE란?

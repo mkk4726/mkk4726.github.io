@@ -1,9 +1,13 @@
 ---
 title: "통계적인 편향과 이를 제거하기 위한 방법론"
-date: "2025-07-09"
+date: 2025-07-09
 excerpt: "실제 데이터에서 통계적 편향을 확인하고 이를 잔차화를 통해 제거하는 과정"
 category: "Causal Inference"
-tags: ["편향", "통계적", "bias"]
+tags:
+  - "편향"
+  - "통계적"
+  - "bias"
+public: true
 ---
 
 # 배경

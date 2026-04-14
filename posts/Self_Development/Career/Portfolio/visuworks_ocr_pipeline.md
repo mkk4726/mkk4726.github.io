@@ -1,9 +1,15 @@
 ---
 title: "OCR Pipeline System"
-date: ""
+date: 2025-11-30
 excerpt: "문서 이미지에서 텍스트를 추출하는 자동화된 OCR 파이프라인"
 category: "Career"
-tags: ["Python", "OCR", "Computer Vision", "Docker", "gRPC"]
+tags:
+  - "Python"
+  - "OCR"
+  - "Computer-Vision"
+  - "Docker"
+  - "gRPC"
+public: true
 ---
 
 - 기간 : 2024.07 ~ 2024.10 (4개월)

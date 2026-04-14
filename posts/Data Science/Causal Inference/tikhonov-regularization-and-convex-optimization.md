@@ -1,9 +1,13 @@
 ---
 title: "Tikhonov Regularization과 Convex Optimization: 연속형 처치 R-learner의 이론적 배경"
-date: "2025-07-16"
+date: 2025-07-16
 excerpt: "Ill-posed problem을 해결하는 Tikhonov regularization과 convex optimization의 원리"
 category: "Causal Inference"
-tags: ["Theory", "Optimization", "Regularization"]
+tags:
+  - "Theory"
+  - "Optimization"
+  - "Regularization"
+public: true
 ---
 
 # 개요

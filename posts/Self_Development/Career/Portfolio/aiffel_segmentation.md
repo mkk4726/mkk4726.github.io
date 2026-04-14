@@ -1,9 +1,11 @@
 ---
 title: "Segmentation Model"
-date: ""
+date: 2025-11-30
 excerpt: "눈의 안쪽 부분을 찍는 안저사진에서 망막병증을 탐지하는 모델"
 category: "Career"
-tags: ["Segmentation"]
+tags:
+  - "Segmentation"
+public: true
 ---
 
 - 기간 : 2023.12 ~ 2024.03 (4개월)

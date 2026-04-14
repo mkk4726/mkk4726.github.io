@@ -1,9 +1,11 @@
 ---
-title: "(Seoul) Research Engineer · AutoML "
-date: "2025-07-10"
+title: "(Seoul) Research Engineer · AutoML"
+date: 2025-07-10
 excerpt: "루닛 채용공고 분석과 준비과정"
 category: "Career"
-tags: ["루닛 채용공고"]
+tags:
+  - "루닛-채용공고"
+public: true
 ---
 
 # 채용공고

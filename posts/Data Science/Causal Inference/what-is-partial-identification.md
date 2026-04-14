@@ -1,9 +1,11 @@
 ---
 title: "Partial Identification에 대한 설명"
-date: "2025-08-19"
+date: 2025-08-19
 excerpt: "Partial Identification이 무엇이고, 양수성이 위반되었을 때 어떻게 쓸 수 있는지"
 category: "Causal Inference"
-tags: ["Partial Identification"]
+tags:
+  - "Partial-Identification"
+public: true
 ---
 
 Partial Idenfication은 인과추론의 가정들이 깨졌을 때 사용하는 방법입니다.

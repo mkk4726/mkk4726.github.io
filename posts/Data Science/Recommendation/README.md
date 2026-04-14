@@ -1,3 +1,14 @@
+---
+title: "README"
+date: 2025-11-30
+excerpt: "공부자료 모아두기"
+category: "Data Science/Recommendation"
+tags:
+  - "Data-Science"
+  - "Recommendation"
+public: true
+---
+
 공부자료 모아두기
 - [Recommender Systems Handbook](https://www.cs.ubbcluj.ro/~gabis/DocDiplome/SistemeDeRecomandare/Recommender_systems_handbook.pdf)
 - [CS 276 / LING 286: Information Retrieval and Web Search](https://web.stanford.edu/class/cs276/)

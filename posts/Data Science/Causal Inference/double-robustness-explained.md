@@ -1,9 +1,13 @@
 ---
 title: "Double Robustness: 인과추론의 핵심 개념 완전 정복"
-date: "2025-07-17"
+date: 2025-07-17
 excerpt: "Double Robustness의 이론적 기반부터 실용적 응용까지 완전 해부"
 category: "Causal Inference"
-tags: ["Double Robustness", "Causal Inference", "Theory", "R-learner"]
+tags:
+  - "Causal-Inference"
+  - "Theory"
+  - "R-learner"
+public: true
 ---
 
 # Double Robustness: 인과추론의 핵심 개념 완전 정복

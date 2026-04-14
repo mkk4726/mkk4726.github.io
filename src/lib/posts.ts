@@ -4,6 +4,11 @@ import matter from 'gray-matter';
 import { convertNotebookToHtml, extractNotebookMetadata } from './notebook';
 
 const postsDirectory = path.join(process.cwd(), 'posts');
+const IGNORED_DIRECTORY_NAMES = new Set(['images', '.obsidian']);
+
+function shouldIgnoreDirectory(dirName: string): boolean {
+  return dirName.startsWith('.') || IGNORED_DIRECTORY_NAMES.has(dirName);
+}
 
 export interface PostData {
   id: string;
@@ -19,6 +24,74 @@ export interface PostData {
   fileSize?: number;
   lastModified?: Date;
   public?: boolean;
+}
+
+interface RawPostFrontmatter {
+  title?: unknown;
+  date?: unknown;
+  excerpt?: unknown;
+  category?: unknown;
+  tags?: unknown;
+  public?: unknown;
+}
+
+interface NormalizedPostFrontmatter {
+  title: string;
+  date: string;
+  excerpt?: string;
+  category?: string;
+  tags: string[];
+  public: boolean;
+}
+
+function normalizeDate(value: unknown): string {
+  if (value instanceof Date && !Number.isNaN(value.getTime())) {
+    return value.toISOString().split('T')[0];
+  }
+  if (typeof value === 'string') {
+    const trimmed = value.trim();
+    if (!trimmed) return '';
+    const isoLike = trimmed.match(/^(\d{4}-\d{2}-\d{2})/);
+    if (isoLike) return isoLike[1];
+    const parsed = new Date(trimmed);
+    if (!Number.isNaN(parsed.getTime())) {
+      return parsed.toISOString().split('T')[0];
+    }
+  }
+  return '';
+}
+
+function normalizeTags(value: unknown): string[] {
+  if (Array.isArray(value)) {
+    return value
+      .map((tag) => String(tag).trim())
+      .filter((tag) => tag.length > 0);
+  }
+  if (typeof value === 'string') {
+    return value
+      .split(',')
+      .map((tag) => tag.trim())
+      .filter((tag) => tag.length > 0);
+  }
+  return [];
+}
+
+function normalizeFrontmatter(data: RawPostFrontmatter, fallbackId: string): NormalizedPostFrontmatter {
+  const title = typeof data.title === 'string' && data.title.trim() ? data.title.trim() : fallbackId;
+  const date = normalizeDate(data.date);
+  const excerpt = typeof data.excerpt === 'string' && data.excerpt.trim() ? data.excerpt.trim() : undefined;
+  const category = typeof data.category === 'string' && data.category.trim() ? data.category.trim() : undefined;
+  const tags = normalizeTags(data.tags);
+  const isPublic = data.public !== false;
+
+  return {
+    title,
+    date,
+    excerpt,
+    category,
+    tags,
+    public: isPublic,
+  };
 }
 
 // 폴더 구조를 나타내는 인터페이스
@@ -39,6 +112,9 @@ function getAllPostFiles(dir: string): string[] {
     const stat = fs.statSync(fullPath);
     
     if (stat.isDirectory()) {
+      if (shouldIgnoreDirectory(item)) {
+        continue;
+      }
       files.push(...getAllPostFiles(fullPath));
     } else if (item.endsWith('.md') || item.endsWith('.ipynb') || item.endsWith('.pdf')) {
       // README 파일은 일반 포스트로 처리하지 않음
@@ -67,15 +143,16 @@ export async function getSortedPostsData(includePrivate: boolean = false): Promi
     if (filePath.endsWith('.ipynb')) {
       // For Jupyter notebooks, extract metadata directly
       const metadata = extractNotebookMetadata(filePath);
-          return {
-      id: normalizedId,
-      title: metadata.title || normalizedId,
-      date: metadata.date || new Date().toISOString().split('T')[0],
-      excerpt: metadata.excerpt,
-      category: metadata.category,
-      tags: metadata.tags,
-      public: metadata.public !== false, // default to true if not specified
-    };
+      const normalizedMeta = normalizeFrontmatter(metadata, normalizedId);
+      return {
+        id: normalizedId,
+        title: normalizedMeta.title,
+        date: normalizedMeta.date || new Date().toISOString().split('T')[0],
+        excerpt: normalizedMeta.excerpt,
+        category: normalizedMeta.category,
+        tags: normalizedMeta.tags,
+        public: normalizedMeta.public,
+      };
     } else if (filePath.endsWith('.pdf')) {
       // For PDF files, generate metadata from file info
       const fileName = path.basename(filePath, '.pdf');
@@ -112,11 +189,16 @@ export async function getSortedPostsData(includePrivate: boolean = false): Promi
       // For markdown files, use gray-matter
       const fileContents = fs.readFileSync(filePath, 'utf8');
       const matterResult = matter(fileContents);
+      const normalizedMeta = normalizeFrontmatter(matterResult.data as RawPostFrontmatter, normalizedId);
       
       return {
         id: normalizedId,
-        ...(matterResult.data as { title: string; date: string; excerpt?: string; category?: string; tags?: string[]; public?: boolean }),
-        public: matterResult.data.public !== false, // default to true if not specified
+        title: normalizedMeta.title,
+        date: normalizedMeta.date || new Date().toISOString().split('T')[0],
+        excerpt: normalizedMeta.excerpt,
+        category: normalizedMeta.category,
+        tags: normalizedMeta.tags,
+        public: normalizedMeta.public,
       };
     }
   }));
@@ -235,16 +317,17 @@ export async function getPostData(id: string): Promise<PostData> {
   // Handle notebook files
   if (isNotebook) {
     const metadata = extractNotebookMetadata(fullPath);
+    const normalizedMeta = normalizeFrontmatter(metadata, id);
     const htmlContent = await convertNotebookToHtml(fullPath);
     
     return {
       id,
       content: htmlContent,
-      title: metadata.title || id,
-      date: metadata.date || new Date().toISOString().split('T')[0],
-      excerpt: metadata.excerpt,
-      category: metadata.category,
-      tags: metadata.tags,
+      title: normalizedMeta.title,
+      date: normalizedMeta.date || new Date().toISOString().split('T')[0],
+      excerpt: normalizedMeta.excerpt,
+      category: normalizedMeta.category,
+      tags: normalizedMeta.tags,
       isNotebook: true,
       isPdf: false,
     };
@@ -286,6 +369,7 @@ export async function getPostData(id: string): Promise<PostData> {
     // Handle markdown files
     const fileContents = fs.readFileSync(fullPath, 'utf8');
     const matterResult = matter(fileContents);
+    const normalizedMeta = normalizeFrontmatter(matterResult.data as RawPostFrontmatter, id);
     
     // Convert relative image paths to absolute paths based on post location
     let processedContent = matterResult.content;
@@ -323,8 +407,12 @@ export async function getPostData(id: string): Promise<PostData> {
     return {
       id,
       content: processedContent,
-      ...(matterResult.data as { title: string; date: string; excerpt?: string; category?: string; tags?: string[]; public?: boolean }),
-      public: matterResult.data.public !== false, // default to true if not specified
+      title: normalizedMeta.title,
+      date: normalizedMeta.date,
+      excerpt: normalizedMeta.excerpt,
+      category: normalizedMeta.category,
+      tags: normalizedMeta.tags,
+      public: normalizedMeta.public,
       isNotebook: false,
       isPdf: false,
     };
@@ -341,8 +429,8 @@ function buildFolderStructure(dir: string, basePath: string = ''): FolderNode[] 
     const stat = fs.statSync(fullPath);
     
     if (stat.isDirectory()) {
-      // images 폴더는 제외
-      if (item === 'images') {
+      // 숨김/시스템 폴더는 제외
+      if (shouldIgnoreDirectory(item)) {
         continue;
       }
       
@@ -374,6 +462,9 @@ function getPostCountInFolder(dir: string): number {
     const stat = fs.statSync(fullPath);
     
     if (stat.isDirectory()) {
+      if (shouldIgnoreDirectory(item)) {
+        continue;
+      }
       count += getPostCountInFolder(fullPath);
     } else if (item.endsWith('.md') || item.endsWith('.ipynb') || item.endsWith('.pdf')) {
       count++;

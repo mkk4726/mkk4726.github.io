@@ -1,9 +1,14 @@
 ---
 title: "Data Drift란?"
-date: "2025-08-10"
+date: 2025-08-10
 excerpt: "Data Drift의 개념과 활용되는 사례에 대한 정리"
 category: "Data Science"
-tags: ["data-drift", "machine-learning", "statistics", "data-engineering"]
+tags:
+  - "data-drift"
+  - "machine-learning"
+  - "statistics"
+  - "data-engineering"
+public: true
 ---
 
 # 참고한 글

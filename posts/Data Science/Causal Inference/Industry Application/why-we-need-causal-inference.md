@@ -1,9 +1,11 @@
 ---
 title: "인과 추론 도입배경"
-date: "2025-07-14"
+date: 2025-07-14
 excerpt: "인과추론을 왜 사용해야하는지 설명하고 이를 도입하기 위해 설득하는 글"
 category: "Causal Inference"
-tags: ["ICL-Lenze-sizing"]
+tags:
+  - "ICL-Lenze-sizing"
+public: true
 ---
 
 # 0. Abstract - 배경, 요약

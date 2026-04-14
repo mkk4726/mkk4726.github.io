@@ -1,9 +1,12 @@
 ---
 title: "ML의 신뢰구간을 구하는 방법"
-date: "2025-08-06"
+date: 2025-08-06
 excerpt: "ML의 신뢰구간은 어떻게 구할까?"
 category: "Data Science"
-tags: ["machine-learning", "confidence-interval"]
+tags:
+  - "machine-learning"
+  - "confidence-interval"
+public: true
 ---
 
 참고자료

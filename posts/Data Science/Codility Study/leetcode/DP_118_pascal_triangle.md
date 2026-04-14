@@ -1,9 +1,11 @@
 ---
 title: "118. Pascal's Triangle"
-date: "2025-10-28"
+date: 2025-10-28
 excerpt: "DP 문제, Easy 난이도."
 category: "Codility Study"
-tags: ["leetcode"]
+tags:
+  - "leetcode"
+public: true
 ---
 
 - [링크](https://leetcode.com/problems/pascals-triangle/description/?envType=study-plan-v2&envId=top-100-liked)

@@ -1,9 +1,11 @@
 ---
 title: "최적화의 함정에 대하여"
-date: "2025-07-08"
+date: 2025-07-08
 excerpt: "패배주의에서 벗어나자"
 category: "Reflections"
-tags: ["이런저런 생각들"]
+tags:
+  - "이런저런-생각들"
+public: true
 ---
 
 # 배경

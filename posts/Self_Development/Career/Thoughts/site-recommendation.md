@@ -1,9 +1,11 @@
 ---
 title: "취업 준비 사이트 추천"
-date: "2025-07-30"
+date: 2025-07-30
 excerpt: "취업 준비 사이트 추천"
 category: "Career"
-tags: ["취업"]
+tags:
+  - "취업"
+public: true
 ---
 
 

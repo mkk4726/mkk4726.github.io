@@ -1,9 +1,13 @@
 ---
 title: "Why Do We Introduce the Centered Function tilde_tau(x,t)?"
-date: "2025-07-15"
+date: 2025-07-15
 excerpt: "The role of the intermediate, mean-zero CATE in the continuous-treatment R-learner."
 category: "Causal Inference"
-tags: ["Concept", "R-learner", "Continuous Treatment"]
+tags:
+  - "Concept"
+  - "R-learner"
+  - "Continuous-Treatment"
+public: true
 ---
 
 # 1. The problem in one sentence

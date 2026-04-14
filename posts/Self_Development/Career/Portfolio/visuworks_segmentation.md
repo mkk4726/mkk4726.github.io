@@ -1,9 +1,12 @@
 ---
 title: "[Visuworks] Segmentation Model"
-date: ""
+date: 2025-11-30
 excerpt: "출혈관련 병변 탐지 모델 개발"
 category: "Career"
-tags: ["Computer Vision", "Segmentation"]
+tags:
+  - "Computer-Vision"
+  - "Segmentation"
+public: true
 ---
 
 - 기간 : 2024.04 ~ 2024.06 (3개월)

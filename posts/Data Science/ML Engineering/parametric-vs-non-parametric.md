@@ -1,9 +1,14 @@
 ---
 title: "Parametric vs Non-Parametric, GBDT는 왜 non-parametric일까?"
-date: "2025-07-22"
+date: 2025-07-22
 excerpt: "Parametric과 Non-Parametric에 대한 간단한 설명"
 category: "Data Science"
-tags: ["parametric", "non-parametric", "machine-learning", "statistics"]
+tags:
+  - "parametric"
+  - "non-parametric"
+  - "machine-learning"
+  - "statistics"
+public: true
 ---
 
 

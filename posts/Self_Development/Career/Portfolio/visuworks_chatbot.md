@@ -1,9 +1,11 @@
 ---
 title: "AI Chatbot Project"
-date: ""
+date: 2025-11-30
 excerpt: "고객상담용 챗봇 개발"
 category: "Career"
-tags: ["RAG"]
+tags:
+  - "RAG"
+public: true
 ---
 
 - 기간 : 2024.11 ~ 2025.02 (4개월)

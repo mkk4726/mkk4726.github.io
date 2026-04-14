@@ -1,9 +1,11 @@
 ---
 title: "[Feedback] - [탈락!] Hyundai Autoever - ML Engineer Resume"
-date: "2025-08-12"
+date: 2025-08-12
 excerpt: "현대자동차 이력서"
 category: "Career"
-tags: ["현대자동차 채용공고", "이력서"]
+tags:
+  - "현대자동차-채용공고"
+  - "이력서"
 public: false
 ---
 

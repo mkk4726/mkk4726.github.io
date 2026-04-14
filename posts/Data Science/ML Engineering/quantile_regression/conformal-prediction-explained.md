@@ -1,9 +1,14 @@
 ---
 title: "Conformal Prediction: 분포 가정 없이 유한 샘플 coverage를 보장하는 방법"
-date: "2025-08-13"
+date: 2025-08-13
 excerpt: "통계적 가정 없이도 finite-sample coverage를 보장하는 conformal prediction에 대해 정리해보기"
 category: "Data Science"
-tags: ["statistics", "prediction-interval", "uncertainty", "calibration"]
+tags:
+  - "statistics"
+  - "prediction-interval"
+  - "uncertainty"
+  - "calibration"
+public: true
 ---
 
 참고자료

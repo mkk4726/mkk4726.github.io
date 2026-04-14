@@ -1,9 +1,11 @@
 ---
 title: "Information Entropy란?"
-date: "2025-08-10"
+date: 2025-08-10
 excerpt: "Information Entropy 개념정리"
 category: "Data Science"
-tags: ["statistics"]
+tags:
+  - "statistics"
+public: true
 ---
 
 참고자료

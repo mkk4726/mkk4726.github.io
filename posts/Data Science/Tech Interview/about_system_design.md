@@ -1,9 +1,11 @@
 ---
 title: "System Design 관련 인터뷰 준비"
-date: "2025-09-08"
-excerpt: ""
+date: 2025-09-08
+excerpt: "참고자료"
 category: "Data Science"
-tags: ["Interview"]
+tags:
+  - "Interview"
+public: true
 ---
 
 

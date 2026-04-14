@@ -1,9 +1,12 @@
 ---
 title: "python의 GIL에 대해서"
-date: "2025-09-17"
+date: 2025-09-17
 excerpt: "Global Interpreter Lock에 대해 정리"
 category: "Computer Science"
-tags: ["python", "GIL"]
+tags:
+  - "python"
+  - "GIL"
+public: true
 ---
 
 참고자료

@@ -1,9 +1,11 @@
 ---
 title: "PCA에 대해 정리"
-date: "2025-09-10"
+date: 2025-09-10
 excerpt: "PCA란 무엇인가"
 category: "Data Science"
-tags: ["statistics"]
+tags:
+  - "statistics"
+public: true
 ---
 
 참고자료

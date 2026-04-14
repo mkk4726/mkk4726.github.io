@@ -1,9 +1,13 @@
 ---
 title: "Mean Shift Clustering 개념 정리"
-date: "2025-11-21"
+date: 2025-11-21
 excerpt: "Mean Shift Clustering의 개념, 원리, 장단점, 그리고 Python 구현 예제"
 category: "Data Science"
-tags: ["statistics", "machine-learning", "clustering"]
+tags:
+  - "statistics"
+  - "machine-learning"
+  - "clustering"
+public: true
 ---
 
 # Mean Shift Clustering이란?

@@ -1,9 +1,15 @@
 ---
 title: "AWS EC2와 EBS 완벽 가이드"
-date: "2025-08-14"
+date: 2025-08-14
 excerpt: "AWS EC2와 EBS의 개념, 사용법, 그리고 EBS 백업 기능에 대한 상세한 설명"
 category: "Data Engineering"
-tags: ["AWS", "EC2", "EBS", "Cloud Computing", "Infrastructure"]
+tags:
+  - "AWS"
+  - "EC2"
+  - "EBS"
+  - "Cloud-Computing"
+  - "Infrastructure"
+public: true
 ---
 
 # AWS EC2와 EBS 완벽 가이드

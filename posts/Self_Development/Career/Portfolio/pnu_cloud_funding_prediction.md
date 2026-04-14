@@ -1,9 +1,13 @@
 ---
 title: "[PNU] Cloud Funding Success prediction model"
-date: ""
+date: 2025-11-30
 excerpt: "부산대학교 산업공학과 졸업 프로젝트"
 category: "Career"
-tags: ["ML", "Crawling", "Prediction"]
+tags:
+  - "ML"
+  - "Crawling"
+  - "Prediction"
+public: true
 ---
 
 - 기간 : 2022.03 ~ 2022.06 (4개월)

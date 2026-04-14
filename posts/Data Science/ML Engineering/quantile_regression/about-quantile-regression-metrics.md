@@ -1,9 +1,12 @@
 ---
 title: "Metrics for Quantile Regressor"
-date: "2025-09-26"
+date: 2025-09-26
 excerpt: "Quantile Regressor를 판단하는 평가지표는 뭐가 있을까?"
 category: "Machine Learning"
-tags: ["Quantile Regression", "Metrics"]
+tags:
+  - "Quantile-Regression"
+  - "Metrics"
+public: true
 ---
 
 # 스케치

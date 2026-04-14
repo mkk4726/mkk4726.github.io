@@ -1,9 +1,12 @@
 ---
 title: "Index에 대한 정리"
-date: "2025-08-14"
+date: 2025-08-14
 excerpt: "Index가 뭐고, 어떤 원리로 동작하는지 자세히 정리"
 category: "Data Engineering"
-tags: ["DB", "Index"]
+tags:
+  - "DB"
+  - "Index"
+public: true
 ---
 
 참고자료

@@ -7,6 +7,37 @@ import rehypeKatex from 'rehype-katex';
 import rehypeStringify from 'rehype-stringify';
 import { remarkAudio } from './remark-audio';
 
+function toPostPath(rawTarget: string): string {
+  const cleaned = rawTarget.trim().replace(/\\/g, '/').replace(/\.md$/i, '');
+  const [pathPart, hashPart] = cleaned.split('#');
+  const normalizedPath = pathPart
+    .split('/')
+    .map((segment) => encodeURIComponent(segment.trim()))
+    .filter((segment) => segment.length > 0)
+    .join('/');
+  const hash = hashPart ? `#${encodeURIComponent(hashPart.trim())}` : '';
+  return `/posts/${normalizedPath}${hash}`;
+}
+
+function convertObsidianSyntax(content: string): string {
+  let converted = content;
+
+  // [[note]] or [[note|alias]] -> markdown links for internal post routing.
+  converted = converted.replace(/\[\[([^[\]\n]+)\]\]/g, (fullMatch, innerContent: string) => {
+    const [targetRaw, aliasRaw] = innerContent.split('|');
+    const target = targetRaw?.trim() || '';
+    if (!target) return fullMatch;
+
+    const alias = (aliasRaw || target).trim();
+    return `[${alias}](${toPostPath(target)})`;
+  });
+
+  // ==text== -> mark tag for visual parity with Obsidian highlights.
+  converted = converted.replace(/==([^=\n][^=\n]*?)==/g, '<mark>$1</mark>');
+
+  return converted;
+}
+
 export async function parseMarkdown(content: string): Promise<string> {
   // content가 유효한지 확인
   if (!content || typeof content !== 'string') {
@@ -16,7 +47,7 @@ export async function parseMarkdown(content: string): Promise<string> {
   // 마크다운 파싱 전에 강조 마커 뒤에 바로 오는 문자 패턴 수정
   // **text**letter → **text** letter
   // 단, 괄호나 구두점은 제외 (예: **text**(text) 또는 **text**. 는 그대로 유지)
-  let processedContent = content;
+  let processedContent = convertObsidianSyntax(content);
   
   // Bold markers (**) followed immediately by non-whitespace characters
   // 괄호, 구두점, 특수문자는 제외하여 볼드 처리가 깨지지 않도록 함

@@ -1,9 +1,13 @@
 ---
 title: "VectorDB에 사용되는 라이브러리들 비교"
-date: "2025-07-25"
+date: 2025-07-25
 excerpt: "챗봇 구현하면서 RAG 부분에 사용할 벡터화된 문서들을 관리할 DB들을 비교"
 category: "Data Science"
-tags: ["vector-database", "chatbot", "RAG"]
+tags:
+  - "vector-database"
+  - "chatbot"
+  - "RAG"
+public: true
 ---
 
 

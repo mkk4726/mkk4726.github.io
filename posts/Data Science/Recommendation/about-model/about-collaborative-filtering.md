@@ -1,9 +1,12 @@
 ---
 title: "Collaborative Filtering에 대해 정리"
-date: "2025-09-24"
+date: 2025-09-24
 excerpt: "CF에 대해 이해해보자"
 category: "Recommendation"
-tags: ["CF", "ML"]
+tags:
+  - "CF"
+  - "ML"
+public: true
 ---
 
 참고자료

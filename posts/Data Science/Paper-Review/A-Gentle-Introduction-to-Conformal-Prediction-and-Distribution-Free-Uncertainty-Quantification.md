@@ -1,9 +1,15 @@
 ---
 title: "A Gentle Introduction to Conformal Prediction and Distribution-Free Uncertainty Quantification"
-date: "2025-08-13"
+date: 2025-08-13
 excerpt: "Conformal Prediction 관련 Paper Review"
 category: "Data Science"
-tags: ["statistics", "prediction-interval", "uncertainty", "calibration", "paper-review"]
+tags:
+  - "statistics"
+  - "prediction-interval"
+  - "uncertainty"
+  - "calibration"
+  - "paper-review"
+public: true
 ---
 
 

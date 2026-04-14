@@ -1,9 +1,14 @@
 ---
 title: "A/B Test 결과 해석: 전통적 통계 vs 부트스트랩"
-date: "2025-11-24"
+date: 2025-11-24
 excerpt: "A/B 테스트 결과를 해석할 때 사용하는 전통적인 통계적 검정 방법(t-test 등)과 부트스트랩(Bootstrap) 방법의 차이점과 장단점을 비교합니다."
 category: "Data Science"
-tags: ["AB-Test", "Statistics", "Bootstrap", "Hypothesis-Testing"]
+tags:
+  - "AB-Test"
+  - "Statistics"
+  - "Bootstrap"
+  - "Hypothesis-Testing"
+public: true
 ---
 
 A/B 테스트를 진행한 후, 두 그룹(대조군과 실험군) 간의 차이가 우연에 의한 것인지 아니면 실제 효과에 의한 것인지를 판단하기 위해 통계적 검정을 수행합니다. 이때 주로 사용되는 두 가지 접근 방식인 **전통적인 통계적 검정(Parametric Tests)**과 **부트스트랩(Bootstrap)** 방법에 대해 알아보고, 각각의 특징과 차이점을 비교해 보겠습니다.

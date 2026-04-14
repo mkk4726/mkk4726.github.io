@@ -1,9 +1,11 @@
 ---
 title: "Non-crossing Quantile Regression: 교차 방지 기법과 폭 정규화"
-date: "2025-10-13"
+date: 2025-10-13
 excerpt: "여러 분위를 동시에 학습하면서 quantile crossing 문제를 방지하고, 예측구간 길이를 정규화하는 최신 연구들을 모델 계열별로 정리했습니다."
 category: "Machine Learning"
-tags: ["Quantile Regression"]
+tags:
+  - "Quantile-Regression"
+public: true
 ---
 
 # 지금 고민하고 있는 부분

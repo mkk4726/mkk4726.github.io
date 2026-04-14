@@ -1,9 +1,11 @@
 ---
 title: "1114. Longest Common Sequence"
-date: "2025-11-24"
+date: 2025-11-24
 excerpt: "DP 문제, Medium 난이도."
 category: "Codility Study"
-tags: ["leetcode"]
+tags:
+  - "leetcode"
+public: true
 ---
 
 - [링크](https://leetcode.com/problems/longest-common-subsequence/description/)

@@ -1,9 +1,11 @@
 ---
 title: "리맴버 - ML Engineer"
-date: "2025-09-17"
+date: 2025-09-17
 excerpt: "채용공고 정리 -> 지원전략 정리"
 category: "Career"
-tags: ["ML Engineer", "채용공고"]
+tags:
+  - "ML-Engineer"
+  - "채용공고"
 public: false
 ---
 

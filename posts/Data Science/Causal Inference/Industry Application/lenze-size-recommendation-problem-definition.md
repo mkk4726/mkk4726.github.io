@@ -1,9 +1,11 @@
 ---
 title: "렌즈 사이즈 추천 문제에서 문제 정의에 대한 고민"
-date: "2025-08-04"
+date: 2025-08-04
 excerpt: "렌즈 사이즈 추천에서 인과추론을 도입할 때 문제 정의를 어떻게 할 것인가"
 category: "Causal Inference"
-tags: ["problem definition"]
+tags:
+  - "problem-definition"
+public: true
 ---
 
 렌즈 삽입술에서 Y는 vault로 정의가 됨 (지금 풀려고 하는 문제에서는).

@@ -1,9 +1,12 @@
 ---
 title: "Positivity(양수성)이란? Overlap assumption이란?"
-date: "2025-08-29"
+date: 2025-08-29
 excerpt: "양수성이란? 분포의 겹침이 의미하는건?"
 category: "Causal Inference"
-tags: ["Positivity", "Overlap assumption"]
+tags:
+  - "Positivity"
+  - "Overlap-assumption"
+public: true
 ---
 
 positivity 혹은 overlap assumption은 인과추론의 기본적인 가정들 중 하나입니다.

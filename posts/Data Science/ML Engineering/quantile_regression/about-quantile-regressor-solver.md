@@ -1,9 +1,11 @@
 ---
 title: "sklearn.linear_model.QuantileRegressor의 solver 정리"
-date: "2025-09-23"
+date: 2025-09-23
 excerpt: "quantile regressor에서 사용하는 solver에 대해 정리"
 category: "Machine Learning"
-tags: ["Regression"]
+tags:
+  - "Regression"
+public: true
 ---
 
 # QuantileRegressor의 Solver 옵션 분석

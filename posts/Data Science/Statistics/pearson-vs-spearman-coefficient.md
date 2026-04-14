@@ -1,9 +1,12 @@
 ---
 title: "Pearson vs Spearman 정리"
-date: "2025-08-19"
+date: 2025-08-19
 excerpt: "상관관계 지표에 대한 비교"
 category: "Data Science"
-tags: ["statistics", "correlation"]
+tags:
+  - "statistics"
+  - "correlation"
+public: true
 ---
 
 참고 글 

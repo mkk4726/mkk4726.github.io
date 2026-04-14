@@ -1,9 +1,14 @@
 ---
 title: "Mid-Ranking: 검색 시스템의 중간 랭킹 단계"
-date: "2025-11-10"
+date: 2025-11-10
+excerpt: "Mid-ranking 단계는 검색 시스템에서 **\"두 세계를 연결하는 다리\"** 같은 구간입니다. Retrieval 단계에서 가져온 수천 개의 후보 문서를 Re-ranking 단계에서 세밀하게 점수화하기 전에 중간 필터링, 정규화, 스코어 융합, 도메인 보정을 수행하는 핵심 구간입니다."
 category: "Data Science"
-tags: ["Information Retrieval", "Ranking", "Search System", "Score Fusion"]
-description: "Retrieval과 Re-ranking 사이를 연결하는 Mid-ranking 단계의 역할과 핵심 기술"
+tags:
+  - "Information-Retrieval"
+  - "Ranking"
+  - "Search-System"
+  - "Score-Fusion"
+public: true
 ---
 
 # Mid-Ranking: 검색 시스템의 중간 랭킹 단계

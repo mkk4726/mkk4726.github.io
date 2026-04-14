@@ -1,9 +1,11 @@
 ---
 title: "XGBoost 이해하기!"
-date: "2025-09-28"
+date: 2025-09-28
 excerpt: "매번 까먹는 개념들...한번 정리해보자"
 category: "Engineering"
-tags: ["XGBoost"]
+tags:
+  - "XGBoost"
+public: true
 ---
 
 베이스라인으로 가져가는 모델이지만 자세한 세부 내용은 자주 까먹는다... ㅎㅎ

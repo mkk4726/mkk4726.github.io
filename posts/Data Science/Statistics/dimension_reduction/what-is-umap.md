@@ -1,9 +1,11 @@
 ---
-title: UMAP 에 대해 정리"
-date: "2025-09-11"
+title: "UMAP 에 대해 정리\""
+date: 2025-09-11
 excerpt: "UMAP에 대해 이해해보기"
 category: "Data Science"
-tags: ["statistics"]
+tags:
+  - "statistics"
+public: true
 ---
 
 참고자료

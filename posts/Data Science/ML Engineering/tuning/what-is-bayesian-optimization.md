@@ -1,9 +1,12 @@
 ---
 title: "Bayesian Optimization이란?"
-date: "2025-10-10"
+date: 2025-10-10
 excerpt: "하이퍼파라미터 튜닝을 할 때 사용하는 BO에 대해서 정리해보기"
 category: "Engineering"
-tags: ["Tuning", "Bayesian Optimization"]
+tags:
+  - "Tuning"
+  - "Bayesian-Optimization"
+public: true
 ---
 
 # 개념 스케치

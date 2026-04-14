@@ -1,9 +1,12 @@
 ---
 title: "[Side] 추천 모델링 공부"
-date: ""
+date: 2025-11-30
 excerpt: "추천 모델링 공부를 위한 과정들"
 category: "Career"
-tags: ["ML", "Crawling", "Prediction"]
+tags:
+  - "ML"
+  - "Crawling"
+  - "Prediction"
 public: false
 ---
 

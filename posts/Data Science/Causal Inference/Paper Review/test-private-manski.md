@@ -1,9 +1,12 @@
 ---
 title: "[Private] Test Manski Bounds Analysis"
-date: "2025-01-01"
+date: 2025-01-01
 excerpt: "비공개 테스트 포스트입니다. 관리자 모드에서만 보입니다."
 category: "Causal Inference"
-tags: ["Test", "Private", "Manski"]
+tags:
+  - "Test"
+  - "Private"
+  - "Manski"
 public: false
 ---
 

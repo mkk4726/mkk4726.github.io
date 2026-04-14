@@ -1,9 +1,11 @@
 ---
 title: "Law of total expectation"
-date: "2025-07-23"
+date: 2025-07-23
 excerpt: "전체기대법칙에 대해 정리"
 category: "Data Science"
-tags: ["math"]
+tags:
+  - "math"
+public: true
 ---
 
 ### 전체기대법칙, 진짜 생활 버전

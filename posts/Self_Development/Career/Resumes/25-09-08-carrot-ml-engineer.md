@@ -1,9 +1,10 @@
 ---
 title: "당근 - ML Engineer"
-date: "2025-09-08"
+date: 2025-09-08
 excerpt: "이력서 , 경력기술서 적어보기"
 category: "Career"
-tags: ["이력서"]
+tags:
+  - "이력서"
 public: false
 ---
 

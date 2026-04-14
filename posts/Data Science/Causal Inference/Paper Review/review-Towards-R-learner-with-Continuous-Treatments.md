@@ -1,9 +1,11 @@
 ---
 title: "[Paper Review] Towards R-learner with Continuous Treatments"
-date: "2025-07-11"
+date: 2025-07-11
 excerpt: "연속형 처치를 위한 R-learner를 어떻게 구현할 수 있는지에 대한 논의"
 category: "Causal Inference"
-tags: ["Paper Review"]
+tags:
+  - "Paper-Review"
+public: true
 ---
 
 [paper link](https://arxiv.org/pdf/2208.00872)

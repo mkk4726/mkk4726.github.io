@@ -1,9 +1,10 @@
 ---
 title: "[Paper Review] Towards Optimal Doubly-Robust Estimation of Heterogeneous Causal Effects"
-date: "2025-07-20"
+date: 2025-07-20
 excerpt: "Doubly-Robust Estimation of Heterogeneous Causal Effects 논문 리뷰"
 category: "Causal Inference"
-tags: ["paper review"]
+tags:
+  - "paper-review"
 public: false
 ---
 

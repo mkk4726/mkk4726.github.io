@@ -1,9 +1,12 @@
 ---
 title: "당근마켓 - Software Engineer, Machine Learning"
-date: "2025-09-08"
+date: 2025-09-08
 excerpt: "채용공고 정리 -> 지원전략 정리"
 category: "Career"
-tags: ["당근마켓", "ML Engineer", "채용공고"]
+tags:
+  - "당근마켓"
+  - "ML-Engineer"
+  - "채용공고"
 public: false
 ---
 

@@ -1,9 +1,15 @@
 ---
 title: "보정된 확률(Calibrated Probability)이란?"
-date: "2025-08-18"
+date: 2025-08-18
 excerpt: "머신러닝 모델의 확률 예측을 실제 관찰 빈도와 일치시키는 방법에 대한 정리"
 category: "Data Science"
-tags: ["calibration", "probability", "machine-learning", "logistic-regression", "platt-scaling"]
+tags:
+  - "calibration"
+  - "probability"
+  - "machine-learning"
+  - "logistic-regression"
+  - "platt-scaling"
+public: true
 ---
 
 참고자료

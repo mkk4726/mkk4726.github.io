@@ -1,9 +1,11 @@
 ---
 title: "KL Divergence란?"
-date: "2025-08-10"
+date: 2025-08-10
 excerpt: "KL Divergence 개념정리"
 category: "Data Science"
-tags: ["statistics"]
+tags:
+  - "statistics"
+public: true
 ---
 
 참고자료

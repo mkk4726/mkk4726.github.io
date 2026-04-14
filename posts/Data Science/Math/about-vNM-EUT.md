@@ -1,9 +1,14 @@
 ---
 title: "von Neumann–Morgenstern Expected Utility Theory 이란?"
-date: "2025-09-24"
+date: 2025-09-24
 excerpt: "불확실한 상황에서 합리적 의사결정을 위한 vNM 기대효용 이론의 핵심 개념과 응용"
 category: "Math"
-tags: ["vNM EUT", "Decision Theory", "Game Theory", "Expected Utility"]
+tags:
+  - "vNM-EUT"
+  - "Decision-Theory"
+  - "Game-Theory"
+  - "Expected-Utility"
+public: true
 ---
 
 **von Neumann–Morgenstern Expected Utility Theory (vNM EUT)**  는 불확실한 상황에서 합리적인 의사결정을 수학적으로 모델링하는 이론입니다. 

@@ -1,9 +1,13 @@
 ---
 title: "meta-learning이란?"
-date: "2025-08-04"
+date: 2025-08-04
 excerpt: "meta-learning의 개념과 활용되는 사례에 대한 정리"
 category: "Data Science"
-tags: ["meta-learning", "machine-learning", "statistics"]
+tags:
+  - "meta-learning"
+  - "machine-learning"
+  - "statistics"
+public: true
 ---
 
 참고자료

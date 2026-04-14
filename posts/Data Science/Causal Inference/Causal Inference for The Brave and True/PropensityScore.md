@@ -1,9 +1,11 @@
 ---
 title: "Propensity Score"
-date: "2025-07-17"
+date: 2025-07-17
 excerpt: "Propensity Score"
 category: "Causal Inference"
-tags: ["Causal Inference"]
+tags:
+  - "Causal-Inference"
+public: true
 ---
 
 [Propensity Score](https://matheusfacure.github.io/python-causality-handbook/11-Propensity-Score.html)

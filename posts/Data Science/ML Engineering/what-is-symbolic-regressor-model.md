@@ -1,9 +1,12 @@
 ---
 title: "Symbolic Regressor Model이란?"
-date: "2025-08-11"
+date: 2025-08-11
 excerpt: "Symbolic Regressor Model의 개념과 활용되는 사례에 대한 정리"
 category: "Data Science"
-tags: ["machine-learning", "statistics"]
+tags:
+  - "machine-learning"
+  - "statistics"
+public: true
 ---
 
 # Symbolic Regressor Model이란?

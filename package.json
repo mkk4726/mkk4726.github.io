@@ -12,7 +12,8 @@
     "export": "next export",
     "lint": "next lint",
     "generate-search": "node scripts/generate-search-index.js",
-    "copy-assets": "node scripts/copy-assets.js"
+    "copy-assets": "node scripts/copy-assets.js",
+    "normalize-frontmatter": "node scripts/normalize-frontmatter.js"
   },
   "dependencies": {
     "@types/jsdom": "^21.1.7",

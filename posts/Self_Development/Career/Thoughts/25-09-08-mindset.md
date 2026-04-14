@@ -1,9 +1,11 @@
 ---
 title: "지원자가 가져야하는 마음가짐"
-date: "2025-09-08"
+date: 2025-09-08
 excerpt: "지원자가 면접을 대할 때 가져야하는 마음가짐, 태도"
 category: "Career"
-tags: ["면접준비"]
+tags:
+  - "면접준비"
+public: true
 ---
 
 참고자료

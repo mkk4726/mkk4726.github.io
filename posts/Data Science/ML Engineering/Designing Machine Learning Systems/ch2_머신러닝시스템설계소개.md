@@ -1,9 +1,13 @@
 ---
 title: "머신러닝 시스템 설계 소개"
-date: "2025-07-28"
+date: 2025-07-28
 excerpt: "머신러닝 시스템 설계 소개"
 category: "Engineering"
-tags: ["MLOps", "System Design", "Designing Machine Learning Systems"]
+tags:
+  - "MLOps"
+  - "System-Design"
+  - "Designing-Machine-Learning-Systems"
+public: true
 ---
 
 ML 시스템 설계는 어떻게 하는걸까?

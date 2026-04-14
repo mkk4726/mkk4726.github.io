@@ -1,9 +1,14 @@
 ---
 title: "OMSCS(Georgia Tech 온라인 CS 석사) 지원 준비 계획"
-date: "2025-01-15"
+date: 2025-01-15
 excerpt: "세계 최고 가성비 CS 석사 프로그램 분석과 지원 전략"
 category: "Career"
-tags: ["대학원", "OMSCS", "Georgia Tech", "컴퓨터사이언스"]
+tags:
+  - "대학원"
+  - "OMSCS"
+  - "Georgia-Tech"
+  - "컴퓨터사이언스"
+public: true
 ---
 
 # 배경

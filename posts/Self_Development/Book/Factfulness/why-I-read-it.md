@@ -1,9 +1,11 @@
 ---
 title: "책을 읽게 된 이유"
-date: "2025-09-14"
+date: 2025-09-14
 excerpt: "가짜뉴스가 판을 치는 세상에서 올바른 세계관을 성립하기 위해서"
 category: "Book"
-tags: ["Factfulness"]
+tags:
+  - "Factfulness"
+public: true
 ---
 
 성별간, 나이간에 증오와 분노가 가득찬 세계를 살아가는 것 같다.

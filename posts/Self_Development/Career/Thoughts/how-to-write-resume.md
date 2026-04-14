@@ -1,9 +1,11 @@
 ---
 title: "이력서, 경력기술서 작성 방법 정리"
-date: "2025-07-29"
+date: 2025-07-29
 excerpt: "이력서, 경력기술서 적는 방법 정리"
 category: "Career"
-tags: ["이력서"]
+tags:
+  - "이력서"
+public: true
 ---
 
 

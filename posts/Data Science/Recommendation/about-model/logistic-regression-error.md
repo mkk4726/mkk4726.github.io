@@ -1,9 +1,12 @@
 ---
 title: "Logistic Regression Error"
-date: "2025-09-22"
+date: 2025-09-22
 excerpt: "Divide by Zero & Overflow이 발생하는 이유"
 category: "Recommendation"
-tags: ["Azura", "Modeling"]
+tags:
+  - "Azura"
+  - "Modeling"
+public: true
 ---
 
 ```python

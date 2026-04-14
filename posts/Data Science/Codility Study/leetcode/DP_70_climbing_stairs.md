@@ -1,9 +1,11 @@
 ---
 title: "70. Climbing Stairs"
-date: "2025-10-25"
+date: 2025-10-25
 excerpt: "DP 문제, Easy 난이도."
 category: "Codility Study"
-tags: ["leetcode"]
+tags:
+  - "leetcode"
+public: true
 ---
 
 - [leetcode 문제 70](https://leetcode.com/problems/climbing-stairs/?envType=study-plan-v2&envId=top-100-liked)

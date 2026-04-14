@@ -1,9 +1,11 @@
 ---
 title: "KDE와 Histogram에 대한 정리"
-date: "2025-08-12"
+date: 2025-08-12
 excerpt: "KDE와 Histogram이 뭔지, 차이점에 대한 정리"
 category: "Data Science"
-tags: ["statistics"]
+tags:
+  - "statistics"
+public: true
 ---
 
 

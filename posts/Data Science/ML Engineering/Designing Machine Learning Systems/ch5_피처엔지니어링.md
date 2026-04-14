@@ -1,9 +1,13 @@
 ---
 title: "피처 엔지니어링에 대해서"
-date: "2025-09-16"
+date: 2025-09-16
 excerpt: "feature 를 다룰 때 생각하면 좋은 내용들"
 category: "Engineering"
-tags: ["MLOps", "System Design", "Designing Machine Learning Systems"]
+tags:
+  - "MLOps"
+  - "System-Design"
+  - "Designing-Machine-Learning-Systems"
+public: true
 ---
 
 > 오늘날 ML 시스템의 성공은 여전히 피처에 달려 있습니다.

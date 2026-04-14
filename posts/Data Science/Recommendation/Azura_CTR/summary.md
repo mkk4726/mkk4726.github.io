@@ -1,9 +1,12 @@
 ---
 title: "Azura modeling 정리"
-date: "2025-09-22"
+date: 2025-09-22
 excerpt: "Azura dataset으로 모델링하면서 고민했던 부분, 배웠던 부분 정리"
 category: "Recommendation"
-tags: ["Azura", "Modeling"]
+tags:
+  - "Azura"
+  - "Modeling"
+public: true
 ---
 
 # 1. Baseline model : Logistic Regression

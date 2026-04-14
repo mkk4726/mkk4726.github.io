@@ -1,9 +1,11 @@
 ---
 title: "TF-IDF, BM25 개념 정리하고 코드 구현하지"
-date: "2025-11-10"
+date: 2025-11-10
 excerpt: "IR에서 가장 기본적으로 사용되는 관련도 점수 개념 정리하기"
 category: "Information Retrieval"
-tags: ["IR"]
+tags:
+  - "IR"
+public: true
 ---
 
 # TF-IDF 란?

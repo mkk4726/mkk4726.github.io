@@ -1,9 +1,11 @@
 ---
 title: "300. Longest Increasing Subsequence"
-date: "2025-10-29"
+date: 2025-10-29
 excerpt: "DP 문제, Medium 난이도."
 category: "Codility Study"
-tags: ["leetcode"]
+tags:
+  - "leetcode"
+public: true
 ---
 
 - [link](https://leetcode.com/problems/longest-increasing-subsequence/description/?envType=study-plan-v2&envId=top-100-liked)

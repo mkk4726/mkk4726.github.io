@@ -1,9 +1,11 @@
 ---
 title: "KDE에 대한 자세한 정리"
-date: "2025-08-12"
+date: 2025-08-12
 excerpt: "KDE에서 사용되는 개념들에 대한 자세히 정리"
 category: "Data Science"
-tags: ["statistics"]
+tags:
+  - "statistics"
+public: true
 ---
 
 참고자료

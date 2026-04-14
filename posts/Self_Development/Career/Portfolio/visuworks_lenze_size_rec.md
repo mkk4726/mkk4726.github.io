@@ -1,9 +1,11 @@
 ---
 title: "Lens Size Recommendation System"
-date: ""
+date: 2025-11-30
 excerpt: "머신러닝을 활용한 맞춤형 렌즈 사이즈 추천 시스템"
 category: "Career"
-tags: ["Portfolio"]
+tags:
+  - "Portfolio"
+public: true
 ---
 
 - 기간 : 2025.03 ~ 현재 (7개월)

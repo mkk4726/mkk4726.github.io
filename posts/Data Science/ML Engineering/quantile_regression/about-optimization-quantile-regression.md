@@ -1,9 +1,12 @@
 ---
 title: "quantile regression model을 최적화하는 법"
-date: "2025-10-20"
+date: 2025-10-20
 excerpt: "어떻게 quantile regression model을 최적화했는지 정리했습니다."
 category: "Machine Learning"
-tags: ["Quantile Regression", "optimization"]
+tags:
+  - "Quantile-Regression"
+  - "optimization"
+public: true
 ---
 
 예측구간 (prediction interval)을 추정하기 위해서 quantile regression model을 통해 quantile을 추정하고 이를 통해 예측구간을 추정합니다.

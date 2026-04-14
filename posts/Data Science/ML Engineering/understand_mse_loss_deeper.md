@@ -1,9 +1,14 @@
 ---
 title: "MSE Loss를 더 깊게 이해해보기"
-date: "2025-11-28"
+date: 2025-11-28
 excerpt: "왜 기본적으로 MSE loss를 사용할까?"
 category: "Data Science"
-tags: ["기본기", "MSE", "MAE", "huber"]
+tags:
+  - "기본기"
+  - "MSE"
+  - "MAE"
+  - "huber"
+public: true
 ---
 
 regression model에서 기본적으로 mse loss를 사용하는데, 왜 그런걸까?

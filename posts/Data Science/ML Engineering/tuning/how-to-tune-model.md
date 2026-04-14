@@ -1,9 +1,11 @@
 ---
 title: "내가 모델을 튜닝해나가는 방식"
-date: "2025-09-15"
+date: 2025-09-15
 excerpt: "모델을 튜닝하는 방법에 대한 생각 정리"
 category: "Engineering"
-tags: ["Tuning"]
+tags:
+  - "Tuning"
+public: true
 ---
 
 # 모델 튜닝을 위한 체계적인 접근법

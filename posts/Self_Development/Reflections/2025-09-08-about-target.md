@@ -1,9 +1,11 @@
 ---
 title: "스스로 생각하는 나의 한계와 목표에 대해서"
-date: "2025-09-08"
+date: 2025-09-08
 excerpt: "매너리즘에서 빠져나오게 해준 글과 이에 대한 생각 정리"
 category: "Reflections"
-tags: ["이런저런 생각들"]
+tags:
+  - "이런저런-생각들"
+public: true
 ---
 
 참조한 글

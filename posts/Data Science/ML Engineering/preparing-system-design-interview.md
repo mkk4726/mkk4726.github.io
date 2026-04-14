@@ -1,9 +1,12 @@
 ---
 title: "ML System Interview 준비하기!"
-date: "2025-09-26"
+date: 2025-09-26
 excerpt: "시스템 인터뷰 준비는 어떻게 해야할까? 준비하면 좋을 것들 정리하기"
 category: "Machine Learning"
-tags: ["ML System Design", "Interview"]
+tags:
+  - "ML-System-Design"
+  - "Interview"
+public: true
 ---
 
 # 스케치

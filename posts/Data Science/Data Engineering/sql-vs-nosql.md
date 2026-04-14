@@ -1,9 +1,13 @@
 ---
 title: "SQL vs NoSQL"
-date: "2025-08-14"
+date: 2025-08-14
 excerpt: "SQL과 NoSQL 장단점 비교, 대화기록 저장할 때 더 적절한 DB는?"
 category: "Data Engineering"
-tags: ["DB", "SQL", "NoSQL"]
+tags:
+  - "DB"
+  - "SQL"
+  - "NoSQL"
+public: true
 ---
 
 # SQL보다 NoSQL이 빠르다?

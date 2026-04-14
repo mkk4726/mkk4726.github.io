@@ -1,9 +1,11 @@
 ---
 title: "NER이란 뭘까? 개념 빠르게 익혀보자"
-date: "2025-10-30"
+date: 2025-10-30
 excerpt: "Named Entity Recognition에 대해 정리"
 category: "Data Science"
-tags: ["Movie-Recommendation"]
+tags:
+  - "Movie-Recommendation"
+public: true
 ---
 
 검색엔진에서 유용하게 사용할 수 있는 도구처럼 느껴진다.

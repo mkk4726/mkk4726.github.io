@@ -1,9 +1,13 @@
 ---
 title: "Definition of Art"
-date: "2025-07-15"
+date: 2025-07-15
 excerpt: "TOEFL Reading 문제 공부 - 예술의 정의"
-category: "English Study" 
-tags: ["TOEFL", "영어", "대학원"]
+category: "English Study"
+tags:
+  - "TOEFL"
+  - "영어"
+  - "대학원"
+public: true
 ---
 
 # Definition of Art

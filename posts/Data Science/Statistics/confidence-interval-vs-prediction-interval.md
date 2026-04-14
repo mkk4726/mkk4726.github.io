@@ -1,9 +1,13 @@
 ---
 title: "Confidence Interval vs Prediction Interval"
-date: "2025-08-18"
+date: 2025-08-18
 excerpt: "CI와 PI 각각에 대한 정리와, 이 개념 간의 차이에 대한 정리"
 category: "Data Science"
-tags: ["Confidence-Interval", "Prediction-Interval", "statistics"]
+tags:
+  - "Confidence-Interval"
+  - "Prediction-Interval"
+  - "statistics"
+public: true
 ---
 
 

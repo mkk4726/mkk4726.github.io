@@ -1,9 +1,13 @@
 ---
 title: "Review day"
-date: "2025-07-20"
-excerpt: ""
+date: 2025-07-20
+excerpt: "Try to ~~"
 category: "English Study"
-tags: ["영어공부꾸준히!", "SPEAK", "Review day"]
+tags:
+  - "영어공부꾸준히!"
+  - "SPEAK"
+  - "Review-day"
+public: true
 ---
 
 # 오늘 배운거

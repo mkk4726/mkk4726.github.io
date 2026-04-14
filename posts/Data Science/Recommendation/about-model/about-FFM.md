@@ -1,9 +1,13 @@
 ---
 title: "Field-aware Factorization Machines에 대해 정리"
-date: "2025-09-25"
+date: 2025-09-25
 excerpt: "FFM에 대해 이해해보자"
 category: "Recommendation"
-tags: ["FFM", "ML", "CTR"]
+tags:
+  - "FFM"
+  - "ML"
+  - "CTR"
+public: true
 ---
 
 # 개념 스케치

@@ -1,10 +1,11 @@
 ---
-title: 추천시스템에 관심있는 이유
-date: 2024-07-04 23:30:00 +0900
+title: "추천시스템에 관심있는 이유"
+date: 2024-07-04
+excerpt: "잠깐 추천시스템을 공부했었는데, 다시 공부를 시작하면서 프로젝트를 하나씩 쌓아가려고 한다."
 category: "Recommendation"
-tags: [Recommendation]
-description: 내가 추천시스템에 흥미를 느끼고 관심이 생기는 이유 
-render_with_liquid: false
+tags:
+  - "Recommendation"
+public: true
 ---
 
 잠깐 추천시스템을 공부했었는데, 다시 공부를 시작하면서 프로젝트를 하나씩 쌓아가려고 한다.  

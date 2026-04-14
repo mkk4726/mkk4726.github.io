@@ -1,9 +1,11 @@
 ---
 title: "Deadlock에 대한 정리"
-date: "2025-08-17"
+date: 2025-08-17
 excerpt: "Deadlock은 뭐고 왜 발생하는가? OCR 프로젝트에서 발생한 문제도 같이 정리"
 category: "Data Engineering"
-tags: ["Deadlock"]
+tags:
+  - "Deadlock"
+public: true
 ---
 
 # Deadlock이란?

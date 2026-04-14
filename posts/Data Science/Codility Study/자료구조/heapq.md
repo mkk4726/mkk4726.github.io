@@ -1,9 +1,13 @@
 ---
 title: "heapq 개념정리"
-date: "2025-08-03"
+date: 2025-08-03
 excerpt: "heapq에 대한 설명과 어떻게 사용되는지 정리"
 category: "Codility Study"
-tags: ["코딩 테스트 합격자 되기", "Codility Study", "자료구조"]
+tags:
+  - "코딩-테스트-합격자-되기"
+  - "Codility-Study"
+  - "자료구조"
+public: true
 ---
 
 # heapq와 우선순위 큐 (Priority Queue)

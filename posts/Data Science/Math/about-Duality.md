@@ -1,9 +1,14 @@
 ---
 title: "Duality 란?"
-date: "2025-09-23"
+date: 2025-09-23
 excerpt: "Duality에 대해 이해해보기"
 category: "Math"
-tags: ["KKT", "DS", "Math", "Linear Programming"]
+tags:
+  - "KKT"
+  - "DS"
+  - "Math"
+  - "Linear-Programming"
+public: true
 ---
 
 참고자료

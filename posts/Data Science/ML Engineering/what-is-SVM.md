@@ -1,9 +1,12 @@
 ---
 title: "SVM이란?"
-date: "2025-10-03"
+date: 2025-10-03
 excerpt: "가장 기본적인 ml model 다시 한번 복습해보기."
 category: "Data Science"
-tags: ["SVM", "machine-learning"]
+tags:
+  - "SVM"
+  - "machine-learning"
+public: true
 ---
 
 ## 개념 스케치

@@ -1,10 +1,14 @@
 ---
 title: "선택 문제에서 모델을 어떻게 평가할 것인가"
-date: "2025-08-11"
+date: 2025-08-11
 excerpt: "선택 문제에서 모델을 평가하는 방법에 대한 정리"
 category: "Causal Inference"
-tags: ["evaluation"]
---- 
+tags:
+  - "evaluation"
+public: true
+---
+
+ 
 
 
 # 문제정의
