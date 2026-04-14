@@ -4,7 +4,7 @@ import matter from 'gray-matter';
 import { convertNotebookToHtml, extractNotebookMetadata } from './notebook';
 
 const postsDirectory = path.join(process.cwd(), 'posts');
-const IGNORED_DIRECTORY_NAMES = new Set(['images', '.obsidian']);
+const IGNORED_DIRECTORY_NAMES = new Set(['images', '.obsidian', 'Templates']);
 
 function shouldIgnoreDirectory(dirName: string): boolean {
   return dirName.startsWith('.') || IGNORED_DIRECTORY_NAMES.has(dirName);
