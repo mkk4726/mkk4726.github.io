@@ -1,6 +1,10 @@
 {
   "recentFiles": [
     {
+      "basename": "for-explain",
+      "path": "Data Science/Causal Inference/for-explain.excalidraw"
+    },
+    {
       "basename": "The book of why_ the new science of cause and effect ( PDFDrive )",
       "path": "KGF/AI/Causal Inference/The book of why_ the new science of cause and effect ( PDFDrive ).pdf"
     },
@@ -159,46 +163,6 @@
     {
       "basename": "시력교정 관련 기초지식 정리",
       "path": "KGF/AI/Domain Knowledge/시력교정 관련 기초지식 정리.md"
-    },
-    {
-      "basename": "2025-05-28",
-      "path": "KGF/자기개발/일기/일간일기/2025-05-28.md"
-    },
-    {
-      "basename": "2025-05-26",
-      "path": "KGF/자기개발/일기/일간일기/2025-05-26.md"
-    },
-    {
-      "basename": "내용정리",
-      "path": "KGF/AI/Causal Inference/Causal Inference for The Brave and True/내용정리.md"
-    },
-    {
-      "basename": "유의하다는 의미, 통계적 사고, 가설 검정, p-value",
-      "path": "KGF/AI/Stats/기초지식/유의하다는 의미, 통계적 사고, 가설 검정, p-value.md"
-    },
-    {
-      "basename": "CLT (Central Limit Theorem)",
-      "path": "KGF/AI/Stats/기초지식/CLT (Central Limit Theorem).md"
-    },
-    {
-      "basename": "MIT RES.6-012 Introduction to Probability, Spring 2018",
-      "path": "KGF/AI/Stats/MIT/MIT RES.6-012 Introduction to Probability, Spring 2018.md"
-    },
-    {
-      "basename": "LighGBM",
-      "path": "KGF/AI/ML/GDBT/LighGBM.md"
-    },
-    {
-      "basename": "2025-05-23",
-      "path": "KGF/자기개발/일기/일간일기/2025-05-23.md"
-    },
-    {
-      "basename": "2025-05-21",
-      "path": "KGF/자기개발/일기/일간일기/2025-05-21.md"
-    },
-    {
-      "basename": "DisenHAN",
-      "path": "KGF/AI/Recommendation System/DisenHAN.md"
     }
   ],
   "omittedPaths": [],
