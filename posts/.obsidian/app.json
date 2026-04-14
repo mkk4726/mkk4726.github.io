@@ -1,5 +1,9 @@
 {
+  "promptDelete": false,
+  "alwaysUpdateLinks": true,
+  "spellcheck": false,
+  "showUnsupportedFiles": true,
   "attachmentFolderPath": "./images",
-  "useMarkdownLinks": true,
-  "newLinkFormat": "relative"
+  "defaultViewMode": "source",
+  "foldIndent": true
 }
