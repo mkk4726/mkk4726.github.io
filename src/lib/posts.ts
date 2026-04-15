@@ -45,6 +45,66 @@ interface NormalizedPostFrontmatter {
   Done: boolean;
 }
 
+const IMAGE_EXTENSION_REGEX = /\.(png|jpe?g|gif|webp|svg|bmp|avif)$/i;
+
+function isImageTarget(target: string): boolean {
+  return IMAGE_EXTENSION_REGEX.test(target.trim());
+}
+
+function toEmbeddedImageSrc(rawTarget: string): string {
+  const target = rawTarget.trim().replace(/\\/g, '/');
+  if (!target) return target;
+  if (/^(https?:)?\/\//i.test(target) || target.startsWith('/')) {
+    return target;
+  }
+  if (target.startsWith('./') || target.startsWith('../')) {
+    return target;
+  }
+  if (target.includes('/')) {
+    return `./${target}`;
+  }
+  return `./images/${target}`;
+}
+
+function parseObsidianImageOption(rawOption?: string): { width?: string; alt?: string } {
+  if (!rawOption) return {};
+  const option = rawOption.trim();
+  if (!option) return {};
+
+  // Obsidian size options: |300 or |300x200
+  const widthOnlyMatch = option.match(/^(\d+)$/);
+  if (widthOnlyMatch) {
+    return { width: widthOnlyMatch[1] };
+  }
+
+  const widthHeightMatch = option.match(/^(\d+)x(\d+)$/i);
+  if (widthHeightMatch) {
+    return { width: widthHeightMatch[1] };
+  }
+
+  return { alt: option };
+}
+
+function convertObsidianImageEmbeds(content: string): string {
+  return content.replace(/!\[\[([^[\]\n]+)\]\]/g, (fullMatch, innerContent: string) => {
+    const [targetRaw = '', optionRaw = ''] = innerContent.split('|');
+    const target = targetRaw.trim();
+
+    if (!target || !isImageTarget(target)) {
+      return fullMatch;
+    }
+
+    const src = toEmbeddedImageSrc(target);
+    const { width, alt } = parseObsidianImageOption(optionRaw);
+    const encodedAlt = (alt || '').replace(/"/g, '&quot;');
+
+    if (width) {
+      return `<img src="${src}" width="${width}" alt="${encodedAlt}" />`;
+    }
+    return `<img src="${src}" alt="${encodedAlt}" />`;
+  });
+}
+
 function normalizeDate(value: unknown): string {
   if (value instanceof Date && !Number.isNaN(value.getTime())) {
     return value.toISOString().split('T')[0];
@@ -367,6 +427,7 @@ export async function getPostData(id: string): Promise<PostData> {
     
     // Convert relative image paths to absolute paths based on post location
     let processedContent = matterResult.content;
+    processedContent = convertObsidianImageEmbeds(processedContent);
     const relativePath = path.relative(postsDirectory, fullPath);
     const postDir = path.dirname(relativePath);
     
@@ -375,25 +436,25 @@ export async function getPostData(id: string): Promise<PostData> {
       return pathStr.split('/').map(segment => encodeURIComponent(segment)).join('/');
     };
     
-    // Replace relative image paths (./images/...) with absolute paths
+    // Replace relative image paths (./images/... or images/...) with absolute paths
     // Pattern: ./images/filename.png -> /posts/category/subcategory/images/filename.png
     processedContent = processedContent.replace(
-      /(<img[^>]+src=")(\.\/images\/([^"]+))(")/g,
-      (match, prefix, fullRelativePath, imageFilename, closingQuote) => {
+      /(<img[^>]+src=")(?:\.\/)?images\/([^"]+)(")/g,
+      (match, prefix, imageFilename, closingQuote) => {
         const absolutePath = postDir !== '.' 
-          ? `/posts/${encodePath(postDir)}/images/${encodeURIComponent(imageFilename)}`
-          : `/posts/images/${encodeURIComponent(imageFilename)}`;
+          ? `/posts/${encodePath(postDir)}/images/${encodePath(imageFilename)}`
+          : `/posts/images/${encodePath(imageFilename)}`;
         return `${prefix}${absolutePath}${closingQuote}`;
       }
     );
     
-    // Also handle markdown image syntax: ![alt](./images/file.png)
+    // Also handle markdown image syntax: ![alt](./images/file.png) or ![alt](images/file.png)
     processedContent = processedContent.replace(
-      /(!\[[^\]]*\]\()(\.\/images\/([^)]+))(\))/g,
-      (match, prefix, fullRelativePath, imageFilename, closingParen) => {
+      /(!\[[^\]]*\]\()(?:\.\/)?images\/([^)]+)(\))/g,
+      (match, prefix, imageFilename, closingParen) => {
         const absolutePath = postDir !== '.' 
-          ? `/posts/${encodePath(postDir)}/images/${encodeURIComponent(imageFilename)}`
-          : `/posts/images/${encodeURIComponent(imageFilename)}`;
+          ? `/posts/${encodePath(postDir)}/images/${encodePath(imageFilename)}`
+          : `/posts/images/${encodePath(imageFilename)}`;
         return `${prefix}${absolutePath}${closingParen}`;
       }
     );
