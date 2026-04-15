@@ -1,16 +1,12 @@
 {
   "recentFiles": [
     {
-      "basename": "Untitled 1",
-      "path": "DataScience/Fundamentals/TimeSeries/Untitled 1.md"
+      "basename": "Basic_Concepts_For_TimeSeries",
+      "path": "DataScience/Fundamentals/TimeSeries/Basic_Concepts_For_TimeSeries.md"
     },
     {
-      "basename": "Untitled",
-      "path": "DataScience/Fundamentals/TimeSeries/Untitled.md"
-    },
-    {
-      "basename": "post-template",
-      "path": "Templates/post-template.md"
+      "basename": "basic-template",
+      "path": "Templates/basic-template.md"
     },
     {
       "basename": "2024-03-12-aifell-review",
@@ -191,14 +187,6 @@
     {
       "basename": "2025-06-07",
       "path": "KGF/자기개발/일기/일간일기/2025-06-07.md"
-    },
-    {
-      "basename": "CATE 예측 평가하기",
-      "path": "KGF/AI/Causal Inference/CATE 예측 평가하기.md"
-    },
-    {
-      "basename": "Effect heterogeneity",
-      "path": "KGF/AI/Causal Inference/Effect heterogeneity.md"
     }
   ],
   "omittedPaths": [],

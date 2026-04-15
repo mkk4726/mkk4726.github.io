@@ -13,7 +13,7 @@
   "file_templates": [
     {
       "regex": "^(?!Templates/).*\\.md$",
-      "template": "Templates/post-template.md"
+      "template": "Templates/basic-template.md"
     }
   ],
   "syntax_highlighting": true,

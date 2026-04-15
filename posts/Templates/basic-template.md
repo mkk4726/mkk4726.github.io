@@ -1,12 +1,11 @@
 ---
-title: "{{title}}"
-date: {{date:YYYY-MM-DD}}
+title:
+date: 2026-04-15
 excerpt: ""
 category: ""
 tags: []
 public: true
 ---
 
-# {{title}}
 
 
