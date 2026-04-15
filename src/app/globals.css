@@ -612,9 +612,12 @@ html {
 .prose img {
   display: block;
   max-width: 100% !important;
-  width: auto !important;
   height: auto !important;
   object-fit: contain;
+}
+
+.prose img:not(.obsidian-embed-image) {
+  width: auto !important;
 }
 
 .prose figure img {
