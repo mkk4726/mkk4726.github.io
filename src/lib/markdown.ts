@@ -22,6 +22,25 @@ function toPostPath(rawTarget: string): string {
 function convertObsidianSyntax(content: string): string {
   let converted = content;
 
+  // Obsidian-style inline quote chaining:
+  // "> first sentence > second sentence" -> two markdown blockquote lines.
+  converted = converted
+    .split('\n')
+    .map((line) => {
+      const match = line.match(/^([ \t]{0,3}> ?)(.*)$/);
+      if (!match) return line;
+
+      const [, quotePrefix, quoteBody] = match;
+      const chainedQuotes = quoteBody
+        .split(/\s+>\s+/)
+        .map((segment) => segment.trim())
+        .filter((segment) => segment.length > 0);
+
+      if (chainedQuotes.length <= 1) return line;
+      return chainedQuotes.map((segment) => `${quotePrefix}${segment}`).join('\n');
+    })
+    .join('\n');
+
   // [[note]] or [[note|alias]] -> markdown links for internal post routing.
   converted = converted.replace(/\[\[([^[\]\n]+)\]\]/g, (fullMatch, innerContent: string) => {
     const [targetRaw, aliasRaw] = innerContent.split('|');
