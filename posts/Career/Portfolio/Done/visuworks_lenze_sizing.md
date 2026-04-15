@@ -1,15 +1,30 @@
 ---
-title: "Lens Size Recommendation System"
-date: 2025-11-30
-excerpt: "머신러닝을 활용한 맞춤형 렌즈 사이즈 추천 시스템"
-category: "Career"
+title: Lens Sizing
+date: 2026-04-16
+excerpt: 렌즈 사이징 보조 프로그램 개발
+category: Career
 tags:
-  - "Portfolio"
-Done: true
+  - Portfolio
+Done: false
 ---
+프로젝트 처음부터 다시 정리해보자
 
-- 기간 : 2025.03 ~ 현재 (7개월)
-- 역할 : 문제정의, 프로젝트 설계, 구현까지 모든 과정
+가장 오래진행한 프로젝트이자 아픈 손가락??
+음...
+
+- 남들이 한눈에 보고 파악할 수 있는 내용들
+	- 문제 + 해결 + 결과 + 도메인
+- 아키텍처 시각화
+- 고민했던 것들, 개인적으로 기억하고 싶은 것들 남겨놓자.
+
+
+내일은 하루종일 이것부터 정리 좀 해보자.
+
+
+
+
+
+
 
 ---
 
