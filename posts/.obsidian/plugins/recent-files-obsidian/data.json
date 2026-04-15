@@ -1,6 +1,14 @@
 {
   "recentFiles": [
     {
+      "basename": "post-template",
+      "path": "Templates/post-template.md"
+    },
+    {
+      "basename": "Untitled",
+      "path": "DataScience/Fundamentals/TimeSeries/Untitled.md"
+    },
+    {
       "basename": "2024-03-12-aifell-review",
       "path": "Development/Thinking/Life/2024-03-12-aifell-review.md"
     },
@@ -50,19 +58,19 @@
     },
     {
       "basename": "about_system_design",
-      "path": "DataScience/Fundamentals/Tech_Interview/about_system_design.md"
+      "path": "DataScience/Fundamentals/TechInterview/about_system_design.md"
     },
     {
       "basename": "about_statistics",
-      "path": "DataScience/Fundamentals/Tech_Interview/about_statistics.md"
+      "path": "DataScience/Fundamentals/TechInterview/about_statistics.md"
     },
     {
       "basename": "about_ML",
-      "path": "DataScience/Fundamentals/Tech_Interview/about_ML.md"
+      "path": "DataScience/Fundamentals/TechInterview/about_ML.md"
     },
     {
       "basename": "about_DL",
-      "path": "DataScience/Fundamentals/Tech_Interview/about_DL.md"
+      "path": "DataScience/Fundamentals/TechInterview/about_DL.md"
     },
     {
       "basename": "for-explain",
@@ -191,14 +199,6 @@
     {
       "basename": "Meta learner",
       "path": "KGF/AI/Causal Inference/Meta learner.md"
-    },
-    {
-      "basename": "Par1. 인과추론의 기초",
-      "path": "KGF/AI/Causal Inference/실무로 통하는 인과추론/Par1. 인과추론의 기초.md"
-    },
-    {
-      "basename": "Ch.4 유용한 선형회귀",
-      "path": "KGF/AI/Causal Inference/실무로 통하는 인과추론/Ch.4 유용한 선형회귀.md"
     }
   ],
   "omittedPaths": [],

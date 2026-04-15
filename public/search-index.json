@@ -10,6 +10,16 @@
     "public": true
   },
   {
+    "id": "DataScience/Fundamentals/TimeSeries/Untitled",
+    "title": "DataScience/Fundamentals/TimeSeries/Untitled",
+    "date": "2026-04-15",
+    "excerpt": "",
+    "category": "",
+    "tags": [],
+    "content": "",
+    "public": true
+  },
+  {
     "id": "Development/Thinking/Life/2026-01-05-2025-year-in-review",
     "title": "2025년 회고",
     "date": "2026-01-05",
@@ -157,7 +167,7 @@
     "public": true
   },
   {
-    "id": "DataScience/Fundamentals/Codility_Study/leetcode/DP_1114_longest_common_sequence",
+    "id": "DataScience/Fundamentals/Codility/leetcode/DP_1114_longest_common_sequence",
     "title": "1114. Longest Common Sequence",
     "date": "2025-11-24",
     "excerpt": "DP 문제, Medium 난이도.",
@@ -373,7 +383,7 @@
     "public": true
   },
   {
-    "id": "DataScience/Fundamentals/Codility_Study/leetcode/DP_416_Partition_Equal_Subset_Sum",
+    "id": "DataScience/Fundamentals/Codility/leetcode/DP_416_Partition_Equal_Subset_Sum",
     "title": "416. Partition Equal Subset Sum",
     "date": "2025-10-31",
     "excerpt": "DP 문제, Medium 난이도.",
@@ -385,7 +395,7 @@
     "public": true
   },
   {
-    "id": "DataScience/Fundamentals/Codility_Study/leetcode/DP_322_Coin_Change",
+    "id": "DataScience/Fundamentals/Codility/leetcode/DP_322_Coin_Change",
     "title": "322. Coin Change",
     "date": "2025-10-30",
     "excerpt": "DP 문제, Medium 난이도.",
@@ -421,7 +431,7 @@
     "public": true
   },
   {
-    "id": "DataScience/Fundamentals/Codility_Study/leetcode/DP_300_longest-increasing-subsequence",
+    "id": "DataScience/Fundamentals/Codility/leetcode/DP_300_longest-increasing-subsequence",
     "title": "300. Longest Increasing Subsequence",
     "date": "2025-10-29",
     "excerpt": "DP 문제, Medium 난이도.",
@@ -433,7 +443,7 @@
     "public": true
   },
   {
-    "id": "DataScience/Fundamentals/Codility_Study/leetcode/DP_279_Perfect_Squares",
+    "id": "DataScience/Fundamentals/Codility/leetcode/DP_279_Perfect_Squares",
     "title": "279. Perfect Squares",
     "date": "2025-10-28",
     "excerpt": "DP 문제, Medium 난이도.",
@@ -445,7 +455,7 @@
     "public": true
   },
   {
-    "id": "DataScience/Fundamentals/Codility_Study/leetcode/DP_198_Houser_Robber",
+    "id": "DataScience/Fundamentals/Codility/leetcode/DP_198_Houser_Robber",
     "title": "198. Houser Robber",
     "date": "2025-10-28",
     "excerpt": "DP 문제, Medium 난이도.",
@@ -457,7 +467,7 @@
     "public": true
   },
   {
-    "id": "DataScience/Fundamentals/Codility_Study/leetcode/DP_118_pascal_triangle",
+    "id": "DataScience/Fundamentals/Codility/leetcode/DP_118_pascal_triangle",
     "title": "118. Pascal's Triangle",
     "date": "2025-10-28",
     "excerpt": "DP 문제, Easy 난이도.",
@@ -469,7 +479,7 @@
     "public": true
   },
   {
-    "id": "DataScience/Fundamentals/Codility_Study/leetcode/DP_70_climbing_stairs",
+    "id": "DataScience/Fundamentals/Codility/leetcode/DP_70_climbing_stairs",
     "title": "70. Climbing Stairs",
     "date": "2025-10-25",
     "excerpt": "DP 문제, Easy 난이도.",
@@ -534,7 +544,7 @@
     "public": true
   },
   {
-    "id": "DataScience/Fundamentals/Codility_Study/코딩테스트합격자되기/정렬/개념정리",
+    "id": "DataScience/Fundamentals/Codility/코딩테스트합격자되기/정렬/개념정리",
     "title": "정렬 개념정리",
     "date": "2025-10-16",
     "excerpt": "코딩테스트에서 사용되는 정렬 개념정리",
@@ -610,7 +620,7 @@
     "public": true
   },
   {
-    "id": "DataScience/Fundamentals/Codility_Study/코딩테스트합격자되기/동적계획법/개념정리",
+    "id": "DataScience/Fundamentals/Codility/코딩테스트합격자되기/동적계획법/개념정리",
     "title": "동적 계획법 정리하기",
     "date": "2025-10-05",
     "excerpt": "코테 풀이 중 DP 부분 정리하기",
@@ -637,7 +647,7 @@
     "public": true
   },
   {
-    "id": "DataScience/Fundamentals/Codility_Study/코딩테스트합격자되기/백트래킹/개념설명",
+    "id": "DataScience/Fundamentals/Codility/코딩테스트합격자되기/백트래킹/개념설명",
     "title": "백트래킹 개념 정리",
     "date": "2025-10-01",
     "excerpt": "백트래킹에 대한 컨셉 스케치 해보기",
@@ -649,7 +659,7 @@
     "public": true
   },
   {
-    "id": "DataScience/Fundamentals/Codility_Study/코딩테스트합격자되기/집합/notebook",
+    "id": "DataScience/Fundamentals/Codility/코딩테스트합격자되기/집합/notebook",
     "title": "집합 파이썬 구현",
     "date": "2025-09-30",
     "excerpt": "트리 탐색 파이썬 구현",
@@ -663,7 +673,7 @@
     "public": true
   },
   {
-    "id": "DataScience/Fundamentals/Codility_Study/코딩테스트합격자되기/집합/basic_concept",
+    "id": "DataScience/Fundamentals/Codility/코딩테스트합격자되기/집합/basic_concept",
     "title": "집합 개념정리",
     "date": "2025-09-30",
     "excerpt": "코딩테스트에서 사용되는 집합 개념정리",
@@ -873,7 +883,7 @@
     "public": true
   },
   {
-    "id": "DataScience/Fundamentals/Codility_Study/코딩테스트합격자되기/트리/what-is-tree",
+    "id": "DataScience/Fundamentals/Codility/코딩테스트합격자되기/트리/what-is-tree",
     "title": "트리 개념정리",
     "date": "2025-09-18",
     "excerpt": "트리 개념정리",
@@ -886,7 +896,7 @@
     "public": true
   },
   {
-    "id": "DataScience/Fundamentals/Codility_Study/코딩테스트합격자되기/트리/notebook",
+    "id": "DataScience/Fundamentals/Codility/코딩테스트합격자되기/트리/notebook",
     "title": "트리 파이썬 구현",
     "date": "2025-09-18",
     "excerpt": "트리 탐색 파이썬 구현",
@@ -913,7 +923,7 @@
     "public": false
   },
   {
-    "id": "DataScience/Fundamentals/Computer_Science/what-is-GIL",
+    "id": "DataScience/Fundamentals/ComputerScience/what-is-GIL",
     "title": "python의 GIL에 대해서",
     "date": "2025-09-17",
     "excerpt": "Global Interpreter Lock에 대해 정리",
@@ -1113,7 +1123,7 @@
     "public": false
   },
   {
-    "id": "DataScience/Fundamentals/Tech_Interview/about_system_design",
+    "id": "DataScience/Fundamentals/TechInterview/about_system_design",
     "title": "System Design 관련 인터뷰 준비",
     "date": "2025-09-08",
     "excerpt": "참고자료",
@@ -1125,7 +1135,7 @@
     "public": true
   },
   {
-    "id": "DataScience/Fundamentals/Tech_Interview/about_statistics",
+    "id": "DataScience/Fundamentals/TechInterview/about_statistics",
     "title": "통계 관련 인터뷰 준비",
     "date": "2025-09-08",
     "excerpt": "참고자료",
@@ -1137,7 +1147,7 @@
     "public": true
   },
   {
-    "id": "DataScience/Fundamentals/Tech_Interview/about_ML",
+    "id": "DataScience/Fundamentals/TechInterview/about_ML",
     "title": "ML 관련 인터뷰 준비",
     "date": "2025-09-08",
     "excerpt": "참고자료",
@@ -1149,7 +1159,7 @@
     "public": true
   },
   {
-    "id": "DataScience/Fundamentals/Tech_Interview/about_DL",
+    "id": "DataScience/Fundamentals/TechInterview/about_DL",
     "title": "딥러닝 관련 인터뷰 준비",
     "date": "2025-09-08",
     "excerpt": "참고자료",
@@ -1817,7 +1827,7 @@
     "public": true
   },
   {
-    "id": "DataScience/Fundamentals/Codility_Study/코딩테스트합격자되기/그래프/문제풀이",
+    "id": "DataScience/Fundamentals/Codility/코딩테스트합격자되기/그래프/문제풀이",
     "title": "뭄풀기 문제 - 그래프",
     "date": "2025-08-03",
     "excerpt": "그래프 탐색 파이썬 구현",
@@ -1832,7 +1842,7 @@
     "public": true
   },
   {
-    "id": "DataScience/Fundamentals/Codility_Study/자료구조/heapq",
+    "id": "DataScience/Fundamentals/Codility/자료구조/heapq",
     "title": "heapq 개념정리",
     "date": "2025-08-03",
     "excerpt": "heapq에 대한 설명과 어떻게 사용되는지 정리",
@@ -1886,7 +1896,7 @@
     "public": true
   },
   {
-    "id": "DataScience/Fundamentals/Codility_Study/코딩테스트합격자되기/그래프/최단경로_구하기",
+    "id": "DataScience/Fundamentals/Codility/코딩테스트합격자되기/그래프/최단경로_구하기",
     "title": "그래프 최단 경로 구하기",
     "date": "2025-08-02",
     "excerpt": "그래프 최단 경로 구하기",
@@ -1901,7 +1911,7 @@
     "public": true
   },
   {
-    "id": "DataScience/Fundamentals/Codility_Study/현대오토에버코테",
+    "id": "DataScience/Fundamentals/Codility/현대오토에버코테",
     "title": "현대오토에버 코테 준비하기",
     "date": "2025-08-01",
     "excerpt": "현대오토에버 코테 준비하기",
@@ -1913,7 +1923,7 @@
     "public": true
   },
   {
-    "id": "DataScience/Fundamentals/Codility_Study/코딩테스트합격자되기/그래프/탐색_구현",
+    "id": "DataScience/Fundamentals/Codility/코딩테스트합격자되기/그래프/탐색_구현",
     "title": "그래프 탐색 파이썬 구현",
     "date": "2025-08-01",
     "excerpt": "그래프 탐색 파이썬 구현",
@@ -1928,7 +1938,7 @@
     "public": true
   },
   {
-    "id": "DataScience/Fundamentals/Codility_Study/코딩테스트합격자되기/그래프/탐색_개념정리",
+    "id": "DataScience/Fundamentals/Codility/코딩테스트합격자되기/그래프/탐색_개념정리",
     "title": "그래프 탐색 개념 정리",
     "date": "2025-08-01",
     "excerpt": "그래프 탐색 개념 정리",
@@ -1943,7 +1953,7 @@
     "public": true
   },
   {
-    "id": "DataScience/Fundamentals/Codility_Study/코딩테스트합격자되기/그래프/개념정리",
+    "id": "DataScience/Fundamentals/Codility/코딩테스트합격자되기/그래프/개념정리",
     "title": "그래프 개념정리",
     "date": "2025-08-01",
     "excerpt": "그래프 개념정리",
@@ -2717,7 +2727,7 @@
     "public": true
   },
   {
-    "id": "DataScience/Fundamentals/Codility_Study/공부방향",
+    "id": "DataScience/Fundamentals/Codility/공부방향",
     "title": "코딩테스트 공부 방향",
     "date": "2025-07-08",
     "excerpt": "코딩테스트 공부 방향에 대한 정리",
