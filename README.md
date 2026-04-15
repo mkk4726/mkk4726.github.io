@@ -11,6 +11,19 @@ Next.js 기반 개인 블로그 저장소입니다.
 - frontmatter의 `Done: true`인 글만 블로그에 게시됩니다. 작업 중인 글은 `Done: false`로 두고, 공개 시 `Done: true`로 변경하세요.
 - 이미지는 Vault 기준 `./images`(첨부 설정) 또는 사이트의 `public/`을 사용할 수 있습니다. 본문 규칙은 기존 글을 참고하세요.
 
+## Portfolio 페이지 규칙
+
+- `/portfolio` 페이지는 `posts/Career/Portfolio/Done` 폴더의 글을 자동으로 보여줍니다.
+- 글의 frontmatter에 `Done: true`가 있어야 링크가 정상 생성되고 페이지에 노출됩니다.
+- 즉, 새 포트폴리오를 추가할 때는 `posts/Career/Portfolio/Done/*.md`에 작성하고 `Done: true`로 두면 됩니다.
+- 이 규칙을 기준으로 이후 포트폴리오 페이지 수정 작업을 요청하면 됩니다.
+
+## Resume 페이지 규칙
+
+- `/about` 페이지의 Resume 섹션은 `posts/Career/Resumes/Final.md`를 기준으로 렌더링됩니다.
+- `Final.md` frontmatter의 `title`, `lastUpdated`(또는 `date`)를 상단 정보로 사용합니다.
+- 즉, 이력서 내용을 바꿀 때는 `posts/Career/Resumes/Final.md`만 수정하면 됩니다.
+
 ## 자주 쓰는 명령어
 
 | 명령 | 설명 |

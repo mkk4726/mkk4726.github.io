@@ -31,7 +31,26 @@ export function getContentData(filename: string): ContentData {
 }
 
 export function getResumeData(): ContentData {
-  return getContentData('resume');
+  const resumePath = path.join(process.cwd(), 'posts', 'Career', 'Resumes', 'Final.md');
+
+  try {
+    const fileContents = fs.readFileSync(resumePath, 'utf8');
+    const { data, content } = matter(fileContents);
+
+    const rawDate = data.lastUpdated || data.date || '';
+    const lastUpdated =
+      rawDate instanceof Date ? rawDate.toISOString().split('T')[0] : String(rawDate);
+
+    return {
+      title: data.title || 'Resume',
+      lastUpdated,
+      content: content,
+    };
+  } catch (error) {
+    console.error('Error reading resume file at posts/Career/Resumes/Final.md', error);
+    // Fallback to legacy content location
+    return getContentData('resume');
+  }
 }
 
 export function getPortfolioData(): ContentData {

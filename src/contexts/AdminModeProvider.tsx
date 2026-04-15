@@ -13,6 +13,24 @@ interface AdminModeContextType {
 
 const AdminModeContext = createContext<AdminModeContextType | undefined>(undefined);
 
+function getSafeStorage(): Pick<Storage, 'getItem' | 'setItem' | 'removeItem'> | null {
+  if (typeof window === 'undefined') {
+    return null;
+  }
+
+  const storageCandidate = globalThis.localStorage as Partial<Storage> | undefined;
+  if (
+    storageCandidate &&
+    typeof storageCandidate.getItem === 'function' &&
+    typeof storageCandidate.setItem === 'function' &&
+    typeof storageCandidate.removeItem === 'function'
+  ) {
+    return storageCandidate as Pick<Storage, 'getItem' | 'setItem' | 'removeItem'>;
+  }
+
+  return null;
+}
+
 function AdminModeProviderInner({ children }: { children: ReactNode }) {
   const [isAdminMode, setIsAdminMode] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -21,26 +39,22 @@ function AdminModeProviderInner({ children }: { children: ReactNode }) {
   const pathname = usePathname();
 
   useEffect(() => {
+    const storage = getSafeStorage();
+
     // Check URL parameter first (case insensitive)
     const adminParam = searchParams?.get('admin')?.toLowerCase();
     
     // Check localStorage for persistent admin state
-    const storedAdminMode = typeof window !== 'undefined' 
-      ? localStorage.getItem('adminMode') === 'true' 
-      : false;
+    const storedAdminMode = storage?.getItem('adminMode') === 'true';
 
     if (adminParam === 'true') {
       // URL parameter takes precedence
       setIsAdminMode(true);
-      if (typeof window !== 'undefined') {
-        localStorage.setItem('adminMode', 'true');
-      }
+      storage?.setItem('adminMode', 'true');
     } else if (adminParam === 'false') {
       // Explicitly disable admin mode
       setIsAdminMode(false);
-      if (typeof window !== 'undefined') {
-        localStorage.removeItem('adminMode');
-      }
+      storage?.removeItem('adminMode');
     } else if (storedAdminMode) {
       // Use stored state if no URL parameter
       setIsAdminMode(true);
@@ -66,9 +80,8 @@ function AdminModeProviderInner({ children }: { children: ReactNode }) {
   const disableAdminMode = () => {
     const newSearchParams = new URLSearchParams(searchParams?.toString());
     newSearchParams.delete('admin');
-    if (typeof window !== 'undefined') {
-      localStorage.removeItem('adminMode');
-    }
+    const storage = getSafeStorage();
+    storage?.removeItem('adminMode');
     router.push(`${pathname}${newSearchParams.toString() ? `?${newSearchParams.toString()}` : ''}`);
   };
 
