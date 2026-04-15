@@ -99,9 +99,9 @@ function convertObsidianImageEmbeds(content: string): string {
     const encodedAlt = (alt || '').replace(/"/g, '&quot;');
 
     if (width) {
-      return `<img src="${src}" width="${width}" alt="${encodedAlt}" />`;
+      return `<img src="${src}" width="${width}" alt="${encodedAlt}" class="obsidian-embed-image" />`;
     }
-    return `<img src="${src}" alt="${encodedAlt}" />`;
+    return `<img src="${src}" alt="${encodedAlt}" class="obsidian-embed-image" />`;
   });
 }
 
