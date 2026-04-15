@@ -1,6 +1,26 @@
 {
   "recentFiles": [
     {
+      "basename": "이력서 적는 법 정리해보기",
+      "path": "Career/JobTransition/Concepts/이력서 적는 법 정리해보기.md"
+    },
+    {
+      "basename": "25-09-08-당근-ML-Engineer",
+      "path": "Career/JobTransition/Thoughts/25-09-08-당근-ML-Engineer.md"
+    },
+    {
+      "basename": "25-09-17-리맴버-ml-engineer",
+      "path": "Career/JobTransition/Thoughts/25-09-17-리맴버-ml-engineer.md"
+    },
+    {
+      "basename": "25-11-21-슈퍼센트-이력서-스케치",
+      "path": "Career/Resumes/Scatch/25-11-21-슈퍼센트-이력서-스케치.md"
+    },
+    {
+      "basename": "25-11-17-재밌어보이는회사",
+      "path": "Career/JobTransition/Thoughts/25-11-17-재밌어보이는회사.md"
+    },
+    {
       "basename": "visuworks_lenze_size_rec",
       "path": "Career/Portfolio/Done/visuworks_lenze_size_rec.md"
     },
@@ -179,22 +199,6 @@
     {
       "basename": "FWL(Frisch-Waugh-Lovell) 정리란?",
       "path": "KGF/AI/Causal Inference/FWL(Frisch-Waugh-Lovell) 정리란?.md"
-    },
-    {
-      "basename": "Towards R-learner with Continuous Treatments 정리",
-      "path": "KGF/AI/Causal Inference/R-learner/Towards R-learner with Continuous Treatments 정리.md"
-    },
-    {
-      "basename": "헬스케어 분야의 전망은?",
-      "path": "KGF/자기개발/취업, 이직/진로고민/헬스케어 분야의 전망은?.md"
-    },
-    {
-      "basename": "연구분야",
-      "path": "KGF/자기개발/취업, 이직/진로고민/연구분야.md"
-    },
-    {
-      "basename": "2025-06-23",
-      "path": "KGF/자기개발/일기/일간일기/2025-06-23.md"
     }
   ],
   "omittedPaths": [],
