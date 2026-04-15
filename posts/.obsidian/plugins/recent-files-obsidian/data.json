@@ -1,8 +1,72 @@
 {
   "recentFiles": [
     {
+      "basename": "2024-03-12-aifell-review",
+      "path": "Development/Thinking/Life/2024-03-12-aifell-review.md"
+    },
+    {
+      "basename": "summary",
+      "path": "DataScience/Engineering/Recommendation/Dataset_Study/Azura_CTR/summary.md"
+    },
+    {
+      "basename": "25-10-30-what-is-NER",
+      "path": "DataScience/Engineering/Recommendation/Movie/25-10-30-what-is-NER.md"
+    },
+    {
+      "basename": "compare-vDB-libraries",
+      "path": "DataScience/Engineering/Data/Basic_Concepts/compare-vDB-libraries.md"
+    },
+    {
+      "basename": "Kafka The Definitive Guide Real-Time Data and Stream Processing at Scale, Second Edition by Gwen Shapira, Todd Palino, Rajini Sivaram, Krit Petty (z-lib.org)",
+      "path": "DataScience/Engineering/Data/PDFs/Kafka The Definitive Guide Real-Time Data and Stream Processing at Scale, Second Edition by Gwen Shapira, Todd Palino, Rajini Sivaram, Krit Petty (z-lib.org).pdf"
+    },
+    {
+      "basename": "rules-of-ml",
+      "path": "DataScience/Engineering/ML/rules-of-ml.md"
+    },
+    {
+      "basename": "what-is-SVM",
+      "path": "DataScience/Engineering/ML/Table_Models/what-is-SVM.md"
+    },
+    {
+      "basename": "figure1",
+      "path": "DataScience/Engineering/ML/quantile_regression/images/figure1.png"
+    },
+    {
+      "basename": "Non-crossing nonlinear regression quantiles by monotone composite quantile regression neural network, with application to rainfall extremes",
+      "path": "DataScience/Engineering/ML/quantile_regression/Non-crossing nonlinear regression quantiles by monotone composite quantile regression neural network, with application to rainfall extremes.md"
+    },
+    {
+      "basename": "paper_figure1",
+      "path": "DataScience/Engineering/ML/quantile_regression/images/paper_figure1.png"
+    },
+    {
+      "basename": "paper_figure4",
+      "path": "DataScience/Engineering/ML/quantile_regression/images/paper_figure4.png"
+    },
+    {
+      "basename": "A-Gentle-Introduction-to-Conformal-Prediction-and-Distribution-Free-Uncertainty-Quantification",
+      "path": "DataScience/Engineering/ML/quantile_regression/A-Gentle-Introduction-to-Conformal-Prediction-and-Distribution-Free-Uncertainty-Quantification.md"
+    },
+    {
+      "basename": "about_system_design",
+      "path": "DataScience/Fundamentals/Tech_Interview/about_system_design.md"
+    },
+    {
+      "basename": "about_statistics",
+      "path": "DataScience/Fundamentals/Tech_Interview/about_statistics.md"
+    },
+    {
+      "basename": "about_ML",
+      "path": "DataScience/Fundamentals/Tech_Interview/about_ML.md"
+    },
+    {
+      "basename": "about_DL",
+      "path": "DataScience/Fundamentals/Tech_Interview/about_DL.md"
+    },
+    {
       "basename": "for-explain",
-      "path": "Data Science/Causal Inference/for-explain.excalidraw"
+      "path": "DataScience/Fundamentals/Causal Inference/for-explain.excalidraw"
     },
     {
       "basename": "The book of why_ the new science of cause and effect ( PDFDrive )",
@@ -135,34 +199,6 @@
     {
       "basename": "Ch.4 유용한 선형회귀",
       "path": "KGF/AI/Causal Inference/실무로 통하는 인과추론/Ch.4 유용한 선형회귀.md"
-    },
-    {
-      "basename": "X learner",
-      "path": "KGF/AI/Causal Inference/X learner.md"
-    },
-    {
-      "basename": "2025-05-30",
-      "path": "KGF/자기개발/일기/일간일기/2025-05-30.md"
-    },
-    {
-      "basename": "Causal Discovery Toolbox _ Uncover casual relationships in Python",
-      "path": "KGF/AI/Causal Inference/Causal Discovery/Causal Discovery Toolbox _ Uncover casual relationships in Python.md"
-    },
-    {
-      "basename": "Ch6. 이질적 처치효과",
-      "path": "KGF/AI/Causal Inference/실무로 통하는 인과추론/Ch6. 이질적 처치효과.md"
-    },
-    {
-      "basename": "Ch5. 성향점수",
-      "path": "KGF/AI/Causal Inference/실무로 통하는 인과추론/Ch5. 성향점수.md"
-    },
-    {
-      "basename": "깃헙 주소",
-      "path": "KGF/AI/Causal Inference/실무로 통하는 인과추론/깃헙 주소.md"
-    },
-    {
-      "basename": "시력교정 관련 기초지식 정리",
-      "path": "KGF/AI/Domain Knowledge/시력교정 관련 기초지식 정리.md"
     }
   ],
   "omittedPaths": [],
