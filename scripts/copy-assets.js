@@ -11,7 +11,35 @@ function copyAssets() {
   const failedFiles = [];
   
   // Supported extensions
-  const ASSET_EXTENSIONS = ['.pdf', '.png', '.jpg', '.jpeg', '.gif', '.svg', '.webp'];
+  const ASSET_EXTENSIONS = ['.png', '.jpg', '.jpeg', '.gif', '.svg', '.webp'];
+  const BLOCKED_EXTENSIONS = ['.pdf'];
+
+  function removeBlockedAssets(target) {
+    if (!fs.existsSync(target)) {
+      return;
+    }
+
+    const items = fs.readdirSync(target);
+    for (const item of items) {
+      const targetPath = path.join(target, item);
+      const stat = fs.statSync(targetPath);
+
+      if (stat.isDirectory()) {
+        removeBlockedAssets(targetPath);
+      } else {
+        const ext = path.extname(item).toLowerCase();
+        if (BLOCKED_EXTENSIONS.includes(ext)) {
+          try {
+            fs.unlinkSync(targetPath);
+            successCount++;
+          } catch (error) {
+            failCount++;
+            failedFiles.push({ source: targetPath, error: error.message });
+          }
+        }
+      }
+    }
+  }
   
   function copyDirectory(source, target) {
     // Create target directory if it doesn't exist
@@ -58,6 +86,8 @@ function copyAssets() {
   
   try {
     console.log(`📂 Copying assets from ${sourceDir} to ${targetDir}...`);
+    console.log('🧹 Removing blocked assets from public/posts...');
+    removeBlockedAssets(targetDir);
     copyDirectory(sourceDir, targetDir);
     
     // Output summary

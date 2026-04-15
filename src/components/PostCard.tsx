@@ -42,7 +42,7 @@ function BasePostCard({ post }: { post: Omit<PostData, 'content'> & { content?: 
     <article className={`bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden ${!isDone ? 'ring-2 ring-amber-200 dark:ring-amber-800' : ''}`}>
       <div className="p-5 lg:p-6">
         <div className="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400 mb-3">
-          {!post.isPdf && post.date && (
+          {post.date && (
             <time dateTime={post.date}>
               {format(new Date(post.date), 'MMMM dd, yyyy')}
             </time>
@@ -54,14 +54,6 @@ function BasePostCard({ post }: { post: Omit<PostData, 'content'> & { content?: 
                   <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
                 </svg>
                 Draft
-              </span>
-            )}
-            {post.isPdf && (
-              <span className="px-2 py-1 text-xs bg-red-100 dark:bg-red-900 text-red-700 dark:text-red-300 rounded-full flex items-center">
-                <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clipRule="evenodd" />
-                </svg>
-                PDF
               </span>
             )}
             {post.isNotebook && (
@@ -89,13 +81,6 @@ function BasePostCard({ post }: { post: Omit<PostData, 'content'> & { content?: 
             <p className="text-base text-gray-600 dark:text-gray-300 mb-4 line-clamp-3">
               {post.excerpt}
             </p>
-          )}
-          
-          {/* PDF 파일 정보 표시 */}
-          {post.isPdf && post.fileSize && (
-            <div className="text-sm text-gray-500 dark:text-gray-400 mb-4">
-              파일 크기: {post.fileSize < 1 ? `${(post.fileSize * 1024).toFixed(0)} KB` : `${post.fileSize.toFixed(1)} MB`}
-            </div>
           )}
         </Link>
         
@@ -131,7 +116,7 @@ function SearchablePostCard({ post }: { post: Omit<PostData, 'content'> & { cont
     <article className={`bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden ${!isDone ? 'ring-2 ring-amber-200 dark:ring-amber-800' : ''}`}>
       <div className="p-5 lg:p-6">
         <div className="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400 mb-3">
-          {!post.isPdf && post.date && (
+          {post.date && (
             <time dateTime={post.date}>
               {format(new Date(post.date), 'MMMM dd, yyyy')}
             </time>
@@ -143,14 +128,6 @@ function SearchablePostCard({ post }: { post: Omit<PostData, 'content'> & { cont
                   <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
                 </svg>
                 Draft
-              </span>
-            )}
-            {post.isPdf && (
-              <span className="px-2 py-1 text-xs bg-red-100 dark:bg-red-900 text-red-700 dark:text-red-300 rounded-full flex items-center">
-                <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clipRule="evenodd" />
-                </svg>
-                PDF
               </span>
             )}
             {post.isNotebook && (

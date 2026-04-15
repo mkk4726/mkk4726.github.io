@@ -19,10 +19,6 @@ export interface PostData {
   category?: string;
   tags?: string[];
   isNotebook?: boolean;
-  isPdf?: boolean;
-  pdfPath?: string;
-  fileSize?: number;
-  lastModified?: Date;
   Done?: boolean;
 }
 
@@ -169,7 +165,7 @@ export interface FolderNode {
   postCount: number;
 }
 
-// 재귀적으로 모든 .md, .ipynb, .pdf 파일을 찾는 함수
+// 재귀적으로 모든 .md, .ipynb 파일을 찾는 함수
 function getAllPostFiles(dir: string): string[] {
   const files: string[] = [];
   const items = fs.readdirSync(dir);
@@ -183,7 +179,7 @@ function getAllPostFiles(dir: string): string[] {
         continue;
       }
       files.push(...getAllPostFiles(fullPath));
-    } else if (item.endsWith('.md') || item.endsWith('.ipynb') || item.endsWith('.pdf')) {
+    } else if (item.endsWith('.md') || item.endsWith('.ipynb')) {
       // README 파일은 일반 포스트로 처리하지 않음
       if (item.toLowerCase() === 'readme.md') {
         continue;
@@ -196,12 +192,12 @@ function getAllPostFiles(dir: string): string[] {
 }
 
 export async function getSortedPostsData(includeUndone: boolean = false): Promise<Omit<PostData, 'content'>[]> {
-  // Get all post files (markdown, notebook, and pdf) recursively
+  // Get all post files (markdown and notebook) recursively
   const postFiles = getAllPostFiles(postsDirectory);
   const allPostsData = await Promise.all(postFiles.map(async (filePath: string) => {
     // Get relative path from posts directory and remove extension to get id
     const relativePath = path.relative(postsDirectory, filePath);
-    const id = relativePath.replace(/\.(md|ipynb|pdf)$/, '');
+    const id = relativePath.replace(/\.(md|ipynb)$/, '');
     
     // Ensure consistent path separators and handle spaces properly
     const normalizedId = id.replace(/\\/g, '/');
@@ -220,38 +216,6 @@ export async function getSortedPostsData(includeUndone: boolean = false): Promis
         tags: normalizedMeta.tags,
         Done: normalizedMeta.Done,
       };
-    } else if (filePath.endsWith('.pdf')) {
-      // For PDF files, generate metadata from file info
-      const fileName = path.basename(filePath, '.pdf');
-      const fileStats = fs.statSync(filePath);
-      const fileSizeInMB = (fileStats.size / (1024 * 1024)).toFixed(2);
-      
-      // Generate title from filename
-      const title = fileName
-        .replace(/[-_]/g, ' ')
-        .replace(/\b\w/g, l => l.toUpperCase());
-      
-      // Extract category from folder structure
-      const folderPath = path.dirname(relativePath);
-      const category = folderPath !== '.' ? folderPath : 'Documents';
-      
-      // Generate tags from folder structure
-      const categoryParts = category.split('/');
-      const tags = categoryParts.filter(part => part.trim() !== '');
-      
-              return {
-          id: normalizedId,
-          title,
-          date: '', // PDF는 날짜 없음
-          excerpt: `${title} PDF 문서입니다.`,
-          category,
-          tags: [...tags, 'PDF'],
-          isPdf: true,
-          pdfPath: `/post/${relativePath}`,
-          fileSize: parseFloat(fileSizeInMB),
-          lastModified: fileStats.mtime,
-          Done: true, // PDF files are published by default
-        };
     } else {
       // For markdown files, use gray-matter
       const fileContents = fs.readFileSync(filePath, 'utf8');
@@ -314,8 +278,6 @@ export async function getPostData(id: string): Promise<PostData> {
   // Check if markdown file exists directly in posts directory first
   let fullPath = path.join(postsDirectory, `${decodedId}.md`);
   let isNotebook = false;
-  let isPdf = false;
-  
   // If markdown not found, check for notebook file
   if (!fs.existsSync(fullPath)) {
     fullPath = path.join(postsDirectory, `${decodedId}.ipynb`);
@@ -324,20 +286,12 @@ export async function getPostData(id: string): Promise<PostData> {
     }
   }
   
-  // If still not found, check for PDF file
-  if (!fs.existsSync(fullPath)) {
-    fullPath = path.join(postsDirectory, `${decodedId}.pdf`);
-    if (fs.existsSync(fullPath)) {
-      isPdf = true;
-    }
-  }
-  
   // If still not found, search in subdirectories
   if (!fs.existsSync(fullPath)) {
     const postFiles = getAllPostFiles(postsDirectory);
     const targetFile = postFiles.find((filePath: string) => {
       const relativePath = path.relative(postsDirectory, filePath);
-      const relativePathWithoutExt = relativePath.replace(/\.(md|ipynb|pdf)$/, '');
+      const relativePathWithoutExt = relativePath.replace(/\.(md|ipynb)$/, '');
       
       // Exact match first
       if (relativePathWithoutExt === decodedId) {
@@ -370,7 +324,6 @@ export async function getPostData(id: string): Promise<PostData> {
     
     fullPath = targetFile;
     isNotebook = targetFile.endsWith('.ipynb');
-    isPdf = targetFile.endsWith('.pdf');
   }
   
   // Handle notebook files
@@ -388,41 +341,6 @@ export async function getPostData(id: string): Promise<PostData> {
       category: normalizedMeta.category,
       tags: normalizedMeta.tags,
       isNotebook: true,
-      isPdf: false,
-    };
-  } else if (isPdf) {
-    // Handle PDF files
-    const fileName = path.basename(fullPath, '.pdf');
-    const fileStats = fs.statSync(fullPath);
-    const fileSizeInMB = (fileStats.size / (1024 * 1024)).toFixed(2);
-    const relativePath = path.relative(postsDirectory, fullPath);
-    
-    // Generate title from filename
-    const title = fileName
-      .replace(/[-_]/g, ' ')
-      .replace(/\b\w/g, l => l.toUpperCase());
-    
-    // Extract category from folder structure
-    const folderPath = path.dirname(relativePath);
-    const category = folderPath !== '.' ? folderPath : 'Documents';
-    
-    // Generate tags from folder structure
-    const categoryParts = category.split('/');
-    const tags = categoryParts.filter(part => part.trim() !== '');
-    
-    return {
-      id,
-      content: '', // PDF files don't have markdown content
-      title,
-      date: '', // PDF는 날짜 없음
-      excerpt: `${title} PDF 문서입니다.`,
-      category,
-      tags: [...tags, 'PDF'],
-      isNotebook: false,
-      isPdf: true,
-      pdfPath: `/post/${relativePath}`,
-      fileSize: parseFloat(fileSizeInMB),
-      lastModified: fileStats.mtime,
     };
   } else {
     // Handle markdown files
@@ -474,7 +392,6 @@ export async function getPostData(id: string): Promise<PostData> {
       tags: normalizedMeta.tags,
       Done: normalizedMeta.Done,
       isNotebook: false,
-      isPdf: false,
     };
   }
 } 
@@ -526,7 +443,7 @@ function getPostCountInFolder(dir: string): number {
         continue;
       }
       count += getPostCountInFolder(fullPath);
-    } else if (item.endsWith('.md') || item.endsWith('.ipynb') || item.endsWith('.pdf')) {
+    } else if (item.endsWith('.md') || item.endsWith('.ipynb')) {
       count++;
     }
   }
@@ -601,8 +518,7 @@ export async function getPostsByMonth(): Promise<PostsByDate[]> {
   const monthlyData: { [key: string]: number } = {};
   
   for (const post of allPosts) {
-    // PDF 포스트는 제외
-    if (post.isPdf || !post.date) continue;
+    if (!post.date) continue;
     
     // YYYY-MM 형태로 월별 그룹화
     const month = post.date.substring(0, 7);
@@ -621,8 +537,7 @@ export async function getPostsByYear(): Promise<PostsByDate[]> {
   const yearlyData: { [key: string]: number } = {};
   
   for (const post of allPosts) {
-    // PDF 포스트는 제외
-    if (post.isPdf || !post.date) continue;
+    if (!post.date) continue;
     
     // YYYY 형태로 연도별 그룹화
     const year = post.date.substring(0, 4);
@@ -641,8 +556,7 @@ export async function getPostsByWeek(): Promise<PostsByDate[]> {
   const weeklyData: { [key: string]: number } = {};
   
   for (const post of allPosts) {
-    // PDF 포스트는 제외
-    if (post.isPdf || !post.date) continue;
+    if (!post.date) continue;
     
     const postDate = new Date(post.date);
     
@@ -679,10 +593,8 @@ export async function getPostsContributionData(): Promise<ContributionDay[]> {
   const allPosts = await getSortedPostsData();
   const dailyData: { [key: string]: number } = {};
   
-  // 모든 포스트의 날짜별 개수 계산 (PDF 제외)
   for (const post of allPosts) {
-    // PDF 포스트는 제외
-    if (post.isPdf || !post.date) continue;
+    if (!post.date) continue;
     
     const date = post.date;
     dailyData[date] = (dailyData[date] || 0) + 1;
@@ -727,10 +639,8 @@ export async function getPostsContributionDataByYear(year: number): Promise<Cont
   const allPosts = await getSortedPostsData();
   const dailyData: { [key: string]: number } = {};
   
-  // 해당 연도의 포스트만 필터링하여 날짜별 개수 계산 (PDF 제외)
   for (const post of allPosts) {
-    // PDF 포스트는 제외
-    if (post.isPdf || !post.date) continue;
+    if (!post.date) continue;
     
     const postYear = parseInt(post.date.substring(0, 4));
     if (postYear === year) {
@@ -778,8 +688,7 @@ export async function getActiveYears(): Promise<number[]> {
   const years = new Set<number>();
   
   for (const post of allPosts) {
-    // PDF 포스트는 제외
-    if (post.isPdf || !post.date) continue;
+    if (!post.date) continue;
     
     try {
       const year = parseInt(post.date.substring(0, 4));
@@ -806,10 +715,8 @@ export async function getPostsByDayOfWeek(): Promise<PostsByDate[]> {
     dayOfWeekData[day] = 0;
   });
   
-  // 모든 포스트의 요일별 개수 계산 (PDF 제외)
   for (const post of allPosts) {
-    // PDF 포스트는 제외
-    if (post.isPdf || !post.date) continue;
+    if (!post.date) continue;
     
     try {
       const date = new Date(post.date);
@@ -833,10 +740,8 @@ export async function getPostsContributionDataByCategoryAndYear(category: string
   const allPosts = await getSortedPostsData();
   const dailyData: { [key: string]: number } = {};
   
-  // 해당 카테고리와 연도의 포스트만 필터링하여 날짜별 개수 계산 (PDF 제외)
   for (const post of allPosts) {
-    // PDF 포스트는 제외
-    if (post.isPdf || !post.date) continue;
+    if (!post.date) continue;
     
     const postYear = parseInt(post.date.substring(0, 4));
     if (postYear === year && post.category === category) {
@@ -884,8 +789,7 @@ export async function getActiveYearsByCategory(category: string): Promise<number
   const years = new Set<number>();
   
   for (const post of allPosts) {
-    // PDF 포스트는 제외
-    if (post.isPdf || !post.date) continue;
+    if (!post.date) continue;
     
     if (post.category === category) {
       try {
@@ -908,10 +812,8 @@ export async function getPostsContributionDataByFolderAndYear(folderPath: string
   const allPosts = await getSortedPostsData();
   const dailyData: { [key: string]: number } = {};
   
-  // 해당 폴더와 연도의 포스트만 필터링하여 날짜별 개수 계산 (PDF 제외)
   for (const post of allPosts) {
-    // PDF 포스트는 제외
-    if (post.isPdf || !post.date) continue;
+    if (!post.date) continue;
     
     const postYear = parseInt(post.date.substring(0, 4));
     const postFolder = post.id.includes('/') ? post.id.substring(0, post.id.lastIndexOf('/')) : '';
@@ -961,8 +863,7 @@ export async function getActiveYearsByFolder(folderPath: string): Promise<number
   const years = new Set<number>();
   
   for (const post of allPosts) {
-    // PDF 포스트는 제외
-    if (post.isPdf || !post.date) continue;
+    if (!post.date) continue;
     
     const postFolder = post.id.includes('/') ? post.id.substring(0, post.id.lastIndexOf('/')) : '';
     
@@ -985,16 +886,13 @@ export async function getActiveYearsByFolder(folderPath: string): Promise<number
 // 특정 날짜의 포스트들을 가져오는 함수
 export async function getPostsByDate(date: string): Promise<Omit<PostData, 'content'>[]> {
   const allPosts = await getSortedPostsData();
-  return allPosts.filter((post) => post.date === date && !post.isPdf);
+  return allPosts.filter((post) => post.date === date);
 }
 
 // 특정 폴더의 특정 날짜 포스트들을 가져오는 함수
 export async function getPostsByFolderAndDate(folderPath: string, date: string): Promise<Omit<PostData, 'content'>[]> {
   const allPosts = await getSortedPostsData();
   return allPosts.filter((post) => {
-    // PDF 포스트는 제외
-    if (post.isPdf) return false;
-    
     const postFolder = post.id.includes('/') ? post.id.substring(0, post.id.lastIndexOf('/')) : '';
     return post.date === date && (postFolder === folderPath || postFolder.startsWith(folderPath + '/'));
   });
