@@ -1,12 +1,16 @@
 {
   "recentFiles": [
     {
-      "basename": "post-template",
-      "path": "Templates/post-template.md"
+      "basename": "Untitled 1",
+      "path": "DataScience/Fundamentals/TimeSeries/Untitled 1.md"
     },
     {
       "basename": "Untitled",
       "path": "DataScience/Fundamentals/TimeSeries/Untitled.md"
+    },
+    {
+      "basename": "post-template",
+      "path": "Templates/post-template.md"
     },
     {
       "basename": "2024-03-12-aifell-review",
@@ -195,10 +199,6 @@
     {
       "basename": "Effect heterogeneity",
       "path": "KGF/AI/Causal Inference/Effect heterogeneity.md"
-    },
-    {
-      "basename": "Meta learner",
-      "path": "KGF/AI/Causal Inference/Meta learner.md"
     }
   ],
   "omittedPaths": [],
