@@ -86,23 +86,28 @@ function parseObsidianImageOption(rawOption?: string): { width?: string; alt?: s
 }
 
 function convertObsidianImageEmbeds(content: string): string {
-  return content.replace(/!\[\[([^[\]\n]+)\]\]/g, (fullMatch, innerContent: string) => {
-    const [targetRaw = '', optionRaw = ''] = innerContent.split('|');
-    const target = targetRaw.trim();
+  return content.replace(
+    /(^|\n)([ \t]*)!\[\[([^[\]\n]+)\]\](?=\n|$)/g,
+    (fullMatch, linePrefix: string, indentation: string, innerContent: string) => {
+      const [targetRaw = '', optionRaw = ''] = innerContent.split('|');
+      const target = targetRaw.trim();
 
-    if (!target || !isImageTarget(target)) {
-      return fullMatch;
+      if (!target || !isImageTarget(target)) {
+        return fullMatch;
+      }
+
+      const src = toEmbeddedImageSrc(target);
+      const { width, alt } = parseObsidianImageOption(optionRaw);
+      const encodedAlt = (alt || '').replace(/"/g, '&quot;');
+      const imgTag = width
+        ? `<img src="${src}" width="${width}" alt="${encodedAlt}" class="obsidian-embed-image" />`
+        : `<img src="${src}" alt="${encodedAlt}" class="obsidian-embed-image" />`;
+
+      // Keep image embeds as standalone blocks so following markdown
+      // (e.g., blockquote starting with '>') starts a new block.
+      return `${linePrefix}${indentation}${imgTag}\n`;
     }
-
-    const src = toEmbeddedImageSrc(target);
-    const { width, alt } = parseObsidianImageOption(optionRaw);
-    const encodedAlt = (alt || '').replace(/"/g, '&quot;');
-
-    if (width) {
-      return `<img src="${src}" width="${width}" alt="${encodedAlt}" class="obsidian-embed-image" />`;
-    }
-    return `<img src="${src}" alt="${encodedAlt}" class="obsidian-embed-image" />`;
-  });
+  );
 }
 
 function normalizeDate(value: unknown): string {
