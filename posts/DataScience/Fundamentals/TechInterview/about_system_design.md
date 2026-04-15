@@ -5,7 +5,7 @@ excerpt: "참고자료"
 category: "Data Science"
 tags:
   - "Interview"
-public: true
+Done: true
 ---
 
 

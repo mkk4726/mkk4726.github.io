@@ -5,7 +5,7 @@ excerpt: "PCA란 무엇인가"
 category: "Data Science"
 tags:
   - "statistics"
-public: true
+Done: true
 ---
 
 참고자료

@@ -8,7 +8,7 @@ tags:
   - "MSE"
   - "MAE"
   - "huber"
-public: true
+Done: true
 ---
 
 regression model에서 기본적으로 mse loss를 사용하는데, 왜 그런걸까?

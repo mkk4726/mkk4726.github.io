@@ -6,7 +6,7 @@ category: "Causal Inference"
 tags:
   - "인과추론"
   - "metrics"
-public: true
+Done: true
 ---
 
 참고한 자료

@@ -8,6 +8,7 @@ Next.js 기반 개인 블로그 저장소입니다.
 
 - 새 마크다운 노트를 만들면 [Templater](https://github.com/SilentVoid13/Templater)가 `Templates/post-template.md`를 자동으로 적용합니다. `Templates/` 안에서 만드는 파일은 제외됩니다.
 - 파일명은 `YYYY-MM-DD-제목.md` 형식을 권장합니다.
+- frontmatter의 `Done: true`인 글만 블로그에 게시됩니다. 작업 중인 글은 `Done: false`로 두고, 공개 시 `Done: true`로 변경하세요.
 - 이미지는 Vault 기준 `./images`(첨부 설정) 또는 사이트의 `public/`을 사용할 수 있습니다. 본문 규칙은 기존 글을 참고하세요.
 
 ## 자주 쓰는 명령어

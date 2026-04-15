@@ -7,7 +7,7 @@ tags:
   - "ML"
   - "Crawling"
   - "Prediction"
-public: true
+Done: true
 ---
 
 - 기간 : 2022.03 ~ 2022.06 (4개월)

@@ -6,7 +6,7 @@ category: "Causal Inference"
 tags:
   - "Positivity"
   - "Overlap-assumption"
-public: true
+Done: true
 ---
 
 positivity 혹은 overlap assumption은 인과추론의 기본적인 가정들 중 하나입니다.

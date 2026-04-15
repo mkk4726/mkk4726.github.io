@@ -6,7 +6,7 @@ category: "Causal Inference"
 tags:
   - "인과추론"
   - "프로젝트"
-public: true
+Done: true
 ---
 
 

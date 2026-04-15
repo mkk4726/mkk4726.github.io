@@ -5,7 +5,7 @@ excerpt: "패배주의에서 벗어나자"
 category: "Reflections"
 tags:
   - "이런저런-생각들"
-public: true
+Done: true
 ---
 
 # 배경

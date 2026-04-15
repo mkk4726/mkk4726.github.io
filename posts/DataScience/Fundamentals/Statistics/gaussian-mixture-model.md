@@ -7,7 +7,7 @@ tags:
   - "statistics"
   - "machine-learning"
   - "clustering"
-public: true
+Done: true
 ---
 
 # Gaussian Mixture Model (GMM)이란?

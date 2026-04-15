@@ -5,7 +5,7 @@ excerpt: "T-SNE에 대해 이해해보기"
 category: "Data Science"
 tags:
   - "statistics"
-public: true
+Done: true
 ---
 
 T-distributed Stochastic Neighbor Embedding

@@ -5,7 +5,7 @@ excerpt: "고객상담용 챗봇 개발"
 category: "Career"
 tags:
   - "RAG"
-public: true
+Done: true
 ---
 
 - 기간 : 2024.11 ~ 2025.02 (4개월)

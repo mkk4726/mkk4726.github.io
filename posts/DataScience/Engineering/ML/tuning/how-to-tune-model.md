@@ -5,7 +5,7 @@ excerpt: "모델을 튜닝하는 방법에 대한 생각 정리"
 category: "Engineering"
 tags:
   - "Tuning"
-public: true
+Done: true
 ---
 
 # 모델 튜닝을 위한 체계적인 접근법

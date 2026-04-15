@@ -8,7 +8,7 @@ tags:
   - "prediction-interval"
   - "uncertainty"
   - "calibration"
-public: true
+Done: true
 ---
 
 참고자료

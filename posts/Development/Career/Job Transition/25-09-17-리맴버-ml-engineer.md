@@ -6,7 +6,7 @@ category: "Career"
 tags:
   - "ML-Engineer"
   - "채용공고"
-public: false
+Done: true
 ---
 
 # 채용공고

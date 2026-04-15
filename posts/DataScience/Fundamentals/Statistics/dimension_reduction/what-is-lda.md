@@ -5,7 +5,7 @@ excerpt: "Linear Discriminant Analysis에 대해 정리"
 category: "Data Science"
 tags:
   - "statistics"
-public: true
+Done: true
 ---
 
 참고자료

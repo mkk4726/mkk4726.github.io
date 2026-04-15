@@ -5,7 +5,7 @@ excerpt: "연속형 처치에서 발생하는 non-identification 문제와 ill-c
 category: "Causal Inference"
 tags:
   - "Theory"
-public: true
+Done: true
 ---
 
 # Ill-conditioned 행렬과 고유값: 연속형 처치 R-learner의 이론적 배경

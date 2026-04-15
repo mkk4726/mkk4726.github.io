@@ -6,7 +6,7 @@ category: "Data Science/Movie-Recommendation"
 tags:
   - "Data-Science"
   - "Movie-Recommendation"
-public: true
+Done: true
 ---
 
 개발하고 있는 영화 추천 서비스입니다.

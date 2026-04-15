@@ -6,7 +6,7 @@ category: "Codility Study"
 tags:
   - "코딩-테스트-합격자-되기"
   - "Codility-Study"
-public: true
+Done: true
 ---
 
 # 개념 스케치

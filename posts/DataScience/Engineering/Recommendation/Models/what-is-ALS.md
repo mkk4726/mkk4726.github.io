@@ -7,7 +7,7 @@ tags:
   - "ALS"
   - "MF"
   - "CF"
-public: true
+Done: true
 ---
 
 # 개념 스케치

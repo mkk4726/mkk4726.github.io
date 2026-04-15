@@ -7,7 +7,7 @@ tags:
   - "MLOps"
   - "System-Design"
   - "Designing-Machine-Learning-Systems"
-public: true
+Done: true
 ---
 
 ML 시스템 설계는 어떻게 하는걸까?

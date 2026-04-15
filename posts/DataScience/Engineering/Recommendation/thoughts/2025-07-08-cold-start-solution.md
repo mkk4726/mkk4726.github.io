@@ -6,7 +6,7 @@ category: "Recommendation"
 tags:
   - "사이드프로젝트정리"
   - "추천시스템"
-public: true
+Done: true
 ---
 
 # 배경

@@ -5,7 +5,7 @@ excerpt: "Propensity Score"
 category: "Causal Inference"
 tags:
   - "Causal-Inference"
-public: true
+Done: true
 ---
 
 [Propensity Score](https://matheusfacure.github.io/python-causality-handbook/11-Propensity-Score.html)

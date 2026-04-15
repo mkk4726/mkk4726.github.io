@@ -6,7 +6,7 @@ category: "Data Science"
 tags:
   - "machine-learning"
   - "confidence-interval"
-public: true
+Done: true
 ---
 
 참고자료

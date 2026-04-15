@@ -6,7 +6,7 @@ category: "Computer Science"
 tags:
   - "python"
   - "GIL"
-public: true
+Done: true
 ---
 
 참고자료

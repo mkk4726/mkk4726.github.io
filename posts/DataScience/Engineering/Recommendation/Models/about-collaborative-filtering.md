@@ -6,7 +6,7 @@ category: "Recommendation"
 tags:
   - "CF"
   - "ML"
-public: true
+Done: true
 ---
 
 참고자료

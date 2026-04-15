@@ -6,7 +6,7 @@ category: "Career"
 tags:
   - "Computer-Vision"
   - "Segmentation"
-public: true
+Done: true
 ---
 
 - 기간 : 2024.04 ~ 2024.06 (3개월)

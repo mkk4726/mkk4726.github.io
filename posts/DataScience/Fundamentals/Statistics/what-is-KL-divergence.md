@@ -5,7 +5,7 @@ excerpt: "KL Divergence 개념정리"
 category: "Data Science"
 tags:
   - "statistics"
-public: true
+Done: true
 ---
 
 참고자료

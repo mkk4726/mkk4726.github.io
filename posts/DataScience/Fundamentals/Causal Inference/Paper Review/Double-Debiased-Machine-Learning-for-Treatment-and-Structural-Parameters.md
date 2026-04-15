@@ -5,7 +5,7 @@ excerpt: "Double Debiased Machine Learning for Treatment and Structural Paramete
 category: "Causal Inference"
 tags:
   - "Paper-Review"
-public: false
+Done: true
 ---
 
 [paper link](https://arxiv.org/pdf/1608.00060)

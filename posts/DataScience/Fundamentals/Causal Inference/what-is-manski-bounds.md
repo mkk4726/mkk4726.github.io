@@ -7,7 +7,7 @@ tags:
   - "Paper-Review"
   - "Partial-Identification"
   - "Manski-bounds"
-public: true
+Done: true
 ---
 
 참고자료 

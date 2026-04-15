@@ -7,7 +7,7 @@ tags:
   - "MLOps"
   - "System-Design"
   - "Designing-Machine-Learning-Systems"
-public: true
+Done: true
 ---
 
 > 오늘날 ML 시스템의 성공은 여전히 피처에 달려 있습니다.

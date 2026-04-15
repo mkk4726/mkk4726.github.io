@@ -5,7 +5,7 @@ excerpt: "UMAP에 대해 이해해보기"
 category: "Data Science"
 tags:
   - "statistics"
-public: true
+Done: true
 ---
 
 참고자료

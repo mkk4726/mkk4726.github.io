@@ -6,7 +6,7 @@ category: "Machine Learning"
 tags:
   - "Quantile-Regression"
   - "optimization"
-public: true
+Done: true
 ---
 
 예측구간 (prediction interval)을 추정하기 위해서 quantile regression model을 통해 quantile을 추정하고 이를 통해 예측구간을 추정합니다.

@@ -7,7 +7,7 @@ tags:
   - "statistics"
   - "machine-learning"
   - "clustering"
-public: true
+Done: true
 ---
 
 # Mean Shift Clustering이란?

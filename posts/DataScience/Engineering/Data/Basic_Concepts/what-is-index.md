@@ -6,7 +6,7 @@ category: "Data Engineering"
 tags:
   - "DB"
   - "Index"
-public: true
+Done: true
 ---
 
 참고자료

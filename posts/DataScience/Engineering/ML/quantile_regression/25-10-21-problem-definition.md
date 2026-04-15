@@ -6,7 +6,7 @@ category: "Machine Learning"
 tags:
   - "Quantile-Regression"
   - "문제정의"
-public: true
+Done: true
 ---
 
 지금 회사에서 풀고 있는 문제 정리하기.

@@ -5,7 +5,7 @@ excerpt: "Causal Effect Inference for Structured Treatments"
 category: "Causal Inference"
 tags:
   - "Paper-Review"
-public: false
+Done: true
 ---
 
 

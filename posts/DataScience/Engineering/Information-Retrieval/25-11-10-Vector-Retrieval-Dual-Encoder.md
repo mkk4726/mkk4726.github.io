@@ -9,7 +9,7 @@ tags:
   - "Dual-Encoder"
   - "Embedding"
   - "Machine-Learning"
-public: true
+Done: true
 ---
 
 현대적인 검색 시스템(DPR, CLIP, Semantic Search 등)에서 Vector Retrieval 단계는 매우 중요한 역할을 합니다. 특히 Dual Encoder 학습과 Embedding Space 학습 및 정규화는 서로 연결된 핵심 개념으로, 의미적 검색의 품질을 결정짓는 요소입니다.

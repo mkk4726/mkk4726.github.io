@@ -5,7 +5,7 @@ excerpt: "매너리즘에서 빠져나오게 해준 글과 이에 대한 생각 
 category: "Reflections"
 tags:
   - "이런저런-생각들"
-public: true
+Done: true
 ---
 
 참조한 글

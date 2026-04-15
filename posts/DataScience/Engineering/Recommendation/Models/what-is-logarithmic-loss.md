@@ -5,7 +5,7 @@ excerpt: "CTR prediction에서 사용되는 metric 정리"
 category: "Recommendation"
 tags:
   - "CTR-prediction"
-public: true
+Done: true
 ---
 
 Logarithmic Loss(로그 손실)는 분류 문제, 특히 이진 분류에서 모델의 예측 성능을 측정하는 지표입니다. 

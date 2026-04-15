@@ -8,7 +8,7 @@ tags:
   - "OMSCS"
   - "Georgia-Tech"
   - "컴퓨터사이언스"
-public: true
+Done: true
 ---
 
 # 배경

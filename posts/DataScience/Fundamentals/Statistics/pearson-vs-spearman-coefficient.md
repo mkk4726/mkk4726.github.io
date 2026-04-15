@@ -6,7 +6,7 @@ category: "Data Science"
 tags:
   - "statistics"
   - "correlation"
-public: true
+Done: true
 ---
 
 참고 글 

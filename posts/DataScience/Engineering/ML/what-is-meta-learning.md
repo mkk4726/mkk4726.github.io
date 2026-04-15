@@ -7,7 +7,7 @@ tags:
   - "meta-learning"
   - "machine-learning"
   - "statistics"
-public: true
+Done: true
 ---
 
 참고자료

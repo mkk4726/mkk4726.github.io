@@ -6,7 +6,7 @@ category: "Data Science/ML Engineering"
 tags:
   - "Data-Science"
   - "ML-Engineering"
-public: true
+Done: true
 ---
 
 공부자료 모아두기

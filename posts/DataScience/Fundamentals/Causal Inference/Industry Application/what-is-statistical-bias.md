@@ -7,7 +7,7 @@ tags:
   - "편향"
   - "통계적"
   - "bias"
-public: true
+Done: true
 ---
 
 # 배경

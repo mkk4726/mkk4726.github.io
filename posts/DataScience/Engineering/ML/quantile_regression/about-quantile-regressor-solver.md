@@ -5,7 +5,7 @@ excerpt: "quantile regressor에서 사용하는 solver에 대해 정리"
 category: "Machine Learning"
 tags:
   - "Regression"
-public: true
+Done: true
 ---
 
 # QuantileRegressor의 Solver 옵션 분석

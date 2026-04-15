@@ -5,7 +5,7 @@ excerpt: "이력서 , 경력기술서 적어보기"
 category: "Career"
 tags:
   - "이력서"
-public: false
+Done: true
 ---
 
 - [채용공고](/posts/Self_Development/Career/Job%20Transition/25-09-08-당근-ML-Engineer)

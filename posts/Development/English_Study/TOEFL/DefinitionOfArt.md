@@ -7,7 +7,7 @@ tags:
   - "TOEFL"
   - "영어"
   - "대학원"
-public: true
+Done: true
 ---
 
 # Definition of Art

@@ -6,7 +6,7 @@ category: "Data Science/Information-Retrieval"
 tags:
   - "Data-Science"
   - "Information-Retrieval"
-public: true
+Done: true
 ---
 
 현재는 많이 부족하지만, 사실 거의 아무것도 없는 상태이지만 추천/검색 엔지니어로 꼭 일해보고 싶다.

@@ -5,7 +5,7 @@ excerpt: "렌즈 사이즈 추천에서 인과추론을 도입할 때 문제 정
 category: "Causal Inference"
 tags:
   - "problem-definition"
-public: true
+Done: true
 ---
 
 렌즈 삽입술에서 Y는 vault로 정의가 됨 (지금 풀려고 하는 문제에서는).

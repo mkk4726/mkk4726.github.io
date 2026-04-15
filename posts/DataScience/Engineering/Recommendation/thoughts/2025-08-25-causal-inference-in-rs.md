@@ -6,7 +6,7 @@ category: "Recommendation"
 tags:
   - "추천시스템"
   - "인과추론"
-public: true
+Done: true
 ---
 
 참고자료

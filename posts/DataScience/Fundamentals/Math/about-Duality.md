@@ -8,7 +8,7 @@ tags:
   - "DS"
   - "Math"
   - "Linear-Programming"
-public: true
+Done: true
 ---
 
 참고자료

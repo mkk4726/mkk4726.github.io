@@ -5,7 +5,7 @@ excerpt: "A/B Test에 대하여"
 category: "Data Science"
 tags:
   - "Data-Science"
-public: true
+Done: true
 ---
 
 ## 참고 문헌

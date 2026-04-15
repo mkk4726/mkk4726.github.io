@@ -6,7 +6,7 @@ category: "Recommendation"
 tags:
   - "FM"
   - "ML"
-public: true
+Done: true
 ---
 
 참고자료

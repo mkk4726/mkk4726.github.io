@@ -5,7 +5,7 @@ excerpt: "KDE에서 사용되는 개념들에 대한 자세히 정리"
 category: "Data Science"
 tags:
   - "statistics"
-public: true
+Done: true
 ---
 
 참고자료

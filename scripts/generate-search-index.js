@@ -138,6 +138,11 @@ function normalizeTags(value) {
   return [];
 }
 
+function normalizeDone(metadata) {
+  const doneValue = metadata.Done ?? metadata.done;
+  return typeof doneValue === 'boolean' ? doneValue : false;
+}
+
 async function generateSearchIndex() {
   const postFiles = getAllPostFiles(postsDirectory);
   const searchIndex = [];
@@ -166,6 +171,10 @@ async function generateSearchIndex() {
       const cleanContent = cleanMarkdown(content);
 
       // 검색 인덱스에 추가
+      if (!normalizeDone(metadata)) {
+        continue;
+      }
+
       searchIndex.push({
         id,
         title: metadata.title || id,
@@ -174,7 +183,7 @@ async function generateSearchIndex() {
         category: metadata.category || '',
         tags: normalizeTags(metadata.tags),
         content: cleanContent, // 전체 내용 저장 (마크다운 태그 제거됨)
-        public: metadata.public !== false, // public 필드 추가
+        Done: true,
       });
     } catch (error) {
       console.error(`Error processing ${filePath}:`, error);

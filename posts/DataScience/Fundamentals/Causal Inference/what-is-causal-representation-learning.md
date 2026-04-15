@@ -7,7 +7,7 @@ tags:
   - "상관관계"
   - "인과관계"
   - "인과추론"
-public: true
+Done: true
 ---
 
 참고 자료

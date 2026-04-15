@@ -5,7 +5,7 @@ excerpt: "이제 데이터과학자로 일한지 3개월정도 되었다."
 category: "Reflections"
 tags:
   - "Interest"
-public: true
+Done: true
 ---
 
 

@@ -5,7 +5,7 @@ excerpt: "Doubly Robust Estimation"
 category: "Causal Inference"
 tags:
   - "Causal-Inference"
-public: true
+Done: true
 ---
 
 [Doubly Robust Estimation](https://matheusfacure.github.io/python-causality-handbook/12-Doubly-Robust-Estimation.html)

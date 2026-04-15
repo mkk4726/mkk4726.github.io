@@ -5,7 +5,7 @@ excerpt: "이력서, 경력기술서 적는 방법 정리"
 category: "Career"
 tags:
   - "이력서"
-public: true
+Done: true
 ---
 
 

@@ -5,7 +5,7 @@ excerpt: "이력서를 적으며 했던 나의 고민들"
 category: "Reflections"
 tags:
   - "이런저런-생각들"
-public: true
+Done: true
 ---
 
 # 나의 배경

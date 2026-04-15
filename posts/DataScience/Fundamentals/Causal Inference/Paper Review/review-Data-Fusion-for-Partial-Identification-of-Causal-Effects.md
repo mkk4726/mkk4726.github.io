@@ -5,7 +5,7 @@ excerpt: "Data Fusion for Partial Identification of Causal Effects Paper review"
 category: "Causal Inference"
 tags:
   - "Paper-Review"
-public: false
+Done: true
 ---
 
 - [Data Fusion for Partial Identification of Causal Effects](https://arxiv.org/pdf/2505.24296)

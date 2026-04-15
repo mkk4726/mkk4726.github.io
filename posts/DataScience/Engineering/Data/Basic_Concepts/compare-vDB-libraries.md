@@ -7,7 +7,7 @@ tags:
   - "vector-database"
   - "chatbot"
   - "RAG"
-public: true
+Done: true
 ---
 
 

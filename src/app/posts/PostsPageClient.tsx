@@ -16,7 +16,7 @@ interface PostData {
   category?: string;
   tags?: string[];
   content?: string;
-  public?: boolean;
+  Done?: boolean;
 }
 
 interface PostsPageClientProps {
@@ -86,15 +86,15 @@ export default function PostsPageClient({ posts: initialPosts, folderStructure }
     }
   }, [searchQuery, posts, performSearch]);
 
-  // 표시할 포스트 결정 (private 포스트 필터링 포함)
-  const filterPrivatePosts = (postsToFilter: PostData[]) => {
+  // 표시할 포스트 결정 (Done 포스트 필터링 포함)
+  const filterDonePosts = (postsToFilter: PostData[]) => {
     if (isAdminMode) {
       return postsToFilter; // 관리자 모드에서는 모든 포스트 표시
     }
-    return postsToFilter.filter(post => post.public !== false);
+    return postsToFilter.filter(post => post.Done === true);
   };
 
-  const displayPosts = filterPrivatePosts(
+  const displayPosts = filterDonePosts(
     searchQuery ? filteredPosts : (posts.length > 0 ? posts : initialPosts)
   );
 
@@ -155,7 +155,7 @@ export default function PostsPageClient({ posts: initialPosts, folderStructure }
               {displayDescription}
               {isAdminMode && (
                 <span className="ml-2 text-sm text-red-600 dark:text-red-400">
-                  (관리자 모드: private 포스트 포함)
+                  (관리자 모드: Done 미체크 글 포함)
                 </span>
               )}
             </p>

@@ -5,7 +5,7 @@ excerpt: "What is ATE?"
 category: "Causal Inference"
 tags:
   - "ATE"
-public: true
+Done: true
 ---
 
 # ATE란?

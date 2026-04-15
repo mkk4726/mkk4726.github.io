@@ -7,7 +7,7 @@ tags:
   - "Data-Science"
   - "Codility-Study"
   - "leetcode"
-public: true
+Done: true
 ---
 
 리트 코드를 하나씩 풀어가고 있습니다.

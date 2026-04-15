@@ -7,7 +7,7 @@ tags:
   - "당근마켓"
   - "ML-Engineer"
   - "채용공고"
-public: false
+Done: true
 ---
 
 - [링크드인 링크](https://www.linkedin.com/jobs/search/?currentJobId=4292762244&geoId=105149562&keywords=%EB%8B%B9%EA%B7%BC%EB%A7%88%EC%BC%93&origin=JOB_SEARCH_PAGE_SEARCH_BUTTON&refresh=true)

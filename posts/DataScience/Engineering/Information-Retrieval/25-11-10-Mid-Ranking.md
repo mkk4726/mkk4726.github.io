@@ -8,7 +8,7 @@ tags:
   - "Ranking"
   - "Search-System"
   - "Score-Fusion"
-public: true
+Done: true
 ---
 
 # Mid-Ranking: 검색 시스템의 중간 랭킹 단계

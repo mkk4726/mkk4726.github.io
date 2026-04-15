@@ -5,7 +5,7 @@ excerpt: "양수성 가정 등 필요한 가정이 깨졌을 때 대처방안"
 category: "Causal Inference"
 tags:
   - "ATE"
-public: true
+Done: true
 ---
 
 

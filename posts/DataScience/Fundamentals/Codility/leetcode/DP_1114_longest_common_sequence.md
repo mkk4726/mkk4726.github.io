@@ -5,7 +5,7 @@ excerpt: "DP 문제, Medium 난이도."
 category: "Codility Study"
 tags:
   - "leetcode"
-public: true
+Done: true
 ---
 
 - [링크](https://leetcode.com/problems/longest-common-subsequence/description/)

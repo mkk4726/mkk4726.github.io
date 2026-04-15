@@ -5,7 +5,7 @@ excerpt: "KDE와 Histogram이 뭔지, 차이점에 대한 정리"
 category: "Data Science"
 tags:
   - "statistics"
-public: true
+Done: true
 ---
 
 

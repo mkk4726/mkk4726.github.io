@@ -5,7 +5,7 @@ excerpt: "DP 문제, Easy 난이도."
 category: "Codility Study"
 tags:
   - "leetcode"
-public: true
+Done: true
 ---
 
 - [링크](https://leetcode.com/problems/pascals-triangle/description/?envType=study-plan-v2&envId=top-100-liked)

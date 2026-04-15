@@ -6,7 +6,7 @@ category: "Career"
 tags:
   - "현대자동차-채용공고"
   - "이력서"
-public: false
+Done: true
 ---
 
 [피드백 받은 이력서](/posts/Self_Development/Career/Resumes/25-07-29-hyundai-autoever-ml-engineer-resume)

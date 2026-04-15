@@ -5,7 +5,7 @@ excerpt: "선택 문제에서 모델을 평가하는 방법에 대한 정리"
 category: "Causal Inference"
 tags:
   - "evaluation"
-public: true
+Done: true
 ---
 
  

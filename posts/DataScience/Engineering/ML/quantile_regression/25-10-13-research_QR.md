@@ -5,7 +5,7 @@ excerpt: "여러 분위를 동시에 학습하면서 quantile crossing 문제를
 category: "Machine Learning"
 tags:
   - "Quantile-Regression"
-public: true
+Done: true
 ---
 
 # 지금 고민하고 있는 부분

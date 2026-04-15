@@ -9,7 +9,7 @@ tags:
   - "Computer-Vision"
   - "Docker"
   - "gRPC"
-public: true
+Done: true
 ---
 
 - 기간 : 2024.07 ~ 2024.10 (4개월)

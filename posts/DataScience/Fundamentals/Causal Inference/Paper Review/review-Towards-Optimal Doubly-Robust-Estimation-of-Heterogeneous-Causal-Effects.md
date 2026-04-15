@@ -5,7 +5,7 @@ excerpt: "Doubly-Robust Estimation of Heterogeneous Causal Effects 논문 리뷰
 category: "Causal Inference"
 tags:
   - "paper-review"
-public: false
+Done: true
 ---
 
 [paper link](https://arxiv.org/pdf/2004.14497)

@@ -8,7 +8,7 @@ tags:
   - "quantile"
   - "prediction-interval"
   - "pinball-loss"
-public: true
+Done: true
 ---
 
 quantile regression은 기존의 회귀분석과 다르게 특정 분위수 (quantile)을 예측하는 방법입니다.

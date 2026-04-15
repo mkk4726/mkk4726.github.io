@@ -7,7 +7,7 @@ tags:
   - "MLOps"
   - "System-Design"
   - "Designing-Machine-Learning-Systems"
-public: true
+Done: true
 ---
 
 > 프로덕션용 ML 시스템을 구축하려면 증가하는 데이터를 수집, 처리, 저장, 검색 및 처리하는 방벙ㅂ을 숙지해야 합니다.

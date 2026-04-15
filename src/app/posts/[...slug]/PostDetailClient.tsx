@@ -24,13 +24,13 @@ export default function PostDetailClient({ post: initialPost, postId }: PostDeta
   const post = initialPost;
 
   useEffect(() => {
-    // Private 포스트인데 관리자 모드가 아닌 경우
-    if (post.public === false && !isAdminMode) {
+    // Done 포스트가 아닌데 관리자 모드가 아닌 경우
+    if (post.Done !== true && !isAdminMode) {
       setAccessDenied(true);
     } else {
       setAccessDenied(false);
     }
-  }, [post.public, isAdminMode]);
+  }, [post.Done, isAdminMode]);
 
   if (accessDenied) {
     return (
@@ -43,7 +43,7 @@ export default function PostDetailClient({ post: initialPost, postId }: PostDeta
           </div>
           <h2 className="text-2xl font-bold text-gray-900 mb-4">접근 권한이 필요합니다</h2>
           <p className="text-gray-600 mb-8">
-            이 포스트는 비공개 포스트입니다. 관리자 권한이 필요합니다.
+            이 포스트는 아직 Done 체크가 되지 않았습니다. 관리자 모드에서만 확인할 수 있습니다.
           </p>
           <div className="space-y-4">
             <div>
@@ -60,14 +60,14 @@ export default function PostDetailClient({ post: initialPost, postId }: PostDeta
     );
   }
 
-  const isPrivate = post.public === false;
+  const isDone = post.Done === true;
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <div className="flex gap-8">
         {/* Main content */}
         <div className="flex-1 min-w-0">
-          <article className={`bg-white rounded-lg shadow-md p-8 ${isPrivate ? 'ring-2 ring-red-200' : ''}`} id="post-content">
+          <article className={`bg-white rounded-lg shadow-md p-8 ${!isDone ? 'ring-2 ring-amber-200' : ''}`} id="post-content">
             {/* Back to posts link */}
             <div className="mb-6 no-print">
               <Link 
@@ -86,12 +86,12 @@ export default function PostDetailClient({ post: initialPost, postId }: PostDeta
               <div className="flex items-start justify-between mb-4">
                 <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 flex-1">
                   {post.title}
-                  {isPrivate && (
-                    <span className="ml-3 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                  {!isDone && (
+                    <span className="ml-3 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-100 text-amber-800">
                       <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
                       </svg>
-                      Private
+                      Draft
                     </span>
                   )}
                 </h1>

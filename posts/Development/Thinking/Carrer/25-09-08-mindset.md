@@ -5,7 +5,7 @@ excerpt: "지원자가 면접을 대할 때 가져야하는 마음가짐, 태도
 category: "Career"
 tags:
   - "면접준비"
-public: true
+Done: true
 ---
 
 참고자료

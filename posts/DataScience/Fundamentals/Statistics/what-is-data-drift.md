@@ -8,7 +8,7 @@ tags:
   - "machine-learning"
   - "statistics"
   - "data-engineering"
-public: true
+Done: true
 ---
 
 # 참고한 글

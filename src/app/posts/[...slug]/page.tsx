@@ -3,7 +3,7 @@ import { getAllPostIds, getPostData } from '@/lib/posts';
 import PostDetailClient from './PostDetailClient';
 
 export async function generateStaticParams() {
-  const posts = getAllPostIds();
+  const posts = await getAllPostIds();
   return posts.map((post) => ({
     slug: post.id.split('/'),
   }));

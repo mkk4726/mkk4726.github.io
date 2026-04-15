@@ -5,7 +5,7 @@ excerpt: "현대자동차 채용공고 분석과 준비과정"
 category: "Career"
 tags:
   - "현대자동차-채용공고"
-public: true
+Done: true
 ---
 
 # 채용공고

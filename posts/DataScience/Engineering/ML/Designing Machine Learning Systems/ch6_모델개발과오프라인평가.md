@@ -7,6 +7,6 @@ tags:
   - "MLOps"
   - "System-Design"
   - "Designing-Machine-Learning-Systems"
-public: true
+Done: true
 ---
 

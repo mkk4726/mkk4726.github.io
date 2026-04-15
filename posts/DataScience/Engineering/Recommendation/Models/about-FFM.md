@@ -7,7 +7,7 @@ tags:
   - "FFM"
   - "ML"
   - "CTR"
-public: true
+Done: true
 ---
 
 # 개념 스케치

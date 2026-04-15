@@ -5,7 +5,7 @@ excerpt: "나의 현재 커리어에 대한 고찰"
 category: "Career"
 tags:
   - "내-커리어는-어디로-가야하나"
-public: true
+Done: true
 ---
 
 # 현재 나의 상황

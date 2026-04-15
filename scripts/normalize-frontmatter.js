@@ -93,7 +93,8 @@ function normalizeFrontmatter(filePath, data, content) {
   const excerpt = typeof data.excerpt === 'string' && data.excerpt.trim()
     ? data.excerpt.trim()
     : fallbackExcerpt(content);
-  const isPublic = data.public !== false;
+  const doneValue = data.Done ?? data.done;
+  const isDone = typeof doneValue === 'boolean' ? doneValue : true;
 
   return {
     title,
@@ -101,7 +102,7 @@ function normalizeFrontmatter(filePath, data, content) {
     excerpt,
     category,
     tags,
-    public: isPublic,
+    Done: isDone,
   };
 }
 
@@ -120,7 +121,7 @@ function stringifyFrontmatter(data) {
   for (const tag of data.tags) {
     lines.push(`  - ${escapeYamlString(tag)}`);
   }
-  lines.push(`public: ${data.public ? 'true' : 'false'}`);
+  lines.push(`Done: ${data.Done ? 'true' : 'false'}`);
   lines.push('---');
   return `${lines.join('\n')}\n`;
 }

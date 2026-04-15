@@ -6,7 +6,7 @@ category: "Data Science"
 tags:
   - "machine-learning"
   - "statistics"
-public: true
+Done: true
 ---
 
 - 인메모리 데이터 저장소: 데이터를 RAM에 저장해 마이크로초~밀리초 단위 응답을 제공

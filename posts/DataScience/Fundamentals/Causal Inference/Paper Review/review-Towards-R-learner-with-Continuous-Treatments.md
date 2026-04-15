@@ -5,7 +5,7 @@ excerpt: "연속형 처치를 위한 R-learner를 어떻게 구현할 수 있는
 category: "Causal Inference"
 tags:
   - "Paper-Review"
-public: true
+Done: true
 ---
 
 [paper link](https://arxiv.org/pdf/2208.00872)

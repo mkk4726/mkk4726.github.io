@@ -6,7 +6,7 @@ category: "AI Engineering"
 tags:
   - "Transformer"
   - "Causal-Inference"
-public: true
+Done: true
 ---
 
 - [논문 링크](https://arxiv.org/pdf/2204.07258)

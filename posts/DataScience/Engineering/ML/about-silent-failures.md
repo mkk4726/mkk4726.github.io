@@ -8,7 +8,7 @@ tags:
   - "Silent-Failures"
   - "Data-Drift"
   - "Hallucination"
-public: true
+Done: true
 ---
 
 3개의 프로젝트를 리드해서 서비스를 운영해보면서 모니터링의 중요성을 깨닫고 있습니다. 

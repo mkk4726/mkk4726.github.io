@@ -7,7 +7,7 @@ tags:
   - "Theory"
   - "Optimization"
   - "Regularization"
-public: true
+Done: true
 ---
 
 # 개요

@@ -5,7 +5,7 @@ excerpt: "DP 문제, Easy 난이도."
 category: "Codility Study"
 tags:
   - "leetcode"
-public: true
+Done: true
 ---
 
 - [leetcode 문제 70](https://leetcode.com/problems/climbing-stairs/?envType=study-plan-v2&envId=top-100-liked)

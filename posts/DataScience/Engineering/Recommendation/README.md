@@ -6,7 +6,7 @@ category: "Data Science/Recommendation"
 tags:
   - "Data-Science"
   - "Recommendation"
-public: true
+Done: true
 ---
 
 공부자료 모아두기

@@ -5,7 +5,7 @@ excerpt: "통계적 편향을 제거하기 위한 방법론"
 category: "Causal Inference"
 tags:
   - "Causal-Inference"
-public: true
+Done: true
 ---
 
 ## 참고자료

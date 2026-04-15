@@ -23,7 +23,7 @@ export interface PostData {
   pdfPath?: string;
   fileSize?: number;
   lastModified?: Date;
-  public?: boolean;
+  Done?: boolean;
 }
 
 interface RawPostFrontmatter {
@@ -32,7 +32,8 @@ interface RawPostFrontmatter {
   excerpt?: unknown;
   category?: unknown;
   tags?: unknown;
-  public?: unknown;
+  Done?: unknown;
+  done?: unknown;
 }
 
 interface NormalizedPostFrontmatter {
@@ -41,7 +42,7 @@ interface NormalizedPostFrontmatter {
   excerpt?: string;
   category?: string;
   tags: string[];
-  public: boolean;
+  Done: boolean;
 }
 
 function normalizeDate(value: unknown): string {
@@ -82,7 +83,8 @@ function normalizeFrontmatter(data: RawPostFrontmatter, fallbackId: string): Nor
   const excerpt = typeof data.excerpt === 'string' && data.excerpt.trim() ? data.excerpt.trim() : undefined;
   const category = typeof data.category === 'string' && data.category.trim() ? data.category.trim() : undefined;
   const tags = normalizeTags(data.tags);
-  const isPublic = data.public !== false;
+  const doneValue = data.Done ?? data.done;
+  const isDone = typeof doneValue === 'boolean' ? doneValue : false;
 
   return {
     title,
@@ -90,7 +92,7 @@ function normalizeFrontmatter(data: RawPostFrontmatter, fallbackId: string): Nor
     excerpt,
     category,
     tags,
-    public: isPublic,
+    Done: isDone,
   };
 }
 
@@ -128,7 +130,7 @@ function getAllPostFiles(dir: string): string[] {
   return files;
 }
 
-export async function getSortedPostsData(includePrivate: boolean = false): Promise<Omit<PostData, 'content'>[]> {
+export async function getSortedPostsData(includeUndone: boolean = false): Promise<Omit<PostData, 'content'>[]> {
   // Get all post files (markdown, notebook, and pdf) recursively
   const postFiles = getAllPostFiles(postsDirectory);
   const allPostsData = await Promise.all(postFiles.map(async (filePath: string) => {
@@ -151,7 +153,7 @@ export async function getSortedPostsData(includePrivate: boolean = false): Promi
         excerpt: normalizedMeta.excerpt,
         category: normalizedMeta.category,
         tags: normalizedMeta.tags,
-        public: normalizedMeta.public,
+        Done: normalizedMeta.Done,
       };
     } else if (filePath.endsWith('.pdf')) {
       // For PDF files, generate metadata from file info
@@ -183,7 +185,7 @@ export async function getSortedPostsData(includePrivate: boolean = false): Promi
           pdfPath: `/post/${relativePath}`,
           fileSize: parseFloat(fileSizeInMB),
           lastModified: fileStats.mtime,
-          public: true, // PDF files are public by default
+          Done: true, // PDF files are published by default
         };
     } else {
       // For markdown files, use gray-matter
@@ -198,15 +200,15 @@ export async function getSortedPostsData(includePrivate: boolean = false): Promi
         excerpt: normalizedMeta.excerpt,
         category: normalizedMeta.category,
         tags: normalizedMeta.tags,
-        public: normalizedMeta.public,
+        Done: normalizedMeta.Done,
       };
     }
   }));
 
-  // Filter private posts if not in admin mode
-  const filteredPosts = includePrivate 
+  // Filter unfinished posts unless explicitly requested
+  const filteredPosts = includeUndone 
     ? allPostsData 
-    : allPostsData.filter(post => post.public !== false);
+    : allPostsData.filter(post => post.Done === true);
 
   // Sort posts by date
   return filteredPosts.sort((a, b) => {
@@ -218,8 +220,8 @@ export async function getSortedPostsData(includePrivate: boolean = false): Promi
   });
 }
 
-export async function getPostsByCategory(category: string, includePrivate: boolean = false): Promise<Omit<PostData, 'content'>[]> {
-  const allPosts = await getSortedPostsData(includePrivate);
+export async function getPostsByCategory(category: string, includeUndone: boolean = false): Promise<Omit<PostData, 'content'>[]> {
+  const allPosts = await getSortedPostsData(includeUndone);
   return allPosts.filter((post) => post.category === category);
 }
 
@@ -233,19 +235,11 @@ export async function getAllCategories(): Promise<string[]> {
   return [...new Set(categories)].sort();
 }
 
-export function getAllPostIds() {
-  const postFiles = getAllPostFiles(postsDirectory);
-  return postFiles.map((filePath: string) => {
-    const relativePath = path.relative(postsDirectory, filePath);
-    const id = relativePath.replace(/\.(md|ipynb|pdf)$/, '');
-    
-    // Ensure consistent path separators and handle spaces properly
-    const normalizedId = id.replace(/\\/g, '/');
-    
-    return {
-      id: normalizedId,
-    };
-  });
+export async function getAllPostIds() {
+  const posts = await getSortedPostsData();
+  return posts.map((post) => ({
+    id: post.id,
+  }));
 }
 
 export async function getPostData(id: string): Promise<PostData> {
@@ -412,7 +406,7 @@ export async function getPostData(id: string): Promise<PostData> {
       excerpt: normalizedMeta.excerpt,
       category: normalizedMeta.category,
       tags: normalizedMeta.tags,
-      public: normalizedMeta.public,
+      Done: normalizedMeta.Done,
       isNotebook: false,
       isPdf: false,
     };

@@ -7,7 +7,7 @@ tags:
   - "bias-variance"
   - "machine-learning"
   - "statistics"
-public: true
+Done: true
 ---
 
 # Bias-Variance Tradeoff

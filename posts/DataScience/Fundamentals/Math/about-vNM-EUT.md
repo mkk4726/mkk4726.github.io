@@ -8,7 +8,7 @@ tags:
   - "Decision-Theory"
   - "Game-Theory"
   - "Expected-Utility"
-public: true
+Done: true
 ---
 
 **von Neumann–Morgenstern Expected Utility Theory (vNM EUT)**  는 불확실한 상황에서 합리적인 의사결정을 수학적으로 모델링하는 이론입니다. 

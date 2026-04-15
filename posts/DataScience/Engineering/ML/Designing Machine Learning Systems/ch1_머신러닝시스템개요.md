@@ -7,7 +7,7 @@ tags:
   - "MLOps"
   - "System-Design"
   - "Designing-Machine-Learning-Systems"
-public: true
+Done: true
 ---
 
 > '머신러닝 시스템'이라고 하면 많은 사람이 로지스틱 회귀나 다양한 유형의 신경망 등 ML 알고리즘만 떠올립니다.

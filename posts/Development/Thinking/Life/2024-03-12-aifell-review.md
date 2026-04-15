@@ -6,7 +6,7 @@ category: "Reflections"
 tags:
   - "아이펠"
   - "이런저런-생각들"
-public: true
+Done: true
 ---
 
 저는 23.9 ~ 24.2 동안 아이펠 6기 리서치 과정을 수료했고, 회고 겸 후기를 적어보려 합니다.   

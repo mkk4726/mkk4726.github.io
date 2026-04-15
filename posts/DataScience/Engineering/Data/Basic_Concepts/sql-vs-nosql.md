@@ -7,7 +7,7 @@ tags:
   - "DB"
   - "SQL"
   - "NoSQL"
-public: true
+Done: true
 ---
 
 # SQL보다 NoSQL이 빠르다?

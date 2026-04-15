@@ -5,7 +5,7 @@ excerpt: "지금 일을 하면서 아쉽다고 느껴지는 부분들에 대해 
 category: "Reflections"
 tags:
   - "이런저런-생각들"
-public: true
+Done: true
 ---
 
 # 현재 회사에서 느끼는 한계점

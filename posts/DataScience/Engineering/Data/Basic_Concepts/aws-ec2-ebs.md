@@ -9,7 +9,7 @@ tags:
   - "EBS"
   - "Cloud-Computing"
   - "Infrastructure"
-public: true
+Done: true
 ---
 
 # AWS EC2와 EBS 완벽 가이드

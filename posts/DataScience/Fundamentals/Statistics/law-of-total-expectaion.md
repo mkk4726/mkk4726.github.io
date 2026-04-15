@@ -5,7 +5,7 @@ excerpt: "전체기대법칙에 대해 정리"
 category: "Data Science"
 tags:
   - "math"
-public: true
+Done: true
 ---
 
 ### 전체기대법칙, 진짜 생활 버전

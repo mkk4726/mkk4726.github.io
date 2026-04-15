@@ -6,7 +6,7 @@ category: "Engineering"
 tags:
   - "MLOps"
   - "System-Design"
-public: true
+Done: true
 ---
 
 사수가 없는 회사에서 일을 하다보니 실제로 서비스를 운영하면서 맞닥뜨리는 문제들을 어떻게 해결하는게 좋은지에 대한 고민이 늘 생긴다.

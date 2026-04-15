@@ -9,7 +9,7 @@ export interface NotebookData {
   excerpt?: string;
   category?: string;
   tags?: string[];
-  public?: boolean;
+  Done?: boolean;
 }
 
 interface NotebookCell {

@@ -6,7 +6,7 @@ category: "Causal Inference"
 tags:
   - "R-learner"
   - "인과추론"
-public: true
+Done: true
 ---
 
 R-learner는 CATE estimation에 사용되는 meta-learner 중 하나입니다.

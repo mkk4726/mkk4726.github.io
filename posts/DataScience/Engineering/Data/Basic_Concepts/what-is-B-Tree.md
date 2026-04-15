@@ -7,7 +7,7 @@ tags:
   - "DB"
   - "SQL"
   - "B-Tree"
-public: true
+Done: true
 ---
 
 참고자료

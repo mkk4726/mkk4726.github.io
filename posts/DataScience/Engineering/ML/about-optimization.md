@@ -5,7 +5,7 @@ excerpt: "최적화 방법론들에 대해 가볍게 정리해보자"
 category: "Engineering"
 tags:
   - "Optimization"
-public: true
+Done: true
 ---
 
 ## 키워드

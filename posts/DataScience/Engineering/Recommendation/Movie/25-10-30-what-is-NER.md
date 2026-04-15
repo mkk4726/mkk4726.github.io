@@ -5,7 +5,7 @@ excerpt: "Named Entity Recognition에 대해 정리"
 category: "Data Science"
 tags:
   - "Movie-Recommendation"
-public: true
+Done: true
 ---
 
 검색엔진에서 유용하게 사용할 수 있는 도구처럼 느껴진다.

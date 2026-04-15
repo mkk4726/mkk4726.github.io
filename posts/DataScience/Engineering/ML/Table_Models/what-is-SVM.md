@@ -6,7 +6,7 @@ category: "Data Science"
 tags:
   - "SVM"
   - "machine-learning"
-public: true
+Done: true
 ---
 
 ## 개념 스케치

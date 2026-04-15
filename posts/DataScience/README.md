@@ -5,7 +5,7 @@ excerpt: "커리어와 관련된 포스트들을 정리하고 있습니다."
 category: "Data Science"
 tags:
   - "Data-Science"
-public: true
+Done: true
 ---
 
 커리어와 관련된 포스트들을 정리하고 있습니다.

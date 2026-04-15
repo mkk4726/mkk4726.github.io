@@ -6,7 +6,7 @@ category: "Engineering"
 tags:
   - "Tuning"
   - "Bayesian-Optimization"
-public: true
+Done: true
 ---
 
 # 개념 스케치

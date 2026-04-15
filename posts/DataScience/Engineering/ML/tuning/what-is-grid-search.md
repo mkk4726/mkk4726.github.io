@@ -6,7 +6,7 @@ category: "Engineering"
 tags:
   - "Tuning"
   - "Grid-Search"
-public: true
+Done: true
 ---
 
 # Grid Search란?

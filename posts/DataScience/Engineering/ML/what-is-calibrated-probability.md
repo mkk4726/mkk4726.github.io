@@ -9,7 +9,7 @@ tags:
   - "machine-learning"
   - "logistic-regression"
   - "platt-scaling"
-public: true
+Done: true
 ---
 
 참고자료

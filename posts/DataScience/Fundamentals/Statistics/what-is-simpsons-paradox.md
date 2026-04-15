@@ -5,7 +5,7 @@ excerpt: "심슨의 역설에 대한 개념 정리"
 category: "Data Science"
 tags:
   - "statistics"
-public: true
+Done: true
 ---
 
 참고자료

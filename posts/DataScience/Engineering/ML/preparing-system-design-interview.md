@@ -6,7 +6,7 @@ category: "Machine Learning"
 tags:
   - "ML-System-Design"
   - "Interview"
-public: true
+Done: true
 ---
 
 # 스케치

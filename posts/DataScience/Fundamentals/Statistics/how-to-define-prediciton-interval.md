@@ -5,7 +5,7 @@ excerpt: "ML의 prediction interval 정의하는 법 정리"
 category: "Data Science"
 tags:
   - "statistics"
-public: true
+Done: true
 ---
 
 참고자료
