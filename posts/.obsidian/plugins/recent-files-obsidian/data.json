@@ -1,6 +1,22 @@
 {
   "recentFiles": [
     {
+      "basename": "paper-review-causal-transformer",
+      "path": "DataScience/Engineering/AI/Concepts/paper-review-causal-transformer.md"
+    },
+    {
+      "basename": "현대오토에버코테",
+      "path": "DataScience/Fundamentals/Codility/Company/현대오토에버코테.md"
+    },
+    {
+      "basename": "공부방향",
+      "path": "DataScience/Fundamentals/Codility/Thoughts/공부방향.md"
+    },
+    {
+      "basename": "DP_70_climbing_stairs",
+      "path": "DataScience/Fundamentals/Codility/Problems/DP_70_climbing_stairs.md"
+    },
+    {
       "basename": "Basic Concepts For TimeSeries",
       "path": "DataScience/Fundamentals/TimeSeries/Basic Concepts For TimeSeries.md"
     },
@@ -30,7 +46,7 @@
     },
     {
       "basename": "compare-vDB-libraries",
-      "path": "DataScience/Engineering/Data/Basic_Concepts/compare-vDB-libraries.md"
+      "path": "DataScience/Engineering/Data/Concepts/compare-vDB-libraries.md"
     },
     {
       "basename": "Kafka The Definitive Guide Real-Time Data and Stream Processing at Scale, Second Edition by Gwen Shapira, Todd Palino, Rajini Sivaram, Krit Petty (z-lib.org)",
@@ -183,18 +199,6 @@
     {
       "basename": "2025-06-12",
       "path": "KGF/자기개발/일기/일간일기/2025-06-12.md"
-    },
-    {
-      "basename": "2025-06-10",
-      "path": "KGF/자기개발/일기/일간일기/2025-06-10.md"
-    },
-    {
-      "basename": "2025-06-08",
-      "path": "KGF/자기개발/일기/일간일기/2025-06-08.md"
-    },
-    {
-      "basename": "2025-06-07",
-      "path": "KGF/자기개발/일기/일간일기/2025-06-07.md"
     }
   ],
   "omittedPaths": [],
