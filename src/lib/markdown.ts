@@ -7,18 +7,6 @@ import rehypeKatex from 'rehype-katex';
 import rehypeStringify from 'rehype-stringify';
 import { remarkAudio } from './remark-audio';
 
-function toPostPath(rawTarget: string): string {
-  const cleaned = rawTarget.trim().replace(/\\/g, '/').replace(/\.md$/i, '');
-  const [pathPart, hashPart] = cleaned.split('#');
-  const normalizedPath = pathPart
-    .split('/')
-    .map((segment) => encodeURIComponent(segment.trim()))
-    .filter((segment) => segment.length > 0)
-    .join('/');
-  const hash = hashPart ? `#${encodeURIComponent(hashPart.trim())}` : '';
-  return `/posts/${normalizedPath}${hash}`;
-}
-
 function convertObsidianSyntax(content: string): string {
   let converted = content;
 
@@ -40,16 +28,6 @@ function convertObsidianSyntax(content: string): string {
       return chainedQuotes.map((segment) => `${quotePrefix}${segment}`).join('\n');
     })
     .join('\n');
-
-  // [[note]] or [[note|alias]] -> markdown links for internal post routing.
-  converted = converted.replace(/\[\[([^[\]\n]+)\]\]/g, (fullMatch, innerContent: string) => {
-    const [targetRaw, aliasRaw] = innerContent.split('|');
-    const target = targetRaw?.trim() || '';
-    if (!target) return fullMatch;
-
-    const alias = (aliasRaw || target).trim();
-    return `[${alias}](${toPostPath(target)})`;
-  });
 
   // ==text== -> mark tag for visual parity with Obsidian highlights.
   converted = converted.replace(/==([^=\n][^=\n]*?)==/g, '<mark>$1</mark>');

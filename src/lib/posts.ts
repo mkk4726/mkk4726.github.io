@@ -81,6 +81,39 @@ function parseObsidianImageOption(rawOption?: string): { width?: string; alt?: s
   return { alt: option };
 }
 
+function buildFileNameToPathMap(): Map<string, string> {
+  const postFiles = getAllPostFiles(postsDirectory);
+  const map = new Map<string, string>();
+  for (const filePath of postFiles) {
+    const relativePath = path.relative(postsDirectory, filePath);
+    const relativeWithoutExt = relativePath.replace(/\.(md|ipynb)$/, '').replace(/\\/g, '/');
+    const fileName = path.basename(relativeWithoutExt);
+    map.set(fileName, relativeWithoutExt);
+  }
+  return map;
+}
+
+function convertObsidianWikiLinks(content: string, fileNameMap: Map<string, string>): string {
+  return content.replace(/\[\[([^[\]\n]+)\]\]/g, (fullMatch, innerContent: string) => {
+    const [targetRaw, aliasRaw] = innerContent.split('|');
+    const target = targetRaw?.trim() || '';
+    if (!target) return fullMatch;
+
+    const alias = (aliasRaw || target).trim();
+    const cleaned = target.replace(/\\/g, '/').replace(/\.md$/i, '');
+    const [pathPart, hashPart] = cleaned.split('#');
+    const hash = hashPart ? `#${encodeURIComponent(hashPart.trim())}` : '';
+
+    const resolved = fileNameMap.get(pathPart) ?? pathPart;
+    const encodedPath = resolved
+      .split('/')
+      .map((s) => encodeURIComponent(s))
+      .join('/');
+
+    return `[${alias}](/posts/${encodedPath}${hash})`;
+  });
+}
+
 function convertObsidianImageEmbeds(content: string): string {
   return content.replace(
     /(^|\n)([ \t]*)!\[\[([^[\]\n]+)\]\](?=\n|$)/g,
@@ -351,6 +384,7 @@ export async function getPostData(id: string): Promise<PostData> {
     // Convert relative image paths to absolute paths based on post location
     let processedContent = matterResult.content;
     processedContent = convertObsidianImageEmbeds(processedContent);
+    processedContent = convertObsidianWikiLinks(processedContent, buildFileNameToPathMap());
     const relativePath = path.relative(postsDirectory, fullPath);
     const postDir = path.dirname(relativePath);
     

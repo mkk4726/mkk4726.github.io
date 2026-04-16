@@ -1,6 +1,38 @@
 {
   "recentFiles": [
     {
+      "basename": "난시 교정 안정성",
+      "path": "Domain/Ophthalmology/난시 교정 안정성.md"
+    },
+    {
+      "basename": "ICL 이해하기",
+      "path": "Domain/Ophthalmology/ICL 이해하기.md"
+    },
+    {
+      "basename": "난시 교정 안정성 모델링",
+      "path": "Career/Project/LenzeSizing/난시 교정 안정성 모델링.md"
+    },
+    {
+      "basename": "프로젝트 설명",
+      "path": "Career/Project/LenzeSizing/프로젝트 설명.md"
+    },
+    {
+      "basename": "난시와 난시축 이해하기",
+      "path": "Domain/Ophthalmology/난시와 난시축 이해하기.md"
+    },
+    {
+      "basename": "렌즈 삽입술의 수술경과를 판단하는 방법",
+      "path": "Domain/Ophthalmology/렌즈 삽입술의 수술경과를 판단하는 방법.md"
+    },
+    {
+      "basename": "프로젝트 설명",
+      "path": "Career/Project/MarketingAutomation/프로젝트 설명.md"
+    },
+    {
+      "basename": "OMSCS관련",
+      "path": "Career/GraduateSchool/OMSCS관련.md"
+    },
+    {
       "basename": "visuworks_lenze_sizing",
       "path": "Career/Portfolio/Done/visuworks_lenze_sizing.md"
     },
@@ -9,20 +41,16 @@
       "path": "Development/Guitar/Lesson/260413_역시나 박자 문제.md"
     },
     {
-      "basename": "OMSCS관련",
-      "path": "Career/Graduate_School/OMSCS관련.md"
-    },
-    {
       "basename": "고려대야간대학원",
-      "path": "Career/Graduate_School/고려대야간대학원.md"
+      "path": "Career/GraduateSchool/고려대야간대학원.md"
     },
     {
       "basename": "25-07-10-hyundai-autoever",
-      "path": "Career/Thougts/25-07-10-hyundai-autoever.md"
+      "path": "Career/Thoughts/25-07-10-hyundai-autoever.md"
     },
     {
       "basename": "25-07-10-visuworks-thoughts-of-my-career",
-      "path": "Career/Thougts/25-07-10-visuworks-thoughts-of-my-career.md"
+      "path": "Career/Thoughts/25-07-10-visuworks-thoughts-of-my-career.md"
     },
     {
       "basename": "250712",
@@ -38,27 +66,27 @@
     },
     {
       "basename": "이력서 적는 법 정리해보기",
-      "path": "Career/JobTransition/Concepts/이력서 적는 법 정리해보기.md"
+      "path": "Career/Move/Concepts/이력서 적는 법 정리해보기.md"
     },
     {
       "basename": "25-09-08-당근-ML-Engineer",
-      "path": "Career/Thougts/25-09-08-당근-ML-Engineer.md"
+      "path": "Career/Thoughts/25-09-08-당근-ML-Engineer.md"
     },
     {
       "basename": "25-09-17-리맴버-ml-engineer",
-      "path": "Career/Thougts/25-09-17-리맴버-ml-engineer.md"
+      "path": "Career/Thoughts/25-09-17-리맴버-ml-engineer.md"
     },
     {
       "basename": "25-11-21-슈퍼센트-이력서-스케치",
-      "path": "Career/Resumes/Scatch/25-11-21-슈퍼센트-이력서-스케치.md"
+      "path": "Career/Resume/Scatch/25-11-21-슈퍼센트-이력서-스케치.md"
     },
     {
       "basename": "25-11-17-재밌어보이는회사",
-      "path": "Career/Thougts/25-11-17-재밌어보이는회사.md"
+      "path": "Career/Thoughts/25-11-17-재밌어보이는회사.md"
     },
     {
       "basename": "25-07-29-hyundai-autoever-ml-engineer-resume",
-      "path": "Career/Resumes/Scatch/25-07-29-hyundai-autoever-ml-engineer-resume.md"
+      "path": "Career/Resume/Scatch/25-07-29-hyundai-autoever-ml-engineer-resume.md"
     },
     {
       "basename": "side_recommendation_study",
@@ -74,7 +102,7 @@
     },
     {
       "basename": "25-07-10-lunit-cancer-screening",
-      "path": "Career/Thougts/25-07-10-lunit-cancer-screening.md"
+      "path": "Career/Thoughts/25-07-10-lunit-cancer-screening.md"
     },
     {
       "basename": "paper-review-causal-transformer",
@@ -95,10 +123,6 @@
     {
       "basename": "Basic Concepts For TimeSeries",
       "path": "DataScience/Fundamentals/TimeSeries/Basic Concepts For TimeSeries.md"
-    },
-    {
-      "basename": "난시와 난시축 이해하기",
-      "path": "Domain/Ophthalmology/난시와 난시축 이해하기.md"
     },
     {
       "basename": "Pasted image 20260415142337",
@@ -175,30 +199,6 @@
     {
       "basename": "for-explain",
       "path": "DataScience/Fundamentals/Causal Inference/for-explain.excalidraw"
-    },
-    {
-      "basename": "The book of why_ the new science of cause and effect ( PDFDrive )",
-      "path": "KGF/AI/Causal Inference/The book of why_ the new science of cause and effect ( PDFDrive ).pdf"
-    },
-    {
-      "basename": "통계적 편향이란?",
-      "path": "KGF/AI/Causal Inference/통계적 편향이란?.md"
-    },
-    {
-      "basename": "인과추론이란?",
-      "path": "KGF/AI/Causal Inference/인과추론이란?.md"
-    },
-    {
-      "basename": "Pasted image 20250521135238",
-      "path": "KGF/AI/Causal Inference/images/Pasted image 20250521135238.png"
-    },
-    {
-      "basename": "GPS (Generalized Propensity Score)",
-      "path": "KGF/AI/Causal Inference/GPS (Generalized Propensity Score).md"
-    },
-    {
-      "basename": "인과추론-추천",
-      "path": "KGF/AI/Causal Inference/인과추론-추천.md"
     }
   ],
   "omittedPaths": [],

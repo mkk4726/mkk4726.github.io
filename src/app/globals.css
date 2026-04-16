@@ -661,6 +661,69 @@ html {
   }
 }
 
+/* GFM Footnotes */
+.prose section[data-footnotes] {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #d1d5db;
+  font-size: 0.85rem;
+  color: #6b7280;
+}
+
+.prose section[data-footnotes] > ol {
+  padding-left: 1.25rem !important;
+  margin: 0.5rem 0 !important;
+}
+
+.prose section[data-footnotes] li {
+  color: #6b7280 !important;
+  margin: 0.375rem 0 !important;
+}
+
+.prose section[data-footnotes] li p {
+  margin: 0.25rem 0 !important;
+  display: inline;
+}
+
+.prose sup a[data-footnote-ref] {
+  text-decoration: none !important;
+  font-weight: 600 !important;
+  color: #2563eb !important;
+  padding: 0 0.125rem;
+}
+
+.prose sup a[data-footnote-ref]:hover {
+  color: #1d4ed8 !important;
+  background-color: #eff6ff !important;
+  border-radius: 2px;
+}
+
+.prose a[data-footnote-backref] {
+  text-decoration: none !important;
+  font-size: 0.8rem;
+  margin-left: 0.25rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  .prose section[data-footnotes] {
+    border-top-color: #4b5563;
+    color: #9ca3af;
+  }
+
+  .prose section[data-footnotes] li {
+    color: #9ca3af !important;
+  }
+
+  .prose sup a[data-footnote-ref] {
+    color: #60a5fa !important;
+  }
+
+  .prose sup a[data-footnote-ref]:hover {
+    color: #93c5fd !important;
+    background-color: #1e3a8a !important;
+  }
+}
+
 /* 헤딩 토글 스타일 */
 .prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
   cursor: pointer;
