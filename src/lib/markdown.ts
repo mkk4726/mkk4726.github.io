@@ -6,6 +6,7 @@ import remarkRehype from 'remark-rehype';
 import rehypeKatex from 'rehype-katex';
 import rehypeStringify from 'rehype-stringify';
 import { remarkAudio } from './remark-audio';
+import { rehypeObsidianCallout } from './rehype-obsidian-callout';
 
 function convertObsidianSyntax(content: string): string {
   let converted = content;
@@ -61,6 +62,7 @@ export async function parseMarkdown(content: string): Promise<string> {
     .use(remarkBreaks)
     .use(remarkAudio)  // remark-rehype 전에 실행
     .use(remarkRehype, { allowDangerousHtml: true })
+    .use(rehypeObsidianCallout)
     .use(rehypeKatex, {
       strict: false,
       throwOnError: false,

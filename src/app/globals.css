@@ -433,6 +433,201 @@ html {
   border-width: 1px;
 }
 
+/* ── Obsidian Callout / Notion-style Toggle ── */
+.prose .obsidian-callout {
+  margin: 1rem 0;
+  border-radius: 0.5rem;
+  font-family: var(--font-nanum-gothic), 'Noto Sans KR', Arial, Helvetica, sans-serif;
+}
+
+.prose .obsidian-callout .callout-title {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.625rem 0.75rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #1f2937;
+  line-height: 1.4;
+}
+
+.prose .obsidian-callout .callout-icon {
+  flex-shrink: 0;
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.prose .obsidian-callout .callout-content {
+  padding: 0 0.75rem 0.625rem 2.25rem;
+  color: #374151;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.prose .obsidian-callout .callout-content > :first-child {
+  margin-top: 0 !important;
+}
+
+.prose .obsidian-callout .callout-content > :last-child {
+  margin-bottom: 0 !important;
+}
+
+/* Collapsible toggle (details/summary) */
+.prose details.obsidian-callout {
+  border: none;
+}
+
+.prose details.obsidian-callout > summary.callout-title {
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+  border-radius: 0.5rem;
+  transition: background-color 0.15s ease;
+}
+
+.prose details.obsidian-callout > summary.callout-title::-webkit-details-marker {
+  display: none;
+}
+
+.prose details.obsidian-callout > summary.callout-title::before {
+  content: '▶';
+  display: inline-block;
+  font-size: 0.6rem;
+  margin-right: 0.375rem;
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+  color: #6b7280;
+}
+
+.prose details.obsidian-callout[open] > summary.callout-title::before {
+  transform: rotate(90deg);
+}
+
+.prose details.obsidian-callout > summary.callout-title:hover {
+  background-color: #f3f4f6;
+}
+
+/* Non-collapsible static callout */
+.prose .obsidian-callout.callout-static {
+  border-left: 3px solid;
+}
+
+/* ── Callout type colors ── */
+.prose .callout-note { background-color: #eff6ff; }
+.prose .callout-note.callout-static { border-left-color: #3b82f6; }
+
+.prose .callout-abstract,
+.prose .callout-summary,
+.prose .callout-tldr { background-color: #f0fdf4; }
+.prose .callout-abstract.callout-static,
+.prose .callout-summary.callout-static,
+.prose .callout-tldr.callout-static { border-left-color: #22c55e; }
+
+.prose .callout-info { background-color: #eff6ff; }
+.prose .callout-info.callout-static { border-left-color: #3b82f6; }
+
+.prose .callout-todo { background-color: #eff6ff; }
+.prose .callout-todo.callout-static { border-left-color: #3b82f6; }
+
+.prose .callout-tip,
+.prose .callout-hint { background-color: #fefce8; }
+.prose .callout-tip.callout-static,
+.prose .callout-hint.callout-static { border-left-color: #eab308; }
+
+.prose .callout-important { background-color: #fef3c7; }
+.prose .callout-important.callout-static { border-left-color: #f59e0b; }
+
+.prose .callout-success,
+.prose .callout-check,
+.prose .callout-done { background-color: #f0fdf4; }
+.prose .callout-success.callout-static,
+.prose .callout-check.callout-static,
+.prose .callout-done.callout-static { border-left-color: #22c55e; }
+
+.prose .callout-question,
+.prose .callout-help,
+.prose .callout-faq { background-color: #fefce8; }
+.prose .callout-question.callout-static,
+.prose .callout-help.callout-static,
+.prose .callout-faq.callout-static { border-left-color: #eab308; }
+
+.prose .callout-warning,
+.prose .callout-caution,
+.prose .callout-attention { background-color: #fff7ed; }
+.prose .callout-warning.callout-static,
+.prose .callout-caution.callout-static,
+.prose .callout-attention.callout-static { border-left-color: #f97316; }
+
+.prose .callout-failure,
+.prose .callout-fail,
+.prose .callout-missing { background-color: #fef2f2; }
+.prose .callout-failure.callout-static,
+.prose .callout-fail.callout-static,
+.prose .callout-missing.callout-static { border-left-color: #ef4444; }
+
+.prose .callout-danger,
+.prose .callout-error { background-color: #fef2f2; }
+.prose .callout-danger.callout-static,
+.prose .callout-error.callout-static { border-left-color: #ef4444; }
+
+.prose .callout-bug { background-color: #fef2f2; }
+.prose .callout-bug.callout-static { border-left-color: #ef4444; }
+
+.prose .callout-example { background-color: #f5f3ff; }
+.prose .callout-example.callout-static { border-left-color: #8b5cf6; }
+
+.prose .callout-quote,
+.prose .callout-cite { background-color: #f9fafb; }
+.prose .callout-quote.callout-static,
+.prose .callout-cite.callout-static { border-left-color: #6b7280; }
+
+/* ── Dark mode ── */
+@media (prefers-color-scheme: dark) {
+  .prose .obsidian-callout .callout-title {
+    color: #f3f4f6;
+  }
+
+  .prose .obsidian-callout .callout-content {
+    color: #d1d5db;
+  }
+
+  .prose details.obsidian-callout > summary.callout-title:hover {
+    background-color: #374151;
+  }
+
+  .prose details.obsidian-callout > summary.callout-title::before {
+    color: #9ca3af;
+  }
+
+  .prose .callout-note { background-color: #1e293b; }
+  .prose .callout-abstract,
+  .prose .callout-summary,
+  .prose .callout-tldr { background-color: #0f2419; }
+  .prose .callout-info { background-color: #1e293b; }
+  .prose .callout-todo { background-color: #1e293b; }
+  .prose .callout-tip,
+  .prose .callout-hint { background-color: #27200a; }
+  .prose .callout-important { background-color: #2d1f05; }
+  .prose .callout-success,
+  .prose .callout-check,
+  .prose .callout-done { background-color: #0f2419; }
+  .prose .callout-question,
+  .prose .callout-help,
+  .prose .callout-faq { background-color: #27200a; }
+  .prose .callout-warning,
+  .prose .callout-caution,
+  .prose .callout-attention { background-color: #2d1a05; }
+  .prose .callout-failure,
+  .prose .callout-fail,
+  .prose .callout-missing { background-color: #2d1215; }
+  .prose .callout-danger,
+  .prose .callout-error { background-color: #2d1215; }
+  .prose .callout-bug { background-color: #2d1215; }
+  .prose .callout-example { background-color: #1e1533; }
+  .prose .callout-quote,
+  .prose .callout-cite { background-color: #1f2937; }
+}
+
 /* Table styling for markdown tables */
 .prose table {
   /* Make wide tables scroll within the post area instead of overflowing */
