@@ -1,6 +1,34 @@
 {
   "recentFiles": [
     {
+      "basename": "바이럴 마케팅 개념 정리",
+      "path": "Domain/Marketing/바이럴 마케팅 개념 정리.md"
+    },
+    {
+      "basename": "Final",
+      "path": "Career/Resume/Final.md"
+    },
+    {
+      "basename": "프로젝트 설명",
+      "path": "Career/Project/LenzeSizing/프로젝트 설명.md"
+    },
+    {
+      "basename": "난시 교정 안정성 모델링",
+      "path": "Career/Project/LenzeSizing/난시 교정 안정성 모델링.md"
+    },
+    {
+      "basename": "기술적인 구현",
+      "path": "Career/Project/MarketingAutomation/기술적인 구현.md"
+    },
+    {
+      "basename": "중요한 플랫폼 선정 기준에 대한 고민",
+      "path": "Career/Project/MarketingAutomation/중요한 플랫폼 선정 기준에 대한 고민.md"
+    },
+    {
+      "basename": "프로젝트 설명",
+      "path": "Career/Project/MarketingAutomation/프로젝트 설명.md"
+    },
+    {
       "basename": "basic-template",
       "path": "Templates/basic-template.md"
     },
@@ -19,18 +47,6 @@
     {
       "basename": "난시와 난시축 이해하기",
       "path": "Domain/Ophthalmology/난시와 난시축 이해하기.md"
-    },
-    {
-      "basename": "난시 교정 안정성 모델링",
-      "path": "Career/Project/LenzeSizing/난시 교정 안정성 모델링.md"
-    },
-    {
-      "basename": "프로젝트 설명",
-      "path": "Career/Project/LenzeSizing/프로젝트 설명.md"
-    },
-    {
-      "basename": "프로젝트 설명",
-      "path": "Career/Project/MarketingAutomation/프로젝트 설명.md"
     },
     {
       "basename": "OMSCS관련",
@@ -183,22 +199,6 @@
     {
       "basename": "about_system_design",
       "path": "DataScience/Fundamentals/TechInterview/about_system_design.md"
-    },
-    {
-      "basename": "about_statistics",
-      "path": "DataScience/Fundamentals/TechInterview/about_statistics.md"
-    },
-    {
-      "basename": "about_ML",
-      "path": "DataScience/Fundamentals/TechInterview/about_ML.md"
-    },
-    {
-      "basename": "about_DL",
-      "path": "DataScience/Fundamentals/TechInterview/about_DL.md"
-    },
-    {
-      "basename": "for-explain",
-      "path": "DataScience/Fundamentals/Causal Inference/for-explain.excalidraw"
     }
   ],
   "omittedPaths": [],
