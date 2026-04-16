@@ -1,14 +1,6 @@
 {
   "recentFiles": [
     {
-      "basename": "바이럴 마케팅 개념 정리",
-      "path": "Domain/Marketing/바이럴 마케팅 개념 정리.md"
-    },
-    {
-      "basename": "Final",
-      "path": "Career/Resume/Final.md"
-    },
-    {
       "basename": "프로젝트 설명",
       "path": "Career/Project/LenzeSizing/프로젝트 설명.md"
     },
@@ -17,44 +9,64 @@
       "path": "Career/Project/LenzeSizing/난시 교정 안정성 모델링.md"
     },
     {
-      "basename": "기술적인 구현",
-      "path": "Career/Project/MarketingAutomation/기술적인 구현.md"
+      "basename": "프로젝트 설명",
+      "path": "Career/Project/MarketingAutomation/프로젝트 설명.md"
     },
     {
       "basename": "중요한 플랫폼 선정 기준에 대한 고민",
       "path": "Career/Project/MarketingAutomation/중요한 플랫폼 선정 기준에 대한 고민.md"
     },
     {
-      "basename": "프로젝트 설명",
-      "path": "Career/Project/MarketingAutomation/프로젝트 설명.md"
+      "basename": "기술적인 구현",
+      "path": "Career/Project/MarketingAutomation/기술적인 구현.md"
     },
     {
-      "basename": "basic-template",
-      "path": "Templates/basic-template.md"
-    },
-    {
-      "basename": "렌즈 삽입술의 수술경과를 판단하는 방법",
-      "path": "Domain/Ophthalmology/렌즈 삽입술의 수술경과를 판단하는 방법.md"
+      "basename": "바이럴 마케팅 개념 정리",
+      "path": "Domain/Marketing/바이럴 마케팅 개념 정리.md"
     },
     {
       "basename": "ICL 이해하기",
       "path": "Domain/Ophthalmology/ICL 이해하기.md"
     },
     {
-      "basename": "난시 교정 안정성 관련 정리",
-      "path": "Domain/Ophthalmology/난시 교정 안정성 관련 정리.md"
-    },
-    {
       "basename": "난시와 난시축 이해하기",
       "path": "Domain/Ophthalmology/난시와 난시축 이해하기.md"
     },
     {
-      "basename": "OMSCS관련",
-      "path": "Career/GraduateSchool/OMSCS관련.md"
+      "basename": "렌즈 삽입술의 수술경과를 판단하는 방법",
+      "path": "Domain/Ophthalmology/렌즈 삽입술의 수술경과를 판단하는 방법.md"
+    },
+    {
+      "basename": "난시 교정 안정성 관련 정리",
+      "path": "Domain/Ophthalmology/난시 교정 안정성 관련 정리.md"
     },
     {
       "basename": "visuworks_lenze_sizing",
       "path": "Career/Portfolio/Done/visuworks_lenze_sizing.md"
+    },
+    {
+      "basename": "프로젝트 설명",
+      "path": "Career/Project/VisionCorrectMethod/프로젝트 설명.md"
+    },
+    {
+      "basename": "프로젝트 설명",
+      "path": "Career/Project/OCR/프로젝트 설명.md"
+    },
+    {
+      "basename": "프로젝트 설명",
+      "path": "Career/Project/Chatbot/프로젝트 설명.md"
+    },
+    {
+      "basename": "Final",
+      "path": "Career/Resume/Final.md"
+    },
+    {
+      "basename": "basic-template",
+      "path": "Templates/basic-template.md"
+    },
+    {
+      "basename": "OMSCS관련",
+      "path": "Career/GraduateSchool/OMSCS관련.md"
     },
     {
       "basename": "260413_역시나 박자 문제",
@@ -187,18 +199,6 @@
     {
       "basename": "paper_figure1",
       "path": "DataScience/Engineering/ML/quantile_regression/images/paper_figure1.png"
-    },
-    {
-      "basename": "paper_figure4",
-      "path": "DataScience/Engineering/ML/quantile_regression/images/paper_figure4.png"
-    },
-    {
-      "basename": "A-Gentle-Introduction-to-Conformal-Prediction-and-Distribution-Free-Uncertainty-Quantification",
-      "path": "DataScience/Engineering/ML/quantile_regression/A-Gentle-Introduction-to-Conformal-Prediction-and-Distribution-Free-Uncertainty-Quantification.md"
-    },
-    {
-      "basename": "about_system_design",
-      "path": "DataScience/Fundamentals/TechInterview/about_system_design.md"
     }
   ],
   "omittedPaths": [],

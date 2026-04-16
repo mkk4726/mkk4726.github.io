@@ -88,7 +88,10 @@ function buildFileNameToPathMap(): Map<string, string> {
     const relativePath = path.relative(postsDirectory, filePath);
     const relativeWithoutExt = relativePath.replace(/\.(md|ipynb)$/, '').replace(/\\/g, '/');
     const fileName = path.basename(relativeWithoutExt);
-    map.set(fileName, relativeWithoutExt);
+    map.set(relativeWithoutExt, relativeWithoutExt);
+    if (!map.has(fileName)) {
+      map.set(fileName, relativeWithoutExt);
+    }
   }
   return map;
 }

@@ -6,5 +6,6 @@
   "attachmentFolderPath": "./images",
   "defaultViewMode": "source",
   "foldIndent": true,
-  "showLineNumber": false
+  "showLineNumber": false,
+  "newLinkFormat": "absolute"
 }
