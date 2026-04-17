@@ -1,6 +1,58 @@
 {
   "recentFiles": [
     {
+      "basename": "about_DL",
+      "path": "DataScience/Fundamentals/TechInterview/Expected_Questions/about_DL.md"
+    },
+    {
+      "basename": "what-is-lda",
+      "path": "DataScience/Fundamentals/Statistics/DimensionReduction/what-is-lda.md"
+    },
+    {
+      "basename": "what-is-pca",
+      "path": "DataScience/Fundamentals/Statistics/DimensionReduction/what-is-pca.md"
+    },
+    {
+      "basename": "ab-test-statistics-vs-bootstrap",
+      "path": "DataScience/Fundamentals/Statistics/Concepts/ab-test-statistics-vs-bootstrap.md"
+    },
+    {
+      "basename": "confidence_interval_for_ML",
+      "path": "DataScience/Fundamentals/Statistics/Concepts/confidence_interval_for_ML.md"
+    },
+    {
+      "basename": "about-Duality",
+      "path": "DataScience/Fundamentals/Math/Concepts/about-Duality.md"
+    },
+    {
+      "basename": "what-is-fwl",
+      "path": "DataScience/Fundamentals/Causal Inference/Concepts/what-is-fwl.md"
+    },
+    {
+      "basename": "what-is-ate",
+      "path": "DataScience/Fundamentals/Causal Inference/Concepts/what-is-ate.md"
+    },
+    {
+      "basename": "tilde-tau-explained",
+      "path": "DataScience/Fundamentals/Causal Inference/Concepts/tilde-tau-explained.md"
+    },
+    {
+      "basename": "correlation-vs-causation",
+      "path": "DataScience/Fundamentals/Causal Inference/Concepts/correlation-vs-causation.md"
+    },
+    {
+      "basename": "double-robustness-explained",
+      "path": "DataScience/Fundamentals/Causal Inference/Concepts/double-robustness-explained.md"
+    },
+    {
+      "basename": "난시 교정 안정성 관련 정리",
+      "path": "Domain/Ophthalmology/난시 교정 안정성 관련 정리.md"
+    },
+    {
+      "basename": "ICL 이해하기",
+      "path": "Domain/Ophthalmology/ICL 이해하기.md"
+    },
+    {
       "basename": "바이럴 마케팅 개념 정리",
       "path": "Domain/Marketing/바이럴 마케팅 개념 정리.md"
     },
@@ -37,20 +89,12 @@
       "path": "Career/Project/MarketingAutomation/기술적인 구현.md"
     },
     {
-      "basename": "ICL 이해하기",
-      "path": "Domain/Ophthalmology/ICL 이해하기.md"
-    },
-    {
       "basename": "난시와 난시축 이해하기",
       "path": "Domain/Ophthalmology/난시와 난시축 이해하기.md"
     },
     {
       "basename": "렌즈 삽입술의 수술경과를 판단하는 방법",
       "path": "Domain/Ophthalmology/렌즈 삽입술의 수술경과를 판단하는 방법.md"
-    },
-    {
-      "basename": "난시 교정 안정성 관련 정리",
-      "path": "Domain/Ophthalmology/난시 교정 안정성 관련 정리.md"
     },
     {
       "basename": "visuworks_lenze_sizing",
@@ -155,46 +199,6 @@
     {
       "basename": "공부방향",
       "path": "DataScience/Fundamentals/Codility/Thoughts/공부방향.md"
-    },
-    {
-      "basename": "DP_70_climbing_stairs",
-      "path": "DataScience/Fundamentals/Codility/Problems/DP_70_climbing_stairs.md"
-    },
-    {
-      "basename": "Basic Concepts For TimeSeries",
-      "path": "DataScience/Fundamentals/TimeSeries/Basic Concepts For TimeSeries.md"
-    },
-    {
-      "basename": "Pasted image 20260415142337",
-      "path": "Domain/Ophthalmology/images/Pasted image 20260415142337.png"
-    },
-    {
-      "basename": "2024-03-12-aifell-review",
-      "path": "Development/Thinking/Life/2024-03-12-aifell-review.md"
-    },
-    {
-      "basename": "summary",
-      "path": "DataScience/Engineering/Recommendation/Dataset_Study/Azura_CTR/summary.md"
-    },
-    {
-      "basename": "25-10-30-what-is-NER",
-      "path": "DataScience/Engineering/Recommendation/Movie/25-10-30-what-is-NER.md"
-    },
-    {
-      "basename": "compare-vDB-libraries",
-      "path": "DataScience/Engineering/Data/Concepts/compare-vDB-libraries.md"
-    },
-    {
-      "basename": "Kafka The Definitive Guide Real-Time Data and Stream Processing at Scale, Second Edition by Gwen Shapira, Todd Palino, Rajini Sivaram, Krit Petty (z-lib.org)",
-      "path": "DataScience/Engineering/Data/PDFs/Kafka The Definitive Guide Real-Time Data and Stream Processing at Scale, Second Edition by Gwen Shapira, Todd Palino, Rajini Sivaram, Krit Petty (z-lib.org).pdf"
-    },
-    {
-      "basename": "rules-of-ml",
-      "path": "DataScience/Engineering/ML/rules-of-ml.md"
-    },
-    {
-      "basename": "what-is-SVM",
-      "path": "DataScience/Engineering/ML/Table_Models/what-is-SVM.md"
     }
   ],
   "omittedPaths": [],

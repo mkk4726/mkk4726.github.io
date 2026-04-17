@@ -29,14 +29,14 @@ A/B Test -> 실험을 통해 가설이 맞는지 확인하고, 이를 통해 의
 
 > 이전 글에서 A/B 테스트는 통계보다 '설계'가 중요하다고 이야기했다. 
 > 그 설계의 핵심은 결국 '무엇을 실험 성공으로 정의할 것인가'를 합의하는 과정이다. 
-> ([1](#ref1))
+> ([1](DataScience/Fundamentals/Statistics/Concepts/about-ab-test.md#ref1))
 
 굉장히 중요한 질문이네.
 실험을 성공했을 때 어떤 지표의 변화가 있었으면 좋겠고, 이걸 통해 실제로 어떤 변화가 있으면 좋겠는지에 대해 생각해보는 것.
 
 > ⭐️ 그래서 분석가는 실험을 설계할 때 가장 먼저 지표의 Hierarchy를 만든다. 
 > 단순한 지표 나열이 아니라 각 지표에 명확한 역할과 책임을 부여하는 것이다.
-> ([1](#ref1))
+> ([1](DataScience/Fundamentals/Statistics/Concepts/about-ab-test.md#ref1))
 
 지표의 Hierarchy, 계층 구조를 만든다.
 > Metric Hierarchy: 비즈니스의 최종목표와 실무 수준의 액션을 인과관계와 상관관계로 엮어낸 지도

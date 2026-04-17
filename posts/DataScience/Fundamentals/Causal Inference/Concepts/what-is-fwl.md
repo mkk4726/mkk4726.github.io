@@ -23,7 +23,7 @@ Done: true
 
 즉 교란변수가 잘못된 패턴을 찾도록 유도하기 때문입니다.
 
-![confounding variable 예시그림](confounding_bias_예시그림.png)
+![confounding variable 예시그림](DataScience/Fundamentals/Causal%20Inference/Concepts/images/confounding_bias_예시그림.png)
 
 가장 대표적인 예시로 "아이스크림 판매량"과 "상어 어택횟수"를 생각해볼 수 있습니다.
 "기온"이라는 변수는 "아이스크림 판매량"과 "상어의 공격횟수"에 모두 영향을 줍니다.
