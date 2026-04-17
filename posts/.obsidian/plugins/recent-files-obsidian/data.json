@@ -1,6 +1,10 @@
 {
   "recentFiles": [
     {
+      "basename": "연습해하는 기본적인 컨셉",
+      "path": "Music/Singing/연습해하는 기본적인 컨셉.md"
+    },
+    {
       "basename": "about_DL",
       "path": "DataScience/Fundamentals/TechInterview/Expected_Questions/about_DL.md"
     },
@@ -126,7 +130,7 @@
     },
     {
       "basename": "260413_역시나 박자 문제",
-      "path": "Development/Guitar/Lesson/260413_역시나 박자 문제.md"
+      "path": "Music/Guitar/Lesson/260413_역시나 박자 문제.md"
     },
     {
       "basename": "고려대야간대학원",
@@ -142,7 +146,7 @@
     },
     {
       "basename": "250712",
-      "path": "Development/Guitar/Personal/250712.md"
+      "path": "Music/Guitar/Personal/250712.md"
     },
     {
       "basename": "2026년 이력서, 포트폴리오 리뉴얼_260301_133645",
@@ -150,7 +154,7 @@
     },
     {
       "basename": "260406_박자 문제",
-      "path": "Development/Guitar/Band/260406_박자 문제.md"
+      "path": "Music/Guitar/Band/260406_박자 문제.md"
     },
     {
       "basename": "25-09-08-당근-ML-Engineer",
@@ -187,18 +191,6 @@
     {
       "basename": "25-07-10-lunit-cancer-screening",
       "path": "Career/Thoughts/25-07-10-lunit-cancer-screening.md"
-    },
-    {
-      "basename": "paper-review-causal-transformer",
-      "path": "DataScience/Engineering/AI/Concepts/paper-review-causal-transformer.md"
-    },
-    {
-      "basename": "현대오토에버코테",
-      "path": "DataScience/Fundamentals/Codility/Company/현대오토에버코테.md"
-    },
-    {
-      "basename": "공부방향",
-      "path": "DataScience/Fundamentals/Codility/Thoughts/공부방향.md"
     }
   ],
   "omittedPaths": [],
