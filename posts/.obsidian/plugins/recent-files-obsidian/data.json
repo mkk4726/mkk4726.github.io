@@ -1,6 +1,22 @@
 {
   "recentFiles": [
     {
+      "basename": "바이럴 마케팅 개념 정리",
+      "path": "Domain/Marketing/바이럴 마케팅 개념 정리.md"
+    },
+    {
+      "basename": "KPI 에 대해 정리해보기",
+      "path": "Career/Move/Concepts/KPI 에 대해 정리해보기.md"
+    },
+    {
+      "basename": "성과지표에 대한 고민",
+      "path": "Career/Project/LenzeSizing/성과지표에 대한 고민.md"
+    },
+    {
+      "basename": "이력서 적는 법 정리해보기",
+      "path": "Career/Move/Concepts/이력서 적는 법 정리해보기.md"
+    },
+    {
       "basename": "프로젝트 설명",
       "path": "Career/Project/LenzeSizing/프로젝트 설명.md"
     },
@@ -19,10 +35,6 @@
     {
       "basename": "기술적인 구현",
       "path": "Career/Project/MarketingAutomation/기술적인 구현.md"
-    },
-    {
-      "basename": "바이럴 마케팅 개념 정리",
-      "path": "Domain/Marketing/바이럴 마케팅 개념 정리.md"
     },
     {
       "basename": "ICL 이해하기",
@@ -95,10 +107,6 @@
     {
       "basename": "260406_박자 문제",
       "path": "Development/Guitar/Band/260406_박자 문제.md"
-    },
-    {
-      "basename": "이력서 적는 법 정리해보기",
-      "path": "Career/Move/Concepts/이력서 적는 법 정리해보기.md"
     },
     {
       "basename": "25-09-08-당근-ML-Engineer",
@@ -187,18 +195,6 @@
     {
       "basename": "what-is-SVM",
       "path": "DataScience/Engineering/ML/Table_Models/what-is-SVM.md"
-    },
-    {
-      "basename": "figure1",
-      "path": "DataScience/Engineering/ML/quantile_regression/images/figure1.png"
-    },
-    {
-      "basename": "Non-crossing nonlinear regression quantiles by monotone composite quantile regression neural network, with application to rainfall extremes",
-      "path": "DataScience/Engineering/ML/quantile_regression/Non-crossing nonlinear regression quantiles by monotone composite quantile regression neural network, with application to rainfall extremes.md"
-    },
-    {
-      "basename": "paper_figure1",
-      "path": "DataScience/Engineering/ML/quantile_regression/images/paper_figure1.png"
     }
   ],
   "omittedPaths": [],
