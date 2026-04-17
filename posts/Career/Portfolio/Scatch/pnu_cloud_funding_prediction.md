@@ -15,7 +15,6 @@ Done: true
 
 관련 자료들
 - [내용을 정리한 블로그 링크](https://mkk4726.tistory.com/35)
-- [발표자료](/Users/visuworks/Desktop/mkk4726.github.io/public/post/Self_Development/Career/pdf_files/종프발표.pdf)
 
 대학교 4학년때 대학교 졸업과제로 진행한 프로젝트입니다.
 "와디즈"라는 클라우드 펀딩 사이트에서 상품의 성공여부를 예측하는 모델을 개발하려고 했습니다.

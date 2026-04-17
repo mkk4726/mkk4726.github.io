@@ -11,7 +11,7 @@ Done: true
 ---
 
 참고자료 
-- 1: 원본 논문, [pdf 링크](/post/Data%20Science/Causal%20Inference/Paper%20Review/Manski%20-%20Nonparametric%20Bounds.pdf)
+- 1: 원본 논문 - Manski, Charles F. "Nonparametric bounds on treatment effects."
 - 2: [유튜브 - Brady Neal - Causal Inference](https://www.youtube.com/watch?v=IXNMYqUsBBQ&list=PLoazKTcS0Rzb6bb9L508cyJ1z-U9iWkA0&index=47)
 
 ---
