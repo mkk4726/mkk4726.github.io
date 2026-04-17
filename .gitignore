@@ -47,3 +47,6 @@ next-env.d.ts
 
 # Obsidian local workspace state
 posts/.obsidian/workspace.json
+
+posts/.obsidian/plugins/recent-files-obsidian/data.json
+posts/.obsidian/plugins/remember-cursor-position/cursor-positions.json
