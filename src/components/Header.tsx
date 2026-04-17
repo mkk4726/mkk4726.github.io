@@ -2,7 +2,6 @@
 
 import Link from 'next/link';
 import { useState, useEffect, useRef } from 'react';
-import SearchBox from './SearchBox';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -60,7 +59,7 @@ export default function Header() {
             </Link>
           </div>
           
-          {/* Desktop Navigation and Search */}
+          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-6">
             <nav className="flex space-x-8">
               <Link href="/" className="text-gray-600 hover:text-blue-600 transition-colors">
@@ -76,7 +75,6 @@ export default function Header() {
                 Portfolio
               </Link>
             </nav>
-            <SearchBox />
           </div>
           
           {/* Mobile Menu Button */}
@@ -130,12 +128,6 @@ export default function Header() {
               >
                 Portfolio
               </Link>
-
-
-              {/* Mobile Search */}
-              <div className="py-3 px-2">
-                <SearchBox />
-              </div>
             </nav>
           </div>
         )}

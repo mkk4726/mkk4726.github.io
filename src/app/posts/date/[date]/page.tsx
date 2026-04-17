@@ -59,7 +59,7 @@ export default async function DatePage({ params }: DatePageProps) {
       {posts.length > 0 ? (
         <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
           {posts.map((post) => (
-            <PostCard key={post.id} post={post} enableSearchHighlight={false} />
+            <PostCard key={post.id} post={post} />
           ))}
         </div>
       ) : (

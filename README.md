@@ -32,7 +32,6 @@ Next.js 기반 개인 블로그 저장소입니다.
 | `npm run dev` | 로컬 개발 서버 |
 | `npm run build` | **프로덕션 빌드** (`NODE_ENV=production`일 때 정적 `out/` 생성). **배포(푸시) 전에 로컬에서 한 번 돌려서 오류가 없는지 확인하는 것을 권장합니다.** |
 | `npm run lint` | ESLint |
-| `npm run generate-search` | 검색 인덱스만 재생성 |
 | `npm run copy-assets` | 에셋 복사 스크립트만 실행 |
 | `npm run normalize-frontmatter` | 프론트매터 정규화 |
 
