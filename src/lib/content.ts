@@ -31,7 +31,7 @@ export function getContentData(filename: string): ContentData {
 }
 
 export function getResumeData(): ContentData {
-  const resumePath = path.join(process.cwd(), 'posts', 'Career', 'Resumes', 'Final.md');
+  const resumePath = path.join(process.cwd(), 'posts', 'Career', 'Resumes', '이력서.md');
 
   try {
     const fileContents = fs.readFileSync(resumePath, 'utf8');
@@ -47,7 +47,7 @@ export function getResumeData(): ContentData {
       content: content,
     };
   } catch (error) {
-    console.error('Error reading resume file at posts/Career/Resumes/Final.md', error);
+    console.error('Error reading resume file at posts/Career/Resumes/이력서.md', error);
     // Fallback to legacy content location
     return getContentData('resume');
   }

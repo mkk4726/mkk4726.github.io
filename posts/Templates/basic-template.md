@@ -1,9 +1,8 @@
 ---
 title: basic template
-date: 2026-04-18
+date:
 excerpt: ""
-category: Templates
+category:
 tags:
-  - Templates
 Done: true
 ---
