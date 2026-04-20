@@ -1,18 +1,13 @@
 ---
-title: "AI Chatbot Project"
+title: AI Chatbot Project
 date: 2025-11-30
-excerpt: "고객상담용 챗봇 개발"
-category: "Career"
+excerpt: 고객상담용 챗봇 개발
+category: Career
 tags:
-  - "RAG"
-Done: true
+  - RAG
+Done: false
 ---
 
-- 기간 : 2024.11 ~ 2025.02 (4개월)
-- 역할 : 문제정의, RAG pipeline 구현 및 배포, 모니터링 시스템 구축
-- 결과 (성과) : 일평균 100~200건정도의 상담을 자동화해 상담사의 상담 효율성 향상
-
----
 
 # 프로젝트 개요
 
