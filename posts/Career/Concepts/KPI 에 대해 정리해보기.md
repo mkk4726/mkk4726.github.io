@@ -21,9 +21,9 @@ DS, AIE, MLE에 대한  기본적으로 생각하는 4가지 KPI
 ```
 
 >[!note]- 클로드가 제안해준 KPI
->![[Career/Move/Concepts/images/Pasted image 20260416185001.png]]
+>![[Career/Concepts/images/Pasted image 20260416185001.png]]
 
-![[Career/Move/Concepts/images/Pasted image 20260417100829.png|689]]
+![[Career/Concepts/images/Pasted image 20260417100829.png|689]]
 
 > 직군에 따라서 우선순위가 바뀔 수 있음.
 > 지원하는 곳에 따라 강조하는 KPI가 달라져야 한다.
