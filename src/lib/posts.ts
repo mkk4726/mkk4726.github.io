@@ -419,6 +419,15 @@ export async function getPostData(id: string): Promise<PostData> {
       }
     );
 
+    // Handle full Obsidian vault-relative paths (e.g., ./Music/.../images/file.png)
+    processedContent = processedContent.replace(
+      /(<img[^>]+src=")\.\/((?:[^"\/]+\/)+[^"]+)(")/g,
+      (match, prefix, fullRelativePath, closingQuote) => {
+        const absolutePath = `/posts/${encodePath(fullRelativePath)}`;
+        return `${prefix}${absolutePath}${closingQuote}`;
+      }
+    );
+
     return {
       id,
       content: processedContent,
