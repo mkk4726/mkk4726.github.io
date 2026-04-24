@@ -1,0 +1,8 @@
+---
+description: tag에는 띄어쓰기가 들어가면 안됨
+alwaysApply: true
+---
+
+# Tag
+
+tag에는 띄어쓰기가 들어가면 안됨

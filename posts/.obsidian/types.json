@@ -4,6 +4,7 @@
     "cssclasses": "multitext",
     "tags": "tags",
     "date": "date",
-    "title": "text"
+    "title": "text",
+    "마감여부": "checkbox"
   }
 }
