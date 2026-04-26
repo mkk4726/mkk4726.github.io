@@ -10,7 +10,7 @@ tags:
   - "Draft"
 Done: false
 ---
-
+[[Career/JD/여기 어때|여기 어때]]
 # 이력서 초안 (여기어때 - Data Scientist)
 
 ## 포지션 핏 한 줄

@@ -72,4 +72,4 @@ OCR과 LLM을 각각의 모델 성능 문제로 보지 않고, 운영 지표 중
 - 점 추정 한계를 Quantile Regression + CQR 기반 예측구간 문제로 재정의해 임상 의사결정 지표와 사용자 신뢰도를 함께 개선.
 - 이미지 전송 클라이언트-서버-TrOCR 서빙 연결 구간을 디버깅하며 입력 검증, 모니터링, 테스트 코드로 운영 장애 리스크를 줄이고 응답 일관성을 개선.
 
-자세한 내용: [[Career/Portfolio/Scatch/26-04-24-알라딘-ai-engineer-portfolio-초안|알라딘 AI Engineer 포트폴리오 초안]]
+자세한 내용: [[Career/Resume/Scatch/알라딘/26-04-24-알라딘-ai-engineer-portfolio-초안|알라딘 AI Engineer 포트폴리오 초안]]
