@@ -1,0 +1,662 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>캄보디아 의료봉사 일정표</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: 노선도처럼 읽는 10일 — 주차별 5칸 그리드. 날짜를 누르면 오른쪽(폰에선 아래)에서 그날의 시간표가 열림 */
+:root {
+  --bg: #f6f7f9; --surface: #ffffff; --ink: #16202e; --muted: #5b6676; --rule: #dfe3ea;
+  --fly: #1c3f94; --show: #c8102e; --trip: #00843d; --city: #0098d4;
+  --night: #2b3445; --night-ink: #e9edf5;
+  --tint-show: #fbe8eb; --tint-trip: #e3f3ea; --tint-fly: #e6ebf6; --tint-city: #e3f3fa;
+  --todo: #b45309; --tint-todo: #fdf0dc; --scrim: rgba(15, 20, 28, .45);
+  --f-display: "Jost", "Noto Sans KR", system-ui, sans-serif;
+  --f-body: "Noto Sans KR", "Apple SD Gothic Neo", system-ui, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f141c; --surface: #171e29; --ink: #e8edf4; --muted: #9aa6b8; --rule: #2a3343;
+    --fly: #7d9cf0; --show: #ff6b7f; --trip: #4cc685; --city: #4fc3f0;
+    --night: #0b1017; --night-ink: #dfe6f1;
+    --tint-show: #3a1a21; --tint-trip: #12301f; --tint-fly: #1a2442; --tint-city: #10303d;
+    --todo: #f0a54a; --tint-todo: #3a2a12; --scrim: rgba(0, 0, 0, .6);
+    color-scheme: dark;
+  }
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: var(--f-body); font-size: 15px; line-height: 1.55;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 32px 56px;
+}
+a { color: inherit; }
+.wrap { max-width: 1180px; margin: 0 auto; display: grid; gap: 36px; }
+h1, h2, h3 { font-family: var(--f-display); text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(28px, 4.2vw, 44px); font-weight: 700; letter-spacing: -0.01em; line-height: 1.15; }
+h2 { font-size: 20px; font-weight: 600; }
+.eyebrow { font-family: var(--f-mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.back { font-size: 13px; color: var(--muted); text-decoration: none; }
+.back:hover { text-decoration: underline; }
+
+header { display: grid; gap: 14px; }
+.facts { display: flex; flex-wrap: wrap; gap: 8px 22px; color: var(--muted); font-size: 14px; }
+.facts b { color: var(--ink); font-weight: 500; }
+.legend { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 13px; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 7px; }
+.legend i { width: 22px; height: 6px; border-radius: 3px; display: inline-block; }
+.daylight { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; font-size: 13px; color: var(--muted); }
+.sunbar { position: relative; width: 220px; max-width: 100%; height: 10px; border-radius: 5px; background: var(--night); overflow: hidden; flex: none; }
+.sunbar::after { content: ""; position: absolute; top: 0; bottom: 0; left: calc(8 / 24 * 100%); width: calc(7.85 / 24 * 100%); background: #f2c14e; }
+.hint { font-size: 13px; color: var(--muted); }
+.thesis { margin: 0; max-width: 68ch; font-size: 15px; }
+
+.week { display: grid; gap: 12px; }
+.week-head { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.days { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; }
+.day {
+  background: var(--surface); border: 1px solid var(--rule); border-radius: 10px;
+  display: grid; grid-template-rows: auto 1fr auto; overflow: hidden; min-width: 0;
+  text-decoration: none; color: inherit; transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+}
+.day:hover { transform: translateY(-2px); border-color: var(--line); box-shadow: 0 6px 18px rgba(0,0,0,.08); }
+.day:focus-visible { outline: 3px solid var(--line); outline-offset: 2px; }
+.day.fly  { --line: var(--fly);  --tint: var(--tint-fly); }
+.day.show { --line: var(--show); --tint: var(--tint-show); }
+.day.trip { --line: var(--trip); --tint: var(--tint-trip); }
+.day.city { --line: var(--city); --tint: var(--tint-city); }
+.day-top { border-top: 6px solid var(--line); padding: 12px 14px 8px; display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+.date { font-family: var(--f-display); font-size: 26px; font-weight: 600; line-height: 1; font-variant-numeric: tabular-nums; }
+.date small { font-size: 15px; font-weight: 500; color: var(--muted); margin-left: 4px; }
+.tag { font-size: 11.5px; font-weight: 700; color: var(--line); background: var(--tint); padding: 3px 8px; border-radius: 999px; white-space: nowrap; }
+
+.stops { list-style: none; margin: 0; padding: 4px 14px 12px; display: grid; gap: 7px; align-content: start; }
+.stops li { position: relative; padding-left: 20px; font-size: 14px; line-height: 1.45; }
+.stops li::before { content: ""; position: absolute; left: 2px; top: 6px; width: 9px; height: 9px; border-radius: 50%; background: var(--surface); border: 2.5px solid var(--line); }
+.stops li:not(:last-child)::after { content: ""; position: absolute; left: 6.5px; top: 17px; bottom: -9px; width: 2.5px; background: var(--line); opacity: .35; }
+.t { font-family: var(--f-mono); font-size: 12px; color: var(--muted); margin-right: 4px; font-variant-numeric: tabular-nums; }
+.more { padding: 0 14px 10px; font-size: 12px; color: var(--line); font-weight: 700; }
+
+.eve { background: var(--night); color: var(--night-ink); padding: 11px 14px 13px; display: grid; gap: 3px; }
+.eve .lbl { font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; opacity: .65; }
+.eve .what { font-size: 14px; font-weight: 500; }
+.eve .what.big { font-family: var(--f-display); font-size: 17px; font-weight: 600; }
+.eve .where { font-size: 12.5px; opacity: .75; }
+.eve.show-eve { box-shadow: inset 4px 0 0 var(--show); }
+
+.panel { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 18px 18px 8px; display: grid; gap: 10px; min-width: 0; }
+.tablewrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+th { text-align: left; font-weight: 500; font-size: 12px; color: var(--muted); padding: 6px 10px 6px 0; border-bottom: 1px solid var(--rule); white-space: nowrap; }
+td { padding: 9px 10px 9px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+tr:last-child td { border-bottom: none; }
+td.num { font-family: var(--f-mono); font-size: 13px; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--show); margin-right: 8px; vertical-align: 1px; }
+.note { font-size: 12.5px; color: var(--muted); margin: 0; }
+footer { font-size: 12.5px; color: var(--muted); }
+
+/* day sheet */
+dialog#sheet {
+  border: none; padding: 0; margin: 0 0 0 auto; height: 100%; max-height: 100%;
+  width: min(560px, 100%); max-width: 100%; background: var(--surface); color: var(--ink);
+  box-shadow: -10px 0 40px rgba(0,0,0,.18);
+}
+dialog#sheet::backdrop { background: var(--scrim); }
+dialog#sheet[open] { animation: slide .22s ease-out; }
+@keyframes slide { from { transform: translateX(40px); opacity: .4; } to { transform: none; opacity: 1; } }
+.sheet { display: grid; grid-template-rows: auto 1fr auto; height: 100%; }
+.sheet-head {
+  border-top: 8px solid var(--line); padding: calc(18px + env(safe-area-inset-top, 0px)) 22px 16px;
+  display: grid; gap: 6px; border-bottom: 1px solid var(--rule);
+}
+.sheet-head .row { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+.sheet-head h2 { font-size: 26px; }
+.sheet-head p { margin: 0; color: var(--muted); font-size: 14px; }
+.close { flex: none; border: 1px solid var(--rule); background: var(--surface); color: var(--ink); border-radius: 8px; width: 36px; height: 36px; font-size: 20px; line-height: 1; cursor: pointer; }
+.close:focus-visible, .nav button:focus-visible { outline: 3px solid var(--line); outline-offset: 2px; }
+.sheet-body { overflow-y: auto; padding: 18px 22px 24px; display: grid; gap: 22px; align-content: start; }
+.timeline { list-style: none; margin: 0; padding: 0; display: grid; }
+.timeline li { display: grid; grid-template-columns: 56px 22px minmax(0, 1fr); column-gap: 8px; }
+.timeline .tm { font-family: var(--f-mono); font-size: 12.5px; color: var(--muted); padding-top: 2px; text-align: right; font-variant-numeric: tabular-nums; }
+.timeline .rail { position: relative; }
+.timeline .rail::before { content: ""; position: absolute; left: 6px; top: 5px; width: 11px; height: 11px; border-radius: 50%; background: var(--surface); border: 3px solid var(--line); box-sizing: border-box; }
+.timeline li:not(:last-child) .rail::after { content: ""; position: absolute; left: 10px; top: 18px; bottom: -2px; width: 3px; background: var(--line); opacity: .3; }
+.timeline li.key .rail::before { background: var(--line); }
+.timeline .bd { padding-bottom: 18px; min-width: 0; }
+.timeline .ti { font-weight: 700; }
+.timeline .ds { color: var(--muted); font-size: 14px; }
+.timeline .ds a { color: var(--line); }
+.box { background: var(--tint); border-radius: 10px; padding: 14px 16px; display: grid; gap: 6px; }
+.box h3 { font-size: 15px; font-weight: 600; color: var(--line); }
+.box ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; font-size: 14px; }
+.links { display: flex; flex-wrap: wrap; gap: 8px; }
+.links a { font-size: 13px; border: 1px solid var(--rule); border-radius: 999px; padding: 4px 11px; text-decoration: none; }
+.links a:hover { border-color: var(--line); color: var(--line); }
+.nav { display: flex; justify-content: space-between; gap: 10px; padding: 12px 22px calc(12px + env(safe-area-inset-bottom, 0px)); border-top: 1px solid var(--rule); }
+.nav button { border: 1px solid var(--rule); background: var(--surface); color: var(--ink); border-radius: 8px; padding: 8px 14px; font: inherit; font-size: 14px; cursor: pointer; }
+.nav button:disabled { opacity: .35; cursor: default; }
+
+@media (max-width: 1000px) { .days { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 760px) { .days { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 480px) {
+  .days { grid-template-columns: minmax(0, 1fr); }
+  dialog#sheet { width: 100%; }
+  .timeline li { grid-template-columns: 46px 22px minmax(0, 1fr); }
+}
+@media (prefers-reduced-motion: reduce) { .day, dialog#sheet[open] { transition: none; animation: none; } }
+
+/* maps */
+.map { height: 300px; border-radius: 10px; border: 1px solid var(--rule); background: var(--bg); z-index: 0; }
+.map-big { height: min(520px, 70vh); }
+.sheet .map { height: 240px; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip-btn { border: 1px solid var(--rule); background: var(--surface); color: var(--ink); border-radius: 999px; padding: 5px 12px; font: inherit; font-size: 13px; cursor: pointer; }
+.chip-btn[aria-pressed="true"] { background: var(--ink); color: var(--surface); border-color: var(--ink); }
+.chip-btn:focus-visible { outline: 3px solid var(--city); outline-offset: 2px; }
+.pin { width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; color: #fff; font: 700 12px/1 var(--f-mono); border: 2px solid #fff; box-shadow: 0 1px 4px rgba(0,0,0,.35); }
+.leaflet-container { font-family: var(--f-body); }
+@media (prefers-color-scheme: dark) { .leaflet-tile-pane { filter: invert(1) hue-rotate(180deg) brightness(.9) contrast(.9); } }
+.leaflet-popup-content { margin: 10px 12px; font-size: 13px; }
+.leaflet-popup-content a { color: #1c3f94; font-weight: 700; }
+.gmap { font-size: 12px; font-weight: 700; color: var(--line); text-decoration: none; white-space: nowrap; margin-left: 6px; }
+.gmap:hover { text-decoration: underline; }
+.route-btn { display: inline-flex; align-items: center; gap: 6px; justify-self: start; border-radius: 8px; padding: 8px 14px; background: var(--line); color: #fff; text-decoration: none; font-size: 14px; font-weight: 700; }
+.route-btn[hidden] { display: none; }
+.legs { font-size: 13px; }
+.legs summary { cursor: pointer; color: var(--muted); font-weight: 700; padding: 4px 0; }
+.legs ol { margin: 6px 0 0; padding-left: 20px; display: grid; gap: 4px; }
+.legs a { color: var(--line); text-decoration: none; }
+.legs a:hover { text-decoration: underline; }
+.pin.stay { border-radius: 6px; background: var(--ink) !important; color: var(--surface); }
+.leaflet-tooltip.leg-tip { font-size: 12px; font-weight: 700; }
+.legs li { line-height: 1.5; }
+/* 시간표 안 장소 사이 "이동" 줄 */
+.timeline li.move .rail::before { width: 7px; height: 7px; left: 8px; top: 9px; border-width: 0; background: var(--line); opacity: .45; }
+.timeline li.move .bd { padding-bottom: 14px; }
+details.mv summary { display: inline-flex; align-items: center; gap: 6px; cursor: pointer; list-style: none; font-size: 12.5px; font-weight: 700; color: var(--line); border: 1px solid var(--rule); border-radius: 999px; padding: 3px 11px; background: var(--surface); }
+details.mv summary::-webkit-details-marker { display: none; }
+details.mv summary::after { content: "▾"; font-size: 10px; }
+details.mv[open] summary::after { content: "▴"; }
+details.mv summary:focus-visible { outline: 3px solid var(--line); outline-offset: 2px; }
+.mv-body { display: grid; gap: 10px; margin-top: 8px; }
+.mv-leg { display: grid; gap: 6px; }
+.mv-leg .nm { font-size: 13px; font-weight: 700; }
+.mv-leg .rec { font-size: 11.5px; font-weight: 700; color: var(--muted); margin-left: 6px; }
+.mv-row { display: grid; grid-template-columns: 36px minmax(0, 1fr) auto; gap: 8px; align-items: start; text-decoration: none; padding: 6px 8px; border-radius: 8px; background: var(--bg); font-size: 13px; }
+a.mv-row:hover { outline: 2px solid var(--line); }
+.mv-row .m { font-size: 11.5px; font-weight: 700; color: var(--line); padding-top: 1px; }
+.mv-row .t { font-family: var(--f-mono); font-weight: 500; font-variant-numeric: tabular-nums; }
+.mv-row .dd { display: block; color: var(--muted); font-size: 12.5px; }
+.mv-row .go { font-size: 11.5px; font-weight: 700; color: var(--line); white-space: nowrap; }
+.mv-note { margin: 0; font-size: 12px; color: var(--muted); }
+.legs .leg-name { font-weight: 700; color: var(--ink); }
+.legs .leg-info { display: block; color: var(--muted); font-size: 12.5px; }
+.legs .leg-links { display: inline-flex; flex-wrap: wrap; gap: 4px 10px; font-size: 12.5px; }
+.map-note { font-size: 12px; color: var(--muted); margin: 0; }
+.map-wrap { display: grid; gap: 8px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <a class="back" href="../../">← mkk4726 pages</a>
+    <div class="eyebrow">Cambodia · 의료봉사 · 2026.11.29 – 12.05</div>
+    <h1>캄보디아 의료봉사 일정표</h1>
+    <div class="facts">
+      <span><b>11/29(일) – 12/05(토)</b> 7일</span>
+      <span>뽀삿 진료 4일 · 시엠립 1일</span>
+      <span>인천 ↔ 프놈펜 <b>대한항공</b></span>
+    </div>
+    <p class="thesis">11/30부터 12/3 오전까지 뽀삿에서 진료하고, 12/3 오후에 시엠립으로 이동합니다. 12/4 오전에 앙코르와트, 21:05 국내선으로 프놈펜 공항에 돌아가 00:30에 인천으로 출발합니다.</p>
+    <div class="legend" aria-label="색 설명">
+      <span><i style="background:var(--fly)"></i>비행</span>
+      <span><i style="background:var(--city)"></i>진료</span>
+      <span><i style="background:var(--trip)"></i>이동·관광</span>
+    </div>
+    <div class="hint">날짜 칸을 누르면 그날 시간표가 열려요.</div>
+  </header>
+
+  <div id="weeks" style="display:grid;gap:36px"></div>
+
+  <section class="panel" aria-labelledby="mapttl">
+    <h2 id="mapttl">동선 지도</h2>
+    <p class="note">날짜를 고르면 그날 들르는 곳을 순서대로 이어서 보여줘요. 선은 순서만 잇는 직선이라 실제 길과 다르고, 실제 경로는 '구글맵에서 동선 열기'로 보세요. 핀을 누르면 구글맵 링크가 나와요.</p>
+    <div class="chips" id="chips" role="group" aria-label="날짜 고르기"></div>
+    <div id="bigmap" class="map map-big" aria-label="동선 지도"></div>
+    <a class="route-btn" id="big-route" href="#" target="_blank" rel="noopener" style="--line: var(--city)">구글맵에서 동선 열기 ↗</a>
+  </section>
+
+  <section class="panel" aria-labelledby="stayttl">
+    <h2 id="stayttl">숙소</h2>
+    <p class="note">예약번호와 전화는 빼 두었습니다. 11/29 프놈펜 호텔 이름은 일정에 없습니다.</p>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>날짜</th><th>숙소</th></tr></thead>
+        <tbody>
+          <tr><td class="num">11/30–12/3</td><td>K M Hotel, 뽀삿<span class="sub" style="display:block;color:var(--muted);font-size:12px">같은 주소의 현재 상호는 Pursat Riverside Hotel &amp; Spa (Street 101)</span></td></tr>
+          <tr><td class="num">12/3–12/4</td><td>Sokha Siem Reap Resort &amp; Convention Center<span class="sub" style="display:block;color:var(--muted);font-size:12px">Road 60, 앙코르 입구 쪽</span></td></tr>
+          <tr><td class="num">12/4 밤</td><td>숙소 없음. 21:50 테초 공항 도착 후 00:30 출국까지 공항</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <footer>10/16 확정 일정 기준 (2026-11-11에 정리). 프놈펜 첫날 호텔, 뽀삿 진료 병원, 12/3 만찬, 12/4 오후 관광은 아직 주소가 없어 지도에 없습니다. 도로 시간은 참고치입니다.</footer>
+</div>
+
+<dialog id="sheet" aria-labelledby="sheet-title">
+  <div class="sheet" id="sheet-inner">
+    <div class="sheet-head">
+      <div class="row">
+        <div>
+          <div class="eyebrow" id="sheet-eyebrow"></div>
+          <h2 id="sheet-title"></h2>
+        </div>
+        <button class="close" id="sheet-close" aria-label="닫기">×</button>
+      </div>
+      <p id="sheet-sub"></p>
+    </div>
+    <div class="sheet-body" id="sheet-body"><div class="map-wrap"><div id="sheetmap" class="map"></div><a class="route-btn" id="sheet-route" href="#" target="_blank" rel="noopener">구글맵에서 동선 열기 ↗</a><details class="legs" id="sheet-legs"></details></div><div id="sheet-content" style="display:grid;gap:22px"></div></div>
+    <div class="nav">
+      <button id="prev">← 전날</button>
+      <button id="next">다음 날 →</button>
+    </div>
+  </div>
+</dialog>
+
+<script>
+// ===== 여행 데이터: 새 여행은 이 아래 4개(TRIP, DAYS, PLACES, STOP_PLACES)와 FIT_REGION만 바꾼다 =====
+const TRIP = {
+  overviewRegion: "kh",
+  overviewLabel: "캄보디아",
+  overviewExclude: ["icn"],
+  kakao: false,
+  rowSize: 7,
+  stay: null
+};
+
+const DAYS = [
+  { id: "d1129", date: "11/29", dow: "일", kind: "fly", tag: "출국", title: "인천 출발 · 프놈펜 도착",
+    sub: "12:00 집결, 18:30 출국(한국 시간). 23:00 테초 공항(현지). 프놈펜 호텔 이름은 아직 없음.",
+    stops: [["12:00", "집결"], ["14:00", "인천공항"], ["18:30", "출국"], ["23:00", "프놈펜 도착"]],
+    eve: { lbl: "밤", what: "호텔 이동", where: "이름 미정" },
+    timeline: [
+      ["12:00", "집결", "병원 출발. 주소는 이 페이지에 없음."],
+      ["14:00", "인천공항", "대한항공 국제선은 보통 제2터미널. 당일 터미널을 다시 확인.", true],
+      ["18:30", "인천 출발", "한국 시간. 캄보디아는 한국보다 2시간 느림."],
+      ["23:00", "테초 공항 도착", "현지 시간. 시내에서 남쪽으로 약 20km. 2025년 9월부터 프놈펜 관문은 테초 국제공항.", true],
+      ["밤", "호텔 이동", "일정에는 도착 후 호텔로 간다고만 되어 있음."]
+    ],
+    tips: ["여권과 항공권(왕복, 시엠립→프놈펜)은 오프라인으로.", "보조배터리는 기내 반입."],
+    links: [["테초 국제공항", "https://phnompenhairport.com/airport-information/"]] },
+
+  { id: "d1130", date: "11/30", dow: "월", kind: "city", tag: "진료", title: "뽀삿으로 이동 · 진료",
+    sub: "8–9시 프놈펜 출발, 12시 뽀삿. 오후 진료·수술. 병원 주소는 아직 없음.",
+    stops: [["8–9시", "프놈펜 출발"], ["12:00", "뽀삿 도착"], ["오후", "진료·수술"]],
+    eve: { lbl: "밤", what: "K M Hotel", where: "뽀삿" },
+    timeline: [
+      ["8–9시", "프놈펜 출발", "참고 도로 시간 약 3시간 20분–3시간 30분 (187–195km). 단체 차가 어디서 뜨는지는 프놈펜 숙소 이름 확인 후."],
+      ["12:00", "뽀삿 도착", "숙소 K M Hotel. 같은 주소의 현재 상호는 Pursat Riverside Hotel & Spa, Street 101. 안내 체크인은 14:00라 짐을 맡길 수 있는지만 보면 됨.", true],
+      ["오후", "진료·수술", "병원 주소는 일정에 없음. 지도 핀은 숙소.", true],
+      ["밤", "숙소", ""]
+    ],
+    tips: ["진료 복장은 아직 확인 중.", "모기기피제."],
+    links: [] },
+
+  { id: "d1201", date: "12/1", dow: "화", kind: "city", tag: "진료", title: "뽀삿 진료",
+    sub: "하루 종일 진료·수술.",
+    stops: [["오전", "진료·수술"], ["오후", "진료·수술"]],
+    eve: { lbl: "밤", what: "K M Hotel", where: "뽀삿" },
+    timeline: [
+      ["오전", "진료·수술", "", true],
+      ["오후", "진료·수술", ""],
+      ["밤", "숙소", "K M Hotel."]
+    ],
+    tips: [],
+    links: [] },
+
+  { id: "d1202", date: "12/2", dow: "수", kind: "city", tag: "진료", title: "뽀삿 진료",
+    sub: "진료 마지막 전날. 내일 오후에 시엠립으로 이동.",
+    stops: [["오전", "진료·수술"], ["오후", "진료·수술"]],
+    eve: { lbl: "밤", what: "K M Hotel", where: "내일 짐 확인" },
+    timeline: [
+      ["오전", "진료·수술", "", true],
+      ["오후", "진료·수술", ""],
+      ["밤", "숙소", "앙코르와트용으로 어깨·무릎이 가려지는 옷이 어느 가방에 있는지 봐 두기."]
+    ],
+    tips: ["내일 오후 이동. 뽀삿 숙소에 짐을 두고 나오지 않기."],
+    links: [] },
+
+  { id: "d1203", date: "12/3", dow: "목", kind: "trip", tag: "시엠립", title: "진료 후 시엠립",
+    sub: "오전 진료, 오후 뽀삿→시엠립(이동 중 식사). 만찬은 미정. 야시장.",
+    stops: [["오전", "진료"], ["오후", "시엠립 이동"], ["저녁", "야시장"]],
+    eve: { lbl: "저녁", what: "야시장 · Pub Street", where: "만찬은 미정" },
+    timeline: [
+      ["오전", "진료", "뽀삿에서 오전만."],
+      ["오후", "뽀삿 출발", "국도 5호, 약 190–200km. 차만 4–4.5시간이라는 도로 안내가 있음. 우리 차 시간은 미정. 이동 중 식사.", true],
+      ["저녁", "시엠립 도착", "Sokha Siem Reap. Road 60, 앙코르 입구 쪽. 안내 체크인은 14:00.", true],
+      ["저녁", "야시장 · Pub Street", "일정은 '야시장 pub'. 특정 가게가 아니라 시내 야간 구역(Street 08)으로 찍어 둠.", true],
+      ["밤", "숙소로 복귀", "부지사님 만찬은 미정이라 핀을 따로 두지 않음."]
+    ],
+    tips: ["만찬 장소가 정해지면 동선을 고친다."],
+    links: [] },
+
+  { id: "d1204", date: "12/4", dow: "금", kind: "trip", tag: "앙코르", title: "앙코르와트 · 밤 비행",
+    sub: "오전 앙코르와트. 오후 관광은 미정. 21:05 시엠립 → 21:50 프놈펜. 공항에서 식사.",
+    stops: [["오전", "앙코르와트"], ["21:05", "시엠립 출발"], ["21:50", "프놈펜 공항"]],
+    eve: { lbl: "밤", what: "테초 공항에서 대기", where: "00:30 출국" },
+    timeline: [
+      ["오전", "숙소에서 출발", "Sokha. 체크아웃 안내는 12:00."],
+      ["오전", "앙코르와트", "어깨와 무릎을 가려야 입장. 숙소에서 북쪽으로 약 4km.", true],
+      ["점심", "점심", ""],
+      ["오후", "오후 관광", "미정.", true],
+      ["저녁", "숙소 체크아웃", "공항으로. 시엠립 앙코르 국제공항은 시내 동쪽 약 40–50km."],
+      ["21:05", "시엠립 출발", "국내선. 10/16에 21:05–21:50으로 변경. 예전 19:45는 폐기.", true],
+      ["21:50", "테초 도착", "시내로 나가지 않음. 각자 식사 후 00:30 국제선까지 공항. 지도는 시엠립에 맞춰 두고, 테초는 다음 날과 전체 지도에 있음.", true]
+    ],
+    tips: ["기내 가방에 여권과 인천행 티켓.", "위탁 짐을 시엠립 숙소에 두고 나오지 않기."],
+    links: [["앙코르와트", "https://en.wikipedia.org/wiki/Angkor_Wat"], ["테초 국제공항", "https://www.google.com/maps/search/?api=1&query=Techo%20International%20Airport"]] },
+
+  { id: "d1205", date: "12/5", dow: "토", kind: "fly", tag: "귀국", title: "인천 도착",
+    sub: "00:30 프놈펜 출발(현지) → 07:00 인천(한국 시간).",
+    stops: [["00:30", "프놈펜 출발"], ["07:00", "인천 도착"]],
+    eve: { lbl: "아침", what: "인천 도착", where: "07:00" },
+    timeline: [
+      ["00:30", "테초 출발", "현지 자정. 한국 시각으로는 02:30. 12/4 밤에 이미 공항에서 대기.", true],
+      ["07:00", "인천 도착", "한국 시간.", true],
+      ["아침", "귀가", ""]
+    ],
+    tips: [],
+    links: [] }
+];
+
+// 좌표 2026-11-11. 숙소·앙코르·Pub Street·인천 T2는 OpenStreetMap. 테초는 공항 공식 좌표, 시엠립 공항은 Wikipedia.
+const PLACES = {
+  icn:    { name: "인천공항 제2여객터미널", q: "Incheon International Airport Terminal 2", ll: [37.468044, 126.434865], region: "seoul" },
+  kti:    { name: "테초 국제공항", q: "Techo International Airport", ll: [11.362917, 104.916611], region: "kh" },
+  km:     { name: "숙소 · K M Hotel (뽀삿)", q: "Pursat Riverside Hotel & Spa, Pursat", ll: [12.535613, 103.920562], region: "kh" },
+  sokha:  { name: "숙소 · Sokha Siem Reap", q: "Sokha Siem Reap Resort & Convention Center", ll: [13.377378, 103.876832], region: "kh" },
+  angkor: { name: "앙코르와트", q: "Angkor Wat", ll: [13.412521, 103.866592], region: "kh" },
+  pub:    { name: "Pub Street (야시장 구역)", q: "Pub Street Siem Reap", ll: [13.354826, 103.854784], region: "kh" },
+  sai:    { name: "시엠립 앙코르 국제공항", q: "Siem Reap Angkor International Airport", ll: [13.375278, 104.220833], region: "kh" }
+};
+const LEG_INFO = {
+  "icn>kti": "비행 약 6시간 · 한국 18:30 출발 → 현지 23:00 도착",
+  "km>sokha": "국도 5호 약 190–200km · 차 4–4.5시간 (참고)",
+  "sokha>pub": "시내 이동 · 시간은 구글맵에서 확인",
+  "pub>sokha": "시내 이동 · 시간은 구글맵에서 확인",
+  "sokha>angkor": "북쪽으로 약 4km",
+  "angkor>sokha": "약 4km",
+  "sokha>sai": "동쪽 약 40–50km · 차량",
+  "kti>icn": "00:30 현지 출발 → 07:00 인천 (한국 시간)"
+};
+const LEG_DETAIL = {
+  "icn>kti": { rec: "비행기", modes: [], note: "일정표 시각. 편명은 이 페이지에 없음." },
+  "kti>icn": { rec: "비행기", modes: [], note: "12/4 밤 21:50에 테초에 도착해 공항에서 기다린 뒤 탑승." },
+  "km>sokha": { rec: "차량 (단체)", modes: [["taxi", "4–4.5시간", "국도 5호, 약 190–200km. 도로 안내의 참고치"]], note: "이동 중 식사. 우리 차의 출발 시각은 미정." },
+  "sokha>angkor": { rec: "차량", modes: [["taxi", "짧은 거리", "직선 약 4km. 분 단위는 구글맵에서 확인"]] },
+  "sokha>sai": { rec: "차량", modes: [["taxi", "공항까지", "시내 동쪽 약 40–50km. 21:05 출발"]], note: "분 단위는 구글맵에서 확인." }
+};
+const STOP_PLACES = {
+  d1129: { "인천공항": ["icn"], "인천 출발": ["icn"], "테초 공항 도착": ["kti"] },
+  d1130: { "뽀삿 도착": ["km"], "숙소": ["km"] },
+  d1201: { "숙소": ["km"] },
+  d1202: { "숙소": ["km"] },
+  d1203: { "뽀삿 출발": ["km"], "시엠립 도착": ["sokha"], "야시장 · Pub Street": ["pub"], "숙소로 복귀": ["sokha"] },
+  d1204: { "숙소에서 출발": ["sokha"], "앙코르와트": ["angkor"], "숙소 체크아웃": ["sokha"], "시엠립 출발": ["sai"] },
+  d1205: { "테초 출발": ["kti"], "인천 도착": ["icn"] }
+};
+const FIT_REGION = {};
+
+const gmapSearch = k => "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(PLACES[k].q);
+// 국내 여행(TRIP.kakao: true)이면 카카오맵 링크도 단다
+const useKakao = () => !!(typeof TRIP !== "undefined" && TRIP.kakao);
+const kName = k => encodeURIComponent(PLACES[k].name.replace(/[,/]/g, " "));
+const kakaoPlace = k => PLACES[k].ll ? `https://map.kakao.com/link/map/${kName(k)},${PLACES[k].ll[0]},${PLACES[k].ll[1]}` : "https://map.kakao.com/link/search/" + encodeURIComponent(PLACES[k].q);
+const kakaoDir = (a, b, mode) => `https://map.kakao.com/link/by/${mode}/${kName(a)},${PLACES[a].ll[0]},${PLACES[a].ll[1]}/${kName(b)},${PLACES[b].ll[0]},${PLACES[b].ll[1]}`;
+// 구간별 이동 메모 (LEG_INFO["a>b"])
+// 구간 상세 (LEG_DETAIL["a>b"] = { rec, modes: [[taxi|bus|walk, 시간, 설명]], note })
+const legDetail = (a, b) => (typeof LEG_DETAIL === "undefined" ? {} : LEG_DETAIL)[a + ">" + b];
+const MODE_LABEL = { taxi: ["택시", "car", "driving"], bus: ["버스", "traffic", "transit"], walk: ["도보", "walk", "walking"] };
+function moveRowLink(a, b, m) {
+  const [, km, gm] = MODE_LABEL[m];
+  return useKakao() ? kakaoDir(a, b, km) : gmapDir(a, b) + "&travelmode=" + gm;
+}
+function moveBlock(legsHere) {
+  const one = legsHere.length === 1;
+  const [a0, b0] = legsHere[0];
+  const det0 = legDetail(a0, b0);
+  const label = one ? "이동 · " + (legInfo(a0, b0) || (det0 && det0.rec) || "길찾기") : `이동 ${legsHere.length}구간` + (legsHere.every(([a, b]) => /^도보/.test(legInfo(a, b))) ? " · 다 걸어서" : "");
+  const body = legsHere.map(([a, b]) => {
+    const det = legDetail(a, b);
+    const rows = det && det.modes ? det.modes.map(([m, t, desc]) =>
+      `<a class="mv-row" href="${moveRowLink(a, b, m)}" target="_blank" rel="noopener"><span class="m">${MODE_LABEL[m][0]}</span><span><span class="t">${esc(t)}</span>${desc ? `<span class="dd">${esc(desc)}</span>` : ""}</span><span class="go">${useKakao() ? "카카오맵" : "구글맵"} ↗</span></a>`).join("")
+      : ["bus", "walk", "taxi"].map(m => `<a class="mv-row" href="${moveRowLink(a, b, m)}" target="_blank" rel="noopener"><span class="m">${MODE_LABEL[m][0]}</span><span><span class="dd">${useKakao() ? "카카오맵" : "구글맵"}에서 시간 보기</span></span><span class="go">↗</span></a>`).join("");
+    return `<div class="mv-leg"><div class="nm">${esc(PLACES[a].name)} → ${esc(PLACES[b].name)}${det && det.rec ? `<span class="rec">추천 ${esc(det.rec)}</span>` : ""}</div>${!det && legInfo(a, b) ? `<p class="mv-note">${esc(legInfo(a, b))}</p>` : ""}${rows}${det && det.note ? `<p class="mv-note">${esc(det.note)}</p>` : ""}</div>`;
+  }).join("");
+  return `<li class="move"><span class="tm"></span><span class="rail"></span><div class="bd"><details class="mv"><summary>${esc(label)}</summary><div class="mv-body">${body}</div></details></div></li>`;
+}
+const legInfo = (a, b) => (typeof LEG_INFO === "undefined" ? {} : LEG_INFO)[a + ">" + b] || "";
+// 장소 링크 묶음 (구글 / 카카오)
+const placeLinks = k => `<a href="${gmapSearch(k)}" target="_blank" rel="noopener">구글맵 ↗</a>` + (useKakao() ? ` · <a href="${kakaoPlace(k)}" target="_blank" rel="noopener">카카오맵 ↗</a>` : "");
+// 숙소에서 시작·숙소로 돌아오는 날이면 true
+const startsAtStay = d => !!(TRIP.stay && (TRIP.stay.start || []).includes(d.id));
+const endsAtStay = d => !!(TRIP.stay && (TRIP.stay.end || []).includes(d.id));
+function dayPlaces(d) {
+  const keys = [];
+  const push = k => { if (keys[keys.length - 1] !== k) keys.push(k); };
+  const st = TRIP.stay;
+  if (st && (st.start || []).includes(d.id)) push(st.key);
+  for (const row of d.timeline) for (const k of (STOP_PLACES[d.id] || {})[row[1]] || []) push(k);
+  if (st && (st.end || []).includes(d.id)) push(st.key);
+  return keys;
+}
+// 두 장소 사이 구글맵 길찾기 (이동 수단은 구글맵에서 고름)
+function gmapDir(a, b) {
+  return "https://www.google.com/maps/dir/?api=1&origin=" + encodeURIComponent(PLACES[a].q) + "&destination=" + encodeURIComponent(PLACES[b].q);
+}
+// 지도에 찍히는 장소끼리 이은 구간 목록
+function legs(keys) {
+  const pts = keys.filter(k => PLACES[k].ll);
+  const out = [];
+  for (let i = 0; i < pts.length - 1; i++) if (pts[i] !== pts[i + 1]) out.push([pts[i], pts[i + 1], i]);
+  return out;
+}
+function gmapRoute(keys) {
+  const pts = keys.filter(k => PLACES[k].ll);
+  if (!pts.length) return null;
+  return "https://www.google.com/maps/dir/" + pts.map(k => encodeURIComponent(PLACES[k].q)).join("/");
+}
+function cssVar(name) { return getComputedStyle(document.documentElement).getPropertyValue(name).trim(); }
+const darkMQ = window.matchMedia("(prefers-color-scheme: dark)");
+function tileUrl() { return "https://tile.openstreetmap.org/{z}/{x}/{y}.png"; }
+const ATTR = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
+function makeMap(el) {
+  if (!window.L) { el.innerHTML = '<p class="map-note" style="padding:12px">지도를 불러오지 못했어요. 아래 구글맵 링크를 써 주세요.</p>'; return null; }
+  const m = L.map(el, { scrollWheelZoom: false, attributionControl: true });
+  L.tileLayer(tileUrl(), { attribution: ATTR, maxZoom: 19 }).addTo(m);
+  m._routeLayer = L.layerGroup().addTo(m);
+  return m;
+}
+function drawRoute(m, keys, color, fitRegion) {
+  if (!m) return;
+  m._routeLayer.clearLayers();
+  const pts = keys.filter(k => PLACES[k].ll);
+  const lls = pts.map(k => PLACES[k].ll);
+  legs(keys).forEach(([a, b, i]) => {
+    const seg = [PLACES[a].ll, PLACES[b].ll];
+    const line = L.polyline(seg, { color, weight: 3, opacity: .8, dashArray: "6 6", interactive: false }).addTo(m._routeLayer);
+    const hit = L.polyline(seg, { color, weight: 18, opacity: 0 }).addTo(m._routeLayer);
+    hit.bindTooltip(`${esc(PLACES[a].name)} → ${esc(PLACES[b].name)}${legInfo(a, b) ? "<br>" + esc(legInfo(a, b)) : ""}<br>눌러서 ${useKakao() ? "카카오맵" : "구글맵"} 길찾기`, { sticky: true, className: "leg-tip" });
+    hit.on("mouseover", () => line.setStyle({ weight: 6, dashArray: null, opacity: 1 }));
+    hit.on("mouseout", () => line.setStyle({ weight: 3, dashArray: "6 6", opacity: .8 }));
+    hit.on("click", () => window.open(useKakao() ? kakaoDir(a, b, "traffic") : gmapDir(a, b), "_blank", "noopener"));
+  });
+  pts.forEach((k, i) => {
+    const p = PLACES[k];
+    const icon = L.divIcon({ className: "", html: `<div class="pin${p.stay ? " stay" : ""}" style="background:${color}">${p.stay ? "숙" : i + 1}</div>`, iconSize: [26, 26], iconAnchor: [13, 13] });
+    L.marker(p.ll, { icon, title: p.name }).addTo(m._routeLayer)
+      .bindPopup(`<b>${i + 1}. ${esc(p.name)}</b><br>${placeLinks(k)}`);
+  });
+  const fit = fitRegion ? pts.filter(k => PLACES[k].region === fitRegion).map(k => PLACES[k].ll) : lls;
+  setTimeout(() => {
+    m.invalidateSize();
+    if (fit.length === 1) m.setView(fit[0], 15);
+    else if (fit.length) m.fitBounds(fit, { padding: [28, 28], maxZoom: 16 });
+  }, 60);
+}
+
+const KIND_COLOR = { fly: "--fly", show: "--show", trip: "--trip", city: "--city" };
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+function card(d) {
+  const stops = [...(startsAtStay(d) ? [["", "숙소에서 출발"]] : []), ...d.stops, ...(endsAtStay(d) ? [["", "숙소로 복귀"]] : [])].map(([t, s]) => `<li>${t ? `<span class="t">${esc(t)}</span>` : ""}${esc(s)}</li>`).join("");
+  const e = d.eve;
+  return `<a class="day ${d.kind}" href="#${d.id}" aria-label="${esc(d.date)} ${esc(d.dow)}요일 ${esc(d.title)} 자세히 보기">
+    <div class="day-top"><div class="date">${esc(d.date)}<small>${esc(d.dow)}</small></div><span class="tag">${esc(d.tag)}</span></div>
+    <div><ul class="stops">${stops}</ul><div class="more">시간표 보기 →</div></div>
+    <div class="eve${e.show ? " show-eve" : ""}"><span class="lbl">${esc(e.lbl)}</span><span class="what${e.show ? " big" : ""}">${esc(e.what)}</span><span class="where">${esc(e.where)}</span></div>
+  </a>`;
+}
+(function renderWeeks() {
+  const rows = [];
+  for (let i = 0; i < DAYS.length; i += TRIP.rowSize) rows.push(DAYS.slice(i, i + TRIP.rowSize));
+  document.getElementById("weeks").innerHTML = rows.map((r, n) => `
+    <section class="week" aria-labelledby="w${n}">
+      <div class="week-head"><h2 id="w${n}">${rows.length > 1 ? (n + 1) + "주차" : "일정"}</h2><span class="eyebrow">${esc(r[0].date)} – ${esc(r[r.length - 1].date)}</span></div>
+      <div class="days">${r.map(card).join("")}</div>
+    </section>`).join("");
+})();
+
+const sheet = document.getElementById("sheet");
+const inner = document.getElementById("sheet-inner");
+let current = -1;
+let sheetMap = null;
+
+function render(i) {
+  const d = DAYS[i];
+  current = i;
+  inner.style.setProperty("--line", `var(${KIND_COLOR[d.kind]})`);
+  inner.style.setProperty("--tint", `var(--tint-${d.kind})`);
+  document.getElementById("sheet-eyebrow").textContent = `${d.date} ${d.dow} · ${d.tag}`;
+  document.getElementById("sheet-title").textContent = d.title;
+  document.getElementById("sheet-sub").textContent = d.sub;
+  const stayRow = label => [label === "출발" ? "출발" : "복귀", label === "출발" ? "숙소에서 출발" : "숙소로 복귀", PLACES[TRIP.stay.key].name, false, [TRIP.stay.key]];
+  const rows = [...(startsAtStay(d) ? [stayRow("출발")] : []), ...d.timeline, ...(endsAtStay(d) ? [stayRow("복귀")] : [])];
+  let prevPlace = null;
+  const tl = rows.map(([tm, ti, ds, key, auto]) => {
+    const pk = auto || (STOP_PLACES[d.id] || {})[ti] || [];
+    // 이 줄로 들어오는 구간들 → 줄 앞에 "이동" 버튼
+    const legsHere = [];
+    for (const k of pk) {
+      if (!PLACES[k].ll) { prevPlace = null; continue; }
+      if (prevPlace && prevPlace !== k) legsHere.push([prevPlace, k]);
+      prevPlace = k;
+    }
+    const mv = legsHere.length ? moveBlock(legsHere) : "";
+    const gl = pk.map(k => `<a class="gmap" href="${gmapSearch(k)}" target="_blank" rel="noopener" title="${esc(PLACES[k].name)} 구글맵">${pk.length > 1 ? esc(PLACES[k].name) + " " : ""}${useKakao() ? "구글" : "지도"} ↗</a>` + (useKakao() ? `<a class="gmap" href="${kakaoPlace(k)}" target="_blank" rel="noopener" title="${esc(PLACES[k].name)} 카카오맵">카카오 ↗</a>` : "")).join("");
+    return mv + `<li class="${key ? "key" : ""}"><span class="tm">${esc(tm)}</span><span class="rail"></span><div class="bd"><div class="ti">${esc(ti)}${gl}</div>${ds ? `<div class="ds">${esc(ds)}</div>` : ""}</div></li>`;
+  }).join("");
+  const tips = d.tips.length ? `<div class="box"><h3>챙길 것</h3><ul>${d.tips.map(t => `<li>${esc(t)}</li>`).join("")}</ul></div>` : "";
+  const links = d.links.length ? `<div class="links">${d.links.map(([n, u]) => `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(n)} ↗</a>`).join("")}</div>` : "";
+  document.getElementById("sheet-content").innerHTML = `<ol class="timeline">${tl}</ol>${tips}${links}`;
+  document.getElementById("sheet-body").scrollTop = 0;
+  const keys = dayPlaces(d);
+  const route = gmapRoute(keys);
+  const rb = document.getElementById("sheet-route");
+  rb.hidden = !route; if (route) rb.href = route;
+  const lg = legs(keys);
+  const legsEl = document.getElementById("sheet-legs");
+  legsEl.hidden = true;  // 구간 정보는 시간표 안 '이동' 버튼으로 보여줌
+  legsEl.open = useKakao() || lg.some(([a, b]) => legInfo(a, b));
+  legsEl.innerHTML = `<summary>구간별 길찾기 (${lg.length}) — 지도에서 선을 눌러도 돼요</summary><ol>${lg.map(([a, b]) => {
+    const links = useKakao()
+      ? `<a href="${kakaoDir(a, b, "traffic")}" target="_blank" rel="noopener">카카오 대중교통 ↗</a><a href="${kakaoDir(a, b, "walk")}" target="_blank" rel="noopener">도보 ↗</a><a href="${kakaoDir(a, b, "car")}" target="_blank" rel="noopener">택시·차 ↗</a><a href="${gmapDir(a, b)}" target="_blank" rel="noopener">구글 ↗</a>`
+      : `<a href="${gmapDir(a, b)}" target="_blank" rel="noopener">구글맵 길찾기 ↗</a>`;
+    const info = legInfo(a, b);
+    return `<li><span class="leg-name">${esc(PLACES[a].name)} → ${esc(PLACES[b].name)}</span>${info ? `<span class="leg-info">${esc(info)}</span>` : ""}<span class="leg-links">${links}</span></li>`;
+  }).join("")}</ol>`;
+  if (!sheetMap) sheetMap = makeMap(document.getElementById("sheetmap"));
+  drawRoute(sheetMap, keys, cssVar(KIND_COLOR[d.kind]), FIT_REGION[d.id]);
+  document.getElementById("prev").disabled = i === 0;
+  document.getElementById("next").disabled = i === DAYS.length - 1;
+}
+
+function openFromHash() {
+  const i = DAYS.findIndex(d => "#" + d.id === location.hash);
+  if (i < 0) { if (sheet.open) sheet.close(); return; }
+  render(i);
+  if (!sheet.open) sheet.showModal();
+}
+function clearHash() {
+  if (location.hash) history.replaceState(null, "", location.pathname + location.search);
+}
+window.addEventListener("hashchange", openFromHash);
+sheet.addEventListener("close", clearHash);
+sheet.addEventListener("click", e => { if (e.target === sheet) sheet.close(); });
+document.getElementById("sheet-close").addEventListener("click", () => sheet.close());
+document.getElementById("prev").addEventListener("click", () => { if (current > 0) location.replace("#" + DAYS[current - 1].id); });
+document.getElementById("next").addEventListener("click", () => { if (current < DAYS.length - 1) location.replace("#" + DAYS[current + 1].id); });
+document.addEventListener("keydown", e => {
+  if (!sheet.open) return;
+  if (e.key === "ArrowLeft") document.getElementById("prev").click();
+  if (e.key === "ArrowRight") document.getElementById("next").click();
+});
+// 전체 동선 지도
+const bigMap = makeMap(document.getElementById("bigmap"));
+const chipsEl = document.getElementById("chips");
+const bigRoute = document.getElementById("big-route");
+function showAll() {
+  if (!bigMap) return;
+  bigMap._routeLayer.clearLayers();
+  const lls = [];
+  DAYS.forEach(d => {
+    const color = cssVar(KIND_COLOR[d.kind]);
+    dayPlaces(d).filter(k => PLACES[k].ll && PLACES[k].region === TRIP.overviewRegion && !TRIP.overviewExclude.includes(k) && !PLACES[k].stay).forEach(k => {
+      lls.push(PLACES[k].ll);
+      L.circleMarker(PLACES[k].ll, { radius: 7, color: "#fff", weight: 2, fillColor: color, fillOpacity: 1 })
+        .addTo(bigMap._routeLayer)
+        .bindPopup(`<b>${esc(PLACES[k].name)}</b><br>${esc(d.date)} ${esc(d.dow)}<br>${placeLinks(k)}`);
+    });
+  });
+  const st = TRIP.stay && PLACES[TRIP.stay.key];
+  if (st && st.ll) {
+    if (st.region === TRIP.overviewRegion) lls.push(st.ll);
+    L.marker(st.ll, { icon: L.divIcon({ className: "", html: `<div class="pin stay">숙</div>`, iconSize: [26, 26], iconAnchor: [13, 13] }), title: st.name, zIndexOffset: 1000 })
+      .addTo(bigMap._routeLayer)
+      .bindPopup(`<b>${esc(st.name)}</b><br>${placeLinks(TRIP.stay.key)}`);
+  }
+  setTimeout(() => { bigMap.invalidateSize(); bigMap.fitBounds(lls, { padding: [24, 24] }); }, 60);
+  bigRoute.hidden = true;
+}
+function selectChip(id) {
+  chipsEl.querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.id === id)));
+  if (id === "all") return showAll();
+  const d = DAYS.find(x => x.id === id);
+  const keys = dayPlaces(d);
+  drawRoute(bigMap, keys, cssVar(KIND_COLOR[d.kind]), FIT_REGION[d.id]);
+  const r = gmapRoute(keys);
+  bigRoute.hidden = !r; if (r) bigRoute.href = r;
+  bigRoute.style.setProperty("--line", `var(${KIND_COLOR[d.kind]})`);
+}
+chipsEl.innerHTML = `<button class="chip-btn" data-id="all" aria-pressed="true">${esc(TRIP.overviewLabel)}</button>` +
+  DAYS.map(d => `<button class="chip-btn" data-id="${d.id}" aria-pressed="false">${esc(d.date)} ${esc(d.tag)}</button>`).join("");
+chipsEl.addEventListener("click", e => { const b = e.target.closest("button"); if (b) selectChip(b.dataset.id); });
+showAll();
+
+openFromHash();
+</script>
+</body>
+</html>
