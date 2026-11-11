@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>공주여행 일정표</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: 이틀을 나란히 놓은 두 장의 표 — 각 날은 날씨 띠(시간별 비) 위에 정거장 타임라인. 아래에 장소·예약. 폰에선 세로로 쌓임 */
+:root {
+  --bg: #f4f5f3;
+  --surface: #ffffff;
+  --ink: #1d2320;
+  --muted: #5f6a64;
+  --rule: #dde2dd;
+  --rain: #3d6283;        /* 비 오는 토요일 */
+  --tint-rain: #e4ecf3;
+  --sun: #b9741c;         /* 맑은 일요일 · 공주 밤 */
+  --tint-sun: #f8ecd9;
+  --bar: #7fa3c4;
+  --ok: #2f7a4f;
+  --tint-ok: #e2f1e8;
+  --todo: #9a5b12;
+  --tint-todo: #fbefdd;
+  --f-display: "Gowun Batang", "Noto Serif KR", serif;
+  --f-body: "Noto Sans KR", "Apple SD Gothic Neo", system-ui, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #121614; --surface: #1a201d; --ink: #e7ece8; --muted: #9ba7a0; --rule: #2c3530;
+    --rain: #8db4d8; --tint-rain: #1b2a38; --sun: #e5a552; --tint-sun: #382915; --bar: #5d86ab;
+    --ok: #6cc890; --tint-ok: #173123; --todo: #eba85a; --tint-todo: #3a2a13;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #121614; --surface: #1a201d; --ink: #e7ece8; --muted: #9ba7a0; --rule: #2c3530;
+  --rain: #8db4d8; --tint-rain: #1b2a38; --sun: #e5a552; --tint-sun: #382915; --bar: #5d86ab;
+  --ok: #6cc890; --tint-ok: #173123; --todo: #eba85a; --tint-todo: #3a2a13;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--ink);
+  font-family: var(--f-body); font-size: 15px; line-height: 1.55;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 32px 56px;
+}
+.wrap { max-width: 1040px; margin: 0 auto; display: grid; gap: 32px; }
+h1, h2, h3 { font-family: var(--f-display); text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(30px, 4.6vw, 46px); font-weight: 700; line-height: 1.15; }
+h2 { font-size: 21px; font-weight: 700; }
+.eyebrow { font-family: var(--f-mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+
+header { display: grid; gap: 14px; }
+.facts { display: flex; flex-wrap: wrap; gap: 8px 22px; color: var(--muted); font-size: 14px; }
+.facts b { color: var(--ink); font-weight: 500; }
+.thesis { margin: 0; max-width: 62ch; font-size: 15.5px; }
+.thesis b.r { color: var(--rain); }
+.thesis b.s { color: var(--sun); }
+
+.days { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.day { background: var(--surface); border: 1px solid var(--rule); border-radius: 12px; overflow: hidden; display: grid; align-content: start; min-width: 0; }
+.day.rain { --line: var(--rain); --tint: var(--tint-rain); }
+.day.sun  { --line: var(--sun);  --tint: var(--tint-sun); }
+.day-top { border-top: 6px solid var(--line); padding: 16px 18px 12px; display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; flex-wrap: wrap; }
+.date { font-family: var(--f-display); font-size: 30px; font-weight: 700; line-height: 1; font-variant-numeric: tabular-nums; }
+.date small { font-size: 16px; color: var(--muted); margin-left: 4px; font-weight: 400; }
+.theme { margin-top: 6px; font-size: 14px; color: var(--muted); }
+.wx { background: var(--tint); color: var(--line); border-radius: 10px; padding: 8px 12px; display: grid; gap: 1px; text-align: right; }
+.wx .big { font-weight: 700; font-size: 15px; }
+.wx .sm { font-family: var(--f-mono); font-size: 12px; }
+
+/* 시간별 강수 띠: 10~20시, 막대 높이 = mm (2mm = 꽉 참) */
+.hourly { padding: 0 18px 12px; display: grid; gap: 4px; }
+.hourly .lbl { font-family: var(--f-mono); font-size: 11px; color: var(--muted); }
+.bars { display: grid; grid-template-columns: repeat(11, minmax(0, 1fr)); gap: 3px; align-items: end; height: 46px; border-bottom: 1px solid var(--rule); }
+.bars span { background: var(--bar); border-radius: 3px 3px 0 0; min-height: 2px; }
+.bars span.dry { background: var(--rule); }
+.ticks { display: grid; grid-template-columns: repeat(11, minmax(0, 1fr)); gap: 3px; font-family: var(--f-mono); font-size: 10.5px; color: var(--muted); text-align: center; }
+
+.stops { list-style: none; margin: 0; padding: 6px 18px 16px; display: grid; gap: 9px; }
+.stops li { position: relative; padding-left: 22px; font-size: 14.5px; line-height: 1.45; }
+.stops li::before { content: ""; position: absolute; left: 2px; top: 6px; width: 10px; height: 10px; border-radius: 50%; background: var(--surface); border: 2.5px solid var(--line); }
+.stops li.fixed::before { background: var(--line); }
+.stops li:not(:last-child)::after { content: ""; position: absolute; left: 7px; top: 18px; bottom: -11px; width: 2.5px; background: var(--line); opacity: .3; }
+.t { font-family: var(--f-mono); font-size: 12.5px; color: var(--muted); margin-right: 6px; font-variant-numeric: tabular-nums; }
+.sub { display: block; font-size: 12.5px; color: var(--muted); }
+.day-foot { border-top: 1px solid var(--rule); padding: 10px 18px 12px; font-size: 12.5px; color: var(--muted); }
+
+.legend { display: flex; gap: 16px; flex-wrap: wrap; font-size: 12.5px; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.legend i { width: 10px; height: 10px; border-radius: 50%; border: 2.5px solid var(--muted); display: inline-block; }
+.legend i.f { background: var(--muted); }
+
+.lower { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 16px; }
+.panel { background: var(--surface); border: 1px solid var(--rule); border-radius: 12px; padding: 18px 18px 8px; display: grid; gap: 10px; align-content: start; min-width: 0; }
+.note { font-size: 12.5px; color: var(--muted); margin: 0; }
+.scroll { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+th { text-align: left; font-weight: 500; font-size: 12px; color: var(--muted); padding: 6px 8px 6px 0; border-bottom: 1px solid var(--rule); white-space: nowrap; }
+td { padding: 8px 8px 8px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+tr:last-child td { border-bottom: none; }
+tr.grp td { font-family: var(--f-mono); font-size: 11px; letter-spacing: .08em; color: var(--muted); padding-top: 14px; border-bottom: none; }
+td.num { font-family: var(--f-mono); font-size: 12.5px; white-space: nowrap; font-variant-numeric: tabular-nums; color: var(--muted); }
+.when { font-size: 11.5px; font-weight: 700; padding: 2px 8px; border-radius: 999px; white-space: nowrap; }
+.when.r { color: var(--rain); background: var(--tint-rain); }
+.when.s { color: var(--sun); background: var(--tint-sun); }
+.when.n { color: var(--muted); background: var(--bg); }
+.st { font-size: 12px; font-weight: 700; padding: 2px 8px; border-radius: 999px; white-space: nowrap; }
+.st.ok { color: var(--ok); background: var(--tint-ok); }
+.st.todo { color: var(--todo); background: var(--tint-todo); }
+a { color: inherit; text-underline-offset: 3px; }
+.back { font-size: 13px; color: var(--muted); text-decoration: none; }
+.back:hover { text-decoration: underline; }
+:root { padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+body { margin: 0; }
+footer { font-size: 12.5px; color: var(--muted); }
+
+@media (max-width: 760px) {
+  .days, .lower { grid-template-columns: minmax(0, 1fr); }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <a class="back" href="../../">← mkk4726 pages</a>
+    <div class="eyebrow">Gongju · 1박 2일 · 2026.11.14 – 11.15</div>
+    <h1>공주여행 일정표</h1>
+    <div class="facts">
+      <span><b>11/14(토) – 11/15(일)</b> 1박 2일</span>
+      <span>공주 원도심 · 공산성 · 무령왕릉</span>
+      <span>서울 ↔ 공주 <b>고속버스</b></span>
+    </div>
+    <p class="thesis">토요일은 하루 종일 비, 일요일은 맑음. 그래서 <b class="r">토요일은 원도심 실내</b>(식당·카페·책방·소품샵)로 보내고, <b class="s">공산성과 무령왕릉은 일요일</b>로 미뤘다.</p>
+    <div class="legend" aria-label="표시 설명">
+      <span><i class="f"></i>예약 완료</span>
+      <span><i></i>제안 (미확정)</span>
+    </div>
+  </header>
+
+  <section class="days" aria-label="날짜별 일정">
+    <article class="day rain">
+      <div class="day-top">
+        <div>
+          <div class="date">11/14<small>토</small></div>
+          <div class="theme">비 오는 날 · 원도심 실내 위주</div>
+        </div>
+        <div class="wx"><span class="big">하루 종일 비</span><span class="sm">10–15°C · 16.6mm · 99%</span></div>
+      </div>
+      <div class="hourly" aria-label="시간별 예상 강수량, 10시부터 20시까지">
+        <span class="lbl">시간별 강수량 (mm) · 12–14시가 가장 많음</span>
+        <div class="bars">
+          <span style="height:70%" title="10시 1.4mm"></span>
+          <span style="height:55%" title="11시 1.1mm"></span>
+          <span style="height:90%" title="12시 1.8mm"></span>
+          <span style="height:83%" title="13시 1.65mm"></span>
+          <span style="height:95%" title="14시 1.9mm"></span>
+          <span style="height:48%" title="15시 0.95mm"></span>
+          <span style="height:35%" title="16시 0.7mm"></span>
+          <span style="height:35%" title="17시 0.7mm"></span>
+          <span style="height:45%" title="18시 0.9mm"></span>
+          <span style="height:30%" title="19시 0.6mm"></span>
+          <span style="height:15%" title="20시 0.3mm"></span>
+        </div>
+        <div class="ticks"><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span><span>15</span><span>16</span><span>17</span><span>18</span><span>19</span><span>20</span></div>
+      </div>
+      <ul class="stops">
+        <li class="fixed"><span class="t">11:05</span>서울경부 출발<span class="sub">12:35 공주터미널 도착</span></li>
+        <li><span class="t">12:40</span>택시로 원도심<span class="sub">약 10분 (추정)</span></li>
+        <li><span class="t">13:00</span>점심 · 중동식당<span class="sub">또는 공산성 본가</span></li>
+        <li><span class="t">14:00</span>카페 · 베이커리 밤마을 또는 Bameu<span class="sub">비가 가장 많이 오는 시간, 실내에서 쉬기</span></li>
+        <li><span class="t">15:00</span>중동성당 → 가가책방 · 고사리잡화점 · 단편선<span class="sub">우산 들고 짧게 걷기</span></li>
+        <li><span class="t">16:30</span>공주산성시장<span class="sub">간식·저녁거리</span></li>
+        <li><span class="t">17:00</span>숙소로 이동, 체크인</li>
+        <li><span class="t">저녁</span>숙소에서 쉬기<span class="sub">시장에서 사 온 것으로</span></li>
+      </ul>
+      <div class="day-foot">해 지는 시간 17:23 · 운영시간·휴무일 아직 확인 안 함</div>
+    </article>
+
+    <article class="day sun">
+      <div class="day-top">
+        <div>
+          <div class="date">11/15<small>일</small></div>
+          <div class="theme">맑은 날 · 야외 유적</div>
+        </div>
+        <div class="wx"><span class="big">맑음</span><span class="sm">8–18°C · 비 없음</span></div>
+      </div>
+      <div class="hourly" aria-label="시간별 예상 강수량, 10시부터 20시까지, 모두 0mm">
+        <span class="lbl">시간별 강수량 (mm) · 하루 종일 0</span>
+        <div class="bars">
+          <span class="dry"></span><span class="dry"></span><span class="dry"></span><span class="dry"></span><span class="dry"></span><span class="dry"></span><span class="dry"></span><span class="dry"></span><span class="dry"></span><span class="dry"></span><span class="dry"></span>
+        </div>
+        <div class="ticks"><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span><span>15</span><span>16</span><span>17</span><span>18</span><span>19</span><span>20</span></div>
+      </div>
+      <ul class="stops">
+        <li><span class="t">아침</span>느긋하게 체크아웃</li>
+        <li><span class="t">오전</span>원도심으로 이동</li>
+        <li><span class="t">11:30</span>공산성 성곽길<span class="sub">1–1.5시간</span></li>
+        <li><span class="t">12:45</span>점심 · 청양분식<span class="sub">또는 공산성 본가</span></li>
+        <li><span class="t">13:40</span>무령왕릉 · 왕릉원<span class="sub">약 1시간</span></li>
+        <li><span class="t">14:40</span>베이커리 밤마을<span class="sub">밤 빵 포장</span></li>
+        <li><span class="t">15:00</span>택시로 공주터미널<span class="sub">약 10분 (추정)</span></li>
+        <li class="fixed"><span class="t">15:30</span>공주 출발<span class="sub">17:00 서울경부 도착</span></li>
+      </ul>
+      <div class="day-foot">빠듯하면 무령왕릉을 짧게 보거나 뺀다</div>
+    </article>
+  </section>
+
+  <section class="lower">
+    <div class="panel">
+      <h2>저장해 둔 곳</h2>
+      <p class="note">미리 저장해 둔 12곳. 전부 원도심(공산성 ~ 중동)에 모여 있어 걸어서 묶어 다닐 수 있다.</p>
+      <div class="scroll">
+        <table>
+          <thead><tr><th>장소</th><th>종류</th><th>평점</th><th>언제</th></tr></thead>
+          <tbody>
+            <tr class="grp"><td colspan="4">볼거리</td></tr>
+            <tr><td>공산성</td><td>성곽 · 백제역사유적</td><td class="num">4.5</td><td><span class="when s">일</span></td></tr>
+            <tr><td>무령왕릉</td><td>왕릉 · 백제역사유적</td><td class="num">4.3</td><td><span class="when s">일</span></td></tr>
+            <tr><td>공주 중동성당</td><td>성당</td><td class="num">4.5</td><td><span class="when r">토</span></td></tr>
+            <tr><td>공주산성시장</td><td>전통시장</td><td class="num">4.0</td><td><span class="when r">토</span></td></tr>
+            <tr class="grp"><td colspan="4">먹을 곳</td></tr>
+            <tr><td>중동식당</td><td>한식</td><td class="num">4.6</td><td><span class="when r">토</span></td></tr>
+            <tr><td>공산성 본가</td><td>한식 · 1–2만 원</td><td class="num">3.8</td><td><span class="when n">대안</span></td></tr>
+            <tr><td>청양분식</td><td>분식 · 1만 원 이하</td><td class="num">4.1</td><td><span class="when s">일</span></td></tr>
+            <tr class="grp"><td colspan="4">카페 · 빵</td></tr>
+            <tr><td>베이커리 밤마을</td><td>베이커리</td><td class="num">4.2</td><td><span class="when r">토</span> <span class="when s">일</span></td></tr>
+            <tr><td>Bameu</td><td>카페</td><td class="num">3.9</td><td><span class="when n">대안</span></td></tr>
+            <tr class="grp"><td colspan="4">책방 · 소품</td></tr>
+            <tr><td>가가책방</td><td>책방</td><td class="num">5.0</td><td><span class="when r">토</span></td></tr>
+            <tr><td>고사리잡화점</td><td>잡화점</td><td class="num">4.0</td><td><span class="when r">토</span></td></tr>
+            <tr><td>단편선</td><td>소품샵</td><td class="num">4.5</td><td><span class="when r">토</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2>챙길 것</h2>
+      <p class="note">출발 전에 확인</p>
+      <div class="scroll">
+        <table>
+          <thead><tr><th>항목</th><th>언제</th></tr></thead>
+          <tbody>
+            <tr><td>우산 · 젖어도 되는 신발<span class="sub">토요일 하루 종일 비</span></td><td><span class="st todo">짐 쌀 때</span></td></tr>
+            <tr><td>날씨 다시 보기<span class="sub">기상청 날씨누리</span></td><td><span class="st todo">11/13 금</span></td></tr>
+            <tr><td>식당·가게 운영시간 · 휴무일</td><td><span class="st todo">11/13 금</span></td></tr>
+            <tr><td>공주터미널 ↔ 원도심 이동<span class="sub">택시 약 10분 (추정)</span></td><td><span class="st ok">택시</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <footer>날씨는 11/11에 Open-Meteo로 본 공주 원도심 예보. 3일 뒤 예보라 바뀔 수 있다. 이동 시간은 추정치, 일정은 제안 단계. 원본은 Obsidian vault의 공주여행 노트.</footer>
+</div>
+</body>
+</html>
