@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>영국여행 일정표</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: 노선도처럼 읽는 10일 — 주차별 5칸 그리드. 날짜를 누르면 오른쪽(폰에선 아래)에서 그날의 시간표가 열림 */
+:root {
+  --bg: #f6f7f9; --surface: #ffffff; --ink: #16202e; --muted: #5b6676; --rule: #dfe3ea;
+  --fly: #1c3f94; --show: #c8102e; --trip: #00843d; --city: #0098d4;
+  --night: #2b3445; --night-ink: #e9edf5;
+  --tint-show: #fbe8eb; --tint-trip: #e3f3ea; --tint-fly: #e6ebf6; --tint-city: #e3f3fa;
+  --todo: #b45309; --tint-todo: #fdf0dc; --scrim: rgba(15, 20, 28, .45);
+  --f-display: "Jost", "Noto Sans KR", system-ui, sans-serif;
+  --f-body: "Noto Sans KR", "Apple SD Gothic Neo", system-ui, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f141c; --surface: #171e29; --ink: #e8edf4; --muted: #9aa6b8; --rule: #2a3343;
+    --fly: #7d9cf0; --show: #ff6b7f; --trip: #4cc685; --city: #4fc3f0;
+    --night: #0b1017; --night-ink: #dfe6f1;
+    --tint-show: #3a1a21; --tint-trip: #12301f; --tint-fly: #1a2442; --tint-city: #10303d;
+    --todo: #f0a54a; --tint-todo: #3a2a12; --scrim: rgba(0, 0, 0, .6);
+    color-scheme: dark;
+  }
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: var(--f-body); font-size: 15px; line-height: 1.55;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 32px 56px;
+}
+a { color: inherit; }
+.wrap { max-width: 1180px; margin: 0 auto; display: grid; gap: 36px; }
+h1, h2, h3 { font-family: var(--f-display); text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(28px, 4.2vw, 44px); font-weight: 700; letter-spacing: -0.01em; line-height: 1.15; }
+h2 { font-size: 20px; font-weight: 600; }
+.eyebrow { font-family: var(--f-mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.back { font-size: 13px; color: var(--muted); text-decoration: none; }
+.back:hover { text-decoration: underline; }
+
+header { display: grid; gap: 14px; }
+.facts { display: flex; flex-wrap: wrap; gap: 8px 22px; color: var(--muted); font-size: 14px; }
+.facts b { color: var(--ink); font-weight: 500; }
+.legend { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 13px; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 7px; }
+.legend i { width: 22px; height: 6px; border-radius: 3px; display: inline-block; }
+.daylight { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; font-size: 13px; color: var(--muted); }
+.sunbar { position: relative; width: 220px; max-width: 100%; height: 10px; border-radius: 5px; background: var(--night); overflow: hidden; flex: none; }
+.sunbar::after { content: ""; position: absolute; top: 0; bottom: 0; left: calc(8 / 24 * 100%); width: calc(7.85 / 24 * 100%); background: #f2c14e; }
+.hint { font-size: 13px; color: var(--muted); }
+
+.week { display: grid; gap: 12px; }
+.week-head { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.days { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; }
+.day {
+  background: var(--surface); border: 1px solid var(--rule); border-radius: 10px;
+  display: grid; grid-template-rows: auto 1fr auto; overflow: hidden; min-width: 0;
+  text-decoration: none; color: inherit; transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+}
+.day:hover { transform: translateY(-2px); border-color: var(--line); box-shadow: 0 6px 18px rgba(0,0,0,.08); }
+.day:focus-visible { outline: 3px solid var(--line); outline-offset: 2px; }
+.day.fly  { --line: var(--fly);  --tint: var(--tint-fly); }
+.day.show { --line: var(--show); --tint: var(--tint-show); }
+.day.trip { --line: var(--trip); --tint: var(--tint-trip); }
+.day.city { --line: var(--city); --tint: var(--tint-city); }
+.day-top { border-top: 6px solid var(--line); padding: 12px 14px 8px; display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+.date { font-family: var(--f-display); font-size: 26px; font-weight: 600; line-height: 1; font-variant-numeric: tabular-nums; }
+.date small { font-size: 15px; font-weight: 500; color: var(--muted); margin-left: 4px; }
+.tag { font-size: 11.5px; font-weight: 700; color: var(--line); background: var(--tint); padding: 3px 8px; border-radius: 999px; white-space: nowrap; }
+
+.stops { list-style: none; margin: 0; padding: 4px 14px 12px; display: grid; gap: 7px; align-content: start; }
+.stops li { position: relative; padding-left: 20px; font-size: 14px; line-height: 1.45; }
+.stops li::before { content: ""; position: absolute; left: 2px; top: 6px; width: 9px; height: 9px; border-radius: 50%; background: var(--surface); border: 2.5px solid var(--line); }
+.stops li:not(:last-child)::after { content: ""; position: absolute; left: 6.5px; top: 17px; bottom: -9px; width: 2.5px; background: var(--line); opacity: .35; }
+.t { font-family: var(--f-mono); font-size: 12px; color: var(--muted); margin-right: 4px; font-variant-numeric: tabular-nums; }
+.more { padding: 0 14px 10px; font-size: 12px; color: var(--line); font-weight: 700; }
+
+.eve { background: var(--night); color: var(--night-ink); padding: 11px 14px 13px; display: grid; gap: 3px; }
+.eve .lbl { font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; opacity: .65; }
+.eve .what { font-size: 14px; font-weight: 500; }
+.eve .what.big { font-family: var(--f-display); font-size: 17px; font-weight: 600; }
+.eve .where { font-size: 12.5px; opacity: .75; }
+.eve.show-eve { box-shadow: inset 4px 0 0 var(--show); }
+
+.panel { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 18px 18px 8px; display: grid; gap: 10px; min-width: 0; }
+.tablewrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+th { text-align: left; font-weight: 500; font-size: 12px; color: var(--muted); padding: 6px 10px 6px 0; border-bottom: 1px solid var(--rule); white-space: nowrap; }
+td { padding: 9px 10px 9px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+tr:last-child td { border-bottom: none; }
+td.num { font-family: var(--f-mono); font-size: 13px; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--show); margin-right: 8px; vertical-align: 1px; }
+.note { font-size: 12.5px; color: var(--muted); margin: 0; }
+footer { font-size: 12.5px; color: var(--muted); }
+
+/* day sheet */
+dialog#sheet {
+  border: none; padding: 0; margin: 0 0 0 auto; height: 100%; max-height: 100%;
+  width: min(560px, 100%); max-width: 100%; background: var(--surface); color: var(--ink);
+  box-shadow: -10px 0 40px rgba(0,0,0,.18);
+}
+dialog#sheet::backdrop { background: var(--scrim); }
+dialog#sheet[open] { animation: slide .22s ease-out; }
+@keyframes slide { from { transform: translateX(40px); opacity: .4; } to { transform: none; opacity: 1; } }
+.sheet { display: grid; grid-template-rows: auto 1fr auto; height: 100%; }
+.sheet-head {
+  border-top: 8px solid var(--line); padding: calc(18px + env(safe-area-inset-top, 0px)) 22px 16px;
+  display: grid; gap: 6px; border-bottom: 1px solid var(--rule);
+}
+.sheet-head .row { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+.sheet-head h2 { font-size: 26px; }
+.sheet-head p { margin: 0; color: var(--muted); font-size: 14px; }
+.close { flex: none; border: 1px solid var(--rule); background: var(--surface); color: var(--ink); border-radius: 8px; width: 36px; height: 36px; font-size: 20px; line-height: 1; cursor: pointer; }
+.close:focus-visible, .nav button:focus-visible { outline: 3px solid var(--line); outline-offset: 2px; }
+.sheet-body { overflow-y: auto; padding: 18px 22px 24px; display: grid; gap: 22px; align-content: start; }
+.timeline { list-style: none; margin: 0; padding: 0; display: grid; }
+.timeline li { display: grid; grid-template-columns: 56px 22px minmax(0, 1fr); column-gap: 8px; }
+.timeline .tm { font-family: var(--f-mono); font-size: 12.5px; color: var(--muted); padding-top: 2px; text-align: right; font-variant-numeric: tabular-nums; }
+.timeline .rail { position: relative; }
+.timeline .rail::before { content: ""; position: absolute; left: 6px; top: 5px; width: 11px; height: 11px; border-radius: 50%; background: var(--surface); border: 3px solid var(--line); box-sizing: border-box; }
+.timeline li:not(:last-child) .rail::after { content: ""; position: absolute; left: 10px; top: 18px; bottom: -2px; width: 3px; background: var(--line); opacity: .3; }
+.timeline li.key .rail::before { background: var(--line); }
+.timeline .bd { padding-bottom: 18px; min-width: 0; }
+.timeline .ti { font-weight: 700; }
+.timeline .ds { color: var(--muted); font-size: 14px; }
+.timeline .ds a { color: var(--line); }
+.box { background: var(--tint); border-radius: 10px; padding: 14px 16px; display: grid; gap: 6px; }
+.box h3 { font-size: 15px; font-weight: 600; color: var(--line); }
+.box ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; font-size: 14px; }
+.links { display: flex; flex-wrap: wrap; gap: 8px; }
+.links a { font-size: 13px; border: 1px solid var(--rule); border-radius: 999px; padding: 4px 11px; text-decoration: none; }
+.links a:hover { border-color: var(--line); color: var(--line); }
+.nav { display: flex; justify-content: space-between; gap: 10px; padding: 12px 22px calc(12px + env(safe-area-inset-bottom, 0px)); border-top: 1px solid var(--rule); }
+.nav button { border: 1px solid var(--rule); background: var(--surface); color: var(--ink); border-radius: 8px; padding: 8px 14px; font: inherit; font-size: 14px; cursor: pointer; }
+.nav button:disabled { opacity: .35; cursor: default; }
+
+@media (max-width: 1000px) { .days { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 760px) { .days { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 480px) {
+  .days { grid-template-columns: minmax(0, 1fr); }
+  dialog#sheet { width: 100%; }
+  .timeline li { grid-template-columns: 46px 22px minmax(0, 1fr); }
+}
+@media (prefers-reduced-motion: reduce) { .day, dialog#sheet[open] { transition: none; animation: none; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <a class="back" href="../../">← mkk4726 pages</a>
+    <div class="eyebrow">London · Oxford · Manchester — Dec 2026</div>
+    <h1>영국여행 일정표</h1>
+    <div class="facts">
+      <span><b>12/12(토) – 12/21(월)</b> 현지 10일</span>
+      <span>런던 베이스</span>
+      <span>뮤지컬 <b>5편</b> · 당일치기 <b>2번</b></span>
+    </div>
+    <div class="legend" aria-label="색 설명">
+      <span><i style="background:var(--fly)"></i>비행</span>
+      <span><i style="background:var(--show)"></i>뮤지컬 있는 날</span>
+      <span><i style="background:var(--trip)"></i>당일치기</span>
+      <span><i style="background:var(--city)"></i>런던 관광만</span>
+    </div>
+    <div class="daylight">
+      <span class="sunbar" aria-hidden="true"></span>
+      <span>12월 런던은 해가 <b>08:00 무렵 뜨고 15:50 무렵</b> 짐. 야외 일정은 오전에.</span>
+    </div>
+    <div class="hint">날짜 칸을 누르면 그날 시간표가 열려요.</div>
+  </header>
+
+  <section class="week" aria-labelledby="w1">
+    <div class="week-head"><h2 id="w1">1주차</h2><span class="eyebrow">12/12 – 12/16</span></div>
+    <div class="days" id="days-1"></div>
+  </section>
+  <section class="week" aria-labelledby="w2">
+    <div class="week-head"><h2 id="w2">2주차</h2><span class="eyebrow">12/17 – 12/21</span></div>
+    <div class="days" id="days-2"></div>
+  </section>
+
+  <section class="panel" aria-labelledby="mus">
+    <h2 id="mus">뮤지컬 5편</h2>
+    <p class="note">공연 요일·시간은 판매처 기준. 예매 전 공식 사이트에서 다시 확인.</p>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>날짜</th><th>작품</th><th>극장</th><th>길이</th></tr></thead>
+        <tbody>
+          <tr><td class="num">12/14 월 19:30</td><td><span class="dot"></span>레미제라블</td><td>Sondheim</td><td class="num">2h50</td></tr>
+          <tr><td class="num">12/15 화 19:30</td><td><span class="dot"></span>위키드</td><td>Apollo Victoria</td><td class="num">2h45</td></tr>
+          <tr><td class="num">12/17 목 19:30</td><td><span class="dot"></span>해밀턴</td><td>Victoria Palace</td><td class="num">2h45</td></tr>
+          <tr><td class="num">12/18 금 19:30</td><td><span class="dot"></span>오페라의 유령</td><td>His Majesty's</td><td class="num">2h30</td></tr>
+          <tr><td class="num">12/20 일 14:30</td><td><span class="dot"></span>라이언 킹</td><td>Lyceum</td><td class="num">2h30</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <footer>제안 단계 일정이라 바뀔 수 있음. 운영 시간·공연 회차·기차 시간은 가기 전에 공식 사이트에서 확인.</footer>
+</div>
+
+<dialog id="sheet" aria-labelledby="sheet-title">
+  <div class="sheet" id="sheet-inner">
+    <div class="sheet-head">
+      <div class="row">
+        <div>
+          <div class="eyebrow" id="sheet-eyebrow"></div>
+          <h2 id="sheet-title"></h2>
+        </div>
+        <button class="close" id="sheet-close" aria-label="닫기">×</button>
+      </div>
+      <p id="sheet-sub"></p>
+    </div>
+    <div class="sheet-body" id="sheet-body"></div>
+    <div class="nav">
+      <button id="prev">← 전날</button>
+      <button id="next">다음 날 →</button>
+    </div>
+  </div>
+</dialog>
+
+<script>
+const DAYS = [
+  { id: "d1212", date: "12/12", dow: "토", kind: "fly", tag: "도착", title: "런던 도착",
+    sub: "낮 비행기로 도착해서 가볍게 야경만. 시차 적응이 우선.",
+    stops: [["09:40", "인천 출발"], ["15:35", "히드로 도착"], ["", "시내로 이동, 짐 풀기"]],
+    eve: { lbl: "저녁", what: "웨스트민스터 야경 · 펍 저녁", where: "피곤하면 생략" },
+    timeline: [
+      ["09:40", "인천 출발", "약 14시간 비행. 런던 시간에 맞춰 기내에서 너무 많이 자지 않기."],
+      ["15:35", "히드로 도착", "한국 여권은 자동출입국 게이트(ePassport gates) 이용 가능.", true],
+      ["16:30", "지하철로 시내 이동", "피카딜리선, 약 1시간. 컨택리스 카드나 애플페이로 개찰구에 바로 탭."],
+      ["18:00", "체크인 · 휴식", ""],
+      ["19:00", "웨스트민스터 야경 산책", "빅벤 · 국회의사당 → 웨스트민스터 다리 건너기(강 건너에서 보는 야경이 제일 좋음) → 사우스뱅크 따라 런던아이 → 사우스뱅크 겨울 마켓에서 뱅쇼 한 잔. 1~1.5시간.", true],
+      ["20:00", "펍 저녁", "피시앤칩스나 파이 + 에일. 토요일 저녁이라 붐비면 마켓 길거리 음식도 괜찮음."],
+      ["22:00", "취침", "도착일 낮잠 없이 22시 넘어서 자기."]
+    ],
+    tips: ["12월 저녁은 쌀쌀하고 비가 잦음. 외투와 우산.", "붐비는 곳에서 걸으며 휴대폰 보지 않기. 날치기가 저녁 6–10시에 가장 많음."],
+    links: [] },
+
+  { id: "d1213", date: "12/13", dow: "일", kind: "city", tag: "시차 적응", title: "미술관과 소호",
+    sub: "공연 없이 걷는 날. 오전은 여유 있게 시작.",
+    stops: [["", "테이트 브리턴"], ["", "내셔널 갤러리"], ["", "소호 · 코벤트 가든"]],
+    eve: { lbl: "저녁", what: "Ain't Nothin' But 블루스 바", where: "또는 휴식" },
+    timeline: [
+      ["10:30", "테이트 브리턴", "템스강변 영국 미술관. 터너 컬렉션과 라파엘전파. 무료.", true],
+      ["12:30", "점심", ""],
+      ["13:30", "내셔널 갤러리", "트라팔가 광장. 13~20세기 초 서양 미술 거장들. 무료.", true],
+      ["16:00", "소호 · 코벤트 가든 산책", "크리스마스 장식 구경. 해가 일찍 져서 조명이 일찍 켜짐."],
+      ["19:00", "Ain't Nothin' But", "소호의 정통 블루스 바. 일요일은 잼 세션. 좁아서 금방 차니 일찍 가기."]
+    ],
+    tips: ["시차 2일차라 오후에 졸릴 수 있음. 카페에서 쉬어 가기."],
+    links: [["테이트 브리턴", "https://www.tate.org.uk/visit/tate-britain"], ["내셔널 갤러리", "https://www.nationalgallery.org.uk/"]] },
+
+  { id: "d1214", date: "12/14", dow: "월", kind: "show", tag: "뮤지컬 1", title: "대영박물관 · 레미제라블",
+    sub: "월요일은 레미제라블·해밀턴·오페라의 유령만 공연.",
+    stops: [["", "대영박물관"], ["", "블룸즈버리 점심"]],
+    eve: { lbl: "19:30", what: "레미제라블", where: "Sondheim Theatre", show: true },
+    timeline: [
+      ["10:00", "대영박물관", "로제타석, 이집트 미라, 파르테논 조각. 다 보려면 하루도 모자라니 3~4시간만. 무료.", true],
+      ["13:30", "블룸즈버리에서 점심", ""],
+      ["15:00", "숙소에서 휴식", "공연이 22시 넘어 끝나서 저녁 전에 한 번 쉬기."],
+      ["18:30", "극장 도착", "Sondheim Theatre, 샤프츠버리 애비뉴."],
+      ["19:30", "레미제라블", "약 2시간 50분, 22:20쯤 끝남. 넘버를 미리 들어 두면 훨씬 잘 들어옴.", true]
+    ],
+    tips: ["예매할 때 restricted view(시야 제한) 좌석인지 확인."],
+    links: [["대영박물관", "https://www.britishmuseum.org/"], ["레미제라블", "https://www.lesmis.com/london"]] },
+
+  { id: "d1215", date: "12/15", dow: "화", kind: "show", tag: "뮤지컬 2", title: "사우스 켄싱턴 · 위키드",
+    sub: "박물관 세 곳이 모여 있는 동네.",
+    stops: [["", "자연사 박물관"], ["", "V&A"], ["", "Royal College of Music Museum"]],
+    eve: { lbl: "19:30", what: "위키드", where: "Apollo Victoria", show: true },
+    timeline: [
+      ["10:00", "자연사 박물관", "공룡과 힌츠 홀의 고래 뼈. 문 열 때 가야 덜 붐빔. 무료.", true],
+      ["13:00", "V&A", "장식 예술·디자인·패션 박물관. 카페 건물 자체가 볼거리. 무료.", true],
+      ["15:30", "Royal College of Music Museum", "왕립음악대학 악기 컬렉션. 운영 요일 확인."],
+      ["18:30", "극장 도착", "Apollo Victoria, 빅토리아역 바로 앞."],
+      ["19:30", "위키드", "약 2시간 45분. 무대가 화려해서 1층 중앙보다 약간 뒤도 좋음.", true]
+    ],
+    tips: ["사우스 켄싱턴역에서 박물관까지 지하 통로로 연결돼 비 오는 날 좋음."],
+    links: [["자연사 박물관", "https://www.nhm.ac.uk/"], ["V&A", "https://www.vam.ac.uk/"], ["위키드", "https://www.wickedthemusical.co.uk/"]] },
+
+  { id: "d1216", date: "12/16", dow: "수", kind: "trip", tag: "옥스퍼드", title: "옥스퍼드 당일치기",
+    sub: "패딩턴에서 기차로 약 1시간. 해 지기 전에 야외부터.",
+    stops: [["08:30", "패딩턴 출발"], ["", "래드클리프 카메라 · 보들리언"], ["", "칼리지 · 커버드 마켓"], ["", "애슈몰린"], ["17:00", "런던 복귀"]],
+    eve: { lbl: "저녁", what: "로니 스콧 재즈", where: "선택 · 사전 예약" },
+    timeline: [
+      ["08:30", "패딩턴 출발", "GWR, 약 1시간. Off-Peak 표는 당일 구매도 됨."],
+      ["10:00", "래드클리프 카메라 · 보들리언 도서관", "옥스퍼드 하면 떠오르는 그 풍경. 보들리언 내부는 가이드 투어로만 볼 수 있어 미리 예약.", true],
+      ["11:30", "칼리지 둘러보기", "크라이스트 처치 등. 칼리지마다 개방 시간과 입장료가 다르니 전날 확인."],
+      ["13:00", "커버드 마켓에서 점심", "18세기부터 이어진 실내 시장."],
+      ["14:00", "애슈몰린 박물관", "영국에서 가장 오래된 공공 박물관. 해 진 뒤 실내 일정으로 좋음. 무료.", true],
+      ["17:00", "런던행 기차", ""],
+      ["20:00", "로니 스콧 (선택)", "소호의 전설적인 재즈 클럽. 빨리 매진되니 미리 예약. 커버 £15~35 정도."]
+    ],
+    tips: ["해가 15:50쯤 지니 사진은 오전에.", "칼리지가 행사로 갑자기 닫을 수 있음. 한 곳에 목매지 않기."],
+    links: [["보들리언 투어", "https://visit.bodleian.ox.ac.uk/"], ["애슈몰린", "https://www.ashmolean.org/"], ["로니 스콧", "https://www.ronniescotts.co.uk/"]] },
+
+  { id: "d1217", date: "12/17", dow: "목", kind: "show", tag: "뮤지컬 3", title: "음악 성지 · 해밀턴",
+    sub: "비틀즈, 헨드릭스, 캠든까지 음악 따라 걷는 날.",
+    stops: [["", "애비로드 횡단보도"], ["", "Handel & Hendrix"], ["", "캠든 산책"]],
+    eve: { lbl: "19:30", what: "해밀턴", where: "Victoria Palace", show: true },
+    timeline: [
+      ["10:00", "애비로드 횡단보도", "세인트존스우드역. 실제 차가 다니는 도로라 사진 찍을 때 조심. 스튜디오 내부는 공개 안 함.", true],
+      ["12:00", "Handel & Hendrix in London", "메이페어. 헨델과 지미 헨드릭스가 살던 옆집 두 채. 운영 요일 확인."],
+      ["14:30", "캠든 산책", "캠든 마켓, Roundhouse · KOKO 외관. 런던 록·인디의 동네.", true],
+      ["18:30", "극장 도착", "Victoria Palace Theatre."],
+      ["19:30", "해밀턴", "랩 가사가 빠르니 줄거리와 넘버를 미리 듣고 가기. 약 2시간 45분.", true]
+    ],
+    tips: ["캠든 저녁 라이브가 끌리면 Barfly는 12/20로 옮겨 둠."],
+    links: [["Handel & Hendrix", "https://handelhendrix.org/"], ["해밀턴", "https://uk.hamiltonmusical.com/"]] },
+
+  { id: "d1218", date: "12/18", dow: "금", kind: "show", tag: "뮤지컬 4", title: "템스강변 · 오페라의 유령",
+    sub: "다음 날 아침 일찍 기차라 공연 후 바로 귀가.",
+    stops: [["", "테이트 모던"], ["", "버로우 마켓"], ["", "사우스뱅크"]],
+    eve: { lbl: "19:30", what: "오페라의 유령", where: "His Majesty's · 12월 회차 확인", show: true },
+    timeline: [
+      ["10:30", "테이트 모던", "화력발전소를 개조한 현대 미술관. 꼭대기 전망대에서 템스강과 세인트폴. 무료.", true],
+      ["13:00", "버로우 마켓 점심", "테이트 모던에서 걸어서 10분. 금요일이라 붐빔."],
+      ["14:30", "사우스뱅크 · 밀레니엄 브리지", "다리 건너 세인트폴 대성당 외관까지."],
+      ["18:30", "극장 도착", "His Majesty's Theatre, 헤이마켓."],
+      ["19:30", "오페라의 유령", "샹들리에 장면 때문에 1층보다 높은 층이 오히려 좋다는 사람도 많음. 12월 공연 여부 먼저 확인.", true]
+    ],
+    tips: ["다음 날 07:30 기차. 전날 밤 짐과 기차표 챙겨 두기."],
+    links: [["테이트 모던", "https://www.tate.org.uk/visit/tate-modern"], ["오페라의 유령", "https://uk.thephantomoftheopera.com/"]] },
+
+  { id: "d1219", date: "12/19", dow: "토", kind: "trip", tag: "맨체스터", title: "맨체스터 당일치기",
+    sub: "오아시스 성지 + 노던 쿼터 + 크리스마스 마켓.",
+    stops: [["07:30", "유스턴 출발"], ["", "노던 쿼터"], ["", "오아시스 투어"], ["", "존 라일랜즈 도서관"], ["", "크리스마스 마켓"]],
+    eve: { lbl: "저녁", what: "기차로 런던 복귀", where: "막차 시간 확인" },
+    timeline: [
+      ["07:30", "유스턴 출발", "Avanti West Coast, 약 2시간 10분. Advance 표는 지정 열차만 탈 수 있음."],
+      ["09:40", "맨체스터 피카딜리 도착", ""],
+      ["10:00", "노던 쿼터", "Afflecks(매드체스터 시절 옷·음악 아지트), Piccadilly Records, 골목 카페.", true],
+      ["12:00", "점심", ""],
+      ["13:00", "오아시스 투어", "워킹 투어(Wonderwalk, 금·토·일, 약 £15)는 리허설 공간·단골 펍·옛 공연장. 번리지·디즈버리까지 보려면 3시간 버스 투어. 예약 시간에 맞춰 조정.", true],
+      ["16:00", "존 라일랜즈 도서관", "고딕 건축 도서관. 무료. 운영 시간 확인."],
+      ["17:00", "크리스마스 마켓", "알버트 스퀘어 대관람차와 팝업 펍 등 시내 10곳. 12/22까지.", true],
+      ["19:30", "런던행 기차", "라이브(Band on the Wall, Night & Day Café)를 보려면 막차와 맞춰 보기."]
+    ],
+    tips: ["이날 맨시티 홈경기가 있어 시내가 붐빔.", "갤러거 형제가 자란 동네·앨범 커버 집은 사유지라 밖에서만."],
+    links: [["Avanti West Coast", "https://www.avantiwestcoast.co.uk/"], ["존 라일랜즈", "https://www.library.manchester.ac.uk/rylands/"]] },
+
+  { id: "d1220", date: "12/20", dow: "일", kind: "show", tag: "뮤지컬 5", title: "쇼핑 · 라이언 킹",
+    sub: "일요일에 하는 건 라이언 킹 낮 공연뿐.",
+    stops: [["", "리버티 · 카나비 스트리트"], ["14:30", "라이언 킹"]],
+    eve: { lbl: "저녁", what: "캠든 라이브", where: "또는 짐 정리" },
+    timeline: [
+      ["10:00", "리버티 백화점 · 카나비 스트리트", "튜더 양식 백화점과 그 옆 쇼핑 거리. 선물 사기 좋은 날."],
+      ["12:30", "점심", ""],
+      ["13:45", "극장 도착", "Lyceum Theatre, 코벤트 가든 근처."],
+      ["14:30", "라이언 킹", "퍼펫과 무대미술이 볼거리. 대체할 날이 없어 가장 먼저 예매. 약 2시간 30분.", true],
+      ["18:00", "Barfly Camden 또는 짐 정리", "에드 시런·아델이 신인 때 섰던 라이브 펍. 다음 날 출국이라 무리하지 않기."]
+    ],
+    tips: ["귀국편 온라인 체크인은 오늘 해 두기."],
+    links: [["라이언 킹", "https://thelionking.co.uk/"]] },
+
+  { id: "d1221", date: "12/21", dow: "월", kind: "fly", tag: "출국", title: "귀국",
+    sub: "오후 비행기라 오전은 짧게.",
+    stops: [["", "오전 산책"], ["14:00", "공항으로 출발"], ["17:40", "히드로 출발"]],
+    eve: { lbl: "12/22 화", what: "15:10 인천 도착", where: "한국 시간" },
+    timeline: [
+      ["09:30", "웨스트민스터 사원 또는 산책", "사원은 유료, 입장 시간 확인. 피곤하면 근처 산책만."],
+      ["12:00", "점심 · 짐 찾기", ""],
+      ["14:00", "히드로로 출발", "지하철 약 1시간."],
+      ["15:00", "공항 도착", "체크인, 면세."],
+      ["17:40", "히드로 출발", "", true],
+      ["+1일 15:10", "인천 도착", "한국 시간."]
+    ],
+    tips: ["보조배터리는 기내 가방에."],
+    links: [] }
+];
+
+const KIND_COLOR = { fly: "--fly", show: "--show", trip: "--trip", city: "--city" };
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+function card(d) {
+  const stops = d.stops.map(([t, s]) => `<li>${t ? `<span class="t">${esc(t)}</span>` : ""}${esc(s)}</li>`).join("");
+  const e = d.eve;
+  return `<a class="day ${d.kind}" href="#${d.id}" aria-label="${esc(d.date)} ${esc(d.dow)}요일 ${esc(d.title)} 자세히 보기">
+    <div class="day-top"><div class="date">${esc(d.date)}<small>${esc(d.dow)}</small></div><span class="tag">${esc(d.tag)}</span></div>
+    <div><ul class="stops">${stops}</ul><div class="more">시간표 보기 →</div></div>
+    <div class="eve${e.show ? " show-eve" : ""}"><span class="lbl">${esc(e.lbl)}</span><span class="what${e.show ? " big" : ""}">${esc(e.what)}</span><span class="where">${esc(e.where)}</span></div>
+  </a>`;
+}
+document.getElementById("days-1").innerHTML = DAYS.slice(0, 5).map(card).join("");
+document.getElementById("days-2").innerHTML = DAYS.slice(5).map(card).join("");
+
+const sheet = document.getElementById("sheet");
+const inner = document.getElementById("sheet-inner");
+let current = -1;
+
+function render(i) {
+  const d = DAYS[i];
+  current = i;
+  inner.style.setProperty("--line", `var(${KIND_COLOR[d.kind]})`);
+  inner.style.setProperty("--tint", `var(--tint-${d.kind})`);
+  document.getElementById("sheet-eyebrow").textContent = `${d.date} ${d.dow} · ${d.tag}`;
+  document.getElementById("sheet-title").textContent = d.title;
+  document.getElementById("sheet-sub").textContent = d.sub;
+  const tl = d.timeline.map(([tm, ti, ds, key]) =>
+    `<li class="${key ? "key" : ""}"><span class="tm">${esc(tm)}</span><span class="rail"></span><div class="bd"><div class="ti">${esc(ti)}</div>${ds ? `<div class="ds">${esc(ds)}</div>` : ""}</div></li>`).join("");
+  const tips = d.tips.length ? `<div class="box"><h3>챙길 것</h3><ul>${d.tips.map(t => `<li>${esc(t)}</li>`).join("")}</ul></div>` : "";
+  const links = d.links.length ? `<div class="links">${d.links.map(([n, u]) => `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(n)} ↗</a>`).join("")}</div>` : "";
+  const body = document.getElementById("sheet-body");
+  body.innerHTML = `<ol class="timeline">${tl}</ol>${tips}${links}`;
+  body.scrollTop = 0;
+  document.getElementById("prev").disabled = i === 0;
+  document.getElementById("next").disabled = i === DAYS.length - 1;
+}
+
+function openFromHash() {
+  const i = DAYS.findIndex(d => "#" + d.id === location.hash);
+  if (i < 0) { if (sheet.open) sheet.close(); return; }
+  render(i);
+  if (!sheet.open) sheet.showModal();
+}
+function clearHash() {
+  if (location.hash) history.replaceState(null, "", location.pathname + location.search);
+}
+window.addEventListener("hashchange", openFromHash);
+sheet.addEventListener("close", clearHash);
+sheet.addEventListener("click", e => { if (e.target === sheet) sheet.close(); });
+document.getElementById("sheet-close").addEventListener("click", () => sheet.close());
+document.getElementById("prev").addEventListener("click", () => { if (current > 0) location.replace("#" + DAYS[current - 1].id); });
+document.getElementById("next").addEventListener("click", () => { if (current < DAYS.length - 1) location.replace("#" + DAYS[current + 1].id); });
+document.addEventListener("keydown", e => {
+  if (!sheet.open) return;
+  if (e.key === "ArrowLeft") document.getElementById("prev").click();
+  if (e.key === "ArrowRight") document.getElementById("next").click();
+});
+openFromHash();
+</script>
+</body>
+</html>
