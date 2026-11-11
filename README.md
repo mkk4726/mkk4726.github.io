@@ -23,7 +23,6 @@
 | --- | --- | --- |
 | `/trips/uk-2026/` | 영국여행 일정표 (날짜 누르면 시간표 · 동선 지도) | `Development/여행/영국여행/일정/` |
 | `/trips/gongju-2026/` | 공주여행 일정표 (1박 2일, 날씨 반영) | `Development/여행/공주여행/` |
-| `/trips/gongju-2026/moves/` | 공주 구간별 이동 시간 (택시·버스·도보) | `Development/여행/공주여행/공주 이동 시간 정리.md` |
 
 ## legacy/blog
 

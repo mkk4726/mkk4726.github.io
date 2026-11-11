@@ -181,6 +181,25 @@ dialog#sheet[open] { animation: slide .22s ease-out; }
 .pin.stay { border-radius: 6px; background: var(--ink) !important; color: var(--surface); }
 .leaflet-tooltip.leg-tip { font-size: 12px; font-weight: 700; }
 .legs li { line-height: 1.5; }
+/* 시간표 안 장소 사이 "이동" 줄 */
+.timeline li.move .rail::before { width: 7px; height: 7px; left: 8px; top: 9px; border-width: 0; background: var(--line); opacity: .45; }
+.timeline li.move .bd { padding-bottom: 14px; }
+details.mv summary { display: inline-flex; align-items: center; gap: 6px; cursor: pointer; list-style: none; font-size: 12.5px; font-weight: 700; color: var(--line); border: 1px solid var(--rule); border-radius: 999px; padding: 3px 11px; background: var(--surface); }
+details.mv summary::-webkit-details-marker { display: none; }
+details.mv summary::after { content: "▾"; font-size: 10px; }
+details.mv[open] summary::after { content: "▴"; }
+details.mv summary:focus-visible { outline: 3px solid var(--line); outline-offset: 2px; }
+.mv-body { display: grid; gap: 10px; margin-top: 8px; }
+.mv-leg { display: grid; gap: 6px; }
+.mv-leg .nm { font-size: 13px; font-weight: 700; }
+.mv-leg .rec { font-size: 11.5px; font-weight: 700; color: var(--muted); margin-left: 6px; }
+.mv-row { display: grid; grid-template-columns: 36px minmax(0, 1fr) auto; gap: 8px; align-items: start; text-decoration: none; padding: 6px 8px; border-radius: 8px; background: var(--bg); font-size: 13px; }
+a.mv-row:hover { outline: 2px solid var(--line); }
+.mv-row .m { font-size: 11.5px; font-weight: 700; color: var(--line); padding-top: 1px; }
+.mv-row .t { font-family: var(--f-mono); font-weight: 500; font-variant-numeric: tabular-nums; }
+.mv-row .dd { display: block; color: var(--muted); font-size: 12.5px; }
+.mv-row .go { font-size: 11.5px; font-weight: 700; color: var(--line); white-space: nowrap; }
+.mv-note { margin: 0; font-size: 12px; color: var(--muted); }
 .legs .leg-name { font-weight: 700; color: var(--ink); }
 .legs .leg-info { display: block; color: var(--muted); font-size: 12.5px; }
 .legs .leg-links { display: inline-flex; flex-wrap: wrap; gap: 4px 10px; font-size: 12.5px; }
@@ -305,6 +324,11 @@ const LEG_INFO = {
   "daereungwon>hwangridan": "도보 5분 (예시)",
   "bulguksa>seokguram": "버스 15분 · 택시 10분 (예시)"
 };
+// (선택) 구간 상세: 시간표 장소 사이 "이동" 버튼을 누르면 나온다. rec = 추천, modes = [taxi|bus|walk, 시간, 설명], note = 덧붙임
+// 없으면 "이동" 버튼에 LEG_INFO 한 줄과 버스·도보·택시 길찾기 링크만 나온다
+const LEG_DETAIL = {
+  "bulguksa>seokguram": { rec: "버스 (예시)", modes: [["bus", "15분", "12번 버스 (예시)"], ["taxi", "10분", "약 8,000원 (예시)"]] }
+};
 const STOP_PLACES = {
   // 날짜 id → { 시간표 제목(timeline 두 번째 값과 똑같이): [장소 key, ...] }
   d0101: { "신경주역 도착": ["singyeongju"], "대릉원": ["daereungwon"], "황리단길 점심": ["hwangridan"], "첨성대": ["cheomseong"], "동궁과 월지": ["donggung"] },
@@ -320,6 +344,27 @@ const kName = k => encodeURIComponent(PLACES[k].name.replace(/[,/]/g, " "));
 const kakaoPlace = k => PLACES[k].ll ? `https://map.kakao.com/link/map/${kName(k)},${PLACES[k].ll[0]},${PLACES[k].ll[1]}` : "https://map.kakao.com/link/search/" + encodeURIComponent(PLACES[k].q);
 const kakaoDir = (a, b, mode) => `https://map.kakao.com/link/by/${mode}/${kName(a)},${PLACES[a].ll[0]},${PLACES[a].ll[1]}/${kName(b)},${PLACES[b].ll[0]},${PLACES[b].ll[1]}`;
 // 구간별 이동 메모 (LEG_INFO["a>b"])
+// 구간 상세 (LEG_DETAIL["a>b"] = { rec, modes: [[taxi|bus|walk, 시간, 설명]], note })
+const legDetail = (a, b) => (typeof LEG_DETAIL === "undefined" ? {} : LEG_DETAIL)[a + ">" + b];
+const MODE_LABEL = { taxi: ["택시", "car", "driving"], bus: ["버스", "traffic", "transit"], walk: ["도보", "walk", "walking"] };
+function moveRowLink(a, b, m) {
+  const [, km, gm] = MODE_LABEL[m];
+  return useKakao() ? kakaoDir(a, b, km) : gmapDir(a, b) + "&travelmode=" + gm;
+}
+function moveBlock(legsHere) {
+  const one = legsHere.length === 1;
+  const [a0, b0] = legsHere[0];
+  const det0 = legDetail(a0, b0);
+  const label = one ? "이동 · " + (legInfo(a0, b0) || (det0 && det0.rec) || "길찾기") : `이동 ${legsHere.length}구간` + (legsHere.every(([a, b]) => /^도보/.test(legInfo(a, b))) ? " · 다 걸어서" : "");
+  const body = legsHere.map(([a, b]) => {
+    const det = legDetail(a, b);
+    const rows = det && det.modes ? det.modes.map(([m, t, desc]) =>
+      `<a class="mv-row" href="${moveRowLink(a, b, m)}" target="_blank" rel="noopener"><span class="m">${MODE_LABEL[m][0]}</span><span><span class="t">${esc(t)}</span>${desc ? `<span class="dd">${esc(desc)}</span>` : ""}</span><span class="go">${useKakao() ? "카카오맵" : "구글맵"} ↗</span></a>`).join("")
+      : ["bus", "walk", "taxi"].map(m => `<a class="mv-row" href="${moveRowLink(a, b, m)}" target="_blank" rel="noopener"><span class="m">${MODE_LABEL[m][0]}</span><span><span class="dd">${useKakao() ? "카카오맵" : "구글맵"}에서 시간 보기</span></span><span class="go">↗</span></a>`).join("");
+    return `<div class="mv-leg"><div class="nm">${esc(PLACES[a].name)} → ${esc(PLACES[b].name)}${det && det.rec ? `<span class="rec">추천 ${esc(det.rec)}</span>` : ""}</div>${!det && legInfo(a, b) ? `<p class="mv-note">${esc(legInfo(a, b))}</p>` : ""}${rows}${det && det.note ? `<p class="mv-note">${esc(det.note)}</p>` : ""}</div>`;
+  }).join("");
+  return `<li class="move"><span class="tm"></span><span class="rail"></span><div class="bd"><details class="mv"><summary>${esc(label)}</summary><div class="mv-body">${body}</div></details></div></li>`;
+}
 const legInfo = (a, b) => (typeof LEG_INFO === "undefined" ? {} : LEG_INFO)[a + ">" + b] || "";
 // 장소 링크 묶음 (구글 / 카카오)
 const placeLinks = k => `<a href="${gmapSearch(k)}" target="_blank" rel="noopener">구글맵 ↗</a>` + (useKakao() ? ` · <a href="${kakaoPlace(k)}" target="_blank" rel="noopener">카카오맵 ↗</a>` : "");
@@ -427,10 +472,19 @@ function render(i) {
   document.getElementById("sheet-sub").textContent = d.sub;
   const stayRow = label => [label === "출발" ? "출발" : "복귀", label === "출발" ? "숙소에서 출발" : "숙소로 복귀", PLACES[TRIP.stay.key].name, false, [TRIP.stay.key]];
   const rows = [...(startsAtStay(d) ? [stayRow("출발")] : []), ...d.timeline, ...(endsAtStay(d) ? [stayRow("복귀")] : [])];
+  let prevPlace = null;
   const tl = rows.map(([tm, ti, ds, key, auto]) => {
     const pk = auto || (STOP_PLACES[d.id] || {})[ti] || [];
+    // 이 줄로 들어오는 구간들 → 줄 앞에 "이동" 버튼
+    const legsHere = [];
+    for (const k of pk) {
+      if (!PLACES[k].ll) { prevPlace = null; continue; }
+      if (prevPlace && prevPlace !== k) legsHere.push([prevPlace, k]);
+      prevPlace = k;
+    }
+    const mv = legsHere.length ? moveBlock(legsHere) : "";
     const gl = pk.map(k => `<a class="gmap" href="${gmapSearch(k)}" target="_blank" rel="noopener" title="${esc(PLACES[k].name)} 구글맵">${pk.length > 1 ? esc(PLACES[k].name) + " " : ""}${useKakao() ? "구글" : "지도"} ↗</a>` + (useKakao() ? `<a class="gmap" href="${kakaoPlace(k)}" target="_blank" rel="noopener" title="${esc(PLACES[k].name)} 카카오맵">카카오 ↗</a>` : "")).join("");
-    return `<li class="${key ? "key" : ""}"><span class="tm">${esc(tm)}</span><span class="rail"></span><div class="bd"><div class="ti">${esc(ti)}${gl}</div>${ds ? `<div class="ds">${esc(ds)}</div>` : ""}</div></li>`;
+    return mv + `<li class="${key ? "key" : ""}"><span class="tm">${esc(tm)}</span><span class="rail"></span><div class="bd"><div class="ti">${esc(ti)}${gl}</div>${ds ? `<div class="ds">${esc(ds)}</div>` : ""}</div></li>`;
   }).join("");
   const tips = d.tips.length ? `<div class="box"><h3>챙길 것</h3><ul>${d.tips.map(t => `<li>${esc(t)}</li>`).join("")}</ul></div>` : "";
   const links = d.links.length ? `<div class="links">${d.links.map(([n, u]) => `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(n)} ↗</a>`).join("")}</div>` : "";
@@ -442,7 +496,7 @@ function render(i) {
   rb.hidden = !route; if (route) rb.href = route;
   const lg = legs(keys);
   const legsEl = document.getElementById("sheet-legs");
-  legsEl.hidden = !lg.length;
+  legsEl.hidden = true;  // 구간 정보는 시간표 안 '이동' 버튼으로 보여줌
   legsEl.open = useKakao() || lg.some(([a, b]) => legInfo(a, b));
   legsEl.innerHTML = `<summary>구간별 길찾기 (${lg.length}) — 지도에서 선을 눌러도 돼요</summary><ol>${lg.map(([a, b]) => {
     const links = useKakao()
