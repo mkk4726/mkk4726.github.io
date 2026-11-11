@@ -191,6 +191,10 @@ td a:hover { text-decoration: underline; }
 .legs a:hover { text-decoration: underline; }
 .pin.stay { border-radius: 6px; background: var(--ink) !important; color: var(--surface); }
 .leaflet-tooltip.leg-tip { font-size: 12px; font-weight: 700; }
+.legs li { line-height: 1.5; }
+.legs .leg-name { font-weight: 700; color: var(--ink); }
+.legs .leg-info { display: block; color: var(--muted); font-size: 12.5px; }
+.legs .leg-links { display: inline-flex; flex-wrap: wrap; gap: 4px 10px; font-size: 12.5px; }
 .map-note { font-size: 12px; color: var(--muted); margin: 0; }
 .map-wrap { display: grid; gap: 8px; }
 </style>
@@ -227,7 +231,7 @@ td a:hover { text-decoration: underline; }
   <section class="lower">
     <div class="panel">
       <h2>저장해 둔 곳</h2>
-      <p class="note">미리 저장해 둔 12곳과 숙소. 숙소 말고는 전부 원도심(공산성 ~ 중동)에 모여 있어 걸어서 묶어 다닐 수 있다. 이름을 누르면 구글맵.</p>
+      <p class="note">미리 저장해 둔 12곳과 숙소. 숙소 말고는 전부 원도심(공산성 ~ 중동)에 모여 있어 걸어서 묶어 다닐 수 있다. 이름 아래 링크로 구글맵·카카오맵.</p>
       <div class="tablewrap"><table id="saved"></table></div>
     </div>
     <div class="panel">
@@ -274,8 +278,9 @@ td a:hover { text-decoration: underline; }
 // ===== 여행 데이터: 새 여행은 이 아래 4개(TRIP, DAYS, PLACES, STOP_PLACES)와 FIT_REGION만 바꾼다 =====
 // 아래 값은 형식을 보여주는 예시(경주 1박 2일)다.
 const TRIP = {
-  overviewRegion: "gongju",
-  overviewLabel: "공주 전체",
+  overviewRegion: "wondo",
+  overviewLabel: "공주 원도심",
+  kakao: true,
   overviewExclude: [],
   rowSize: 5,
   stay: { key: "stay", start: ["d1115"], end: [] }
@@ -289,12 +294,12 @@ const DAYS = [
     timeline: [
       ["11:05", "서울경부 출발", "서울고속버스터미널(경부선). 고속버스 예매 완료.", true],
       ["12:35", "공주터미널 도착", ""],
-      ["12:40", "택시로 원도심", "약 10분 (추정)."],
+      ["12:40", "원도심으로 이동", "택시 10분 (약 6,900원) 또는 버스 16분 — 터미널 앞 종합버스터미널(옥룡동방면) 정류장에서 125·650·500·502·540번 → 중동사거리(산성시장방면) 하차, 1,500원."],
       ["13:00", "점심 · 중동식당", "또는 공산성 본가.", true],
-      ["14:00", "카페 · Bameu", "또는 베이커리 밤마을. 비가 가장 많이 오는 시간이라 실내에서 쉬기."],
-      ["15:00", "중동성당 → 책방 · 소품샵", "우산 들고 짧게: 중동성당 → 단편선 → 가가책방 → 고사리잡화점.", true],
-      ["16:30", "공주산성시장", "숙소 근처에 먹을 데가 적을 수 있어 간식·저녁거리."],
-      ["17:00", "택시로 숙소 · 체크인", "동학사 쪽, 약 30분 (추정)."],
+      ["14:00", "카페 · Bameu", "중동식당에서 걸어서 10분. 비가 가장 많이 오는 시간이라 실내에서 쉬기. 베이커리 밤마을은 일요일에 들름."],
+      ["15:00", "중동성당 → 책방 · 소품샵", "우산 들고 걷기: Bameu → 중동성당 15분 → 단편선 12분 → 가가책방 5분 → 고사리잡화점 11분. 다 합쳐 걷는 시간 45분쯤.", true],
+      ["16:30", "공주산성시장", "고사리잡화점에서 걸어서 5분. 숙소 근처에 먹을 데가 적을 수 있어 간식·저녁거리."],
+      ["17:00", "숙소로 이동 · 체크인", "택시 28분 (약 27,800원) 또는 350번 버스 40분 — 산성시장(옥룡동,공주고방면) 정류장 → 박정자삼거리(동학사) 하차 후 9분 걷기, 1,500원. 350번은 자주 안 다닐 수 있으니 시간표 먼저 확인. 비 오는 저녁이라 택시 추천."],
       ["저녁", "숙소에서 쉬기", "시장에서 사 온 것 또는 동학사 입구 식당가."]
     ],
     tips: ["우산 · 젖어도 되는 신발.", "식당·가게 운영시간·휴무일은 아직 확인 안 함. 해 지는 시간 17:23."],
@@ -305,13 +310,13 @@ const DAYS = [
     stops: [["아침", "동학사 산책 (선택)"], ["11:30", "공산성"], ["13:40", "무령왕릉"], ["15:30", "공주 출발"]],
     eve: { lbl: "17:00", what: "서울 도착", where: "서울고속버스터미널" },
     timeline: [
-      ["아침", "동학사 산책 (선택)", "숙소 근처. 빠듯하면 생략."],
-      ["체크아웃", "택시로 원도심", "약 30분 (추정). 체크아웃 시간은 예약 내역 확인."],
+      ["아침", "동학사 산책 (선택)", "생각보다 멀다: 숙소에서 걸어서 1시간 9분 (4.2km), 택시 14분 (약 7,700원). 오전 일정이 빠듯하면 숙소 주변만 걷거나 뺀다."],
+      ["체크아웃", "공산성으로 이동", "택시 24분 (약 26,300원) 또는 버스 46분 — 박정자삼거리 정류장에서 350번 → 산성시장 환승 100·102·200·572번 → 공산성, 1,500원. 11:30 도착하려면 택시 11:00, 버스 10:40쯤 출발. 체크아웃 시간은 예약 내역 확인."],
       ["11:30", "공산성 성곽길", "1–1.5시간. 백제역사유적.", true],
-      ["12:45", "점심 · 청양분식", "또는 공산성 본가."],
-      ["13:40", "무령왕릉 · 왕릉원", "약 1시간. 백제역사유적.", true],
-      ["14:40", "베이커리 밤마을", "밤 빵 포장."],
-      ["15:00", "택시로 공주터미널", "약 10분 (추정)."],
+      ["12:45", "점심 · 청양분식", "공산성에서 걸어서 18분 (1.1km). 또는 공산성 바로 앞 공산성 본가."],
+      ["13:40", "무령왕릉 · 왕릉원", "약 1시간. 백제역사유적. 청양분식에서 걸으면 33분이라 택시 4분 (약 4,200원)이나 버스 20분 (108번 등)이 낫다.", true],
+      ["14:40", "베이커리 밤마을", "밤 빵 포장. 무령왕릉에서 걸어서 26분 (1.8km)이라 늦으면 택시."],
+      ["15:00", "터미널로 이동", "택시 11분 (약 7,200원) 또는 200번 버스 11분 — 공산성(신관동 방면) 정류장 → 종합버스터미널, 1,500원. 걸으면 28분."],
       ["15:30", "공주 출발", "고속버스 예매 완료.", true],
       ["17:00", "서울경부 도착", ""]
     ],
@@ -321,33 +326,61 @@ const DAYS = [
 
 // 좌표는 2026-11-11 구글맵 장소 페이지의 플러스코드에서 바꾼 값
 const PLACES = {
-  stay:         { name: "숙소 (미타스야 료칸호텔 공주동학사점)", q: "미타스야 료칸호텔 공주동학사점", ll: [36.368437, 127.254859], region: "gongju", stay: true },
+  stay:         { name: "숙소 (미타스야 료칸호텔 공주동학사점)", q: "미타스야 료칸호텔 공주동학사점", ll: [36.368437, 127.254859], region: "donghak", stay: true },
   seoulterm:    { name: "서울고속버스터미널", q: "서울고속버스터미널 경부선", ll: [37.505412, 127.007078], region: "seoul" },
   terminal:     { name: "공주종합버스터미널", q: "공주종합버스터미널", ll: [36.468438, 127.134859], region: "gongju" },
-  jungdongrest: { name: "중동식당", q: "공주 중동식당", ll: [36.455713, 127.123016], region: "gongju" },
-  bonga:        { name: "공산성 본가", q: "공산성본가", ll: [36.463913, 127.122172], region: "gongju" },
-  bameu:        { name: "Bameu (바므)", q: "바므 공주", ll: [36.451687, 127.121203], region: "gongju" },
-  bamaul:       { name: "베이커리 밤마을", q: "베이커리 밤마을 공주", ll: [36.464738, 127.122984], region: "gongju" },
-  jungdongcath: { name: "공주 중동성당", q: "천주교 공주 중동성당", ll: [36.454787, 127.127453], region: "gongju" },
-  danpyun:      { name: "단편선", q: "단편선 DANPYUNSUN 공주", ll: [36.451113, 127.123734], region: "gongju" },
-  gaga:         { name: "가가책방", q: "가가책방 공주", ll: [36.451937, 127.121922], region: "gongju" },
-  gosari:       { name: "고사리잡화점", q: "고사리잡화점 공주", ll: [36.455863, 127.124172], region: "gongju" },
-  market:       { name: "공주산성시장", q: "공주산성시장", ll: [36.457813, 127.123266], region: "gongju" },
-  donghaksa:    { name: "동학사", q: "동학사 공주", ll: [36.353312, 127.220078], region: "gongju" },
-  gongsan:      { name: "공산성", q: "공산성", ll: [36.464638, 127.124922], region: "gongju" },
-  cheongyang:   { name: "청양분식", q: "청양분식 공주", ll: [36.457687, 127.123828], region: "gongju" },
-  muryeong:     { name: "무령왕릉", q: "무령왕릉", ll: [36.463138, 127.114484], region: "gongju" }
+  jungdongrest: { name: "중동식당", q: "공주 중동식당", ll: [36.455713, 127.123016], region: "wondo" },
+  bonga:        { name: "공산성 본가", q: "공산성본가", ll: [36.463913, 127.122172], region: "wondo" },
+  bameu:        { name: "Bameu (바므)", q: "바므 공주", ll: [36.451687, 127.121203], region: "wondo" },
+  bamaul:       { name: "베이커리 밤마을", q: "베이커리 밤마을 공주", ll: [36.464738, 127.122984], region: "wondo" },
+  jungdongcath: { name: "공주 중동성당", q: "천주교 공주 중동성당", ll: [36.454787, 127.127453], region: "wondo" },
+  danpyun:      { name: "단편선", q: "단편선 DANPYUNSUN 공주", ll: [36.451113, 127.123734], region: "wondo" },
+  gaga:         { name: "가가책방", q: "가가책방 공주", ll: [36.451937, 127.121922], region: "wondo" },
+  gosari:       { name: "고사리잡화점", q: "고사리잡화점 공주", ll: [36.455863, 127.124172], region: "wondo" },
+  market:       { name: "공주산성시장", q: "공주산성시장", ll: [36.457813, 127.123266], region: "wondo" },
+  donghaksa:    { name: "동학사", q: "동학사 공주", ll: [36.353312, 127.220078], region: "donghak" },
+  gongsan:      { name: "공산성", q: "공산성", ll: [36.464638, 127.124922], region: "wondo" },
+  cheongyang:   { name: "청양분식", q: "청양분식 공주", ll: [36.457687, 127.123828], region: "wondo" },
+  muryeong:     { name: "무령왕릉", q: "무령왕릉", ll: [36.463138, 127.114484], region: "wondo" }
+};
+// 구간 이동 시간: 2026-11-11 카카오맵 길찾기로 확인 (버스는 첫 번째 추천 경로, 택시비는 카카오맵 예상)
+const LEG_INFO = {
+  "seoulterm>terminal": "고속버스 1시간 30분 (예매 완료)",
+  "terminal>jungdongrest": "택시 10분 (약 6,900원) · 버스 16분 (125·650번 등)",
+  "jungdongrest>bameu": "도보 10분 (650m)",
+  "bameu>jungdongcath": "도보 15분 (940m)",
+  "jungdongcath>danpyun": "도보 12분 (720m)",
+  "danpyun>gaga": "도보 5분 (310m)",
+  "gaga>gosari": "도보 11분 (680m)",
+  "gosari>market": "도보 5분 (300m)",
+  "market>stay": "택시 28분 (약 27,800원) · 350번 버스 40분",
+  "stay>donghaksa": "도보 1시간 9분 (4.2km) · 택시 14분 (약 7,700원)",
+  "donghaksa>gongsan": "택시 25분 안팎 · 버스 50분 안팎 (350번 → 산성시장 환승)",
+  "gongsan>cheongyang": "도보 18분 (1.1km)",
+  "cheongyang>muryeong": "도보 33분 · 버스 20분 · 택시 4분 (약 4,200원)",
+  "muryeong>bamaul": "도보 26분 (1.8km) · 택시 5분 안팎",
+  "bamaul>terminal": "택시 11분 (약 7,200원) · 200번 버스 11분 · 도보 28분",
+  "terminal>seoulterm": "고속버스 1시간 30분 (예매 완료)"
 };
 const STOP_PLACES = {
   d1114: { "서울경부 출발": ["seoulterm"], "공주터미널 도착": ["terminal"], "점심 · 중동식당": ["jungdongrest"], "카페 · Bameu": ["bameu"],
-           "중동성당 → 책방 · 소품샵": ["jungdongcath", "danpyun", "gaga", "gosari"], "공주산성시장": ["market"], "택시로 숙소 · 체크인": ["stay"] },
+           "중동성당 → 책방 · 소품샵": ["jungdongcath", "danpyun", "gaga", "gosari"], "공주산성시장": ["market"], "숙소로 이동 · 체크인": ["stay"] },
   d1115: { "동학사 산책 (선택)": ["donghaksa"], "공산성 성곽길": ["gongsan"], "점심 · 청양분식": ["cheongyang"], "무령왕릉 · 왕릉원": ["muryeong"],
-           "베이커리 밤마을": ["bamaul"], "택시로 공주터미널": ["terminal"], "서울경부 도착": ["seoulterm"] }
+           "베이커리 밤마을": ["bamaul"], "터미널로 이동": ["terminal"], "서울경부 도착": ["seoulterm"] }
 };
 // 지도 화면을 맞출 지역 (당일치기는 런던역을 빼고 현지만)
-const FIT_REGION = { d1114: "gongju", d1115: "gongju" };  // 당일치기처럼 멀리 가는 날: { 날짜id: "region" } 이면 그 region 장소만 화면에 맞춤
+const FIT_REGION = { d1114: "wondo", d1115: "wondo" };  // 숙소(동학사 쪽)는 15km 떨어져 있어 원도심에 맞춤. 숙소 구간은 지도를 줄이면 보임  // 당일치기처럼 멀리 가는 날: { 날짜id: "region" } 이면 그 region 장소만 화면에 맞춤
 
 const gmapSearch = k => "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(PLACES[k].q);
+// 국내 여행(TRIP.kakao: true)이면 카카오맵 링크도 단다
+const useKakao = () => !!(typeof TRIP !== "undefined" && TRIP.kakao);
+const kName = k => encodeURIComponent(PLACES[k].name.replace(/[,/]/g, " "));
+const kakaoPlace = k => PLACES[k].ll ? `https://map.kakao.com/link/map/${kName(k)},${PLACES[k].ll[0]},${PLACES[k].ll[1]}` : "https://map.kakao.com/link/search/" + encodeURIComponent(PLACES[k].q);
+const kakaoDir = (a, b, mode) => `https://map.kakao.com/link/by/${mode}/${kName(a)},${PLACES[a].ll[0]},${PLACES[a].ll[1]}/${kName(b)},${PLACES[b].ll[0]},${PLACES[b].ll[1]}`;
+// 구간별 이동 메모 (LEG_INFO["a>b"])
+const legInfo = (a, b) => (typeof LEG_INFO === "undefined" ? {} : LEG_INFO)[a + ">" + b] || "";
+// 장소 링크 묶음 (구글 / 카카오)
+const placeLinks = k => `<a href="${gmapSearch(k)}" target="_blank" rel="noopener">구글맵 ↗</a>` + (useKakao() ? ` · <a href="${kakaoPlace(k)}" target="_blank" rel="noopener">카카오맵 ↗</a>` : "");
 // 숙소에서 시작·숙소로 돌아오는 날이면 true
 const startsAtStay = d => !!(TRIP.stay && (TRIP.stay.start || []).includes(d.id));
 const endsAtStay = d => !!(TRIP.stay && (TRIP.stay.end || []).includes(d.id));
@@ -396,16 +429,16 @@ function drawRoute(m, keys, color, fitRegion) {
     const seg = [PLACES[a].ll, PLACES[b].ll];
     const line = L.polyline(seg, { color, weight: 3, opacity: .8, dashArray: "6 6", interactive: false }).addTo(m._routeLayer);
     const hit = L.polyline(seg, { color, weight: 18, opacity: 0 }).addTo(m._routeLayer);
-    hit.bindTooltip(`${esc(PLACES[a].name)} → ${esc(PLACES[b].name)}<br>눌러서 구글맵 길찾기`, { sticky: true, className: "leg-tip" });
+    hit.bindTooltip(`${esc(PLACES[a].name)} → ${esc(PLACES[b].name)}${legInfo(a, b) ? "<br>" + esc(legInfo(a, b)) : ""}<br>눌러서 ${useKakao() ? "카카오맵" : "구글맵"} 길찾기`, { sticky: true, className: "leg-tip" });
     hit.on("mouseover", () => line.setStyle({ weight: 6, dashArray: null, opacity: 1 }));
     hit.on("mouseout", () => line.setStyle({ weight: 3, dashArray: "6 6", opacity: .8 }));
-    hit.on("click", () => window.open(gmapDir(a, b), "_blank", "noopener"));
+    hit.on("click", () => window.open(useKakao() ? kakaoDir(a, b, "traffic") : gmapDir(a, b), "_blank", "noopener"));
   });
   pts.forEach((k, i) => {
     const p = PLACES[k];
     const icon = L.divIcon({ className: "", html: `<div class="pin${p.stay ? " stay" : ""}" style="background:${color}">${p.stay ? "숙" : i + 1}</div>`, iconSize: [26, 26], iconAnchor: [13, 13] });
     L.marker(p.ll, { icon, title: p.name }).addTo(m._routeLayer)
-      .bindPopup(`<b>${i + 1}. ${esc(p.name)}</b><br><a href="${gmapSearch(k)}" target="_blank" rel="noopener">구글맵에서 보기 ↗</a>`);
+      .bindPopup(`<b>${i + 1}. ${esc(p.name)}</b><br>${placeLinks(k)}`);
   });
   const fit = fitRegion ? pts.filter(k => PLACES[k].region === fitRegion).map(k => PLACES[k].ll) : lls;
   setTimeout(() => {
@@ -454,7 +487,7 @@ function render(i) {
   const rows = [...(startsAtStay(d) ? [stayRow("출발")] : []), ...d.timeline, ...(endsAtStay(d) ? [stayRow("복귀")] : [])];
   const tl = rows.map(([tm, ti, ds, key, auto]) => {
     const pk = auto || (STOP_PLACES[d.id] || {})[ti] || [];
-    const gl = pk.map(k => `<a class="gmap" href="${gmapSearch(k)}" target="_blank" rel="noopener" title="${esc(PLACES[k].name)} 구글맵">${pk.length > 1 ? esc(PLACES[k].name) + " " : ""}지도 ↗</a>`).join("");
+    const gl = pk.map(k => `<a class="gmap" href="${gmapSearch(k)}" target="_blank" rel="noopener" title="${esc(PLACES[k].name)} 구글맵">${pk.length > 1 ? esc(PLACES[k].name) + " " : ""}${useKakao() ? "구글" : "지도"} ↗</a>` + (useKakao() ? `<a class="gmap" href="${kakaoPlace(k)}" target="_blank" rel="noopener" title="${esc(PLACES[k].name)} 카카오맵">카카오 ↗</a>` : "")).join("");
     return `<li class="${key ? "key" : ""}"><span class="tm">${esc(tm)}</span><span class="rail"></span><div class="bd"><div class="ti">${esc(ti)}${gl}</div>${ds ? `<div class="ds">${esc(ds)}</div>` : ""}</div></li>`;
   }).join("");
   const tips = d.tips.length ? `<div class="box"><h3>챙길 것</h3><ul>${d.tips.map(t => `<li>${esc(t)}</li>`).join("")}</ul></div>` : "";
@@ -468,7 +501,14 @@ function render(i) {
   const lg = legs(keys);
   const legsEl = document.getElementById("sheet-legs");
   legsEl.hidden = !lg.length;
-  legsEl.innerHTML = `<summary>구간별 길찾기 (${lg.length}) — 지도에서 선을 눌러도 돼요</summary><ol>${lg.map(([a, b]) => `<li><a href="${gmapDir(a, b)}" target="_blank" rel="noopener">${esc(PLACES[a].name)} → ${esc(PLACES[b].name)} ↗</a></li>`).join("")}</ol>`;
+  legsEl.open = useKakao() || lg.some(([a, b]) => legInfo(a, b));
+  legsEl.innerHTML = `<summary>구간별 길찾기 (${lg.length}) — 지도에서 선을 눌러도 돼요</summary><ol>${lg.map(([a, b]) => {
+    const links = useKakao()
+      ? `<a href="${kakaoDir(a, b, "traffic")}" target="_blank" rel="noopener">카카오 대중교통 ↗</a><a href="${kakaoDir(a, b, "walk")}" target="_blank" rel="noopener">도보 ↗</a><a href="${kakaoDir(a, b, "car")}" target="_blank" rel="noopener">택시·차 ↗</a><a href="${gmapDir(a, b)}" target="_blank" rel="noopener">구글 ↗</a>`
+      : `<a href="${gmapDir(a, b)}" target="_blank" rel="noopener">구글맵 길찾기 ↗</a>`;
+    const info = legInfo(a, b);
+    return `<li><span class="leg-name">${esc(PLACES[a].name)} → ${esc(PLACES[b].name)}</span>${info ? `<span class="leg-info">${esc(info)}</span>` : ""}<span class="leg-links">${links}</span></li>`;
+  }).join("")}</ol>`;
   if (!sheetMap) sheetMap = makeMap(document.getElementById("sheetmap"));
   drawRoute(sheetMap, keys, cssVar(KIND_COLOR[d.kind]), FIT_REGION[d.id]);
   document.getElementById("prev").disabled = i === 0;
@@ -509,15 +549,15 @@ function showAll() {
       lls.push(PLACES[k].ll);
       L.circleMarker(PLACES[k].ll, { radius: 7, color: "#fff", weight: 2, fillColor: color, fillOpacity: 1 })
         .addTo(bigMap._routeLayer)
-        .bindPopup(`<b>${esc(PLACES[k].name)}</b><br>${esc(d.date)} ${esc(d.dow)}<br><a href="${gmapSearch(k)}" target="_blank" rel="noopener">구글맵에서 보기 ↗</a>`);
+        .bindPopup(`<b>${esc(PLACES[k].name)}</b><br>${esc(d.date)} ${esc(d.dow)}<br>${placeLinks(k)}`);
     });
   });
   const st = TRIP.stay && PLACES[TRIP.stay.key];
   if (st && st.ll) {
-    lls.push(st.ll);
+    if (st.region === TRIP.overviewRegion) lls.push(st.ll);
     L.marker(st.ll, { icon: L.divIcon({ className: "", html: `<div class="pin stay">숙</div>`, iconSize: [26, 26], iconAnchor: [13, 13] }), title: st.name, zIndexOffset: 1000 })
       .addTo(bigMap._routeLayer)
-      .bindPopup(`<b>${esc(st.name)}</b><br><a href="${gmapSearch(TRIP.stay.key)}" target="_blank" rel="noopener">구글맵에서 보기 ↗</a>`);
+      .bindPopup(`<b>${esc(st.name)}</b><br>${placeLinks(TRIP.stay.key)}`);
   }
   setTimeout(() => { bigMap.invalidateSize(); bigMap.fitBounds(lls, { padding: [24, 24] }); }, 60);
   bigRoute.hidden = true;
@@ -548,7 +588,7 @@ const SAVED = [
 const WHEN = { r: "토", s: "일", n: "—" };
 document.getElementById("saved").innerHTML = `<thead><tr><th>장소</th><th>종류</th><th>평점</th><th>언제</th></tr></thead><tbody>` +
   SAVED.map(([g, rows]) => `<tr class="grp"><td colspan="4">${esc(g)}</td></tr>` + rows.map(([k, kind, star, w]) =>
-    `<tr><td><a href="${gmapSearch(k)}" target="_blank" rel="noopener">${esc(PLACES[k].name)} ↗</a></td><td>${esc(kind)}</td><td class="num">${star}</td><td><span class="when ${w}">${WHEN[w]}</span></td></tr>`).join("")).join("") + `</tbody>`;
+    `<tr><td>${esc(PLACES[k].name)}<span class="sub">${placeLinks(k)}</span></td><td>${esc(kind)}</td><td class="num">${star}</td><td><span class="when ${w}">${WHEN[w]}</span></td></tr>`).join("")).join("") + `</tbody>`;
 
 openFromHash();
 </script>
