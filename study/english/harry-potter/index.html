@@ -63,8 +63,24 @@ input[type=search] { font: inherit; font-size: 14px; flex: 1 1 180px; min-width:
 .row .m { color: var(--muted); }
 .uk { display: inline-block; font-family: var(--f-body); font-size: 11px; font-weight: 500; background: var(--tint-gold); color: var(--gold); border-radius: 999px; padding: 0 8px; margin-left: 6px; vertical-align: 2px; }
 .empty { color: var(--muted); padding: 14px 18px; }
+.row .line { grid-column: 1 / -1; font-size: 14px; font-style: italic; color: var(--ink); opacity: .85; border-left: 3px solid var(--tint); padding-left: 10px; }
+.row .line::before { content: "대사 "; font-style: normal; font-size: 11px; color: var(--accent); margin-right: 4px; }
+.tabs { display: flex; gap: 0; border-bottom: 1px solid var(--rule); }
+.tab { font: inherit; font-size: 15px; font-weight: 600; background: none; border: 0; border-bottom: 3px solid transparent; color: var(--muted); padding: 8px 14px; cursor: pointer; }
+.tab[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--accent); }
+.qa { display: grid; gap: 10px; padding: 16px 18px; }
+.qa + .qa { border-top: 1px solid var(--rule); }
+.qa .qq { font-size: 13px; color: var(--muted); }
+.qa blockquote { margin: 0; font-family: var(--f-display); font-size: 17px; font-weight: 500; font-style: italic; border-left: 3px solid var(--accent); padding-left: 12px; }
+.qa .qm b { font-weight: 600; }
+.qa ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 6px; }
+.qa li { display: grid; gap: 1px; padding: 8px 12px; background: var(--bg); border-radius: 8px; }
+.qa li .en { font-weight: 500; }
+.qa li .ko { font-size: 13px; color: var(--muted); }
+.qa .lab { font-size: 12px; font-weight: 600; color: var(--accent); }
 footer { color: var(--muted); font-size: 13px; }
 @media (max-width: 560px) {
+  .qa { padding: 14px; }
   .day { grid-template-columns: 1fr auto; }
   .day .scene { grid-column: 1 / -1; }
   .row { grid-template-columns: 1fr; padding: 10px 14px; }
@@ -77,7 +93,7 @@ footer { color: var(--muted); font-size: 13px; }
   <header>
     <div class="eyebrow">English · Harry Potter</div>
     <h1>Harry Potter로 익힌 표현</h1>
-    <p>점심시간에 해리포터를 영어로 보면서, 모르는 말을 그때그때 물어보고 정리한 표현들. 영국식 표현은 따로 표시했다.</p>
+    <p>점심시간에 해리포터를 영어로 보면서, 모르는 말을 그때그때 물어보고 정리한 표현들. 표현마다 그 표현이 나온 대사를 붙였고, '질문한 대사 · 예문'에서는 내가 물어본 대사와 뜻, 일상 예문을 본다. 대사는 15단어 이내로 줄였다.</p>
     <div class="stats" id="stats"></div>
   </header>
 
@@ -87,9 +103,12 @@ footer { color: var(--muted); font-size: 13px; }
   </section>
 
   <section>
-    <h2>표현 <span class="count" id="exCount"></span></h2>
+    <div class="tabs" role="tablist" aria-label="보기">
+      <button class="tab" role="tab" id="tab-ex" aria-selected="true">표현 <span class="count" id="exCount"></span></button>
+      <button class="tab" role="tab" id="tab-qa" aria-selected="false">질문한 대사 · 예문 <span class="count" id="qaCount"></span></button>
+    </div>
     <div class="bar" id="movieBar" role="group" aria-label="작품 필터"></div>
-    <div class="bar"><input type="search" id="q" placeholder="표현이나 뜻 검색" aria-label="표현 검색"></div>
+    <div class="bar"><input type="search" id="q" placeholder="표현, 뜻, 대사, 예문 검색" aria-label="검색"></div>
     <div id="list"></div>
   </section>
 
@@ -97,9 +116,10 @@ footer { color: var(--muted); font-size: 13px; }
 </div>
 
 <script>
-/* ── 데이터 블록: publish_page.py가 vault 노트에서 다시 채운다 ── */
+/* ── 데이터 블록: vault Development/English/가이드.md 절차대로 노트를 보고 고친다 ── */
 /*DATA*/
 const UPDATED = "2026-11-11";
+/* DAYS: 본 날 {d 날짜, mv 작품, scene 구간, n 표현 수} */
 const DAYS = [
  {
   "d": "2026-11-02",
@@ -144,10 +164,12 @@ const DAYS = [
   "n": 15
  }
 ];
+/* EXPRS: 표현 {p 표현, m 뜻, l 작품 속 대사(15단어 이내), d 날짜, mv 작품, uk 영국식} */
 const EXPRS = [
 {
 "p": "a nightmare (사람)",
 "m": "같이 있기 피곤한 사람, 골칫덩이",
+"l": "She's a nightmare, honestly.",
 "d": "2026-11-02",
 "mv": "마법사의 돌",
 "uk": false
@@ -155,6 +177,7 @@ const EXPRS = [
 {
 "p": "honestly (문장 끝)",
 "m": "아 진짜 (짜증·어이없음 강조)",
+"l": "She's a nightmare, honestly.",
 "d": "2026-11-02",
 "mv": "마법사의 돌",
 "uk": false
@@ -162,6 +185,7 @@ const EXPRS = [
 {
 "p": "No wonder ~",
 "m": "어쩐지, ~할 만도 하지",
+"l": "No wonder she hasn't got any friends.",
 "d": "2026-11-02",
 "mv": "마법사의 돌",
 "uk": false
@@ -169,6 +193,7 @@ const EXPRS = [
 {
 "p": "hasn't got",
 "m": "= doesn't have (영국식)",
+"l": "she hasn't got any friends",
 "d": "2026-11-02",
 "mv": "마법사의 돌",
 "uk": true
@@ -176,6 +201,7 @@ const EXPRS = [
 {
 "p": "Be that as it may",
 "m": "그렇다 하더라도, 그건 그렇다 치고",
+"l": "Be that as it may... it was an extremely foolish thing to do.",
 "d": "2026-11-02",
 "mv": "마법사의 돌",
 "uk": false
@@ -183,6 +209,7 @@ const EXPRS = [
 {
 "p": "a [형용사] thing to do",
 "m": "~한 짓/행동",
+"l": "an extremely foolish thing to do",
 "d": "2026-11-02",
 "mv": "마법사의 돌",
 "uk": false
@@ -190,6 +217,7 @@ const EXPRS = [
 {
 "p": "foolish",
 "m": "어리석은 (stupid보다 점잖음)",
+"l": "an extremely foolish thing to do",
 "d": "2026-11-02",
 "mv": "마법사의 돌",
 "uk": false
@@ -197,6 +225,7 @@ const EXPRS = [
 {
 "p": "I would have expected ~",
 "m": "~할 줄 알았는데 (기대가 깨졌다는 꾸중)",
+"l": "I would have expected more rational behavior...",
 "d": "2026-11-02",
 "mv": "마법사의 돌",
 "uk": false
@@ -204,6 +233,7 @@ const EXPRS = [
 {
 "p": "on your part",
 "m": "네 쪽에서, 너로서는",
+"l": "...rational behavior on your part",
 "d": "2026-11-02",
 "mv": "마법사의 돌",
 "uk": false
@@ -211,6 +241,7 @@ const EXPRS = [
 {
 "p": "rational ↔ irrational",
 "m": "이성적인 ↔ 비이성적인",
+"l": "more rational behavior",
 "d": "2026-11-02",
 "mv": "마법사의 돌",
 "uk": false
@@ -218,6 +249,7 @@ const EXPRS = [
 {
 "p": "disappointed in (사람)",
 "m": "~에게 실망한",
+"l": "I am very disappointed in you.",
 "d": "2026-11-02",
 "mv": "마법사의 돌",
 "uk": false
@@ -225,6 +257,7 @@ const EXPRS = [
 {
 "p": "take on",
 "m": "(강한 상대에게) 맞서다 / (일을) 떠맡다",
+"l": "...could take on a fully-grown mountain troll",
 "d": "2026-11-04",
 "mv": "마법사의 돌",
 "uk": false
@@ -232,6 +265,7 @@ const EXPRS = [
 {
 "p": "live to tell the tale",
 "m": "무사히 살아남다",
+"l": "...and live to tell the tale.",
 "d": "2026-11-04",
 "mv": "마법사의 돌",
 "uk": false
@@ -239,6 +273,7 @@ const EXPRS = [
 {
 "p": "for ~ (상·벌의 이유)",
 "m": "~에 대해, ~의 대가로",
+"l": "Five points will be awarded... for sheer dumb luck.",
 "d": "2026-11-04",
 "mv": "마법사의 돌",
 "uk": false
@@ -246,6 +281,7 @@ const EXPRS = [
 {
 "p": "sheer",
 "m": "순전한, 완전한",
+"l": "for sheer dumb luck",
 "d": "2026-11-04",
 "mv": "마법사의 돌",
 "uk": false
@@ -253,6 +289,7 @@ const EXPRS = [
 {
 "p": "dumb luck",
 "m": "실력과 무관한 운, 운빨",
+"l": "for sheer dumb luck",
 "d": "2026-11-04",
 "mv": "마법사의 돌",
 "uk": false
@@ -260,6 +297,7 @@ const EXPRS = [
 {
 "p": "Then again",
 "m": "하긴, 다시 생각해 보니",
+"l": "Then again, now that you've proven yourself...",
 "d": "2026-11-04",
 "mv": "마법사의 돌",
 "uk": false
@@ -267,6 +305,7 @@ const EXPRS = [
 {
 "p": "now that ~",
 "m": "~했으니 이제",
+"l": "now that you've proven yourself against a troll",
 "d": "2026-11-04",
 "mv": "마법사의 돌",
 "uk": false
@@ -274,6 +313,7 @@ const EXPRS = [
 {
 "p": "prove yourself",
 "m": "실력을 증명하다",
+"l": "you've proven yourself against a troll",
 "d": "2026-11-04",
 "mv": "마법사의 돌",
 "uk": false
@@ -281,6 +321,7 @@ const EXPRS = [
 {
 "p": "easy work",
 "m": "쉬운 일, 식은 죽 먹기",
+"l": "...should be easy work for you",
 "d": "2026-11-04",
 "mv": "마법사의 돌",
 "uk": false
@@ -288,6 +329,7 @@ const EXPRS = [
 {
 "p": "I'm guessing ~",
 "m": "내 생각엔 ~인 것 같아",
+"l": "I'm guessing Snape let the troll in...",
 "d": "2026-11-04",
 "mv": "마법사의 돌",
 "uk": false
@@ -295,6 +337,7 @@ const EXPRS = [
 {
 "p": "let ~ in",
 "m": "안으로 들여보내다",
+"l": "Snape let the troll in",
 "d": "2026-11-04",
 "mv": "마법사의 돌",
 "uk": false
@@ -302,6 +345,7 @@ const EXPRS = [
 {
 "p": "as a diversion",
 "m": "주의를 돌리려고",
+"l": "...as a diversion",
 "d": "2026-11-04",
 "mv": "마법사의 돌",
 "uk": false
@@ -309,6 +353,7 @@ const EXPRS = [
 {
 "p": "try and + 동사",
 "m": "~하려고 하다 (영국 구어)",
+"l": "so he could try and get past...",
 "d": "2026-11-04",
 "mv": "마법사의 돌",
 "uk": true
@@ -316,6 +361,7 @@ const EXPRS = [
 {
 "p": "get past",
 "m": "(막는 것을) 통과하다",
+"l": "get past that three-headed dog",
 "d": "2026-11-04",
 "mv": "마법사의 돌",
 "uk": false
@@ -323,6 +369,7 @@ const EXPRS = [
 {
 "p": "get oneself + p.p.",
 "m": "(자초해서) ~당하다",
+"l": "But he got himself bitten.",
 "d": "2026-11-04",
 "mv": "마법사의 돌",
 "uk": false
@@ -330,6 +377,7 @@ const EXPRS = [
 {
 "p": "limp",
 "m": "다리를 절다",
+"l": "That's why he's limping.",
 "d": "2026-11-04",
 "mv": "마법사의 돌",
 "uk": false
@@ -337,6 +385,7 @@ const EXPRS = [
 {
 "p": "out of",
 "m": "(안에 있던 것을) 밖으로, ~에서",
+"l": "Hagrid took something out of one of the vaults.",
 "d": "2026-11-05",
 "mv": "마법사의 돌",
 "uk": false
@@ -344,6 +393,7 @@ const EXPRS = [
 {
 "p": "one of + 복수명사",
 "m": "~ 중 하나",
+"l": "one of the vaults",
 "d": "2026-11-05",
 "mv": "마법사의 돌",
 "uk": false
@@ -351,6 +401,7 @@ const EXPRS = [
 {
 "p": "feel the same way",
 "m": "같은 기분이다, 나도 그렇다",
+"l": "I felt the same way before my first game.",
 "d": "2026-11-05",
 "mv": "마법사의 돌",
 "uk": false
@@ -358,6 +409,7 @@ const EXPRS = [
 {
 "p": "take a ~ to the head",
 "m": "~에 머리를 맞다",
+"l": "I took a Bludger to the head...",
 "d": "2026-11-05",
 "mv": "마법사의 돌",
 "uk": false
@@ -365,6 +417,7 @@ const EXPRS = [
 {
 "p": "take a hit",
 "m": "타격을 입다 (비유)",
+"l": "—",
 "d": "2026-11-05",
 "mv": "마법사의 돌",
 "uk": false
@@ -372,6 +425,7 @@ const EXPRS = [
 {
 "p": "(시간) in",
 "m": "시작한 지 ~만에",
+"l": "...two minutes in.",
 "d": "2026-11-05",
 "mv": "마법사의 돌",
 "uk": false
@@ -379,6 +433,7 @@ const EXPRS = [
 {
 "p": "as (동시)",
 "m": "~하는 가운데, ~하면서",
+"l": "The players take their positions as Madame Hooch steps out...",
 "d": "2026-11-05",
 "mv": "마법사의 돌",
 "uk": false
@@ -386,6 +441,7 @@ const EXPRS = [
 {
 "p": "take one's positions",
 "m": "각자 위치를 잡다",
+"l": "The players take their positions",
 "d": "2026-11-05",
 "mv": "마법사의 돌",
 "uk": false
@@ -393,6 +449,7 @@ const EXPRS = [
 {
 "p": "step out onto",
 "m": "~로 걸어 나오다",
+"l": "steps out onto the field",
 "d": "2026-11-05",
 "mv": "마법사의 돌",
 "uk": false
@@ -400,6 +457,7 @@ const EXPRS = [
 {
 "p": "buy ~ off + 사람",
 "m": "~한테서 사다 (구어)",
+"l": "Bought him off an Irish feller",
 "d": "2026-11-05",
 "mv": "마법사의 돌",
 "uk": false
@@ -407,6 +465,7 @@ const EXPRS = [
 {
 "p": "buy off + 사람",
 "m": "매수하다",
+"l": "—",
 "d": "2026-11-05",
 "mv": "마법사의 돌",
 "uk": false
@@ -414,6 +473,7 @@ const EXPRS = [
 {
 "p": "feller",
 "m": "녀석, 사내 (= fellow, 사투리)",
+"l": "an Irish feller",
 "d": "2026-11-05",
 "mv": "마법사의 돌",
 "uk": false
@@ -421,6 +481,7 @@ const EXPRS = [
 {
 "p": "down the pub",
 "m": "동네 술집에서 (영국 구어)",
+"l": "I met down the pub last year",
 "d": "2026-11-05",
 "mv": "마법사의 돌",
 "uk": true
@@ -428,6 +489,7 @@ const EXPRS = [
 {
 "p": "I know a ~ when I see one",
 "m": "~는 보면 딱 알아",
+"l": "I know a spell when I see one.",
 "d": "2026-11-05",
 "mv": "마법사의 돌",
 "uk": false
@@ -435,6 +497,7 @@ const EXPRS = [
 {
 "p": "meddle in / with",
 "m": "참견하다 / 함부로 건드리다",
+"l": "You're meddling in things...",
 "d": "2026-11-05",
 "mv": "마법사의 돌",
 "uk": false
@@ -442,6 +505,7 @@ const EXPRS = [
 {
 "p": "ought not to",
 "m": "~해서는 안 된다 (무겁고 옛스러움)",
+"l": "...that ought not to be meddled in",
 "d": "2026-11-05",
 "mv": "마법사의 돌",
 "uk": false
@@ -449,6 +513,7 @@ const EXPRS = [
 {
 "p": "go over",
 "m": "꼼꼼히 훑어보다, 검토하다",
+"l": "let's go over our schedule once again",
 "d": "2026-11-05",
 "mv": "마법사의 돌",
 "uk": false
@@ -456,6 +521,7 @@ const EXPRS = [
 {
 "p": "~, shall we?",
 "m": "~할까? (Let's의 부가의문)",
+"l": "..., shall we?",
 "d": "2026-11-05",
 "mv": "마법사의 돌",
 "uk": false
@@ -463,6 +529,7 @@ const EXPRS = [
 {
 "p": "not miss a trick",
 "m": "하나도 놓치지 않다, 눈치가 귀신같다",
+"l": "Doesn't miss a trick, that man.",
 "d": "2026-11-05",
 "mv": "마법사의 돌",
 "uk": false
@@ -470,6 +537,7 @@ const EXPRS = [
 {
 "p": "~, that man (끝에 주어 반복)",
 "m": "~야, 그 사람 (영국 구어)",
+"l": "Doesn't miss a trick, that man.",
 "d": "2026-11-05",
 "mv": "마법사의 돌",
 "uk": true
@@ -477,6 +545,7 @@ const EXPRS = [
 {
 "p": "What do you think you're doing?",
 "m": "도대체 뭐 하는 거야? (꾸짖음)",
+"l": "What do you think you're doing down here?",
 "d": "2026-11-05",
 "mv": "마법사의 돌",
 "uk": false
@@ -484,6 +553,7 @@ const EXPRS = [
 {
 "p": "down here",
 "m": "여기 아래(쪽)에서",
+"l": "...doing down here?",
 "d": "2026-11-05",
 "mv": "마법사의 돌",
 "uk": false
@@ -491,6 +561,7 @@ const EXPRS = [
 {
 "p": "mad (영국식)",
 "m": "정신없는, 난리인, 미친 (≠ 미국식 '화난')",
+"l": "Children, it's mad in here.",
 "d": "2026-11-08",
 "mv": "비밀의 방",
 "uk": true
@@ -498,6 +569,7 @@ const EXPRS = [
 {
 "p": "It's ~ in here",
 "m": "이 안은 ~하다",
+"l": "it's mad in here",
 "d": "2026-11-08",
 "mv": "비밀의 방",
 "uk": false
@@ -505,6 +577,7 @@ const EXPRS = [
 {
 "p": "Let's ~",
 "m": "~하자 (Let us의 줄임, 아포스트로피 필수)",
+"l": "Let's go outside.",
 "d": "2026-11-08",
 "mv": "비밀의 방",
 "uk": false
@@ -512,6 +585,7 @@ const EXPRS = [
 {
 "p": "Busy time? (앞부분 생략 질문)",
 "m": "요즘 바쁘지?",
+"l": "Busy time at the Ministry, Arthur...?",
 "d": "2026-11-08",
 "mv": "비밀의 방",
 "uk": false
@@ -519,6 +593,7 @@ const EXPRS = [
 {
 "p": "all those + 복수명사",
 "m": "그 많은 ~들",
+"l": "all those extra raids",
 "d": "2026-11-08",
 "mv": "비밀의 방",
 "uk": false
@@ -526,6 +601,7 @@ const EXPRS = [
 {
 "p": "raid",
 "m": "급습, 불시 단속·수색",
+"l": "all those extra raids",
 "d": "2026-11-08",
 "mv": "비밀의 방",
 "uk": false
@@ -533,6 +609,7 @@ const EXPRS = [
 {
 "p": "extra",
 "m": "평소보다 추가로 더",
+"l": "extra raids",
 "d": "2026-11-08",
 "mv": "비밀의 방",
 "uk": false
@@ -540,6 +617,7 @@ const EXPRS = [
 {
 "p": "be accustomed to + -ing",
 "m": "~에 익숙하다 (격식)",
+"l": "Most Muggles aren't accustomed to seeing a flying car.",
 "d": "2026-11-08",
 "mv": "비밀의 방",
 "uk": false
@@ -547,6 +625,7 @@ const EXPRS = [
 {
 "p": "be used to / get used to + -ing",
 "m": "~에 익숙하다 / 익숙해지다 (일상)",
+"l": "—",
 "d": "2026-11-08",
 "mv": "비밀의 방",
 "uk": false
@@ -554,6 +633,7 @@ const EXPRS = [
 {
 "p": "most + 명사 vs most of the + 명사",
 "m": "대부분의 ~ (일반) / 그 ~ 중 대부분 (특정)",
+"l": "Most Muggles...",
 "d": "2026-11-08",
 "mv": "비밀의 방",
 "uk": false
@@ -561,6 +641,7 @@ const EXPRS = [
 {
 "p": "All (that) we need to do is + 동사원형",
 "m": "우리가 할 건 ~하는 것뿐이야",
+"l": "Now all we need to do is catch up with the train.",
 "d": "2026-11-08",
 "mv": "비밀의 방",
 "uk": false
@@ -568,6 +649,7 @@ const EXPRS = [
 {
 "p": "catch up with",
 "m": "따라잡다 / (밀린) 근황을 나누다",
+"l": "catch up with the train",
 "d": "2026-11-08",
 "mv": "비밀의 방",
 "uk": false
@@ -575,6 +657,7 @@ const EXPRS = [
 {
 "p": "lad / lads",
 "m": "녀석, 녀석들 (영국 구어 ↔ 미국 guys)",
+"l": "Well, take a good look, lads.",
 "d": "2026-11-09",
 "mv": "비밀의 방",
 "uk": true
@@ -582,6 +665,7 @@ const EXPRS = [
 {
 "p": "take a good look",
 "m": "자세히·똑똑히 봐 두다",
+"l": "take a good look",
 "d": "2026-11-09",
 "mv": "비밀의 방",
 "uk": false
@@ -589,6 +673,7 @@ const EXPRS = [
 {
 "p": "might well",
 "m": "충분히 ~일 수 있다 (가능성 높음)",
+"l": "This night might well be the last...",
 "d": "2026-11-09",
 "mv": "비밀의 방",
 "uk": false
@@ -596,6 +681,7 @@ const EXPRS = [
 {
 "p": "spend + 시간 + 장소",
 "m": "~에서 시간을 보내다",
+"l": "the last you spend in this castle",
 "d": "2026-11-09",
 "mv": "비밀의 방",
 "uk": false
@@ -603,6 +689,7 @@ const EXPRS = [
 {
 "p": "not to mention",
 "m": "~는 말할 것도 없고, 게다가",
+"l": "Not to mention the damage...",
 "d": "2026-11-09",
 "mv": "비밀의 방",
 "uk": false
@@ -610,6 +697,7 @@ const EXPRS = [
 {
 "p": "inflict ~ on",
 "m": "(피해·고통을) 가하다, 입히다",
+"l": "the damage you inflicted on a Whomping Willow",
 "d": "2026-11-09",
 "mv": "비밀의 방",
 "uk": false
@@ -617,6 +705,7 @@ const EXPRS = [
 {
 "p": "since before ~",
 "m": "~보다 더 이전부터",
+"l": "since before you were born",
 "d": "2026-11-09",
 "mv": "비밀의 방",
 "uk": false
@@ -624,6 +713,7 @@ const EXPRS = [
 {
 "p": "grounds",
 "m": "(학교·저택의) 부지, 구내 (항상 복수)",
+"l": "on these grounds",
 "d": "2026-11-09",
 "mv": "비밀의 방",
 "uk": false
@@ -631,6 +721,7 @@ const EXPRS = [
 {
 "p": "I assure you",
 "m": "장담하건대",
+"l": "I assure you that...",
 "d": "2026-11-09",
 "mv": "비밀의 방",
 "uk": false
@@ -638,6 +729,7 @@ const EXPRS = [
 {
 "p": "Were you ~ (if 생략 도치)",
 "m": "만약 네가 ~라면 (격식)",
+"l": "were you in Slytherin",
 "d": "2026-11-09",
 "mv": "비밀의 방",
 "uk": false
@@ -645,6 +737,7 @@ const EXPRS = [
 {
 "p": "rest with",
 "m": "~에게 달려 있다, ~의 권한이다",
+"l": "your fate rested with me",
 "d": "2026-11-09",
 "mv": "비밀의 방",
 "uk": false
@@ -652,6 +745,7 @@ const EXPRS = [
 {
 "p": "the both of you",
 "m": "너희 둘 다 (구어 강조)",
+"l": "the both of you would be...",
 "d": "2026-11-09",
 "mv": "비밀의 방",
 "uk": false
@@ -659,6 +753,7 @@ const EXPRS = [
 {
 "p": "the train home",
 "m": "집으로 가는 기차 (home = 부사)",
+"l": "on the train home",
 "d": "2026-11-09",
 "mv": "비밀의 방",
 "uk": false
@@ -666,6 +761,7 @@ const EXPRS = [
 {
 "p": "flout",
 "m": "(규칙을) 대놓고 무시하다 (≠ flaunt 과시하다)",
+"l": "these boys have flouted the Decree...",
 "d": "2026-11-09",
 "mv": "비밀의 방",
 "uk": false
@@ -673,6 +769,7 @@ const EXPRS = [
 {
 "p": "underage",
 "m": "미성년의",
+"l": "Underage Wizardry",
 "d": "2026-11-09",
 "mv": "비밀의 방",
 "uk": false
@@ -680,6 +777,7 @@ const EXPRS = [
 {
 "p": "menace",
 "m": "위협, 골칫거리, 말썽꾼",
+"l": "—",
 "d": "2026-11-09",
 "mv": "비밀의 방",
 "uk": false
@@ -687,6 +785,7 @@ const EXPRS = [
 {
 "p": "seedling",
 "m": "묘목, 새싹",
+"l": "—",
 "d": "2026-11-09",
 "mv": "비밀의 방",
 "uk": false
@@ -694,6 +793,7 @@ const EXPRS = [
 {
 "p": "get oneself + 명사",
 "m": "(자초해서) ~를 얻다, 떠안다",
+"l": "Weasley's got himself a Howler.",
 "d": "2026-11-09",
 "mv": "비밀의 방",
 "uk": false
@@ -701,6 +801,7 @@ const EXPRS = [
 {
 "p": "Howler",
 "m": "고함 편지 / (일상) 웃기는 큰 실수",
+"l": "a Howler",
 "d": "2026-11-09",
 "mv": "비밀의 방",
 "uk": false
@@ -708,6 +809,7 @@ const EXPRS = [
 {
 "p": "put a toe out of line",
 "m": "조금이라도 선을 넘다",
+"l": "If you put another toe out of line...",
 "d": "2026-11-09",
 "mv": "비밀의 방",
 "uk": false
@@ -715,6 +817,7 @@ const EXPRS = [
 {
 "p": "straight",
 "m": "곧장, 바로",
+"l": "we'll bring you straight home",
 "d": "2026-11-09",
 "mv": "비밀의 방",
 "uk": false
@@ -722,6 +825,7 @@ const EXPRS = [
 {
 "p": "get rid of",
 "m": "없애다, 처리하다, 떼어 내다",
+"l": "I didn't get rid of the Bandon Banshee...",
 "d": "2026-11-09",
 "mv": "비밀의 방",
 "uk": false
@@ -729,6 +833,7 @@ const EXPRS = [
 {
 "p": "by + -ing",
 "m": "~함으로써 (방법)",
+"l": "by smiling at him",
 "d": "2026-11-09",
 "mv": "비밀의 방",
 "uk": false
@@ -736,6 +841,7 @@ const EXPRS = [
 {
 "p": "Know only that ~",
 "m": "~라는 것만 알아 두어라 (고풍)",
+"l": "Know only that no harm can befall you...",
 "d": "2026-11-09",
 "mv": "비밀의 방",
 "uk": false
@@ -743,6 +849,7 @@ const EXPRS = [
 {
 "p": "befall",
 "m": "(나쁜 일이) 닥치다 (문학적)",
+"l": "no harm can befall you",
 "d": "2026-11-09",
 "mv": "비밀의 방",
 "uk": false
@@ -750,6 +857,7 @@ const EXPRS = [
 {
 "p": "whilst",
 "m": "= while (영국식, 격식)",
+"l": "whilst I am here",
 "d": "2026-11-09",
 "mv": "비밀의 방",
 "uk": true
@@ -757,6 +865,7 @@ const EXPRS = [
 {
 "p": "heir [에어]",
 "m": "상속자, 후계자 (h 묵음)",
+"l": "the Heir of Slytherin",
 "d": "2026-11-09",
 "mv": "비밀의 방",
 "uk": false
@@ -764,6 +873,7 @@ const EXPRS = [
 {
 "p": "nip",
 "m": "살짝 물다·꼬집다 / (영국 구어) 잠깐 다녀오다",
+"l": "—",
 "d": "2026-11-09",
 "mv": "비밀의 방",
 "uk": true
@@ -771,6 +881,7 @@ const EXPRS = [
 {
 "p": "thick",
 "m": "멍청한, 둔한 (영국 구어)",
+"l": "Even they aren't that thick",
 "d": "2026-11-10",
 "mv": "비밀의 방",
 "uk": true
@@ -778,6 +889,7 @@ const EXPRS = [
 {
 "p": "not that + 형용사",
 "m": "그렇게까지 ~하진 않은",
+"l": "they aren't that thick",
 "d": "2026-11-10",
 "mv": "비밀의 방",
 "uk": false
@@ -785,6 +897,7 @@ const EXPRS = [
 {
 "p": "there might be another way",
 "m": "다른 방법이 있을지도 몰라",
+"l": "...but there might be another way.",
 "d": "2026-11-10",
 "mv": "비밀의 방",
 "uk": false
@@ -792,6 +905,7 @@ const EXPRS = [
 {
 "p": "Mind you",
 "m": "그런데 말이야, 다만 (단서 덧붙이기)",
+"l": "Mind you, it would be difficult",
 "d": "2026-11-10",
 "mv": "비밀의 방",
 "uk": false
@@ -799,6 +913,7 @@ const EXPRS = [
 {
 "p": "not to mention ~",
 "m": "~는 말할 것도 없고, 게다가",
+"l": "not to mention we'd be breaking about 50 school rules",
 "d": "2026-11-10",
 "mv": "비밀의 방",
 "uk": false
@@ -806,6 +921,7 @@ const EXPRS = [
 {
 "p": "let alone",
 "m": "~는커녕 (부정문 뒤)",
+"l": "—",
 "d": "2026-11-10",
 "mv": "비밀의 방",
 "uk": false
@@ -813,6 +929,7 @@ const EXPRS = [
 {
 "p": "Blimey!",
 "m": "세상에! 맙소사! (영국 감탄사)",
+"l": "Blimey!",
 "d": "2026-11-10",
 "mv": "비밀의 방",
 "uk": true
@@ -820,6 +937,7 @@ const EXPRS = [
 {
 "p": "(have) got oneself a ~",
 "m": "~가 생기다, ~가 붙다",
+"l": "Harry's got himself a rogue Bludger.",
 "d": "2026-11-10",
 "mv": "비밀의 방",
 "uk": false
@@ -827,6 +945,7 @@ const EXPRS = [
 {
 "p": "You've got yourself a deal.",
 "m": "좋아요, 거래 성사",
+"l": "—",
 "d": "2026-11-10",
 "mv": "비밀의 방",
 "uk": false
@@ -834,6 +953,7 @@ const EXPRS = [
 {
 "p": "rogue",
 "m": "통제를 벗어난, 제멋대로 날뛰는",
+"l": "a rogue Bludger",
 "d": "2026-11-10",
 "mv": "비밀의 방",
 "uk": false
@@ -841,6 +961,7 @@ const EXPRS = [
 {
 "p": "go rogue",
 "m": "독자 행동을 하다",
+"l": "—",
 "d": "2026-11-10",
 "mv": "비밀의 방",
 "uk": false
@@ -848,6 +969,7 @@ const EXPRS = [
 {
 "p": "tamper with",
 "m": "(몰래) 손대다, 조작하다",
+"l": "That's been tampered with",
 "d": "2026-11-10",
 "mv": "비밀의 방",
 "uk": false
@@ -855,6 +977,7 @@ const EXPRS = [
 {
 "p": "~, that has",
 "m": "문장 끝 강조 (영국 구어)",
+"l": "That's been tampered with, that has.",
 "d": "2026-11-10",
 "mv": "비밀의 방",
 "uk": true
@@ -862,6 +985,7 @@ const EXPRS = [
 {
 "p": "mend",
 "m": "고치다, (부러진 것을) 붙이다",
+"l": "I can mend bones...",
 "d": "2026-11-10",
 "mv": "비밀의 방",
 "uk": false
@@ -869,6 +993,7 @@ const EXPRS = [
 {
 "p": "mend fences / on the mend",
 "m": "화해하다 / 회복 중인",
+"l": "—",
 "d": "2026-11-10",
 "mv": "비밀의 방",
 "uk": false
@@ -876,6 +1001,7 @@ const EXPRS = [
 {
 "p": "in a heartbeat",
 "m": "순식간에, 망설임 없이 바로",
+"l": "...in a heartbeat",
 "d": "2026-11-10",
 "mv": "비밀의 방",
 "uk": false
@@ -883,6 +1009,7 @@ const EXPRS = [
 {
 "p": "grow ~ back",
 "m": "(없어진 것을) 다시 자라게 하다",
+"l": "but growing them back?",
 "d": "2026-11-10",
 "mv": "비밀의 방",
 "uk": false
@@ -890,6 +1017,7 @@ const EXPRS = [
 {
 "p": "most + 형용사",
 "m": "몹시, 대단히 (격식체)",
+"l": "Dobby feels most aggrieved",
 "d": "2026-11-10",
 "mv": "비밀의 방",
 "uk": false
@@ -897,6 +1025,7 @@ const EXPRS = [
 {
 "p": "aggrieved",
 "m": "억울한, 부당한 대우에 마음이 상한",
+"l": "Dobby feels most aggrieved, sir.",
 "d": "2026-11-10",
 "mv": "비밀의 방",
 "uk": false
@@ -904,6 +1033,7 @@ const EXPRS = [
 {
 "p": "grant permission",
 "m": "허가를 내리다",
+"l": "Professor Dumbledore has granted me permission",
 "d": "2026-11-10",
 "mv": "비밀의 방",
 "uk": false
@@ -911,6 +1041,7 @@ const EXPRS = [
 {
 "p": "train ~ up",
 "m": "(일정 수준까지) 훈련시키다 (영국 구어)",
+"l": "to train you all up",
 "d": "2026-11-10",
 "mv": "비밀의 방",
 "uk": true
@@ -918,6 +1049,7 @@ const EXPRS = [
 {
 "p": "in case ~",
 "m": "~할 경우를 대비해",
+"l": "in case you ever need to defend yourselves",
 "d": "2026-11-10",
 "mv": "비밀의 방",
 "uk": false
@@ -925,6 +1057,7 @@ const EXPRS = [
 {
 "p": "on countless occasions",
 "m": "셀 수 없이 많이",
+"l": "as I myself have done on countless occasions",
 "d": "2026-11-10",
 "mv": "비밀의 방",
 "uk": false
@@ -932,6 +1065,7 @@ const EXPRS = [
 {
 "p": "sportingly",
 "m": "(스포츠맨답게) 흔쾌히, 선뜻",
+"l": "He has sportingly agreed to help me",
 "d": "2026-11-10",
 "mv": "비밀의 방",
 "uk": false
@@ -939,6 +1073,7 @@ const EXPRS = [
 {
 "p": "a good sport",
 "m": "기분 좋게 받아주는 사람",
+"l": "—",
 "d": "2026-11-10",
 "mv": "비밀의 방",
 "uk": false
@@ -946,6 +1081,7 @@ const EXPRS = [
 {
 "p": "youngsters",
 "m": "꼬마들, 젊은 친구들",
+"l": "any of you youngsters",
 "d": "2026-11-10",
 "mv": "비밀의 방",
 "uk": false
@@ -953,6 +1089,7 @@ const EXPRS = [
 {
 "p": "be through with",
 "m": "~를 끝내다 / (관계를) 끝내다",
+"l": "when I'm through with him",
 "d": "2026-11-10",
 "mv": "비밀의 방",
 "uk": false
@@ -960,6 +1097,7 @@ const EXPRS = [
 {
 "p": "if you don't mind me saying",
 "m": "이런 말 해도 될지 모르겠지만",
+"l": "but if you don't mind me saying",
 "d": "2026-11-10",
 "mv": "비밀의 방",
 "uk": false
@@ -967,6 +1105,7 @@ const EXPRS = [
 {
 "p": "pretty (부사)",
 "m": "꽤, 상당히",
+"l": "it was pretty obvious",
 "d": "2026-11-10",
 "mv": "비밀의 방",
 "uk": false
@@ -974,6 +1113,7 @@ const EXPRS = [
 {
 "p": "be about to",
 "m": "막 ~하려던 참이다",
+"l": "what you were about to do",
 "d": "2026-11-10",
 "mv": "비밀의 방",
 "uk": false
@@ -981,6 +1121,7 @@ const EXPRS = [
 {
 "p": "save face",
 "m": "체면을 지키다",
+"l": "—",
 "d": "2026-11-10",
 "mv": "비밀의 방",
 "uk": false
@@ -988,6 +1129,7 @@ const EXPRS = [
 {
 "p": "prudent",
 "m": "신중한, 현명한",
+"l": "Perhaps it would be prudent...",
 "d": "2026-11-10",
 "mv": "비밀의 방",
 "uk": false
@@ -995,6 +1137,7 @@ const EXPRS = [
 {
 "p": "unfriendly spells",
 "m": "적대적인 주문 (절제된 표현)",
+"l": "...to block unfriendly spells",
 "d": "2026-11-10",
 "mv": "비밀의 방",
 "uk": false
@@ -1002,6 +1145,7 @@ const EXPRS = [
 {
 "p": "disarm / disarming",
 "m": "무장 해제시키다 / 경계심을 녹이는",
+"l": "Expelliarmus (Disarming Charm)",
 "d": "2026-11-10",
 "mv": "비밀의 방",
 "uk": false
@@ -1009,6 +1153,7 @@ const EXPRS = [
 {
 "p": "egg ~ on",
 "m": "(사람을) 부추기다, 꼬드기다",
+"l": "egging",
 "d": "2026-11-11",
 "mv": "비밀의 방",
 "uk": false
@@ -1016,6 +1161,7 @@ const EXPRS = [
 {
 "p": "serpent",
 "m": "뱀 (격식·문학적, 사악한 이미지)",
+"l": "serpent",
 "d": "2026-11-11",
 "mv": "비밀의 방",
 "uk": false
@@ -1023,6 +1169,7 @@ const EXPRS = [
 {
 "p": "serpentine",
 "m": "뱀처럼 구불구불한",
+"l": "—",
 "d": "2026-11-11",
 "mv": "비밀의 방",
 "uk": false
@@ -1030,6 +1177,7 @@ const EXPRS = [
 {
 "p": "Parselmouth",
 "m": "파셀텅을 할 줄 아는 사람",
+"l": "Parselmouth",
 "d": "2026-11-11",
 "mv": "비밀의 방",
 "uk": false
@@ -1037,6 +1185,7 @@ const EXPRS = [
 {
 "p": "Parseltongue",
 "m": "뱀의 언어",
+"l": "—",
 "d": "2026-11-11",
 "mv": "비밀의 방",
 "uk": false
@@ -1044,6 +1193,7 @@ const EXPRS = [
 {
 "p": "have a bee in one's bonnet",
 "m": "어떤 생각에 꽂혀 안달이다",
+"l": "Bee in your bonnet, Potter?",
 "d": "2026-11-11",
 "mv": "비밀의 방",
 "uk": false
@@ -1051,6 +1201,7 @@ const EXPRS = [
 {
 "p": "bee",
 "m": "꿀벌",
+"l": "—",
 "d": "2026-11-11",
 "mv": "비밀의 방",
 "uk": false
@@ -1058,6 +1209,7 @@ const EXPRS = [
 {
 "p": "busy as a bee",
 "m": "눈코 뜰 새 없이 바쁜",
+"l": "—",
 "d": "2026-11-11",
 "mv": "비밀의 방",
 "uk": false
@@ -1065,6 +1217,7 @@ const EXPRS = [
 {
 "p": "the bee's knees",
 "m": "최고인 것, 끝내주는 것",
+"l": "—",
 "d": "2026-11-11",
 "mv": "비밀의 방",
 "uk": false
@@ -1072,6 +1225,7 @@ const EXPRS = [
 {
 "p": "make a beeline for ~",
 "m": "~로 곧장 가다",
+"l": "—",
 "d": "2026-11-11",
 "mv": "비밀의 방",
 "uk": false
@@ -1079,6 +1233,7 @@ const EXPRS = [
 {
 "p": "spelling bee",
 "m": "철자 맞히기 대회",
+"l": "—",
 "d": "2026-11-11",
 "mv": "비밀의 방",
 "uk": false
@@ -1086,6 +1241,7 @@ const EXPRS = [
 {
 "p": "stand by ~ (말·결정)",
 "m": "고수하다, 철회하지 않다",
+"l": "but I stand by what I said last year?",
 "d": "2026-11-11",
 "mv": "비밀의 방",
 "uk": false
@@ -1093,6 +1249,7 @@ const EXPRS = [
 {
 "p": "stand by ~ (사람)",
 "m": "곁에서 지지하다",
+"l": "—",
 "d": "2026-11-11",
 "mv": "비밀의 방",
 "uk": false
@@ -1100,6 +1257,7 @@ const EXPRS = [
 {
 "p": "stand by (대기)",
 "m": "대기하다",
+"l": "—",
 "d": "2026-11-11",
 "mv": "비밀의 방",
 "uk": false
@@ -1107,9 +1265,958 @@ const EXPRS = [
 {
 "p": "what I said",
 "m": "내가 한 말 (what절)",
+"l": "what I said last year",
 "d": "2026-11-11",
 "mv": "비밀의 방",
 "uk": false
+}
+];
+/* QA: 질문 {d, mv, q 질문, l 대사(15단어 이내), m 뜻, ex [{en 예문, ko 해석}]} */
+const QA = [
+{
+"d": "2026-11-02",
+"mv": "마법사의 돌",
+"q": "\"She's a nightmare honestly, no wonder she hasn't got any friends\"",
+"l": "She's a nightmare, honestly. No wonder she hasn't got any friends.",
+"m": "\"걔 진짜 피곤한 애야. 친구가 하나도 없는 것도 당연하지.\"",
+"ex": [
+{
+"en": "My landlord is a nightmare — he never fixes anything.",
+"ko": "집주인이 진짜 골치야, 뭘 고쳐주질 않아."
+},
+{
+"en": "You've been working since 7am? No wonder you're exhausted.",
+"ko": "7시부터 일했다고? 지칠 만하네."
+},
+{
+"en": "Oh, honestly! Who left the milk out again?",
+"ko": "아 진짜! 누가 또 우유 밖에 뒀어?"
+}
+]
+},
+{
+"d": "2026-11-02",
+"mv": "마법사의 돌",
+"q": "\"Be that as it may... it was an extremely foolish thing to do.\"",
+"l": "Be that as it may... it was an extremely foolish thing to do.",
+"m": "\"그렇다 하더라도… 그건 아주 어리석은 짓이었어요.\"",
+"ex": [
+{
+"en": "A: The deadline was unrealistic. / B: Be that as it may, we still need to deliver.",
+"ko": "마감이 비현실적이었어요. / 그렇다 해도 납품은 해야죠."
+},
+{
+"en": "I know you were tired. Be that as it may, you can't just skip the meeting.",
+"ko": "피곤했던 건 알아. 그래도 회의를 그냥 빠지면 안 되지."
+},
+{
+"en": "Lying to him was a foolish thing to do.",
+"ko": "그 사람한테 거짓말한 건 어리석은 짓이었어."
+}
+]
+},
+{
+"d": "2026-11-02",
+"mv": "마법사의 돌",
+"q": "\"I would have expected more rational behavior on your part, and I am very disappointed in you.\"",
+"l": "I would have expected more rational behavior on your part, and I am very disappointed …",
+"m": "\"너라면 좀 더 이성적으로 행동할 줄 알았어요. 정말 실망이에요.\"",
+"ex": [
+{
+"en": "I would have expected a reply by now.",
+"ko": "지금쯤이면 답장이 올 줄 알았는데요. — 정중하게 재촉할 때"
+},
+{
+"en": "There seems to have been a misunderstanding on our part.",
+"ko": "저희 쪽에서 오해가 있었던 것 같습니다."
+},
+{
+"en": "I'm not angry, I'm just disappointed in you.",
+"ko": "화난 게 아니야, 그냥 실망했어. — 영어권 부모님의 대표 꾸중"
+}
+]
+},
+{
+"d": "2026-11-04",
+"mv": "마법사의 돌",
+"q": "take on? 이거의 뉘앙스가 뭐지?",
+"l": "Not many first-year students could take on a fully-grown mountain troll and live to tell …",
+"m": "\"다 자란 산 트롤과 맞붙고도 살아남은 1학년은 흔치 않지요.\"",
+"ex": [
+{
+"en": "She took on the whole board and won the argument.",
+"ko": "그녀는 이사회 전체와 맞서서 논쟁에서 이겼다."
+},
+{
+"en": "Don't take on more than you can handle.",
+"ko": "감당할 수 있는 것 이상은 떠맡지 마."
+},
+{
+"en": "It was a brutal hike, but we all lived to tell the tale.",
+"ko": "지옥 같은 산행이었지만 다들 무사히 살아남았어."
+}
+]
+},
+{
+"d": "2026-11-04",
+"mv": "마법사의 돌",
+"q": "For sheer dumb luck → 무슨 뜻이지?",
+"l": "Five points will be awarded to each of you... for sheer dumb luck.",
+"m": "\"각자 5점씩 주겠어요… 순전히 운이 좋았던 걸로요.\"",
+"ex": [
+{
+"en": "I passed the exam by sheer dumb luck — I guessed half the answers.",
+"ko": "순전히 운으로 시험 붙었어. 절반은 찍었거든."
+},
+{
+"en": "It wasn't skill, it was dumb luck.",
+"ko": "실력이 아니라 그냥 운이었어."
+},
+{
+"en": "We found the restaurant by sheer coincidence.",
+"ko": "그 식당은 완전히 우연히 찾았어."
+}
+]
+},
+{
+"d": "2026-11-04",
+"mv": "마법사의 돌",
+"q": "\"Then again, now that you've proven yourself against a troll...\"",
+"l": "Good luck tomorrow, Potter. Then again, now that you've proven yourself against a troll, a …",
+"m": "\"내일 행운을 빌지, 포터. 하긴 트롤을 상대로 실력을 증명했으니 퀴디치 경기쯤은 식은 죽 먹기겠지. 상대가 슬리데린이라 해도 말이야.\"",
+"ex": [
+{
+"en": "The plan sounds risky. Then again, it might just work.",
+"ko": "위험해 보이긴 해. 하긴 의외로 먹힐지도 몰라."
+},
+{
+"en": "Now that the project's done, I can finally take a break.",
+"ko": "프로젝트도 끝났으니 이제 드디어 좀 쉴 수 있겠다."
+},
+{
+"en": "Every rookie has to prove themselves first.",
+"ko": "신참은 누구나 먼저 실력을 보여줘야 해."
+}
+]
+},
+{
+"d": "2026-11-04",
+"mv": "마법사의 돌",
+"q": "\"I'm guessing Snape let the troll in as a diversion...\"",
+"l": "I'm guessing Snape let the troll in as a diversion so he could try and …",
+"m": "\"내 생각엔 스네이프가 시선을 돌리려고 트롤을 들여보낸 것 같아. 그 틈에 머리 셋 달린 개를 지나가려고 했던 거지. 그런데 물린 거야. 그래서 다리를 저는 거고.\"",
+"ex": [
+{
+"en": "I'm guessing the meeting got cancelled?",
+"ko": "회의 취소된 것 같은데?"
+},
+{
+"en": "The fire alarm was just a diversion.",
+"ko": "화재경보는 그냥 시선 돌리기용이었어."
+},
+{
+"en": "He got himself into trouble again.",
+"ko": "걔 또 사고 쳤어."
+}
+]
+},
+{
+"d": "2026-11-05",
+"mv": "마법사의 돌",
+"q": "out of ~ 는 무슨 뉘앙스?",
+"l": "Hagrid took something out of one of the vaults.",
+"m": "\"해그리드가 금고 중 하나에서 뭔가를 꺼냈어.\"",
+"ex": [
+{
+"en": "Can you take the cake out of the oven?",
+"ko": "오븐에서 케이크 좀 꺼내줄래?"
+},
+{
+"en": "Sorry, we're out of coffee.",
+"ko": "죄송해요, 커피가 다 떨어졌어요."
+},
+{
+"en": "I only went out of politeness.",
+"ko": "예의상 간 거야."
+}
+]
+},
+{
+"d": "2026-11-05",
+"mv": "마법사의 돌",
+"q": "\"I felt the same way before my first game.\" — 쓰기 좋은 표현",
+"l": "I felt the same way before my first game.",
+"m": "\"나도 첫 경기 전에 똑같은 기분이었어.\"",
+"ex": [
+{
+"en": "A: I'm so nervous about the demo tomorrow. / B: Don't worry, I felt the same way before my first one.",
+"ko": ""
+},
+{
+"en": "If you feel the same way, let's just cancel.",
+"ko": "너도 같은 생각이면 그냥 취소하자."
+},
+{
+"en": "Honestly, I've been there. It gets easier.",
+"ko": "나도 겪어봐서 알아. 점점 나아져."
+}
+]
+},
+{
+"d": "2026-11-05",
+"mv": "마법사의 돌",
+"q": "\"I took a Bludger to the head two minutes in.\"",
+"l": "I took a Bludger to the head two minutes in.",
+"m": "\"시작 2분 만에 블러저에 머리를 맞았지.\"",
+"ex": [
+{
+"en": "I took an elbow to the face playing basketball.",
+"ko": "농구하다 얼굴에 팔꿈치를 맞았어."
+},
+{
+"en": "Five minutes in, the projector died.",
+"ko": "시작 5분 만에 프로젝터가 꺼졌어."
+},
+{
+"en": "I'm only a week into the new job.",
+"ko": "새 직장 들어간 지 겨우 일주일이야."
+}
+]
+},
+{
+"d": "2026-11-05",
+"mv": "마법사의 돌",
+"q": "\"...as Madame Hooch steps out onto the field\" — 여기서 as의 뉘앙스?",
+"l": "The players take their positions as Madame Hooch steps out onto the field to begin …",
+"m": "\"후치 선생님이 경기를 시작하려고 필드로 나서는 가운데, 선수들이 각자 위치를 잡습니다.\"",
+"ex": [
+{
+"en": "The lights went down as the band walked on stage.",
+"ko": ""
+},
+{
+"en": "He checked his phone as he waited for the bus.",
+"ko": ""
+},
+{
+"en": "As the deadline got closer, everyone got more stressed.",
+"ko": ""
+}
+]
+},
+{
+"d": "2026-11-05",
+"mv": "마법사의 돌",
+"q": "\"Bought him off an Irish feller\"",
+"l": "Bought him off an Irish feller I met down the pub last year.",
+"m": "\"작년에 술집에서 만난 아일랜드 녀석한테서 샀지.\"",
+"ex": [
+{
+"en": "I got this guitar off a friend for really cheap.",
+"ko": ""
+},
+{
+"en": "Can I borrow a pen off you?",
+"ko": "영국식"
+},
+{
+"en": "He was a nice guy I met at a conference.",
+"ko": ""
+}
+]
+},
+{
+"d": "2026-11-05",
+"mv": "마법사의 돌",
+"q": "(영어 외) 헤르미온느는 왜 스네이프가 눈을 안 깜빡인다고 말하지?",
+"l": "",
+"m": "",
+"ex": []
+},
+{
+"d": "2026-11-05",
+"mv": "마법사의 돌",
+"q": "\"I know a spell when I see one.\"",
+"l": "I know a spell when I see one.",
+"m": "\"주문은 보면 딱 알아.\"",
+"ex": [
+{
+"en": "Trust me, I know a good restaurant when I see one.",
+"ko": ""
+},
+{
+"en": "This code is a mess. I know technical debt when I see it.",
+"ko": ""
+},
+{
+"en": "She's going places. I know potential when I see it.",
+"ko": ""
+}
+]
+},
+{
+"d": "2026-11-05",
+"mv": "마법사의 돌",
+"q": "\"You're meddling in things that ought not to be meddled in.\"",
+"l": "You're meddling in things that ought not to be meddled in.",
+"m": "\"너희는 손대선 안 될 일에 끼어들고 있는 거야.\"",
+"ex": [
+{
+"en": "My mom keeps meddling in my career decisions.",
+"ko": ""
+},
+{
+"en": "Please don't meddle with the settings — it took me hours to configure.",
+"ko": ""
+},
+{
+"en": "That's an issue that needs to be looked into.",
+"ko": ""
+}
+]
+},
+{
+"d": "2026-11-05",
+"mv": "마법사의 돌",
+"q": "go over 뜻",
+"l": "Now, let's go over our schedule once again, shall we?",
+"m": "\"자, 일정을 다시 한번 점검해 볼까?\"",
+"ex": [
+{
+"en": "Before the meeting, let's go over the key points, shall we?",
+"ko": ""
+},
+{
+"en": "I need to go over the numbers again — something doesn't add up.",
+"ko": ""
+},
+{
+"en": "Let me go over it once again.",
+"ko": "한 번 더 설명할게요."
+}
+]
+},
+{
+"d": "2026-11-05",
+"mv": "마법사의 돌",
+"q": "\"Doesn't miss a trick, that man.\"",
+"l": "Doesn't miss a trick, that man.",
+"m": "\"하나도 안 놓친다니까, 저 사람은.\" → 눈치가 엄청 빠르다, 뭐든 다 알아챈다.",
+"ex": [
+{
+"en": "My mom never misses a trick. She knew I'd skipped class before I said a word.",
+"ko": "우리 엄마는 귀신같아. 말도 안 했는데 수업 빠진 걸 알더라."
+},
+{
+"en": "Don't try to fool her. She doesn't miss a trick.",
+"ko": "걔 속이려고 하지 마. 하나도 안 놓쳐."
+}
+]
+},
+{
+"d": "2026-11-05",
+"mv": "마법사의 돌",
+"q": "\"What do you think you're doing down here?\"",
+"l": "What do you think you're doing down here?",
+"m": "\"너 여기서 뭐 하는 거야?\" → 그냥 묻는 게 아니라 \"여기 있으면 안 되는데 뭐 하는 거냐\" 하고 꾸짖는 말.",
+"ex": [
+{
+"en": "What do you think you're doing with my phone?",
+"ko": "내 폰 가지고 뭐 하는 거야?"
+},
+{
+"en": "Where do you think you're going, young man? You're grounded.",
+"ko": "어딜 가려고? 너 외출 금지야."
+}
+]
+},
+{
+"d": "2026-11-08",
+"mv": "비밀의 방",
+"q": "\"Children, it's mad in here. Let's go outside.\"",
+"l": "Children, it's mad in here. Let's go outside.",
+"m": "\"얘들아, 여기 정신없다. 밖으로 나가자.\"",
+"ex": [
+{
+"en": "It's mad in here. Can we find somewhere quieter?",
+"ko": "여기 너무 정신없다. 좀 조용한 데 갈까?"
+},
+{
+"en": "The station was mad this morning.",
+"ko": "오늘 아침 역이 완전 난리였어."
+}
+]
+},
+{
+"d": "2026-11-08",
+"mv": "비밀의 방",
+"q": "\"Busy time at the Ministry, Arthur, all those extra raids?\"",
+"l": "Busy time at the Ministry, Arthur, all those extra raids?",
+"m": "\"요즘 마법부 바쁘지, 아서? 그 많은 추가 단속들 때문에?\" → 걱정해 주는 척하는 비꼬는 인사.",
+"ex": [
+{
+"en": "Busy day at the office?",
+"ko": "오늘 회사 바빴어? — 친구한테 쓰면 그냥 다정한 안부"
+},
+{
+"en": "Long day, huh? All those meetings?",
+"ko": "힘든 하루였지? 회의 그렇게 많아서?"
+}
+]
+},
+{
+"d": "2026-11-08",
+"mv": "비밀의 방",
+"q": "\"Most Muggles aren't accustomed to seeing a flying car.\"",
+"l": "Most Muggles aren't accustomed to seeing a flying car.",
+"m": "\"대부분의 머글들은 하늘을 나는 차를 보는 데 익숙하지 않거든.\"",
+"ex": [
+{
+"en": "I'm not accustomed to being spoken to like that.",
+"ko": "그런 식의 말은 들어본 적이 없네요. → 불쾌함을 점잖게"
+},
+{
+"en": "It took me a while to get used to driving on the left.",
+"ko": "좌측 통행 운전에 익숙해지는 데 시간 좀 걸렸어."
+}
+]
+},
+{
+"d": "2026-11-08",
+"mv": "비밀의 방",
+"q": "\"Now all we need to do is catch up with the train.\" — is 다음에 동사가 와도 돼?",
+"l": "Now all we need to do is catch up with the train.",
+"m": "\"이제 기차만 따라잡으면 돼.\"",
+"ex": [
+{
+"en": "All you need to do is press this button.",
+"ko": "이 버튼만 누르면 돼."
+},
+{
+"en": "All I want to do is sleep.",
+"ko": "그냥 자고 싶을 뿐이야."
+}
+]
+},
+{
+"d": "2026-11-09",
+"mv": "비밀의 방",
+"q": "\"Well, take a good look, lads.\" — lads는 ladies?",
+"l": "Well, take a good look, lads.",
+"m": "\"자, 잘 봐 둬라, 얘들아.\"",
+"ex": [
+{
+"en": "Take a good look at this photo. Do you recognize anyone?",
+"ko": "이 사진 잘 봐. 아는 사람 있어?"
+},
+{
+"en": "Take a good look, lads. You won't see a match like this again.",
+"ko": "잘 봐 둬라, 얘들아. 이런 경기 다시 못 본다."
+},
+{
+"en": "I'm off to the pub with the lads.",
+"ko": "친구 녀석들이랑 펍 간다."
+}
+]
+},
+{
+"d": "2026-11-09",
+"mv": "비밀의 방",
+"q": "\"This night might well be the last you spend in this castle.\"",
+"l": "This night might well be the last you spend in this castle.",
+"m": "\"오늘 밤이 너희가 이 성에서 보내는 마지막 밤이 될 수도 있다.\" → 퇴학당할 수도 있다는 겁주기. Q1과 이어지면 \"성을 잘 봐 둬라, 마지막일 수도 있으니까.\"",
+"ex": [
+{
+"en": "It might well rain later, so take an umbrella.",
+"ko": "이따 비 올 가능성 꽤 높으니까 우산 챙겨."
+},
+{
+"en": "You may well be right.",
+"ko": "네 말이 맞을지도 몰라."
+},
+{
+"en": "This might well be the last time we see each other.",
+"ko": "이게 우리가 만나는 마지막일지도 몰라."
+}
+]
+},
+{
+"d": "2026-11-09",
+"mv": "비밀의 방",
+"q": "\"Not to mention the damage you inflicted on a Whomping Willow...\"",
+"l": "Not to mention the damage you inflicted on a Whomping Willow that's been on these …",
+"m": "\"너희가 태어나기도 전부터 이 학교 땅에 있던 후려치는 버드나무에 입힌 피해는 말할 것도 없고.\" → 죄를 하나 더 얹는 말.",
+"ex": [
+{
+"en": "The storm inflicted serious damage on the town.",
+"ko": "폭풍이 마을에 심각한 피해를 입혔다."
+},
+{
+"en": "We were late, not to mention completely soaked.",
+"ko": "우린 늦었고, 게다가 홀딱 젖기까지 했어."
+},
+{
+"en": "That shop has been here since before I was born.",
+"ko": "저 가게는 내가 태어나기 전부터 여기 있었어."
+}
+]
+},
+{
+"d": "2026-11-09",
+"mv": "비밀의 방",
+"q": "\"I assure you that were you in Slytherin, and your fate rested with me, the both of you would be on the train home.\"",
+"l": "I assure you that were you in Slytherin, and your fate rested with me, the …",
+"m": "\"장담하는데, 너희가 슬리데린이고 너희 운명이 내 손에 달려 있다면, 너희 둘 다 집에 가는 기차에 타고 있을 거다.\" → \"내 기숙사였으면 벌써 퇴학이야.\"",
+"ex": [
+{
+"en": "I assure you, it won't happen again.",
+"ko": "장담하건대 다시는 이런 일 없을 겁니다."
+},
+{
+"en": "Were I you, I'd apologize.",
+"ko": "내가 너라면 사과하겠어."
+},
+{
+"en": "Should you need anything, just call.",
+"ko": "필요한 게 있으면 전화 주세요."
+}
+]
+},
+{
+"d": "2026-11-09",
+"mv": "비밀의 방",
+"q": "\"These boys have flouted the Decree for the Restriction of Underage Wizardry.\"",
+"l": "These boys have flouted the Decree for the Restriction of Underage Wizardry.",
+"m": "\"이 녀석들은 미성년 마법사 마법 사용 제한령을 무시했습니다.\" → 공식적으로 죄를 고발하는 말투.",
+"ex": [
+{
+"en": "He openly flouted the company's dress code.",
+"ko": "그는 회사 복장 규정을 대놓고 무시했다."
+},
+{
+"en": "Some drivers flout the speed limit every day.",
+"ko": "어떤 운전자들은 매일 제한 속도를 무시한다."
+},
+{
+"en": "The bar was fined for serving underage customers.",
+"ko": "그 술집은 미성년 손님에게 술을 팔아 벌금을 물었다."
+}
+]
+},
+{
+"d": "2026-11-09",
+"mv": "비밀의 방",
+"q": "모르는 단어 — menace, seedling / \"Weasley's got himself a Howler.\"",
+"l": "Weasley's got himself a Howler.",
+"m": "\"위즐리가 하울러를 받았네.\" (놀리는 말)",
+"ex": [
+{
+"en": "Those pigeons are a real menace.",
+"ko": "저 비둘기들 진짜 골칫거리야."
+},
+{
+"en": "I planted tomato seedlings in the garden.",
+"ko": "정원에 토마토 묘목을 심었어."
+},
+{
+"en": "You've got yourself a deal.",
+"ko": "좋아요, 거래 성사입니다."
+}
+]
+},
+{
+"d": "2026-11-09",
+"mv": "비밀의 방",
+"q": "\"If you put another toe out of line, we'll bring you straight home.\"",
+"l": "If you put another toe out of line, we'll bring you straight home.",
+"m": "\"한 번만 더 말썽 피우면, 바로 집으로 데려올 거야!\"",
+"ex": [
+{
+"en": "If you step out of line one more time, you're grounded.",
+"ko": "한 번만 더 말썽 피우면 외출 금지야."
+},
+{
+"en": "He was way out of line yesterday.",
+"ko": "어제 걔 진짜 선 넘었어. — out of line = 무례한, 도를 넘은"
+},
+{
+"en": "Come straight home after school.",
+"ko": "학교 끝나면 곧장 집으로 와."
+}
+]
+},
+{
+"d": "2026-11-09",
+"mv": "비밀의 방",
+"q": "\"I didn't get rid of the Bandon Banshee by smiling at him.\"",
+"l": "I didn't get rid of the Bandon Banshee by smiling at him.",
+"m": "\"내가 밴던 밴시를 미소 하나로 물리친 건 아니란다.\" → \"나도 진짜 실력이 있다\"는 자랑.",
+"ex": [
+{
+"en": "We need to get rid of all this junk before we move.",
+"ko": "이사 전에 이 잡동사니들 다 치워야 해."
+},
+{
+"en": "She didn't become a manager by being nice to everyone.",
+"ko": "그녀가 모두에게 친절해서 매니저가 된 건 아니야."
+},
+{
+"en": "The baby was screaming like a banshee all night.",
+"ko": "아기가 밤새 귀신처럼 울어 댔어."
+}
+]
+},
+{
+"d": "2026-11-09",
+"mv": "비밀의 방",
+"q": "\"Know only that no harm can befall you whilst I am here.\"",
+"l": "Know only that no harm can befall you whilst I am here.",
+"m": "\"내가 여기 있는 한 너희에게 어떤 해도 닥칠 수 없다는 것만 알아 두거라.\" → \"나만 믿어.\" (철자: whillst ❌ → whilst)",
+"ex": [
+{
+"en": "Just know that you can always call me.",
+"ko": "언제든 나한테 전화해도 된다는 것만 알아 둬."
+},
+{
+"en": "Whatever befalls us, we'll face it together.",
+"ko": "무슨 일이 닥치든 함께 맞서자."
+},
+{
+"en": "Sorry I bumped into you! — No harm done.",
+"ko": "부딪혀서 죄송해요! — 괜찮아요."
+}
+]
+},
+{
+"d": "2026-11-09",
+"mv": "비밀의 방",
+"q": "비밀의 방 전설에서 \"Heir\"의 뜻 / nip",
+"l": "the Heir of Slytherin",
+"m": "",
+"ex": []
+},
+{
+"d": "2026-11-10",
+"mv": "비밀의 방",
+"q": "\"Even they aren't that thick, but there might be another way. Mind you...\"",
+"l": "Even they aren't that thick, but there might be another way. Mind you, it would …",
+"m": "\"아무리 걔네라도 그렇게까지 멍청하진 않아. 그래도 다른 방법이 있을지도 몰라. 다만 어려울 거야. 교칙을 한 50개는 어기게 될 건 말할 것도 없고.\"",
+"ex": [
+{
+"en": "It's not that complicated — I'll show you.",
+"ko": "그렇게 복잡하지 않아. 보여줄게."
+},
+{
+"en": "We could launch next week. Mind you, QA isn't finished yet.",
+"ko": "다음 주에 출시할 수도 있어. 다만 QA가 아직 안 끝났어."
+},
+{
+"en": "Rewriting it would take weeks, not to mention the risk of breaking things.",
+"ko": "다시 짜면 몇 주는 걸려. 뭔가 망가질 위험은 말할 것도 없고."
+}
+]
+},
+{
+"d": "2026-11-10",
+"mv": "비밀의 방",
+"q": "\"Blimey! Harry's got himself a rogue Bludger.\"",
+"l": "Blimey! Harry's got himself a rogue Bludger. That's been tampered with, that has.",
+"m": "\"세상에! 해리한테 미친 블러저가 붙었네. 누가 손댄 거야, 저거.\"",
+"ex": [
+{
+"en": "Blimey, that was close!",
+"ko": "휴, 큰일 날 뻔했네!"
+},
+{
+"en": "Looks like you've got yourself a new hobby.",
+"ko": "새 취미가 생긴 것 같네."
+},
+{
+"en": "Someone's tampered with the config file — nothing's working.",
+"ko": "누가 설정 파일을 건드렸어. 아무것도 안 돌아가."
+}
+]
+},
+{
+"d": "2026-11-10",
+"mv": "비밀의 방",
+"q": "\"I can mend bones in a heartbeat, but growing them back?\"",
+"l": "I can mend bones in a heartbeat, but growing them back?",
+"m": "\"뼈를 붙이는 건 순식간이지만, 아예 다시 자라게 하는 건…?\"",
+"ex": [
+{
+"en": "I'd move to London in a heartbeat.",
+"ko": "런던이면 당장이라도 이사 가지."
+},
+{
+"en": "They had a fight, but they've mended fences since.",
+"ko": "둘이 싸웠는데 그 뒤로 화해했어."
+},
+{
+"en": "He had the flu, but he's on the mend now.",
+"ko": "독감 걸렸었는데 지금은 회복 중이야."
+}
+]
+},
+{
+"d": "2026-11-10",
+"mv": "비밀의 방",
+"q": "\"Dobby feels most aggrieved, sir.\"",
+"l": "Dobby feels most aggrieved, sir.",
+"m": "\"도비는 몹시 마음이 상했습니다, 주인님.\"",
+"ex": [
+{
+"en": "Thank you, that's most kind of you.",
+"ko": "감사합니다, 정말 친절하시네요."
+},
+{
+"en": "I'd be most grateful if you could reply by Friday.",
+"ko": "금요일까지 회신 주시면 대단히 감사하겠습니다."
+},
+{
+"en": "She left the meeting looking aggrieved.",
+"ko": "그녀는 억울하다는 표정으로 회의실을 나갔다."
+}
+]
+},
+{
+"d": "2026-11-10",
+"mv": "비밀의 방",
+"q": "록하트의 결투 클럽 인사말 — 뉘앙스",
+"l": "Professor Dumbledore has granted me permission to start this little Dueling Club to train you …",
+"m": "\"덤블도어 교수님께서 이 작은 결투 클럽을 열도록 허락해 주셨습니다. 여러분이 혹시라도 자신을 지켜야 할 때를 대비해 훈련시키려고요. 저 자신도 셀 수 없이 많이 그래왔듯이 말이죠.\"",
+"ex": []
+},
+{
+"d": "2026-11-10",
+"mv": "비밀의 방",
+"q": "\"He has sportingly agreed to help me with a short demonstration.\"",
+"l": "He has sportingly agreed to help me with a short demonstration.",
+"m": "\"그분께서 흔쾌히 짧은 시범을 돕기로 해주셨습니다.\"",
+"ex": [
+{
+"en": "Jisoo has kindly agreed to walk us through the new pipeline.",
+"ko": "지수 님이 새 파이프라인을 설명해 주시기로 했습니다. — 발표자 소개엔 kindly가 무난"
+},
+{
+"en": "He lost the bet but was a good sport about it.",
+"ko": "내기에서 졌는데 쿨하게 받아들였어."
+},
+{
+"en": "Come on, be a sport and join us for karaoke.",
+"ko": "에이, 좀 맞춰줘. 노래방 같이 가자."
+}
+]
+},
+{
+"d": "2026-11-10",
+"mv": "비밀의 방",
+"q": "\"You'll still have your Potions master when I'm through with him.\"",
+"l": "Now, I don't want any of you youngsters to worry. You'll still have your Potions …",
+"m": "\"자, 꼬마 여러분은 아무 걱정 마세요. 제가 상대해 드린 뒤에도 마법약 선생님은 무사하실 테니까요.\"",
+"ex": [
+{
+"en": "I don't want you to worry about the deadline — I've got it covered.",
+"ko": "마감은 걱정 마. 내가 처리할게."
+},
+{
+"en": "Are you through with the report? I need to send it today.",
+"ko": "보고서 다 끝났어? 오늘 보내야 해."
+},
+{
+"en": "She told him she was through with him.",
+"ko": "그녀는 그에게 이제 끝이라고 말했다."
+}
+]
+},
+{
+"d": "2026-11-10",
+"mv": "비밀의 방",
+"q": "\"...but if you don't mind me saying, it was pretty obvious what you were about to do.\"",
+"l": "...but if you don't mind me saying, it was pretty obvious what you were about …",
+"m": "\"…그런데 이런 말씀 드려도 될지 모르겠지만, 뭘 하려는지 뻔히 보이던데요.\"",
+"ex": [
+{
+"en": "If you don't mind me saying, the second slide is a bit too busy.",
+"ko": "이런 말 해도 될지 모르겠지만, 두 번째 슬라이드가 좀 복잡해요. — 피드백 줄 때"
+},
+{
+"en": "I was about to leave when you called.",
+"ko": "전화 왔을 때 막 나가려던 참이었어."
+},
+{
+"en": "He tried to save face by blaming the network.",
+"ko": "그는 네트워크 탓을 하며 체면을 세우려 했다."
+}
+]
+},
+{
+"d": "2026-11-10",
+"mv": "비밀의 방",
+"q": "\"Perhaps it would be prudent to first teach the students to block unfriendly spells.\"",
+"l": "Perhaps it would be prudent to first teach the students to block unfriendly spells.",
+"m": "\"우선 학생들에게 적대적인 주문을 막는 법부터 가르치는 게 현명하지 않을까 싶군요.\"",
+"ex": [
+{
+"en": "Perhaps it would be prudent to test this on staging first.",
+"ko": "먼저 스테이징에서 테스트해 보는 게 신중하겠어요."
+},
+{
+"en": "It would be prudent to get a second opinion.",
+"ko": "다른 의견도 들어보는 게 현명하겠습니다."
+},
+{
+"en": "Getting stuck in traffic for three hours was a bit annoying. — 절제된 표현의 예",
+"ko": ""
+}
+]
+},
+{
+"d": "2026-11-10",
+"mv": "비밀의 방",
+"q": "disarm이 뭐야?",
+"l": "",
+"m": "disarm = 무장 해제시키다, 상대 손에서 무기를 빼앗다.",
+"ex": [
+{
+"en": "The bomb squad managed to disarm the device.",
+"ko": "폭발물 처리반이 장치를 해체했다."
+},
+{
+"en": "Don't forget to disarm the alarm when you get home.",
+"ko": "집에 오면 경보 해제하는 거 잊지 마."
+},
+{
+"en": "He disarmed the interviewers with a joke.",
+"ko": "그는 농담 하나로 면접관들의 긴장을 풀었다."
+}
+]
+},
+{
+"d": "2026-11-11",
+"mv": "비밀의 방",
+"q": "egging?",
+"l": "egging",
+"m": "egg (someone) on의 일부 — 부추기다, 꼬드기다, 옆에서 충동질하다.",
+"ex": [
+{
+"en": "The crowd egged the two boys on until they started fighting.",
+"ko": "구경꾼들이 부추겨서 두 소년이 싸우기 시작했다."
+},
+{
+"en": "I didn't want to eat the whole cake, but my friends egged me on.",
+"ko": "케이크를 다 먹고 싶진 않았는데 친구들이 부추겼어."
+},
+{
+"en": "Don't egg him on. He's already angry enough.",
+"ko": "부추기지 마. 이미 충분히 화났어."
+}
+]
+},
+{
+"d": "2026-11-11",
+"mv": "비밀의 방",
+"q": "serpent?",
+"l": "serpent",
+"m": "뱀. snake보다 격식 있고 문학적이며, 위협적이고 사악한 느낌.",
+"ex": [
+{
+"en": "The serpent coiled around the branch.",
+"ko": "뱀이 나뭇가지를 휘감았다. — 이야기체"
+},
+{
+"en": "The road is serpentine, so drive carefully.",
+"ko": "길이 구불구불하니 조심해서 운전해."
+},
+{
+"en": "He's a serpent in the grass.",
+"ko": "그는 풀숲에 숨은 뱀 같은 놈이야. — 믿는 척하며 숨어서 해를 끼치는 사람"
+}
+]
+},
+{
+"d": "2026-11-11",
+"mv": "비밀의 방",
+"q": "Parselmouth?",
+"l": "Parselmouth",
+"m": "파셀텅(뱀의 언어)을 할 줄 아는 사람.",
+"ex": [
+{
+"en": "Not many wizards are Parselmouths.",
+"ko": "파셀마우스인 마법사는 많지 않아."
+},
+{
+"en": "She's silver-tongued, so she'll talk her way out of it.",
+"ko": "그녀는 말솜씨가 좋아서 어떻게든 빠져나갈 거야."
+},
+{
+"en": "Don't be a loudmouth — keep it secret.",
+"ko": "입 가볍게 굴지 마, 비밀로 해."
+}
+]
+},
+{
+"d": "2026-11-11",
+"mv": "비밀의 방",
+"q": "\"Bee in your bonnet, Potter?\"",
+"l": "Bee in your bonnet, Potter?",
+"m": "\"뭔가 꽂힌 거야, 포터?\" / \"왜 그렇게 안달이야, 포터?\"",
+"ex": [
+{
+"en": "My boss has a bee in his bonnet about email etiquette.",
+"ko": "우리 팀장님은 이메일 예절에 꽂혀 있어."
+},
+{
+"en": "What's got a bee in your bonnet today?",
+"ko": "오늘은 뭐 때문에 그렇게 안달이야?"
+},
+{
+"en": "Don't mind her. She always has a bee in her bonnet about something.",
+"ko": "신경 쓰지 마. 걔는 늘 뭔가에 꽂혀 있어."
+}
+]
+},
+{
+"d": "2026-11-11",
+"mv": "비밀의 방",
+"q": "bee는 뭔데?",
+"l": "",
+"m": "벌, 특히 꿀벌. 발음 [비].",
+"ex": [
+{
+"en": "The bees are busy in the garden.",
+"ko": "벌들이 정원에서 분주해."
+},
+{
+"en": "I've been as busy as a bee all week.",
+"ko": "이번 주 내내 눈코 뜰 새 없이 바빴어."
+},
+{
+"en": "He made a beeline for the coffee machine.",
+"ko": "그는 커피머신으로 곧장 걸어갔다."
+}
+]
+},
+{
+"d": "2026-11-11",
+"mv": "비밀의 방",
+"q": "\"...but I stand by what I said last year?\"",
+"l": "...but I stand by what I said last year?",
+"m": "\"…하지만 작년에 한 말은 철회 안 해요 / 여전히 그 말이 맞다고 생각해요.\"",
+"ex": [
+{
+"en": "I know it's unpopular, but I stand by what I said in the meeting.",
+"ko": "인기 없는 말인 건 알지만, 회의에서 한 말은 철회 안 해."
+},
+{
+"en": "Our team stands by this decision.",
+"ko": "우리 팀은 이 결정을 고수합니다."
+},
+{
+"en": "Whatever happens, I'll stand by you.",
+"ko": "무슨 일이 있어도 네 곁에 있을게."
+}
+]
 }
 ];
 /*END DATA*/
@@ -1121,7 +2228,7 @@ const md = (d) => d.slice(5).replace("-", "/");
 
 $("#updated").textContent = UPDATED;
 $("#stats").innerHTML =
-  `<span><b>${DAYS.length}</b>일</span><span><b>${EXPRS.length}</b>개 표현</span><span><b>${EXPRS.filter((e) => e.uk).length}</b>개 영국식</span>`;
+  `<span><b>${DAYS.length}</b>일</span><span><b>${EXPRS.length}</b>개 표현</span><span><b>${QA.length}</b>개 질문</span><span><b>${EXPRS.filter((e) => e.uk).length}</b>개 영국식</span>`;
 
 $("#days").innerHTML = DAYS.slice().reverse().map((d) => `
   <div class="card day">
@@ -1130,7 +2237,7 @@ $("#days").innerHTML = DAYS.slice().reverse().map((d) => `
     <span class="n">${d.n}개</span>
   </div>`).join("");
 
-let movie = "전체";
+let movie = "전체", view = "ex";
 const FILTERS = ["전체", ...new Set(DAYS.map((d) => d.mv)), "영국식만"];
 const bar = $("#movieBar");
 FILTERS.forEach((f) => {
@@ -1140,22 +2247,40 @@ FILTERS.forEach((f) => {
   b.addEventListener("click", () => { movie = f; [...bar.children].forEach((c) => c.setAttribute("aria-pressed", String(c === b))); render(); });
   bar.appendChild(b);
 });
+[["#tab-ex", "ex"], ["#tab-qa", "qa"]].forEach(([id, v]) => $(id).addEventListener("click", () => {
+  view = v; $("#tab-ex").setAttribute("aria-selected", String(v === "ex")); $("#tab-qa").setAttribute("aria-selected", String(v === "qa")); render();
+}));
+
+const okMovie = (x) => movie === "전체" || (movie === "영국식만" ? x.uk : x.mv === movie);
+const groupByDay = (rows) => {
+  const m = new Map();
+  rows.forEach((x) => { if (!m.has(x.d)) m.set(x.d, []); m.get(x.d).push(x); });
+  return [...m.entries()].sort((a, b) => b[0].localeCompare(a[0]));
+};
+const norm = (s) => s.replace(/["“”?.…]/g, "").trim().toLowerCase();
 
 function render() {
   const q = $("#q").value.trim().toLowerCase();
-  const rows = EXPRS.filter((e) =>
-    (movie === "전체" || (movie === "영국식만" ? e.uk : e.mv === movie)) &&
-    (!q || (e.p + " " + e.m).toLowerCase().includes(q)));
-  $("#exCount").textContent = rows.length + "/" + EXPRS.length;
-  if (!rows.length) { $("#list").innerHTML = `<div class="card empty">맞는 표현이 없다.</div>`; return; }
-  const byDay = new Map();
-  rows.forEach((e) => { if (!byDay.has(e.d)) byDay.set(e.d, []); byDay.get(e.d).push(e); });
-  $("#list").innerHTML = [...byDay.entries()].sort((a, b) => b[0].localeCompare(a[0])).map(([d, list]) => `
+  const exRows = EXPRS.filter((e) => okMovie(e) && (!q || [e.p, e.m, e.l].join(" ").toLowerCase().includes(q)));
+  const qaRows = QA.filter((x) => movie !== "영국식만" && (movie === "전체" || x.mv === movie) &&
+    (!q || [x.q, x.l, x.m, ...x.ex.map((e) => e.en + " " + e.ko)].join(" ").toLowerCase().includes(q)));
+  $("#exCount").textContent = exRows.length;
+  $("#qaCount").textContent = qaRows.length;
+  const rows = view === "ex" ? exRows : qaRows;
+  if (!rows.length) { $("#list").innerHTML = `<div class="card empty">맞는 것이 없다.</div>`; return; }
+  $("#list").innerHTML = groupByDay(rows).map(([d, list]) => `
     <div class="group">
       <h3>${md(d)} · ${esc(list[0].mv)}</h3>
-      <div class="card rows">${list.map((e) => `
-        <div class="row"><span class="p">${esc(e.p)}${e.uk ? '<span class="uk">영국식</span>' : ""}</span><span class="m">${esc(e.m)}</span></div>`).join("")}
-      </div>
+      ${view === "ex" ? `<div class="card rows">${list.map((e) => `
+        <div class="row"><span class="p">${esc(e.p)}${e.uk ? '<span class="uk">영국식</span>' : ""}</span><span class="m">${esc(e.m)}</span>${e.l ? `<span class="line">${esc(e.l)}</span>` : ""}</div>`).join("")}
+      </div>` : `<div class="card" style="padding:0">${list.map((x) => `
+        <div class="qa">
+          ${x.l && norm(x.q) !== norm(x.l) ? `<div class="qq">Q. ${esc(x.q)}</div>` : !x.l ? `<div class="qq">Q. ${esc(x.q)}</div>` : ""}
+          ${x.l ? `<blockquote>${esc(x.l)}</blockquote>` : ""}
+          ${x.m ? `<div class="qm"><b>뜻</b> ${esc(x.m)}</div>` : ""}
+          ${x.ex.length ? `<div class="lab">이렇게도 써요</div><ul>${x.ex.map((e) => `<li><span class="en">${esc(e.en)}</span>${e.ko ? `<span class="ko">${esc(e.ko)}</span>` : ""}</li>`).join("")}</ul>` : ""}
+        </div>`).join("")}
+      </div>`}
     </div>`).join("");
 }
 $("#q").addEventListener("input", render);

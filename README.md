@@ -26,7 +26,7 @@
 | `/trips/gongju-2026/` | 공주여행 일정표 (1박 2일, 날씨 반영) | `Development/여행/공주여행/` |
 | `/study/english/` | English 허브 (아래 두 페이지로 가는 카드) | — |
 | `/study/english/conversation/` | AI Conversation: 표현 노트 · 주제 목록 · 오늘의 한 마디 (옛 주소 `/study/english-2026/`는 여기로 넘김) | `Development/English/Conversation/` (표현 노트 · 주제 목록) |
-| `/study/english/harry-potter/` | Harry Potter로 익힌 표현 (본 구간 · 표현·뜻, 대사는 안 넣음) | `Development/English/Series_And_Movies/harry-potter/` → `publish_page.py`로 데이터 갱신 |
+| `/study/english/harry-potter/` | Harry Potter로 익힌 표현 (본 구간 · 표현과 대사 · 질문한 대사·뜻·예문) | `Development/English/Series_And_Movies/harry-potter/` (갱신 절차는 vault `Development/English/가이드.md`) |
 
 ## legacy/blog
 
