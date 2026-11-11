@@ -173,6 +173,13 @@ dialog#sheet[open] { animation: slide .22s ease-out; }
 .gmap:hover { text-decoration: underline; }
 .route-btn { display: inline-flex; align-items: center; gap: 6px; justify-self: start; border-radius: 8px; padding: 8px 14px; background: var(--line); color: #fff; text-decoration: none; font-size: 14px; font-weight: 700; }
 .route-btn[hidden] { display: none; }
+.legs { font-size: 13px; }
+.legs summary { cursor: pointer; color: var(--muted); font-weight: 700; padding: 4px 0; }
+.legs ol { margin: 6px 0 0; padding-left: 20px; display: grid; gap: 4px; }
+.legs a { color: var(--line); text-decoration: none; }
+.legs a:hover { text-decoration: underline; }
+.pin.stay { border-radius: 6px; background: var(--ink) !important; color: var(--surface); }
+.leaflet-tooltip.leg-tip { font-size: 12px; font-weight: 700; }
 .map-note { font-size: 12px; color: var(--muted); margin: 0; }
 .map-wrap { display: grid; gap: 8px; }
 </style>
@@ -226,7 +233,7 @@ dialog#sheet[open] { animation: slide .22s ease-out; }
       </div>
       <p id="sheet-sub"></p>
     </div>
-    <div class="sheet-body" id="sheet-body"><div class="map-wrap"><div id="sheetmap" class="map"></div><a class="route-btn" id="sheet-route" href="#" target="_blank" rel="noopener">구글맵에서 동선 열기 ↗</a></div><div id="sheet-content" style="display:grid;gap:22px"></div></div>
+    <div class="sheet-body" id="sheet-body"><div class="map-wrap"><div id="sheetmap" class="map"></div><a class="route-btn" id="sheet-route" href="#" target="_blank" rel="noopener">구글맵에서 동선 열기 ↗</a><details class="legs" id="sheet-legs"></details></div><div id="sheet-content" style="display:grid;gap:22px"></div></div>
     <div class="nav">
       <button id="prev">← 전날</button>
       <button id="next">다음 날 →</button>
@@ -241,7 +248,9 @@ const TRIP = {
   overviewRegion: "gyeongju",          // '전체' 지도에 찍을 region
   overviewLabel: "경주 전체",           // 지도 첫 칩 이름
   overviewExclude: ["singyeongju"],    // 전체 지도에서 뺄 장소(역·공항처럼 멀리 있는 곳)
-  rowSize: 5                           // 날짜 칸을 몇 개씩 한 줄(섹션)로 묶을지. 일정이 이보다 짧으면 섹션 하나
+  rowSize: 5,                          // 날짜 칸을 몇 개씩 한 줄(섹션)로 묶을지. 일정이 이보다 짧으면 섹션 하나
+  // 숙소(선택): PLACES 의 key, start = 숙소에서 하루를 시작하는 날, end = 숙소로 돌아오는 날 → 그날 동선 앞뒤에 숙소를 붙임
+  stay: { key: "stay", start: ["d0102"], end: ["d0101"] }
 };
 
 const DAYS = [
@@ -276,6 +285,7 @@ const DAYS = [
 const PLACES = {
   // key: { name: 화면 이름, q: 구글맵 검색어(가게·명소 정식 이름 + 도시), ll: [위도, 경도] (지도 핀, 대략이면 됨), region: 지도 묶음 }
   // ll 이 없으면 지도엔 안 찍히고 구글맵 링크만 생긴다 (예: 집, 출발 공항)
+  stay:        { name: "숙소 (예시)", q: "경주 황리단길", ll: [35.8370, 129.2110], region: "gyeongju", stay: true },   // stay: true → 지도에 "숙" 핀
   singyeongju: { name: "신경주역", q: "신경주역", ll: [35.7983, 129.1390], region: "gyeongju" },
   daereungwon: { name: "대릉원", q: "경주 대릉원", ll: [35.8381, 129.2121], region: "gyeongju" },
   hwangridan:  { name: "황리단길", q: "경주 황리단길", ll: [35.8379, 129.2093], region: "gyeongju" },
@@ -296,8 +306,23 @@ const FIT_REGION = {};  // 당일치기처럼 멀리 가는 날: { 날짜id: "re
 const gmapSearch = k => "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(PLACES[k].q);
 function dayPlaces(d) {
   const keys = [];
-  for (const row of d.timeline) for (const k of (STOP_PLACES[d.id] || {})[row[1]] || []) if (keys[keys.length - 1] !== k) keys.push(k);
+  const push = k => { if (keys[keys.length - 1] !== k) keys.push(k); };
+  const st = TRIP.stay;
+  if (st && (st.start || []).includes(d.id)) push(st.key);
+  for (const row of d.timeline) for (const k of (STOP_PLACES[d.id] || {})[row[1]] || []) push(k);
+  if (st && (st.end || []).includes(d.id)) push(st.key);
   return keys;
+}
+// 두 장소 사이 구글맵 길찾기 (이동 수단은 구글맵에서 고름)
+function gmapDir(a, b) {
+  return "https://www.google.com/maps/dir/?api=1&origin=" + encodeURIComponent(PLACES[a].q) + "&destination=" + encodeURIComponent(PLACES[b].q);
+}
+// 지도에 찍히는 장소끼리 이은 구간 목록
+function legs(keys) {
+  const pts = keys.filter(k => PLACES[k].ll);
+  const out = [];
+  for (let i = 0; i < pts.length - 1; i++) if (pts[i] !== pts[i + 1]) out.push([pts[i], pts[i + 1], i]);
+  return out;
 }
 function gmapRoute(keys) {
   const pts = keys.filter(k => PLACES[k].ll);
@@ -320,10 +345,18 @@ function drawRoute(m, keys, color, fitRegion) {
   m._routeLayer.clearLayers();
   const pts = keys.filter(k => PLACES[k].ll);
   const lls = pts.map(k => PLACES[k].ll);
-  if (lls.length > 1) L.polyline(lls, { color, weight: 3, opacity: .75, dashArray: "6 6" }).addTo(m._routeLayer);
+  legs(keys).forEach(([a, b, i]) => {
+    const seg = [PLACES[a].ll, PLACES[b].ll];
+    const line = L.polyline(seg, { color, weight: 3, opacity: .8, dashArray: "6 6", interactive: false }).addTo(m._routeLayer);
+    const hit = L.polyline(seg, { color, weight: 18, opacity: 0 }).addTo(m._routeLayer);
+    hit.bindTooltip(`${esc(PLACES[a].name)} → ${esc(PLACES[b].name)}<br>눌러서 구글맵 길찾기`, { sticky: true, className: "leg-tip" });
+    hit.on("mouseover", () => line.setStyle({ weight: 6, dashArray: null, opacity: 1 }));
+    hit.on("mouseout", () => line.setStyle({ weight: 3, dashArray: "6 6", opacity: .8 }));
+    hit.on("click", () => window.open(gmapDir(a, b), "_blank", "noopener"));
+  });
   pts.forEach((k, i) => {
     const p = PLACES[k];
-    const icon = L.divIcon({ className: "", html: `<div class="pin" style="background:${color}">${i + 1}</div>`, iconSize: [26, 26], iconAnchor: [13, 13] });
+    const icon = L.divIcon({ className: "", html: `<div class="pin${p.stay ? " stay" : ""}" style="background:${color}">${p.stay ? "숙" : i + 1}</div>`, iconSize: [26, 26], iconAnchor: [13, 13] });
     L.marker(p.ll, { icon, title: p.name }).addTo(m._routeLayer)
       .bindPopup(`<b>${i + 1}. ${esc(p.name)}</b><br><a href="${gmapSearch(k)}" target="_blank" rel="noopener">구글맵에서 보기 ↗</a>`);
   });
@@ -383,6 +416,10 @@ function render(i) {
   const route = gmapRoute(keys);
   const rb = document.getElementById("sheet-route");
   rb.hidden = !route; if (route) rb.href = route;
+  const lg = legs(keys);
+  const legsEl = document.getElementById("sheet-legs");
+  legsEl.hidden = !lg.length;
+  legsEl.innerHTML = `<summary>구간별 길찾기 (${lg.length}) — 지도에서 선을 눌러도 돼요</summary><ol>${lg.map(([a, b]) => `<li><a href="${gmapDir(a, b)}" target="_blank" rel="noopener">${esc(PLACES[a].name)} → ${esc(PLACES[b].name)} ↗</a></li>`).join("")}</ol>`;
   if (!sheetMap) sheetMap = makeMap(document.getElementById("sheetmap"));
   drawRoute(sheetMap, keys, cssVar(KIND_COLOR[d.kind]), FIT_REGION[d.id]);
   document.getElementById("prev").disabled = i === 0;
@@ -419,13 +456,20 @@ function showAll() {
   const lls = [];
   DAYS.forEach(d => {
     const color = cssVar(KIND_COLOR[d.kind]);
-    dayPlaces(d).filter(k => PLACES[k].ll && PLACES[k].region === TRIP.overviewRegion && !TRIP.overviewExclude.includes(k)).forEach(k => {
+    dayPlaces(d).filter(k => PLACES[k].ll && PLACES[k].region === TRIP.overviewRegion && !TRIP.overviewExclude.includes(k) && !PLACES[k].stay).forEach(k => {
       lls.push(PLACES[k].ll);
       L.circleMarker(PLACES[k].ll, { radius: 7, color: "#fff", weight: 2, fillColor: color, fillOpacity: 1 })
         .addTo(bigMap._routeLayer)
         .bindPopup(`<b>${esc(PLACES[k].name)}</b><br>${esc(d.date)} ${esc(d.dow)}<br><a href="${gmapSearch(k)}" target="_blank" rel="noopener">구글맵에서 보기 ↗</a>`);
     });
   });
+  const st = TRIP.stay && PLACES[TRIP.stay.key];
+  if (st && st.ll) {
+    lls.push(st.ll);
+    L.marker(st.ll, { icon: L.divIcon({ className: "", html: `<div class="pin stay">숙</div>`, iconSize: [26, 26], iconAnchor: [13, 13] }), title: st.name, zIndexOffset: 1000 })
+      .addTo(bigMap._routeLayer)
+      .bindPopup(`<b>${esc(st.name)}</b><br><a href="${gmapSearch(TRIP.stay.key)}" target="_blank" rel="noopener">구글맵에서 보기 ↗</a>`);
+  }
   setTimeout(() => { bigMap.invalidateSize(); bigMap.fitBounds(lls, { padding: [24, 24] }); }, 60);
   bigRoute.hidden = true;
 }

@@ -173,6 +173,13 @@ dialog#sheet[open] { animation: slide .22s ease-out; }
 .gmap:hover { text-decoration: underline; }
 .route-btn { display: inline-flex; align-items: center; gap: 6px; justify-self: start; border-radius: 8px; padding: 8px 14px; background: var(--line); color: #fff; text-decoration: none; font-size: 14px; font-weight: 700; }
 .route-btn[hidden] { display: none; }
+.legs { font-size: 13px; }
+.legs summary { cursor: pointer; color: var(--muted); font-weight: 700; padding: 4px 0; }
+.legs ol { margin: 6px 0 0; padding-left: 20px; display: grid; gap: 4px; }
+.legs a { color: var(--line); text-decoration: none; }
+.legs a:hover { text-decoration: underline; }
+.pin.stay { border-radius: 6px; background: var(--ink) !important; color: var(--surface); }
+.leaflet-tooltip.leg-tip { font-size: 12px; font-weight: 700; }
 .map-note { font-size: 12px; color: var(--muted); margin: 0; }
 .map-wrap { display: grid; gap: 8px; }
 </style>
@@ -250,7 +257,7 @@ dialog#sheet[open] { animation: slide .22s ease-out; }
       </div>
       <p id="sheet-sub"></p>
     </div>
-    <div class="sheet-body" id="sheet-body"><div class="map-wrap"><div id="sheetmap" class="map"></div><a class="route-btn" id="sheet-route" href="#" target="_blank" rel="noopener">구글맵에서 동선 열기 ↗</a></div><div id="sheet-content" style="display:grid;gap:22px"></div></div>
+    <div class="sheet-body" id="sheet-body"><div class="map-wrap"><div id="sheetmap" class="map"></div><a class="route-btn" id="sheet-route" href="#" target="_blank" rel="noopener">구글맵에서 동선 열기 ↗</a><details class="legs" id="sheet-legs"></details></div><div id="sheet-content" style="display:grid;gap:22px"></div></div>
     <div class="nav">
       <button id="prev">← 전날</button>
       <button id="next">다음 날 →</button>
@@ -259,6 +266,14 @@ dialog#sheet[open] { animation: slide .22s ease-out; }
 </dialog>
 
 <script>
+const TRIP = {
+  overviewRegion: "london",
+  overviewLabel: "런던 전체",
+  overviewExclude: ["lhr"],
+  // 숙소: start = 숙소에서 하루를 시작하는 날, end = 숙소로 돌아오는 날 → 그날 동선 앞뒤에 숙소를 붙임
+  stay: { key: "stay", start: ["d1213", "d1214", "d1215", "d1216", "d1217", "d1218", "d1219", "d1220", "d1221"], end: ["d1213", "d1214", "d1215", "d1216", "d1217", "d1218", "d1219", "d1220"] }
+};
+
 const DAYS = [
   { id: "d1212", date: "12/12", dow: "토", kind: "fly", tag: "도착", title: "런던 도착",
     sub: "낮 비행기로 도착해서 가볍게 야경만. 시차 적응이 우선.",
@@ -417,6 +432,7 @@ const DAYS = [
 // 방문 장소. q = 구글맵 검색어, ll = 지도 좌표(대략), region = 지도 묶음
 const PLACES = {
   icn:          { name: "인천공항 제2터미널", q: "인천국제공항 제2여객터미널", region: "korea" },
+  stay:         { name: "숙소 (런던 컴빽홈 민박)", q: "51.49381,-0.13203", ll: [51.49381, -0.13203], region: "london", stay: true },
   lhr:          { name: "히드로공항 T2", q: "Heathrow Terminal 2", ll: [51.4703, -0.4519], region: "london" },
   bigben:       { name: "빅벤 · 국회의사당", q: "Big Ben London", ll: [51.5007, -0.1246], region: "london" },
   wbridge:      { name: "웨스트민스터 다리", q: "Westminster Bridge London", ll: [51.5008, -0.1219], region: "london" },
@@ -466,16 +482,16 @@ const PLACES = {
 };
 // 시간표 항목(제목) → 장소. 순서대로 이어 그날 동선이 됨
 const STOP_PLACES = {
-  d1212: { "인천공항 제2터미널 도착": ["icn"], "히드로 도착": ["lhr"], "웨스트민스터 야경 산책": ["bigben", "wbridge", "londoneye", "southbank"] },
+  d1212: { "인천공항 제2터미널 도착": ["icn"], "히드로 도착": ["lhr"], "체크인 · 휴식": ["stay"], "웨스트민스터 야경 산책": ["bigben", "wbridge", "londoneye", "southbank"], "취침": ["stay"] },
   d1213: { "테이트 브리턴": ["tatebritain"], "내셔널 갤러리": ["natgallery"], "소호 · 코벤트 가든 산책": ["coventgarden", "soho"], "Ain't Nothin' But": ["aintnothin"] },
-  d1214: { "대영박물관": ["britishmuseum"], "극장 도착": ["sondheim"] },
+  d1214: { "대영박물관": ["britishmuseum"], "숙소에서 휴식": ["stay"], "극장 도착": ["sondheim"] },
   d1215: { "자연사 박물관": ["nhm"], "V&A": ["vam"], "Royal College of Music Museum": ["rcm"], "극장 도착": ["apollo"] },
   d1216: { "패딩턴 출발": ["paddington", "oxfordstn"], "래드클리프 카메라 · 보들리언 도서관": ["radcliffe", "bodleian"], "칼리지 둘러보기": ["christchurch"], "커버드 마켓에서 점심": ["coveredmkt"], "애슈몰린 박물관": ["ashmolean"], "런던행 기차": ["oxfordstn"], "로니 스콧 (선택)": ["ronnie"] },
   d1217: { "애비로드 횡단보도": ["abbeyroad"], "Handel & Hendrix in London": ["handel"], "캠든 산책": ["camden", "roundhouse"], "극장 도착": ["vpalace"] },
   d1218: { "테이트 모던": ["tatemodern"], "버로우 마켓 점심": ["borough"], "사우스뱅크 · 밀레니엄 브리지": ["millennium", "stpauls"], "극장 도착": ["hismajestys"] },
   d1219: { "유스턴 출발": ["euston"], "맨체스터 피카딜리 도착": ["mcrpicc"], "노던 쿼터": ["afflecks", "piccrecords"], "오아시스 투어": ["chinatown"], "존 라일랜즈 도서관": ["rylands"], "크리스마스 마켓": ["albertsq"], "런던행 기차": ["mcrpicc"] },
   d1220: { "리버티 백화점 · 카나비 스트리트": ["liberty", "carnaby"], "극장 도착": ["lyceum"], "Barfly Camden 또는 짐 정리": ["barfly"] },
-  d1221: { "웨스트민스터 사원 또는 산책": ["westabbey"], "공항 도착": ["lhr"], "인천공항 제2터미널 도착": ["icn"] }
+  d1221: { "웨스트민스터 사원 또는 산책": ["westabbey"], "점심 · 짐 찾기": ["stay"], "공항 도착": ["lhr"], "인천공항 제2터미널 도착": ["icn"] }
 };
 // 지도 화면을 맞출 지역 (당일치기는 런던역을 빼고 현지만)
 const FIT_REGION = { d1216: "oxford", d1219: "manchester" };
@@ -483,8 +499,23 @@ const FIT_REGION = { d1216: "oxford", d1219: "manchester" };
 const gmapSearch = k => "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(PLACES[k].q);
 function dayPlaces(d) {
   const keys = [];
-  for (const row of d.timeline) for (const k of (STOP_PLACES[d.id] || {})[row[1]] || []) if (keys[keys.length - 1] !== k) keys.push(k);
+  const push = k => { if (keys[keys.length - 1] !== k) keys.push(k); };
+  const st = TRIP.stay;
+  if (st && (st.start || []).includes(d.id)) push(st.key);
+  for (const row of d.timeline) for (const k of (STOP_PLACES[d.id] || {})[row[1]] || []) push(k);
+  if (st && (st.end || []).includes(d.id)) push(st.key);
   return keys;
+}
+// 두 장소 사이 구글맵 길찾기 (이동 수단은 구글맵에서 고름)
+function gmapDir(a, b) {
+  return "https://www.google.com/maps/dir/?api=1&origin=" + encodeURIComponent(PLACES[a].q) + "&destination=" + encodeURIComponent(PLACES[b].q);
+}
+// 지도에 찍히는 장소끼리 이은 구간 목록
+function legs(keys) {
+  const pts = keys.filter(k => PLACES[k].ll);
+  const out = [];
+  for (let i = 0; i < pts.length - 1; i++) if (pts[i] !== pts[i + 1]) out.push([pts[i], pts[i + 1], i]);
+  return out;
 }
 function gmapRoute(keys) {
   const pts = keys.filter(k => PLACES[k].ll);
@@ -507,10 +538,18 @@ function drawRoute(m, keys, color, fitRegion) {
   m._routeLayer.clearLayers();
   const pts = keys.filter(k => PLACES[k].ll);
   const lls = pts.map(k => PLACES[k].ll);
-  if (lls.length > 1) L.polyline(lls, { color, weight: 3, opacity: .75, dashArray: "6 6" }).addTo(m._routeLayer);
+  legs(keys).forEach(([a, b, i]) => {
+    const seg = [PLACES[a].ll, PLACES[b].ll];
+    const line = L.polyline(seg, { color, weight: 3, opacity: .8, dashArray: "6 6", interactive: false }).addTo(m._routeLayer);
+    const hit = L.polyline(seg, { color, weight: 18, opacity: 0 }).addTo(m._routeLayer);
+    hit.bindTooltip(`${esc(PLACES[a].name)} → ${esc(PLACES[b].name)}<br>눌러서 구글맵 길찾기`, { sticky: true, className: "leg-tip" });
+    hit.on("mouseover", () => line.setStyle({ weight: 6, dashArray: null, opacity: 1 }));
+    hit.on("mouseout", () => line.setStyle({ weight: 3, dashArray: "6 6", opacity: .8 }));
+    hit.on("click", () => window.open(gmapDir(a, b), "_blank", "noopener"));
+  });
   pts.forEach((k, i) => {
     const p = PLACES[k];
-    const icon = L.divIcon({ className: "", html: `<div class="pin" style="background:${color}">${i + 1}</div>`, iconSize: [26, 26], iconAnchor: [13, 13] });
+    const icon = L.divIcon({ className: "", html: `<div class="pin${p.stay ? " stay" : ""}" style="background:${color}">${p.stay ? "숙" : i + 1}</div>`, iconSize: [26, 26], iconAnchor: [13, 13] });
     L.marker(p.ll, { icon, title: p.name }).addTo(m._routeLayer)
       .bindPopup(`<b>${i + 1}. ${esc(p.name)}</b><br><a href="${gmapSearch(k)}" target="_blank" rel="noopener">구글맵에서 보기 ↗</a>`);
   });
@@ -563,6 +602,10 @@ function render(i) {
   const route = gmapRoute(keys);
   const rb = document.getElementById("sheet-route");
   rb.hidden = !route; if (route) rb.href = route;
+  const lg = legs(keys);
+  const legsEl = document.getElementById("sheet-legs");
+  legsEl.hidden = !lg.length;
+  legsEl.innerHTML = `<summary>구간별 길찾기 (${lg.length}) — 지도에서 선을 눌러도 돼요</summary><ol>${lg.map(([a, b]) => `<li><a href="${gmapDir(a, b)}" target="_blank" rel="noopener">${esc(PLACES[a].name)} → ${esc(PLACES[b].name)} ↗</a></li>`).join("")}</ol>`;
   if (!sheetMap) sheetMap = makeMap(document.getElementById("sheetmap"));
   drawRoute(sheetMap, keys, cssVar(KIND_COLOR[d.kind]), FIT_REGION[d.id]);
   document.getElementById("prev").disabled = i === 0;
@@ -599,13 +642,20 @@ function showAll() {
   const lls = [];
   DAYS.forEach(d => {
     const color = cssVar(KIND_COLOR[d.kind]);
-    dayPlaces(d).filter(k => PLACES[k].region === "london" && k !== "lhr").forEach(k => {
+    dayPlaces(d).filter(k => PLACES[k].ll && PLACES[k].region === TRIP.overviewRegion && !TRIP.overviewExclude.includes(k) && !PLACES[k].stay).forEach(k => {
       lls.push(PLACES[k].ll);
       L.circleMarker(PLACES[k].ll, { radius: 7, color: "#fff", weight: 2, fillColor: color, fillOpacity: 1 })
         .addTo(bigMap._routeLayer)
         .bindPopup(`<b>${esc(PLACES[k].name)}</b><br>${esc(d.date)} ${esc(d.dow)}<br><a href="${gmapSearch(k)}" target="_blank" rel="noopener">구글맵에서 보기 ↗</a>`);
     });
   });
+  const st = TRIP.stay && PLACES[TRIP.stay.key];
+  if (st && st.ll) {
+    lls.push(st.ll);
+    L.marker(st.ll, { icon: L.divIcon({ className: "", html: `<div class="pin stay">숙</div>`, iconSize: [26, 26], iconAnchor: [13, 13] }), title: st.name, zIndexOffset: 1000 })
+      .addTo(bigMap._routeLayer)
+      .bindPopup(`<b>${esc(st.name)}</b><br><a href="${gmapSearch(TRIP.stay.key)}" target="_blank" rel="noopener">구글맵에서 보기 ↗</a>`);
+  }
   setTimeout(() => { bigMap.invalidateSize(); bigMap.fitBounds(lls, { padding: [24, 24] }); }, 60);
   bigRoute.hidden = true;
 }
@@ -619,7 +669,7 @@ function selectChip(id) {
   bigRoute.hidden = !r; if (r) bigRoute.href = r;
   bigRoute.style.setProperty("--line", `var(${KIND_COLOR[d.kind]})`);
 }
-chipsEl.innerHTML = `<button class="chip-btn" data-id="all" aria-pressed="true">런던 전체</button>` +
+chipsEl.innerHTML = `<button class="chip-btn" data-id="all" aria-pressed="true">${esc(TRIP.overviewLabel)}</button>` +
   DAYS.map(d => `<button class="chip-btn" data-id="${d.id}" aria-pressed="false">${esc(d.date)} ${esc(d.tag)}</button>`).join("");
 chipsEl.addEventListener("click", e => { const b = e.target.closest("button"); if (b) selectChip(b.dataset.id); });
 showAll();
