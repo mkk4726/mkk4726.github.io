@@ -122,58 +122,205 @@ footer { color: var(--muted); font-size: 13px; }
 </div>
 
 <script>
-/* ── 데이터 블록: 여기만 고친다 (vault: Development/English/Conversation/) ───────── */
+/* ── 데이터 블록: vault Development/English/Conversation/publish_page.py가 다시 채운다 ── */
+/*DATA*/
 const UPDATED = "2026-11-11";
-const TODAY = { date: "2026-11-11", phrase: "I help marketers analyze data better, so they can make better decisions.", ko: "마케터들이 데이터를 더 잘 분석하도록 돕고, 그래서 더 나은 결정을 내릴 수 있게 한다." };
-
-/* status: 새로 | 연습중 | 익힘 */
+const TODAY = {"date": "2026-11-11", "phrase": "I help marketers analyze data better, so they can make better decisions.", "ko": "마케터들이 데이터를 더 잘 분석하도록 돕고, 그래서 더 나은 결정을 내릴 수 있게 한다."};
 const EXPRS = [
-  { p: "I help ~ analyze data better", m: "내가 ~가 ~하게 돕는다", e: "I help marketers analyze data better.", d: "2026-11-11", s: "새로" },
-  { p: "I build a model that predicts ~", m: "~를 예측하는 모델을 만든다", e: "I build a model that predicts outcomes.", d: "2026-11-11", s: "새로" },
-  { p: "depending on who's asking", m: "묻는 사람에 따라", e: "The answer changes depending on who's asking.", d: "2026-11-11", s: "새로" },
-  { p: "ensure accurate data", m: "정확한 데이터를 보장하다", e: "", d: "2026-11-11", s: "새로" },
-  { p: "data lineage / governance", m: "데이터 계보 / 거버넌스", e: "", d: "2026-11-11", s: "새로" },
-  { p: "I'm only two episodes in, but it's so good.", m: "말할 때 \"두 편밖에 안 봤는데\"", e: "", d: "2026-11-09", s: "새로" },
-  { p: "the way it's shot", m: "촬영·연출 방식", e: "I love the way it's shot.", d: "2026-11-09", s: "새로" },
-  { p: "I'm drawn to ~", m: "~에 끌린다 (like보다 세련)", e: "I'm drawn to people who listen.", d: "2026-04", s: "연습중" },
-  { p: "make up my mind", m: "결심하다", e: "", d: "2026", s: "새로" },
-  { p: "It makes sense.", m: "말이 된다", e: "", d: "2026", s: "새로" },
-  { p: "on my own", m: "혼자 힘으로", e: "It's hard to think clearly on my own.", d: "2026", s: "새로" },
-  { p: "I couldn't stop thinking about it.", m: "계속 생각났다", e: "", d: "2026", s: "새로" }
+{
+"p": "I help ~ analyze data better",
+"m": "내가 ~가 ~하게 돕는다",
+"e": "I help marketers analyze data better.",
+"d": "2026-11-11",
+"s": "새로"
+},
+{
+"p": "depending on who's asking",
+"m": "묻는 사람에 따라",
+"e": "The answer changes depending on who's asking.",
+"d": "2026-11-11",
+"s": "새로"
+},
+{
+"p": "ensure accurate data",
+"m": "정확한 데이터를 보장하다",
+"e": "",
+"d": "2026-11-11",
+"s": "새로"
+},
+{
+"p": "I build a model that predicts ~",
+"m": "~를 예측하는 모델을 만든다",
+"e": "I build a model that predicts outcomes.",
+"d": "2026-11-11",
+"s": "새로"
+},
+{
+"p": "data lineage / governance",
+"m": "데이터 계보 / 거버넌스",
+"e": "",
+"d": "2026-11-11",
+"s": "새로"
+},
+{
+"p": "I'm only two episodes in, but it's so good.",
+"m": "말할 때 \"두 편밖에 안 봤는데\"",
+"e": "",
+"d": "2026-11-09",
+"s": "새로"
+},
+{
+"p": "the way it's shot",
+"m": "촬영·연출 방식",
+"e": "I love the way it's shot.",
+"d": "2026-11-09",
+"s": "새로"
+},
+{
+"p": "I'm drawn to ~",
+"m": "~에 끌린다 (like보다 세련)",
+"e": "I'm drawn to people who listen.",
+"d": "2026-04",
+"s": "연습중"
+},
+{
+"p": "make up my mind",
+"m": "결심하다",
+"e": "",
+"d": "2026",
+"s": "새로"
+},
+{
+"p": "It makes sense.",
+"m": "말이 된다",
+"e": "",
+"d": "2026",
+"s": "새로"
+},
+{
+"p": "on my own",
+"m": "혼자 힘으로",
+"e": "It's hard to think clearly on my own.",
+"d": "2026",
+"s": "새로"
+},
+{
+"p": "I couldn't stop thinking about it.",
+"m": "계속 생각났다",
+"e": "",
+"d": "2026",
+"s": "새로"
+}
 ];
-
-/* used: 마지막으로 한 날 (없으면 생략) */
 const TOPICS = [
-  { stage: "1단계", note: "2~3문장으로 답하기", items: [
-    { t: "What do you do? (직업 소개)", used: "2026-11-11" },
-    { t: "What did you do today?" },
-    { t: "What do you feel like eating right now?" },
-    { t: "What are you watching or reading these days?" },
-    { t: "How's your routine lately?" },
-    { t: "What's your favorite way to spend a weekend?" } ] },
-  { stage: "2단계", note: "이유·예시 붙이기", items: [
-    { t: "Tell me about a trip you want to take, and why" },
-    { t: "Why do you play guitar? Who inspired you?" },
-    { t: "Why are you so into The Bear?" },
-    { t: "What's been on your mind lately?" } ] },
-  { stage: "3단계", note: "배운 표현 일부러 쓰기", items: [
-    { t: "The most interesting thing you've learned recently" },
-    { t: "A time you felt embarrassed" },
-    { t: "A decision you regret and what you'd change" },
-    { t: "Meditation: what changed for you?" } ] },
-  { stage: "4단계", note: "스토리·의견, 반론에 답하기", items: [
-    { t: "Will AI take away developers' jobs?" },
-    { t: "Remote work vs. going to the office" },
-    { t: "Is spending a lot on hobbies a waste?" },
-    { t: "If you had a year off with no obligations..." },
-    { t: "What kind of person do you want to become?" } ] },
-  { stage: "여행 영어", note: "영국 12/12~12/22", items: [
-    { t: "Passport control: \"What's the purpose of your visit?\"" },
-    { t: "Ordering and paying at a restaurant" },
-    { t: "Asking for directions, taking the Tube" },
-    { t: "Hotel check-in and reporting a problem" },
-    { t: "Changing plans on a rainy day" } ] }
+ {
+  "stage": "1단계",
+  "note": "2~3문장으로 답하기",
+  "items": [
+   {
+    "t": "What do you do? (직업 소개)",
+    "used": "2026-11-11"
+   },
+   {
+    "t": "What did you do today?"
+   },
+   {
+    "t": "What do you feel like eating right now?"
+   },
+   {
+    "t": "What are you watching or reading these days?"
+   },
+   {
+    "t": "How's your routine lately?"
+   },
+   {
+    "t": "What's your favorite way to spend a weekend?"
+   }
+  ]
+ },
+ {
+  "stage": "2단계",
+  "note": "이유·예시 붙이기",
+  "items": [
+   {
+    "t": "Explain your work project to someone who doesn't know it"
+   },
+   {
+    "t": "Why do you play guitar? Who inspired you?"
+   },
+   {
+    "t": "Tell me about a trip you want to take, and why"
+   },
+   {
+    "t": "Why are you so into The Bear?"
+   },
+   {
+    "t": "What's been on your mind lately?"
+   }
+  ]
+ },
+ {
+  "stage": "3단계",
+  "note": "배운 표현 일부러 쓰기",
+  "items": [
+   {
+    "t": "The most interesting thing you've learned recently"
+   },
+   {
+    "t": "A time you felt embarrassed"
+   },
+   {
+    "t": "A decision you regret and what you'd change"
+   },
+   {
+    "t": "Meditation: what changed for you?"
+   }
+  ]
+ },
+ {
+  "stage": "4단계",
+  "note": "스토리·의견, 반론에 답하기",
+  "items": [
+   {
+    "t": "Will AI take away developers' jobs?"
+   },
+   {
+    "t": "Remote work vs. going to the office"
+   },
+   {
+    "t": "Is spending a lot on hobbies a waste?"
+   },
+   {
+    "t": "If you had a year off with no obligations..."
+   },
+   {
+    "t": "What kind of person do you want to become?"
+   }
+  ]
+ },
+ {
+  "stage": "여행 영어",
+  "note": "영국, 12/12~12/22",
+  "items": [
+   {
+    "t": "입국 심사: \"What's the purpose of your visit?\""
+   },
+   {
+    "t": "식당에서 주문, 계산"
+   },
+   {
+    "t": "길 묻기, 지하철"
+   },
+   {
+    "t": "숙소 체크인, 문제 말하기"
+   },
+   {
+    "t": "비 오는 날 일정 바꾸기"
+   }
+  ]
+ }
 ];
+/*END DATA*/
 /* ──────────────────────────────────────────────────────────────────────────── */
 
 const $ = (s) => document.querySelector(s);
@@ -181,7 +328,7 @@ const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&l
 
 $("#todayDate").textContent = TODAY.date;
 $("#todayPhrase").textContent = TODAY.phrase;
-$("#todayKo").textContent = TODAY.ko;
+$("#todayKo").textContent = TODAY.ko || "";
 $("#updated").textContent = UPDATED;
 
 let status = "전체";
