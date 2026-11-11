@@ -1,0 +1,989 @@
+import fs from 'fs';
+import path from 'path';
+import matter from 'gray-matter';
+import { convertNotebookToHtml, extractNotebookMetadata } from './notebook';
+
+const postsDirectory = path.join(process.cwd(), 'posts');
+const IGNORED_DIRECTORY_NAMES = new Set(['images', '.obsidian', 'Templates']);
+
+function shouldIgnoreDirectory(dirName: string): boolean {
+  return dirName.startsWith('.') || IGNORED_DIRECTORY_NAMES.has(dirName);
+}
+
+export interface PostData {
+  id: string;
+  title: string;
+  date: string;
+  content: string;
+  excerpt?: string;
+  category?: string;
+  tags?: string[];
+  isNotebook?: boolean;
+  Done?: boolean;
+}
+
+interface RawPostFrontmatter {
+  title?: unknown;
+  date?: unknown;
+  excerpt?: unknown;
+  category?: unknown;
+  tags?: unknown;
+  Done?: unknown;
+  done?: unknown;
+}
+
+interface NormalizedPostFrontmatter {
+  title: string;
+  date: string;
+  excerpt?: string;
+  category?: string;
+  tags: string[];
+  Done: boolean;
+}
+
+const IMAGE_EXTENSION_REGEX = /\.(png|jpe?g|gif|webp|svg|bmp|avif)$/i;
+
+function isImageTarget(target: string): boolean {
+  return IMAGE_EXTENSION_REGEX.test(target.trim());
+}
+
+function toEmbeddedImageSrc(rawTarget: string): string {
+  const target = rawTarget.trim().replace(/\\/g, '/');
+  if (!target) return target;
+  if (/^(https?:)?\/\//i.test(target) || target.startsWith('/')) {
+    return target;
+  }
+  if (target.startsWith('./') || target.startsWith('../')) {
+    return target;
+  }
+  if (target.includes('/')) {
+    return `./${target}`;
+  }
+  return `./images/${target}`;
+}
+
+function parseObsidianImageOption(rawOption?: string): { width?: string; alt?: string } {
+  if (!rawOption) return {};
+  const option = rawOption.trim();
+  if (!option) return {};
+
+  // Obsidian size options: |300 or |300x200
+  const widthOnlyMatch = option.match(/^(\d+)$/);
+  if (widthOnlyMatch) {
+    return { width: widthOnlyMatch[1] };
+  }
+
+  const widthHeightMatch = option.match(/^(\d+)x(\d+)$/i);
+  if (widthHeightMatch) {
+    return { width: widthHeightMatch[1] };
+  }
+
+  return { alt: option };
+}
+
+function buildFileNameToPathMap(): Map<string, string> {
+  const postFiles = getAllPostFiles(postsDirectory);
+  const map = new Map<string, string>();
+  for (const filePath of postFiles) {
+    const relativePath = path.relative(postsDirectory, filePath);
+    const relativeWithoutExt = relativePath.replace(/\.(md|ipynb)$/, '').replace(/\\/g, '/');
+    const fileName = path.basename(relativeWithoutExt);
+    map.set(relativeWithoutExt, relativeWithoutExt);
+    if (!map.has(fileName)) {
+      map.set(fileName, relativeWithoutExt);
+    }
+  }
+  return map;
+}
+
+function convertObsidianWikiLinks(content: string, fileNameMap: Map<string, string>): string {
+  return content.replace(/\[\[([^[\]\n]+)\]\]/g, (fullMatch, innerContent: string) => {
+    const [targetRaw, aliasRaw] = innerContent.split('|');
+    const target = targetRaw?.trim() || '';
+    if (!target) return fullMatch;
+
+    const alias = (aliasRaw || target).trim();
+    const cleaned = target.replace(/\\/g, '/').replace(/\.md$/i, '');
+    const [pathPart, hashPart] = cleaned.split('#');
+    const hash = hashPart ? `#${encodeURIComponent(hashPart.trim())}` : '';
+
+    const resolved = fileNameMap.get(pathPart) ?? pathPart;
+    const encodedPath = resolved
+      .split('/')
+      .map((s) => encodeURIComponent(s))
+      .join('/');
+
+    return `[${alias}](/posts/${encodedPath}${hash})`;
+  });
+}
+
+function convertObsidianImageEmbeds(content: string): string {
+  return content.replace(
+    /(^|\n)([ \t]*)!\[\[([^[\]\n]+)\]\](?=\n|$)/g,
+    (fullMatch, linePrefix: string, indentation: string, innerContent: string) => {
+      const [targetRaw = '', optionRaw = ''] = innerContent.split('|');
+      const target = targetRaw.trim();
+
+      if (!target || !isImageTarget(target)) {
+        return fullMatch;
+      }
+
+      const src = toEmbeddedImageSrc(target);
+      const { width, alt } = parseObsidianImageOption(optionRaw);
+      const encodedAlt = (alt || '').replace(/"/g, '&quot;');
+      const imgTag = width
+        ? `<img src="${src}" width="${width}" alt="${encodedAlt}" class="obsidian-embed-image" />`
+        : `<img src="${src}" alt="${encodedAlt}" class="obsidian-embed-image" />`;
+
+      // Keep image embeds as standalone blocks so following markdown
+      // (e.g., blockquote starting with '>') starts a new block.
+      return `${linePrefix}${indentation}${imgTag}\n`;
+    }
+  );
+}
+
+function normalizeDate(value: unknown): string {
+  if (value instanceof Date && !Number.isNaN(value.getTime())) {
+    return value.toISOString().split('T')[0];
+  }
+  if (typeof value === 'string') {
+    const trimmed = value.trim();
+    if (!trimmed) return '';
+    const isoLike = trimmed.match(/^(\d{4}-\d{2}-\d{2})/);
+    if (isoLike) return isoLike[1];
+    const parsed = new Date(trimmed);
+    if (!Number.isNaN(parsed.getTime())) {
+      return parsed.toISOString().split('T')[0];
+    }
+  }
+  return '';
+}
+
+function normalizeTags(value: unknown): string[] {
+  if (Array.isArray(value)) {
+    return value
+      .map((tag) => String(tag).trim())
+      .filter((tag) => tag.length > 0);
+  }
+  if (typeof value === 'string') {
+    return value
+      .split(',')
+      .map((tag) => tag.trim())
+      .filter((tag) => tag.length > 0);
+  }
+  return [];
+}
+
+function normalizeFrontmatter(data: RawPostFrontmatter, fallbackId: string): NormalizedPostFrontmatter {
+  const title = typeof data.title === 'string' && data.title.trim() ? data.title.trim() : fallbackId;
+  const date = normalizeDate(data.date);
+  const excerpt = typeof data.excerpt === 'string' && data.excerpt.trim() ? data.excerpt.trim() : undefined;
+  const category = typeof data.category === 'string' && data.category.trim() ? data.category.trim() : undefined;
+  const tags = normalizeTags(data.tags);
+  const doneValue = data.Done ?? data.done;
+  const isDone = typeof doneValue === 'boolean' ? doneValue : false;
+
+  return {
+    title,
+    date,
+    excerpt,
+    category,
+    tags,
+    Done: isDone,
+  };
+}
+
+// 폴더 구조를 나타내는 인터페이스
+export interface FolderNode {
+  name: string;
+  path: string;
+  children: FolderNode[];
+  postCount: number;
+}
+
+// 재귀적으로 모든 .md, .ipynb 파일을 찾는 함수
+function getAllPostFiles(dir: string): string[] {
+  const files: string[] = [];
+  const items = fs.readdirSync(dir);
+  
+  for (const item of items) {
+    const fullPath = path.join(dir, item);
+    const stat = fs.statSync(fullPath);
+    
+    if (stat.isDirectory()) {
+      if (shouldIgnoreDirectory(item)) {
+        continue;
+      }
+      files.push(...getAllPostFiles(fullPath));
+    } else if (item.endsWith('.md') || item.endsWith('.ipynb')) {
+      // README 파일은 일반 포스트로 처리하지 않음
+      if (item.toLowerCase() === 'readme.md') {
+        continue;
+      }
+      files.push(fullPath);
+    }
+  }
+  
+  return files;
+}
+
+export async function getSortedPostsData(includeUndone: boolean = false): Promise<Omit<PostData, 'content'>[]> {
+  // Get all post files (markdown and notebook) recursively
+  const postFiles = getAllPostFiles(postsDirectory);
+  const allPostsData = await Promise.all(postFiles.map(async (filePath: string) => {
+    // Get relative path from posts directory and remove extension to get id
+    const relativePath = path.relative(postsDirectory, filePath);
+    const id = relativePath.replace(/\.(md|ipynb)$/, '');
+    
+    // Ensure consistent path separators and handle spaces properly
+    const normalizedId = id.replace(/\\/g, '/');
+
+    // Handle different file types
+    if (filePath.endsWith('.ipynb')) {
+      // For Jupyter notebooks, extract metadata directly
+      const metadata = extractNotebookMetadata(filePath);
+      const normalizedMeta = normalizeFrontmatter(metadata, normalizedId);
+      return {
+        id: normalizedId,
+        title: normalizedMeta.title,
+        date: normalizedMeta.date || new Date().toISOString().split('T')[0],
+        excerpt: normalizedMeta.excerpt,
+        category: normalizedMeta.category,
+        tags: normalizedMeta.tags,
+        Done: normalizedMeta.Done,
+      };
+    } else {
+      // For markdown files, use gray-matter
+      const fileContents = fs.readFileSync(filePath, 'utf8');
+      const matterResult = matter(fileContents);
+      const normalizedMeta = normalizeFrontmatter(matterResult.data as RawPostFrontmatter, normalizedId);
+      
+      return {
+        id: normalizedId,
+        title: normalizedMeta.title,
+        date: normalizedMeta.date || new Date().toISOString().split('T')[0],
+        excerpt: normalizedMeta.excerpt,
+        category: normalizedMeta.category,
+        tags: normalizedMeta.tags,
+        Done: normalizedMeta.Done,
+      };
+    }
+  }));
+
+  // Filter unfinished posts unless explicitly requested
+  const filteredPosts = includeUndone 
+    ? allPostsData 
+    : allPostsData.filter(post => post.Done === true);
+
+  // Sort posts by date
+  return filteredPosts.sort((a, b) => {
+    if (a.date < b.date) {
+      return 1;
+    } else {
+      return -1;
+    }
+  });
+}
+
+export async function getPostsByCategory(category: string, includeUndone: boolean = false): Promise<Omit<PostData, 'content'>[]> {
+  const allPosts = await getSortedPostsData(includeUndone);
+  return allPosts.filter((post) => post.category === category);
+}
+
+export async function getAllCategories(): Promise<string[]> {
+  const allPosts = await getSortedPostsData();
+  const categories = allPosts
+    .map((post) => post.category)
+    .filter((category): category is string => category !== undefined);
+  
+  // Remove duplicates and sort
+  return [...new Set(categories)].sort();
+}
+
+export async function getAllPostIds() {
+  const posts = await getSortedPostsData();
+  return posts.map((post) => ({
+    id: post.id,
+  }));
+}
+
+export async function getPostData(id: string): Promise<PostData> {
+  // Decode URL-encoded characters in the id
+  const decodedId = decodeURIComponent(id);
+  
+  // Check if markdown file exists directly in posts directory first
+  let fullPath = path.join(postsDirectory, `${decodedId}.md`);
+  let isNotebook = false;
+  // If markdown not found, check for notebook file
+  if (!fs.existsSync(fullPath)) {
+    fullPath = path.join(postsDirectory, `${decodedId}.ipynb`);
+    if (fs.existsSync(fullPath)) {
+      isNotebook = true;
+    }
+  }
+  
+  // If still not found, search in subdirectories
+  if (!fs.existsSync(fullPath)) {
+    const postFiles = getAllPostFiles(postsDirectory);
+    const targetFile = postFiles.find((filePath: string) => {
+      const relativePath = path.relative(postsDirectory, filePath);
+      const relativePathWithoutExt = relativePath.replace(/\.(md|ipynb)$/, '');
+      
+      // Exact match first
+      if (relativePathWithoutExt === decodedId) {
+        return true;
+      }
+      
+      // Handle cases where the decodedId might have different path separators
+      // or the file is in a nested subdirectory
+      const normalizedDecodedId = decodedId.replace(/\\/g, '/');
+      const normalizedRelativePath = relativePathWithoutExt.replace(/\\/g, '/');
+      
+      if (normalizedRelativePath === normalizedDecodedId) {
+        return true;
+      }
+      
+      // Additional fallback: try to match by filename only if path structure is complex
+      const fileName = path.basename(relativePathWithoutExt);
+      const decodedFileName = path.basename(decodedId);
+      
+      if (fileName === decodedFileName) {
+        return true;
+      }
+      
+      return false;
+    });
+    
+    if (!targetFile) {
+      throw new Error(`Post with id "${id}" not found`);
+    }
+    
+    fullPath = targetFile;
+    isNotebook = targetFile.endsWith('.ipynb');
+  }
+  
+  // Handle notebook files
+  if (isNotebook) {
+    const metadata = extractNotebookMetadata(fullPath);
+    const normalizedMeta = normalizeFrontmatter(metadata, id);
+    const htmlContent = await convertNotebookToHtml(fullPath);
+    
+    return {
+      id,
+      content: htmlContent,
+      title: normalizedMeta.title,
+      date: normalizedMeta.date || new Date().toISOString().split('T')[0],
+      excerpt: normalizedMeta.excerpt,
+      category: normalizedMeta.category,
+      tags: normalizedMeta.tags,
+      isNotebook: true,
+    };
+  } else {
+    // Handle markdown files
+    const fileContents = fs.readFileSync(fullPath, 'utf8');
+    const matterResult = matter(fileContents);
+    const normalizedMeta = normalizeFrontmatter(matterResult.data as RawPostFrontmatter, id);
+    
+    // Convert relative image paths to absolute paths based on post location
+    let processedContent = matterResult.content;
+    processedContent = convertObsidianImageEmbeds(processedContent);
+    processedContent = convertObsidianWikiLinks(processedContent, buildFileNameToPathMap());
+    const relativePath = path.relative(postsDirectory, fullPath);
+    const postDir = path.dirname(relativePath);
+    
+    // Helper function to encode path segments (spaces, etc.)
+    const encodePath = (pathStr: string): string => {
+      return pathStr.split('/').map(segment => encodeURIComponent(segment)).join('/');
+    };
+    
+    // Replace relative image paths (./images/... or images/...) with absolute paths
+    // Pattern: ./images/filename.png -> /posts/category/subcategory/images/filename.png
+    processedContent = processedContent.replace(
+      /(<img[^>]+src=")(?:\.\/)?images\/([^"]+)(")/g,
+      (match, prefix, imageFilename, closingQuote) => {
+        const absolutePath = postDir !== '.' 
+          ? `/posts/${encodePath(postDir)}/images/${encodePath(imageFilename)}`
+          : `/posts/images/${encodePath(imageFilename)}`;
+        return `${prefix}${absolutePath}${closingQuote}`;
+      }
+    );
+    
+    // Also handle markdown image syntax: ![alt](./images/file.png) or ![alt](images/file.png)
+    processedContent = processedContent.replace(
+      /(!\[[^\]]*\]\()(?:\.\/)?images\/([^)]+)(\))/g,
+      (match, prefix, imageFilename, closingParen) => {
+        const absolutePath = postDir !== '.' 
+          ? `/posts/${encodePath(postDir)}/images/${encodePath(imageFilename)}`
+          : `/posts/images/${encodePath(imageFilename)}`;
+        return `${prefix}${absolutePath}${closingParen}`;
+      }
+    );
+
+    // Handle full Obsidian vault-relative paths (e.g., ./Music/.../images/file.png)
+    processedContent = processedContent.replace(
+      /(<img[^>]+src=")\.\/((?:[^"\/]+\/)+[^"]+)(")/g,
+      (match, prefix, fullRelativePath, closingQuote) => {
+        const absolutePath = `/posts/${encodePath(fullRelativePath)}`;
+        return `${prefix}${absolutePath}${closingQuote}`;
+      }
+    );
+
+    return {
+      id,
+      content: processedContent,
+      title: normalizedMeta.title,
+      date: normalizedMeta.date,
+      excerpt: normalizedMeta.excerpt,
+      category: normalizedMeta.category,
+      tags: normalizedMeta.tags,
+      Done: normalizedMeta.Done,
+      isNotebook: false,
+    };
+  }
+} 
+
+// 폴더 구조를 재귀적으로 빌드하는 함수
+function buildFolderStructure(dir: string, basePath: string = ''): FolderNode[] {
+  const items = fs.readdirSync(dir);
+  const folders: FolderNode[] = [];
+  
+  for (const item of items) {
+    const fullPath = path.join(dir, item);
+    const stat = fs.statSync(fullPath);
+    
+    if (stat.isDirectory()) {
+      // 숨김/시스템 폴더는 제외
+      if (shouldIgnoreDirectory(item)) {
+        continue;
+      }
+      
+      const relativePath = basePath ? `${basePath}/${item}` : item;
+      const children = buildFolderStructure(fullPath, relativePath);
+      
+      // 해당 폴더와 하위 폴더의 포스트 개수 계산
+      const postCount = getPostCountInFolder(fullPath);
+      
+      folders.push({
+        name: item,
+        path: relativePath,
+        children,
+        postCount
+      });
+    }
+  }
+  
+  return folders;
+}
+
+// 특정 폴더 내의 포스트 개수를 계산하는 함수
+function getPostCountInFolder(dir: string): number {
+  const items = fs.readdirSync(dir);
+  let count = 0;
+  
+  for (const item of items) {
+    const fullPath = path.join(dir, item);
+    const stat = fs.statSync(fullPath);
+    
+    if (stat.isDirectory()) {
+      if (shouldIgnoreDirectory(item)) {
+        continue;
+      }
+      count += getPostCountInFolder(fullPath);
+    } else if (item.endsWith('.md') || item.endsWith('.ipynb')) {
+      count++;
+    }
+  }
+  
+  return count;
+}
+
+// 폴더 구조 트리를 가져오는 함수
+export function getFolderStructure(): FolderNode[] {
+  return buildFolderStructure(postsDirectory);
+}
+
+// 특정 폴더 경로의 포스트들을 가져오는 함수 (하위 폴더 포함)
+export async function getPostsByFolderPath(folderPath: string): Promise<Omit<PostData, 'content'>[]> {
+  const allPosts = await getSortedPostsData();
+  
+  // 폴더 경로가 빈 문자열이면 모든 포스트 반환
+  if (!folderPath) {
+    return allPosts;
+  }
+  
+  // 해당 폴더 경로로 시작하는 포스트들만 필터링
+  return allPosts.filter((post) => {
+    const postFolder = post.id.includes('/') ? post.id.substring(0, post.id.lastIndexOf('/')) : '';
+    return postFolder === folderPath || postFolder.startsWith(folderPath + '/');
+  });
+}
+
+// 특정 폴더 경로의 포스트들을 가져오는 함수 (하위 폴더 제외)
+export async function getPostsByFolderPathExact(folderPath: string): Promise<Omit<PostData, 'content'>[]> {
+  const allPosts = await getSortedPostsData();
+  
+  // 폴더 경로가 빈 문자열이면 루트 폴더의 포스트들만 반환
+  if (!folderPath) {
+    return allPosts.filter((post) => !post.id.includes('/'));
+  }
+  
+  // 해당 폴더 경로에 정확히 속하는 포스트들만 필터링
+  return allPosts.filter((post) => {
+    const postFolder = post.id.includes('/') ? post.id.substring(0, post.id.lastIndexOf('/')) : '';
+    return postFolder === folderPath;
+  });
+}
+
+// 모든 폴더 경로를 평면적으로 가져오는 함수
+export function getAllFolderPaths(): string[] {
+  const structure = getFolderStructure();
+  const paths: string[] = [];
+  
+  function collectPaths(nodes: FolderNode[]) {
+    for (const node of nodes) {
+      paths.push(node.path);
+      if (node.children.length > 0) {
+        collectPaths(node.children);
+      }
+    }
+  }
+  
+  collectPaths(structure);
+  return paths;
+} 
+
+// 날짜별 포스트 개수를 집계하는 인터페이스
+export interface PostsByDate {
+  date: string;
+  count: number;
+}
+
+// 월별 포스트 개수를 집계하는 함수
+export async function getPostsByMonth(): Promise<PostsByDate[]> {
+  const allPosts = await getSortedPostsData();
+  const monthlyData: { [key: string]: number } = {};
+  
+  for (const post of allPosts) {
+    if (!post.date) continue;
+    
+    // YYYY-MM 형태로 월별 그룹화
+    const month = post.date.substring(0, 7);
+    monthlyData[month] = (monthlyData[month] || 0) + 1;
+  }
+  
+  // 배열로 변환하고 날짜순 정렬
+  return Object.entries(monthlyData)
+    .map(([date, count]) => ({ date, count }))
+    .sort((a, b) => a.date.localeCompare(b.date));
+}
+
+// 연도별 포스트 개수를 집계하는 함수
+export async function getPostsByYear(): Promise<PostsByDate[]> {
+  const allPosts = await getSortedPostsData();
+  const yearlyData: { [key: string]: number } = {};
+  
+  for (const post of allPosts) {
+    if (!post.date) continue;
+    
+    // YYYY 형태로 연도별 그룹화
+    const year = post.date.substring(0, 4);
+    yearlyData[year] = (yearlyData[year] || 0) + 1;
+  }
+  
+  // 배열로 변환하고 날짜순 정렬
+  return Object.entries(yearlyData)
+    .map(([date, count]) => ({ date, count }))
+    .sort((a, b) => a.date.localeCompare(b.date));
+}
+
+// 주별 포스트 개수를 집계하는 함수
+export async function getPostsByWeek(): Promise<PostsByDate[]> {
+  const allPosts = await getSortedPostsData();
+  const weeklyData: { [key: string]: number } = {};
+  
+  for (const post of allPosts) {
+    if (!post.date) continue;
+    
+    const postDate = new Date(post.date);
+    
+    // 해당 주의 월요일을 구하기
+    const monday = new Date(postDate);
+    const day = monday.getDay();
+    const diff = monday.getDate() - day + (day === 0 ? -6 : 1); // 일요일인 경우 조정
+    monday.setDate(diff);
+    
+    // YYYY-MM-DD 형태로 주의 시작일 표시
+    const weekStart = monday.toISOString().split('T')[0];
+    weeklyData[weekStart] = (weeklyData[weekStart] || 0) + 1;
+  }
+  
+  // 배열로 변환하고 날짜순 정렬
+  return Object.entries(weeklyData)
+    .map(([date, count]) => ({ 
+      date: `${date} 주`, // 더 읽기 쉽게 표시
+      count 
+    }))
+    .sort((a, b) => a.date.localeCompare(b.date))
+    .slice(-12); // 최근 12주만 표시 (너무 많으면 차트가 복잡해짐)
+}
+
+// GitHub 잔디밭을 위한 날짜별 포스트 데이터 인터페이스
+export interface ContributionDay {
+  date: string;
+  count: number;
+  level: number; // 0-4 (강도 레벨)
+}
+
+// 날짜별 포스트 개수를 집계하는 함수 (GitHub 잔디밭용)
+export async function getPostsContributionData(): Promise<ContributionDay[]> {
+  const allPosts = await getSortedPostsData();
+  const dailyData: { [key: string]: number } = {};
+  
+  for (const post of allPosts) {
+    if (!post.date) continue;
+    
+    const date = post.date;
+    dailyData[date] = (dailyData[date] || 0) + 1;
+  }
+  
+  // 최대값 계산 (레벨 계산용) - 데이터가 없으면 0
+  const counts = Object.values(dailyData);
+  const maxCount = counts.length > 0 ? Math.max(...counts) : 0;
+  
+  // 지난 1년간의 모든 날짜 생성
+  const result: ContributionDay[] = [];
+  const endDate = new Date();
+  const startDate = new Date();
+  startDate.setFullYear(endDate.getFullYear() - 1);
+  
+  for (let d = new Date(startDate); d <= endDate; d.setDate(d.getDate() + 1)) {
+    const dateStr = d.toISOString().split('T')[0];
+    const count = dailyData[dateStr] || 0;
+    
+    // GitHub 스타일 레벨 계산 (0-4)
+    let level = 0;
+    if (count > 0 && maxCount > 0) {
+      if (maxCount <= 1) {
+        level = count > 0 ? 4 : 0;
+      } else {
+        level = Math.min(Math.ceil((count / maxCount) * 4), 4);
+      }
+    }
+    
+    result.push({
+      date: dateStr,
+      count,
+      level
+    });
+  }
+  
+  return result;
+}
+
+// 특정 연도의 contribution 데이터를 가져오는 함수
+export async function getPostsContributionDataByYear(year: number): Promise<ContributionDay[]> {
+  const allPosts = await getSortedPostsData();
+  const dailyData: { [key: string]: number } = {};
+  
+  for (const post of allPosts) {
+    if (!post.date) continue;
+    
+    const postYear = parseInt(post.date.substring(0, 4));
+    if (postYear === year) {
+      const date = post.date;
+      dailyData[date] = (dailyData[date] || 0) + 1;
+    }
+  }
+  
+  // 최대값 계산 (레벨 계산용) - 데이터가 없으면 0
+  const counts = Object.values(dailyData);
+  const maxCount = counts.length > 0 ? Math.max(...counts) : 0;
+  
+  // 해당 연도의 모든 날짜 생성
+  const result: ContributionDay[] = [];
+  const startDate = new Date(year, 0, 1); // 1월 1일
+  const endDate = new Date(year, 11, 31); // 12월 31일
+  
+  for (let d = new Date(startDate); d <= endDate; d.setDate(d.getDate() + 1)) {
+    const dateStr = d.toISOString().split('T')[0];
+    const count = dailyData[dateStr] || 0;
+    
+    // GitHub 스타일 레벨 계산 (0-4)
+    let level = 0;
+    if (count > 0 && maxCount > 0) {
+      if (maxCount <= 1) {
+        level = count > 0 ? 4 : 0;
+      } else {
+        level = Math.min(Math.ceil((count / maxCount) * 4), 4);
+      }
+    }
+    
+    result.push({
+      date: dateStr,
+      count,
+      level
+    });
+  }
+  
+  return result;
+}
+
+// 포스트가 있는 연도 목록을 가져오는 함수
+export async function getActiveYears(): Promise<number[]> {
+  const allPosts = await getSortedPostsData();
+  const years = new Set<number>();
+  
+  for (const post of allPosts) {
+    if (!post.date) continue;
+    
+    try {
+      const year = parseInt(post.date.substring(0, 4));
+      if (!isNaN(year)) {
+        years.add(year);
+      }
+    } catch {
+      // 잘못된 날짜 형식은 무시
+    }
+  }
+  
+  // 연도를 내림차순으로 정렬 (최신 연도부터)
+  return Array.from(years).sort((a, b) => b - a);
+}
+
+// 요일별 포스트 개수를 집계하는 함수
+export async function getPostsByDayOfWeek(): Promise<PostsByDate[]> {
+  const allPosts = await getSortedPostsData();
+  const dayOfWeekData: { [key: string]: number } = {};
+  const dayNames = ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'];
+  
+  // 요일별 초기화
+  dayNames.forEach(day => {
+    dayOfWeekData[day] = 0;
+  });
+  
+  for (const post of allPosts) {
+    if (!post.date) continue;
+    
+    try {
+      const date = new Date(post.date);
+      const dayOfWeek = date.getDay(); // 0 (일요일) ~ 6 (토요일)
+      const dayName = dayNames[dayOfWeek];
+      dayOfWeekData[dayName]++;
+    } catch {
+      // 잘못된 날짜 형식은 무시
+    }
+  }
+  
+  // 배열로 변환 (일요일부터 토요일 순서)
+  return dayNames.map(dayName => ({
+    date: dayName,
+    count: dayOfWeekData[dayName]
+  }));
+}
+
+// 카테고리별 특정 연도의 contribution 데이터를 가져오는 함수
+export async function getPostsContributionDataByCategoryAndYear(category: string, year: number): Promise<ContributionDay[]> {
+  const allPosts = await getSortedPostsData();
+  const dailyData: { [key: string]: number } = {};
+  
+  for (const post of allPosts) {
+    if (!post.date) continue;
+    
+    const postYear = parseInt(post.date.substring(0, 4));
+    if (postYear === year && post.category === category) {
+      const date = post.date;
+      dailyData[date] = (dailyData[date] || 0) + 1;
+    }
+  }
+  
+  // 최대값 계산 (레벨 계산용) - 데이터가 없으면 0
+  const counts = Object.values(dailyData);
+  const maxCount = counts.length > 0 ? Math.max(...counts) : 0;
+  
+  // 해당 연도의 모든 날짜 생성
+  const result: ContributionDay[] = [];
+  const startDate = new Date(year, 0, 1); // 1월 1일
+  const endDate = new Date(year, 11, 31); // 12월 31일
+  
+  for (let d = new Date(startDate); d <= endDate; d.setDate(d.getDate() + 1)) {
+    const dateStr = d.toISOString().split('T')[0];
+    const count = dailyData[dateStr] || 0;
+    
+    // GitHub 스타일 레벨 계산 (0-4)
+    let level = 0;
+    if (count > 0 && maxCount > 0) {
+      if (maxCount <= 1) {
+        level = count > 0 ? 4 : 0;
+      } else {
+        level = Math.min(Math.ceil((count / maxCount) * 4), 4);
+      }
+    }
+    
+    result.push({
+      date: dateStr,
+      count,
+      level
+    });
+  }
+  
+  return result;
+}
+
+// 카테고리별 포스트가 있는 연도 목록을 가져오는 함수
+export async function getActiveYearsByCategory(category: string): Promise<number[]> {
+  const allPosts = await getSortedPostsData();
+  const years = new Set<number>();
+  
+  for (const post of allPosts) {
+    if (!post.date) continue;
+    
+    if (post.category === category) {
+      try {
+        const year = parseInt(post.date.substring(0, 4));
+        if (!isNaN(year)) {
+          years.add(year);
+        }
+      } catch {
+        // 잘못된 날짜 형식은 무시
+      }
+    }
+  }
+  
+  // 연도를 내림차순으로 정렬 (최신 연도부터)
+  return Array.from(years).sort((a, b) => b - a);
+}
+
+// 폴더별 특정 연도의 contribution 데이터를 가져오는 함수
+export async function getPostsContributionDataByFolderAndYear(folderPath: string, year: number): Promise<ContributionDay[]> {
+  const allPosts = await getSortedPostsData();
+  const dailyData: { [key: string]: number } = {};
+  
+  for (const post of allPosts) {
+    if (!post.date) continue;
+    
+    const postYear = parseInt(post.date.substring(0, 4));
+    const postFolder = post.id.includes('/') ? post.id.substring(0, post.id.lastIndexOf('/')) : '';
+    
+    if (postYear === year && (postFolder === folderPath || postFolder.startsWith(folderPath + '/'))) {
+      const date = post.date;
+      dailyData[date] = (dailyData[date] || 0) + 1;
+    }
+  }
+  
+  // 최대값 계산 (레벨 계산용) - 데이터가 없으면 0
+  const counts = Object.values(dailyData);
+  const maxCount = counts.length > 0 ? Math.max(...counts) : 0;
+  
+  // 해당 연도의 모든 날짜 생성
+  const result: ContributionDay[] = [];
+  const startDate = new Date(year, 0, 1); // 1월 1일
+  const endDate = new Date(year, 11, 31); // 12월 31일
+  
+  for (let d = new Date(startDate); d <= endDate; d.setDate(d.getDate() + 1)) {
+    const dateStr = d.toISOString().split('T')[0];
+    const count = dailyData[dateStr] || 0;
+    
+    // GitHub 스타일 레벨 계산 (0-4)
+    let level = 0;
+    if (count > 0 && maxCount > 0) {
+      if (maxCount <= 1) {
+        level = count > 0 ? 4 : 0;
+      } else {
+        level = Math.min(Math.ceil((count / maxCount) * 4), 4);
+      }
+    }
+    
+    result.push({
+      date: dateStr,
+      count,
+      level
+    });
+  }
+  
+  return result;
+}
+
+// 폴더별 포스트가 있는 연도 목록을 가져오는 함수
+export async function getActiveYearsByFolder(folderPath: string): Promise<number[]> {
+  const allPosts = await getSortedPostsData();
+  const years = new Set<number>();
+  
+  for (const post of allPosts) {
+    if (!post.date) continue;
+    
+    const postFolder = post.id.includes('/') ? post.id.substring(0, post.id.lastIndexOf('/')) : '';
+    
+    if (postFolder === folderPath || postFolder.startsWith(folderPath + '/')) {
+      try {
+        const year = parseInt(post.date.substring(0, 4));
+        if (!isNaN(year)) {
+          years.add(year);
+        }
+      } catch {
+        // 잘못된 날짜 형식은 무시
+      }
+    }
+  }
+  
+  // 연도를 내림차순으로 정렬 (최신 연도부터)
+  return Array.from(years).sort((a, b) => b - a);
+} 
+
+// 특정 날짜의 포스트들을 가져오는 함수
+export async function getPostsByDate(date: string): Promise<Omit<PostData, 'content'>[]> {
+  const allPosts = await getSortedPostsData();
+  return allPosts.filter((post) => post.date === date);
+}
+
+// 특정 폴더의 특정 날짜 포스트들을 가져오는 함수
+export async function getPostsByFolderAndDate(folderPath: string, date: string): Promise<Omit<PostData, 'content'>[]> {
+  const allPosts = await getSortedPostsData();
+  return allPosts.filter((post) => {
+    const postFolder = post.id.includes('/') ? post.id.substring(0, post.id.lastIndexOf('/')) : '';
+    return post.date === date && (postFolder === folderPath || postFolder.startsWith(folderPath + '/'));
+  });
+}
+
+// 폴더에 README.md 파일이 있는지 확인하고 내용을 반환하는 함수
+export async function getFolderReadme(folderPath: string): Promise<string | null> {
+  try {
+    // folderPath가 유효한지 확인
+    if (!folderPath || typeof folderPath !== 'string') {
+      return null;
+    }
+    
+    const folderFullPath = path.join(postsDirectory, folderPath);
+    const readmePath = path.join(folderFullPath, 'README.md');
+    
+    // 폴더가 존재하는지 확인
+    if (!fs.existsSync(folderFullPath)) {
+      return null;
+    }
+    
+    // README.md 파일이 존재하는지 확인
+    if (!fs.existsSync(readmePath)) {
+      return null;
+    }
+    
+    // 파일 내용 읽기
+    const fileContent = fs.readFileSync(readmePath, 'utf8');
+    
+    // 파일 내용이 비어있는지 확인
+    if (!fileContent || fileContent.trim() === '') {
+      return null;
+    }
+    
+    // frontmatter가 있는지 확인하고 제거
+    const { content } = matter(fileContent);
+    
+    // content가 유효한지 확인
+    if (!content || typeof content !== 'string') {
+      return null;
+    }
+    
+    return content.trim();
+  } catch (error) {
+    console.error(`Error reading README.md for folder ${folderPath}:`, error);
+    return null;
+  }
+} 

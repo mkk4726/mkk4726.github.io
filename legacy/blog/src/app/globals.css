@@ -1,0 +1,1195 @@
+@import "tailwindcss";
+
+/* KaTeX 추가 스타일링 */
+.katex-display {
+  margin: 1em 0;
+  text-align: center;
+}
+
+.katex {
+  font-size: 1.1em;
+}
+
+/* 행렬 환경 스타일링 */
+.katex .base {
+  display: inline-block;
+}
+
+.katex .array {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.katex .array > .array {
+  text-align: center;
+}
+
+/* 기본 텍스트 색상 */
+body {
+  color: #1a202c;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    color: #f7fafc;
+  }
+}
+
+/* Prism.js 토큰 스타일 (마크다운 포스트용) */
+.prose .token.comment,
+.prose .token.prolog,
+.prose .token.doctype,
+.prose .token.cdata {
+  color: #6a737d;
+}
+
+.prose .token.punctuation {
+  color: #d73a49;
+}
+
+.prose .token.property,
+.prose .token.tag,
+.prose .token.boolean,
+.prose .token.number,
+.prose .token.constant,
+.prose .token.symbol,
+.prose .token.deleted {
+  color: #005cc5;
+}
+
+.prose .token.selector,
+.prose .token.attr-name,
+.prose .token.string,
+.prose .token.char,
+.prose .token.builtin,
+.prose .token.inserted {
+  color: #032f62;
+}
+
+.prose .token.operator,
+.prose .token.entity,
+.prose .token.url,
+.prose .language-css .token.string,
+.prose .style .token.string {
+  color: #d73a49;
+}
+
+.prose .token.atrule,
+.prose .token.attr-value,
+.prose .token.keyword {
+  color: #d73a49;
+}
+
+.prose .token.function,
+.prose .token.class-name {
+  color: #6f42c1;
+}
+
+.prose .token.regex,
+.prose .token.important,
+.prose .token.variable {
+  color: #e36209;
+}
+
+@media (prefers-color-scheme: dark) {
+  .prose .token.comment,
+  .prose .token.prolog,
+  .prose .token.doctype,
+  .prose .token.cdata {
+    color: #999999;
+  }
+
+  .prose .token.punctuation {
+    color: #ccc;
+  }
+
+  .prose .token.property,
+  .prose .token.tag,
+  .prose .token.boolean,
+  .prose .token.number,
+  .prose .token.constant,
+  .prose .token.symbol,
+  .prose .token.deleted {
+    color: #92c5f8;
+  }
+
+  .prose .token.selector,
+  .prose .token.attr-name,
+  .prose .token.string,
+  .prose .token.char,
+  .prose .token.builtin,
+  .prose .token.inserted {
+    color: #a9dc76;
+  }
+
+  .prose .token.operator,
+  .prose .token.entity,
+  .prose .token.url,
+  .prose .language-css .token.string,
+  .prose .style .token.string {
+    color: #fc9867;
+  }
+
+  .prose .token.atrule,
+  .prose .token.attr-value,
+  .prose .token.keyword {
+    color: #ff6188;
+  }
+
+  .prose .token.function,
+  .prose .token.class-name {
+    color: #ffd866;
+  }
+
+  .prose .token.regex,
+  .prose .token.important,
+  .prose .token.variable {
+    color: #fc9867;
+  }
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-nanum-gothic), 'Noto Sans KR', Arial, Helvetica, sans-serif;
+}
+
+/* 검색창 텍스트 색상 강제 설정 */
+input.search-input,
+input.search-input:focus,
+input.search-input:active,
+input.search-input:hover,
+input[type="text"].search-input {
+  color: #000000 !important;
+  background-color: #ffffff !important;
+  opacity: 1 !important;
+  font-size: 14px !important;
+  text-indent: 0 !important;
+  text-shadow: none !important;
+  -webkit-text-fill-color: #000000 !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+  font-family: inherit !important;
+  line-height: normal !important;
+}
+
+/* 브라우저 자동완성 스타일 덮어쓰기 */
+input.search-input:-webkit-autofill,
+input.search-input:-webkit-autofill:hover,
+input.search-input:-webkit-autofill:focus {
+  -webkit-text-fill-color: #000000 !important;
+  -webkit-box-shadow: 0 0 0px 1000px #ffffff inset !important;
+  box-shadow: 0 0 0px 1000px #ffffff inset !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  input.search-input,
+  input.search-input:focus,
+  input.search-input:active,
+  input.search-input:hover,
+  input[type="text"].search-input {
+    color: #ffffff !important;
+    background-color: #1f2937 !important;
+    -webkit-text-fill-color: #ffffff !important;
+  }
+  
+  input.search-input:-webkit-autofill,
+  input.search-input:-webkit-autofill:hover,
+  input.search-input:-webkit-autofill:focus {
+    -webkit-text-fill-color: #ffffff !important;
+    -webkit-box-shadow: 0 0 0px 1000px #1f2937 inset !important;
+    box-shadow: 0 0 0px 1000px #1f2937 inset !important;
+  }
+}
+
+/* 스크롤 동작 개선 */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 2rem;
+}
+
+/* 목차 컨테이너 스타일링 */
+.toc-container {
+  position: sticky;
+  top: 2rem;
+  height: fit-content;
+  max-height: calc(100vh - 4rem);
+}
+
+.toc-content {
+  background-color: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  max-height: calc(100vh - 6rem);
+  overflow-y: auto;
+}
+
+/* 목차 스크롤바 스타일링 */
+.toc-content::-webkit-scrollbar {
+  width: 4px;
+}
+
+.toc-content::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 2px;
+}
+
+.toc-content::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 2px;
+}
+
+.toc-content::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* 목차 리스트 스타일링 */
+.toc-content ul {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.toc-content li {
+  margin: 0 !important;
+  display: block !important;
+}
+
+.toc-content button {
+  width: 100%;
+  text-align: left;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.toc-content button:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* 활성 목차 항목에 애니메이션 추가 */
+.toc-content button.active {
+  transform: translateX(2px);
+}
+
+/* 헤딩 앵커 스타일링 */
+.prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
+  scroll-margin-top: 4rem;
+  position: relative;
+}
+
+/* 헤딩 호버 시 앵커 링크 표시 */
+.prose h1:hover::before,
+.prose h2:hover::before,
+.prose h3:hover::before,
+.prose h4:hover::before,
+.prose h5:hover::before,
+.prose h6:hover::before {
+  content: '#';
+  position: absolute;
+  left: -1.5rem;
+  color: #94a3b8;
+  font-weight: normal;
+  opacity: 0.7;
+}
+
+/* 마크다운 링크 스타일링 */
+.prose a {
+  color: #2563eb !important;
+  text-decoration: underline !important;
+  text-decoration-color: #93c5fd !important;
+  text-underline-offset: 2px !important;
+  transition: all 0.2s ease-in-out !important;
+  font-weight: 500 !important;
+}
+
+.prose a:hover {
+  color: #1d4ed8 !important;
+  text-decoration-color: #2563eb !important;
+  background-color: #eff6ff !important;
+  padding: 2px 4px !important;
+  border-radius: 4px !important;
+  margin: -2px -4px !important;
+}
+
+.prose a:visited {
+  color: #7c3aed !important;
+  text-decoration-color: #c4b5fd !important;
+}
+
+.prose a:visited:hover {
+  color: #6d28d9 !important;
+  text-decoration-color: #7c3aed !important;
+  background-color: #f5f3ff !important;
+}
+
+/* 외부 링크 아이콘 추가 */
+.prose a[href^="http"]:not([href*="localhost"]):not([href*="127.0.0.1"]):after {
+  content: "↗";
+  font-size: 0.75rem;
+  margin-left: 0.25rem;
+  opacity: 0.6;
+  vertical-align: super;
+}
+
+/* Prose styling for markdown content */
+.prose {
+  font-family: var(--font-nanum-gothic), 'Noto Sans KR', Arial, Helvetica, sans-serif !important;
+}
+
+.prose h1 {
+  font-size: 1.5rem !important;
+  font-weight: 800 !important;
+  color: #111827 !important;
+  margin-top: 1.25rem !important;
+  margin-bottom: 0.625rem !important;
+  font-family: var(--font-nanum-gothic), 'Noto Sans KR', Arial, Helvetica, sans-serif !important;
+}
+
+.prose h2 {
+  font-size: 1.25rem !important;
+  font-weight: 700 !important;
+  color: #111827 !important;
+  margin-top: 1rem !important;
+  margin-bottom: 0.5rem !important;
+  font-family: var(--font-nanum-gothic), 'Noto Sans KR', Arial, Helvetica, sans-serif !important;
+}
+
+.prose h3 {
+  font-size: 1.125rem !important;
+  font-weight: 600 !important;
+  color: #111827 !important;
+  margin-top: 0.875rem !important;
+  margin-bottom: 0.375rem !important;
+  font-family: var(--font-nanum-gothic), 'Noto Sans KR', Arial, Helvetica, sans-serif !important;
+}
+
+.prose h4 {
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+  color: #111827 !important;
+  margin-top: 0.75rem !important;
+  margin-bottom: 0.25rem !important;
+  font-family: var(--font-nanum-gothic), 'Noto Sans KR', Arial, Helvetica, sans-serif !important;
+}
+
+.prose h5 {
+  font-size: 0.875rem !important;
+  font-weight: 600 !important;
+  color: #111827 !important;
+  margin-top: 0.75rem !important;
+  margin-bottom: 0.25rem !important;
+  font-family: var(--font-nanum-gothic), 'Noto Sans KR', Arial, Helvetica, sans-serif !important;
+}
+
+.prose h6 {
+  font-size: 0.875rem !important;
+  font-weight: 600 !important;
+  color: #6b7280 !important;
+  margin-top: 0.75rem !important;
+  margin-bottom: 0.25rem !important;
+  font-family: var(--font-nanum-gothic), 'Noto Sans KR', Arial, Helvetica, sans-serif !important;
+}
+
+.prose blockquote {
+  border-left: 4px solid #8b5cf6 !important;
+  background-color: #f5f3ff !important;
+  padding-left: 1.5rem !important;
+  padding-top: 0.5rem !important;
+  padding-bottom: 0.5rem !important;
+  font-style: normal !important;
+  margin: 1rem 0 !important;
+  border-radius: 0.25rem;
+  font-family: var(--font-nanum-gothic), 'Noto Sans KR', Arial, Helvetica, sans-serif !important;
+}
+
+.prose hr {
+  border-color: #d1d5db !important;
+  margin: 1.5rem 0 !important;
+  border-width: 1px;
+}
+
+/* ── Obsidian Callout / Notion-style Toggle ── */
+.prose .obsidian-callout {
+  margin: 1rem 0;
+  border-radius: 0.5rem;
+  font-family: var(--font-nanum-gothic), 'Noto Sans KR', Arial, Helvetica, sans-serif;
+}
+
+.prose .obsidian-callout .callout-title {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.625rem 0.75rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #1f2937;
+  line-height: 1.4;
+}
+
+.prose .obsidian-callout .callout-icon {
+  flex-shrink: 0;
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.prose .obsidian-callout .callout-content {
+  padding: 0 0.75rem 0.625rem 2.25rem;
+  color: #374151;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.prose .obsidian-callout .callout-content > :first-child {
+  margin-top: 0 !important;
+}
+
+.prose .obsidian-callout .callout-content > :last-child {
+  margin-bottom: 0 !important;
+}
+
+/* Collapsible toggle (details/summary) */
+.prose details.obsidian-callout {
+  border: none;
+}
+
+.prose details.obsidian-callout > summary.callout-title {
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+  border-radius: 0.5rem;
+  transition: background-color 0.15s ease;
+}
+
+.prose details.obsidian-callout > summary.callout-title::-webkit-details-marker {
+  display: none;
+}
+
+.prose details.obsidian-callout > summary.callout-title::before {
+  content: '▶';
+  display: inline-block;
+  font-size: 0.6rem;
+  margin-right: 0.375rem;
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+  color: #6b7280;
+}
+
+.prose details.obsidian-callout[open] > summary.callout-title::before {
+  transform: rotate(90deg);
+}
+
+.prose details.obsidian-callout > summary.callout-title:hover {
+  background-color: #f3f4f6;
+}
+
+/* Non-collapsible static callout */
+.prose .obsidian-callout.callout-static {
+  border-left: 3px solid;
+}
+
+/* ── Callout type colors ── */
+.prose .callout-note { background-color: #eff6ff; }
+.prose .callout-note.callout-static { border-left-color: #3b82f6; }
+
+.prose .callout-abstract,
+.prose .callout-summary,
+.prose .callout-tldr { background-color: #f0fdf4; }
+.prose .callout-abstract.callout-static,
+.prose .callout-summary.callout-static,
+.prose .callout-tldr.callout-static { border-left-color: #22c55e; }
+
+.prose .callout-info { background-color: #eff6ff; }
+.prose .callout-info.callout-static { border-left-color: #3b82f6; }
+
+.prose .callout-todo { background-color: #eff6ff; }
+.prose .callout-todo.callout-static { border-left-color: #3b82f6; }
+
+.prose .callout-tip,
+.prose .callout-hint { background-color: #fefce8; }
+.prose .callout-tip.callout-static,
+.prose .callout-hint.callout-static { border-left-color: #eab308; }
+
+.prose .callout-important { background-color: #fef3c7; }
+.prose .callout-important.callout-static { border-left-color: #f59e0b; }
+
+.prose .callout-success,
+.prose .callout-check,
+.prose .callout-done { background-color: #f0fdf4; }
+.prose .callout-success.callout-static,
+.prose .callout-check.callout-static,
+.prose .callout-done.callout-static { border-left-color: #22c55e; }
+
+.prose .callout-question,
+.prose .callout-help,
+.prose .callout-faq { background-color: #fefce8; }
+.prose .callout-question.callout-static,
+.prose .callout-help.callout-static,
+.prose .callout-faq.callout-static { border-left-color: #eab308; }
+
+.prose .callout-warning,
+.prose .callout-caution,
+.prose .callout-attention { background-color: #fff7ed; }
+.prose .callout-warning.callout-static,
+.prose .callout-caution.callout-static,
+.prose .callout-attention.callout-static { border-left-color: #f97316; }
+
+.prose .callout-failure,
+.prose .callout-fail,
+.prose .callout-missing { background-color: #fef2f2; }
+.prose .callout-failure.callout-static,
+.prose .callout-fail.callout-static,
+.prose .callout-missing.callout-static { border-left-color: #ef4444; }
+
+.prose .callout-danger,
+.prose .callout-error { background-color: #fef2f2; }
+.prose .callout-danger.callout-static,
+.prose .callout-error.callout-static { border-left-color: #ef4444; }
+
+.prose .callout-bug { background-color: #fef2f2; }
+.prose .callout-bug.callout-static { border-left-color: #ef4444; }
+
+.prose .callout-example { background-color: #f5f3ff; }
+.prose .callout-example.callout-static { border-left-color: #8b5cf6; }
+
+.prose .callout-quote,
+.prose .callout-cite { background-color: #f9fafb; }
+.prose .callout-quote.callout-static,
+.prose .callout-cite.callout-static { border-left-color: #6b7280; }
+
+/* ── Dark mode ── */
+@media (prefers-color-scheme: dark) {
+  .prose .obsidian-callout .callout-title {
+    color: #f3f4f6;
+  }
+
+  .prose .obsidian-callout .callout-content {
+    color: #d1d5db;
+  }
+
+  .prose details.obsidian-callout > summary.callout-title:hover {
+    background-color: #374151;
+  }
+
+  .prose details.obsidian-callout > summary.callout-title::before {
+    color: #9ca3af;
+  }
+
+  .prose .callout-note { background-color: #1e293b; }
+  .prose .callout-abstract,
+  .prose .callout-summary,
+  .prose .callout-tldr { background-color: #0f2419; }
+  .prose .callout-info { background-color: #1e293b; }
+  .prose .callout-todo { background-color: #1e293b; }
+  .prose .callout-tip,
+  .prose .callout-hint { background-color: #27200a; }
+  .prose .callout-important { background-color: #2d1f05; }
+  .prose .callout-success,
+  .prose .callout-check,
+  .prose .callout-done { background-color: #0f2419; }
+  .prose .callout-question,
+  .prose .callout-help,
+  .prose .callout-faq { background-color: #27200a; }
+  .prose .callout-warning,
+  .prose .callout-caution,
+  .prose .callout-attention { background-color: #2d1a05; }
+  .prose .callout-failure,
+  .prose .callout-fail,
+  .prose .callout-missing { background-color: #2d1215; }
+  .prose .callout-danger,
+  .prose .callout-error { background-color: #2d1215; }
+  .prose .callout-bug { background-color: #2d1215; }
+  .prose .callout-example { background-color: #1e1533; }
+  .prose .callout-quote,
+  .prose .callout-cite { background-color: #1f2937; }
+}
+
+/* Table styling for markdown tables */
+.prose table {
+  /* Make wide tables scroll within the post area instead of overflowing */
+  width: max-content !important;       /* keep natural width to avoid cramped columns */
+  min-width: 100% !important;          /* but fill container when smaller */
+  border-collapse: collapse !important;
+  margin: 0 !important;
+  display: table !important;           /* table layout inside wrapper */
+  -webkit-overflow-scrolling: touch !important; /* smooth scroll on iOS */
+  font-family: var(--font-nanum-gothic), 'Noto Sans KR', Arial, Helvetica, sans-serif !important;
+}
+
+/* Scrollable wrapper for tables */
+.table-responsive {
+  width: 100% !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  -webkit-overflow-scrolling: touch !important;
+  margin: 1rem 0 !important;
+  padding-bottom: 0.25rem !important; /* small space to hint scroll */
+}
+
+.table-responsive::-webkit-scrollbar {
+  height: 8px;
+}
+.table-responsive::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+.table-responsive::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+.table-responsive:hover::-webkit-scrollbar-thumb {
+  background: #94a3b8;
+}
+
+.prose table thead {
+  background-color: #f8fafc !important;
+}
+
+.prose table th {
+  padding: 0.75rem 1rem !important;
+  text-align: left !important;
+  font-weight: 600 !important;
+  color: #374151 !important;
+  border: 1px solid #e5e7eb !important;
+  background-color: #f9fafb !important;
+  font-family: var(--font-nanum-gothic), 'Noto Sans KR', Arial, Helvetica, sans-serif !important;
+}
+
+.prose table td {
+  padding: 0.75rem 1rem !important;
+  border: 1px solid #e5e7eb !important;
+  color: #374151 !important;
+  font-family: var(--font-nanum-gothic), 'Noto Sans KR', Arial, Helvetica, sans-serif !important;
+}
+
+/* Prevent long words/content from breaking the layout */
+.prose table th,
+.prose table td {
+  white-space: nowrap !important;      /* keep content on one line to preserve natural column width */
+  word-break: keep-all !important;     /* better word handling for Korean */
+}
+
+.prose table tr:nth-child(even) {
+  background-color: #f8fafc !important;
+}
+
+.prose table tr:hover {
+  background-color: #f1f5f9 !important;
+}
+
+/* Line break styling */
+.prose br {
+  display: inline !important;
+  margin: 0 !important;
+  line-height: 1.6 !important;
+}
+
+/* Paragraph spacing */
+.prose p {
+  margin-top: 1rem !important;
+  margin-bottom: 1rem !important;
+  line-height: 1.6 !important;
+  font-family: var(--font-nanum-gothic), 'Noto Sans KR', Arial, Helvetica, sans-serif !important;
+}
+
+/* Strong and emphasis */
+.prose strong {
+  font-weight: 700 !important;
+  color: #111827 !important;
+  font-family: var(--font-nanum-gothic), 'Noto Sans KR', Arial, Helvetica, sans-serif !important;
+}
+
+.prose em {
+  font-style: italic !important;
+  color: #374151 !important;
+  font-family: var(--font-nanum-gothic), 'Noto Sans KR', Arial, Helvetica, sans-serif !important;
+}
+
+/* List styling */
+.prose ul, .prose ol {
+  margin: 0.75rem 0 !important;
+  padding-left: 1.5rem !important;
+  color: #374151 !important;
+  font-family: var(--font-nanum-gothic), 'Noto Sans KR', Arial, Helvetica, sans-serif !important;
+}
+
+.prose ul {
+  list-style-type: disc !important;
+}
+
+.prose ol {
+  list-style-type: decimal !important;
+}
+
+.prose li {
+  margin: 0.25rem 0 !important;
+  color: #374151 !important;
+  display: list-item !important;
+  font-family: var(--font-nanum-gothic), 'Noto Sans KR', Arial, Helvetica, sans-serif !important;
+}
+
+.prose li::marker {
+  color: #374151 !important;
+  font-weight: bold !important;
+}
+
+.prose ul li::marker {
+  color: #374151 !important;
+  content: "• " !important;
+}
+
+.prose ol li::marker {
+  color: #374151 !important;
+  font-weight: bold !important;
+}
+
+/* Code block styling for markdown posts */
+.prose pre {
+  background-color: #f8f9fa;
+  color: #24292e;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  margin: 1rem 0;
+  border: 1px solid #e1e8ed;
+  font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.prose code {
+  background-color: #f3f4f6;
+  color: #1f2937;
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.25rem;
+  font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+  font-size: 0.875rem;
+}
+
+.prose pre code {
+  background-color: transparent;
+  color: inherit;
+  padding: 0;
+  font-size: inherit;
+}
+
+/* Figure와 Figcaption 스타일 */
+.prose figure {
+  text-align: center;
+  margin: 2rem 0;
+  font-family: var(--font-nanum-gothic), 'Noto Sans KR', Arial, Helvetica, sans-serif !important;
+}
+
+/* Keep all markdown images inside the content width */
+.prose img {
+  display: block;
+  max-width: 100% !important;
+  height: auto !important;
+  object-fit: contain;
+}
+
+.prose img:not(.obsidian-embed-image) {
+  width: auto !important;
+}
+
+.prose figure img {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Obsidian embed images should match centered markdown images */
+.prose img.obsidian-embed-image {
+  display: block;
+  margin: 2rem auto;
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.prose figcaption {
+  text-align: center;
+  font-size: 0.9em;
+  color: #666;
+  margin-top: 8px;
+  font-style: italic;
+  font-family: var(--font-nanum-gothic), 'Noto Sans KR', Arial, Helvetica, sans-serif !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  .prose pre {
+    background-color: #1e1e1e;
+    color: #d4d4d4;
+    border-color: #3e3e3e;
+  }
+
+  .prose code {
+    background-color: #374151;
+    color: #f9fafb;
+  }
+}
+
+/* GFM Footnotes */
+.prose section[data-footnotes] {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #d1d5db;
+  font-size: 0.85rem;
+  color: #6b7280;
+}
+
+.prose section[data-footnotes] > ol {
+  padding-left: 1.25rem !important;
+  margin: 0.5rem 0 !important;
+}
+
+.prose section[data-footnotes] li {
+  color: #6b7280 !important;
+  margin: 0.375rem 0 !important;
+}
+
+.prose section[data-footnotes] li p {
+  margin: 0.25rem 0 !important;
+  display: inline;
+}
+
+.prose sup a[data-footnote-ref] {
+  text-decoration: none !important;
+  font-weight: 600 !important;
+  color: #2563eb !important;
+  padding: 0 0.125rem;
+}
+
+.prose sup a[data-footnote-ref]:hover {
+  color: #1d4ed8 !important;
+  background-color: #eff6ff !important;
+  border-radius: 2px;
+}
+
+.prose a[data-footnote-backref] {
+  text-decoration: none !important;
+  font-size: 0.8rem;
+  margin-left: 0.25rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  .prose section[data-footnotes] {
+    border-top-color: #4b5563;
+    color: #9ca3af;
+  }
+
+  .prose section[data-footnotes] li {
+    color: #9ca3af !important;
+  }
+
+  .prose sup a[data-footnote-ref] {
+    color: #60a5fa !important;
+  }
+
+  .prose sup a[data-footnote-ref]:hover {
+    color: #93c5fd !important;
+    background-color: #1e3a8a !important;
+  }
+}
+
+/* 헤딩 토글 스타일 */
+.prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.prose h1:hover, .prose h2:hover, .prose h3:hover, .prose h4:hover, .prose h5:hover, .prose h6:hover {
+  background-color: #f3f4f6;
+  border-radius: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  margin: 0.25rem -0.5rem;
+}
+
+/* 접힌 상태 표시 */
+.prose h1.collapsed::after, .prose h2.collapsed::after, .prose h3.collapsed::after,
+.prose h4.collapsed::after, .prose h5.collapsed::after, .prose h6.collapsed::after {
+  content: ' (접힘)';
+  font-size: 0.75em;
+  color: #6b7280;
+  font-weight: normal;
+  margin-left: 0.5rem;
+}
+
+
+
+@media (prefers-color-scheme: dark) {
+  .prose h1:hover, .prose h2:hover, .prose h3:hover, .prose h4:hover, .prose h5:hover, .prose h6:hover {
+    background-color: #4b5563;
+  }
+  
+  /* 다크 모드 접힌 상태 표시 */
+  .prose h1.collapsed::after, .prose h2.collapsed::after, .prose h3.collapsed::after,
+  .prose h4.collapsed::after, .prose h5.collapsed::after, .prose h6.collapsed::after {
+    color: #9ca3af;
+  }
+}
+
+/* 포트폴리오 페이지 전용 스타일 - 최고 우선순위 */
+.portfolio-page .prose,
+.portfolio-page .prose * {
+  color: #000000 !important;
+  text-shadow: none !important;
+  opacity: 1 !important;
+}
+
+.portfolio-page .prose h1,
+.portfolio-page .prose h2,
+.portfolio-page .prose h3,
+.portfolio-page .prose h4,
+.portfolio-page .prose h5,
+.portfolio-page .prose h6 {
+  color: #000000 !important;
+  font-weight: 800 !important;
+  text-shadow: none !important;
+  opacity: 1 !important;
+}
+
+.portfolio-page .prose p,
+.portfolio-page .prose p * {
+  color: #000000 !important;
+  font-weight: 500 !important;
+  text-shadow: none !important;
+  opacity: 1 !important;
+}
+
+.portfolio-page .prose strong,
+.portfolio-page .prose b {
+  color: #000000 !important;
+  font-weight: 900 !important;
+  text-shadow: none !important;
+  opacity: 1 !important;
+}
+
+.portfolio-page .prose li,
+.portfolio-page .prose li * {
+  color: #000000 !important;
+  font-weight: 500 !important;
+  text-shadow: none !important;
+  opacity: 1 !important;
+}
+
+.portfolio-page .prose a {
+  color: #1d4ed8 !important;
+  text-decoration: underline !important;
+  font-weight: 600 !important;
+  text-shadow: none !important;
+  opacity: 1 !important;
+}
+
+.portfolio-page .prose a:hover {
+  color: #1e40af !important;
+  text-decoration: underline !important;
+}
+
+/* 추가 강제 스타일링 */
+.portfolio-page .prose ul li,
+.portfolio-page .prose ol li {
+  color: #000000 !important;
+}
+
+.portfolio-page .prose ul li::marker,
+.portfolio-page .prose ol li::marker {
+  color: #000000 !important;
+}
+
+/* 다크 모드 포트폴리오 페이지 스타일 */
+@media (prefers-color-scheme: dark) {
+  .portfolio-page .prose {
+    color: #d1d5db !important;
+  }
+  
+  .portfolio-page .prose h1,
+  .portfolio-page .prose h2,
+  .portfolio-page .prose h3,
+  .portfolio-page .prose h4,
+  .portfolio-page .prose h5,
+  .portfolio-page .prose h6 {
+    color: #f9fafb !important;
+  }
+  
+  .portfolio-page .prose p {
+    color: #d1d5db !important;
+  }
+  
+  .portfolio-page .prose strong {
+    color: #f9fafb !important;
+  }
+  
+  .portfolio-page .prose li {
+    color: #d1d5db !important;
+  }
+  
+  .portfolio-page .prose a {
+    color: #60a5fa !important;
+  }
+  
+  .portfolio-page .prose a:hover {
+    color: #93c5fd !important;
+  }
+}
+
+/* About 페이지 다크 모드 스타일 */
+.about-dark.prose {
+  color: #f3f4f6 !important;
+}
+
+.about-dark.prose h1,
+.about-dark.prose h2,
+.about-dark.prose h3,
+.about-dark.prose h4,
+.about-dark.prose h5,
+.about-dark.prose h6 {
+  color: #f9fafb !important;
+}
+
+.about-dark.prose p {
+  color: #f3f4f6 !important;
+}
+
+.about-dark.prose strong {
+  color: #f9fafb !important;
+  font-weight: 700 !important;
+}
+
+.about-dark.prose li {
+  color: #f3f4f6 !important;
+}
+
+.about-dark.prose li::marker {
+  color: #f3f4f6 !important;
+}
+
+.about-dark.prose ul li::marker {
+  color: #f3f4f6 !important;
+}
+
+.about-dark.prose ol li::marker {
+  color: #f3f4f6 !important;
+}
+
+.about-dark.prose a {
+  color: #93c5fd !important;
+}
+
+.about-dark.prose a:hover {
+  color: #bfdbfe !important;
+  background-color: #1e3a8a !important;
+}
+
+/* About 페이지 테이블 스타일 */
+.about-dark.prose table {
+  width: 100% !important;
+  border-collapse: collapse !important;
+  margin: 1rem 0 !important;
+  display: table !important;
+  background-color: #1f2937 !important;
+  table-layout: auto !important;
+}
+
+.about-dark.prose table thead {
+  background-color: #374151 !important;
+}
+
+.about-dark.prose table th {
+  padding: 0.75rem 1rem !important;
+  text-align: left !important;
+  font-weight: 600 !important;
+  color: #f9fafb !important;
+  border: 1px solid #4b5563 !important;
+  background-color: #374151 !important;
+  white-space: normal !important;
+  word-break: keep-all !important;
+  vertical-align: top !important;
+}
+
+.about-dark.prose table td {
+  padding: 0.75rem 1rem !important;
+  border: 1px solid #4b5563 !important;
+  color: #f3f4f6 !important;
+  white-space: normal !important;
+  word-break: keep-all !important;
+  vertical-align: top !important;
+  line-height: 1.6 !important;
+}
+
+.about-dark.prose table tr:nth-child(even) {
+  background-color: #1f2937 !important;
+}
+
+.about-dark.prose table tr:nth-child(odd) {
+  background-color: #111827 !important;
+}
+
+.about-dark.prose table tr:hover {
+  background-color: #374151 !important;
+}
+
+/* About 페이지 테이블 내부 br 태그 처리 */
+.about-dark.prose table td br {
+  display: block !important;
+  content: "" !important;
+  margin: 0.25rem 0 !important;
+}
+
+/* About 페이지 테이블 responsive wrapper */
+.about-dark .table-responsive {
+  width: 100% !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  -webkit-overflow-scrolling: touch !important;
+  margin: 1rem 0 !important;
+  padding-bottom: 0.25rem !important;
+}
+
+.about-dark .table-responsive::-webkit-scrollbar {
+  height: 8px;
+}
+
+.about-dark .table-responsive::-webkit-scrollbar-track {
+  background: #374151;
+}
+
+.about-dark .table-responsive::-webkit-scrollbar-thumb {
+  background: #6b7280;
+  border-radius: 9999px;
+}
+
+.about-dark .table-responsive:hover::-webkit-scrollbar-thumb {
+  background: #9ca3af;
+}
+
+
+

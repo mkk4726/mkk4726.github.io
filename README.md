@@ -15,3 +15,7 @@
 | --- | --- | --- |
 | `/trips/uk-2026/` | 영국여행 일정표 (날짜 누르면 시간표) | `Development/여행/영국여행/일정/` |
 - 공개 레포라 주소를 아는 누구나 볼 수 있다. 예약번호·숙소 위치·연락처 같은 개인정보는 넣지 않는다. 페이지마다 `<meta name="robots" content="noindex">`를 둔다.
+
+## legacy/blog
+
+예전 Next.js 블로그 소스(2025). 지금은 빌드·배포하지 않고 보관만 한다. 빌드하려면 비공개 `obsidian-vault`의 `posts/`가 필요하다 → `legacy/blog/README.md`.

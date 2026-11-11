@@ -1,0 +1,70 @@
+.vocabulary-toggle {
+  margin: 1.5rem 0;
+}
+
+.vocabulary-toggle button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.3s;
+}
+
+.vocabulary-toggle button:hover {
+  opacity: 0.9;
+}
+
+.vocabulary-toggle.expressions button {
+  background-color: #2196F3;
+}
+
+.vocabulary-toggle.translations button {
+  background-color: #FF9800;
+}
+
+.meaning, .translation {
+  display: none;
+}
+
+.meaning.visible {
+  display: inline;
+}
+
+.translation.visible {
+  display: block;
+}
+
+.vocabulary-content, .expressions-content, .translations-content {
+  margin-top: 10px;
+}
+
+/* 토글 버튼 스타일 */
+.toggle-button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.3s;
+}
+
+.toggle-button:hover {
+  opacity: 0.9;
+}
+
+.toggle-button.expressions {
+  background-color: #2196F3;
+}
+
+.toggle-button.translations {
+  background-color: #FF9800;
+} 
