@@ -8,13 +8,13 @@
 - 페이지 하나 = 폴더 하나: `<분류>/<이름>/index.html` (예: `trips/uk-2026/index.html`). 추가하면 루트 `index.html` 목록에 한 줄 넣는다.
 - 페이지는 한 파일로 완결한다(CSS·JS 인라인). 외부는 Google Fonts 정도만. 맨 위에 `← mkk4726 pages` 링크로 목록에 돌아갈 수 있게 한다.
 - 원본 내용은 vault 노트가 기준이다. 노트가 바뀌면 HTML을 다시 만들어 덮어쓴다.
-- 공개 레포라 주소를 아는 누구나 볼 수 있다. 예약번호·숙소 위치·연락처 같은 개인정보는 넣지 않는다. 페이지마다 `<meta name="robots" content="noindex">`를 둔다.
+- 공개 레포라 주소를 아는 누구나 볼 수 있다. 예약번호·집 위치·연락처 같은 개인정보는 넣지 않는다. 여행 숙소 위치는 넣는다. 페이지마다 `<meta name="robots" content="noindex">`를 둔다.
 
 ## 여행 일정표 (`trips/`)
 
 - 새 여행은 `trips/_template/index.html`을 `trips/<영문이름>-<연도>/index.html`로 복사해서 시작한다.
 - 바꿀 곳은 `<title>`·헤더 문구와 `<script>` 맨 위 데이터 블록뿐이다: `TRIP`, `DAYS`(날짜별 칸·시간표), `PLACES`(장소 이름·구글맵 검색어·좌표), `STOP_PLACES`(시간표 제목 → 장소), `FIT_REGION`.
-- 그러면 날짜 칸, 날짜를 누르면 열리는 시간표, 장소별 구글맵 링크, 날짜별 동선 지도(Leaflet + OpenStreetMap, API 키 없음), '구글맵에서 동선 열기' 버튼이 자동으로 생긴다.
+- 그러면 날짜 칸, 날짜를 누르면 열리는 시간표, 장소별 구글맵 링크, 날짜별 동선 지도(Leaflet + OpenStreetMap, API 키 없음), 구간 선을 누르면 열리는 구글맵 길찾기, 숙소 핀(`TRIP.stay`), '구글맵에서 동선 열기' 버튼이 자동으로 생긴다.
 - 완성 예시: `trips/uk-2026/` (뮤지컬 표 같은 여행별 패널 포함). `trips/_template/`은 목록에 올리지 않는다.
 
 ## 페이지 목록
