@@ -24,6 +24,7 @@
 | `/trips/uk-2026/` | 영국여행 일정표 (날짜 누르면 시간표 · 동선 지도) | `Development/여행/영국여행/일정/` |
 | `/trips/cambodia-2026/` | 캄보디아 의료봉사 일정표 (뽀삿 진료 · 시엠립) | `Development/여행/캄보디아 의료봉사/일정/` |
 | `/trips/gongju-2026/` | 공주여행 일정표 (1박 2일, 날씨 반영) | `Development/여행/공주여행/` |
+| `/study/english-2026/` | 영어 말하기 연습 (표현 노트 · 주제 목록 · 오늘의 한 마디) | `Development/English/Conversation/` (표현 노트 · 주제 목록) |
 
 ## legacy/blog
 
