@@ -1,0 +1,1165 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Harry Potter 표현</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root {
+  --bg: #f6f7f9; --surface: #ffffff; --ink: #16202e; --muted: #5b6676; --rule: #dfe3ea;
+  --accent: #7a1f2b; --tint: #f6e7e9; --gold: #8a6100; --tint-gold: #fbf1d9;
+  --f-display: "Jost", "Noto Sans KR", system-ui, sans-serif;
+  --f-body: "Noto Sans KR", "Apple SD Gothic Neo", system-ui, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f141c; --surface: #171e29; --ink: #e8edf4; --muted: #9aa6b8; --rule: #2a3343;
+    --accent: #f08a98; --tint: #3a1a21; --gold: #e8b84a; --tint-gold: #3a2c10;
+    color-scheme: dark;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.6 var(--f-body);
+  padding: 32px max(16px, env(safe-area-inset-right)) 56px max(16px, env(safe-area-inset-left));
+}
+.wrap { max-width: 860px; margin: 0 auto; display: grid; gap: 32px; }
+a { color: var(--accent); }
+.back { font-size: 13px; color: var(--muted); text-decoration: none; }
+.back:hover { text-decoration: underline; }
+h1, h2 { font-family: var(--f-display); margin: 0; text-wrap: balance; }
+h1 { font-size: clamp(28px, 4.5vw, 42px); line-height: 1.15; letter-spacing: -0.01em; }
+h2 { font-size: 20px; font-weight: 600; }
+.eyebrow { font-family: var(--f-mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+header { display: grid; gap: 12px; }
+header p { margin: 0; color: var(--muted); max-width: 62ch; }
+.stats { display: flex; flex-wrap: wrap; gap: 8px 22px; font-size: 14px; color: var(--muted); }
+.stats b { color: var(--ink); font-weight: 600; font-family: var(--f-display); font-size: 18px; margin-right: 4px; }
+section { display: grid; gap: 14px; }
+.card { background: var(--surface); border: 1px solid var(--rule); border-radius: 12px; padding: 16px 18px; }
+.days { display: grid; gap: 8px; }
+.day { display: grid; grid-template-columns: 96px 1fr auto; gap: 4px 14px; align-items: baseline; padding: 10px 14px; }
+.day .date { font-family: var(--f-mono); font-size: 13px; }
+.day .scene { color: var(--muted); font-size: 14px; }
+.day .scene b { color: var(--ink); font-weight: 500; }
+.day .n { font-family: var(--f-mono); font-size: 12px; color: var(--muted); white-space: nowrap; }
+.bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.chip { font: inherit; font-size: 13px; border: 1px solid var(--rule); background: var(--surface); color: var(--ink); border-radius: 999px; padding: 5px 13px; cursor: pointer; }
+.chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+input[type=search] { font: inherit; font-size: 14px; flex: 1 1 180px; min-width: 0; padding: 7px 12px; border: 1px solid var(--rule); border-radius: 8px; background: var(--surface); color: var(--ink); }
+.count { color: var(--muted); font-size: 13px; font-weight: 400; }
+.group { display: grid; gap: 6px; }
+.group h3 { margin: 6px 0 0; font-family: var(--f-mono); font-size: 12px; font-weight: 500; letter-spacing: .05em; color: var(--muted); }
+.rows { padding: 4px 0; }
+.row { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); gap: 4px 16px; padding: 9px 18px; border-top: 1px solid var(--rule); }
+.row:first-child { border-top: 0; }
+.row .p { font-family: var(--f-display); font-weight: 600; font-size: 16px; }
+.row .m { color: var(--muted); }
+.uk { display: inline-block; font-family: var(--f-body); font-size: 11px; font-weight: 500; background: var(--tint-gold); color: var(--gold); border-radius: 999px; padding: 0 8px; margin-left: 6px; vertical-align: 2px; }
+.empty { color: var(--muted); padding: 14px 18px; }
+footer { color: var(--muted); font-size: 13px; }
+@media (max-width: 560px) {
+  .day { grid-template-columns: 1fr auto; }
+  .day .scene { grid-column: 1 / -1; }
+  .row { grid-template-columns: 1fr; padding: 10px 14px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">← English</a>
+  <header>
+    <div class="eyebrow">English · Harry Potter</div>
+    <h1>Harry Potter로 익힌 표현</h1>
+    <p>점심시간에 해리포터를 영어로 보면서, 모르는 말을 그때그때 물어보고 정리한 표현들. 영국식 표현은 따로 표시했다.</p>
+    <div class="stats" id="stats"></div>
+  </header>
+
+  <section>
+    <h2>본 구간</h2>
+    <div class="days" id="days"></div>
+  </section>
+
+  <section>
+    <h2>표현 <span class="count" id="exCount"></span></h2>
+    <div class="bar" id="movieBar" role="group" aria-label="작품 필터"></div>
+    <div class="bar"><input type="search" id="q" placeholder="표현이나 뜻 검색" aria-label="표현 검색"></div>
+    <div id="list"></div>
+  </section>
+
+  <footer>노트가 기준이다. 본 날마다 고쳐 올린다. 마지막 갱신 <span id="updated"></span>.</footer>
+</div>
+
+<script>
+/* ── 데이터 블록: publish_page.py가 vault 노트에서 다시 채운다 ── */
+/*DATA*/
+const UPDATED = "2026-11-11";
+const DAYS = [
+ {
+  "d": "2026-11-02",
+  "mv": "마법사의 돌",
+  "scene": "부유 마법 수업 → 트롤 사건 직후",
+  "n": 11
+ },
+ {
+  "d": "2026-11-04",
+  "mv": "마법사의 돌",
+  "scene": "트롤 사건 직후 맥고나걸의 점수 → 첫 퀴디치 시합 전날 스네이프 → 해리의 추리",
+  "n": 16
+ },
+ {
+  "d": "2026-11-05",
+  "mv": "마법사의 돌",
+  "scene": "그린고츠 의심 → 첫 퀴디치 시합 → 해그리드의 경고 → 1편 완주",
+  "n": 22
+ },
+ {
+  "d": "2026-11-08",
+  "mv": "비밀의 방",
+  "scene": "다이애건 앨리 서점(플로리시 앤 블러츠) → 론과 하늘을 나는 차",
+  "n": 12
+ },
+ {
+  "d": "2026-11-09",
+  "mv": "비밀의 방",
+  "scene": "후려치는 버드나무 사건 후 스네이프의 꾸중 → 론의 하울러 → 록허트 수업 → 맥고나걸의 비밀의 방 전설",
+  "n": 28
+ },
+ {
+  "d": "2026-11-10",
+  "mv": "비밀의 방",
+  "scene": "폴리주스 계획 → 미친 블러저 퀴디치 → 병원 동(폼프리 부인, 도비) → 록하트의 결투 클럽",
+  "n": 34
+ },
+ {
+  "d": "2026-11-11",
+  "mv": "비밀의 방",
+  "scene": "결투 클럽의 뱀 소동 → 파셀텅 → 해리를 향한 의심 (1:32:26까지)",
+  "n": 15
+ }
+];
+const EXPRS = [
+{
+"p": "a nightmare (사람)",
+"m": "같이 있기 피곤한 사람, 골칫덩이",
+"d": "2026-11-02",
+"mv": "마법사의 돌",
+"uk": false
+},
+{
+"p": "honestly (문장 끝)",
+"m": "아 진짜 (짜증·어이없음 강조)",
+"d": "2026-11-02",
+"mv": "마법사의 돌",
+"uk": false
+},
+{
+"p": "No wonder ~",
+"m": "어쩐지, ~할 만도 하지",
+"d": "2026-11-02",
+"mv": "마법사의 돌",
+"uk": false
+},
+{
+"p": "hasn't got",
+"m": "= doesn't have (영국식)",
+"d": "2026-11-02",
+"mv": "마법사의 돌",
+"uk": true
+},
+{
+"p": "Be that as it may",
+"m": "그렇다 하더라도, 그건 그렇다 치고",
+"d": "2026-11-02",
+"mv": "마법사의 돌",
+"uk": false
+},
+{
+"p": "a [형용사] thing to do",
+"m": "~한 짓/행동",
+"d": "2026-11-02",
+"mv": "마법사의 돌",
+"uk": false
+},
+{
+"p": "foolish",
+"m": "어리석은 (stupid보다 점잖음)",
+"d": "2026-11-02",
+"mv": "마법사의 돌",
+"uk": false
+},
+{
+"p": "I would have expected ~",
+"m": "~할 줄 알았는데 (기대가 깨졌다는 꾸중)",
+"d": "2026-11-02",
+"mv": "마법사의 돌",
+"uk": false
+},
+{
+"p": "on your part",
+"m": "네 쪽에서, 너로서는",
+"d": "2026-11-02",
+"mv": "마법사의 돌",
+"uk": false
+},
+{
+"p": "rational ↔ irrational",
+"m": "이성적인 ↔ 비이성적인",
+"d": "2026-11-02",
+"mv": "마법사의 돌",
+"uk": false
+},
+{
+"p": "disappointed in (사람)",
+"m": "~에게 실망한",
+"d": "2026-11-02",
+"mv": "마법사의 돌",
+"uk": false
+},
+{
+"p": "take on",
+"m": "(강한 상대에게) 맞서다 / (일을) 떠맡다",
+"d": "2026-11-04",
+"mv": "마법사의 돌",
+"uk": false
+},
+{
+"p": "live to tell the tale",
+"m": "무사히 살아남다",
+"d": "2026-11-04",
+"mv": "마법사의 돌",
+"uk": false
+},
+{
+"p": "for ~ (상·벌의 이유)",
+"m": "~에 대해, ~의 대가로",
+"d": "2026-11-04",
+"mv": "마법사의 돌",
+"uk": false
+},
+{
+"p": "sheer",
+"m": "순전한, 완전한",
+"d": "2026-11-04",
+"mv": "마법사의 돌",
+"uk": false
+},
+{
+"p": "dumb luck",
+"m": "실력과 무관한 운, 운빨",
+"d": "2026-11-04",
+"mv": "마법사의 돌",
+"uk": false
+},
+{
+"p": "Then again",
+"m": "하긴, 다시 생각해 보니",
+"d": "2026-11-04",
+"mv": "마법사의 돌",
+"uk": false
+},
+{
+"p": "now that ~",
+"m": "~했으니 이제",
+"d": "2026-11-04",
+"mv": "마법사의 돌",
+"uk": false
+},
+{
+"p": "prove yourself",
+"m": "실력을 증명하다",
+"d": "2026-11-04",
+"mv": "마법사의 돌",
+"uk": false
+},
+{
+"p": "easy work",
+"m": "쉬운 일, 식은 죽 먹기",
+"d": "2026-11-04",
+"mv": "마법사의 돌",
+"uk": false
+},
+{
+"p": "I'm guessing ~",
+"m": "내 생각엔 ~인 것 같아",
+"d": "2026-11-04",
+"mv": "마법사의 돌",
+"uk": false
+},
+{
+"p": "let ~ in",
+"m": "안으로 들여보내다",
+"d": "2026-11-04",
+"mv": "마법사의 돌",
+"uk": false
+},
+{
+"p": "as a diversion",
+"m": "주의를 돌리려고",
+"d": "2026-11-04",
+"mv": "마법사의 돌",
+"uk": false
+},
+{
+"p": "try and + 동사",
+"m": "~하려고 하다 (영국 구어)",
+"d": "2026-11-04",
+"mv": "마법사의 돌",
+"uk": true
+},
+{
+"p": "get past",
+"m": "(막는 것을) 통과하다",
+"d": "2026-11-04",
+"mv": "마법사의 돌",
+"uk": false
+},
+{
+"p": "get oneself + p.p.",
+"m": "(자초해서) ~당하다",
+"d": "2026-11-04",
+"mv": "마법사의 돌",
+"uk": false
+},
+{
+"p": "limp",
+"m": "다리를 절다",
+"d": "2026-11-04",
+"mv": "마법사의 돌",
+"uk": false
+},
+{
+"p": "out of",
+"m": "(안에 있던 것을) 밖으로, ~에서",
+"d": "2026-11-05",
+"mv": "마법사의 돌",
+"uk": false
+},
+{
+"p": "one of + 복수명사",
+"m": "~ 중 하나",
+"d": "2026-11-05",
+"mv": "마법사의 돌",
+"uk": false
+},
+{
+"p": "feel the same way",
+"m": "같은 기분이다, 나도 그렇다",
+"d": "2026-11-05",
+"mv": "마법사의 돌",
+"uk": false
+},
+{
+"p": "take a ~ to the head",
+"m": "~에 머리를 맞다",
+"d": "2026-11-05",
+"mv": "마법사의 돌",
+"uk": false
+},
+{
+"p": "take a hit",
+"m": "타격을 입다 (비유)",
+"d": "2026-11-05",
+"mv": "마법사의 돌",
+"uk": false
+},
+{
+"p": "(시간) in",
+"m": "시작한 지 ~만에",
+"d": "2026-11-05",
+"mv": "마법사의 돌",
+"uk": false
+},
+{
+"p": "as (동시)",
+"m": "~하는 가운데, ~하면서",
+"d": "2026-11-05",
+"mv": "마법사의 돌",
+"uk": false
+},
+{
+"p": "take one's positions",
+"m": "각자 위치를 잡다",
+"d": "2026-11-05",
+"mv": "마법사의 돌",
+"uk": false
+},
+{
+"p": "step out onto",
+"m": "~로 걸어 나오다",
+"d": "2026-11-05",
+"mv": "마법사의 돌",
+"uk": false
+},
+{
+"p": "buy ~ off + 사람",
+"m": "~한테서 사다 (구어)",
+"d": "2026-11-05",
+"mv": "마법사의 돌",
+"uk": false
+},
+{
+"p": "buy off + 사람",
+"m": "매수하다",
+"d": "2026-11-05",
+"mv": "마법사의 돌",
+"uk": false
+},
+{
+"p": "feller",
+"m": "녀석, 사내 (= fellow, 사투리)",
+"d": "2026-11-05",
+"mv": "마법사의 돌",
+"uk": false
+},
+{
+"p": "down the pub",
+"m": "동네 술집에서 (영국 구어)",
+"d": "2026-11-05",
+"mv": "마법사의 돌",
+"uk": true
+},
+{
+"p": "I know a ~ when I see one",
+"m": "~는 보면 딱 알아",
+"d": "2026-11-05",
+"mv": "마법사의 돌",
+"uk": false
+},
+{
+"p": "meddle in / with",
+"m": "참견하다 / 함부로 건드리다",
+"d": "2026-11-05",
+"mv": "마법사의 돌",
+"uk": false
+},
+{
+"p": "ought not to",
+"m": "~해서는 안 된다 (무겁고 옛스러움)",
+"d": "2026-11-05",
+"mv": "마법사의 돌",
+"uk": false
+},
+{
+"p": "go over",
+"m": "꼼꼼히 훑어보다, 검토하다",
+"d": "2026-11-05",
+"mv": "마법사의 돌",
+"uk": false
+},
+{
+"p": "~, shall we?",
+"m": "~할까? (Let's의 부가의문)",
+"d": "2026-11-05",
+"mv": "마법사의 돌",
+"uk": false
+},
+{
+"p": "not miss a trick",
+"m": "하나도 놓치지 않다, 눈치가 귀신같다",
+"d": "2026-11-05",
+"mv": "마법사의 돌",
+"uk": false
+},
+{
+"p": "~, that man (끝에 주어 반복)",
+"m": "~야, 그 사람 (영국 구어)",
+"d": "2026-11-05",
+"mv": "마법사의 돌",
+"uk": true
+},
+{
+"p": "What do you think you're doing?",
+"m": "도대체 뭐 하는 거야? (꾸짖음)",
+"d": "2026-11-05",
+"mv": "마법사의 돌",
+"uk": false
+},
+{
+"p": "down here",
+"m": "여기 아래(쪽)에서",
+"d": "2026-11-05",
+"mv": "마법사의 돌",
+"uk": false
+},
+{
+"p": "mad (영국식)",
+"m": "정신없는, 난리인, 미친 (≠ 미국식 '화난')",
+"d": "2026-11-08",
+"mv": "비밀의 방",
+"uk": true
+},
+{
+"p": "It's ~ in here",
+"m": "이 안은 ~하다",
+"d": "2026-11-08",
+"mv": "비밀의 방",
+"uk": false
+},
+{
+"p": "Let's ~",
+"m": "~하자 (Let us의 줄임, 아포스트로피 필수)",
+"d": "2026-11-08",
+"mv": "비밀의 방",
+"uk": false
+},
+{
+"p": "Busy time? (앞부분 생략 질문)",
+"m": "요즘 바쁘지?",
+"d": "2026-11-08",
+"mv": "비밀의 방",
+"uk": false
+},
+{
+"p": "all those + 복수명사",
+"m": "그 많은 ~들",
+"d": "2026-11-08",
+"mv": "비밀의 방",
+"uk": false
+},
+{
+"p": "raid",
+"m": "급습, 불시 단속·수색",
+"d": "2026-11-08",
+"mv": "비밀의 방",
+"uk": false
+},
+{
+"p": "extra",
+"m": "평소보다 추가로 더",
+"d": "2026-11-08",
+"mv": "비밀의 방",
+"uk": false
+},
+{
+"p": "be accustomed to + -ing",
+"m": "~에 익숙하다 (격식)",
+"d": "2026-11-08",
+"mv": "비밀의 방",
+"uk": false
+},
+{
+"p": "be used to / get used to + -ing",
+"m": "~에 익숙하다 / 익숙해지다 (일상)",
+"d": "2026-11-08",
+"mv": "비밀의 방",
+"uk": false
+},
+{
+"p": "most + 명사 vs most of the + 명사",
+"m": "대부분의 ~ (일반) / 그 ~ 중 대부분 (특정)",
+"d": "2026-11-08",
+"mv": "비밀의 방",
+"uk": false
+},
+{
+"p": "All (that) we need to do is + 동사원형",
+"m": "우리가 할 건 ~하는 것뿐이야",
+"d": "2026-11-08",
+"mv": "비밀의 방",
+"uk": false
+},
+{
+"p": "catch up with",
+"m": "따라잡다 / (밀린) 근황을 나누다",
+"d": "2026-11-08",
+"mv": "비밀의 방",
+"uk": false
+},
+{
+"p": "lad / lads",
+"m": "녀석, 녀석들 (영국 구어 ↔ 미국 guys)",
+"d": "2026-11-09",
+"mv": "비밀의 방",
+"uk": true
+},
+{
+"p": "take a good look",
+"m": "자세히·똑똑히 봐 두다",
+"d": "2026-11-09",
+"mv": "비밀의 방",
+"uk": false
+},
+{
+"p": "might well",
+"m": "충분히 ~일 수 있다 (가능성 높음)",
+"d": "2026-11-09",
+"mv": "비밀의 방",
+"uk": false
+},
+{
+"p": "spend + 시간 + 장소",
+"m": "~에서 시간을 보내다",
+"d": "2026-11-09",
+"mv": "비밀의 방",
+"uk": false
+},
+{
+"p": "not to mention",
+"m": "~는 말할 것도 없고, 게다가",
+"d": "2026-11-09",
+"mv": "비밀의 방",
+"uk": false
+},
+{
+"p": "inflict ~ on",
+"m": "(피해·고통을) 가하다, 입히다",
+"d": "2026-11-09",
+"mv": "비밀의 방",
+"uk": false
+},
+{
+"p": "since before ~",
+"m": "~보다 더 이전부터",
+"d": "2026-11-09",
+"mv": "비밀의 방",
+"uk": false
+},
+{
+"p": "grounds",
+"m": "(학교·저택의) 부지, 구내 (항상 복수)",
+"d": "2026-11-09",
+"mv": "비밀의 방",
+"uk": false
+},
+{
+"p": "I assure you",
+"m": "장담하건대",
+"d": "2026-11-09",
+"mv": "비밀의 방",
+"uk": false
+},
+{
+"p": "Were you ~ (if 생략 도치)",
+"m": "만약 네가 ~라면 (격식)",
+"d": "2026-11-09",
+"mv": "비밀의 방",
+"uk": false
+},
+{
+"p": "rest with",
+"m": "~에게 달려 있다, ~의 권한이다",
+"d": "2026-11-09",
+"mv": "비밀의 방",
+"uk": false
+},
+{
+"p": "the both of you",
+"m": "너희 둘 다 (구어 강조)",
+"d": "2026-11-09",
+"mv": "비밀의 방",
+"uk": false
+},
+{
+"p": "the train home",
+"m": "집으로 가는 기차 (home = 부사)",
+"d": "2026-11-09",
+"mv": "비밀의 방",
+"uk": false
+},
+{
+"p": "flout",
+"m": "(규칙을) 대놓고 무시하다 (≠ flaunt 과시하다)",
+"d": "2026-11-09",
+"mv": "비밀의 방",
+"uk": false
+},
+{
+"p": "underage",
+"m": "미성년의",
+"d": "2026-11-09",
+"mv": "비밀의 방",
+"uk": false
+},
+{
+"p": "menace",
+"m": "위협, 골칫거리, 말썽꾼",
+"d": "2026-11-09",
+"mv": "비밀의 방",
+"uk": false
+},
+{
+"p": "seedling",
+"m": "묘목, 새싹",
+"d": "2026-11-09",
+"mv": "비밀의 방",
+"uk": false
+},
+{
+"p": "get oneself + 명사",
+"m": "(자초해서) ~를 얻다, 떠안다",
+"d": "2026-11-09",
+"mv": "비밀의 방",
+"uk": false
+},
+{
+"p": "Howler",
+"m": "고함 편지 / (일상) 웃기는 큰 실수",
+"d": "2026-11-09",
+"mv": "비밀의 방",
+"uk": false
+},
+{
+"p": "put a toe out of line",
+"m": "조금이라도 선을 넘다",
+"d": "2026-11-09",
+"mv": "비밀의 방",
+"uk": false
+},
+{
+"p": "straight",
+"m": "곧장, 바로",
+"d": "2026-11-09",
+"mv": "비밀의 방",
+"uk": false
+},
+{
+"p": "get rid of",
+"m": "없애다, 처리하다, 떼어 내다",
+"d": "2026-11-09",
+"mv": "비밀의 방",
+"uk": false
+},
+{
+"p": "by + -ing",
+"m": "~함으로써 (방법)",
+"d": "2026-11-09",
+"mv": "비밀의 방",
+"uk": false
+},
+{
+"p": "Know only that ~",
+"m": "~라는 것만 알아 두어라 (고풍)",
+"d": "2026-11-09",
+"mv": "비밀의 방",
+"uk": false
+},
+{
+"p": "befall",
+"m": "(나쁜 일이) 닥치다 (문학적)",
+"d": "2026-11-09",
+"mv": "비밀의 방",
+"uk": false
+},
+{
+"p": "whilst",
+"m": "= while (영국식, 격식)",
+"d": "2026-11-09",
+"mv": "비밀의 방",
+"uk": true
+},
+{
+"p": "heir [에어]",
+"m": "상속자, 후계자 (h 묵음)",
+"d": "2026-11-09",
+"mv": "비밀의 방",
+"uk": false
+},
+{
+"p": "nip",
+"m": "살짝 물다·꼬집다 / (영국 구어) 잠깐 다녀오다",
+"d": "2026-11-09",
+"mv": "비밀의 방",
+"uk": true
+},
+{
+"p": "thick",
+"m": "멍청한, 둔한 (영국 구어)",
+"d": "2026-11-10",
+"mv": "비밀의 방",
+"uk": true
+},
+{
+"p": "not that + 형용사",
+"m": "그렇게까지 ~하진 않은",
+"d": "2026-11-10",
+"mv": "비밀의 방",
+"uk": false
+},
+{
+"p": "there might be another way",
+"m": "다른 방법이 있을지도 몰라",
+"d": "2026-11-10",
+"mv": "비밀의 방",
+"uk": false
+},
+{
+"p": "Mind you",
+"m": "그런데 말이야, 다만 (단서 덧붙이기)",
+"d": "2026-11-10",
+"mv": "비밀의 방",
+"uk": false
+},
+{
+"p": "not to mention ~",
+"m": "~는 말할 것도 없고, 게다가",
+"d": "2026-11-10",
+"mv": "비밀의 방",
+"uk": false
+},
+{
+"p": "let alone",
+"m": "~는커녕 (부정문 뒤)",
+"d": "2026-11-10",
+"mv": "비밀의 방",
+"uk": false
+},
+{
+"p": "Blimey!",
+"m": "세상에! 맙소사! (영국 감탄사)",
+"d": "2026-11-10",
+"mv": "비밀의 방",
+"uk": true
+},
+{
+"p": "(have) got oneself a ~",
+"m": "~가 생기다, ~가 붙다",
+"d": "2026-11-10",
+"mv": "비밀의 방",
+"uk": false
+},
+{
+"p": "You've got yourself a deal.",
+"m": "좋아요, 거래 성사",
+"d": "2026-11-10",
+"mv": "비밀의 방",
+"uk": false
+},
+{
+"p": "rogue",
+"m": "통제를 벗어난, 제멋대로 날뛰는",
+"d": "2026-11-10",
+"mv": "비밀의 방",
+"uk": false
+},
+{
+"p": "go rogue",
+"m": "독자 행동을 하다",
+"d": "2026-11-10",
+"mv": "비밀의 방",
+"uk": false
+},
+{
+"p": "tamper with",
+"m": "(몰래) 손대다, 조작하다",
+"d": "2026-11-10",
+"mv": "비밀의 방",
+"uk": false
+},
+{
+"p": "~, that has",
+"m": "문장 끝 강조 (영국 구어)",
+"d": "2026-11-10",
+"mv": "비밀의 방",
+"uk": true
+},
+{
+"p": "mend",
+"m": "고치다, (부러진 것을) 붙이다",
+"d": "2026-11-10",
+"mv": "비밀의 방",
+"uk": false
+},
+{
+"p": "mend fences / on the mend",
+"m": "화해하다 / 회복 중인",
+"d": "2026-11-10",
+"mv": "비밀의 방",
+"uk": false
+},
+{
+"p": "in a heartbeat",
+"m": "순식간에, 망설임 없이 바로",
+"d": "2026-11-10",
+"mv": "비밀의 방",
+"uk": false
+},
+{
+"p": "grow ~ back",
+"m": "(없어진 것을) 다시 자라게 하다",
+"d": "2026-11-10",
+"mv": "비밀의 방",
+"uk": false
+},
+{
+"p": "most + 형용사",
+"m": "몹시, 대단히 (격식체)",
+"d": "2026-11-10",
+"mv": "비밀의 방",
+"uk": false
+},
+{
+"p": "aggrieved",
+"m": "억울한, 부당한 대우에 마음이 상한",
+"d": "2026-11-10",
+"mv": "비밀의 방",
+"uk": false
+},
+{
+"p": "grant permission",
+"m": "허가를 내리다",
+"d": "2026-11-10",
+"mv": "비밀의 방",
+"uk": false
+},
+{
+"p": "train ~ up",
+"m": "(일정 수준까지) 훈련시키다 (영국 구어)",
+"d": "2026-11-10",
+"mv": "비밀의 방",
+"uk": true
+},
+{
+"p": "in case ~",
+"m": "~할 경우를 대비해",
+"d": "2026-11-10",
+"mv": "비밀의 방",
+"uk": false
+},
+{
+"p": "on countless occasions",
+"m": "셀 수 없이 많이",
+"d": "2026-11-10",
+"mv": "비밀의 방",
+"uk": false
+},
+{
+"p": "sportingly",
+"m": "(스포츠맨답게) 흔쾌히, 선뜻",
+"d": "2026-11-10",
+"mv": "비밀의 방",
+"uk": false
+},
+{
+"p": "a good sport",
+"m": "기분 좋게 받아주는 사람",
+"d": "2026-11-10",
+"mv": "비밀의 방",
+"uk": false
+},
+{
+"p": "youngsters",
+"m": "꼬마들, 젊은 친구들",
+"d": "2026-11-10",
+"mv": "비밀의 방",
+"uk": false
+},
+{
+"p": "be through with",
+"m": "~를 끝내다 / (관계를) 끝내다",
+"d": "2026-11-10",
+"mv": "비밀의 방",
+"uk": false
+},
+{
+"p": "if you don't mind me saying",
+"m": "이런 말 해도 될지 모르겠지만",
+"d": "2026-11-10",
+"mv": "비밀의 방",
+"uk": false
+},
+{
+"p": "pretty (부사)",
+"m": "꽤, 상당히",
+"d": "2026-11-10",
+"mv": "비밀의 방",
+"uk": false
+},
+{
+"p": "be about to",
+"m": "막 ~하려던 참이다",
+"d": "2026-11-10",
+"mv": "비밀의 방",
+"uk": false
+},
+{
+"p": "save face",
+"m": "체면을 지키다",
+"d": "2026-11-10",
+"mv": "비밀의 방",
+"uk": false
+},
+{
+"p": "prudent",
+"m": "신중한, 현명한",
+"d": "2026-11-10",
+"mv": "비밀의 방",
+"uk": false
+},
+{
+"p": "unfriendly spells",
+"m": "적대적인 주문 (절제된 표현)",
+"d": "2026-11-10",
+"mv": "비밀의 방",
+"uk": false
+},
+{
+"p": "disarm / disarming",
+"m": "무장 해제시키다 / 경계심을 녹이는",
+"d": "2026-11-10",
+"mv": "비밀의 방",
+"uk": false
+},
+{
+"p": "egg ~ on",
+"m": "(사람을) 부추기다, 꼬드기다",
+"d": "2026-11-11",
+"mv": "비밀의 방",
+"uk": false
+},
+{
+"p": "serpent",
+"m": "뱀 (격식·문학적, 사악한 이미지)",
+"d": "2026-11-11",
+"mv": "비밀의 방",
+"uk": false
+},
+{
+"p": "serpentine",
+"m": "뱀처럼 구불구불한",
+"d": "2026-11-11",
+"mv": "비밀의 방",
+"uk": false
+},
+{
+"p": "Parselmouth",
+"m": "파셀텅을 할 줄 아는 사람",
+"d": "2026-11-11",
+"mv": "비밀의 방",
+"uk": false
+},
+{
+"p": "Parseltongue",
+"m": "뱀의 언어",
+"d": "2026-11-11",
+"mv": "비밀의 방",
+"uk": false
+},
+{
+"p": "have a bee in one's bonnet",
+"m": "어떤 생각에 꽂혀 안달이다",
+"d": "2026-11-11",
+"mv": "비밀의 방",
+"uk": false
+},
+{
+"p": "bee",
+"m": "꿀벌",
+"d": "2026-11-11",
+"mv": "비밀의 방",
+"uk": false
+},
+{
+"p": "busy as a bee",
+"m": "눈코 뜰 새 없이 바쁜",
+"d": "2026-11-11",
+"mv": "비밀의 방",
+"uk": false
+},
+{
+"p": "the bee's knees",
+"m": "최고인 것, 끝내주는 것",
+"d": "2026-11-11",
+"mv": "비밀의 방",
+"uk": false
+},
+{
+"p": "make a beeline for ~",
+"m": "~로 곧장 가다",
+"d": "2026-11-11",
+"mv": "비밀의 방",
+"uk": false
+},
+{
+"p": "spelling bee",
+"m": "철자 맞히기 대회",
+"d": "2026-11-11",
+"mv": "비밀의 방",
+"uk": false
+},
+{
+"p": "stand by ~ (말·결정)",
+"m": "고수하다, 철회하지 않다",
+"d": "2026-11-11",
+"mv": "비밀의 방",
+"uk": false
+},
+{
+"p": "stand by ~ (사람)",
+"m": "곁에서 지지하다",
+"d": "2026-11-11",
+"mv": "비밀의 방",
+"uk": false
+},
+{
+"p": "stand by (대기)",
+"m": "대기하다",
+"d": "2026-11-11",
+"mv": "비밀의 방",
+"uk": false
+},
+{
+"p": "what I said",
+"m": "내가 한 말 (what절)",
+"d": "2026-11-11",
+"mv": "비밀의 방",
+"uk": false
+}
+];
+/*END DATA*/
+/* ──────────────────────────────────────────────────────────── */
+
+const $ = (s) => document.querySelector(s);
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const md = (d) => d.slice(5).replace("-", "/");
+
+$("#updated").textContent = UPDATED;
+$("#stats").innerHTML =
+  `<span><b>${DAYS.length}</b>일</span><span><b>${EXPRS.length}</b>개 표현</span><span><b>${EXPRS.filter((e) => e.uk).length}</b>개 영국식</span>`;
+
+$("#days").innerHTML = DAYS.slice().reverse().map((d) => `
+  <div class="card day">
+    <span class="date">${esc(d.d)}</span>
+    <span class="scene"><b>${esc(d.mv)}</b> · ${esc(d.scene)}</span>
+    <span class="n">${d.n}개</span>
+  </div>`).join("");
+
+let movie = "전체";
+const FILTERS = ["전체", ...new Set(DAYS.map((d) => d.mv)), "영국식만"];
+const bar = $("#movieBar");
+FILTERS.forEach((f) => {
+  const b = document.createElement("button");
+  b.className = "chip"; b.type = "button"; b.textContent = f;
+  b.setAttribute("aria-pressed", String(f === movie));
+  b.addEventListener("click", () => { movie = f; [...bar.children].forEach((c) => c.setAttribute("aria-pressed", String(c === b))); render(); });
+  bar.appendChild(b);
+});
+
+function render() {
+  const q = $("#q").value.trim().toLowerCase();
+  const rows = EXPRS.filter((e) =>
+    (movie === "전체" || (movie === "영국식만" ? e.uk : e.mv === movie)) &&
+    (!q || (e.p + " " + e.m).toLowerCase().includes(q)));
+  $("#exCount").textContent = rows.length + "/" + EXPRS.length;
+  if (!rows.length) { $("#list").innerHTML = `<div class="card empty">맞는 표현이 없다.</div>`; return; }
+  const byDay = new Map();
+  rows.forEach((e) => { if (!byDay.has(e.d)) byDay.set(e.d, []); byDay.get(e.d).push(e); });
+  $("#list").innerHTML = [...byDay.entries()].sort((a, b) => b[0].localeCompare(a[0])).map(([d, list]) => `
+    <div class="group">
+      <h3>${md(d)} · ${esc(list[0].mv)}</h3>
+      <div class="card rows">${list.map((e) => `
+        <div class="row"><span class="p">${esc(e.p)}${e.uk ? '<span class="uk">영국식</span>' : ""}</span><span class="m">${esc(e.m)}</span></div>`).join("")}
+      </div>
+    </div>`).join("");
+}
+$("#q").addEventListener("input", render);
+render();
+</script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>English</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root {
+  --bg: #f6f7f9; --surface: #ffffff; --ink: #16202e; --muted: #5b6676; --rule: #dfe3ea;
+  --conv: #1c3f94; --tint-conv: #e6ebf6; --hp: #7a1f2b; --tint-hp: #f6e7e9;
+  --f-display: "Jost", "Noto Sans KR", system-ui, sans-serif;
+  --f-body: "Noto Sans KR", "Apple SD Gothic Neo", system-ui, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f141c; --surface: #171e29; --ink: #e8edf4; --muted: #9aa6b8; --rule: #2a3343;
+    --conv: #7d9cf0; --tint-conv: #1a2442; --hp: #f08a98; --tint-hp: #3a1a21;
+    color-scheme: dark;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.6 var(--f-body);
+  padding: 32px max(16px, env(safe-area-inset-right)) 56px max(16px, env(safe-area-inset-left));
+}
+.wrap { max-width: 860px; margin: 0 auto; display: grid; gap: 32px; }
+.back { font-size: 13px; color: var(--muted); text-decoration: none; }
+.back:hover { text-decoration: underline; }
+h1, h2 { font-family: var(--f-display); margin: 0; text-wrap: balance; }
+h1 { font-size: clamp(32px, 5vw, 48px); line-height: 1.1; letter-spacing: -0.01em; }
+h2 { font-size: 22px; font-weight: 600; }
+.eyebrow { font-family: var(--f-mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+header { display: grid; gap: 12px; }
+header p { margin: 0; color: var(--muted); max-width: 60ch; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+a.card {
+  display: grid; gap: 10px; align-content: start; text-decoration: none; color: inherit;
+  background: var(--surface); border: 1px solid var(--rule); border-top: 4px solid var(--c); border-radius: 12px; padding: 20px 22px;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+a.card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,.08); }
+a.card:focus-visible { outline: 2px solid var(--c); outline-offset: 2px; }
+.card .tag { justify-self: start; font-size: 12px; font-weight: 500; border-radius: 999px; padding: 1px 10px; background: var(--t); color: var(--c); }
+.card p { margin: 0; color: var(--muted); }
+.card .go { color: var(--c); font-weight: 600; font-size: 14px; }
+.conv { --c: var(--conv); --t: var(--tint-conv); }
+.hp { --c: var(--hp); --t: var(--tint-hp); }
+.soon { color: var(--muted); font-size: 14px; }
+footer { color: var(--muted); font-size: 13px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../../">← mkk4726 pages</a>
+  <header>
+    <div class="eyebrow">Study · English</div>
+    <h1>English</h1>
+    <p>영어를 늘리려고 하는 것들을 모아 둔 곳. 말하기는 AI 튜터와 대화로, 듣기·표현은 해리포터를 영어로 보면서 익힌다.</p>
+  </header>
+
+  <section class="grid">
+    <a class="card conv" href="conversation/">
+      <span class="tag">말하기</span>
+      <h2>AI Conversation</h2>
+      <p>AI가 주제를 던지고 영어로 대화한다. 끝나면 고칠 문장과 새 표현을 정리한다. 배운 표현과 단계별 주제 목록.</p>
+      <span class="go">표현 노트 · 주제 목록 →</span>
+    </a>
+    <a class="card hp" href="harry-potter/">
+      <span class="tag">듣기 · 표현</span>
+      <h2>Harry Potter</h2>
+      <p>점심시간에 해리포터를 영어로 보며 모르는 말을 바로 묻고 정리한다. 영국식 표현은 따로 표시.</p>
+      <span class="go">본 구간 · 표현 모음 →</span>
+    </a>
+  </section>
+
+  <footer>vault 노트가 기준이다. 공부한 날마다 각 페이지를 고쳐 올린다.</footer>
+</div>
+</body>
+</html>
