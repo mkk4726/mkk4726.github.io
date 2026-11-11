@@ -7,6 +7,8 @@
 <title>영국여행 일정표</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
 /* Layout: 노선도처럼 읽는 10일 — 주차별 5칸 그리드. 날짜를 누르면 오른쪽(폰에선 아래)에서 그날의 시간표가 열림 */
@@ -153,6 +155,26 @@ dialog#sheet[open] { animation: slide .22s ease-out; }
   .timeline li { grid-template-columns: 46px 22px minmax(0, 1fr); }
 }
 @media (prefers-reduced-motion: reduce) { .day, dialog#sheet[open] { transition: none; animation: none; } }
+
+/* maps */
+.map { height: 300px; border-radius: 10px; border: 1px solid var(--rule); background: var(--bg); z-index: 0; }
+.map-big { height: min(520px, 70vh); }
+.sheet .map { height: 240px; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip-btn { border: 1px solid var(--rule); background: var(--surface); color: var(--ink); border-radius: 999px; padding: 5px 12px; font: inherit; font-size: 13px; cursor: pointer; }
+.chip-btn[aria-pressed="true"] { background: var(--ink); color: var(--surface); border-color: var(--ink); }
+.chip-btn:focus-visible { outline: 3px solid var(--city); outline-offset: 2px; }
+.pin { width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; color: #fff; font: 700 12px/1 var(--f-mono); border: 2px solid #fff; box-shadow: 0 1px 4px rgba(0,0,0,.35); }
+.leaflet-container { font-family: var(--f-body); }
+@media (prefers-color-scheme: dark) { .leaflet-tile-pane { filter: invert(1) hue-rotate(180deg) brightness(.9) contrast(.9); } }
+.leaflet-popup-content { margin: 10px 12px; font-size: 13px; }
+.leaflet-popup-content a { color: #1c3f94; font-weight: 700; }
+.gmap { font-size: 12px; font-weight: 700; color: var(--line); text-decoration: none; white-space: nowrap; margin-left: 6px; }
+.gmap:hover { text-decoration: underline; }
+.route-btn { display: inline-flex; align-items: center; gap: 6px; justify-self: start; border-radius: 8px; padding: 8px 14px; background: var(--line); color: #fff; text-decoration: none; font-size: 14px; font-weight: 700; }
+.route-btn[hidden] { display: none; }
+.map-note { font-size: 12px; color: var(--muted); margin: 0; }
+.map-wrap { display: grid; gap: 8px; }
 </style>
 </head>
 <body>
@@ -188,6 +210,14 @@ dialog#sheet[open] { animation: slide .22s ease-out; }
     <div class="days" id="days-2"></div>
   </section>
 
+  <section class="panel" aria-labelledby="mapttl">
+    <h2 id="mapttl">동선 지도</h2>
+    <p class="note">날짜를 고르면 그날 들르는 곳을 순서대로 이어서 보여줘요. 선은 순서만 잇는 직선이라 실제 길과 다르고, 실제 경로는 '구글맵에서 동선 열기'로 보세요. 핀을 누르면 구글맵 링크가 나와요.</p>
+    <div class="chips" id="chips" role="group" aria-label="날짜 고르기"></div>
+    <div id="bigmap" class="map map-big" aria-label="동선 지도"></div>
+    <a class="route-btn" id="big-route" href="#" target="_blank" rel="noopener" style="--line: var(--city)">구글맵에서 동선 열기 ↗</a>
+  </section>
+
   <section class="panel" aria-labelledby="mus">
     <h2 id="mus">뮤지컬 5편</h2>
     <p class="note">공연 요일·시간은 판매처 기준. 예매 전 공식 사이트에서 다시 확인.</p>
@@ -220,7 +250,7 @@ dialog#sheet[open] { animation: slide .22s ease-out; }
       </div>
       <p id="sheet-sub"></p>
     </div>
-    <div class="sheet-body" id="sheet-body"></div>
+    <div class="sheet-body" id="sheet-body"><div class="map-wrap"><div id="sheetmap" class="map"></div><a class="route-btn" id="sheet-route" href="#" target="_blank" rel="noopener">구글맵에서 동선 열기 ↗</a></div><div id="sheet-content" style="display:grid;gap:22px"></div></div>
     <div class="nav">
       <button id="prev">← 전날</button>
       <button id="next">다음 날 →</button>
@@ -384,6 +414,114 @@ const DAYS = [
     links: [] }
 ];
 
+// 방문 장소. q = 구글맵 검색어, ll = 지도 좌표(대략), region = 지도 묶음
+const PLACES = {
+  icn:          { name: "인천공항 제2터미널", q: "인천국제공항 제2여객터미널", region: "korea" },
+  lhr:          { name: "히드로공항 T2", q: "Heathrow Terminal 2", ll: [51.4703, -0.4519], region: "london" },
+  bigben:       { name: "빅벤 · 국회의사당", q: "Big Ben London", ll: [51.5007, -0.1246], region: "london" },
+  wbridge:      { name: "웨스트민스터 다리", q: "Westminster Bridge London", ll: [51.5008, -0.1219], region: "london" },
+  londoneye:    { name: "런던아이", q: "London Eye", ll: [51.5033, -0.1196], region: "london" },
+  southbank:    { name: "사우스뱅크 센터", q: "Southbank Centre London", ll: [51.5063, -0.1160], region: "london" },
+  tatebritain:  { name: "테이트 브리턴", q: "Tate Britain", ll: [51.4910, -0.1278], region: "london" },
+  natgallery:   { name: "내셔널 갤러리", q: "The National Gallery London", ll: [51.5089, -0.1283], region: "london" },
+  soho:         { name: "소호", q: "Soho London", ll: [51.5136, -0.1340], region: "london" },
+  coventgarden: { name: "코벤트 가든", q: "Covent Garden London", ll: [51.5117, -0.1240], region: "london" },
+  aintnothin:   { name: "Ain't Nothin' But", q: "Ain't Nothin' But Blues Bar Kingly Street London", ll: [51.5128, -0.1395], region: "london" },
+  britishmuseum:{ name: "대영박물관", q: "British Museum", ll: [51.5194, -0.1270], region: "london" },
+  sondheim:     { name: "Sondheim Theatre", q: "Sondheim Theatre London", ll: [51.5124, -0.1305], region: "london" },
+  nhm:          { name: "자연사 박물관", q: "Natural History Museum London", ll: [51.4967, -0.1764], region: "london" },
+  vam:          { name: "V&A", q: "Victoria and Albert Museum", ll: [51.4966, -0.1722], region: "london" },
+  rcm:          { name: "Royal College of Music Museum", q: "Royal College of Music Museum", ll: [51.4993, -0.1773], region: "london" },
+  apollo:       { name: "Apollo Victoria Theatre", q: "Apollo Victoria Theatre", ll: [51.4958, -0.1428], region: "london" },
+  paddington:   { name: "패딩턴역", q: "London Paddington Station", ll: [51.5154, -0.1755], region: "london" },
+  oxfordstn:    { name: "옥스퍼드역", q: "Oxford railway station", ll: [51.7535, -1.2700], region: "oxford" },
+  radcliffe:    { name: "래드클리프 카메라", q: "Radcliffe Camera Oxford", ll: [51.7534, -1.2540], region: "oxford" },
+  bodleian:     { name: "보들리언 도서관", q: "Bodleian Library Oxford", ll: [51.7541, -1.2544], region: "oxford" },
+  christchurch: { name: "크라이스트 처치", q: "Christ Church Oxford", ll: [51.7500, -1.2559], region: "oxford" },
+  coveredmkt:   { name: "커버드 마켓", q: "Covered Market Oxford", ll: [51.7520, -1.2585], region: "oxford" },
+  ashmolean:    { name: "애슈몰린 박물관", q: "Ashmolean Museum Oxford", ll: [51.7555, -1.2600], region: "oxford" },
+  ronnie:       { name: "로니 스콧", q: "Ronnie Scott's Jazz Club London", ll: [51.5134, -0.1318], region: "london" },
+  abbeyroad:    { name: "애비로드 횡단보도", q: "Abbey Road Crossing London", ll: [51.5320, -0.1773], region: "london" },
+  handel:       { name: "Handel & Hendrix in London", q: "Handel & Hendrix in London", ll: [51.5128, -0.1488], region: "london" },
+  camden:       { name: "캠든 마켓", q: "Camden Market London", ll: [51.5414, -0.1460], region: "london" },
+  roundhouse:   { name: "Roundhouse", q: "Roundhouse Camden London", ll: [51.5432, -0.1518], region: "london" },
+  vpalace:      { name: "Victoria Palace Theatre", q: "Victoria Palace Theatre London", ll: [51.4966, -0.1415], region: "london" },
+  tatemodern:   { name: "테이트 모던", q: "Tate Modern", ll: [51.5076, -0.0994], region: "london" },
+  borough:      { name: "버로우 마켓", q: "Borough Market London", ll: [51.5055, -0.0910], region: "london" },
+  millennium:   { name: "밀레니엄 브리지", q: "Millennium Bridge London", ll: [51.5095, -0.0985], region: "london" },
+  stpauls:      { name: "세인트폴 대성당", q: "St Paul's Cathedral London", ll: [51.5138, -0.0984], region: "london" },
+  hismajestys:  { name: "His Majesty's Theatre", q: "His Majesty's Theatre London", ll: [51.5084, -0.1317], region: "london" },
+  euston:       { name: "유스턴역", q: "London Euston Station", ll: [51.5282, -0.1337], region: "london" },
+  mcrpicc:      { name: "맨체스터 피카딜리역", q: "Manchester Piccadilly Station", ll: [53.4774, -2.2309], region: "manchester" },
+  afflecks:     { name: "Afflecks", q: "Afflecks Manchester", ll: [53.4834, -2.2357], region: "manchester" },
+  piccrecords:  { name: "Piccadilly Records", q: "Piccadilly Records Manchester", ll: [53.4840, -2.2339], region: "manchester" },
+  chinatown:    { name: "차이나타운 아치 (오아시스 워킹 투어 집합)", q: "Chinatown Arch Faulkner Street Manchester", ll: [53.4782, -2.2399], region: "manchester" },
+  rylands:      { name: "존 라일랜즈 도서관", q: "John Rylands Research Institute and Library", ll: [53.4805, -2.2484], region: "manchester" },
+  albertsq:     { name: "알버트 스퀘어 크리스마스 마켓", q: "Albert Square Manchester", ll: [53.4794, -2.2447], region: "manchester" },
+  liberty:      { name: "리버티 백화점", q: "Liberty London", ll: [51.5139, -0.1400], region: "london" },
+  carnaby:      { name: "카나비 스트리트", q: "Carnaby Street London", ll: [51.5130, -0.1389], region: "london" },
+  lyceum:       { name: "Lyceum Theatre", q: "Lyceum Theatre London", ll: [51.5115, -0.1200], region: "london" },
+  barfly:       { name: "Barfly Camden", q: "Barfly Camden London", ll: [51.5432, -0.1528], region: "london" },
+  westabbey:    { name: "웨스트민스터 사원", q: "Westminster Abbey", ll: [51.4994, -0.1273], region: "london" }
+};
+// 시간표 항목(제목) → 장소. 순서대로 이어 그날 동선이 됨
+const STOP_PLACES = {
+  d1212: { "인천공항 제2터미널 도착": ["icn"], "히드로 도착": ["lhr"], "웨스트민스터 야경 산책": ["bigben", "wbridge", "londoneye", "southbank"] },
+  d1213: { "테이트 브리턴": ["tatebritain"], "내셔널 갤러리": ["natgallery"], "소호 · 코벤트 가든 산책": ["coventgarden", "soho"], "Ain't Nothin' But": ["aintnothin"] },
+  d1214: { "대영박물관": ["britishmuseum"], "극장 도착": ["sondheim"] },
+  d1215: { "자연사 박물관": ["nhm"], "V&A": ["vam"], "Royal College of Music Museum": ["rcm"], "극장 도착": ["apollo"] },
+  d1216: { "패딩턴 출발": ["paddington", "oxfordstn"], "래드클리프 카메라 · 보들리언 도서관": ["radcliffe", "bodleian"], "칼리지 둘러보기": ["christchurch"], "커버드 마켓에서 점심": ["coveredmkt"], "애슈몰린 박물관": ["ashmolean"], "런던행 기차": ["oxfordstn"], "로니 스콧 (선택)": ["ronnie"] },
+  d1217: { "애비로드 횡단보도": ["abbeyroad"], "Handel & Hendrix in London": ["handel"], "캠든 산책": ["camden", "roundhouse"], "극장 도착": ["vpalace"] },
+  d1218: { "테이트 모던": ["tatemodern"], "버로우 마켓 점심": ["borough"], "사우스뱅크 · 밀레니엄 브리지": ["millennium", "stpauls"], "극장 도착": ["hismajestys"] },
+  d1219: { "유스턴 출발": ["euston"], "맨체스터 피카딜리 도착": ["mcrpicc"], "노던 쿼터": ["afflecks", "piccrecords"], "오아시스 투어": ["chinatown"], "존 라일랜즈 도서관": ["rylands"], "크리스마스 마켓": ["albertsq"], "런던행 기차": ["mcrpicc"] },
+  d1220: { "리버티 백화점 · 카나비 스트리트": ["liberty", "carnaby"], "극장 도착": ["lyceum"], "Barfly Camden 또는 짐 정리": ["barfly"] },
+  d1221: { "웨스트민스터 사원 또는 산책": ["westabbey"], "공항 도착": ["lhr"], "인천공항 제2터미널 도착": ["icn"] }
+};
+// 지도 화면을 맞출 지역 (당일치기는 런던역을 빼고 현지만)
+const FIT_REGION = { d1216: "oxford", d1219: "manchester" };
+
+const gmapSearch = k => "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(PLACES[k].q);
+function dayPlaces(d) {
+  const keys = [];
+  for (const row of d.timeline) for (const k of (STOP_PLACES[d.id] || {})[row[1]] || []) if (keys[keys.length - 1] !== k) keys.push(k);
+  return keys;
+}
+function gmapRoute(keys) {
+  const pts = keys.filter(k => PLACES[k].ll);
+  if (!pts.length) return null;
+  return "https://www.google.com/maps/dir/" + pts.map(k => encodeURIComponent(PLACES[k].q)).join("/");
+}
+function cssVar(name) { return getComputedStyle(document.documentElement).getPropertyValue(name).trim(); }
+const darkMQ = window.matchMedia("(prefers-color-scheme: dark)");
+function tileUrl() { return "https://tile.openstreetmap.org/{z}/{x}/{y}.png"; }
+const ATTR = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
+function makeMap(el) {
+  if (!window.L) { el.innerHTML = '<p class="map-note" style="padding:12px">지도를 불러오지 못했어요. 아래 구글맵 링크를 써 주세요.</p>'; return null; }
+  const m = L.map(el, { scrollWheelZoom: false, attributionControl: true });
+  L.tileLayer(tileUrl(), { attribution: ATTR, maxZoom: 19 }).addTo(m);
+  m._routeLayer = L.layerGroup().addTo(m);
+  return m;
+}
+function drawRoute(m, keys, color, fitRegion) {
+  if (!m) return;
+  m._routeLayer.clearLayers();
+  const pts = keys.filter(k => PLACES[k].ll);
+  const lls = pts.map(k => PLACES[k].ll);
+  if (lls.length > 1) L.polyline(lls, { color, weight: 3, opacity: .75, dashArray: "6 6" }).addTo(m._routeLayer);
+  pts.forEach((k, i) => {
+    const p = PLACES[k];
+    const icon = L.divIcon({ className: "", html: `<div class="pin" style="background:${color}">${i + 1}</div>`, iconSize: [26, 26], iconAnchor: [13, 13] });
+    L.marker(p.ll, { icon, title: p.name }).addTo(m._routeLayer)
+      .bindPopup(`<b>${i + 1}. ${esc(p.name)}</b><br><a href="${gmapSearch(k)}" target="_blank" rel="noopener">구글맵에서 보기 ↗</a>`);
+  });
+  const fit = fitRegion ? pts.filter(k => PLACES[k].region === fitRegion).map(k => PLACES[k].ll) : lls;
+  setTimeout(() => {
+    m.invalidateSize();
+    if (fit.length === 1) m.setView(fit[0], 15);
+    else if (fit.length) m.fitBounds(fit, { padding: [28, 28], maxZoom: 16 });
+  }, 60);
+}
+
 const KIND_COLOR = { fly: "--fly", show: "--show", trip: "--trip", city: "--city" };
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 
@@ -402,6 +540,7 @@ document.getElementById("days-2").innerHTML = DAYS.slice(5).map(card).join("");
 const sheet = document.getElementById("sheet");
 const inner = document.getElementById("sheet-inner");
 let current = -1;
+let sheetMap = null;
 
 function render(i) {
   const d = DAYS[i];
@@ -411,13 +550,21 @@ function render(i) {
   document.getElementById("sheet-eyebrow").textContent = `${d.date} ${d.dow} · ${d.tag}`;
   document.getElementById("sheet-title").textContent = d.title;
   document.getElementById("sheet-sub").textContent = d.sub;
-  const tl = d.timeline.map(([tm, ti, ds, key]) =>
-    `<li class="${key ? "key" : ""}"><span class="tm">${esc(tm)}</span><span class="rail"></span><div class="bd"><div class="ti">${esc(ti)}</div>${ds ? `<div class="ds">${esc(ds)}</div>` : ""}</div></li>`).join("");
+  const tl = d.timeline.map(([tm, ti, ds, key]) => {
+    const pk = (STOP_PLACES[d.id] || {})[ti] || [];
+    const gl = pk.map(k => `<a class="gmap" href="${gmapSearch(k)}" target="_blank" rel="noopener" title="${esc(PLACES[k].name)} 구글맵">${pk.length > 1 ? esc(PLACES[k].name) + " " : ""}지도 ↗</a>`).join("");
+    return `<li class="${key ? "key" : ""}"><span class="tm">${esc(tm)}</span><span class="rail"></span><div class="bd"><div class="ti">${esc(ti)}${gl}</div>${ds ? `<div class="ds">${esc(ds)}</div>` : ""}</div></li>`;
+  }).join("");
   const tips = d.tips.length ? `<div class="box"><h3>챙길 것</h3><ul>${d.tips.map(t => `<li>${esc(t)}</li>`).join("")}</ul></div>` : "";
   const links = d.links.length ? `<div class="links">${d.links.map(([n, u]) => `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(n)} ↗</a>`).join("")}</div>` : "";
-  const body = document.getElementById("sheet-body");
-  body.innerHTML = `<ol class="timeline">${tl}</ol>${tips}${links}`;
-  body.scrollTop = 0;
+  document.getElementById("sheet-content").innerHTML = `<ol class="timeline">${tl}</ol>${tips}${links}`;
+  document.getElementById("sheet-body").scrollTop = 0;
+  const keys = dayPlaces(d);
+  const route = gmapRoute(keys);
+  const rb = document.getElementById("sheet-route");
+  rb.hidden = !route; if (route) rb.href = route;
+  if (!sheetMap) sheetMap = makeMap(document.getElementById("sheetmap"));
+  drawRoute(sheetMap, keys, cssVar(KIND_COLOR[d.kind]), FIT_REGION[d.id]);
   document.getElementById("prev").disabled = i === 0;
   document.getElementById("next").disabled = i === DAYS.length - 1;
 }
@@ -442,6 +589,41 @@ document.addEventListener("keydown", e => {
   if (e.key === "ArrowLeft") document.getElementById("prev").click();
   if (e.key === "ArrowRight") document.getElementById("next").click();
 });
+// 전체 동선 지도
+const bigMap = makeMap(document.getElementById("bigmap"));
+const chipsEl = document.getElementById("chips");
+const bigRoute = document.getElementById("big-route");
+function showAll() {
+  if (!bigMap) return;
+  bigMap._routeLayer.clearLayers();
+  const lls = [];
+  DAYS.forEach(d => {
+    const color = cssVar(KIND_COLOR[d.kind]);
+    dayPlaces(d).filter(k => PLACES[k].region === "london" && k !== "lhr").forEach(k => {
+      lls.push(PLACES[k].ll);
+      L.circleMarker(PLACES[k].ll, { radius: 7, color: "#fff", weight: 2, fillColor: color, fillOpacity: 1 })
+        .addTo(bigMap._routeLayer)
+        .bindPopup(`<b>${esc(PLACES[k].name)}</b><br>${esc(d.date)} ${esc(d.dow)}<br><a href="${gmapSearch(k)}" target="_blank" rel="noopener">구글맵에서 보기 ↗</a>`);
+    });
+  });
+  setTimeout(() => { bigMap.invalidateSize(); bigMap.fitBounds(lls, { padding: [24, 24] }); }, 60);
+  bigRoute.hidden = true;
+}
+function selectChip(id) {
+  chipsEl.querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.id === id)));
+  if (id === "all") return showAll();
+  const d = DAYS.find(x => x.id === id);
+  const keys = dayPlaces(d);
+  drawRoute(bigMap, keys, cssVar(KIND_COLOR[d.kind]), FIT_REGION[d.id]);
+  const r = gmapRoute(keys);
+  bigRoute.hidden = !r; if (r) bigRoute.href = r;
+  bigRoute.style.setProperty("--line", `var(${KIND_COLOR[d.kind]})`);
+}
+chipsEl.innerHTML = `<button class="chip-btn" data-id="all" aria-pressed="true">런던 전체</button>` +
+  DAYS.map(d => `<button class="chip-btn" data-id="${d.id}" aria-pressed="false">${esc(d.date)} ${esc(d.tag)}</button>`).join("");
+chipsEl.addEventListener("click", e => { const b = e.target.closest("button"); if (b) selectChip(b.dataset.id); });
+showAll();
+
 openFromHash();
 </script>
 </body>
