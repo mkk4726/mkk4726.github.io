@@ -304,6 +304,9 @@ const STOP_PLACES = {
 const FIT_REGION = {};  // 당일치기처럼 멀리 가는 날: { 날짜id: "region" } 이면 그 region 장소만 화면에 맞춤
 
 const gmapSearch = k => "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(PLACES[k].q);
+// 숙소에서 시작·숙소로 돌아오는 날이면 true
+const startsAtStay = d => !!(TRIP.stay && (TRIP.stay.start || []).includes(d.id));
+const endsAtStay = d => !!(TRIP.stay && (TRIP.stay.end || []).includes(d.id));
 function dayPlaces(d) {
   const keys = [];
   const push = k => { if (keys[keys.length - 1] !== k) keys.push(k); };
@@ -372,7 +375,7 @@ const KIND_COLOR = { fly: "--fly", show: "--show", trip: "--trip", city: "--city
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 
 function card(d) {
-  const stops = d.stops.map(([t, s]) => `<li>${t ? `<span class="t">${esc(t)}</span>` : ""}${esc(s)}</li>`).join("");
+  const stops = [...(startsAtStay(d) ? [["", "숙소에서 출발"]] : []), ...d.stops, ...(endsAtStay(d) ? [["", "숙소로 복귀"]] : [])].map(([t, s]) => `<li>${t ? `<span class="t">${esc(t)}</span>` : ""}${esc(s)}</li>`).join("");
   const e = d.eve;
   return `<a class="day ${d.kind}" href="#${d.id}" aria-label="${esc(d.date)} ${esc(d.dow)}요일 ${esc(d.title)} 자세히 보기">
     <div class="day-top"><div class="date">${esc(d.date)}<small>${esc(d.dow)}</small></div><span class="tag">${esc(d.tag)}</span></div>
@@ -403,8 +406,10 @@ function render(i) {
   document.getElementById("sheet-eyebrow").textContent = `${d.date} ${d.dow} · ${d.tag}`;
   document.getElementById("sheet-title").textContent = d.title;
   document.getElementById("sheet-sub").textContent = d.sub;
-  const tl = d.timeline.map(([tm, ti, ds, key]) => {
-    const pk = (STOP_PLACES[d.id] || {})[ti] || [];
+  const stayRow = label => [label === "출발" ? "출발" : "복귀", label === "출발" ? "숙소에서 출발" : "숙소로 복귀", PLACES[TRIP.stay.key].name, false, [TRIP.stay.key]];
+  const rows = [...(startsAtStay(d) ? [stayRow("출발")] : []), ...d.timeline, ...(endsAtStay(d) ? [stayRow("복귀")] : [])];
+  const tl = rows.map(([tm, ti, ds, key, auto]) => {
+    const pk = auto || (STOP_PLACES[d.id] || {})[ti] || [];
     const gl = pk.map(k => `<a class="gmap" href="${gmapSearch(k)}" target="_blank" rel="noopener" title="${esc(PLACES[k].name)} 구글맵">${pk.length > 1 ? esc(PLACES[k].name) + " " : ""}지도 ↗</a>`).join("");
     return `<li class="${key ? "key" : ""}"><span class="tm">${esc(tm)}</span><span class="rail"></span><div class="bd"><div class="ti">${esc(ti)}${gl}</div>${ds ? `<div class="ds">${esc(ds)}</div>` : ""}</div></li>`;
   }).join("");
